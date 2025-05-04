@@ -1,0 +1,84 @@
+---
+title: "Computational Statistics"
+subtitle: "Chapter 7 - Monte Carlo Methods in Inference"
+title-slide-attributes:
+  data-background-image: mu-bg.png
+  data-background-size: stretch
+  data-slide-number: none
+format: revealjs
+---
+
+# Lecture 1: Monte Carlo Estimation (Part 1)
+
+## Basic Monte Carlo Estimation
+
+-   Introduction to Monte Carlo estimation
+-   Example: Estimating the expected difference of two normal variables
+
+```{r}
+m <- 1000
+g <- numeric(m)
+for (i in 1:m) {
+    x <- rnorm(2)
+    g[i] <- abs(x[1] - x[2])
+}
+est <- mean(g)
+est
+```
+
+## Visualizing Monte Carlo Simulations
+
+```{r}
+# Histogram of the simulated differences
+hist(g, main="Histogram of Differences (Monte Carlo)", col="lightblue")
+```
+
+# Lecture 2: Monte Carlo MSE Estimation (Part 2)
+
+## Estimating the Mean Squared Error (MSE)
+
+-   Monte Carlo estimation of MSE for trimmed means
+
+```{r}
+n <- 20
+m <- 1000
+mean_trim <- numeric(m)
+for (i in 1:m) {
+    x <- rnorm(n)
+    mean_trim[i] <- mean(x, trim = 0.1)
+}
+mse <- mean((mean_trim - 0)^2)
+mse
+```
+
+## Visualizing MSE Simulations
+
+```{r}
+# Histogram of the trimmed means
+hist(mean_trim, main="Trimmed Means (Monte Carlo MSE)", col="lightgreen")
+```
+
+# Lecture 3: Advanced Monte Carlo Techniques (Part 3)
+
+## Additional Monte Carlo Techniques
+
+-   Exploring advanced Monte Carlo techniques for inference
+-   Example: Hypothesis testing with Monte Carlo methods
+
+```{r}
+# Monte Carlo test example: Hypothesis testing
+n <- 50
+m <- 1000
+test_stat <- numeric(m)
+for (i in 1:m) {
+    x <- rnorm(n)
+    test_stat[i] <- mean(x)
+}
+p_value <- mean(test_stat >= 1.96)
+p_value
+```
+
+## Conclusion
+
+-   Recap of Monte Carlo methods in inference, MSE estimation, and hypothesis testing
+-   Practice: Apply these methods to other inferential problems

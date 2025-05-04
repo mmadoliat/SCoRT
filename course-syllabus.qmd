@@ -1,5 +1,5 @@
 ---
-title: "Syllabus - Computational Probability - Fall 2025"
+title: "Syllabus - Short Course on R Tools (SCoRT)"
 format: 
   html: default
   pdf: default
@@ -7,16 +7,16 @@ format:
 
 ## Course Information
 
-**Course Title:** MSSC 6010: Computational Probability\
+**Course Title:** MSSC 6010: Short Course on R Tools\
 **Meeting Time:** TuTh 2:00pm - 3:15pm\
-**Location:** Cudahy Hall 208 ([Microsoft Teams](https://teams.microsoft.com/l/meetup-join/19%3awd6Q_CvflXuF_yLLWv5LC6iaIgbXcr62t2pVZE4Q1Jw1%40thread.tacv2/1736282508938?context=%7b%22Tid%22%3a%22abe32f68-c72d-420d-b5bd-750c63a268e4%22%2c%22Oid%22%3a%22b0161be8-acaa-4999-ba8b-8ed780d0b7bf%22%7d))\
-**Website:** <http://tinyurl.com/Comp-Prob>
+**Location:** [Microsoft Teams](https://teams.microsoft.com/l/meetup-join/19%3awd6Q_CvflXuF_yLLWv5LC6iaIgbXcr62t2pVZE4Q1Jw1%40thread.tacv2/1736282508938?context=%7b%22Tid%22%3a%22abe32f68-c72d-420d-b5bd-750c63a268e4%22%2c%22Oid%22%3a%22b0161be8-acaa-4999-ba8b-8ed780d0b7bf%22%7d)\
+**Website:** [http://tinyurl.com/SCiRT](https://tinyurl.com/SCiRT)
 
-## Instructor Details
+## Instructors Details
 
 -   **Name:** Mehdi Maadooliat, Ph.D.
--   **Office:** CU 351
--   **Office Hours:** Tu (CU 351) & Th (Stat Help Desk) 12:15 - 1:30pm or by e-mail
+-   **Name:** Hossein Haghbim, Ph.D.
+-   **Office Hours:** Tu & Th 12:15 - 1:30pm or by e-mail
 
 ## Course Description
 

@@ -3,11 +3,11 @@ project:
 
 website:
   page-navigation: true
-  title: "MSSC 6010"
-  description: "Homepage for 'Computational Probability' at Marquette University, Fall 2025."
-  site-url: "https://tinyurl.com/Comp-Prob"
+  title: "SCoRT"
+  description: "Homepage for 'Short Course on R Tools', Summer 2025."
+  site-url: "https://tinyurl.com/SCiRT"
 
-  repo-url: https://github.com/mmadoliat/CompProb-f25/
+  repo-url: https://github.com/mmadoliat/SCoRT/
   repo-actions: [edit, issue]
 
   open-graph: true
@@ -22,10 +22,10 @@ website:
     align: center
     tools:
       - icon: github
-        href: https://github.com/mmadoliat/CompProb-f25/
+        href: https://github.com/mmadoliat/SCoRT/
         text: "GitHub organization"
       - icon: code-square
-        href: https://tinyurl.com/MoEl-Stat
+        href: https://tinyurl.com/SCiRT
         text: "TinyURL"
       - icon: person-fill
         href: https://d2l.mu.edu/

@@ -1,0 +1,89 @@
+---
+title: "Computational Statistics"
+subtitle: "Chapter 8 - Bootstrap and Jackknife"
+title-slide-attributes:
+  data-background-image: mu-bg.png
+  data-background-size: stretch
+  data-slide-number: none
+format: revealjs
+---
+
+# Lecture 1: Introduction to Bootstrap (Part 1)
+
+## Bootstrap Resampling Method
+
+-   Introduction to the bootstrap method
+-   Example: Bootstrap estimate of standard error
+
+```{r}
+# Bootstrap example: Estimate correlation between LSAT and GPA
+library(bootstrap)    #for the law data
+print(cor(law$LSAT, law$GPA))
+print(cor(law82$LSAT, law82$GPA))
+# Set up the bootstrap
+B <- 200            # number of replicates
+n <- nrow(law)      # sample size
+R <- numeric(B)     # storage for replicates
+# Bootstrap estimate of correlation
+for (i in 1:B) {
+  idx <- sample(1:n, size=n, replace=TRUE)
+  law_boot <- law[idx, ]
+  R[i] <- cor(law_boot$LSAT, law_boot$GPA)
+}
+mean(R)
+sd(R)  # Bootstrap standard error
+```
+
+## Visualizing Bootstrap Resamples
+
+```{r}
+# Plotting the bootstrap distribution
+hist(R, main="Bootstrap Distribution of Correlation", col="lightblue")
+```
+
+# Lecture 2: Jackknife Method (Part 2)
+
+## Introduction to the Jackknife Method
+
+-   The jackknife method for bias reduction
+-   Example: Jackknife estimate of the mean
+
+```{r}
+# Jackknife estimate of mean
+n <- nrow(law)
+theta_hat <- mean(law$LSAT)
+theta_jack <- numeric(n)
+
+# Leave-one-out jackknife
+for (i in 1:n) {
+  theta_jack[i] <- mean(law$LSAT[-i])
+}
+
+# Jackknife estimate of bias
+bias_jack <- (n - 1) * (mean(theta_jack) - theta_hat)
+bias_jack
+```
+
+# Lecture 3: Advanced Bootstrap Techniques (Part 3)
+
+## Bootstrap Confidence Intervals
+
+-   Introduction to bootstrap confidence intervals
+-   Example: Bootstrap percentile confidence interval
+
+```{r}
+# Bootstrap confidence intervals
+alpha <- 0.05
+ci <- quantile(R, probs = c(alpha/2, 1 - alpha/2))
+ci  # Bootstrap confidence interval
+```
+
+## Comparison of Bootstrap and Jackknife
+
+-   Discuss the differences and use cases of bootstrap and jackknife
+-   Recap of methods and their benefits in reducing bias and estimating uncertainty
+
+# Conclusion
+
+-   Recap of bootstrap and jackknife methods, confidence intervals, and bias estimation
+-   Practice: Apply bootstrap to other datasets and explore jackknife bias estimation

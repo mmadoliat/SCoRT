@@ -1,3 +1,3 @@
-# CompProb-f25
+# SCoRT
 
-Course webpage for MSSC 6010 - Fall 2025
+Course webpage for SCoRT - Summer 2025

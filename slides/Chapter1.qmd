@@ -1,0 +1,175 @@
+---
+title: "Computational Statistics"
+subtitle: "Chapter 1 - Introduction"
+title-slide-attributes:
+  data-background-image: mu-bg.png
+  data-background-size: stretch
+  data-slide-number: none
+format: revealjs
+---
+
+# Overview of Statistical Computing
+
+-   Computational approaches to solving statistical problems
+-   Difference between statistical computing and computational statistics
+-   Importance of Monte Carlo methods, optimization, and random number generation
+
+# Getting Started with R and RStudio
+
+-   R and RStudio: Installation steps
+-   Basic syntax in R
+-   Common operations: Assignment, sequences, and arithmetic
+
+```{r}
+x <- sqrt(2 * pi)
+print(x)
+```
+
+-   Assignment operator `<-` vs `=`
+-   Console vs script execution in RStudio
+
+# R Help System and Distributions
+
+-   `help()`, `?` for accessing R documentation
+-   Searching for help topics and datasets
+-   Generating random variables and performing statistical tests in R
+
+```{r}
+rnorm(100)
+t.test(rnorm(10), rnorm(10))
+```
+
+# Distributions and Statistical Tests
+
+## Probability Distributions
+
+-   `dnorm()`, `pnorm()`, `qnorm()`
+-   Exploring statistical tests in R
+
+## Statistical Tests
+
+-   `t.test()`, `chisq.test()`
+
+# Functions in R
+
+## Defining Functions
+
+-   `function(arglist) expr`
+-   Return values and default arguments
+
+```{r}
+sumdice <- function(n) {
+  k <- sample(1:6, size=n, replace=TRUE)
+  return(sum(k))
+}
+sumdice(2)
+```
+
+# Data Structures: Arrays, Data Frames, and Lists
+
+## Data Structures in R
+
+-   Arrays, matrices, and data frames
+
+```{r}
+# Creating vectors and matrices
+x <- c(1, 2, 3, 4)
+matrix_x <- matrix(x, nrow=2, ncol=2)
+print(matrix_x)
+```
+
+-   Example: Iris data set
+
+```{r}
+data(iris)
+summary(iris)
+```
+
+# Table: Comparison of Data Structures
+
+```{=html}
+<style>
+table { font-size: 0.75em; }
+</style>
+```
+| Type       | Definition                       | Example                |
+|------------|----------------------------------|------------------------|
+| Vector     | 1D array of elements             | `x <- c(1, 2, 3)`      |
+| Matrix     | 2D array, same data type         | `matrix(1:4, nrow=2)`  |
+| Data Frame | 2D array, different data types   | `data(iris)`           |
+| List       | Collection of objects (any type) | `list(a=1, b="hello")` |
+
+# Graphics in R
+
+## Basic Plots
+
+-   `plot()`, `hist()`, `boxplot()`
+
+::: panel-tabset
+## Code
+
+```{r}
+#| label: basic
+#| fig-show: hide
+#| message: false
+
+plot(iris);
+# boxplot(iris);
+# hist(iris[,1])
+```
+
+## Plot
+
+```{r}
+#| ref.label: basic
+#| echo: false
+#| fig-asp: 0.3
+```
+:::
+
+## Introduction to ggplot2
+
+-   Visualizing using `ggplot2`
+
+::: panel-tabset
+## Code
+
+```{r}
+#| label: setup
+#| fig-show: hide
+#| message: false
+#| code-line-numbers: "|1|2|3-6"
+
+library(ggplot2)
+ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + 
+  geom_point() + 
+  geom_smooth(method="lm", se=FALSE, color="blue") + 
+  theme_minimal() + 
+  labs(title="Sepal vs Petal Length in Iris Dataset", x="Sepal Length", y="Petal Length")
+```
+
+## Plot
+
+```{r}
+#| ref.label: setup
+#| echo: false
+#| fig-asp: 0.3
+```
+:::
+
+# Workspace and Files - Markdown and knitr
+
+## Managing Files
+
+-   Working directories and file input/output
+-   Using scripts and automation
+
+## Dynamic Documents
+
+-   Creating reports with R Markdown
+-   Introduction to `knitr` package
+
+# Conclusion
+
+-   Recap of key points: R setup, data structures, functions, and plotting
+-   Next steps: Exploring probability distributions in R

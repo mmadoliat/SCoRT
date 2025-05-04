@@ -1,0 +1,128 @@
+---
+title: "Computational Statistics"
+subtitle: "Chapter 2 - Probability and Statistics Review"
+title-slide-attributes:
+  data-background-image: mu-bg.png
+  data-background-size: stretch
+  data-slide-number: none
+format: revealjs
+---
+
+# Probability Concepts
+
+## Random Variables and Distributions
+
+-   Overview of random variables
+-   Discrete vs Continuous random variables
+-   Important distributions (Binomial, Normal, Chi-Square)
+
+```{r}
+# Simulating random variables
+N <- 100; mu <- 5; sig <- 2
+Y <- rnorm(N, mean = mu, sd = sig)
+hist(Y, main="Histogram of Normal Distribution", xlab="Y values", col="lightblue")
+```
+
+# Some Discrete Distributions
+
+## Binomial Distribution
+
+-   `rbinom()`, `dbinom()`, `pbinom()`
+-   Example: Generating binomial random variables
+
+```{r}
+rbinom(10, size=10, prob=0.5)
+```
+
+## Poisson Distribution
+
+-   `rpois()`, `dpois()`, `ppois()`
+-   Example: Simulating Poisson-distributed data
+
+```{r}
+rpois(10, lambda=2)
+```
+
+# Some Continuous Distributions
+
+## Normal Distribution
+
+-   `rnorm()`, `dnorm()`, `pnorm()`
+-   Example: Generating normal random variables
+
+```{r}
+rnorm(10, mean=0, sd=1)
+```
+
+## Exponential Distribution
+
+-   `rexp()`, `dexp()`, `pexp()`
+-   Simulating exponential data in R
+
+# Multivariate Normal Distribution
+
+## Properties
+
+-   Mean vector, covariance matrix
+-   Multivariate normal density
+
+```{r}
+library(MASS)
+mvrnorm(n=10, mu=c(0,0), Sigma=matrix(c(1,0.5,0.5,1),2,2))
+```
+
+# Limit Theorems
+
+## Law of Large Numbers
+
+-   Statement of the law
+-   Demonstration using R
+
+```{r}
+n <- 1000
+x <- rnorm(n)
+cumsum(x) / 1:n
+```
+
+## Central Limit Theorem
+
+-   Discuss the CLT and its importance in statistics
+-   Simulating the CLT with normal distributions
+
+```{r}
+# Central Limit Theorem simulation
+means <- replicate(1000, mean(rnorm(100, mean = mu, sd = sig)))
+hist(means, main="Central Limit Theorem", col="lightgreen", border="black")
+```
+
+# Joint and Conditional Distributions
+
+-   Joint distributions and their importance
+-   Conditional distributions with examples
+
+```{r}
+# Simulating joint distributions
+mu <- c(5, 10); sigma <- matrix(c(1, 0.5, 0.5, 2), 2, 2)
+library(MASS)
+X <- mvrnorm(1000, mu = mu, Sigma = sigma)
+
+plot(X[,1], X[,2], main="Scatter plot of Joint Distribution", xlab="X1", ylab="X2", col="blue")
+```
+
+# Estimators and Their Properties
+
+-   Discuss point estimators: Mean, Variance, etc.
+-   Review bias, consistency, and efficiency
+
+```{r}
+# Example of calculating mean and variance from samples
+set.seed(123)
+sample_data <- rnorm(100, mean = 5, sd = 2)
+mean(sample_data)
+var(sample_data)
+```
+
+# Conclusion
+
+-   Recap of probability concepts, distributions, and hypothesis testing
+-   Review key formulas and concepts for exam preparation

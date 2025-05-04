@@ -1,0 +1,114 @@
+---
+title: "Computational Statistics"
+subtitle: "Chapter 3 - Methods for Generating Random Variables"
+title-slide-attributes:
+  data-background-image: mu-bg.png
+  data-background-size: stretch
+  data-slide-number: none
+format: revealjs
+---
+
+# Lecture 1: Sampling and Permutations (Part 1)
+
+## Sampling from a Finite Population
+
+-   Introduction to finite population sampling
+-   Example: Tossing coins, choosing lottery numbers
+
+```{r}
+# Sampling examples
+sample(0:1, size = 10, replace = TRUE)  # Tossing coins
+sample(1:100, size = 6, replace = FALSE)  # Choosing lottery numbers
+sample(letters)  # Permutation of letters
+```
+
+## Multinomial Distribution
+
+-   Introduction to multinomial distribution
+-   Example: Sampling from a multinomial distribution
+
+```{r}
+# Sample from multinomial distribution
+x <- sample(1:3, size = 100, replace = TRUE, prob = c(.2, .3, .5))
+table(x)
+```
+
+# Lecture 2: Inverse Transform Method (Part 2)
+
+## Continuous Case
+
+-   Explanation of the inverse transform method for continuous distributions
+-   Example: Simulating exponential random variables
+
+```{r}
+# Inverse transform method for exponential distribution
+n <- 1000
+U <- runif(n)
+X <- -log(1 - U)
+hist(X, main="Exponential Distribution via Inverse Transform", col="lightblue")
+```
+
+## Discrete Case
+
+-   Example of applying the inverse transform method to discrete random variables
+
+```{r}
+# Inverse transform method for geometric distribution
+p <- 0.5
+X_geom <- ceiling(log(1 - runif(n)) / log(1 - p))
+hist(X_geom, main="Geometric Distribution via Inverse Transform", col="lightgreen")
+```
+
+# Lecture 3: Acceptance-Rejection Method (Part 3)
+
+## Introduction to Acceptance-Rejection Method
+
+-   Explanation of the acceptance-rejection method
+-   Example: Sampling from a target distribution
+
+```{r}
+# Acceptance-rejection method example
+target <- function(x) { ifelse(x > 0, exp(-x), 0) }
+proposal <- function(x) { dnorm(x, mean = 2, sd = 1) }
+
+X <- rnorm(1000, mean = 2, sd = 1)
+accept <- runif(1000) < target(X) / (1.5 * proposal(X))
+
+hist(X[accept], main="Accepted Samples from Target Distribution", col="lightcoral")
+```
+
+# Lecture 4: Transformation Methods and Mixtures (Part 4)
+
+## Transformation of Random Variables
+
+-   Introduction to transformation methods
+-   Example: Box-Muller transform for generating normal random variables
+
+```{r}
+# Box-Muller transform
+n <- 1000
+U1 <- runif(n)
+U2 <- runif(n)
+Z1 <- sqrt(-2 * log(U1)) * cos(2 * pi * U2)
+Z2 <- sqrt(-2 * log(U1)) * sin(2 * pi * U2)
+hist(Z1, main="Normal Distribution via Box-Muller", col="lightblue")
+```
+
+## Sums and Mixtures
+
+-   Explanation of sums and mixtures of random variables
+-   Example: Mixture of normals
+
+```{r}
+# Mixture of normals
+library(MASS)
+mu1 <- 0; mu2 <- 3; sigma1 <- 1; sigma2 <- 2
+p <- 0.3
+X <- ifelse(runif(n) < p, rnorm(n, mu1, sigma1), rnorm(n, mu2, sigma2))
+hist(X, main="Mixture of Normal Distributions", col="lightgreen")
+```
+
+# Conclusion
+
+-   Recap of random variable generation methods: sampling, inverse transform, acceptance-rejection, and transformations
+-   Practice problems for next lecture

@@ -2,15 +2,15 @@
 title: "Course overview"
 ---
 
-This is the homepage for MSSC 6010 - Computational Probability by [Dr. Mehdi Maadooliat](www.mssc.mu.edu/~mehdi) in Fall 2025 at Marquette University. All course materials will be posted on this site.
+This is the homepage for Short Course on R Tools (SCoRT) by [Dr. Mehdi Maadooliat](www.mssc.mu.edu/~mehdi) and Dr. Hossein Haghbin. All course materials will be posted on this site.
 
 You can find the course syllabus [here](/course-syllabus.html) and the course schedule [here](/).
 
 ## Class meetings
 
-| Meeting      | Location                       | Time                           |
-|------------------|---------------------------|---------------------------|
-| Lecture      | CU 208                         | Tue & Thur 11:00 am - 12:15 pm |
-| Office Hours | T: CU 351 & Th: Stat Help Desk | Tue & Thur 12:15 - 1:30 pm     |
+| Meeting      | Location  | Time                           |
+|--------------|-----------|--------------------------------|
+| Lecture      | MS. Teams | Tue & Thur 11:00 am - 12:15 pm |
+| Office Hours | MS. Teams | Tue & Thur 12:15 - 1:30 pm     |
 
 ![](images/twitter-card.png)

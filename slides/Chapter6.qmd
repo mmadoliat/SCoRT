@@ -1,0 +1,105 @@
+---
+title: "Computational Statistics"
+subtitle: "Chapter 6 - Monte Carlo Integration and Variance Reduction"
+title-slide-attributes:
+  data-background-image: mu-bg.png
+  data-background-size: stretch
+  data-slide-number: none
+format: revealjs
+---
+
+# Lecture 1: Simple Monte Carlo Integration (Part 1)
+
+## Introduction to Monte Carlo Integration
+
+-   Basic concepts of Monte Carlo integration
+-   Example: Integrating using uniform distribution
+
+```{r}
+m <- 10000
+x <- runif(m)
+theta.hat <- mean(exp(-x))
+theta.hat
+1 - exp(-1)
+```
+
+## Example: Monte Carlo integration with bounded intervals
+
+```{r}
+m <- 10000
+x <- runif(m, min=2, max=4)
+theta.hat <- mean(exp(-x)) * 2
+theta.hat
+exp(-2) - exp(-4)
+```
+
+# Lecture 2: Monte Carlo Integration for Unbounded Intervals (Part 2)
+
+## Unbounded Intervals
+
+-   Handling unbounded intervals in Monte Carlo integration
+
+```{r}
+# Plotting a function over an unbounded interval
+x <- seq(.1, 2.5, length.out = 100)
+y <- exp(-x^2 / 2)
+plot(x, y, type="l", main="Function Plot for Unbounded Interval", col="blue")
+```
+
+# Lecture 3: Importance Sampling (Part 3)
+
+## Introduction to Importance Sampling
+
+-   Importance sampling and its applications
+-   Example: Applying importance sampling
+
+```{r}
+# Example of importance sampling
+g <- function(x) exp(-x^2 / 2)
+f <- function(x) dnorm(x, mean = 1)
+x <- rnorm(10000, mean = 1)
+theta.hat <- mean(g(x) / f(x))
+theta.hat
+```
+
+## Visualizing Importance Sampling
+
+```{r}
+# Compare the original function with the importance sampling function
+curve(g, from = -3, to = 3, col = "blue", lwd = 2, main="Importance Sampling: g(x) vs f(x)")
+curve(f, add = TRUE, col = "red", lty = 2, lwd = 2)
+legend("topright", legend=c("g(x)", "f(x)"), col=c("blue", "red"), lty=c(1, 2), lwd=2)
+```
+
+# Lecture 4: Variance Reduction Techniques (Part 4)
+
+## Control Variates
+
+-   Explanation of control variates and how they reduce variance
+-   Example: Using control variates in Monte Carlo integration
+
+```{r}
+# Control variates example
+m <- 10000
+x <- runif(m)
+theta.hat <- mean(exp(-x)) - (mean(x) - 0.5)
+theta.hat
+```
+
+## Antithetic Variables
+
+-   Explanation of antithetic variables and how they reduce variance
+-   Example: Applying antithetic variables
+
+```{r}
+# Antithetic variables example
+u <- runif(5000)
+theta.hat <- mean((exp(-u) + exp(-(1 - u))) / 2)
+theta.hat
+1 - exp(-1)
+```
+
+# Conclusion
+
+-   Recap of Monte Carlo integration methods, importance sampling, and variance reduction techniques
+-   Practice: Try implementing Monte Carlo integration with other functions
