@@ -1,6 +1,6 @@
 ---
 title: "Short Course on R Tools"
-subtitle: "Chapter 2 - Probability and Statistics Review"
+subtitle: "Introduction to Rcpp"
 title-slide-attributes:
   data-background-image: mu-bg.png
   data-background-size: stretch
@@ -8,121 +8,205 @@ title-slide-attributes:
 format: revealjs
 ---
 
-# Probability Concepts
+# Outline
 
-## Random Variables and Distributions
+-   Motivation & Introduction
+-   Getting Started with `cppFunction()`
+-   Using `sourceCpp()`
+-   Data Types & Conversions
+-   Rcpp Classes: Lists, DataFrames, Functions, Attributes
+-   Handling Missing Values
+-   Standard Template Library (STL)
+-   Case Studies & Benchmarks
+-   Using Rcpp in Packages
+-   Advanced Topics & Resources
 
--   Overview of random variables
--   Discrete vs Continuous random variables
--   Important distributions (Binomial, Normal, Chi-Square)
+------------------------------------------------------------------------
 
-```{r}
-# Simulating random variables
-N <- 100; mu <- 5; sig <- 2
-Y <- rnorm(N, mean = mu, sd = sig)
-hist(Y, main="Histogram of Normal Distribution", xlab="Y values", col="lightblue")
+# Motivation & Introduction
+
+-   **Performance Bottlenecks**: loops, recursion, complex operations
+
+-   **Rcpp**: smooth bridge between R and C++
+
+-   **Advantages**:
+
+    -   Low overhead function calls
+    -   Access to STL (data structures & algorithms)
+    -   Cleaner, maintainable code
+
+??? note Identify real bottlenecks with profiling before using C++.
+
+------------------------------------------------------------------------
+
+# Getting Started: `cppFunction()`
+
+``` cpp
+// Define and compile inline C++ function
+int add(int x, int y, int z) {
+  return x + y + z;
+}
 ```
 
-# Some Discrete Distributions
+-   Use `cppFunction()` in R console or script
+-   Fast prototyping & testing
+-   Good for small functions
 
-## Binomial Distribution
+??? note Show live demo: adding two numbers with `cppFunction()`.
 
--   `rbinom()`, `dbinom()`, `pbinom()`
--   Example: Generating binomial random variables
+------------------------------------------------------------------------
 
-```{r}
-rbinom(10, size=10, prob=0.5)
+# Using `sourceCpp()`
+
+-   Create standalone `.cpp` files with:
+
+    ``` cpp
+    #include <Rcpp.h>
+    using namespace Rcpp;
+    // [[Rcpp::export]]
+    double meanC(NumericVector x) { ... }
+    ```
+
+-   Compile with `sourceCpp('file.cpp')`
+
+-   Benefits:
+
+    -   Editor support (syntax highlighting)
+    -   Easier debugging & error tracking
+
+??? note Highlight difference between inline and file-based C++.
+
+------------------------------------------------------------------------
+
+# Data Types & Conversions
+
+-   **R vectors ↔ C++ classes**:
+
+    -   `NumericVector`, `IntegerVector`, `CharacterVector`, `LogicalVector`
+
+-   **Scalars**: `double`, `int`, `String`, `bool`
+
+-   **Key methods**:
+
+    -   `.size()`, `.begin()`, `.end()`
+    -   Constructors: `NumericVector out(n)`
+
+??? note Emphasize zero-based indexing in C++!
+
+------------------------------------------------------------------------
+
+# Rcpp Core Classes
+
+## Lists & DataFrames
+
+-   `List`, `DataFrame` wrappers
+-   Access with `as<>()`, `.inherits()`, `.attr()`
+
+## Functions
+
+-   `Function f` & `RObject` return type
+
+-   Positional vs named args:
+
+    ``` cpp
+    f(_["x"] = xval, _["y"] = yval);
+    ```
+
+## Attributes
+
+-   Query/modify with `.attr()` and `.names()`
+-   Create with `Vector::create()`
+
+??? note Quick example: extracting residuals from `lm`.
+
+------------------------------------------------------------------------
+
+# Handling Missing Values
+
+-   **Scalars**: `NA_INTEGER`, `NA_REAL`, `NA_LOGICAL`, `NA_STRING`
+-   **Vectors**: explicit use of NA constants
+-   Beware of C++ arithmetic on NA: e.g. `NA_INTEGER + 1`
+
+??? note Demonstrate `evalCpp("NA_REAL + 1")`.
+
+------------------------------------------------------------------------
+
+# Standard Template Library (STL)
+
+## Iterators & Algorithms
+
+-   Range-based `for(const auto &x : xs)`
+-   `std::accumulate`, `std::min_element`, etc.
+
+## Data Structures
+
+-   `std::vector`, `std::unordered_set`, `std::unordered_map`
+-   Efficient growth & lookup
+
+??? note Show run-length encoding (`rleC`) example.
+
+------------------------------------------------------------------------
+
+# Case Studies & Benchmarks
+
+## Gibbs Sampler
+
+``` cpp
+// [[Rcpp::export]]
+NumericMatrix gibbs_cpp(int N, int thin) { ... }
 ```
 
-## Poisson Distribution
+-   \~20× speedup vs R
 
--   `rpois()`, `dpois()`, `ppois()`
--   Example: Simulating Poisson-distributed data
+## Agent-Based Model
 
-```{r}
-rpois(10, lambda=2)
-```
+-   R vectorisation vs Rcpp loops
+-   Memory overhead comparisons
 
-# Some Continuous Distributions
+??? note Plot benchmark timings side-by-side.
 
-## Normal Distribution
+------------------------------------------------------------------------
 
--   `rnorm()`, `dnorm()`, `pnorm()`
--   Example: Generating normal random variables
+# Using Rcpp in Packages
 
-```{r}
-rnorm(10, mean=0, sd=1)
-```
+-   Add to package:
 
-## Exponential Distribution
+    -   `LinkingTo: Rcpp` in DESCRIPTION
+    -   `useDynLib(pkg)` & `importFrom(Rcpp, sourceCpp)` in NAMESPACE
 
--   `rexp()`, `dexp()`, `pexp()`
--   Simulating exponential data in R
+-   `usethis::use_rcpp()` automates setup
 
-# Multivariate Normal Distribution
+-   Run `Rcpp::compileAttributes()` to generate bindings
 
-## Properties
+??? note Recommend best practices for CI & testing.
 
--   Mean vector, covariance matrix
--   Multivariate normal density
+------------------------------------------------------------------------
 
-```{r}
-library(MASS)
-mvrnorm(n=10, mu=c(0,0), Sigma=matrix(c(1,0.5,0.5,1),2,2))
-```
+# Advanced Topics & Resources
 
-# Limit Theorems
+-   **Attributes vignette**: `vignette('Rcpp-attributes')`
+-   **Modules**: expose C++ classes to R
+-   **RcppGSL**, **RcppArmadillo** for specialized libraries
+-   Books: *Effective C++*, *Effective STL*
+-   Online: Rcpp homepage, mailing list
 
-## Law of Large Numbers
+??? note Encourage exploring community resources.
 
--   Statement of the law
--   Demonstration using R
+------------------------------------------------------------------------
 
-```{r}
-n <- 1000
-x <- rnorm(n)
-cumsum(x) / 1:n
-```
+# Summary & Q&A
 
-## Central Limit Theorem
+-   Key takeaways:
 
--   Discuss the CLT and its importance in statistics
--   Simulating the CLT with normal distributions
+    1.  Profile before optimizing
+    2.  Inline vs file-based workflows
+    3.  Master data conversions & STL
 
-```{r}
-# Central Limit Theorem simulation
-means <- replicate(1000, mean(rnorm(100, mean = mu, sd = sig)))
-hist(means, main="Central Limit Theorem", col="lightgreen", border="black")
-```
+-   Questions?
 
-# Joint and Conditional Distributions
+------------------------------------------------------------------------
 
--   Joint distributions and their importance
--   Conditional distributions with examples
+# Thank You
 
-```{r}
-# Simulating joint distributions
-mu <- c(5, 10); sigma <- matrix(c(1, 0.5, 0.5, 2), 2, 2)
-library(MASS)
-X <- mvrnorm(1000, mu = mu, Sigma = sigma)
-
-plot(X[,1], X[,2], main="Scatter plot of Joint Distribution", xlab="X1", ylab="X2", col="blue")
-```
-
-# Estimators and Their Properties
-
--   Discuss point estimators: Mean, Variance, etc.
--   Review bias, consistency, and efficiency
-
-```{r}
-# Example of calculating mean and variance from samples
-set.seed(123)
-sample_data <- rnorm(100, mean = 5, sd = 2)
-mean(sample_data)
-var(sample_data)
-```
-
-# Conclusion
-
--   Recap of probability concepts, distributions, and hypothesis testing
--   Review key formulas and concepts for exam preparation
+-   [rcpp.org](https://www.rcpp.org)
+-   [Hadley Wickham,*Advanced R*](https://adv-r.hadley.nz/rcpp.html)

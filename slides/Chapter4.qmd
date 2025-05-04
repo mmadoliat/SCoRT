@@ -1,60 +1,277 @@
 ---
 title: "Short Course on R Tools"
-subtitle: "Chapter 9 - Jackknife-after-Bootstrap"
+subtitle: "Object-Oriented Programming in R"
 title-slide-attributes:
   data-background-image: mu-bg.png
   data-background-size: stretch
   data-slide-number: none
 format: revealjs
+transition: slide
+slide-number: true
+code-line-numbers: true
+center: true
+echo: false
+warning: false
+message: false
 ---
 
-# Jackknife-after-Bootstrap
+# Outline
 
-## Introduction to Jackknife-after-Bootstrap
+-   OOP Paradigms in R
 
--   Explanation of the jackknife-after-bootstrap method
--   Used to estimate bias and standard errors after bootstrap
+-   Base Types & Functional OOP
 
-```{r}
-library(boot)
-library(bootstrap)
-set.seed(1111)
+-   S3 Classes & Methods
 
-# Function to compute the patch ratio statistic
-theta.boot <- function(patch, i) {
-  y <- patch[i, "y"]
-  z <- patch[i, "z"]
-  mean(y) / mean(z)
+-   S4 Classes & Methods
+
+-   R6 Classes & Reference Semantics
+
+-   Trade-offs & Best Practices
+
+-   Hands-on Exercises
+
+------------------------------------------------------------------------
+
+# OOP Paradigms in R
+
+-   **Functional OOP**: functions return objects, operate on data
+
+-   **Encapsulated OOP**: objects carry data + methods
+
+-   **Generics & Method Dispatch**
+
+-   **When to use**: design, extensibility, code organization
+
+??? note Frame conceptual differences and motivate each paradigm.
+
+------------------------------------------------------------------------
+
+# Base Types & Functional OOP
+
+-   **Environments** as mutable storage
+
+-   **Closures** for capturing state
+
+-   Example: simple counter
+
+```         
+make_counter <- function() {
+  cnt <- 0
+  function() { cnt <<- cnt + 1; cnt }
 }
-
-# Bootstrap the patch dataset
-boot.out <- boot(bootstrap::patch, statistic = theta.boot, R=2000)
-boot.out
+c1 <- make_counter()
+c1()  # 1
+c1()  # 2
 ```
 
-## Applying Jackknife-after-Bootstrap
+??? note Show how closures simulate objects in base R.
 
--   Example: Using the jackknife-after-bootstrap method
--   Checking the bootstrap array
+------------------------------------------------------------------------
 
-```{r}
-# Check the bootstrap array
-A <- boot.array(boot.out)
-head(A, 3)
+# S3: Informal Classes
 
-# Proportion of cases that are not resampled
-mean(A[, 1] == 0)
+-   **Lightweight**: no formal schema
+
+-   **Define**: set `class` attribute
+
+-   **Generics**: `UseMethod()`
+
+```         
+mean.myclass <- function(x, ...) {
+  # custom mean
+}
+x <- structure(c(1,2,3), class = "myclass")
+mean(x)
 ```
 
-## Visualizing Results
+### Key Points
 
-```{r}
-# Plotting the bootstrap results
-plot(boot.out, index=1)
+-   `class(x)` order
+
+-   NextMethod()
+
+-   Overloading + inheritance via class vectors
+
+??? note Demo: create `print.myclass`, show dispatch.
+
+------------------------------------------------------------------------
+
+# S3 Constructors & Validation
+
+-   **Constructor function**:
+
+    ```         
+    new_myclass <- function(x) {
+      stopifnot(is.numeric(x))
+      structure(x, class = "myclass")
+    }
+    ```
+
+-   **Validation**: manual checks in constructor
+
+-   **Pros/Cons**: flexible vs fragile
+
+??? note Emphasize lack of formal slot checks.
+
+------------------------------------------------------------------------
+
+# S4: Formal Classes
+
+-   **Definition**: `setClass()` with slots
+
+```         
+setClass("Person",
+  slots = list(
+    name = "character",
+    age  = "numeric"
+  )
+)
 ```
 
-## Conclusion
+-   **Create instance**: `new("Person", name = "Alice", age = 30)`
 
--   Recap of jackknife-after-bootstrap technique
--   Importance of combining jackknife and bootstrap for robust estimates
--   Practice: Apply jackknife-after-bootstrap to other datasets
+??? note Illustrate slot access via `@` and `slot()`.
+
+------------------------------------------------------------------------
+
+# S4 Generics & Methods
+
+-   **Define generic**:
+
+    ```         
+    setGeneric("greet", function(x) standardGeneric("greet"))
+    ```
+
+-   **Define method**:
+
+    ```         
+    setMethod("greet", "Person", function(x) {
+      paste("Hello, my name is", x@name)
+    })
+    ```
+
+-   **Multiple dispatch**: based on argument classes
+
+??? note Show example with inheritance & dispatch.
+
+------------------------------------------------------------------------
+
+# S4 Inheritance & Virtual Classes
+
+-   **Inheritance**:
+
+    ```         
+    setClass("Employee", contains = "Person",
+      slots = list(salary = "numeric"))
+    ```
+
+-   **Virtual classes**: abstract base types
+
+-   **Validity methods**: `setValidity()`
+
+??? note Encourage robust class definitions.
+
+------------------------------------------------------------------------
+
+# R6: Reference Classes
+
+-   **Encapsulated OOP**: mutable fields + methods
+
+-   **Define**:
+
+    ```         
+    library(R6)
+    PersonR6 <- R6Class("PersonR6",
+      public = list(
+        name = NULL,
+        initialize = function(name) self$name <- name,
+        greet = function() cat("Hi, I'm", self$name, "\n")
+      )
+    )
+    ```
+
+-   **Instantiate & use**:
+
+    ```         
+    p <- PersonR6$new("Bob")
+    p$greet()
+    ```
+
+??? note Compare reference vs value semantics.
+
+------------------------------------------------------------------------
+
+# R6 Advanced Features
+
+-   **Active bindings**
+
+-   **Inheritance & extension**
+
+-   **Private vs public**
+
+-   **Use cases**: GUI, stateful objects, iterative algorithms
+
+??? note Show leak-free design with private fields.
+
+------------------------------------------------------------------------
+
+# Trade-offs & Best Practices
+
+| Paradigm | Pros               | Cons                           |
+|----------|--------------------|--------------------------------|
+| S3       | Simple, flexible   | No schema, fragile dispatch    |
+| S4       | Formal, robust     | Verbose, steep learning curve  |
+| R6       | Encapsulated, fast | Manual memory, low abstraction |
+
+-   Choose based on complexity & team skill
+
+-   Document constructors & methods clearly
+
+-   Write unit tests for OO code
+
+??? note Discuss package design implications.
+
+------------------------------------------------------------------------
+
+# Hands-on Exercises (30 min)
+
+1.  **Create S3 class**: define `circle` with `radius` and methods for area & print
+
+2.  **S4 hierarchy**: model shapes (`Shape` virtual, `Circle`, `Rectangle` classes)
+
+3.  **R6 counter**: implement counter with reset and step-by-step logging
+
+??? note Split into small groups, reconvene for solutions.
+
+------------------------------------------------------------------------
+
+# Resources & References
+
+-   **Advanced R**: OO chapters by Hadley Wickham
+
+-   R Documentation: `?Methods`, `?R6Class`
+
+-   CRAN packages: `methods`, `R6`
+
+-   Articles: stat.ethz.ch/\~jlamp/news/oop
+
+??? note Encourage further reading and experimentation.
+
+------------------------------------------------------------------------
+
+# Q&A
+
+-   Questions on paradigms?
+
+-   Real-world use cases?
+
+-   Integration with functional programming?
+
+------------------------------------------------------------------------
+
+# Thank You
+
+-   Slides source: adv-r OO chapter
+
+-   Feedback welcome!

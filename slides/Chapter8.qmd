@@ -1,6 +1,6 @@
 ---
 title: "Short Course on R Tools"
-subtitle: "Chapter 8 - Bootstrap and Jackknife"
+subtitle: "Deep Learning with R and Keras"
 title-slide-attributes:
   data-background-image: mu-bg.png
   data-background-size: stretch
@@ -8,82 +8,198 @@ title-slide-attributes:
 format: revealjs
 ---
 
-# Lecture 1: Introduction to Bootstrap (Part 1)
+# Outline
 
-## Bootstrap Resampling Method
+1.  Introduction & Setup
 
--   Introduction to the bootstrap method
--   Example: Bootstrap estimate of standard error
+2.  Fundamentals of Neural Networks
 
-```{r}
-# Bootstrap example: Estimate correlation between LSAT and GPA
-library(bootstrap)    #for the law data
-print(cor(law$LSAT, law$GPA))
-print(cor(law82$LSAT, law82$GPA))
-# Set up the bootstrap
-B <- 200            # number of replicates
-n <- nrow(law)      # sample size
-R <- numeric(B)     # storage for replicates
-# Bootstrap estimate of correlation
-for (i in 1:B) {
-  idx <- sample(1:n, size=n, replace=TRUE)
-  law_boot <- law[idx, ]
-  R[i] <- cor(law_boot$LSAT, law_boot$GPA)
-}
-mean(R)
-sd(R)  # Bootstrap standard error
+3.  Building MLPs for Classification & Regression
+
+4.  Convolutional Neural Networks (CNNs)
+
+5.  Recurrent Neural Networks (RNNs) & LSTM
+
+6.  Autoencoders & Unsupervised Learning
+
+7.  Model Evaluation & Tuning
+
+8.  Advanced Topics & Deployment
+
+9.  Hands-on Exercises
+
+------------------------------------------------------------------------
+
+# 1. Introduction & Environment Setup
+
+-   **Why Deep Learning?** complex function approximation, feature engineering
+
+-   **Keras in R**: high-level API for TensorFlow backend
+
+-   **Installation**:
+
+    ```         
+    install.packages("keras")
+    library(keras)
+    install_keras()  # installs TensorFlow
+    ```
+
+-   **Project structure**: data/, scripts/, models/
+
+??? note Demo environment check: `tensorflow::tf_config()`.
+
+------------------------------------------------------------------------
+
+# 2. Fundamentals of Neural Networks
+
+-   **Perceptron**: basic neuron → activation(input \* weight + bias)
+
+-   **Layers**: Dense layers, activation functions (`relu`, `sigmoid`, `softmax`)
+
+-   **Forward & backward pass**: feedforward, gradient descent
+
+```         
+model <- keras_model_sequential() %>%
+  layer_dense(units = 32, activation = 'relu', input_shape = c(784)) %>%
+  layer_dense(units = 10, activation = 'softmax')
 ```
 
-## Visualizing Bootstrap Resamples
+??? note Visualize network architecture with `plot_model()`.
 
-```{r}
-# Plotting the bootstrap distribution
-hist(R, main="Bootstrap Distribution of Correlation", col="lightblue")
+------------------------------------------------------------------------
+
+# 3. Multilayer Perceptrons (MLPs)
+
+## Classification on MNIST
+
+```         
+model %>% compile(
+  optimizer = 'rmsprop',
+  loss = 'categorical_crossentropy',
+  metrics = c('accuracy')
+)
+history <- model %>% fit(
+  x_train, y_train,
+  epochs = 10, batch_size = 128,
+  validation_split = 0.2
+)
 ```
 
-# Lecture 2: Jackknife Method (Part 2)
+-   **Data preprocessing**: normalization, one-hot encoding
 
-## Introduction to the Jackknife Method
+-   **Callbacks**: EarlyStopping, ModelCheckpoint
 
--   The jackknife method for bias reduction
--   Example: Jackknife estimate of the mean
+??? note Show training curves: `plot(history)`.
 
-```{r}
-# Jackknife estimate of mean
-n <- nrow(law)
-theta_hat <- mean(law$LSAT)
-theta_jack <- numeric(n)
+------------------------------------------------------------------------
 
-# Leave-one-out jackknife
-for (i in 1:n) {
-  theta_jack[i] <- mean(law$LSAT[-i])
-}
+# 4. Convolutional Neural Networks (CNNs)
 
-# Jackknife estimate of bias
-bias_jack <- (n - 1) * (mean(theta_jack) - theta_hat)
-bias_jack
+-   **Concepts**: filters, pooling, feature maps
+
+-   **Example**:
+
+```         
+cnn <- keras_model_sequential() %>%
+  layer_conv_2d(filters=32, kernel_size=c(3,3), activation='relu', input_shape=c(28,28,1)) %>%
+  layer_max_pooling_2d(pool_size=c(2,2)) %>%
+  layer_conv_2d(filters=64, kernel_size=c(3,3), activation='relu') %>%
+  layer_max_pooling_2d(pool_size=c(2,2)) %>%
+  layer_flatten() %>%
+  layer_dense(units=64, activation='relu') %>%
+  layer_dense(units=10, activation='softmax')
 ```
 
-# Lecture 3: Advanced Bootstrap Techniques (Part 3)
+-   **Image augmentation**: `image_data_generator()`
 
-## Bootstrap Confidence Intervals
+??? note Demo augmenting and fitting on CIFAR-10 subset.
 
--   Introduction to bootstrap confidence intervals
--   Example: Bootstrap percentile confidence interval
+------------------------------------------------------------------------
 
-```{r}
-# Bootstrap confidence intervals
-alpha <- 0.05
-ci <- quantile(R, probs = c(alpha/2, 1 - alpha/2))
-ci  # Bootstrap confidence interval
+# 5. Recurrent Neural Networks & LSTM
+
+-   **RNN basics**: sequence data, time steps
+
+-   **LSTM**: handling long-term dependencies
+
+```         
+rnn <- keras_model_sequential() %>%
+  layer_lstm(units=128, input_shape=c(timesteps, features)) %>%
+  layer_dense(units=1, activation='sigmoid')
 ```
 
-## Comparison of Bootstrap and Jackknife
+-   **Use case**: sentiment analysis, text generation
 
--   Discuss the differences and use cases of bootstrap and jackknife
--   Recap of methods and their benefits in reducing bias and estimating uncertainty
+??? note Show example on IMDB dataset: `dataset_imdb()`.
 
-# Conclusion
+------------------------------------------------------------------------
 
--   Recap of bootstrap and jackknife methods, confidence intervals, and bias estimation
--   Practice: Apply bootstrap to other datasets and explore jackknife bias estimation
+# 6. Autoencoders & Unsupervised Learning
+
+-   **Architecture**: encoder ⇄ bottleneck ⇄ decoder
+
+```         
+ae <- keras_model_sequential() %>%
+  layer_dense(units=64, activation='relu', input_shape=c(784)) %>%
+  layer_dense(units=32, activation='relu') %>%
+  layer_dense(units=64, activation='relu') %>%
+  layer_dense(units=784, activation='sigmoid')
+```
+
+-   **Applications**: dimensionality reduction, denoising
+
+??? note Demo training on noisy MNIST.
+
+------------------------------------------------------------------------
+
+# 7. Model Evaluation & Hyperparameter Tuning
+
+-   **Metrics**: accuracy, precision/recall, ROC-AUC
+
+-   **Plots**: confusion matrix, learning curves
+
+-   **Tuning**: `tfruns`, `keras_tuner`
+
+-   **K-fold CV**: manual splits or `rsample`
+
+??? note Illustrate hyperband tuning example.
+
+------------------------------------------------------------------------
+
+# 8. Advanced Topics & Deployment
+
+-   **Transfer Learning**: `application_resnet50()`, fine-tuning
+
+-   **Custom layers & callbacks**
+
+-   **Model saving/loading**: `save_model_hdf5()`, `load_model_hdf5()`
+
+-   **Deployment**: Plumber API, TensorFlow Serving, Shiny integration
+
+??? note Example: wrap model in Plumber endpoint.
+
+------------------------------------------------------------------------
+
+# 9. Hands-on Exercises (30 min)
+
+1.  Build and train a CNN on Fashion MNIST
+
+2.  Implement an LSTM for sequence prediction (e.g., sine wave)
+
+3.  Create an autoencoder for dimensionality reduction and visualize embeddings
+
+??? note Encourage pair work and code sharing.
+
+------------------------------------------------------------------------
+
+# Resources & Further Reading
+
+-   Book: *Deep Learning with R* by Francois Chollet & J.J. Allaire
+
+-   Keras docs: https://keras.rstudio.com/
+
+-   TensorFlow for R: https://tensorflow.rstudio.com/
+
+-   Tutorials: https://www.coursera.org/learn/deep-learning
+
+??? note Provide links for reference.

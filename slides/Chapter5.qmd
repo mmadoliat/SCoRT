@@ -1,6 +1,6 @@
 ---
 title: "Short Course on R Tools"
-subtitle: "Chapter 5 - Visualization of Multivariate Data"
+subtitle: "Building Interactive Web Apps with Shiny"
 title-slide-attributes:
   data-background-image: mu-bg.png
   data-background-size: stretch
@@ -8,75 +8,234 @@ title-slide-attributes:
 format: revealjs
 ---
 
-# Scatterplot Matrices
+# Outline
 
--   Introduction to scatterplot matrices for multivariate data
--   Example using the `iris` dataset
+1.  Introduction to Shiny
 
-```{r}
-data(iris)
+2.  App Structure: UI & Server
 
-# Scatterplot matrix for virginica species
-pairs(iris[101:150, 1:4], main="Scatterplot Matrix for Virginica", col="blue")
-```
+3.  Inputs, Outputs, & Reactivity
 
-## Customizing Scatterplot Matrices
+4.  Reactive Programming Patterns
 
--   Customizing scatterplot matrices with density plots
+5.  Layouts & Styling
 
-```{r}
-# Adding density plots to scatterplot matrix
-panel.d <- function(x, ...) {
-    usr <- par("usr")
-    on.exit(par(usr))
-    par(usr = c(usr[1:2], 0, .5))
-    lines(density(x), col="red")
+6.  Modules for Reusable Components
+
+7.  Advanced Topics: JavaScript, HTML, CSS
+
+8.  Deployment & Best Practices
+
+9.  Hands-on Exercises
+
+------------------------------------------------------------------------
+
+# 1. Introduction to Shiny
+
+-   **What is Shiny?**
+
+    -   R package for interactive web apps
+
+    -   No web dev expertise needed
+
+-   **When to use**: dashboards, interactive reports, teaching tools
+
+-   **Tutorial sources**:
+
+    -   RStudio official tutorial
+
+    -   *Mastering Shiny* by Hadley Wickham
+
+??? note Show live example: run `shiny::runExample("01_hello")`.
+
+------------------------------------------------------------------------
+
+# 2. App Structure
+
+```         
+# app.R single-file app
+library(shiny)
+ui <- fluidPage(
+  titlePanel("Hello Shiny"),
+  sidebarLayout(
+    sidebarPanel(sliderInput("obs", "Observations:", 1, 100, 50)),
+    mainPanel(plotOutput("distPlot"))
+  )
+)
+
+server <- function(input, output) {
+  output$distPlot <- renderPlot({
+    hist(rnorm(input$obs))
+  })
 }
-pairs(iris[101:150, 1:4], panel = panel.d, main="Customized Scatterplot Matrix")
+
+shinyApp(ui, server)
 ```
 
-# Correlation Plots
+-   `ui` defines layout and inputs/outputs
 
--   Visualizing correlations between variables
--   Example: Correlation plot with `corrplot` package
+-   `server` contains R code & reactivity
 
-```{r}
-# Correlation plot for iris dataset
-library(corrplot)
-cor_iris <- cor(iris[, 1:4])
-corrplot(cor_iris, method="circle", main="Correlation Plot for Iris Dataset")
+??? note Compare single-file vs UI/server file structure.
+
+------------------------------------------------------------------------
+
+# 3. Inputs & Outputs
+
+-   **Inputs**: `textInput()`, `selectInput()`, `sliderInput()`, etc.
+
+-   **Outputs**: `renderPlot()`, `renderTable()`, `renderUI()`, etc.
+
+-   **Binding**: output objects referenced by `output$...`
+
+```         
+input$slider  # numeric
+input$check   # logical
 ```
 
-# 3D Scatter Plots
+??? note Demo: build a dynamic summary table based on user selections.
 
--   Visualizing 3D relationships between variables
--   Example: 3D scatter plot using the `scatterplot3d` package
+------------------------------------------------------------------------
 
-```{r}
-# 3D scatter plot for iris dataset
-library(scatterplot3d)
-scatterplot3d(iris$Sepal.Length, iris$Petal.Length, iris$Sepal.Width, color="darkgreen", pch=16, main="3D Scatter Plot of Iris Data")
+# 4. Reactivity Fundamentals
+
+-   **Reactive expressions**: cache results
+
+    ```         
+    rv <- reactive({ rnorm(input$obs) })
+    output$plot <- renderPlot(hist(rv()))
+    ```
+
+-   **Observers**: side-effect actions
+
+    ```         
+    observeEvent(input$go, { showModal(...) })
+    ```
+
+-   **isolate()**: break reactive chain
+
+??? note Illustrate dependency graph in real-time.
+
+------------------------------------------------------------------------
+
+# 5. Layouts & Styling
+
+-   **Layouts**: `fluidPage()`, `navbarPage()`, `dashboardPage()` (shinydashboard)
+
+-   **HTML tags**: `tags$div()`, `tags$p()`
+
+-   **CSS**: include via `www/styles.css` or `tags$head()`
+
+```         
+<link rel="stylesheet" href="styles.css" />
 ```
 
-# Principal Component Analysis (PCA)
+??? note Show customizing theme with `bslib`.
 
--   Introduction to PCA for dimensionality reduction
--   Example: PCA visualization using `ggplot2`
+------------------------------------------------------------------------
 
-```{r}
-# PCA for iris dataset
-library(ggplot2)
-pca <- prcomp(iris[, 1:4], scale=TRUE)
-pca_df <- data.frame(pca$x, Species=iris$Species)
+# 6. Modules for Reusability
 
-# Visualizing PCA results
-ggplot(pca_df, aes(PC1, PC2, color=Species)) +
-  geom_point(size=2) +
-  labs(title="PCA of Iris Dataset", x="Principal Component 1", y="Principal Component 2") +
-  theme_minimal()
-```
+-   **Define module UI**:
 
-# Conclusion
+    ```         
+    mod_ui <- function(id) {
+      ns <- NS(id)
+      tagList(
+        sliderInput(ns("n"), "N:", 1, 100, 25),
+        plotOutput(ns("plot"))
+      )
+    }
+    ```
 
--   Recap of visualization techniques for multivariate data
--   Practice: Generate visualizations for other datasets and explore 3D plots
+-   **Define module server**:
+
+    ```         
+    mod_server <- function(id) {
+      moduleServer(id, function(input, output, session) {
+        output$plot <- renderPlot(hist(rnorm(input$n)))
+      })
+    }
+    ```
+
+-   **Call modules** in main app
+
+??? note Demonstrate two independent modules on one page.
+
+------------------------------------------------------------------------
+
+# 7. Advanced Topics
+
+-   **Dynamic UI**: `renderUI()`, `insertUI()`, `removeUI()`
+
+-   **Interacting with JS**: `shinyjs`, `htmlwidgets`
+
+-   **Bookmarking state**: `enableBookmarking("url")`
+
+-   **Testing & Debugging**: `reactlog`, `shinytest2`
+
+??? note Show `reactlog::reactlog_enable()` in a sample app.
+
+------------------------------------------------------------------------
+
+# 8. Deployment & Best Practices
+
+-   **Deployment options**:
+
+    -   Shinyapps.io
+
+    -   RStudio Connect
+
+    -   Docker & Kubernetes
+
+-   **Performance**:
+
+    -   Avoid heavy computations in reactive context
+
+    -   Use `bindCache()`
+
+-   **Security**:
+
+    -   Validate inputs
+
+    -   Use SSL
+
+??? note Walk through deploying to shinyapps.io.
+
+------------------------------------------------------------------------
+
+# 9. Hands-on Exercises (30 min)
+
+1.  Build a **data explorer**: filter dataset, show summary & plot.
+
+2.  Create a **module**: reusable histogram component with controls.
+
+3.  Implement **dynamic UI**: show inputs based on user choice.
+
+??? note Pair programming, share solutions afterward.
+
+------------------------------------------------------------------------
+
+# Resources & Further Reading
+
+-   RStudio tutorial: https://shiny.rstudio.com/tutorial/
+
+-   *Mastering Shiny*: https://mastering-shiny.org/
+
+-   CRAN: `shiny`, `shinyjs`, `shinydashboard`
+
+??? note Encourage reading chapters on modules and structure.
+
+------------------------------------------------------------------------
+
+# Q&A
+
+-   Questions on reactive patterns?
+
+-   Use cases in your projects?
+
+------------------------------------------------------------------------
+
+# Thank You
+
+-   Happy coding with Shiny!
