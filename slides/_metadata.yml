@@ -1,0 +1,21 @@
+institute: "Marquette University <br> MSSC 6010 - Fall 2025"
+author: "Dr. Mehdi Maadooliat"
+footer: "[🔗 tinyurl.com/Comp-Prob](https://tinyurl.com/Comp-Prob)"
+logo: "logo.png"
+format:
+  revealjs:
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    chalkboard: true
+    highlight-style: a11y-dark
+editor: visual
+execute:
+  freeze: auto
+  echo: true
+  warning: false
+engine: knitr
+knitr:
+  opts_chunk: 
+    R.options:
+      width: 80

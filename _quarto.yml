@@ -1,0 +1,74 @@
+project:
+  type: website
+
+website:
+  page-navigation: true
+  title: "MSSC 6010"
+  description: "Homepage for 'Computational Probability' at Marquette University, Fall 2025."
+  site-url: "https://tinyurl.com/Comp-Prob"
+
+  repo-url: https://github.com/mmadoliat/CompProb-f25/
+  repo-actions: [edit, issue]
+
+  open-graph: true
+  twitter-card:
+    creator: "@mmadoliat"
+    image: "images/twitter-card.png"
+
+  sidebar:
+    background: "#FFCC00" # MU Yellow
+    logo: "images/logo.png"
+    pinned: true
+    align: center
+    tools:
+      - icon: github
+        href: https://github.com/mmadoliat/CompProb-f25/
+        text: "GitHub organization"
+      - icon: code-square
+        href: https://tinyurl.com/MoEl-Stat
+        text: "TinyURL"
+      - icon: person-fill
+        href: https://d2l.mu.edu/
+        text: "D2L"
+
+    style: docked
+    search: true
+    collapse-level: 1
+    contents:
+      - section: "Course information"
+        contents:
+          - href: course-overview.qmd
+            text: Overview
+          - href: course-syllabus.qmd
+            text: Syllabus
+          - href: index.qmd
+            text: Schedule
+          - href: course-links.qmd
+            text: Useful links
+      - section: "Computing"
+        contents:
+          - href: computing/computing-cheatsheets.qmd
+            text: Cheatsheets
+
+  page-footer:
+    right: "This page is built with [Quarto](https://quarto.org/)."
+    left: "&copy; Copyright 2025, Mehdi Maadooliat"
+    background: "#FFCC00" # Arylide Yellow
+    
+format:
+  html:
+    theme:
+      light: [cosmo, style/mu.scss]
+      dark: [cosmo, style/mu.scss, style/dark.scss]
+    linkcolor: "#003366" # Glossy Grape
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+    mainfont: "Atkinson Hyperlegible"
+    highlight-style: a11y-dark
+    code-link: true
+
+execute:
+  freeze: auto
+
+editor: visual
