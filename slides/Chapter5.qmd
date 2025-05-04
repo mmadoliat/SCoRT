@@ -1,5 +1,5 @@
 ---
-title: "Computational Statistics"
+title: "Short Course on R Tools"
 subtitle: "Chapter 5 - Visualization of Multivariate Data"
 title-slide-attributes:
   data-background-image: mu-bg.png

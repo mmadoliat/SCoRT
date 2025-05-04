@@ -3,15 +3,11 @@ title: "Useful links"
 ---
 
 +----------------------------+-----------------------------------------------------------------------------+
-| Homework                   | 🔗 on [D2L](http://www.webassign.net/)                                      |
-|                            |                                                                             |
-| TI-84 Guideline            | 🔗 Download [here](/computing/TI-84-guidebook.pdf)                          |
+| RStudio                    | 🔗 on [dna](https://tinyurl.com/RS-dna)                                     |
 |                            |                                                                             |
 | Stat Calculator            | 🔗 [StatCalc(JAMM)](http://dna.mscsnet.mu.edu:3838/mlab/JAMM/)              |
 |                            |                                                                             |
 | Distribution Calculator    | 🔗 [DistCalc](http://dna.mscsnet.mu.edu:3838/mlab/DistCalc/)                |
-|                            |                                                                             |
-| Stat Tables                | 🔗 [StatTables](tables/z_t_chi.html)                                        |
 +----------------------------+-----------------------------------------------------------------------------+
 | Advanced Texbooks          | 🔗 [R Package](https://r-pkgs.org/)                                         |
 |                            |                                                                             |

@@ -1,5 +1,5 @@
 ---
-title: "Computational Statistics"
+title: "Short Course on R Tools"
 subtitle: "Chapter 1 - Introduction"
 title-slide-attributes:
   data-background-image: mu-bg.png
@@ -87,11 +87,10 @@ summary(iris)
 
 # Table: Comparison of Data Structures
 
-```{=html}
 <style>
 table { font-size: 0.75em; }
 </style>
-```
+
 | Type       | Definition                       | Example                |
 |------------|----------------------------------|------------------------|
 | Vector     | 1D array of elements             | `x <- c(1, 2, 3)`      |

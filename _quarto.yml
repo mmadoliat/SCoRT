@@ -28,8 +28,8 @@ website:
         href: https://tinyurl.com/SCiRT
         text: "TinyURL"
       - icon: person-fill
-        href: https://d2l.mu.edu/
-        text: "D2L"
+        href: https://tinyurl.com/RS-dna
+        text: "dna Rstudio"
 
     style: docked
     search: true
@@ -45,6 +45,24 @@ website:
             text: Schedule
           - href: course-links.qmd
             text: Useful links
+      - section: "Slides"
+        contents:
+          - href: slides/Chapter1.qmd
+            text: R package
+          - href: slides/Chapter2.qmd
+            text: RCpp
+          - href: slides/Chapter3.qmd
+            text: GitHub
+          - href: slides/Chapter4.qmd
+            text: OOP in R
+          - href: slides/Chapter5.qmd
+            text: Shiny
+          - href: slides/Chapter6.qmd
+            text: CRAN submission
+          - href: slides/Chapter7.qmd
+            text: Python in R
+          - href: slides/Chapter8.qmd
+            text: Deep Learning in R
       - section: "Computing"
         contents:
           - href: computing/computing-cheatsheets.qmd
@@ -52,7 +70,7 @@ website:
 
   page-footer:
     right: "This page is built with [Quarto](https://quarto.org/)."
-    left: "&copy; Copyright 2025, Mehdi Maadooliat"
+    left: "&copy; Copyright 2025, Mehdi Maadooliat and Hossein Haghbin"
     background: "#FFCC00" # Arylide Yellow
     
 format:

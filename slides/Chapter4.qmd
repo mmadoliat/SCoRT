@@ -1,0 +1,60 @@
+---
+title: "Short Course on R Tools"
+subtitle: "Chapter 9 - Jackknife-after-Bootstrap"
+title-slide-attributes:
+  data-background-image: mu-bg.png
+  data-background-size: stretch
+  data-slide-number: none
+format: revealjs
+---
+
+# Jackknife-after-Bootstrap
+
+## Introduction to Jackknife-after-Bootstrap
+
+-   Explanation of the jackknife-after-bootstrap method
+-   Used to estimate bias and standard errors after bootstrap
+
+```{r}
+library(boot)
+library(bootstrap)
+set.seed(1111)
+
+# Function to compute the patch ratio statistic
+theta.boot <- function(patch, i) {
+  y <- patch[i, "y"]
+  z <- patch[i, "z"]
+  mean(y) / mean(z)
+}
+
+# Bootstrap the patch dataset
+boot.out <- boot(bootstrap::patch, statistic = theta.boot, R=2000)
+boot.out
+```
+
+## Applying Jackknife-after-Bootstrap
+
+-   Example: Using the jackknife-after-bootstrap method
+-   Checking the bootstrap array
+
+```{r}
+# Check the bootstrap array
+A <- boot.array(boot.out)
+head(A, 3)
+
+# Proportion of cases that are not resampled
+mean(A[, 1] == 0)
+```
+
+## Visualizing Results
+
+```{r}
+# Plotting the bootstrap results
+plot(boot.out, index=1)
+```
+
+## Conclusion
+
+-   Recap of jackknife-after-bootstrap technique
+-   Importance of combining jackknife and bootstrap for robust estimates
+-   Practice: Apply jackknife-after-bootstrap to other datasets

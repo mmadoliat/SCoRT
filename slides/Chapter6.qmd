@@ -1,5 +1,5 @@
 ---
-title: "Computational Statistics"
+title: "Short Course on R Tools"
 subtitle: "Chapter 6 - Monte Carlo Integration and Variance Reduction"
 title-slide-attributes:
   data-background-image: mu-bg.png

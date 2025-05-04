@@ -15,7 +15,7 @@ format:
 ## Instructors Details
 
 -   **Name:** Mehdi Maadooliat, Ph.D.
--   **Name:** Hossein Haghbim, Ph.D.
+-   **Name:** Hossein Haghbin, Ph.D.
 -   **Office Hours:** Tu & Th 12:15 - 1:30pm or by e-mail
 
 ## Course Description
