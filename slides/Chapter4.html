@@ -388,10 +388,10 @@
     }
   </style>
 <meta property="og:title" content="SCoRT - Short Course on R Tools">
-<meta property="og:description" content="Chapter 3 - Methods for Generating Random Variables">
+<meta property="og:description" content="Chapter 9 - Jackknife-after-Bootstrap">
 <meta property="og:site_name" content="SCoRT">
 <meta name="twitter:title" content="SCoRT - Short Course on R Tools">
-<meta name="twitter:description" content="Chapter 3 - Methods for Generating Random Variables">
+<meta name="twitter:description" content="Chapter 9 - Jackknife-after-Bootstrap">
 <meta name="twitter:image" content="https://tinyurl.com/SCiRT/slides/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
 <meta name="twitter:card" content="summary_large_image">
@@ -402,7 +402,7 @@
 
 <section id="title-slide" data-background-image="mu-bg.png" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
   <h1 class="title">Short Course on R Tools</h1>
-  <p class="subtitle">Chapter 3 - Methods for Generating Random Variables</p>
+  <p class="subtitle">Chapter 9 - Jackknife-after-Bootstrap</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -417,149 +417,83 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 
 </section>
 <section>
-<section id="lecture-1-sampling-and-permutations-part-1" class="title-slide slide level1 center">
-<h1>Lecture 1: Sampling and Permutations (Part 1)</h1>
+<section id="jackknife-after-bootstrap" class="title-slide slide level1 center">
+<h1>Jackknife-after-Bootstrap</h1>
 
 </section>
-<section id="sampling-from-a-finite-population" class="slide level2">
-<h2>Sampling from a Finite Population</h2>
+<section id="introduction-to-jackknife-after-bootstrap" class="slide level2">
+<h2>Introduction to Jackknife-after-Bootstrap</h2>
 <ul>
-<li>Introduction to finite population sampling</li>
-<li>Example: Tossing coins, choosing lottery numbers</li>
+<li>Explanation of the jackknife-after-bootstrap method</li>
+<li>Used to estimate bias and standard errors after bootstrap</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Sampling examples</span></span>
-<span id="cb1-2"><a></a><span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)  <span class="co"># Tossing coins</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(boot)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(bootstrap)</span>
+<span id="cb1-3"><a></a><span class="fu">set.seed</span>(<span class="dv">1111</span>)</span>
+<span id="cb1-4"><a></a></span>
+<span id="cb1-5"><a></a><span class="co"># Function to compute the patch ratio statistic</span></span>
+<span id="cb1-6"><a></a>theta.boot <span class="ot">&lt;-</span> <span class="cf">function</span>(patch, i) {</span>
+<span id="cb1-7"><a></a>  y <span class="ot">&lt;-</span> patch[i, <span class="st">"y"</span>]</span>
+<span id="cb1-8"><a></a>  z <span class="ot">&lt;-</span> patch[i, <span class="st">"z"</span>]</span>
+<span id="cb1-9"><a></a>  <span class="fu">mean</span>(y) <span class="sc">/</span> <span class="fu">mean</span>(z)</span>
+<span id="cb1-10"><a></a>}</span>
+<span id="cb1-11"><a></a></span>
+<span id="cb1-12"><a></a><span class="co"># Bootstrap the patch dataset</span></span>
+<span id="cb1-13"><a></a>boot.out <span class="ot">&lt;-</span> <span class="fu">boot</span>(bootstrap<span class="sc">::</span>patch, <span class="at">statistic =</span> theta.boot, <span class="at">R=</span><span class="dv">2000</span>)</span>
+<span id="cb1-14"><a></a>boot.out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0 0 0 0 1 0 0 0 1 1</code></pre>
+<pre><code>
+ORDINARY NONPARAMETRIC BOOTSTRAP
+
+
+Call:
+boot(data = bootstrap::patch, statistic = theta.boot, R = 2000)
+
+
+Bootstrap Statistics :
+      original      bias    std. error
+t1* -0.0713061 0.008458915   0.1009777</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">size =</span> <span class="dv">6</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)  <span class="co"># Choosing lottery numbers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="applying-jackknife-after-bootstrap" class="slide level2">
+<h2>Applying Jackknife-after-Bootstrap</h2>
+<ul>
+<li>Example: Using the jackknife-after-bootstrap method</li>
+<li>Checking the bootstrap array</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Check the bootstrap array</span></span>
+<span id="cb3-2"><a></a>A <span class="ot">&lt;-</span> <span class="fu">boot.array</span>(boot.out)</span>
+<span id="cb3-3"><a></a><span class="fu">head</span>(A, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 73 10 50 34  9 46</code></pre>
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+[1,]    0    1    2    1    2    0    0    2
+[2,]    0    2    1    0    1    4    0    0
+[3,]    1    1    0    1    0    1    0    4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">sample</span>(letters)  <span class="co"># Permutation of letters</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Proportion of cases that are not resampled</span></span>
+<span id="cb5-2"><a></a><span class="fu">mean</span>(A[, <span class="dv">1</span>] <span class="sc">==</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "t" "a" "m" "g" "f" "b" "c" "q" "l" "r" "w" "i" "s" "x" "o" "h" "d" "n" "e"
-[20] "u" "j" "y" "p" "z" "v" "k"</code></pre>
+<pre><code>[1] 0.3455</code></pre>
 </div>
 </div>
 </section>
-<section id="multinomial-distribution" class="slide level2">
-<h2>Multinomial Distribution</h2>
-<ul>
-<li>Introduction to multinomial distribution</li>
-<li>Example: Sampling from a multinomial distribution</li>
-</ul>
+<section id="visualizing-results" class="slide level2">
+<h2>Visualizing Results</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Sample from multinomial distribution</span></span>
-<span id="cb7-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">3</span>, .<span class="dv">5</span>))</span>
-<span id="cb7-3"><a></a><span class="fu">table</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x
- 1  2  3 
-14 32 54 </code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="lecture-2-inverse-transform-method-part-2" class="title-slide slide level1 center">
-<h1>Lecture 2: Inverse Transform Method (Part 2)</h1>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Plotting the bootstrap results</span></span>
+<span id="cb7-2"><a></a><span class="fu">plot</span>(boot.out, <span class="at">index=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</section>
-<section id="continuous-case" class="slide level2">
-<h2>Continuous Case</h2>
+</div>
+<img data-src="Chapter4_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
 <ul>
-<li>Explanation of the inverse transform method for continuous distributions</li>
-<li>Example: Simulating exponential random variables</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Inverse transform method for exponential distribution</span></span>
-<span id="cb9-2"><a></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb9-3"><a></a>U <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
-<span id="cb9-4"><a></a>X <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> U)</span>
-<span id="cb9-5"><a></a><span class="fu">hist</span>(X, <span class="at">main=</span><span class="st">"Exponential Distribution via Inverse Transform"</span>, <span class="at">col=</span><span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Chapter3_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
-<section id="discrete-case" class="slide level2">
-<h2>Discrete Case</h2>
-<ul>
-<li>Example of applying the inverse transform method to discrete random variables</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co"># Inverse transform method for geometric distribution</span></span>
-<span id="cb10-2"><a></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb10-3"><a></a>X_geom <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(<span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">runif</span>(n)) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> p))</span>
-<span id="cb10-4"><a></a><span class="fu">hist</span>(X_geom, <span class="at">main=</span><span class="st">"Geometric Distribution via Inverse Transform"</span>, <span class="at">col=</span><span class="st">"lightgreen"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Chapter3_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="lecture-3-acceptance-rejection-method-part-3" class="title-slide slide level1 center">
-<h1>Lecture 3: Acceptance-Rejection Method (Part 3)</h1>
-
-</section>
-<section id="introduction-to-acceptance-rejection-method" class="slide level2">
-<h2>Introduction to Acceptance-Rejection Method</h2>
-<ul>
-<li>Explanation of the acceptance-rejection method</li>
-<li>Example: Sampling from a target distribution</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Acceptance-rejection method example</span></span>
-<span id="cb11-2"><a></a>target <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { <span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="fu">exp</span>(<span class="sc">-</span>x), <span class="dv">0</span>) }</span>
-<span id="cb11-3"><a></a>proposal <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>) }</span>
-<span id="cb11-4"><a></a></span>
-<span id="cb11-5"><a></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb11-6"><a></a>accept <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1000</span>) <span class="sc">&lt;</span> <span class="fu">target</span>(X) <span class="sc">/</span> (<span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">proposal</span>(X))</span>
-<span id="cb11-7"><a></a></span>
-<span id="cb11-8"><a></a><span class="fu">hist</span>(X[accept], <span class="at">main=</span><span class="st">"Accepted Samples from Target Distribution"</span>, <span class="at">col=</span><span class="st">"lightcoral"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Chapter3_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="lecture-4-transformation-methods-and-mixtures-part-4" class="title-slide slide level1 center">
-<h1>Lecture 4: Transformation Methods and Mixtures (Part 4)</h1>
-
-</section>
-<section id="transformation-of-random-variables" class="slide level2">
-<h2>Transformation of Random Variables</h2>
-<ul>
-<li>Introduction to transformation methods</li>
-<li>Example: Box-Muller transform for generating normal random variables</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Box-Muller transform</span></span>
-<span id="cb12-2"><a></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb12-3"><a></a>U1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
-<span id="cb12-4"><a></a>U2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
-<span id="cb12-5"><a></a>Z1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">log</span>(U1)) <span class="sc">*</span> <span class="fu">cos</span>(<span class="dv">2</span> <span class="sc">*</span> pi <span class="sc">*</span> U2)</span>
-<span id="cb12-6"><a></a>Z2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">log</span>(U1)) <span class="sc">*</span> <span class="fu">sin</span>(<span class="dv">2</span> <span class="sc">*</span> pi <span class="sc">*</span> U2)</span>
-<span id="cb12-7"><a></a><span class="fu">hist</span>(Z1, <span class="at">main=</span><span class="st">"Normal Distribution via Box-Muller"</span>, <span class="at">col=</span><span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Chapter3_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
-<section id="sums-and-mixtures" class="slide level2">
-<h2>Sums and Mixtures</h2>
-<ul>
-<li>Explanation of sums and mixtures of random variables</li>
-<li>Example: Mixture of normals</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Mixture of normals</span></span>
-<span id="cb13-2"><a></a><span class="fu">library</span>(MASS)</span>
-<span id="cb13-3"><a></a>mu1 <span class="ot">&lt;-</span> <span class="dv">0</span>; mu2 <span class="ot">&lt;-</span> <span class="dv">3</span>; sigma1 <span class="ot">&lt;-</span> <span class="dv">1</span>; sigma2 <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb13-4"><a></a>p <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
-<span id="cb13-5"><a></a>X <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">runif</span>(n) <span class="sc">&lt;</span> p, <span class="fu">rnorm</span>(n, mu1, sigma1), <span class="fu">rnorm</span>(n, mu2, sigma2))</span>
-<span id="cb13-6"><a></a><span class="fu">hist</span>(X, <span class="at">main=</span><span class="st">"Mixture of Normal Distributions"</span>, <span class="at">col=</span><span class="st">"lightgreen"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Chapter3_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section></section>
-<section id="conclusion" class="title-slide slide level1 center">
-<h1>Conclusion</h1>
-<ul>
-<li>Recap of random variable generation methods: sampling, inverse transform, acceptance-rejection, and transformations</li>
-<li>Practice problems for next lecture</li>
+<li>Recap of jackknife-after-bootstrap technique</li>
+<li>Importance of combining jackknife and bootstrap for robust estimates</li>
+<li>Practice: Apply jackknife-after-bootstrap to other datasets</li>
 </ul>
 
 <div class="quarto-auto-generated-content">
@@ -568,7 +502,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <p><a href="https://tinyurl.com/SCiRT">🔗 tinyurl.com/SCiRT</a></p>
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 

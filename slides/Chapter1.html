@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.5.9">
 
   <meta name="author" content="Drs. Mehdi Maadooliat and Hossein Haghbin">
-  <title>SCoRT – Computational Statistics</title>
+  <title>SCoRT – Short Course on R Tools</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -387,10 +387,10 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="SCoRT - Computational Statistics">
+<meta property="og:title" content="SCoRT - Short Course on R Tools">
 <meta property="og:description" content="Chapter 1 - Introduction">
 <meta property="og:site_name" content="SCoRT">
-<meta name="twitter:title" content="SCoRT - Computational Statistics">
+<meta name="twitter:title" content="SCoRT - Short Course on R Tools">
 <meta name="twitter:description" content="Chapter 1 - Introduction">
 <meta name="twitter:image" content="https://tinyurl.com/SCiRT/slides/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
@@ -401,7 +401,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="mu-bg.png" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
-  <h1 class="title">Computational Statistics</h1>
+  <h1 class="title">Short Course on R Tools</h1>
   <p class="subtitle">Chapter 1 - Introduction</p>
 
 <div class="quarto-title-authors">
@@ -455,26 +455,26 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">rnorm</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1]  0.676271970 -0.568609082  1.740283181 -1.238696518  0.981906782
-  [6]  0.136535649  1.864920025 -0.063500572 -0.602783744  1.159088694
- [11] -2.362037754 -0.573090563  0.659920080 -0.539411629  0.323097202
- [16]  0.037970489 -0.185467998 -0.477871268 -0.049509694  1.479158382
- [21]  0.361712452  0.003507136 -0.085485325  0.896482108 -0.218738466
- [26] -1.229881184  0.610627726  1.068436149 -0.867118859 -0.280179110
- [31] -0.356107380  0.923328597  0.883497552 -1.405621571  1.269809433
- [36]  2.063014201  0.799435140 -0.801985319  1.196246211 -1.620246950
- [41] -0.348441399  1.123724159 -1.376947741 -0.515744686 -0.850830921
- [46] -0.534990580 -0.438882247 -0.005665350  0.304895894  0.238675476
- [51]  0.582928779 -0.841363713 -0.473381212  0.253416572  2.769906456
- [56]  0.101380655 -0.204144632  2.082737756  1.177917639  1.333216231
- [61]  0.189825157  0.778540175 -0.960525968 -0.126507097  0.443088659
- [66]  1.372860522  0.696955868  0.808986624  1.374389257 -0.296131339
- [71] -1.918032658  1.823588537 -0.333967580  1.823615928 -0.441153969
- [76] -0.353184691 -1.060688263  0.795462838  1.940113344 -0.372455687
- [81] -0.278997572  0.502735700 -1.197357551  1.033665254 -1.580195496
- [86] -0.611839478 -0.030899243  1.953673498 -0.851467306 -0.504527807
- [91] -0.384038020 -0.780416523 -1.016966444  1.361543038 -0.256547394
- [96]  0.645429487 -0.204992238 -0.868585634 -0.554806028 -0.260978498</code></pre>
+<pre><code>  [1]  0.861000975  1.300899676  0.112499889 -0.041325623 -0.673194903
+  [6] -0.965233565  0.007377129  0.044157916 -0.252842414 -0.531739124
+ [11]  0.571379097 -1.482659125 -0.444777723 -0.294551778  0.345382595
+ [16] -0.571724718  0.495408897 -0.828713519 -0.193696523  0.054101386
+ [21] -0.466380814 -0.003287560 -0.636019076  1.041483617 -1.219924107
+ [26]  0.667987277  0.659900159 -2.296153881  0.944189716 -1.200689754
+ [31] -1.227270550 -0.932946497  1.048928699  0.987361482  0.060726528
+ [36]  0.794512134  0.937142002  0.975613839  0.475292439 -0.183919823
+ [41]  0.579417453 -1.037156076 -1.870477074  0.704364251 -1.062120348
+ [46]  0.714325798 -0.265551294 -0.109877286  0.208708522  1.121636777
+ [51]  0.346213567  0.884199301 -0.543478368  0.653983298  0.606794792
+ [56]  0.504875939 -1.554293083  0.018368567  1.290253971  0.687928361
+ [61] -0.655021301 -1.319516257  0.124355416  2.190203660  1.836659625
+ [66] -0.752578412 -0.917633483  0.330930575  0.552301690 -0.644642813
+ [71] -0.393822215 -0.121634939  1.508631870  0.984948229  1.074587825
+ [76] -0.943131578 -0.196987024 -0.859175678 -0.346953596  1.507353771
+ [81] -0.234472918 -0.860569483 -0.499278797 -0.877555007 -1.830146598
+ [86]  0.266646431  0.430065487  0.551915931 -0.417313262  0.035179048
+ [91]  1.093614920  0.269365736 -0.642810674 -1.219889577  0.026275820
+ [96]  0.077418286  0.036915232 -0.920250175  1.682466812 -0.822223979</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -482,13 +482,13 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
     Welch Two Sample t-test
 
 data:  rnorm(10) and rnorm(10)
-t = -0.34614, df = 14.915, p-value = 0.7341
+t = -0.71916, df = 16.364, p-value = 0.4822
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -1.2343598  0.8896057
+ -1.0649113  0.5246792
 sample estimates:
-  mean of x   mean of y 
-0.008773564 0.181150588 </code></pre>
+ mean of x  mean of y 
+-0.6507281 -0.3806121 </code></pre>
 </div>
 </div>
 </section>
@@ -529,7 +529,7 @@ sample estimates:
 <span id="cb7-4"><a></a>}</span>
 <span id="cb7-5"><a></a><span class="fu">sumdice</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
+<pre><code>[1] 8</code></pre>
 </div>
 </div>
 </section></section>
