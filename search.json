@@ -2,9 +2,9 @@
   {
     "objectID": "course-syllabus.html",
     "href": "course-syllabus.html",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "",
-    "text": "Course Title: MSSC 6010: Computational Probability\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Cudahy Hall 208 (Microsoft Teams)\nWebsite: http://tinyurl.com/Comp-Prob",
+    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
     "crumbs": [
       "Course information",
       "Syllabus"
@@ -13,20 +13,20 @@
   {
     "objectID": "course-syllabus.html#course-information",
     "href": "course-syllabus.html#course-information",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "",
-    "text": "Course Title: MSSC 6010: Computational Probability\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Cudahy Hall 208 (Microsoft Teams)\nWebsite: http://tinyurl.com/Comp-Prob",
+    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
     "crumbs": [
       "Course information",
       "Syllabus"
     ]
   },
   {
-    "objectID": "course-syllabus.html#instructor-details",
-    "href": "course-syllabus.html#instructor-details",
-    "title": "Syllabus - Computational Probability - Fall 2025",
-    "section": "Instructor Details",
-    "text": "Instructor Details\n\nName: Mehdi Maadooliat, Ph.D.\nOffice: CU 351\nOffice Hours: Tu (CU 351) & Th (Stat Help Desk) 12:15 - 1:30pm or by e-mail",
+    "objectID": "course-syllabus.html#instructors-details",
+    "href": "course-syllabus.html#instructors-details",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Instructors Details",
+    "text": "Instructors Details\n\nName: Mehdi Maadooliat, Ph.D.\nName: Hossein Haghbim, Ph.D.\nOffice Hours: Tu & Th 12:15 - 1:30pm or by e-mail",
     "crumbs": [
       "Course information",
       "Syllabus"
@@ -35,7 +35,7 @@
   {
     "objectID": "course-syllabus.html#course-description",
     "href": "course-syllabus.html#course-description",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Course Description",
     "text": "Course Description\nA modern course in probability. Foundations of probability for modeling random processes with computational techniques. Topics include counting techniques, probability of events, random variables, distribution functions, probability functions, probability density functions, expectation, moments, moment generating functions, special discrete and continuous distributions, sampling distributions, transformation of variables, prior and posterior distributions, Law of Large Numbers, Central Limit Theorem, the Bayesian paradigm. Numerical and computational methods will be covered throughout topics.",
     "crumbs": [
@@ -46,7 +46,7 @@
   {
     "objectID": "course-syllabus.html#learning-outcomes",
     "href": "course-syllabus.html#learning-outcomes",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Learning Outcomes",
     "text": "Learning Outcomes\nBy the end of the course, students will:\n\nUnderstand and Apply Fundamental Probability Concepts\nAnalyze and Model Random Processes\nPerform Variable Transformations\nImplement Computational Techniques\nInterpret Statistical Theorems\nCritically Evaluate Probabilistic Models\nCommunicate Probabilistic Findings",
     "crumbs": [
@@ -57,7 +57,7 @@
   {
     "objectID": "course-syllabus.html#prerequisites",
     "href": "course-syllabus.html#prerequisites",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Prerequisites",
     "text": "Prerequisites\n\nThree semesters of mathematics beyond calculus and MATH 4720 or equiv.\nPreferable knowledge is MSSC 5700 and MSSC 5710.",
     "crumbs": [
@@ -68,7 +68,7 @@
   {
     "objectID": "course-syllabus.html#textbooks",
     "href": "course-syllabus.html#textbooks",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Textbooks",
     "text": "Textbooks\n\nProbability and Statistics with R, 2nd edition by Maria Dolores Ugarte, Ana F. Militino, Alan T. Arnholt, 2016. ISBN: 9781466504394.",
     "crumbs": [
@@ -79,7 +79,7 @@
   {
     "objectID": "course-syllabus.html#grading-breakdown",
     "href": "course-syllabus.html#grading-breakdown",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Grading Breakdown",
     "text": "Grading Breakdown\n\nHomework: 30%\nProject: 10%\nMidterm Exam: 30%\nFinal Exam: 30%\n\n\nGrading Scale\n\n\n\nGrade\nRange\n\n\n\n\nA\n93.5 - 100%\n\n\nA-\n90- 93.49%\n\n\nB+\n86.5 - 89.99%\n\n\nB\n83.5 - 86.49%\n\n\nB-\n80 - 83.49%\n\n\nC+\n76.5 - 79.99%\n\n\nC\n73.5 - 76.49%\n\n\nC-\n70 - 73.49%\n\n\nD+\n66.5 - 69.99%\n\n\nD\n60 - 66.49%\n\n\nF\n&lt; 59.99%",
     "crumbs": [
@@ -90,7 +90,7 @@
   {
     "objectID": "course-syllabus.html#exams",
     "href": "course-syllabus.html#exams",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Exams",
     "text": "Exams\nTentatively, there will be a midterm (in class) on Oct. 23rd, plus the final (in class or take home): Dec. 8th from 10:30 - 12:30pm.",
     "crumbs": [
@@ -101,7 +101,7 @@
   {
     "objectID": "course-syllabus.html#homework",
     "href": "course-syllabus.html#homework",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Homework",
     "text": "Homework\nHomework is required so that you get a better understanding of the material covered, plus it will help you to keep up. You will get a better understanding of the material if you discuss it with someone. However, you must submit YOUR OWN work to D2L website. Assignments are mostly due at 11:50pm (check for due dates in D2L).\nNO LATE HOMEWORK WILL BE ACCEPTED NOR WILL YOU BE ALLOWED TO MAKE UP MISSED HOMEWORK! Plan accordingly! It is better to submit something, even if it is incomplete. You need to type your homework (preferably using LaTeX, or Quarto) and submit it as a PDF file. Scanned homework will be graded out of 80. Low quality scanned homework will be considered as NO submission.",
     "crumbs": [
@@ -112,7 +112,7 @@
   {
     "objectID": "course-syllabus.html#make-up-policy",
     "href": "course-syllabus.html#make-up-policy",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Make-up Policy",
     "text": "Make-up Policy\nThere will not be any make-up exam or homework unless there is an emergency.",
     "crumbs": [
@@ -123,7 +123,7 @@
   {
     "objectID": "course-syllabus.html#attendance",
     "href": "course-syllabus.html#attendance",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Attendance",
     "text": "Attendance\nAttendance is required and subject to the College of Arts and Sciences policy.",
     "crumbs": [
@@ -134,7 +134,7 @@
   {
     "objectID": "course-syllabus.html#academic-honesty",
     "href": "course-syllabus.html#academic-honesty",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Academic Honesty",
     "text": "Academic Honesty\nStudents are expected to follow the University’s policy on academic honesty as outlined in the Bulletin.\nTL;DR: Don’t cheat!\nPlease abide by the following as you work on assignments in this course:\n\nCollaboration: Only work that is clearly assigned as team work should be completed collaboratively.\n\nThe homework assignments must also be completed individually and you are welcomed to discuss the assignment with classmates at a high level (e.g., discuss what’s the best way for approaching a problem, what functions are useful for accomplishing a particular task, etc.). However you may not directly share answers to questions (including any code) with anyone other than myself.\nFor the projects, collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.\nOn individual assignments you may not directly share code with another student in this class, and on team assignments you may not directly share code with another team in this class.\n\nOnline resources: I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course’s policy is that you may make use of any online resources (e.g., StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.\nUse of generative artificial intelligence (AI): You should treat generative AI, such as ChatGPT, the same as other online resources. There are two guiding principles that govern how you can use AI in this course:1 (1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. We will practice using AI to facilitate—rather than hinder—learning. (2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n✅ AI tools for code: You may make use of the technology for coding examples on assignments; if you do so, you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. You may use these guidelines for citing AI-generated content.\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\nYou are ultimately responsible for the work you turn in; it should reflect your understanding of the course content.\n\nIf you are unsure if the use of a particular resource complies with the academic honesty policy, please ask the instructor.",
     "crumbs": [
@@ -145,7 +145,7 @@
   {
     "objectID": "course-syllabus.html#important-dates",
     "href": "course-syllabus.html#important-dates",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Important dates",
     "text": "Important dates\n\nMonday, August 25: Classes begin\nTuesday, September 2: Drop/add ends\nThursday - Friday, October 16 - 17: Fall Break\nFriday, November 14: Last day to withdraw with W\nThursday - Monday, November 26 - 30: Thanksgiving Holiday\nSaturday, December 6: Classes end\nMonday, December 8, 10:30 am - 12:30 pm: Final Exam\n\nFor more important dates, see the full MU Academic Calendar.",
     "crumbs": [
@@ -156,7 +156,7 @@
   {
     "objectID": "course-syllabus.html#important-note",
     "href": "course-syllabus.html#important-note",
-    "title": "Syllabus - Computational Probability - Fall 2025",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Important Note",
     "text": "Important Note\nThe syllabus may be modified throughout the course. Any substantial modifications will result in a reissued syllabus.",
     "crumbs": [
@@ -169,7 +169,7 @@
     "href": "course-overview.html",
     "title": "Course overview",
     "section": "",
-    "text": "This is the homepage for MSSC 6010 - Computational Probability by Dr. Mehdi Maadooliat in Fall 2025 at Marquette University. All course materials will be posted on this site.\nYou can find the course syllabus here and the course schedule here.",
+    "text": "This is the homepage for Short Course on R Tools (SCoRT) by Dr. Mehdi Maadooliat and Dr. Hossein Haghbin. All course materials will be posted on this site.\nYou can find the course syllabus here and the course schedule here.",
     "crumbs": [
       "Course information",
       "Overview"
@@ -180,7 +180,7 @@
     "href": "course-overview.html#class-meetings",
     "title": "Course overview",
     "section": "Class meetings",
-    "text": "Class meetings\n\n\n\n\n\n\n\n\nMeeting\nLocation\nTime\n\n\n\n\nLecture\nCU 208\nTue & Thur 11:00 am - 12:15 pm\n\n\nOffice Hours\nT: CU 351 & Th: Stat Help Desk\nTue & Thur 12:15 - 1:30 pm",
+    "text": "Class meetings\n\n\n\nMeeting\nLocation\nTime\n\n\n\n\nLecture\nMS. Teams\nTue & Thur 11:00 am - 12:15 pm\n\n\nOffice Hours\nMS. Teams\nTue & Thur 12:15 - 1:30 pm",
     "crumbs": [
       "Course information",
       "Overview"
@@ -192,6 +192,300 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "slides/Chapter5.html#customizing-scatterplot-matrices",
+    "href": "slides/Chapter5.html#customizing-scatterplot-matrices",
+    "title": "Computational Statistics",
+    "section": "Customizing Scatterplot Matrices",
+    "text": "Customizing Scatterplot Matrices\n\nCustomizing scatterplot matrices with density plots\n\n\n# Adding density plots to scatterplot matrix\npanel.d &lt;- function(x, ...) {\n    usr &lt;- par(\"usr\")\n    on.exit(par(usr))\n    par(usr = c(usr[1:2], 0, .5))\n    lines(density(x), col=\"red\")\n}\npairs(iris[101:150, 1:4], panel = panel.d, main=\"Customized Scatterplot Matrix\")"
+  },
+  {
+    "objectID": "slides/Chapter8.html#bootstrap-resampling-method",
+    "href": "slides/Chapter8.html#bootstrap-resampling-method",
+    "title": "Computational Statistics",
+    "section": "Bootstrap Resampling Method",
+    "text": "Bootstrap Resampling Method\n\nIntroduction to the bootstrap method\nExample: Bootstrap estimate of standard error\n\n\n# Bootstrap example: Estimate correlation between LSAT and GPA\nlibrary(bootstrap)    #for the law data\nprint(cor(law$LSAT, law$GPA))\n\n[1] 0.7763745\n\nprint(cor(law82$LSAT, law82$GPA))\n\n[1] 0.7599979\n\n# Set up the bootstrap\nB &lt;- 200            # number of replicates\nn &lt;- nrow(law)      # sample size\nR &lt;- numeric(B)     # storage for replicates\n# Bootstrap estimate of correlation\nfor (i in 1:B) {\n  idx &lt;- sample(1:n, size=n, replace=TRUE)\n  law_boot &lt;- law[idx, ]\n  R[i] &lt;- cor(law_boot$LSAT, law_boot$GPA)\n}\nmean(R)\n\n[1] 0.7643808\n\nsd(R)  # Bootstrap standard error\n\n[1] 0.154119"
+  },
+  {
+    "objectID": "slides/Chapter8.html#visualizing-bootstrap-resamples",
+    "href": "slides/Chapter8.html#visualizing-bootstrap-resamples",
+    "title": "Computational Statistics",
+    "section": "Visualizing Bootstrap Resamples",
+    "text": "Visualizing Bootstrap Resamples\n\n# Plotting the bootstrap distribution\nhist(R, main=\"Bootstrap Distribution of Correlation\", col=\"lightblue\")"
+  },
+  {
+    "objectID": "slides/Chapter8.html#introduction-to-the-jackknife-method",
+    "href": "slides/Chapter8.html#introduction-to-the-jackknife-method",
+    "title": "Computational Statistics",
+    "section": "Introduction to the Jackknife Method",
+    "text": "Introduction to the Jackknife Method\n\nThe jackknife method for bias reduction\nExample: Jackknife estimate of the mean\n\n\n# Jackknife estimate of mean\nn &lt;- nrow(law)\ntheta_hat &lt;- mean(law$LSAT)\ntheta_jack &lt;- numeric(n)\n\n# Leave-one-out jackknife\nfor (i in 1:n) {\n  theta_jack[i] &lt;- mean(law$LSAT[-i])\n}\n\n# Jackknife estimate of bias\nbias_jack &lt;- (n - 1) * (mean(theta_jack) - theta_hat)\nbias_jack\n\n[1] 0"
+  },
+  {
+    "objectID": "slides/Chapter8.html#bootstrap-confidence-intervals",
+    "href": "slides/Chapter8.html#bootstrap-confidence-intervals",
+    "title": "Computational Statistics",
+    "section": "Bootstrap Confidence Intervals",
+    "text": "Bootstrap Confidence Intervals\n\nIntroduction to bootstrap confidence intervals\nExample: Bootstrap percentile confidence interval\n\n\n# Bootstrap confidence intervals\nalpha &lt;- 0.05\nci &lt;- quantile(R, probs = c(alpha/2, 1 - alpha/2))\nci  # Bootstrap confidence interval\n\n     2.5%     97.5% \n0.4242453 0.9646138"
+  },
+  {
+    "objectID": "slides/Chapter8.html#comparison-of-bootstrap-and-jackknife",
+    "href": "slides/Chapter8.html#comparison-of-bootstrap-and-jackknife",
+    "title": "Computational Statistics",
+    "section": "Comparison of Bootstrap and Jackknife",
+    "text": "Comparison of Bootstrap and Jackknife\n\nDiscuss the differences and use cases of bootstrap and jackknife\nRecap of methods and their benefits in reducing bias and estimating uncertainty"
+  },
+  {
+    "objectID": "slides/Chapter3.html#sampling-from-a-finite-population",
+    "href": "slides/Chapter3.html#sampling-from-a-finite-population",
+    "title": "Computational Statistics",
+    "section": "Sampling from a Finite Population",
+    "text": "Sampling from a Finite Population\n\nIntroduction to finite population sampling\nExample: Tossing coins, choosing lottery numbers\n\n\n# Sampling examples\nsample(0:1, size = 10, replace = TRUE)  # Tossing coins\n\n [1] 0 1 0 1 0 1 0 1 1 0\n\nsample(1:100, size = 6, replace = FALSE)  # Choosing lottery numbers\n\n[1] 36  7 86 42 10 71\n\nsample(letters)  # Permutation of letters\n\n [1] \"z\" \"e\" \"n\" \"c\" \"b\" \"d\" \"t\" \"l\" \"s\" \"x\" \"p\" \"v\" \"f\" \"w\" \"i\" \"j\" \"u\" \"h\" \"g\"\n[20] \"r\" \"a\" \"m\" \"k\" \"y\" \"o\" \"q\""
+  },
+  {
+    "objectID": "slides/Chapter3.html#multinomial-distribution",
+    "href": "slides/Chapter3.html#multinomial-distribution",
+    "title": "Computational Statistics",
+    "section": "Multinomial Distribution",
+    "text": "Multinomial Distribution\n\nIntroduction to multinomial distribution\nExample: Sampling from a multinomial distribution\n\n\n# Sample from multinomial distribution\nx &lt;- sample(1:3, size = 100, replace = TRUE, prob = c(.2, .3, .5))\ntable(x)\n\nx\n 1  2  3 \n16 27 57"
+  },
+  {
+    "objectID": "slides/Chapter3.html#continuous-case",
+    "href": "slides/Chapter3.html#continuous-case",
+    "title": "Computational Statistics",
+    "section": "Continuous Case",
+    "text": "Continuous Case\n\nExplanation of the inverse transform method for continuous distributions\nExample: Simulating exponential random variables\n\n\n# Inverse transform method for exponential distribution\nn &lt;- 1000\nU &lt;- runif(n)\nX &lt;- -log(1 - U)\nhist(X, main=\"Exponential Distribution via Inverse Transform\", col=\"lightblue\")"
+  },
+  {
+    "objectID": "slides/Chapter3.html#discrete-case",
+    "href": "slides/Chapter3.html#discrete-case",
+    "title": "Computational Statistics",
+    "section": "Discrete Case",
+    "text": "Discrete Case\n\nExample of applying the inverse transform method to discrete random variables\n\n\n# Inverse transform method for geometric distribution\np &lt;- 0.5\nX_geom &lt;- ceiling(log(1 - runif(n)) / log(1 - p))\nhist(X_geom, main=\"Geometric Distribution via Inverse Transform\", col=\"lightgreen\")"
+  },
+  {
+    "objectID": "slides/Chapter3.html#introduction-to-acceptance-rejection-method",
+    "href": "slides/Chapter3.html#introduction-to-acceptance-rejection-method",
+    "title": "Computational Statistics",
+    "section": "Introduction to Acceptance-Rejection Method",
+    "text": "Introduction to Acceptance-Rejection Method\n\nExplanation of the acceptance-rejection method\nExample: Sampling from a target distribution\n\n\n# Acceptance-rejection method example\ntarget &lt;- function(x) { ifelse(x &gt; 0, exp(-x), 0) }\nproposal &lt;- function(x) { dnorm(x, mean = 2, sd = 1) }\n\nX &lt;- rnorm(1000, mean = 2, sd = 1)\naccept &lt;- runif(1000) &lt; target(X) / (1.5 * proposal(X))\n\nhist(X[accept], main=\"Accepted Samples from Target Distribution\", col=\"lightcoral\")"
+  },
+  {
+    "objectID": "slides/Chapter3.html#transformation-of-random-variables",
+    "href": "slides/Chapter3.html#transformation-of-random-variables",
+    "title": "Computational Statistics",
+    "section": "Transformation of Random Variables",
+    "text": "Transformation of Random Variables\n\nIntroduction to transformation methods\nExample: Box-Muller transform for generating normal random variables\n\n\n# Box-Muller transform\nn &lt;- 1000\nU1 &lt;- runif(n)\nU2 &lt;- runif(n)\nZ1 &lt;- sqrt(-2 * log(U1)) * cos(2 * pi * U2)\nZ2 &lt;- sqrt(-2 * log(U1)) * sin(2 * pi * U2)\nhist(Z1, main=\"Normal Distribution via Box-Muller\", col=\"lightblue\")"
+  },
+  {
+    "objectID": "slides/Chapter3.html#sums-and-mixtures",
+    "href": "slides/Chapter3.html#sums-and-mixtures",
+    "title": "Computational Statistics",
+    "section": "Sums and Mixtures",
+    "text": "Sums and Mixtures\n\nExplanation of sums and mixtures of random variables\nExample: Mixture of normals\n\n\n# Mixture of normals\nlibrary(MASS)\nmu1 &lt;- 0; mu2 &lt;- 3; sigma1 &lt;- 1; sigma2 &lt;- 2\np &lt;- 0.3\nX &lt;- ifelse(runif(n) &lt; p, rnorm(n, mu1, sigma1), rnorm(n, mu2, sigma2))\nhist(X, main=\"Mixture of Normal Distributions\", col=\"lightgreen\")"
+  },
+  {
+    "objectID": "slides/Chapter7.html#basic-monte-carlo-estimation",
+    "href": "slides/Chapter7.html#basic-monte-carlo-estimation",
+    "title": "Computational Statistics",
+    "section": "Basic Monte Carlo Estimation",
+    "text": "Basic Monte Carlo Estimation\n\nIntroduction to Monte Carlo estimation\nExample: Estimating the expected difference of two normal variables\n\n\nm &lt;- 1000\ng &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(2)\n    g[i] &lt;- abs(x[1] - x[2])\n}\nest &lt;- mean(g)\nest\n\n[1] 1.088741"
+  },
+  {
+    "objectID": "slides/Chapter7.html#visualizing-monte-carlo-simulations",
+    "href": "slides/Chapter7.html#visualizing-monte-carlo-simulations",
+    "title": "Computational Statistics",
+    "section": "Visualizing Monte Carlo Simulations",
+    "text": "Visualizing Monte Carlo Simulations\n\n# Histogram of the simulated differences\nhist(g, main=\"Histogram of Differences (Monte Carlo)\", col=\"lightblue\")"
+  },
+  {
+    "objectID": "slides/Chapter7.html#estimating-the-mean-squared-error-mse",
+    "href": "slides/Chapter7.html#estimating-the-mean-squared-error-mse",
+    "title": "Computational Statistics",
+    "section": "Estimating the Mean Squared Error (MSE)",
+    "text": "Estimating the Mean Squared Error (MSE)\n\nMonte Carlo estimation of MSE for trimmed means\n\n\nn &lt;- 20\nm &lt;- 1000\nmean_trim &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(n)\n    mean_trim[i] &lt;- mean(x, trim = 0.1)\n}\nmse &lt;- mean((mean_trim - 0)^2)\nmse\n\n[1] 0.05033994"
+  },
+  {
+    "objectID": "slides/Chapter7.html#visualizing-mse-simulations",
+    "href": "slides/Chapter7.html#visualizing-mse-simulations",
+    "title": "Computational Statistics",
+    "section": "Visualizing MSE Simulations",
+    "text": "Visualizing MSE Simulations\n\n# Histogram of the trimmed means\nhist(mean_trim, main=\"Trimmed Means (Monte Carlo MSE)\", col=\"lightgreen\")"
+  },
+  {
+    "objectID": "slides/Chapter7.html#additional-monte-carlo-techniques",
+    "href": "slides/Chapter7.html#additional-monte-carlo-techniques",
+    "title": "Computational Statistics",
+    "section": "Additional Monte Carlo Techniques",
+    "text": "Additional Monte Carlo Techniques\n\nExploring advanced Monte Carlo techniques for inference\nExample: Hypothesis testing with Monte Carlo methods\n\n\n# Monte Carlo test example: Hypothesis testing\nn &lt;- 50\nm &lt;- 1000\ntest_stat &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(n)\n    test_stat[i] &lt;- mean(x)\n}\np_value &lt;- mean(test_stat &gt;= 1.96)\np_value\n\n[1] 0"
+  },
+  {
+    "objectID": "slides/Chapter7.html#conclusion",
+    "href": "slides/Chapter7.html#conclusion",
+    "title": "Computational Statistics",
+    "section": "Conclusion",
+    "text": "Conclusion\n\nRecap of Monte Carlo methods in inference, MSE estimation, and hypothesis testing\nPractice: Apply these methods to other inferential problems\n\n\n\n\n\n🔗 tinyurl.com/SCiRT"
+  },
+  {
+    "objectID": "slides/Chapter1.html#probability-distributions",
+    "href": "slides/Chapter1.html#probability-distributions",
+    "title": "Computational Statistics",
+    "section": "Probability Distributions",
+    "text": "Probability Distributions\n\ndnorm(), pnorm(), qnorm()\nExploring statistical tests in R"
+  },
+  {
+    "objectID": "slides/Chapter1.html#statistical-tests",
+    "href": "slides/Chapter1.html#statistical-tests",
+    "title": "Computational Statistics",
+    "section": "Statistical Tests",
+    "text": "Statistical Tests\n\nt.test(), chisq.test()"
+  },
+  {
+    "objectID": "slides/Chapter1.html#defining-functions",
+    "href": "slides/Chapter1.html#defining-functions",
+    "title": "Computational Statistics",
+    "section": "Defining Functions",
+    "text": "Defining Functions\n\nfunction(arglist) expr\nReturn values and default arguments\n\n\nsumdice &lt;- function(n) {\n  k &lt;- sample(1:6, size=n, replace=TRUE)\n  return(sum(k))\n}\nsumdice(2)\n\n[1] 3"
+  },
+  {
+    "objectID": "slides/Chapter1.html#data-structures-in-r",
+    "href": "slides/Chapter1.html#data-structures-in-r",
+    "title": "Computational Statistics",
+    "section": "Data Structures in R",
+    "text": "Data Structures in R\n\nArrays, matrices, and data frames\n\n\n# Creating vectors and matrices\nx &lt;- c(1, 2, 3, 4)\nmatrix_x &lt;- matrix(x, nrow=2, ncol=2)\nprint(matrix_x)\n\n     [,1] [,2]\n[1,]    1    3\n[2,]    2    4\n\n\n\nExample: Iris data set\n\n\ndata(iris)\nsummary(iris)\n\n  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   \n Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  \n 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  \n Median :5.800   Median :3.000   Median :4.350   Median :1.300  \n Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  \n 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  \n Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  \n       Species  \n setosa    :50  \n versicolor:50  \n virginica :50"
+  },
+  {
+    "objectID": "slides/Chapter1.html#basic-plots",
+    "href": "slides/Chapter1.html#basic-plots",
+    "title": "Computational Statistics",
+    "section": "Basic Plots",
+    "text": "Basic Plots\n\nplot(), hist(), boxplot()\n\n\nCodePlot\n\n\n\nplot(iris);\n# boxplot(iris);\n# hist(iris[,1])"
+  },
+  {
+    "objectID": "slides/Chapter1.html#introduction-to-ggplot2",
+    "href": "slides/Chapter1.html#introduction-to-ggplot2",
+    "title": "Computational Statistics",
+    "section": "Introduction to ggplot2",
+    "text": "Introduction to ggplot2\n\nVisualizing using ggplot2\n\n\nCodePlot\n\n\n\nlibrary(ggplot2)\nggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + \n  geom_point() + \n  geom_smooth(method=\"lm\", se=FALSE, color=\"blue\") + \n  theme_minimal() + \n  labs(title=\"Sepal vs Petal Length in Iris Dataset\", x=\"Sepal Length\", y=\"Petal Length\")"
+  },
+  {
+    "objectID": "slides/Chapter1.html#managing-files",
+    "href": "slides/Chapter1.html#managing-files",
+    "title": "Computational Statistics",
+    "section": "Managing Files",
+    "text": "Managing Files\n\nWorking directories and file input/output\nUsing scripts and automation"
+  },
+  {
+    "objectID": "slides/Chapter1.html#dynamic-documents",
+    "href": "slides/Chapter1.html#dynamic-documents",
+    "title": "Computational Statistics",
+    "section": "Dynamic Documents",
+    "text": "Dynamic Documents\n\nCreating reports with R Markdown\nIntroduction to knitr package"
+  },
+  {
+    "objectID": "slides/Chapter6.html#introduction-to-monte-carlo-integration",
+    "href": "slides/Chapter6.html#introduction-to-monte-carlo-integration",
+    "title": "Computational Statistics",
+    "section": "Introduction to Monte Carlo Integration",
+    "text": "Introduction to Monte Carlo Integration\n\nBasic concepts of Monte Carlo integration\nExample: Integrating using uniform distribution\n\n\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x))\ntheta.hat\n\n[1] 0.6323717\n\n1 - exp(-1)\n\n[1] 0.6321206"
+  },
+  {
+    "objectID": "slides/Chapter6.html#example-monte-carlo-integration-with-bounded-intervals",
+    "href": "slides/Chapter6.html#example-monte-carlo-integration-with-bounded-intervals",
+    "title": "Computational Statistics",
+    "section": "Example: Monte Carlo integration with bounded intervals",
+    "text": "Example: Monte Carlo integration with bounded intervals\n\nm &lt;- 10000\nx &lt;- runif(m, min=2, max=4)\ntheta.hat &lt;- mean(exp(-x)) * 2\ntheta.hat\n\n[1] 0.1168797\n\nexp(-2) - exp(-4)\n\n[1] 0.1170196"
+  },
+  {
+    "objectID": "slides/Chapter6.html#unbounded-intervals",
+    "href": "slides/Chapter6.html#unbounded-intervals",
+    "title": "Computational Statistics",
+    "section": "Unbounded Intervals",
+    "text": "Unbounded Intervals\n\nHandling unbounded intervals in Monte Carlo integration\n\n\n# Plotting a function over an unbounded interval\nx &lt;- seq(.1, 2.5, length.out = 100)\ny &lt;- exp(-x^2 / 2)\nplot(x, y, type=\"l\", main=\"Function Plot for Unbounded Interval\", col=\"blue\")"
+  },
+  {
+    "objectID": "slides/Chapter6.html#introduction-to-importance-sampling",
+    "href": "slides/Chapter6.html#introduction-to-importance-sampling",
+    "title": "Computational Statistics",
+    "section": "Introduction to Importance Sampling",
+    "text": "Introduction to Importance Sampling\n\nImportance sampling and its applications\nExample: Applying importance sampling\n\n\n# Example of importance sampling\ng &lt;- function(x) exp(-x^2 / 2)\nf &lt;- function(x) dnorm(x, mean = 1)\nx &lt;- rnorm(10000, mean = 1)\ntheta.hat &lt;- mean(g(x) / f(x))\ntheta.hat\n\n[1] 2.482553"
+  },
+  {
+    "objectID": "slides/Chapter6.html#visualizing-importance-sampling",
+    "href": "slides/Chapter6.html#visualizing-importance-sampling",
+    "title": "Computational Statistics",
+    "section": "Visualizing Importance Sampling",
+    "text": "Visualizing Importance Sampling\n\n# Compare the original function with the importance sampling function\ncurve(g, from = -3, to = 3, col = \"blue\", lwd = 2, main=\"Importance Sampling: g(x) vs f(x)\")\ncurve(f, add = TRUE, col = \"red\", lty = 2, lwd = 2)\nlegend(\"topright\", legend=c(\"g(x)\", \"f(x)\"), col=c(\"blue\", \"red\"), lty=c(1, 2), lwd=2)"
+  },
+  {
+    "objectID": "slides/Chapter6.html#control-variates",
+    "href": "slides/Chapter6.html#control-variates",
+    "title": "Computational Statistics",
+    "section": "Control Variates",
+    "text": "Control Variates\n\nExplanation of control variates and how they reduce variance\nExample: Using control variates in Monte Carlo integration\n\n\n# Control variates example\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x)) - (mean(x) - 0.5)\ntheta.hat\n\n[1] 0.635884"
+  },
+  {
+    "objectID": "slides/Chapter6.html#antithetic-variables",
+    "href": "slides/Chapter6.html#antithetic-variables",
+    "title": "Computational Statistics",
+    "section": "Antithetic Variables",
+    "text": "Antithetic Variables\n\nExplanation of antithetic variables and how they reduce variance\nExample: Applying antithetic variables\n\n\n# Antithetic variables example\nu &lt;- runif(5000)\ntheta.hat &lt;- mean((exp(-u) + exp(-(1 - u))) / 2)\ntheta.hat\n\n[1] 0.6323397\n\n1 - exp(-1)\n\n[1] 0.6321206"
+  },
+  {
+    "objectID": "slides/Chapter2.html#random-variables-and-distributions",
+    "href": "slides/Chapter2.html#random-variables-and-distributions",
+    "title": "Computational Statistics",
+    "section": "Random Variables and Distributions",
+    "text": "Random Variables and Distributions\n\nOverview of random variables\nDiscrete vs Continuous random variables\nImportant distributions (Binomial, Normal, Chi-Square)\n\n\n# Simulating random variables\nN &lt;- 100; mu &lt;- 5; sig &lt;- 2\nY &lt;- rnorm(N, mean = mu, sd = sig)\nhist(Y, main=\"Histogram of Normal Distribution\", xlab=\"Y values\", col=\"lightblue\")"
+  },
+  {
+    "objectID": "slides/Chapter2.html#binomial-distribution",
+    "href": "slides/Chapter2.html#binomial-distribution",
+    "title": "Computational Statistics",
+    "section": "Binomial Distribution",
+    "text": "Binomial Distribution\n\nrbinom(), dbinom(), pbinom()\nExample: Generating binomial random variables\n\n\nrbinom(10, size=10, prob=0.5)\n\n [1] 6 5 6 7 6 3 4 5 3 7"
+  },
+  {
+    "objectID": "slides/Chapter2.html#poisson-distribution",
+    "href": "slides/Chapter2.html#poisson-distribution",
+    "title": "Computational Statistics",
+    "section": "Poisson Distribution",
+    "text": "Poisson Distribution\n\nrpois(), dpois(), ppois()\nExample: Simulating Poisson-distributed data\n\n\nrpois(10, lambda=2)\n\n [1] 1 3 0 3 3 0 1 2 1 1"
+  },
+  {
+    "objectID": "slides/Chapter2.html#normal-distribution",
+    "href": "slides/Chapter2.html#normal-distribution",
+    "title": "Computational Statistics",
+    "section": "Normal Distribution",
+    "text": "Normal Distribution\n\nrnorm(), dnorm(), pnorm()\nExample: Generating normal random variables\n\n\nrnorm(10, mean=0, sd=1)\n\n [1] -0.61977880 -1.23203826  0.40982255 -0.07433484  0.77576696 -1.87096753\n [7]  0.71886995 -0.22546070  0.80548704  0.47983766"
+  },
+  {
+    "objectID": "slides/Chapter2.html#exponential-distribution",
+    "href": "slides/Chapter2.html#exponential-distribution",
+    "title": "Computational Statistics",
+    "section": "Exponential Distribution",
+    "text": "Exponential Distribution\n\nrexp(), dexp(), pexp()\nSimulating exponential data in R"
+  },
+  {
+    "objectID": "slides/Chapter2.html#properties",
+    "href": "slides/Chapter2.html#properties",
+    "title": "Computational Statistics",
+    "section": "Properties",
+    "text": "Properties\n\nMean vector, covariance matrix\nMultivariate normal density\n\n\nlibrary(MASS)\nmvrnorm(n=10, mu=c(0,0), Sigma=matrix(c(1,0.5,0.5,1),2,2))\n\n            [,1]        [,2]\n [1,] -0.2412095  0.47487327\n [2,] -0.1632839  0.29186577\n [3,] -0.6258872 -0.17661026\n [4,] -1.3416734 -1.32733984\n [5,] -0.3481640 -0.93338221\n [6,]  0.7943950 -0.07958552\n [7,] -0.3611439 -1.35077325\n [8,] -2.2525691 -1.10725929\n [9,] -1.4692930 -0.27707034\n[10,]  1.2780424  1.30819792"
+  },
+  {
+    "objectID": "slides/Chapter2.html#law-of-large-numbers",
+    "href": "slides/Chapter2.html#law-of-large-numbers",
+    "title": "Computational Statistics",
+    "section": "Law of Large Numbers",
+    "text": "Law of Large Numbers\n\nStatement of the law\nDemonstration using R\n\n\nn &lt;- 1000\nx &lt;- rnorm(n)\ncumsum(x) / 1:n\n\n   [1] -0.441973071 -0.350086610  0.107712469 -0.122234472  0.038983248\n   [6] -0.036630960  0.120769263  0.065847143  0.202981859  0.204569158\n  [11]  0.181033910  0.185157019  0.161825097  0.103944578  0.109710050\n  [16]  0.034862463  0.101161564  0.062664168 -0.044477672 -0.152541553\n  [21] -0.154964805 -0.182400277 -0.158889273 -0.132946060 -0.076499258\n  [26] -0.063987369 -0.016948625 -0.091334311 -0.097296767 -0.119686153\n  [31] -0.100088256 -0.120252765 -0.097103031 -0.128574539 -0.130145908\n  [36] -0.134702673 -0.117120358 -0.113974783 -0.063440696 -0.053999584\n  [41] -0.019204192 -0.009169469 -0.027633461 -0.053095479 -0.071376924\n  [46] -0.090767094 -0.072637861 -0.041635269 -0.024777829 -0.027110775\n  [51] -0.002089252 -0.016496334  0.002331359 -0.018985915  0.010020755\n  [56] -0.029455544 -0.042907256 -0.018215486 -0.024768385 -0.024752558\n  [61] -0.066780278 -0.098296141 -0.118199016 -0.120389627 -0.109053217\n  [66] -0.123973901 -0.105261602 -0.108728518 -0.090747500 -0.085821290\n  [71] -0.080505082 -0.077403311 -0.060786476 -0.071855373 -0.058230135\n  [76] -0.060946551 -0.026695734 -0.032018990 -0.029715741 -0.025060280\n  [81] -0.032527337 -0.046173714 -0.067392964 -0.063185258 -0.076350469\n  [86] -0.058813312 -0.066876888 -0.061474804 -0.052217474 -0.033836630\n  [91] -0.059071901 -0.052122034 -0.046646289 -0.050539802 -0.050159891\n  [96] -0.054508878 -0.040642334 -0.046324664 -0.044111636 -0.043641394\n [101] -0.021278384 -0.022599356 -0.014842046 -0.018568775 -0.018534198\n [106] -0.017639969 -0.030327157 -0.020963953 -0.025856842 -0.032930044\n [111] -0.031240076 -0.030300046 -0.018364544 -0.017851220 -0.035915959\n [116] -0.043442275 -0.045435384 -0.048455510 -0.045832971 -0.034254135\n [121] -0.037708955 -0.040962159 -0.049052845 -0.044883713 -0.056950032\n [126] -0.051295062 -0.049491202 -0.048001394 -0.052543650 -0.067730285\n [131] -0.072463473 -0.071748984 -0.072806491 -0.079982777 -0.074961086\n [136] -0.078175719 -0.088592363 -0.093978672 -0.094400240 -0.099309700\n [141] -0.098678180 -0.095492592 -0.100767143 -0.093099135 -0.090514221\n [146] -0.082874376 -0.077376334 -0.078996490 -0.083805699 -0.080432870\n [151] -0.081701325 -0.082374655 -0.075775315 -0.070082987 -0.070595423\n [156] -0.062835227 -0.070754796 -0.064738647 -0.066976733 -0.060889046\n [161] -0.069168566 -0.068536908 -0.070161601 -0.067877798 -0.062343511\n [166] -0.073145464 -0.078401360 -0.075300503 -0.073474155 -0.080957359\n [171] -0.081822284 -0.088949259 -0.078054176 -0.083039781 -0.092313457\n [176] -0.096142851 -0.105243035 -0.109985873 -0.109266075 -0.109941932\n [181] -0.104077589 -0.111976831 -0.104084894 -0.101308090 -0.100303479\n [186] -0.094214642 -0.095254463 -0.095572768 -0.088414309 -0.086961620\n [191] -0.094594043 -0.096100148 -0.091591753 -0.101425133 -0.098081217\n [196] -0.095579431 -0.102215030 -0.091114706 -0.090961650 -0.092142305\n [201] -0.092364835 -0.097449708 -0.088881446 -0.082122831 -0.080527915\n [206] -0.083934275 -0.092688796 -0.091920267 -0.097945679 -0.100050755\n [211] -0.097873690 -0.103937335 -0.100699005 -0.098319908 -0.090340679\n [216] -0.090464584 -0.091111694 -0.087653539 -0.092845549 -0.093467820\n [221] -0.093530773 -0.088908878 -0.092667228 -0.098613922 -0.094880330\n [226] -0.099886849 -0.101368525 -0.111706868 -0.111554891 -0.112404541\n [231] -0.114640171 -0.116458008 -0.117689319 -0.113690696 -0.114192961\n [236] -0.114781785 -0.108835291 -0.107717527 -0.104437658 -0.102851800\n [241] -0.101365717 -0.113644750 -0.119694440 -0.120523371 -0.117948110\n [246] -0.118830394 -0.124635111 -0.118753175 -0.113992255 -0.116273447\n [251] -0.116371186 -0.110546870 -0.112976721 -0.112965707 -0.115921765\n [256] -0.112328647 -0.113351710 -0.111275137 -0.111241917 -0.111440595\n [261] -0.115259666 -0.110756598 -0.112795135 -0.108732144 -0.109356161\n [266] -0.105516062 -0.104573992 -0.104824263 -0.102781365 -0.109033037\n [271] -0.105375019 -0.103000022 -0.099097316 -0.098942872 -0.096495129\n [276] -0.092256662 -0.090293458 -0.093781758 -0.097372599 -0.097413471\n [281] -0.098865869 -0.091518514 -0.090876757 -0.092079795 -0.086168421\n [286] -0.085118310 -0.084773051 -0.085759021 -0.087580956 -0.085049842\n [291] -0.085244804 -0.080893387 -0.078973043 -0.077766842 -0.078308528\n [296] -0.073677302 -0.074487402 -0.072981818 -0.078247989 -0.079347742\n [301] -0.080176928 -0.078132606 -0.076107808 -0.080090317 -0.080793308\n [306] -0.078367439 -0.075440163 -0.073382867 -0.073653342 -0.069474360\n [311] -0.069790307 -0.069280299 -0.071453519 -0.072758484 -0.071080048\n [316] -0.076967088 -0.077120091 -0.074827124 -0.075650632 -0.075576890\n [321] -0.073084290 -0.075299019 -0.073701846 -0.075809059 -0.071162522\n [326] -0.073667559 -0.072568017 -0.072699168 -0.075057900 -0.071478549\n [331] -0.070526996 -0.065619902 -0.072682505 -0.073707771 -0.073587735\n [336] -0.075697814 -0.075120223 -0.077623671 -0.073417845 -0.073921357\n [341] -0.078632923 -0.076871010 -0.074001624 -0.074164898 -0.073058601\n [346] -0.070468354 -0.073235580 -0.070135616 -0.071327415 -0.069994604\n [351] -0.067149921 -0.068291558 -0.065703985 -0.070039204 -0.068906799\n [356] -0.067722724 -0.066515893 -0.066083571 -0.070155276 -0.066488076\n [361] -0.067008575 -0.068885957 -0.068857983 -0.067618535 -0.067422116\n [366] -0.066832174 -0.062872636 -0.062741476 -0.055018411 -0.054184361\n [371] -0.051852250 -0.051718068 -0.050344272 -0.051690873 -0.055065796\n [376] -0.055801105 -0.055514380 -0.058536736 -0.056585653 -0.051593204\n [381] -0.049002013 -0.046712035 -0.040862589 -0.042116147 -0.039359405\n [386] -0.039167735 -0.034088084 -0.033429935 -0.031715039 -0.032912080\n [391] -0.031101893 -0.032760791 -0.038288777 -0.042177574 -0.046264581\n [396] -0.042846821 -0.043340281 -0.043234677 -0.044358838 -0.043300357\n [401] -0.046533519 -0.041149924 -0.039370241 -0.043290083 -0.043218293\n [406] -0.043927539 -0.044852614 -0.044923116 -0.044813151 -0.048290320\n [411] -0.048965172 -0.045741329 -0.043285609 -0.042480484 -0.046338293\n [416] -0.045852625 -0.046281595 -0.048970244 -0.049132889 -0.051312903\n [421] -0.051399353 -0.048991261 -0.051715317 -0.050262972 -0.044739433\n [426] -0.041135846 -0.045519914 -0.043685908 -0.046273689 -0.048561816\n [431] -0.047120749 -0.043077532 -0.047343529 -0.045468387 -0.045687276\n [436] -0.048325761 -0.046178143 -0.044435783 -0.048581123 -0.048880357\n [441] -0.049030839 -0.047697696 -0.046414184 -0.048178485 -0.050212502\n [446] -0.049796013 -0.049478797 -0.050646936 -0.050011159 -0.045888897\n [451] -0.048994770 -0.049210524 -0.046483918 -0.048667074 -0.052974714\n [456] -0.050485089 -0.047797159 -0.046897183 -0.047376441 -0.046586499\n [461] -0.048086442 -0.048754454 -0.048169202 -0.046037502 -0.049138469\n [466] -0.047222377 -0.046981562 -0.048548143 -0.048499025 -0.049063758\n [471] -0.051468288 -0.053314858 -0.048567845 -0.049827808 -0.052720057\n [476] -0.055184979 -0.055529794 -0.055553328 -0.053482134 -0.056244211\n [481] -0.053219353 -0.056725840 -0.056845145 -0.058475661 -0.057838541\n [486] -0.057343253 -0.059290187 -0.057279512 -0.058320796 -0.058826694\n [491] -0.062545871 -0.062305821 -0.060929200 -0.060471463 -0.064490265\n [496] -0.065305981 -0.064001892 -0.062541365 -0.060662460 -0.059260045\n [501] -0.059453595 -0.060855225 -0.056408612 -0.056973266 -0.054935665\n [506] -0.054797473 -0.056071659 -0.057547011 -0.057508153 -0.058209640\n [511] -0.056420177 -0.056458086 -0.055206040 -0.054061797 -0.054732170\n [516] -0.052923393 -0.048668287 -0.053532390 -0.055936466 -0.054587384\n [521] -0.056933841 -0.057136177 -0.055748836 -0.054380832 -0.055854497\n [526] -0.056381969 -0.056397947 -0.057275353 -0.057639878 -0.059543557\n [531] -0.058923468 -0.059556017 -0.059314765 -0.059277375 -0.058966488\n [536] -0.057301154 -0.058315968 -0.061921551 -0.063511156 -0.062507795\n [541] -0.064761277 -0.060838138 -0.062408789 -0.062055366 -0.064564246\n [546] -0.065666910 -0.064992823 -0.065788572 -0.066630955 -0.065061495\n [551] -0.065680381 -0.065544633 -0.063831447 -0.063484387 -0.063195039\n [556] -0.062200645 -0.063208464 -0.065538425 -0.065212778 -0.062071466\n [561] -0.063319051 -0.064411592 -0.064196521 -0.062972682 -0.064717192\n [566] -0.065013667 -0.063679491 -0.067099329 -0.066258897 -0.067694666\n [571] -0.066690598 -0.071060780 -0.067934251 -0.066810005 -0.067326117\n [576] -0.067146844 -0.065483547 -0.066943118 -0.067582666 -0.066536402\n [581] -0.066249419 -0.064632230 -0.065471239 -0.068453790 -0.066849293\n [586] -0.068419560 -0.066620874 -0.065510115 -0.069068557 -0.066788907\n [591] -0.066913656 -0.065206434 -0.065701416 -0.066518652 -0.068023994\n [596] -0.065483468 -0.066285459 -0.064541672 -0.064884970 -0.063453237\n [601] -0.064011698 -0.062448811 -0.060880466 -0.060164080 -0.057938518\n [606] -0.056091249 -0.056654709 -0.057742150 -0.058946679 -0.060378424\n [611] -0.063120245 -0.063206254 -0.063874459 -0.061468825 -0.061339926\n [616] -0.064343778 -0.063488269 -0.061293058 -0.060487045 -0.059504646\n [621] -0.061085725 -0.061350426 -0.064148012 -0.066083485 -0.066921283\n [626] -0.066809818 -0.064795609 -0.063308120 -0.063897002 -0.063568140\n [631] -0.063142895 -0.063524584 -0.060810898 -0.059237481 -0.060464827\n [636] -0.060461468 -0.063425110 -0.062326246 -0.061739744 -0.063245442\n [641] -0.064694538 -0.064433450 -0.064055524 -0.065522928 -0.067229520\n [646] -0.067150911 -0.064250016 -0.067579115 -0.066056617 -0.069367765\n [651] -0.069743434 -0.072089357 -0.074391014 -0.075064232 -0.073206979\n [656] -0.072686908 -0.072704571 -0.072376834 -0.070715756 -0.067905235\n [661] -0.068260172 -0.067027184 -0.068866191 -0.067289523 -0.069277656\n [666] -0.068322872 -0.068822913 -0.067384697 -0.067245144 -0.069422493\n [671] -0.069169178 -0.072345692 -0.071655577 -0.070750848 -0.071575552\n [676] -0.070461757 -0.070813664 -0.073060087 -0.072270844 -0.070541913\n [681] -0.070362016 -0.071805365 -0.069711036 -0.067711575 -0.069844510\n [686] -0.070662893 -0.070120516 -0.070811519 -0.071691863 -0.073366776\n [691] -0.075228824 -0.074352958 -0.075239154 -0.076064295 -0.077147773\n [696] -0.076045773 -0.076954096 -0.073676217 -0.072866590 -0.071867755\n [701] -0.071671156 -0.072388129 -0.069225410 -0.068664947 -0.069050505\n [706] -0.070179563 -0.069357642 -0.068599945 -0.069976994 -0.069798757\n [711] -0.071541075 -0.070444634 -0.069920932 -0.067960557 -0.069188022\n [716] -0.068767485 -0.066474869 -0.067970420 -0.067279421 -0.067395280\n [721] -0.067012144 -0.064928049 -0.063373090 -0.062140363 -0.061681957\n [726] -0.059591890 -0.060157664 -0.058499675 -0.059394917 -0.058296225\n [731] -0.058474710 -0.057399804 -0.055395775 -0.054820762 -0.053923536\n [736] -0.053734288 -0.054629398 -0.055073958 -0.056526310 -0.057547880\n [741] -0.057888494 -0.057475303 -0.056613205 -0.057079820 -0.057913129\n [746] -0.056969953 -0.056693070 -0.056489079 -0.056808404 -0.055440234\n [751] -0.054311994 -0.051968110 -0.052416383 -0.053707214 -0.054210805\n [756] -0.054643955 -0.052097804 -0.052359128 -0.053155555 -0.053885567\n [761] -0.055347582 -0.055218404 -0.055708728 -0.055881653 -0.055578224\n [766] -0.054117924 -0.054584699 -0.055391864 -0.054067501 -0.055687537\n [771] -0.054487016 -0.053139136 -0.054434032 -0.053770649 -0.052970014\n [776] -0.051199586 -0.051990228 -0.051893913 -0.049474824 -0.048755164\n [781] -0.047360881 -0.047127306 -0.047682765 -0.048551659 -0.048496947\n [786] -0.048540715 -0.047703459 -0.051005283 -0.052701464 -0.051350601\n [791] -0.051253697 -0.051383914 -0.052449505 -0.054655081 -0.055476793\n [796] -0.056419033 -0.052996010 -0.051725802 -0.049501806 -0.050381621\n [801] -0.051693014 -0.050661303 -0.046892407 -0.048312701 -0.046014196\n [806] -0.045408550 -0.045987099 -0.044764899 -0.043324943 -0.040111575\n [811] -0.039770708 -0.043010640 -0.044627011 -0.044867193 -0.044430326\n [816] -0.043404822 -0.044107008 -0.042871632 -0.043487622 -0.044638400\n [821] -0.045369913 -0.045289354 -0.045365636 -0.044860713 -0.042466731\n [826] -0.042500417 -0.042129427 -0.043744559 -0.044831937 -0.043863338\n [831] -0.042706075 -0.042550933 -0.042098037 -0.040946249 -0.040697018\n [836] -0.041616061 -0.042399624 -0.042469643 -0.043661730 -0.043521729\n [841] -0.045095962 -0.046031404 -0.046539067 -0.047777408 -0.047633458\n [846] -0.046289130 -0.046942770 -0.046686072 -0.045853800 -0.045411258\n [851] -0.047308683 -0.045708385 -0.045815195 -0.045056087 -0.044233797\n [856] -0.044692483 -0.046212195 -0.047784803 -0.047223510 -0.048614633\n [861] -0.049375293 -0.047575240 -0.046910768 -0.045040133 -0.045746586\n [866] -0.048617267 -0.048478284 -0.048187166 -0.047971247 -0.047635154\n [871] -0.048144923 -0.049019277 -0.047885201 -0.048889909 -0.048929990\n [876] -0.046297442 -0.045523759 -0.045926193 -0.046176019 -0.046727708\n [881] -0.047348494 -0.046131369 -0.046594897 -0.044571686 -0.044262154\n [886] -0.044516996 -0.043949501 -0.041889443 -0.044474311 -0.046559554\n [891] -0.045133409 -0.044496978 -0.042911589 -0.043242476 -0.044373660\n [896] -0.043418830 -0.045587295 -0.044203202 -0.044861674 -0.044753462\n [901] -0.044401939 -0.043155404 -0.042747800 -0.042897337 -0.043815207\n [906] -0.044535041 -0.044152144 -0.045669568 -0.047587108 -0.048383170\n [911] -0.047527536 -0.046546425 -0.048220844 -0.047917821 -0.047308432\n [916] -0.048144419 -0.048204923 -0.047157482 -0.046911282 -0.048222346\n [921] -0.046264301 -0.044998536 -0.046436902 -0.047262897 -0.046578092\n [926] -0.045413655 -0.046125076 -0.045283881 -0.046054781 -0.046307693\n [931] -0.045123786 -0.045821194 -0.044594267 -0.045313880 -0.044600074\n [936] -0.043747940 -0.042472845 -0.042190211 -0.042863380 -0.042671126\n [941] -0.040826759 -0.042059113 -0.040951230 -0.040601246 -0.038759175\n [946] -0.037743428 -0.036789343 -0.036767241 -0.036732177 -0.037037661\n [951] -0.037130311 -0.035660479 -0.035104843 -0.036417969 -0.036507217\n [956] -0.036511275 -0.036448268 -0.034940129 -0.034260015 -0.034147941\n [961] -0.034586572 -0.034067085 -0.033381083 -0.033181577 -0.032605364\n [966] -0.033770747 -0.032127946 -0.031138375 -0.029974931 -0.029824728\n [971] -0.031048994 -0.032752834 -0.032718979 -0.033095693 -0.034330140\n [976] -0.032532107 -0.031555527 -0.031679962 -0.031917445 -0.033373944\n [981] -0.033883726 -0.034859788 -0.036041183 -0.036121457 -0.034744969\n [986] -0.036079423 -0.035146941 -0.035594974 -0.037881573 -0.036482929\n [991] -0.035589295 -0.035942898 -0.035339542 -0.033887028 -0.034539595\n [996] -0.034559642 -0.033996495 -0.034164434 -0.035578556 -0.035060751"
+  },
+  {
+    "objectID": "slides/Chapter2.html#central-limit-theorem",
+    "href": "slides/Chapter2.html#central-limit-theorem",
+    "title": "Computational Statistics",
+    "section": "Central Limit Theorem",
+    "text": "Central Limit Theorem\n\nDiscuss the CLT and its importance in statistics\nSimulating the CLT with normal distributions\n\n\n# Central Limit Theorem simulation\nmeans &lt;- replicate(1000, mean(rnorm(100, mean = mu, sd = sig)))\nhist(means, main=\"Central Limit Theorem\", col=\"lightgreen\", border=\"black\")"
   },
   {
     "objectID": "computing/computing-cheatsheets.html",
@@ -207,9 +501,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Computational Probability - Fall 2025",
+    "title": "Short Course on R Tools - (SCoRT)",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses, and the timeline of topics and assignments might be updated throughout the semester.\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nDUE\n\n\n\n\n1\nTue, Aug 26\nIntroduction, Review, Expectations\n💻Chapt 2 Review\n\n\n\n\n\n\nThu, Aug 28\nR Programming\n💻Chapt 1\n\n\n\n\n\n\nFri, Aug 29\n\n\n\n\n📝 [HW 0]\n\n\n2\nTue, Sep 2\nProbability of Events, Conditional Probability\n💻Chapt 3\n\n\n\n\n\n\nThu, Sep 4\nRules of Probability, Disjoint and Independent\n\n\n\n\n\n\n\n\nFri, Sep 5\n\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n3\nTue, Sep 9\nRandom Variables, Discrete RV\n\n\n\n\n\n\n\n\nThu, Sep 11\nContinous RV, WLLN, MGF\n\n\n\n\n\n\n\n\nFri, Sep 12\n\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n4\nTue, Sep 16\nDiscrete Univariate Distributions:  Uniform, Binomial, Poisson\n💻Chapt 4\n\n\n\n\n\n\nThu, Sep 18\nCont. Poisson, Geometric, Negative Binomial\n\n\n\n\n\n\n\n\nFri, Sep 19\n\n\n\n\n📝 HW 3 at 11:50 pm\n\n\n5\nTue, Sep 23\nContiniuous Univariate Distributions:  Uniform (Generating Rand #), Exponential\n\n\n\n\n\n\n\n\nThu, Sep 25\nGamma, etc. Normal Distribution\n\n\n\n\n\n\n\n\nFri, Sep 26\n\n\n\n\n📝 HW 4 at 11:50 pm\n\n\n6\nTue, Sep 30\nMultivariate Probability Distributions\n💻Chapt 5\n\n\n\n\n\n\nThu, Oct 2\nConditional Distributions\n\n\n\n\n\n\n\n\nFri, Oct 3\n\n\n\n\n📝 HW 5 at 11:50 pm\n\n\n7\nTue, Oct 7\nCovariance and Correlation, Multinomial Dist.\n\n\n\n\n\n\n\n\nThu, Oct 9\nMultivariate Normal Distribution\n\n\n\n\n\n\n\n\nFri, Oct 10\n\n\n\n\n📝 HW 6 at 11:50 pm\n\n\n8\nTue, Oct 14\nSampling, Finalize Project Teams\n💻Chapt 6\n\n\n\n\n\n\nThu, Oct 16\n🍁 Fall Break\n\n\n\n\n\n\n9\nTue, Oct 21\nReview for Exam, Estimators, Plug-in Est.\n\n\n\n\n\n\n\n\nThu, Oct 23\n\n\n📑 Exam\n\n\n\n\n10\nTue, Oct 28\nReturn Exam, Sampling Distribution of X̄\n📖CLT - Sketch of Proof\n\n\n\n\n\n\nThu, Oct 30\nSampling Distributions of X̄₁-X̄₂, p, χ²\n\n\n\n\n\n\n11\nTue, Nov 4\nPoint Estimation, MOM, MLE\n💻Chapt 7\n\n\n\n\n\n\nThu, Nov 6\nContinue MLE\n\n\n\n\n\n\n\n\nFri, Nov 7\n\n\n\n\n📝 HW 7 at 11:50 pm\n\n\n12\nTue, Nov 11\nFinish MLE, Going back to Chapter 6\nBack to 💻Chapt 6\n\n\n\n\n\n\nThu, Nov 13\nTransformation of RVs: Change of Variable (CV)\n\n\n\n\n\n\n13\nTue, Nov 18\nMore on χ² and t Distributions, Bivariate CV\n\n\n\n\n\n\n\n\nThu, Nov 20\nBivariate CV, t, χ² and F Distributions\n\n\n\n\n\n\n\n\nFri, Nov 21\n\n\n\n\n📝 HW 8 at 11:50 pm\n\n\n14\nTue, Nov 25\nFinish Chapter 7\nBack to 💻Chapt 7\n\n\n\n\n\n\nThu, Nov 27\n🦃🍂🥧🙏 Thanksgiving Break\n\n\n\n\n\n\n15\nTue, Dec 2\nWhy Simulation\n📖Why Simulation\n\n\n\n\n\n\nThu, Dec 4\nA lecture on GitHub and R package!\n\n\n📝 HW 9 at 12:00 pm\n\n\n16\nMon, Dec 8\n10:30pm - 12:30 pm\n📑 Final Exam",
+    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n\n1\nTue, Aug 26\nDevelop your own professional R package\n📚Chapt 1\nR👩‍💻\n\n\n\n\n\n\nThu, Aug 28\nEnhance performance with Rcpp (C++)\n📚Chapt 2\nR👩‍💻\n\n\n\n\n\n\nFri, Aug 29\n\n\n\n\n\n\n📝 [HW 0]\n\n\n2\nTue, Sep 2\nManage and collaborate via GitHub\n📚Chapt 3\nR👩‍💻\n\n\n\n\n\n\nThu, Sep 4\nObject-Oriented Programming (OOP) in R\n📚Chapt 4\nR Shiny👩‍💻\n\n\n\n\n\n\nFri, Sep 5\n\n\n\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n3\nTue, Sep 9\nCreate dynamic Shiny web applications\n📚Chapt 5\nD2L✍️\n\n\n\n\n\n\nThu, Sep 11\nNavigate the CRAN submission process\n📚Chapt 6\nR👩‍💻\n\n\n\n\n\n\nFri, Sep 12\n\n\n\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n4\nTue, Sep 16\nIntegrate Python in R using Reticulate\n📚Chapt 7\nR👩‍💻\n\n\n\n\n\n\nThu, Sep 18\nDeep Learning in R\n📚Chapt 8\nR Shiny👩‍💻\n\n\n\n\n\n\nFri, Sep 19\n\n\n\n\n\n\n📝 HW 3 at 11:50 pm",
     "crumbs": [
       "Course information",
       "Schedule"

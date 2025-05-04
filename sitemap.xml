@@ -1,27 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tinyurl.com/Comp-Prob/course-syllabus.html</loc>
-    <lastmod>2025-05-04T13:10:09.057Z</lastmod>
+    <loc>https://tinyurl.com/SCiRT/course-syllabus.html</loc>
+    <lastmod>2025-05-04T14:26:15.709Z</lastmod>
   </url>
   <url>
-    <loc>https://tinyurl.com/Comp-Prob/course-overview.html</loc>
-    <lastmod>2025-05-04T13:10:09.057Z</lastmod>
+    <loc>https://tinyurl.com/SCiRT/course-overview.html</loc>
+    <lastmod>2025-05-04T14:26:15.709Z</lastmod>
   </url>
   <url>
-    <loc>https://tinyurl.com/Comp-Prob/about.html</loc>
-    <lastmod>2025-05-04T13:10:09.041Z</lastmod>
+    <loc>https://tinyurl.com/SCiRT/about.html</loc>
+    <lastmod>2025-05-04T14:26:15.693Z</lastmod>
   </url>
   <url>
-    <loc>https://tinyurl.com/Comp-Prob/computing/computing-cheatsheets.html</loc>
-    <lastmod>2025-05-04T13:10:09.056Z</lastmod>
+    <loc>https://tinyurl.com/SCiRT/slides/Chapter5.html</loc>
+    <lastmod>2025-05-04T14:26:15.718Z</lastmod>
   </url>
   <url>
-    <loc>https://tinyurl.com/Comp-Prob/index.html</loc>
-    <lastmod>2025-05-04T13:10:09.065Z</lastmod>
+    <loc>https://tinyurl.com/SCiRT/slides/Chapter8.html</loc>
+    <lastmod>2025-05-04T14:26:15.718Z</lastmod>
   </url>
   <url>
-    <loc>https://tinyurl.com/Comp-Prob/course-links.html</loc>
-    <lastmod>2025-05-04T13:10:09.056Z</lastmod>
+    <loc>https://tinyurl.com/SCiRT/slides/Chapter3.html</loc>
+    <lastmod>2025-05-04T14:26:15.718Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/Chapter7.html</loc>
+    <lastmod>2025-05-04T14:26:15.718Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/Chapter1.html</loc>
+    <lastmod>2025-05-04T14:26:15.718Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/Chapter6.html</loc>
+    <lastmod>2025-05-04T14:26:15.718Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/Chapter2.html</loc>
+    <lastmod>2025-05-04T14:26:15.718Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/computing/computing-cheatsheets.html</loc>
+    <lastmod>2025-05-04T14:26:15.709Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/index.html</loc>
+    <lastmod>2025-05-04T14:26:15.717Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/course-links.html</loc>
+    <lastmod>2025-05-04T14:26:15.709Z</lastmod>
   </url>
 </urlset>
