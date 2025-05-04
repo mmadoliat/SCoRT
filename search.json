@@ -194,66 +194,11 @@
     "text": "About this site"
   },
   {
-    "objectID": "slides/Chapter5.html#customizing-scatterplot-matrices",
-    "href": "slides/Chapter5.html#customizing-scatterplot-matrices",
-    "title": "Short Course on R Tools",
-    "section": "Customizing Scatterplot Matrices",
-    "text": "Customizing Scatterplot Matrices\n\nCustomizing scatterplot matrices with density plots\n\n\n# Adding density plots to scatterplot matrix\npanel.d &lt;- function(x, ...) {\n    usr &lt;- par(\"usr\")\n    on.exit(par(usr))\n    par(usr = c(usr[1:2], 0, .5))\n    lines(density(x), col=\"red\")\n}\npairs(iris[101:150, 1:4], panel = panel.d, main=\"Customized Scatterplot Matrix\")",
-    "crumbs": [
-      "Slides",
-      "Shiny"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter4.html#introduction-to-jackknife-after-bootstrap",
-    "href": "slides/Chapter4.html#introduction-to-jackknife-after-bootstrap",
-    "title": "Short Course on R Tools",
-    "section": "Introduction to Jackknife-after-Bootstrap",
-    "text": "Introduction to Jackknife-after-Bootstrap\n\nExplanation of the jackknife-after-bootstrap method\nUsed to estimate bias and standard errors after bootstrap\n\n\nlibrary(boot)\nlibrary(bootstrap)\nset.seed(1111)\n\n# Function to compute the patch ratio statistic\ntheta.boot &lt;- function(patch, i) {\n  y &lt;- patch[i, \"y\"]\n  z &lt;- patch[i, \"z\"]\n  mean(y) / mean(z)\n}\n\n# Bootstrap the patch dataset\nboot.out &lt;- boot(bootstrap::patch, statistic = theta.boot, R=2000)\nboot.out\n\n\nORDINARY NONPARAMETRIC BOOTSTRAP\n\n\nCall:\nboot(data = bootstrap::patch, statistic = theta.boot, R = 2000)\n\n\nBootstrap Statistics :\n      original      bias    std. error\nt1* -0.0713061 0.008458915   0.1009777",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter4.html#applying-jackknife-after-bootstrap",
-    "href": "slides/Chapter4.html#applying-jackknife-after-bootstrap",
-    "title": "Short Course on R Tools",
-    "section": "Applying Jackknife-after-Bootstrap",
-    "text": "Applying Jackknife-after-Bootstrap\n\nExample: Using the jackknife-after-bootstrap method\nChecking the bootstrap array\n\n\n# Check the bootstrap array\nA &lt;- boot.array(boot.out)\nhead(A, 3)\n\n     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]\n[1,]    0    1    2    1    2    0    0    2\n[2,]    0    2    1    0    1    4    0    0\n[3,]    1    1    0    1    0    1    0    4\n\n# Proportion of cases that are not resampled\nmean(A[, 1] == 0)\n\n[1] 0.3455",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter4.html#visualizing-results",
-    "href": "slides/Chapter4.html#visualizing-results",
-    "title": "Short Course on R Tools",
-    "section": "Visualizing Results",
-    "text": "Visualizing Results\n\n# Plotting the bootstrap results\nplot(boot.out, index=1)",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter4.html#conclusion",
-    "href": "slides/Chapter4.html#conclusion",
-    "title": "Short Course on R Tools",
-    "section": "Conclusion",
-    "text": "Conclusion\n\nRecap of jackknife-after-bootstrap technique\nImportance of combining jackknife and bootstrap for robust estimates\nPractice: Apply jackknife-after-bootstrap to other datasets\n\n\n\n\n\n🔗 tinyurl.com/SCiRT",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
     "objectID": "slides/Chapter6.html#introduction-to-monte-carlo-integration",
     "href": "slides/Chapter6.html#introduction-to-monte-carlo-integration",
     "title": "Short Course on R Tools",
     "section": "Introduction to Monte Carlo Integration",
-    "text": "Introduction to Monte Carlo Integration\n\nBasic concepts of Monte Carlo integration\nExample: Integrating using uniform distribution\n\n\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x))\ntheta.hat\n\n[1] 0.6303749\n\n1 - exp(-1)\n\n[1] 0.6321206",
+    "text": "Introduction to Monte Carlo Integration\n\nBasic concepts of Monte Carlo integration\nExample: Integrating using uniform distribution\n\n\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x))\ntheta.hat\n\n[1] 0.6278514\n\n1 - exp(-1)\n\n[1] 0.6321206",
     "crumbs": [
       "Slides",
       "CRAN submission"
@@ -264,7 +209,7 @@
     "href": "slides/Chapter6.html#example-monte-carlo-integration-with-bounded-intervals",
     "title": "Short Course on R Tools",
     "section": "Example: Monte Carlo integration with bounded intervals",
-    "text": "Example: Monte Carlo integration with bounded intervals\n\nm &lt;- 10000\nx &lt;- runif(m, min=2, max=4)\ntheta.hat &lt;- mean(exp(-x)) * 2\ntheta.hat\n\n[1] 0.1175209\n\nexp(-2) - exp(-4)\n\n[1] 0.1170196",
+    "text": "Example: Monte Carlo integration with bounded intervals\n\nm &lt;- 10000\nx &lt;- runif(m, min=2, max=4)\ntheta.hat &lt;- mean(exp(-x)) * 2\ntheta.hat\n\n[1] 0.1162366\n\nexp(-2) - exp(-4)\n\n[1] 0.1170196",
     "crumbs": [
       "Slides",
       "CRAN submission"
@@ -286,7 +231,7 @@
     "href": "slides/Chapter6.html#introduction-to-importance-sampling",
     "title": "Short Course on R Tools",
     "section": "Introduction to Importance Sampling",
-    "text": "Introduction to Importance Sampling\n\nImportance sampling and its applications\nExample: Applying importance sampling\n\n\n# Example of importance sampling\ng &lt;- function(x) exp(-x^2 / 2)\nf &lt;- function(x) dnorm(x, mean = 1)\nx &lt;- rnorm(10000, mean = 1)\ntheta.hat &lt;- mean(g(x) / f(x))\ntheta.hat\n\n[1] 2.579296",
+    "text": "Introduction to Importance Sampling\n\nImportance sampling and its applications\nExample: Applying importance sampling\n\n\n# Example of importance sampling\ng &lt;- function(x) exp(-x^2 / 2)\nf &lt;- function(x) dnorm(x, mean = 1)\nx &lt;- rnorm(10000, mean = 1)\ntheta.hat &lt;- mean(g(x) / f(x))\ntheta.hat\n\n[1] 2.507721",
     "crumbs": [
       "Slides",
       "CRAN submission"
@@ -308,7 +253,7 @@
     "href": "slides/Chapter6.html#control-variates",
     "title": "Short Course on R Tools",
     "section": "Control Variates",
-    "text": "Control Variates\n\nExplanation of control variates and how they reduce variance\nExample: Using control variates in Monte Carlo integration\n\n\n# Control variates example\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x)) - (mean(x) - 0.5)\ntheta.hat\n\n[1] 0.6397415",
+    "text": "Control Variates\n\nExplanation of control variates and how they reduce variance\nExample: Using control variates in Monte Carlo integration\n\n\n# Control variates example\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x)) - (mean(x) - 0.5)\ntheta.hat\n\n[1] 0.6358767",
     "crumbs": [
       "Slides",
       "CRAN submission"
@@ -319,7 +264,7 @@
     "href": "slides/Chapter6.html#antithetic-variables",
     "title": "Short Course on R Tools",
     "section": "Antithetic Variables",
-    "text": "Antithetic Variables\n\nExplanation of antithetic variables and how they reduce variance\nExample: Applying antithetic variables\n\n\n# Antithetic variables example\nu &lt;- runif(5000)\ntheta.hat &lt;- mean((exp(-u) + exp(-(1 - u))) / 2)\ntheta.hat\n\n[1] 0.6324467\n\n1 - exp(-1)\n\n[1] 0.6321206",
+    "text": "Antithetic Variables\n\nExplanation of antithetic variables and how they reduce variance\nExample: Applying antithetic variables\n\n\n# Antithetic variables example\nu &lt;- runif(5000)\ntheta.hat &lt;- mean((exp(-u) + exp(-(1 - u))) / 2)\ntheta.hat\n\n[1] 0.6320941\n\n1 - exp(-1)\n\n[1] 0.6321206",
     "crumbs": [
       "Slides",
       "CRAN submission"
@@ -352,7 +297,7 @@
     "href": "slides/Chapter1.html#defining-functions",
     "title": "Short Course on R Tools",
     "section": "Defining Functions",
-    "text": "Defining Functions\n\nfunction(arglist) expr\nReturn values and default arguments\n\n\nsumdice &lt;- function(n) {\n  k &lt;- sample(1:6, size=n, replace=TRUE)\n  return(sum(k))\n}\nsumdice(2)\n\n[1] 11",
+    "text": "Defining Functions\n\nfunction(arglist) expr\nReturn values and default arguments\n\n\nsumdice &lt;- function(n) {\n  k &lt;- sample(1:6, size=n, replace=TRUE)\n  return(sum(k))\n}\nsumdice(2)\n\n[1] 2",
     "crumbs": [
       "Slides",
       "R package"
@@ -418,7 +363,7 @@
     "href": "slides/Chapter7.html#basic-monte-carlo-estimation",
     "title": "Short Course on R Tools",
     "section": "Basic Monte Carlo Estimation",
-    "text": "Basic Monte Carlo Estimation\n\nIntroduction to Monte Carlo estimation\nExample: Estimating the expected difference of two normal variables\n\n\nm &lt;- 1000\ng &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(2)\n    g[i] &lt;- abs(x[1] - x[2])\n}\nest &lt;- mean(g)\nest\n\n[1] 1.099196",
+    "text": "Basic Monte Carlo Estimation\n\nIntroduction to Monte Carlo estimation\nExample: Estimating the expected difference of two normal variables\n\n\nm &lt;- 1000\ng &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(2)\n    g[i] &lt;- abs(x[1] - x[2])\n}\nest &lt;- mean(g)\nest\n\n[1] 1.090208",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -440,7 +385,7 @@
     "href": "slides/Chapter7.html#estimating-the-mean-squared-error-mse",
     "title": "Short Course on R Tools",
     "section": "Estimating the Mean Squared Error (MSE)",
-    "text": "Estimating the Mean Squared Error (MSE)\n\nMonte Carlo estimation of MSE for trimmed means\n\n\nn &lt;- 20\nm &lt;- 1000\nmean_trim &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(n)\n    mean_trim[i] &lt;- mean(x, trim = 0.1)\n}\nmse &lt;- mean((mean_trim - 0)^2)\nmse\n\n[1] 0.04984959",
+    "text": "Estimating the Mean Squared Error (MSE)\n\nMonte Carlo estimation of MSE for trimmed means\n\n\nn &lt;- 20\nm &lt;- 1000\nmean_trim &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(n)\n    mean_trim[i] &lt;- mean(x, trim = 0.1)\n}\nmse &lt;- mean((mean_trim - 0)^2)\nmse\n\n[1] 0.05191006",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -484,7 +429,7 @@
     "href": "slides/Chapter3.html#sampling-from-a-finite-population",
     "title": "Short Course on R Tools",
     "section": "Sampling from a Finite Population",
-    "text": "Sampling from a Finite Population\n\nIntroduction to finite population sampling\nExample: Tossing coins, choosing lottery numbers\n\n\n# Sampling examples\nsample(0:1, size = 10, replace = TRUE)  # Tossing coins\n\n [1] 1 1 0 0 0 1 0 1 0 1\n\nsample(1:100, size = 6, replace = FALSE)  # Choosing lottery numbers\n\n[1] 50 53  9 19 92 39\n\nsample(letters)  # Permutation of letters\n\n [1] \"d\" \"p\" \"e\" \"w\" \"h\" \"a\" \"z\" \"v\" \"x\" \"j\" \"c\" \"t\" \"m\" \"y\" \"f\" \"s\" \"u\" \"g\" \"n\"\n[20] \"i\" \"o\" \"r\" \"b\" \"k\" \"q\" \"l\"",
+    "text": "Sampling from a Finite Population\n\nIntroduction to finite population sampling\nExample: Tossing coins, choosing lottery numbers\n\n\n# Sampling examples\nsample(0:1, size = 10, replace = TRUE)  # Tossing coins\n\n [1] 1 1 0 0 1 0 1 0 1 1\n\nsample(1:100, size = 6, replace = FALSE)  # Choosing lottery numbers\n\n[1] 28 64 56 87  1 15\n\nsample(letters)  # Permutation of letters\n\n [1] \"q\" \"d\" \"j\" \"h\" \"n\" \"v\" \"r\" \"l\" \"x\" \"w\" \"i\" \"a\" \"p\" \"u\" \"g\" \"c\" \"z\" \"y\" \"f\"\n[20] \"e\" \"t\" \"k\" \"b\" \"s\" \"m\" \"o\"",
     "crumbs": [
       "Slides",
       "GitHub"
@@ -495,7 +440,7 @@
     "href": "slides/Chapter3.html#multinomial-distribution",
     "title": "Short Course on R Tools",
     "section": "Multinomial Distribution",
-    "text": "Multinomial Distribution\n\nIntroduction to multinomial distribution\nExample: Sampling from a multinomial distribution\n\n\n# Sample from multinomial distribution\nx &lt;- sample(1:3, size = 100, replace = TRUE, prob = c(.2, .3, .5))\ntable(x)\n\nx\n 1  2  3 \n17 44 39",
+    "text": "Multinomial Distribution\n\nIntroduction to multinomial distribution\nExample: Sampling from a multinomial distribution\n\n\n# Sample from multinomial distribution\nx &lt;- sample(1:3, size = 100, replace = TRUE, prob = c(.2, .3, .5))\ntable(x)\n\nx\n 1  2  3 \n24 33 43",
     "crumbs": [
       "Slides",
       "GitHub"
@@ -557,143 +502,88 @@
     ]
   },
   {
-    "objectID": "slides/Chapter8.html#bootstrap-resampling-method",
-    "href": "slides/Chapter8.html#bootstrap-resampling-method",
+    "objectID": "slides/Chapter8.html#classification-on-mnist",
+    "href": "slides/Chapter8.html#classification-on-mnist",
     "title": "Short Course on R Tools",
-    "section": "Bootstrap Resampling Method",
-    "text": "Bootstrap Resampling Method\n\nIntroduction to the bootstrap method\nExample: Bootstrap estimate of standard error\n\n\n# Bootstrap example: Estimate correlation between LSAT and GPA\nlibrary(bootstrap)    #for the law data\nprint(cor(law$LSAT, law$GPA))\n\n[1] 0.7763745\n\nprint(cor(law82$LSAT, law82$GPA))\n\n[1] 0.7599979\n\n# Set up the bootstrap\nB &lt;- 200            # number of replicates\nn &lt;- nrow(law)      # sample size\nR &lt;- numeric(B)     # storage for replicates\n# Bootstrap estimate of correlation\nfor (i in 1:B) {\n  idx &lt;- sample(1:n, size=n, replace=TRUE)\n  law_boot &lt;- law[idx, ]\n  R[i] &lt;- cor(law_boot$LSAT, law_boot$GPA)\n}\nmean(R)\n\n[1] 0.7747173\n\nsd(R)  # Bootstrap standard error\n\n[1] 0.1325269",
+    "section": "Classification on MNIST",
+    "text": "Classification on MNIST\nmodel %&gt;% compile(\n  optimizer = 'rmsprop',\n  loss = 'categorical_crossentropy',\n  metrics = c('accuracy')\n)\nhistory &lt;- model %&gt;% fit(\n  x_train, y_train,\n  epochs = 10, batch_size = 128,\n  validation_split = 0.2\n)\n\nData preprocessing: normalization, one-hot encoding\nCallbacks: EarlyStopping, ModelCheckpoint\n\n??? note Show training curves: plot(history).",
     "crumbs": [
       "Slides",
       "Deep Learning in R"
     ]
   },
   {
-    "objectID": "slides/Chapter8.html#visualizing-bootstrap-resamples",
-    "href": "slides/Chapter8.html#visualizing-bootstrap-resamples",
+    "objectID": "slides/Chapter2.html#lists-dataframes",
+    "href": "slides/Chapter2.html#lists-dataframes",
     "title": "Short Course on R Tools",
-    "section": "Visualizing Bootstrap Resamples",
-    "text": "Visualizing Bootstrap Resamples\n\n# Plotting the bootstrap distribution\nhist(R, main=\"Bootstrap Distribution of Correlation\", col=\"lightblue\")",
-    "crumbs": [
-      "Slides",
-      "Deep Learning in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter8.html#introduction-to-the-jackknife-method",
-    "href": "slides/Chapter8.html#introduction-to-the-jackknife-method",
-    "title": "Short Course on R Tools",
-    "section": "Introduction to the Jackknife Method",
-    "text": "Introduction to the Jackknife Method\n\nThe jackknife method for bias reduction\nExample: Jackknife estimate of the mean\n\n\n# Jackknife estimate of mean\nn &lt;- nrow(law)\ntheta_hat &lt;- mean(law$LSAT)\ntheta_jack &lt;- numeric(n)\n\n# Leave-one-out jackknife\nfor (i in 1:n) {\n  theta_jack[i] &lt;- mean(law$LSAT[-i])\n}\n\n# Jackknife estimate of bias\nbias_jack &lt;- (n - 1) * (mean(theta_jack) - theta_hat)\nbias_jack\n\n[1] 0",
-    "crumbs": [
-      "Slides",
-      "Deep Learning in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter8.html#bootstrap-confidence-intervals",
-    "href": "slides/Chapter8.html#bootstrap-confidence-intervals",
-    "title": "Short Course on R Tools",
-    "section": "Bootstrap Confidence Intervals",
-    "text": "Bootstrap Confidence Intervals\n\nIntroduction to bootstrap confidence intervals\nExample: Bootstrap percentile confidence interval\n\n\n# Bootstrap confidence intervals\nalpha &lt;- 0.05\nci &lt;- quantile(R, probs = c(alpha/2, 1 - alpha/2))\nci  # Bootstrap confidence interval\n\n     2.5%     97.5% \n0.4999767 0.9480750",
-    "crumbs": [
-      "Slides",
-      "Deep Learning in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter8.html#comparison-of-bootstrap-and-jackknife",
-    "href": "slides/Chapter8.html#comparison-of-bootstrap-and-jackknife",
-    "title": "Short Course on R Tools",
-    "section": "Comparison of Bootstrap and Jackknife",
-    "text": "Comparison of Bootstrap and Jackknife\n\nDiscuss the differences and use cases of bootstrap and jackknife\nRecap of methods and their benefits in reducing bias and estimating uncertainty",
-    "crumbs": [
-      "Slides",
-      "Deep Learning in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter2.html#random-variables-and-distributions",
-    "href": "slides/Chapter2.html#random-variables-and-distributions",
-    "title": "Short Course on R Tools",
-    "section": "Random Variables and Distributions",
-    "text": "Random Variables and Distributions\n\nOverview of random variables\nDiscrete vs Continuous random variables\nImportant distributions (Binomial, Normal, Chi-Square)\n\n\n# Simulating random variables\nN &lt;- 100; mu &lt;- 5; sig &lt;- 2\nY &lt;- rnorm(N, mean = mu, sd = sig)\nhist(Y, main=\"Histogram of Normal Distribution\", xlab=\"Y values\", col=\"lightblue\")",
+    "section": "Lists & DataFrames",
+    "text": "Lists & DataFrames\n\nList, DataFrame wrappers\nAccess with as&lt;&gt;(), .inherits(), .attr()",
     "crumbs": [
       "Slides",
       "RCpp"
     ]
   },
   {
-    "objectID": "slides/Chapter2.html#binomial-distribution",
-    "href": "slides/Chapter2.html#binomial-distribution",
+    "objectID": "slides/Chapter2.html#functions",
+    "href": "slides/Chapter2.html#functions",
     "title": "Short Course on R Tools",
-    "section": "Binomial Distribution",
-    "text": "Binomial Distribution\n\nrbinom(), dbinom(), pbinom()\nExample: Generating binomial random variables\n\n\nrbinom(10, size=10, prob=0.5)\n\n [1] 7 7 6 3 5 6 5 5 4 6",
+    "section": "Functions",
+    "text": "Functions\n\nFunction f & RObject return type\nPositional vs named args:\nf(_[\"x\"] = xval, _[\"y\"] = yval);",
     "crumbs": [
       "Slides",
       "RCpp"
     ]
   },
   {
-    "objectID": "slides/Chapter2.html#poisson-distribution",
-    "href": "slides/Chapter2.html#poisson-distribution",
+    "objectID": "slides/Chapter2.html#attributes",
+    "href": "slides/Chapter2.html#attributes",
     "title": "Short Course on R Tools",
-    "section": "Poisson Distribution",
-    "text": "Poisson Distribution\n\nrpois(), dpois(), ppois()\nExample: Simulating Poisson-distributed data\n\n\nrpois(10, lambda=2)\n\n [1] 2 5 2 2 1 1 2 3 0 3",
+    "section": "Attributes",
+    "text": "Attributes\n\nQuery/modify with .attr() and .names()\nCreate with Vector::create()\n\n??? note Quick example: extracting residuals from lm.",
     "crumbs": [
       "Slides",
       "RCpp"
     ]
   },
   {
-    "objectID": "slides/Chapter2.html#normal-distribution",
-    "href": "slides/Chapter2.html#normal-distribution",
+    "objectID": "slides/Chapter2.html#iterators-algorithms",
+    "href": "slides/Chapter2.html#iterators-algorithms",
     "title": "Short Course on R Tools",
-    "section": "Normal Distribution",
-    "text": "Normal Distribution\n\nrnorm(), dnorm(), pnorm()\nExample: Generating normal random variables\n\n\nrnorm(10, mean=0, sd=1)\n\n [1] -1.4156946  1.6661603 -0.7394657 -1.1309788 -1.6554435 -0.2005748\n [7] -1.2706497  2.0376565 -0.2515554 -1.3710625",
+    "section": "Iterators & Algorithms",
+    "text": "Iterators & Algorithms\n\nRange-based for(const auto &x : xs)\nstd::accumulate, std::min_element, etc.",
     "crumbs": [
       "Slides",
       "RCpp"
     ]
   },
   {
-    "objectID": "slides/Chapter2.html#exponential-distribution",
-    "href": "slides/Chapter2.html#exponential-distribution",
+    "objectID": "slides/Chapter2.html#data-structures",
+    "href": "slides/Chapter2.html#data-structures",
     "title": "Short Course on R Tools",
-    "section": "Exponential Distribution",
-    "text": "Exponential Distribution\n\nrexp(), dexp(), pexp()\nSimulating exponential data in R",
+    "section": "Data Structures",
+    "text": "Data Structures\n\nstd::vector, std::unordered_set, std::unordered_map\nEfficient growth & lookup\n\n??? note Show run-length encoding (rleC) example.",
     "crumbs": [
       "Slides",
       "RCpp"
     ]
   },
   {
-    "objectID": "slides/Chapter2.html#properties",
-    "href": "slides/Chapter2.html#properties",
+    "objectID": "slides/Chapter2.html#gibbs-sampler",
+    "href": "slides/Chapter2.html#gibbs-sampler",
     "title": "Short Course on R Tools",
-    "section": "Properties",
-    "text": "Properties\n\nMean vector, covariance matrix\nMultivariate normal density\n\n\nlibrary(MASS)\nmvrnorm(n=10, mu=c(0,0), Sigma=matrix(c(1,0.5,0.5,1),2,2))\n\n             [,1]       [,2]\n [1,] -0.82062664 -0.1748839\n [2,]  0.71248239 -1.8072608\n [3,] -0.88489335 -1.4725526\n [4,]  0.36650073  1.2234591\n [5,] -0.04610183  0.2577157\n [6,] -1.15040067 -0.1539895\n [7,]  0.34115042 -0.2416253\n [8,]  0.06672001  0.4713462\n [9,]  0.74059208  0.7654009\n[10,]  1.15946838 -1.3141378",
+    "section": "Gibbs Sampler",
+    "text": "Gibbs Sampler\n// [[Rcpp::export]]\nNumericMatrix gibbs_cpp(int N, int thin) { ... }\n\n~20× speedup vs R",
     "crumbs": [
       "Slides",
       "RCpp"
     ]
   },
   {
-    "objectID": "slides/Chapter2.html#law-of-large-numbers",
-    "href": "slides/Chapter2.html#law-of-large-numbers",
+    "objectID": "slides/Chapter2.html#agent-based-model",
+    "href": "slides/Chapter2.html#agent-based-model",
     "title": "Short Course on R Tools",
-    "section": "Law of Large Numbers",
-    "text": "Law of Large Numbers\n\nStatement of the law\nDemonstration using R\n\n\nn &lt;- 1000\nx &lt;- rnorm(n)\ncumsum(x) / 1:n\n\n   [1] -8.864058e-02 -4.772220e-01 -5.034402e-01 -6.234344e-01 -5.742710e-01\n   [6] -6.639858e-02 -5.665300e-02 -1.462787e-01 -1.947266e-01 -2.174195e-01\n  [11] -3.253249e-01 -1.924476e-01 -1.713878e-01 -5.648440e-02  2.687505e-02\n  [16]  3.760149e-02  7.520011e-03 -1.462776e-01 -1.440622e-01 -1.844668e-01\n  [21] -2.072053e-01 -1.971451e-01 -1.046725e-01 -1.662708e-01 -1.596507e-01\n  [26] -1.093528e-01 -7.788671e-02 -4.525512e-02 -2.818184e-02  1.469303e-02\n  [31] -7.892053e-05  1.223667e-02  2.077413e-02 -1.100995e-02  2.349243e-02\n  [36]  4.519120e-02  1.482571e-03  1.310326e-02  4.524351e-02  3.386561e-02\n  [41]  4.594617e-02  3.074908e-02  3.789856e-02  3.385609e-02  2.920263e-02\n  [46] -3.259084e-03  8.342476e-03  1.034113e-02  6.739430e-03 -3.525344e-02\n  [51] -4.033078e-02 -4.952248e-02 -6.189376e-02 -7.395482e-02 -7.251056e-02\n  [56] -2.930022e-02 -3.077495e-02 -5.750160e-02 -2.788850e-02 -2.909744e-02\n  [61] -2.798324e-02 -4.162575e-02 -2.521506e-02 -3.066221e-02 -5.941885e-02\n  [66] -7.630465e-02 -7.513341e-02 -7.497734e-02 -7.161735e-02 -8.339514e-02\n  [71] -9.352807e-02 -1.052470e-01 -8.897233e-02 -1.027809e-01 -9.031422e-02\n  [76] -7.356296e-02 -9.304779e-02 -9.461834e-02 -8.424056e-02 -9.503604e-02\n  [81] -6.822462e-02 -8.178741e-02 -9.074431e-02 -7.742935e-02 -8.497493e-02\n  [86] -8.343349e-02 -8.423264e-02 -9.033946e-02 -1.135141e-01 -1.308393e-01\n  [91] -1.360325e-01 -1.339626e-01 -1.298784e-01 -1.184726e-01 -1.126605e-01\n  [96] -1.297618e-01 -1.139629e-01 -1.088302e-01 -1.179954e-01 -1.078999e-01\n [101] -1.151292e-01 -1.151336e-01 -1.142029e-01 -1.276883e-01 -1.332068e-01\n [106] -1.323178e-01 -1.341238e-01 -1.323953e-01 -1.289917e-01 -1.372603e-01\n [111] -1.303286e-01 -1.390994e-01 -1.506304e-01 -1.332645e-01 -1.303468e-01\n [116] -1.302252e-01 -1.372562e-01 -1.292944e-01 -1.368226e-01 -1.478295e-01\n [121] -1.489907e-01 -1.405473e-01 -1.400102e-01 -1.516946e-01 -1.462804e-01\n [126] -1.222917e-01 -1.300491e-01 -1.304097e-01 -1.251131e-01 -1.205471e-01\n [131] -1.122385e-01 -1.168675e-01 -1.036903e-01 -9.958094e-02 -9.712193e-02\n [136] -1.038071e-01 -9.144183e-02 -8.672085e-02 -8.921098e-02 -8.182816e-02\n [141] -7.868322e-02 -6.265831e-02 -5.665172e-02 -5.148409e-02 -4.862966e-02\n [146] -3.215704e-02 -2.762041e-02 -1.809601e-02 -1.789810e-02 -9.964051e-03\n [151] -1.167321e-02 -6.097022e-03 -1.063224e-02 -1.005430e-02 -1.137876e-02\n [156] -1.397937e-02 -1.811671e-02 -1.959668e-02 -1.348152e-02 -1.534191e-02\n [161] -1.355540e-02 -1.820701e-02 -2.034984e-02 -2.080976e-02 -2.663780e-02\n [166] -2.493408e-02 -1.731924e-02 -9.433643e-03 -1.304873e-03 -3.322167e-03\n [171] -6.890357e-03 -7.707321e-03 -1.030055e-02 -7.185562e-03 -2.302325e-02\n [176] -2.453486e-02 -2.575374e-02 -3.260952e-02 -3.220989e-02 -3.388910e-02\n [181] -2.546527e-02 -3.529540e-02 -3.177396e-02 -3.141374e-02 -2.882710e-02\n [186] -2.699587e-02 -3.342665e-02 -3.470359e-02 -2.366724e-02 -1.971765e-02\n [191] -2.482601e-02 -2.448619e-02 -2.749930e-02 -2.850725e-02 -3.088823e-02\n [196] -3.346826e-02 -2.828390e-02 -2.577048e-02 -1.770175e-02 -2.508860e-02\n [201] -2.340152e-02 -2.505910e-02 -3.596435e-02 -4.371737e-02 -3.824535e-02\n [206] -4.178595e-02 -4.179565e-02 -4.276758e-02 -4.326779e-02 -4.979874e-02\n [211] -5.063241e-02 -5.065796e-02 -4.924496e-02 -4.597057e-02 -4.744768e-02\n [216] -5.238624e-02 -5.346128e-02 -5.639350e-02 -5.688287e-02 -5.291191e-02\n [221] -4.371804e-02 -4.471003e-02 -5.089593e-02 -5.955875e-02 -5.923642e-02\n [226] -6.304449e-02 -6.886516e-02 -7.466461e-02 -7.392967e-02 -6.691628e-02\n [231] -6.426298e-02 -6.313833e-02 -6.101948e-02 -5.607887e-02 -5.203488e-02\n [236] -5.330937e-02 -5.808707e-02 -5.677124e-02 -6.034800e-02 -5.705321e-02\n [241] -5.795206e-02 -5.296140e-02 -5.343026e-02 -4.923912e-02 -5.176231e-02\n [246] -5.012872e-02 -4.577093e-02 -4.868842e-02 -5.529431e-02 -5.451483e-02\n [251] -5.806907e-02 -5.842741e-02 -5.820416e-02 -5.805333e-02 -6.123280e-02\n [256] -5.517945e-02 -4.779232e-02 -5.261715e-02 -5.192032e-02 -5.239220e-02\n [261] -5.151689e-02 -5.088098e-02 -5.250554e-02 -4.943000e-02 -4.909910e-02\n [266] -4.230812e-02 -3.917915e-02 -3.573245e-02 -3.778765e-02 -4.440474e-02\n [271] -4.404417e-02 -4.020481e-02 -4.073187e-02 -4.199066e-02 -4.627234e-02\n [276] -4.480547e-02 -4.839975e-02 -3.770391e-02 -3.541550e-02 -3.647521e-02\n [281] -4.126682e-02 -4.221601e-02 -4.538487e-02 -4.278043e-02 -3.796206e-02\n [286] -4.129910e-02 -3.932398e-02 -3.979927e-02 -4.341193e-02 -4.033377e-02\n [291] -4.269803e-02 -4.196666e-02 -3.649022e-02 -3.273968e-02 -3.253662e-02\n [296] -3.504243e-02 -4.080116e-02 -3.592945e-02 -3.747389e-02 -3.757741e-02\n [301] -3.914060e-02 -4.529178e-02 -4.660281e-02 -4.313193e-02 -4.372464e-02\n [306] -4.356562e-02 -4.062197e-02 -4.585827e-02 -4.925410e-02 -4.888013e-02\n [311] -5.745407e-02 -5.236457e-02 -5.353323e-02 -4.971334e-02 -4.891939e-02\n [316] -4.898835e-02 -4.517219e-02 -4.597863e-02 -4.516239e-02 -4.484156e-02\n [321] -4.458058e-02 -4.679895e-02 -4.705199e-02 -5.390721e-02 -5.269802e-02\n [326] -5.503156e-02 -5.468321e-02 -5.785094e-02 -5.649610e-02 -6.000691e-02\n [331] -6.046080e-02 -6.074101e-02 -5.965073e-02 -5.827756e-02 -6.276248e-02\n [336] -6.044670e-02 -6.027040e-02 -6.558654e-02 -6.658051e-02 -6.466350e-02\n [341] -6.663347e-02 -6.826658e-02 -6.523673e-02 -7.091791e-02 -6.742113e-02\n [346] -6.755654e-02 -6.457322e-02 -6.606089e-02 -6.279010e-02 -6.523069e-02\n [351] -6.599828e-02 -6.175729e-02 -5.942528e-02 -5.980278e-02 -5.289792e-02\n [356] -5.193361e-02 -5.195243e-02 -5.296749e-02 -5.275212e-02 -4.830644e-02\n [361] -4.665546e-02 -4.788462e-02 -4.906132e-02 -4.831955e-02 -5.062684e-02\n [366] -4.963977e-02 -5.374571e-02 -6.179738e-02 -6.641566e-02 -6.997641e-02\n [371] -7.814255e-02 -7.472269e-02 -7.541105e-02 -7.557184e-02 -7.447780e-02\n [376] -7.304235e-02 -6.925672e-02 -6.600931e-02 -6.896972e-02 -6.837532e-02\n [381] -6.843765e-02 -7.110049e-02 -7.478411e-02 -7.395463e-02 -7.185744e-02\n [386] -7.306034e-02 -7.071521e-02 -6.963602e-02 -6.944252e-02 -6.806565e-02\n [391] -6.944782e-02 -7.226710e-02 -7.437198e-02 -7.495225e-02 -7.240996e-02\n [396] -7.414112e-02 -7.708659e-02 -7.707220e-02 -7.669880e-02 -7.306349e-02\n [401] -7.409231e-02 -6.955343e-02 -7.177271e-02 -6.902938e-02 -6.791872e-02\n [406] -6.878420e-02 -6.842689e-02 -6.731223e-02 -6.838429e-02 -6.656287e-02\n [411] -6.425527e-02 -6.124572e-02 -6.381848e-02 -6.048802e-02 -6.334154e-02\n [416] -6.473904e-02 -6.066164e-02 -6.076517e-02 -5.942613e-02 -5.787307e-02\n [421] -5.880045e-02 -5.648926e-02 -5.840697e-02 -5.999778e-02 -6.086077e-02\n [426] -5.963716e-02 -5.773481e-02 -5.747544e-02 -5.264799e-02 -5.448315e-02\n [431] -5.114786e-02 -5.079010e-02 -5.402602e-02 -5.296673e-02 -5.409581e-02\n [436] -5.752919e-02 -5.921121e-02 -6.259345e-02 -6.160863e-02 -6.031434e-02\n [441] -6.164043e-02 -6.197317e-02 -6.351399e-02 -6.667647e-02 -6.708578e-02\n [446] -6.777961e-02 -6.716316e-02 -6.855115e-02 -6.621570e-02 -6.572011e-02\n [451] -6.879306e-02 -6.819158e-02 -6.702156e-02 -6.419745e-02 -6.328069e-02\n [456] -6.200192e-02 -6.163715e-02 -5.502747e-02 -5.383874e-02 -5.367478e-02\n [461] -5.081449e-02 -4.841674e-02 -4.707418e-02 -4.622569e-02 -4.620095e-02\n [466] -4.678295e-02 -4.970926e-02 -5.084064e-02 -5.263957e-02 -5.236630e-02\n [471] -5.492782e-02 -5.534445e-02 -5.376051e-02 -5.310606e-02 -5.430445e-02\n [476] -5.416070e-02 -5.621638e-02 -6.003663e-02 -6.162412e-02 -6.323552e-02\n [481] -6.349591e-02 -6.330621e-02 -6.291634e-02 -6.362479e-02 -6.000622e-02\n [486] -5.563956e-02 -5.487058e-02 -5.081568e-02 -5.154787e-02 -5.003118e-02\n [491] -5.265450e-02 -5.477574e-02 -5.416350e-02 -5.452320e-02 -5.411890e-02\n [496] -5.577554e-02 -5.628847e-02 -5.823116e-02 -6.229691e-02 -5.946340e-02\n [501] -6.119964e-02 -6.728417e-02 -6.749838e-02 -6.762084e-02 -7.092925e-02\n [506] -6.893922e-02 -6.712204e-02 -6.453104e-02 -6.586833e-02 -6.584420e-02\n [511] -6.727559e-02 -6.671897e-02 -6.812355e-02 -6.936291e-02 -6.852093e-02\n [516] -6.801437e-02 -6.670076e-02 -6.342264e-02 -6.458031e-02 -6.510884e-02\n [521] -6.261455e-02 -6.158756e-02 -6.455933e-02 -6.372581e-02 -6.166708e-02\n [526] -6.174998e-02 -6.244962e-02 -6.181763e-02 -6.011345e-02 -6.257049e-02\n [531] -6.115669e-02 -5.938809e-02 -5.489804e-02 -5.103372e-02 -4.938387e-02\n [536] -4.726488e-02 -4.803998e-02 -4.406624e-02 -4.321321e-02 -4.311244e-02\n [541] -4.521528e-02 -4.286454e-02 -4.154792e-02 -3.918515e-02 -3.975869e-02\n [546] -4.222491e-02 -4.006434e-02 -4.241201e-02 -3.901122e-02 -3.899603e-02\n [551] -3.835359e-02 -3.728084e-02 -3.265921e-02 -3.307467e-02 -3.594168e-02\n [556] -3.605268e-02 -3.866067e-02 -3.715768e-02 -3.680028e-02 -3.594513e-02\n [561] -3.663427e-02 -3.722556e-02 -3.678533e-02 -3.356085e-02 -3.246586e-02\n [566] -3.313981e-02 -3.442003e-02 -3.615062e-02 -3.622851e-02 -3.519529e-02\n [571] -3.392069e-02 -3.468668e-02 -3.426301e-02 -3.478932e-02 -3.543494e-02\n [576] -4.040165e-02 -3.919384e-02 -3.847915e-02 -3.864774e-02 -3.813422e-02\n [581] -3.789262e-02 -3.576226e-02 -3.475251e-02 -3.376970e-02 -3.281732e-02\n [586] -3.522694e-02 -3.620166e-02 -3.421293e-02 -3.518009e-02 -3.638215e-02\n [591] -3.367144e-02 -3.415096e-02 -3.644906e-02 -3.705146e-02 -3.856533e-02\n [596] -3.899215e-02 -3.698438e-02 -3.727847e-02 -3.646073e-02 -3.781753e-02\n [601] -3.706988e-02 -3.748656e-02 -3.652702e-02 -3.413929e-02 -3.164398e-02\n [606] -3.259893e-02 -3.292649e-02 -3.391788e-02 -3.443584e-02 -3.642079e-02\n [611] -3.537901e-02 -3.473582e-02 -3.315203e-02 -3.526797e-02 -3.697135e-02\n [616] -3.408294e-02 -3.284997e-02 -3.096833e-02 -2.967434e-02 -2.950202e-02\n [621] -3.042991e-02 -3.341046e-02 -3.472915e-02 -3.538316e-02 -3.234875e-02\n [626] -2.951321e-02 -3.129002e-02 -3.389391e-02 -3.270953e-02 -3.331087e-02\n [631] -3.504159e-02 -3.751935e-02 -3.453621e-02 -3.462570e-02 -3.372147e-02\n [636] -3.879382e-02 -3.780370e-02 -3.885315e-02 -3.695092e-02 -3.690314e-02\n [641] -3.821686e-02 -4.085248e-02 -4.121033e-02 -4.052230e-02 -3.873058e-02\n [646] -3.874451e-02 -3.609605e-02 -3.651736e-02 -3.744993e-02 -3.522087e-02\n [651] -3.652000e-02 -3.700648e-02 -3.559457e-02 -3.248148e-02 -3.305555e-02\n [656] -3.364809e-02 -3.087018e-02 -2.999865e-02 -3.109047e-02 -3.147161e-02\n [661] -2.956885e-02 -2.985287e-02 -2.850531e-02 -2.728453e-02 -2.717177e-02\n [666] -2.656360e-02 -2.628344e-02 -2.639888e-02 -2.606287e-02 -2.652122e-02\n [671] -2.694158e-02 -2.822202e-02 -2.942275e-02 -3.022384e-02 -3.077693e-02\n [676] -3.203156e-02 -3.438615e-02 -3.296937e-02 -3.212812e-02 -3.317057e-02\n [681] -3.325239e-02 -3.558761e-02 -3.425911e-02 -3.148493e-02 -3.045833e-02\n [686] -2.701937e-02 -2.699726e-02 -2.390170e-02 -2.401667e-02 -2.486840e-02\n [691] -2.521168e-02 -2.650304e-02 -2.641315e-02 -2.686518e-02 -2.701107e-02\n [696] -2.806233e-02 -2.782181e-02 -2.818770e-02 -2.848947e-02 -2.757518e-02\n [701] -2.801129e-02 -3.013088e-02 -3.056551e-02 -3.160076e-02 -3.238701e-02\n [706] -3.349535e-02 -3.128979e-02 -3.192330e-02 -3.310974e-02 -3.416199e-02\n [711] -3.464699e-02 -3.528693e-02 -3.610633e-02 -3.855013e-02 -3.848614e-02\n [716] -3.778439e-02 -3.798579e-02 -3.745396e-02 -3.658279e-02 -3.500028e-02\n [721] -3.315812e-02 -3.372702e-02 -3.216286e-02 -3.050084e-02 -2.909761e-02\n [726] -2.987108e-02 -3.037575e-02 -2.921003e-02 -3.006732e-02 -2.845710e-02\n [731] -2.873401e-02 -2.859842e-02 -2.774052e-02 -2.643392e-02 -2.525285e-02\n [736] -2.384646e-02 -2.594630e-02 -2.659869e-02 -2.656582e-02 -2.559211e-02\n [741] -2.518077e-02 -2.577454e-02 -2.641430e-02 -2.659108e-02 -2.506694e-02\n [746] -2.571547e-02 -2.388902e-02 -2.372291e-02 -2.382443e-02 -2.470373e-02\n [751] -2.348085e-02 -2.426570e-02 -2.433696e-02 -2.462673e-02 -2.407575e-02\n [756] -2.276770e-02 -2.335073e-02 -2.265557e-02 -2.263360e-02 -2.295937e-02\n [761] -2.412386e-02 -2.532781e-02 -2.535543e-02 -2.902507e-02 -2.937482e-02\n [766] -3.002525e-02 -2.863278e-02 -2.721295e-02 -2.869566e-02 -2.492894e-02\n [771] -2.350737e-02 -2.256112e-02 -2.413013e-02 -2.668606e-02 -2.443936e-02\n [776] -2.531830e-02 -2.487533e-02 -2.551337e-02 -2.441938e-02 -2.315855e-02\n [781] -2.294251e-02 -2.484827e-02 -2.555393e-02 -2.803424e-02 -2.864606e-02\n [786] -2.881200e-02 -2.905911e-02 -3.019996e-02 -3.211096e-02 -3.383141e-02\n [791] -3.338829e-02 -3.479241e-02 -3.123470e-02 -2.857136e-02 -2.868715e-02\n [796] -2.811739e-02 -2.946670e-02 -3.009917e-02 -2.955402e-02 -3.056063e-02\n [801] -2.857737e-02 -2.889860e-02 -2.868338e-02 -3.025201e-02 -2.835121e-02\n [806] -2.968984e-02 -2.962457e-02 -3.144643e-02 -3.210387e-02 -3.054280e-02\n [811] -3.081976e-02 -3.202412e-02 -3.244438e-02 -3.276846e-02 -3.260361e-02\n [816] -3.466417e-02 -3.386042e-02 -3.511309e-02 -3.579753e-02 -3.576901e-02\n [821] -3.744011e-02 -3.786224e-02 -3.661110e-02 -3.721228e-02 -3.793237e-02\n [826] -3.732633e-02 -3.626156e-02 -3.585070e-02 -3.597458e-02 -3.374434e-02\n [831] -3.214842e-02 -3.205555e-02 -3.298178e-02 -3.301668e-02 -3.613853e-02\n [836] -3.529742e-02 -3.347409e-02 -3.465518e-02 -3.544453e-02 -3.294169e-02\n [841] -3.315156e-02 -3.108436e-02 -3.071645e-02 -3.173278e-02 -3.134256e-02\n [846] -3.032682e-02 -3.137215e-02 -3.098960e-02 -3.160312e-02 -3.544991e-02\n [851] -3.530560e-02 -3.722511e-02 -3.670534e-02 -3.599021e-02 -3.537119e-02\n [856] -3.638839e-02 -3.623714e-02 -3.784013e-02 -3.785276e-02 -3.663249e-02\n [861] -3.554572e-02 -3.691837e-02 -3.839722e-02 -3.671823e-02 -3.567163e-02\n [866] -3.569845e-02 -3.698321e-02 -3.605974e-02 -3.679781e-02 -3.806100e-02\n [871] -3.509373e-02 -3.598201e-02 -3.587791e-02 -3.602559e-02 -3.420388e-02\n [876] -3.497962e-02 -3.462486e-02 -3.589067e-02 -3.794386e-02 -3.848568e-02\n [881] -3.791474e-02 -3.711065e-02 -3.825829e-02 -3.905717e-02 -3.959113e-02\n [886] -3.981123e-02 -3.976975e-02 -4.063219e-02 -4.220856e-02 -4.377941e-02\n [891] -4.531963e-02 -4.502695e-02 -4.531210e-02 -4.598338e-02 -4.734781e-02\n [896] -4.642042e-02 -4.658009e-02 -4.576865e-02 -4.510620e-02 -4.532941e-02\n [901] -4.328504e-02 -4.255769e-02 -4.206854e-02 -4.219244e-02 -4.336121e-02\n [906] -4.300482e-02 -4.207191e-02 -4.027436e-02 -3.953332e-02 -3.798593e-02\n [911] -3.668943e-02 -3.659543e-02 -3.715429e-02 -3.671929e-02 -3.521661e-02\n [916] -3.561449e-02 -3.539230e-02 -3.366315e-02 -3.537658e-02 -3.616446e-02\n [921] -3.686824e-02 -3.548843e-02 -3.404170e-02 -3.695977e-02 -3.672454e-02\n [926] -3.628322e-02 -3.733130e-02 -3.770959e-02 -3.807916e-02 -3.879727e-02\n [931] -3.850072e-02 -3.784342e-02 -3.722928e-02 -3.623082e-02 -3.545076e-02\n [936] -3.619538e-02 -3.679563e-02 -3.799114e-02 -3.690528e-02 -3.691668e-02\n [941] -3.584946e-02 -3.487690e-02 -3.442556e-02 -3.389323e-02 -3.318720e-02\n [946] -3.381582e-02 -3.329549e-02 -3.280882e-02 -3.265027e-02 -3.452904e-02\n [951] -3.374732e-02 -3.182367e-02 -3.173611e-02 -3.143587e-02 -3.176484e-02\n [956] -3.041049e-02 -2.948657e-02 -3.007874e-02 -3.143515e-02 -3.076881e-02\n [961] -3.147714e-02 -3.213346e-02 -3.349529e-02 -3.369867e-02 -3.511112e-02\n [966] -3.563684e-02 -3.558893e-02 -3.586210e-02 -3.541269e-02 -3.546270e-02\n [971] -3.636220e-02 -3.439949e-02 -3.497472e-02 -3.460088e-02 -3.429036e-02\n [976] -3.147083e-02 -3.203516e-02 -3.225761e-02 -3.360104e-02 -3.252673e-02\n [981] -3.290769e-02 -3.236001e-02 -3.088447e-02 -2.807473e-02 -2.809333e-02\n [986] -2.768298e-02 -2.720783e-02 -2.773422e-02 -2.976018e-02 -2.854723e-02\n [991] -2.922349e-02 -3.069708e-02 -3.164844e-02 -3.343253e-02 -3.476978e-02\n [996] -3.510746e-02 -3.372568e-02 -3.268173e-02 -3.258979e-02 -3.192491e-02",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter2.html#central-limit-theorem",
-    "href": "slides/Chapter2.html#central-limit-theorem",
-    "title": "Short Course on R Tools",
-    "section": "Central Limit Theorem",
-    "text": "Central Limit Theorem\n\nDiscuss the CLT and its importance in statistics\nSimulating the CLT with normal distributions\n\n\n# Central Limit Theorem simulation\nmeans &lt;- replicate(1000, mean(rnorm(100, mean = mu, sd = sig)))\nhist(means, main=\"Central Limit Theorem\", col=\"lightgreen\", border=\"black\")",
+    "section": "Agent-Based Model",
+    "text": "Agent-Based Model\n\nR vectorisation vs Rcpp loops\nMemory overhead comparisons\n\n??? note Plot benchmark timings side-by-side.",
     "crumbs": [
       "Slides",
       "RCpp"

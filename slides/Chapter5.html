@@ -29,71 +29,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #97947a;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #97947a;  padding-left: 4px; }
-    div.sourceCode
-      { color: #f8f8f2; background-color: #2b2b2b; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #f8f8f2; } /* Normal */
-    code span.al { color: #dcc6e0; } /* Alert */
-    code span.an { color: #d4d0ab; } /* Annotation */
-    code span.at { color: #ffd700; } /* Attribute */
-    code span.bn { color: #dcc6e0; } /* BaseN */
-    code span.bu { color: #f5ab35; } /* BuiltIn */
-    code span.cf { color: #ffa07a; } /* ControlFlow */
-    code span.ch { color: #abe338; } /* Char */
-    code span.cn { color: #ffa07a; } /* Constant */
-    code span.co { color: #d4d0ab; } /* Comment */
-    code span.cv { color: #d4d0ab; font-style: italic; } /* CommentVar */
-    code span.do { color: #d4d0ab; font-style: italic; } /* Documentation */
-    code span.dt { color: #dcc6e0; } /* DataType */
-    code span.dv { color: #dcc6e0; } /* DecVal */
-    code span.er { color: #dcc6e0; } /* Error */
-    code span.ex { color: #ffd700; } /* Extension */
-    code span.fl { color: #f5ab35; } /* Float */
-    code span.fu { color: #ffd700; } /* Function */
-    code span.im { color: #f8f8f2; } /* Import */
-    code span.in { color: #d4d0ab; } /* Information */
-    code span.kw { color: #ffa07a; } /* Keyword */
-    code span.op { color: #00e0e0; } /* Operator */
-    code span.ot { color: #ffa07a; } /* Other */
-    code span.pp { color: #dcc6e0; } /* Preprocessor */
-    code span.sc { color: #00e0e0; } /* SpecialChar */
-    code span.ss { color: #abe338; } /* SpecialString */
-    code span.st { color: #abe338; } /* String */
-    code span.va { color: #f5ab35; } /* Variable */
-    code span.vs { color: #abe338; } /* VerbatimString */
-    code span.wa { color: #d4d0ab; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -388,10 +323,10 @@
     }
   </style>
 <meta property="og:title" content="SCoRT - Short Course on R Tools">
-<meta property="og:description" content="Chapter 5 - Visualization of Multivariate Data">
+<meta property="og:description" content="Building Interactive Web Apps with Shiny">
 <meta property="og:site_name" content="SCoRT">
 <meta name="twitter:title" content="SCoRT - Short Course on R Tools">
-<meta name="twitter:description" content="Chapter 5 - Visualization of Multivariate Data">
+<meta name="twitter:description" content="Building Interactive Web Apps with Shiny">
 <meta name="twitter:image" content="https://tinyurl.com/SCiRT/slides/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
 <meta name="twitter:card" content="summary_large_image">
@@ -402,7 +337,7 @@
 
 <section id="title-slide" data-background-image="mu-bg.png" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
   <h1 class="title">Short Course on R Tools</h1>
-  <p class="subtitle">Chapter 5 - Visualization of Multivariate Data</p>
+  <p class="subtitle">Building Interactive Web Apps with Shiny</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -417,92 +352,224 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 
 </section>
 <section>
-<section id="scatterplot-matrices" class="title-slide slide level1 center">
-<h1>Scatterplot Matrices</h1>
+<section id="outline" class="title-slide slide level1 center">
+<h1>Outline</h1>
+<ol type="1">
+<li><p>Introduction to Shiny</p></li>
+<li><p>App Structure: UI &amp; Server</p></li>
+<li><p>Inputs, Outputs, &amp; Reactivity</p></li>
+<li><p>Reactive Programming Patterns</p></li>
+<li><p>Layouts &amp; Styling</p></li>
+<li><p>Modules for Reusable Components</p></li>
+<li><p>Advanced Topics: JavaScript, HTML, CSS</p></li>
+<li><p>Deployment &amp; Best Practices</p></li>
+<li><p>Hands-on Exercises</p></li>
+</ol>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="introduction-to-shiny" class="title-slide slide level1 center">
+<h1>1. Introduction to Shiny</h1>
 <ul>
-<li>Introduction to scatterplot matrices for multivariate data</li>
-<li>Example using the <code>iris</code> dataset</li>
+<li><p><strong>What is Shiny?</strong></p>
+<ul>
+<li><p>R package for interactive web apps</p></li>
+<li><p>No web dev expertise needed</p></li>
+</ul></li>
+<li><p><strong>When to use</strong>: dashboards, interactive reports, teaching tools</p></li>
+<li><p><strong>Tutorial sources</strong>:</p>
+<ul>
+<li><p>RStudio official tutorial</p></li>
+<li><p><em>Mastering Shiny</em> by Hadley Wickham</p></li>
+</ul></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">data</span>(iris)</span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a><span class="co"># Scatterplot matrix for virginica species</span></span>
-<span id="cb1-4"><a></a><span class="fu">pairs</span>(iris[<span class="dv">101</span><span class="sc">:</span><span class="dv">150</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">main=</span><span class="st">"Scatterplot Matrix for Virginica"</span>, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>??? note Show live example: run <code>shiny::runExample("01_hello")</code>.</p>
+</section>
+<section class="slide level2">
 
-</div>
-<img data-src="Chapter5_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
-<section id="customizing-scatterplot-matrices" class="slide level2">
-<h2>Customizing Scatterplot Matrices</h2>
+</section></section>
+<section>
+<section id="app-structure" class="title-slide slide level1 center">
+<h1>2. App Structure</h1>
+<pre><code># app.R single-file app
+library(shiny)
+ui &lt;- fluidPage(
+  titlePanel("Hello Shiny"),
+  sidebarLayout(
+    sidebarPanel(sliderInput("obs", "Observations:", 1, 100, 50)),
+    mainPanel(plotOutput("distPlot"))
+  )
+)
+
+server &lt;- function(input, output) {
+  output$distPlot &lt;- renderPlot({
+    hist(rnorm(input$obs))
+  })
+}
+
+shinyApp(ui, server)</code></pre>
 <ul>
-<li>Customizing scatterplot matrices with density plots</li>
+<li><p><code>ui</code> defines layout and inputs/outputs</p></li>
+<li><p><code>server</code> contains R code &amp; reactivity</p></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="co"># Adding density plots to scatterplot matrix</span></span>
-<span id="cb2-2"><a></a>panel.d <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) {</span>
-<span id="cb2-3"><a></a>    usr <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="st">"usr"</span>)</span>
-<span id="cb2-4"><a></a>    <span class="fu">on.exit</span>(<span class="fu">par</span>(usr))</span>
-<span id="cb2-5"><a></a>    <span class="fu">par</span>(<span class="at">usr =</span> <span class="fu">c</span>(usr[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">0</span>, .<span class="dv">5</span>))</span>
-<span id="cb2-6"><a></a>    <span class="fu">lines</span>(<span class="fu">density</span>(x), <span class="at">col=</span><span class="st">"red"</span>)</span>
-<span id="cb2-7"><a></a>}</span>
-<span id="cb2-8"><a></a><span class="fu">pairs</span>(iris[<span class="dv">101</span><span class="sc">:</span><span class="dv">150</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">panel =</span> panel.d, <span class="at">main=</span><span class="st">"Customized Scatterplot Matrix"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>??? note Compare single-file vs UI/server file structure.</p>
+</section>
+<section class="slide level2">
 
-</div>
-<img data-src="Chapter5_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section></section>
-<section id="correlation-plots" class="title-slide slide level1 center">
-<h1>Correlation Plots</h1>
+</section></section>
+<section>
+<section id="inputs-outputs" class="title-slide slide level1 center">
+<h1>3. Inputs &amp; Outputs</h1>
 <ul>
-<li>Visualizing correlations between variables</li>
-<li>Example: Correlation plot with <code>corrplot</code> package</li>
+<li><p><strong>Inputs</strong>: <code>textInput()</code>, <code>selectInput()</code>, <code>sliderInput()</code>, etc.</p></li>
+<li><p><strong>Outputs</strong>: <code>renderPlot()</code>, <code>renderTable()</code>, <code>renderUI()</code>, etc.</p></li>
+<li><p><strong>Binding</strong>: output objects referenced by <code>output$...</code></p></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Correlation plot for iris dataset</span></span>
-<span id="cb3-2"><a></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb3-3"><a></a>cor_iris <span class="ot">&lt;-</span> <span class="fu">cor</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
-<span id="cb3-4"><a></a><span class="fu">corrplot</span>(cor_iris, <span class="at">method=</span><span class="st">"circle"</span>, <span class="at">main=</span><span class="st">"Correlation Plot for Iris Dataset"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>input$slider  # numeric
+input$check   # logical</code></pre>
+<p>??? note Demo: build a dynamic summary table based on user selections.</p>
+</section>
+<section class="slide level2">
 
-</div>
-<img data-src="Chapter5_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
-
-<section id="d-scatter-plots" class="title-slide slide level1 center">
-<h1>3D Scatter Plots</h1>
+</section></section>
+<section>
+<section id="reactivity-fundamentals" class="title-slide slide level1 center">
+<h1>4. Reactivity Fundamentals</h1>
 <ul>
-<li>Visualizing 3D relationships between variables</li>
-<li>Example: 3D scatter plot using the <code>scatterplot3d</code> package</li>
+<li><p><strong>Reactive expressions</strong>: cache results</p>
+<pre><code>rv &lt;- reactive({ rnorm(input$obs) })
+output$plot &lt;- renderPlot(hist(rv()))</code></pre></li>
+<li><p><strong>Observers</strong>: side-effect actions</p>
+<pre><code>observeEvent(input$go, { showModal(...) })</code></pre></li>
+<li><p><strong>isolate()</strong>: break reactive chain</p></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># 3D scatter plot for iris dataset</span></span>
-<span id="cb4-2"><a></a><span class="fu">library</span>(scatterplot3d)</span>
-<span id="cb4-3"><a></a><span class="fu">scatterplot3d</span>(iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Petal.Length, iris<span class="sc">$</span>Sepal.Width, <span class="at">color=</span><span class="st">"darkgreen"</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">main=</span><span class="st">"3D Scatter Plot of Iris Data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>??? note Illustrate dependency graph in real-time.</p>
+</section>
+<section class="slide level2">
 
-</div>
-<img data-src="Chapter5_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
-
-<section id="principal-component-analysis-pca" class="title-slide slide level1 center">
-<h1>Principal Component Analysis (PCA)</h1>
+</section></section>
+<section>
+<section id="layouts-styling" class="title-slide slide level1 center">
+<h1>5. Layouts &amp; Styling</h1>
 <ul>
-<li>Introduction to PCA for dimensionality reduction</li>
-<li>Example: PCA visualization using <code>ggplot2</code></li>
+<li><p><strong>Layouts</strong>: <code>fluidPage()</code>, <code>navbarPage()</code>, <code>dashboardPage()</code> (shinydashboard)</p></li>
+<li><p><strong>HTML tags</strong>: <code>tags$div()</code>, <code>tags$p()</code></p></li>
+<li><p><strong>CSS</strong>: include via <code>www/styles.css</code> or <code>tags$head()</code></p></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># PCA for iris dataset</span></span>
-<span id="cb5-2"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-3"><a></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">scale=</span><span class="cn">TRUE</span>)</span>
-<span id="cb5-4"><a></a>pca_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(pca<span class="sc">$</span>x, <span class="at">Species=</span>iris<span class="sc">$</span>Species)</span>
-<span id="cb5-5"><a></a></span>
-<span id="cb5-6"><a></a><span class="co"># Visualizing PCA results</span></span>
-<span id="cb5-7"><a></a><span class="fu">ggplot</span>(pca_df, <span class="fu">aes</span>(PC1, PC2, <span class="at">color=</span>Species)) <span class="sc">+</span></span>
-<span id="cb5-8"><a></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb5-9"><a></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"PCA of Iris Dataset"</span>, <span class="at">x=</span><span class="st">"Principal Component 1"</span>, <span class="at">y=</span><span class="st">"Principal Component 2"</span>) <span class="sc">+</span></span>
-<span id="cb5-10"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>&lt;link rel="stylesheet" href="styles.css" /&gt;</code></pre>
+<p>??? note Show customizing theme with <code>bslib</code>.</p>
+</section>
+<section class="slide level2">
 
-</div>
-<img data-src="Chapter5_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
-
-<section id="conclusion" class="title-slide slide level1 center">
-<h1>Conclusion</h1>
+</section></section>
+<section>
+<section id="modules-for-reusability" class="title-slide slide level1 center">
+<h1>6. Modules for Reusability</h1>
 <ul>
-<li>Recap of visualization techniques for multivariate data</li>
-<li>Practice: Generate visualizations for other datasets and explore 3D plots</li>
+<li><p><strong>Define module UI</strong>:</p>
+<pre><code>mod_ui &lt;- function(id) {
+  ns &lt;- NS(id)
+  tagList(
+    sliderInput(ns("n"), "N:", 1, 100, 25),
+    plotOutput(ns("plot"))
+  )
+}</code></pre></li>
+<li><p><strong>Define module server</strong>:</p>
+<pre><code>mod_server &lt;- function(id) {
+  moduleServer(id, function(input, output, session) {
+    output$plot &lt;- renderPlot(hist(rnorm(input$n)))
+  })
+}</code></pre></li>
+<li><p><strong>Call modules</strong> in main app</p></li>
+</ul>
+<p>??? note Demonstrate two independent modules on one page.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="advanced-topics" class="title-slide slide level1 center">
+<h1>7. Advanced Topics</h1>
+<ul>
+<li><p><strong>Dynamic UI</strong>: <code>renderUI()</code>, <code>insertUI()</code>, <code>removeUI()</code></p></li>
+<li><p><strong>Interacting with JS</strong>: <code>shinyjs</code>, <code>htmlwidgets</code></p></li>
+<li><p><strong>Bookmarking state</strong>: <code>enableBookmarking("url")</code></p></li>
+<li><p><strong>Testing &amp; Debugging</strong>: <code>reactlog</code>, <code>shinytest2</code></p></li>
+</ul>
+<p>??? note Show <code>reactlog::reactlog_enable()</code> in a sample app.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="deployment-best-practices" class="title-slide slide level1 center">
+<h1>8. Deployment &amp; Best Practices</h1>
+<ul>
+<li><p><strong>Deployment options</strong>:</p>
+<ul>
+<li><p>Shinyapps.io</p></li>
+<li><p>RStudio Connect</p></li>
+<li><p>Docker &amp; Kubernetes</p></li>
+</ul></li>
+<li><p><strong>Performance</strong>:</p>
+<ul>
+<li><p>Avoid heavy computations in reactive context</p></li>
+<li><p>Use <code>bindCache()</code></p></li>
+</ul></li>
+<li><p><strong>Security</strong>:</p>
+<ul>
+<li><p>Validate inputs</p></li>
+<li><p>Use SSL</p></li>
+</ul></li>
+</ul>
+<p>??? note Walk through deploying to shinyapps.io.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="hands-on-exercises-30-min" class="title-slide slide level1 center">
+<h1>9. Hands-on Exercises (30 min)</h1>
+<ol type="1">
+<li><p>Build a <strong>data explorer</strong>: filter dataset, show summary &amp; plot.</p></li>
+<li><p>Create a <strong>module</strong>: reusable histogram component with controls.</p></li>
+<li><p>Implement <strong>dynamic UI</strong>: show inputs based on user choice.</p></li>
+</ol>
+<p>??? note Pair programming, share solutions afterward.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="resources-further-reading" class="title-slide slide level1 center">
+<h1>Resources &amp; Further Reading</h1>
+<ul>
+<li><p>RStudio tutorial: https://shiny.rstudio.com/tutorial/</p></li>
+<li><p><em>Mastering Shiny</em>: https://mastering-shiny.org/</p></li>
+<li><p>CRAN: <code>shiny</code>, <code>shinyjs</code>, <code>shinydashboard</code></p></li>
+</ul>
+<p>??? note Encourage reading chapters on modules and structure.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="qa" class="title-slide slide level1 center">
+<h1>Q&amp;A</h1>
+<ul>
+<li><p>Questions on reactive patterns?</p></li>
+<li><p>Use cases in your projects?</p></li>
+</ul>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank You</h1>
+<ul>
+<li>Happy coding with Shiny!</li>
 </ul>
 
 <div class="quarto-auto-generated-content">
@@ -724,44 +791,6 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

@@ -29,71 +29,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #97947a;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #97947a;  padding-left: 4px; }
-    div.sourceCode
-      { color: #f8f8f2; background-color: #2b2b2b; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #f8f8f2; } /* Normal */
-    code span.al { color: #dcc6e0; } /* Alert */
-    code span.an { color: #d4d0ab; } /* Annotation */
-    code span.at { color: #ffd700; } /* Attribute */
-    code span.bn { color: #dcc6e0; } /* BaseN */
-    code span.bu { color: #f5ab35; } /* BuiltIn */
-    code span.cf { color: #ffa07a; } /* ControlFlow */
-    code span.ch { color: #abe338; } /* Char */
-    code span.cn { color: #ffa07a; } /* Constant */
-    code span.co { color: #d4d0ab; } /* Comment */
-    code span.cv { color: #d4d0ab; font-style: italic; } /* CommentVar */
-    code span.do { color: #d4d0ab; font-style: italic; } /* Documentation */
-    code span.dt { color: #dcc6e0; } /* DataType */
-    code span.dv { color: #dcc6e0; } /* DecVal */
-    code span.er { color: #dcc6e0; } /* Error */
-    code span.ex { color: #ffd700; } /* Extension */
-    code span.fl { color: #f5ab35; } /* Float */
-    code span.fu { color: #ffd700; } /* Function */
-    code span.im { color: #f8f8f2; } /* Import */
-    code span.in { color: #d4d0ab; } /* Information */
-    code span.kw { color: #ffa07a; } /* Keyword */
-    code span.op { color: #00e0e0; } /* Operator */
-    code span.ot { color: #ffa07a; } /* Other */
-    code span.pp { color: #dcc6e0; } /* Preprocessor */
-    code span.sc { color: #00e0e0; } /* SpecialChar */
-    code span.ss { color: #abe338; } /* SpecialString */
-    code span.st { color: #abe338; } /* String */
-    code span.va { color: #f5ab35; } /* Variable */
-    code span.vs { color: #abe338; } /* VerbatimString */
-    code span.wa { color: #d4d0ab; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -388,10 +323,10 @@
     }
   </style>
 <meta property="og:title" content="SCoRT - Short Course on R Tools">
-<meta property="og:description" content="Chapter 8 - Bootstrap and Jackknife">
+<meta property="og:description" content="Deep Learning with R and Keras">
 <meta property="og:site_name" content="SCoRT">
 <meta name="twitter:title" content="SCoRT - Short Course on R Tools">
-<meta name="twitter:description" content="Chapter 8 - Bootstrap and Jackknife">
+<meta name="twitter:description" content="Deep Learning with R and Keras">
 <meta name="twitter:image" content="https://tinyurl.com/SCiRT/slides/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
 <meta name="twitter:card" content="summary_large_image">
@@ -402,7 +337,7 @@
 
 <section id="title-slide" data-background-image="mu-bg.png" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
   <h1 class="title">Short Course on R Tools</h1>
-  <p class="subtitle">Chapter 8 - Bootstrap and Jackknife</p>
+  <p class="subtitle">Deep Learning with R and Keras</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -417,120 +352,192 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 
 </section>
 <section>
-<section id="lecture-1-introduction-to-bootstrap-part-1" class="title-slide slide level1 center">
-<h1>Lecture 1: Introduction to Bootstrap (Part 1)</h1>
-
+<section id="outline" class="title-slide slide level1 center">
+<h1>Outline</h1>
+<ol type="1">
+<li><p>Introduction &amp; Setup</p></li>
+<li><p>Fundamentals of Neural Networks</p></li>
+<li><p>Building MLPs for Classification &amp; Regression</p></li>
+<li><p>Convolutional Neural Networks (CNNs)</p></li>
+<li><p>Recurrent Neural Networks (RNNs) &amp; LSTM</p></li>
+<li><p>Autoencoders &amp; Unsupervised Learning</p></li>
+<li><p>Model Evaluation &amp; Tuning</p></li>
+<li><p>Advanced Topics &amp; Deployment</p></li>
+<li><p>Hands-on Exercises</p></li>
+</ol>
 </section>
-<section id="bootstrap-resampling-method" class="slide level2">
-<h2>Bootstrap Resampling Method</h2>
-<ul>
-<li>Introduction to the bootstrap method</li>
-<li>Example: Bootstrap estimate of standard error</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Bootstrap example: Estimate correlation between LSAT and GPA</span></span>
-<span id="cb1-2"><a></a><span class="fu">library</span>(bootstrap)    <span class="co">#for the law data</span></span>
-<span id="cb1-3"><a></a><span class="fu">print</span>(<span class="fu">cor</span>(law<span class="sc">$</span>LSAT, law<span class="sc">$</span>GPA))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7763745</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">print</span>(<span class="fu">cor</span>(law82<span class="sc">$</span>LSAT, law82<span class="sc">$</span>GPA))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7599979</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># Set up the bootstrap</span></span>
-<span id="cb5-2"><a></a>B <span class="ot">&lt;-</span> <span class="dv">200</span>            <span class="co"># number of replicates</span></span>
-<span id="cb5-3"><a></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(law)      <span class="co"># sample size</span></span>
-<span id="cb5-4"><a></a>R <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B)     <span class="co"># storage for replicates</span></span>
-<span id="cb5-5"><a></a><span class="co"># Bootstrap estimate of correlation</span></span>
-<span id="cb5-6"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
-<span id="cb5-7"><a></a>  idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size=</span>n, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb5-8"><a></a>  law_boot <span class="ot">&lt;-</span> law[idx, ]</span>
-<span id="cb5-9"><a></a>  R[i] <span class="ot">&lt;-</span> <span class="fu">cor</span>(law_boot<span class="sc">$</span>LSAT, law_boot<span class="sc">$</span>GPA)</span>
-<span id="cb5-10"><a></a>}</span>
-<span id="cb5-11"><a></a><span class="fu">mean</span>(R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.7747173</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">sd</span>(R)  <span class="co"># Bootstrap standard error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1325269</code></pre>
-</div>
-</div>
-</section>
-<section id="visualizing-bootstrap-resamples" class="slide level2">
-<h2>Visualizing Bootstrap Resamples</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Plotting the bootstrap distribution</span></span>
-<span id="cb9-2"><a></a><span class="fu">hist</span>(R, <span class="at">main=</span><span class="st">"Bootstrap Distribution of Correlation"</span>, <span class="at">col=</span><span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section class="slide level2">
 
-</div>
-<img data-src="Chapter8_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="lecture-2-jackknife-method-part-2" class="title-slide slide level1 center">
-<h1>Lecture 2: Jackknife Method (Part 2)</h1>
-
-</section>
-<section id="introduction-to-the-jackknife-method" class="slide level2">
-<h2>Introduction to the Jackknife Method</h2>
-<ul>
-<li>The jackknife method for bias reduction</li>
-<li>Example: Jackknife estimate of the mean</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co"># Jackknife estimate of mean</span></span>
-<span id="cb10-2"><a></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(law)</span>
-<span id="cb10-3"><a></a>theta_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(law<span class="sc">$</span>LSAT)</span>
-<span id="cb10-4"><a></a>theta_jack <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
-<span id="cb10-5"><a></a></span>
-<span id="cb10-6"><a></a><span class="co"># Leave-one-out jackknife</span></span>
-<span id="cb10-7"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
-<span id="cb10-8"><a></a>  theta_jack[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(law<span class="sc">$</span>LSAT[<span class="sc">-</span>i])</span>
-<span id="cb10-9"><a></a>}</span>
-<span id="cb10-10"><a></a></span>
-<span id="cb10-11"><a></a><span class="co"># Jackknife estimate of bias</span></span>
-<span id="cb10-12"><a></a>bias_jack <span class="ot">&lt;-</span> (n <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> (<span class="fu">mean</span>(theta_jack) <span class="sc">-</span> theta_hat)</span>
-<span id="cb10-13"><a></a>bias_jack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0</code></pre>
-</div>
-</div>
 </section></section>
 <section>
-<section id="lecture-3-advanced-bootstrap-techniques-part-3" class="title-slide slide level1 center">
-<h1>Lecture 3: Advanced Bootstrap Techniques (Part 3)</h1>
+<section id="introduction-environment-setup" class="title-slide slide level1 center">
+<h1>1. Introduction &amp; Environment Setup</h1>
+<ul>
+<li><p><strong>Why Deep Learning?</strong> complex function approximation, feature engineering</p></li>
+<li><p><strong>Keras in R</strong>: high-level API for TensorFlow backend</p></li>
+<li><p><strong>Installation</strong>:</p>
+<pre><code>install.packages("keras")
+library(keras)
+install_keras()  # installs TensorFlow</code></pre></li>
+<li><p><strong>Project structure</strong>: data/, scripts/, models/</p></li>
+</ul>
+<p>??? note Demo environment check: <code>tensorflow::tf_config()</code>.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="fundamentals-of-neural-networks" class="title-slide slide level1 center">
+<h1>2. Fundamentals of Neural Networks</h1>
+<ul>
+<li><p><strong>Perceptron</strong>: basic neuron → activation(input * weight + bias)</p></li>
+<li><p><strong>Layers</strong>: Dense layers, activation functions (<code>relu</code>, <code>sigmoid</code>, <code>softmax</code>)</p></li>
+<li><p><strong>Forward &amp; backward pass</strong>: feedforward, gradient descent</p></li>
+</ul>
+<pre><code>model &lt;- keras_model_sequential() %&gt;%
+  layer_dense(units = 32, activation = 'relu', input_shape = c(784)) %&gt;%
+  layer_dense(units = 10, activation = 'softmax')</code></pre>
+<p>??? note Visualize network architecture with <code>plot_model()</code>.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="multilayer-perceptrons-mlps" class="title-slide slide level1 center">
+<h1>3. Multilayer Perceptrons (MLPs)</h1>
 
 </section>
-<section id="bootstrap-confidence-intervals" class="slide level2">
-<h2>Bootstrap Confidence Intervals</h2>
+<section id="classification-on-mnist" class="slide level2">
+<h2>Classification on MNIST</h2>
+<pre><code>model %&gt;% compile(
+  optimizer = 'rmsprop',
+  loss = 'categorical_crossentropy',
+  metrics = c('accuracy')
+)
+history &lt;- model %&gt;% fit(
+  x_train, y_train,
+  epochs = 10, batch_size = 128,
+  validation_split = 0.2
+)</code></pre>
 <ul>
-<li>Introduction to bootstrap confidence intervals</li>
-<li>Example: Bootstrap percentile confidence interval</li>
+<li><p><strong>Data preprocessing</strong>: normalization, one-hot encoding</p></li>
+<li><p><strong>Callbacks</strong>: EarlyStopping, ModelCheckpoint</p></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Bootstrap confidence intervals</span></span>
-<span id="cb12-2"><a></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb12-3"><a></a>ci <span class="ot">&lt;-</span> <span class="fu">quantile</span>(R, <span class="at">probs =</span> <span class="fu">c</span>(alpha<span class="sc">/</span><span class="dv">2</span>, <span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span>))</span>
-<span id="cb12-4"><a></a>ci  <span class="co"># Bootstrap confidence interval</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     2.5%     97.5% 
-0.4999767 0.9480750 </code></pre>
-</div>
-</div>
+<p>??? note Show training curves: <code>plot(history)</code>.</p>
 </section>
-<section id="comparison-of-bootstrap-and-jackknife" class="slide level2">
-<h2>Comparison of Bootstrap and Jackknife</h2>
-<ul>
-<li>Discuss the differences and use cases of bootstrap and jackknife</li>
-<li>Recap of methods and their benefits in reducing bias and estimating uncertainty</li>
-</ul>
+<section class="slide level2">
+
 </section></section>
-<section id="conclusion" class="title-slide slide level1 center">
-<h1>Conclusion</h1>
+<section>
+<section id="convolutional-neural-networks-cnns" class="title-slide slide level1 center">
+<h1>4. Convolutional Neural Networks (CNNs)</h1>
 <ul>
-<li>Recap of bootstrap and jackknife methods, confidence intervals, and bias estimation</li>
-<li>Practice: Apply bootstrap to other datasets and explore jackknife bias estimation</li>
+<li><p><strong>Concepts</strong>: filters, pooling, feature maps</p></li>
+<li><p><strong>Example</strong>:</p></li>
 </ul>
+<pre><code>cnn &lt;- keras_model_sequential() %&gt;%
+  layer_conv_2d(filters=32, kernel_size=c(3,3), activation='relu', input_shape=c(28,28,1)) %&gt;%
+  layer_max_pooling_2d(pool_size=c(2,2)) %&gt;%
+  layer_conv_2d(filters=64, kernel_size=c(3,3), activation='relu') %&gt;%
+  layer_max_pooling_2d(pool_size=c(2,2)) %&gt;%
+  layer_flatten() %&gt;%
+  layer_dense(units=64, activation='relu') %&gt;%
+  layer_dense(units=10, activation='softmax')</code></pre>
+<ul>
+<li><strong>Image augmentation</strong>: <code>image_data_generator()</code></li>
+</ul>
+<p>??? note Demo augmenting and fitting on CIFAR-10 subset.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="recurrent-neural-networks-lstm" class="title-slide slide level1 center">
+<h1>5. Recurrent Neural Networks &amp; LSTM</h1>
+<ul>
+<li><p><strong>RNN basics</strong>: sequence data, time steps</p></li>
+<li><p><strong>LSTM</strong>: handling long-term dependencies</p></li>
+</ul>
+<pre><code>rnn &lt;- keras_model_sequential() %&gt;%
+  layer_lstm(units=128, input_shape=c(timesteps, features)) %&gt;%
+  layer_dense(units=1, activation='sigmoid')</code></pre>
+<ul>
+<li><strong>Use case</strong>: sentiment analysis, text generation</li>
+</ul>
+<p>??? note Show example on IMDB dataset: <code>dataset_imdb()</code>.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="autoencoders-unsupervised-learning" class="title-slide slide level1 center">
+<h1>6. Autoencoders &amp; Unsupervised Learning</h1>
+<ul>
+<li><strong>Architecture</strong>: encoder ⇄ bottleneck ⇄ decoder</li>
+</ul>
+<pre><code>ae &lt;- keras_model_sequential() %&gt;%
+  layer_dense(units=64, activation='relu', input_shape=c(784)) %&gt;%
+  layer_dense(units=32, activation='relu') %&gt;%
+  layer_dense(units=64, activation='relu') %&gt;%
+  layer_dense(units=784, activation='sigmoid')</code></pre>
+<ul>
+<li><strong>Applications</strong>: dimensionality reduction, denoising</li>
+</ul>
+<p>??? note Demo training on noisy MNIST.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="model-evaluation-hyperparameter-tuning" class="title-slide slide level1 center">
+<h1>7. Model Evaluation &amp; Hyperparameter Tuning</h1>
+<ul>
+<li><p><strong>Metrics</strong>: accuracy, precision/recall, ROC-AUC</p></li>
+<li><p><strong>Plots</strong>: confusion matrix, learning curves</p></li>
+<li><p><strong>Tuning</strong>: <code>tfruns</code>, <code>keras_tuner</code></p></li>
+<li><p><strong>K-fold CV</strong>: manual splits or <code>rsample</code></p></li>
+</ul>
+<p>??? note Illustrate hyperband tuning example.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="advanced-topics-deployment" class="title-slide slide level1 center">
+<h1>8. Advanced Topics &amp; Deployment</h1>
+<ul>
+<li><p><strong>Transfer Learning</strong>: <code>application_resnet50()</code>, fine-tuning</p></li>
+<li><p><strong>Custom layers &amp; callbacks</strong></p></li>
+<li><p><strong>Model saving/loading</strong>: <code>save_model_hdf5()</code>, <code>load_model_hdf5()</code></p></li>
+<li><p><strong>Deployment</strong>: Plumber API, TensorFlow Serving, Shiny integration</p></li>
+</ul>
+<p>??? note Example: wrap model in Plumber endpoint.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="hands-on-exercises-30-min" class="title-slide slide level1 center">
+<h1>9. Hands-on Exercises (30 min)</h1>
+<ol type="1">
+<li><p>Build and train a CNN on Fashion MNIST</p></li>
+<li><p>Implement an LSTM for sequence prediction (e.g., sine wave)</p></li>
+<li><p>Create an autoencoder for dimensionality reduction and visualize embeddings</p></li>
+</ol>
+<p>??? note Encourage pair work and code sharing.</p>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section id="resources-further-reading" class="title-slide slide level1 center">
+<h1>Resources &amp; Further Reading</h1>
+<ul>
+<li><p>Book: <em>Deep Learning with R</em> by Francois Chollet &amp; J.J. Allaire</p></li>
+<li><p>Keras docs: https://keras.rstudio.com/</p></li>
+<li><p>TensorFlow for R: https://tensorflow.rstudio.com/</p></li>
+<li><p>Tutorials: https://www.coursera.org/learn/deep-learning</p></li>
+</ul>
+<p>??? note Provide links for reference.</p>
 
 <div class="quarto-auto-generated-content">
 <p><img src="logo.png" class="slide-logo"></p>
@@ -751,44 +758,6 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
