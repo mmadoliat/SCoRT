@@ -10,6 +10,7 @@ format: revealjs
 
 ## Outline
 
+::: incremental
 -   Motivation & Introduction
 -   Getting Started with `cppFunction()`
 -   Using `sourceCpp()`
@@ -20,27 +21,15 @@ format: revealjs
 -   Case Studies & Benchmarks
 -   Using Rcpp in Packages
 -   Advanced Topics & Resources
+:::
 
 # Motivation & Introduction
-::: {.fragment .fade-in}
-Fade in
-:::
-
-::: {.fragment .fade-up}
-Slide up while fading in
-:::
-
-::: {.fragment .fade-left}
-Slide left while fading in
-:::
-
-::: {.fragment .fade-in-then-semi-out}
-Fade in then semi out
-:::
 
 -   **Performance Bottlenecks**: loops, recursion, complex operations
 
 -   **Rcpp**: smooth bridge between R and C++
+
+. . .
 
 -   **Advantages**:
 
@@ -50,9 +39,27 @@ Fade in then semi out
 
 ??? note Identify real bottlenecks with profiling before using C++.
 
+## Auto-Animate {auto-animate="true" auto-animate-easing="ease-in-out"}
+
+Position images or other elements at precise locations
+
+::: r-hstack
+::: {auto-animate-delay="0.1"}
+![](/images/logo.png){.absolute top="170" left="30" width="400" height="400"}
+:::
+:::
+
+## Auto-Animate {auto-animate="true" auto-animate-easing="ease-in-out"}
+
+Position images or other elements at precise locations
+
+::: r-hstack
+![](/images/twitter-card.png){.absolute top="170" left="30" width="400" height="400"}
+:::
+
 # Using `cppFunction()`
 
-``` cpp 
+``` cpp
 // Define and compile inline C++ function
 int add(int x, int y, int z) {
   return x + y + z;
@@ -64,8 +71,6 @@ int add(int x, int y, int z) {
 -   Good for small functions
 
 ??? note Show live demo: adding two numbers with `cppFunction()`.
-
-
 
 # Using `sourceCpp()`
 
