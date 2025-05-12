@@ -418,36 +418,30 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </section>
 <section id="outline" class="slide level2">
 <h2>Outline</h2>
+<div>
 <ul>
-<li>Motivation &amp; Introduction</li>
-<li>Getting Started with <code>cppFunction()</code></li>
-<li>Using <code>sourceCpp()</code></li>
-<li>Data Types &amp; Conversions</li>
-<li>Rcpp Classes: Lists, DataFrames, Functions, Attributes</li>
-<li>Handling Missing Values</li>
-<li>Standard Template Library (STL)</li>
-<li>Case Studies &amp; Benchmarks</li>
-<li>Using Rcpp in Packages</li>
-<li>Advanced Topics &amp; Resources</li>
+<li class="fragment">Motivation &amp; Introduction</li>
+<li class="fragment">Getting Started with <code>cppFunction()</code></li>
+<li class="fragment">Using <code>sourceCpp()</code></li>
+<li class="fragment">Data Types &amp; Conversions</li>
+<li class="fragment">Rcpp Classes: Lists, DataFrames, Functions, Attributes</li>
+<li class="fragment">Handling Missing Values</li>
+<li class="fragment">Standard Template Library (STL)</li>
+<li class="fragment">Case Studies &amp; Benchmarks</li>
+<li class="fragment">Using Rcpp in Packages</li>
+<li class="fragment">Advanced Topics &amp; Resources</li>
 </ul>
+</div>
 </section>
+<section>
 <section id="motivation-introduction" class="title-slide slide level1 center">
 <h1>Motivation &amp; Introduction</h1>
-<div class="fragment fade-in">
-<p>Fade in</p>
-</div>
-<div class="fragment fade-up">
-<p>Slide up while fading in</p>
-</div>
-<div class="fragment fade-left">
-<p>Slide left while fading in</p>
-</div>
-<div class="fragment fade-in-then-semi-out">
-<p>Fade in then semi out</p>
-</div>
 <ul>
 <li><p><strong>Performance Bottlenecks</strong>: loops, recursion, complex operations</p></li>
 <li><p><strong>Rcpp</strong>: smooth bridge between R and C++</p></li>
+</ul>
+<div class="fragment">
+<ul>
 <li><p><strong>Advantages</strong>:</p>
 <ul>
 <li>Low overhead function calls</li>
@@ -456,8 +450,24 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </ul></li>
 </ul>
 <p>??? note Identify real bottlenecks with profiling before using C++.</p>
+</div>
 </section>
-
+<section id="auto-animate" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-id="quarto-animate-title">Auto-Animate</h2>
+<p>Position images or other elements at precise locations</p>
+<div class="r-hstack">
+<div data-auto-animate-delay="0.1">
+<p><img data-src="../images/logo.png" class="absolute" style="top: 170px; left: 30px; width: 400px; height: 400px; "></p>
+</div>
+</div>
+</section>
+<section id="auto-animate-1" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-id="quarto-animate-title">Auto-Animate</h2>
+<p>Position images or other elements at precise locations</p>
+<div class="r-hstack">
+<p><img data-src="../images/twitter-card.png" class="absolute" style="top: 170px; left: 30px; width: 400px; height: 400px; "></p>
+</div>
+</section></section>
 <section id="using-cppfunction" class="title-slide slide level1 center">
 <h1>Using <code>cppFunction()</code></h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a></a><span class="co">// Define and compile inline C++ function</span></span>
