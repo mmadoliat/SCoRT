@@ -1,5 +1,269 @@
 [
   {
+    "objectID": "course-overview.html",
+    "href": "course-overview.html",
+    "title": "Course overview",
+    "section": "",
+    "text": "This is the homepage for Short Course on R Tools (SCoRT) by Dr. Mehdi Maadooliat and Dr. Hossein Haghbin. All course materials will be posted on this site.\nYou can find the course syllabus here and the course schedule here.",
+    "crumbs": [
+      "Course information",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "course-overview.html#class-meetings",
+    "href": "course-overview.html#class-meetings",
+    "title": "Course overview",
+    "section": "Class meetings",
+    "text": "Class meetings\n\n\n\nMeeting\nLocation\nTime\n\n\n\n\nLecture\nMS. Teams\nTue & Thur 11:00 am - 12:15 pm\n\n\nOffice Hours\nMS. Teams\nTue & Thur 12:15 - 1:30 pm",
+    "crumbs": [
+      "Course information",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter1.html#probability-distributions",
+    "href": "slides/Chapter1.html#probability-distributions",
+    "title": "Short Course on R Tools",
+    "section": "Probability Distributions",
+    "text": "Probability Distributions\n\ndnorm(), pnorm(), qnorm()\nExploring statistical tests in R",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter1.html#statistical-tests",
+    "href": "slides/Chapter1.html#statistical-tests",
+    "title": "Short Course on R Tools",
+    "section": "Statistical Tests",
+    "text": "Statistical Tests\n\nt.test(), chisq.test()",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter1.html#defining-functions",
+    "href": "slides/Chapter1.html#defining-functions",
+    "title": "Short Course on R Tools",
+    "section": "Defining Functions",
+    "text": "Defining Functions\n\nfunction(arglist) expr\nReturn values and default arguments\n\n\nsumdice &lt;- function(n) {\n  k &lt;- sample(1:6, size=n, replace=TRUE)\n  return(sum(k))\n}\nsumdice(2)\n\n[1] 9",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter1.html#data-structures-in-r",
+    "href": "slides/Chapter1.html#data-structures-in-r",
+    "title": "Short Course on R Tools",
+    "section": "Data Structures in R",
+    "text": "Data Structures in R\n\nArrays, matrices, and data frames\n\n\n# Creating vectors and matrices\nx &lt;- c(1, 2, 3, 4)\nmatrix_x &lt;- matrix(x, nrow=2, ncol=2)\nprint(matrix_x)\n\n     [,1] [,2]\n[1,]    1    3\n[2,]    2    4\n\n\n\nExample: Iris data set\n\n\ndata(iris)\nsummary(iris)\n\n  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   \n Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  \n 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  \n Median :5.800   Median :3.000   Median :4.350   Median :1.300  \n Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  \n 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  \n Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  \n       Species  \n setosa    :50  \n versicolor:50  \n virginica :50",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter1.html#basic-plots",
+    "href": "slides/Chapter1.html#basic-plots",
+    "title": "Short Course on R Tools",
+    "section": "Basic Plots",
+    "text": "Basic Plots\n\nplot(), hist(), boxplot()\n\n\nCodePlot\n\n\n\nplot(iris);\n# boxplot(iris);\n# hist(iris[,1])",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter1.html#introduction-to-ggplot2",
+    "href": "slides/Chapter1.html#introduction-to-ggplot2",
+    "title": "Short Course on R Tools",
+    "section": "Introduction to ggplot2",
+    "text": "Introduction to ggplot2\n\nVisualizing using ggplot2\n\n\nCodePlot\n\n\n\nlibrary(ggplot2)\nggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + \n  geom_point() + \n  geom_smooth(method=\"lm\", se=FALSE, color=\"blue\") + \n  theme_minimal() + \n  labs(title=\"Sepal vs Petal Length in Iris Dataset\", x=\"Sepal Length\", y=\"Petal Length\")",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter1.html#managing-files",
+    "href": "slides/Chapter1.html#managing-files",
+    "title": "Short Course on R Tools",
+    "section": "Managing Files",
+    "text": "Managing Files\n\nWorking directories and file input/output\nUsing scripts and automation",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter1.html#dynamic-documents",
+    "href": "slides/Chapter1.html#dynamic-documents",
+    "title": "Short Course on R Tools",
+    "section": "Dynamic Documents",
+    "text": "Dynamic Documents\n\nCreating reports with R Markdown\nIntroduction to knitr package",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter7.html#basic-monte-carlo-estimation",
+    "href": "slides/Chapter7.html#basic-monte-carlo-estimation",
+    "title": "Short Course on R Tools",
+    "section": "Basic Monte Carlo Estimation",
+    "text": "Basic Monte Carlo Estimation\n\nIntroduction to Monte Carlo estimation\nExample: Estimating the expected difference of two normal variables\n\n\nm &lt;- 1000\ng &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(2)\n    g[i] &lt;- abs(x[1] - x[2])\n}\nest &lt;- mean(g)\nest\n\n[1] 1.130487",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter7.html#visualizing-monte-carlo-simulations",
+    "href": "slides/Chapter7.html#visualizing-monte-carlo-simulations",
+    "title": "Short Course on R Tools",
+    "section": "Visualizing Monte Carlo Simulations",
+    "text": "Visualizing Monte Carlo Simulations\n\n# Histogram of the simulated differences\nhist(g, main=\"Histogram of Differences (Monte Carlo)\", col=\"lightblue\")",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter7.html#estimating-the-mean-squared-error-mse",
+    "href": "slides/Chapter7.html#estimating-the-mean-squared-error-mse",
+    "title": "Short Course on R Tools",
+    "section": "Estimating the Mean Squared Error (MSE)",
+    "text": "Estimating the Mean Squared Error (MSE)\n\nMonte Carlo estimation of MSE for trimmed means\n\n\nn &lt;- 20\nm &lt;- 1000\nmean_trim &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(n)\n    mean_trim[i] &lt;- mean(x, trim = 0.1)\n}\nmse &lt;- mean((mean_trim - 0)^2)\nmse\n\n[1] 0.05419327",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter7.html#visualizing-mse-simulations",
+    "href": "slides/Chapter7.html#visualizing-mse-simulations",
+    "title": "Short Course on R Tools",
+    "section": "Visualizing MSE Simulations",
+    "text": "Visualizing MSE Simulations\n\n# Histogram of the trimmed means\nhist(mean_trim, main=\"Trimmed Means (Monte Carlo MSE)\", col=\"lightgreen\")",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter7.html#additional-monte-carlo-techniques",
+    "href": "slides/Chapter7.html#additional-monte-carlo-techniques",
+    "title": "Short Course on R Tools",
+    "section": "Additional Monte Carlo Techniques",
+    "text": "Additional Monte Carlo Techniques\n\nExploring advanced Monte Carlo techniques for inference\nExample: Hypothesis testing with Monte Carlo methods\n\n\n# Monte Carlo test example: Hypothesis testing\nn &lt;- 50\nm &lt;- 1000\ntest_stat &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(n)\n    test_stat[i] &lt;- mean(x)\n}\np_value &lt;- mean(test_stat &gt;= 1.96)\np_value\n\n[1] 0",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter7.html#conclusion",
+    "href": "slides/Chapter7.html#conclusion",
+    "title": "Short Course on R Tools",
+    "section": "Conclusion",
+    "text": "Conclusion\n\nRecap of Monte Carlo methods in inference, MSE estimation, and hypothesis testing\nPractice: Apply these methods to other inferential problems\n\n\n\n\n\n🔗 tinyurl.com/SCiRT",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter6.html#introduction-to-monte-carlo-integration",
+    "href": "slides/Chapter6.html#introduction-to-monte-carlo-integration",
+    "title": "Short Course on R Tools",
+    "section": "Introduction to Monte Carlo Integration",
+    "text": "Introduction to Monte Carlo Integration\n\nBasic concepts of Monte Carlo integration\nExample: Integrating using uniform distribution\n\n\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x))\ntheta.hat\n\n[1] 0.6307252\n\n1 - exp(-1)\n\n[1] 0.6321206",
+    "crumbs": [
+      "Slides",
+      "CRAN submission"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter6.html#example-monte-carlo-integration-with-bounded-intervals",
+    "href": "slides/Chapter6.html#example-monte-carlo-integration-with-bounded-intervals",
+    "title": "Short Course on R Tools",
+    "section": "Example: Monte Carlo integration with bounded intervals",
+    "text": "Example: Monte Carlo integration with bounded intervals\n\nm &lt;- 10000\nx &lt;- runif(m, min=2, max=4)\ntheta.hat &lt;- mean(exp(-x)) * 2\ntheta.hat\n\n[1] 0.116612\n\nexp(-2) - exp(-4)\n\n[1] 0.1170196",
+    "crumbs": [
+      "Slides",
+      "CRAN submission"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter6.html#unbounded-intervals",
+    "href": "slides/Chapter6.html#unbounded-intervals",
+    "title": "Short Course on R Tools",
+    "section": "Unbounded Intervals",
+    "text": "Unbounded Intervals\n\nHandling unbounded intervals in Monte Carlo integration\n\n\n# Plotting a function over an unbounded interval\nx &lt;- seq(.1, 2.5, length.out = 100)\ny &lt;- exp(-x^2 / 2)\nplot(x, y, type=\"l\", main=\"Function Plot for Unbounded Interval\", col=\"blue\")",
+    "crumbs": [
+      "Slides",
+      "CRAN submission"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter6.html#introduction-to-importance-sampling",
+    "href": "slides/Chapter6.html#introduction-to-importance-sampling",
+    "title": "Short Course on R Tools",
+    "section": "Introduction to Importance Sampling",
+    "text": "Introduction to Importance Sampling\n\nImportance sampling and its applications\nExample: Applying importance sampling\n\n\n# Example of importance sampling\ng &lt;- function(x) exp(-x^2 / 2)\nf &lt;- function(x) dnorm(x, mean = 1)\nx &lt;- rnorm(10000, mean = 1)\ntheta.hat &lt;- mean(g(x) / f(x))\ntheta.hat\n\n[1] 2.5101",
+    "crumbs": [
+      "Slides",
+      "CRAN submission"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter6.html#visualizing-importance-sampling",
+    "href": "slides/Chapter6.html#visualizing-importance-sampling",
+    "title": "Short Course on R Tools",
+    "section": "Visualizing Importance Sampling",
+    "text": "Visualizing Importance Sampling\n\n# Compare the original function with the importance sampling function\ncurve(g, from = -3, to = 3, col = \"blue\", lwd = 2, main=\"Importance Sampling: g(x) vs f(x)\")\ncurve(f, add = TRUE, col = \"red\", lty = 2, lwd = 2)\nlegend(\"topright\", legend=c(\"g(x)\", \"f(x)\"), col=c(\"blue\", \"red\"), lty=c(1, 2), lwd=2)",
+    "crumbs": [
+      "Slides",
+      "CRAN submission"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter6.html#control-variates",
+    "href": "slides/Chapter6.html#control-variates",
+    "title": "Short Course on R Tools",
+    "section": "Control Variates",
+    "text": "Control Variates\n\nExplanation of control variates and how they reduce variance\nExample: Using control variates in Monte Carlo integration\n\n\n# Control variates example\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x)) - (mean(x) - 0.5)\ntheta.hat\n\n[1] 0.63773",
+    "crumbs": [
+      "Slides",
+      "CRAN submission"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter6.html#antithetic-variables",
+    "href": "slides/Chapter6.html#antithetic-variables",
+    "title": "Short Course on R Tools",
+    "section": "Antithetic Variables",
+    "text": "Antithetic Variables\n\nExplanation of antithetic variables and how they reduce variance\nExample: Applying antithetic variables\n\n\n# Antithetic variables example\nu &lt;- runif(5000)\ntheta.hat &lt;- mean((exp(-u) + exp(-(1 - u))) / 2)\ntheta.hat\n\n[1] 0.6319489\n\n1 - exp(-1)\n\n[1] 0.6321206",
+    "crumbs": [
+      "Slides",
+      "CRAN submission"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Short Course on R Tools - (SCoRT)",
+    "section": "",
+    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n\n1\nTue, Aug 26\nDevelop your own professional R package\n📚Chapt 1\nR👩‍💻\n\n\n\n\n\n\nThu, Aug 28\nEnhance performance with Rcpp (C++)\n📚Chapt 2\nR👩‍💻\n\n\n\n\n\n\nFri, Aug 29\n\n\n\n\n\n\n📝 [HW 0]\n\n\n2\nTue, Sep 2\nManage and collaborate via GitHub\n📚Chapt 3\nR👩‍💻\n\n\n\n\n\n\nThu, Sep 4\nObject-Oriented Programming (OOP) in R\n📚Chapt 4\nR Shiny👩‍💻\n\n\n\n\n\n\nFri, Sep 5\n\n\n\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n3\nTue, Sep 9\nCreate dynamic Shiny web applications\n📚Chapt 5\nD2L✍️\n\n\n\n\n\n\nThu, Sep 11\nNavigate the CRAN submission process\n📚Chapt 6\nR👩‍💻\n\n\n\n\n\n\nFri, Sep 12\n\n\n\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n4\nTue, Sep 16\nIntegrate Python in R using Reticulate\n📚Chapt 7\nR👩‍💻\n\n\n\n\n\n\nThu, Sep 18\nDeep Learning in R\n📚Chapt 8\nR Shiny👩‍💻\n\n\n\n\n\n\nFri, Sep 19\n\n\n\n\n\n\n📝 HW 3 at 11:50 pm",
+    "crumbs": [
+      "Course information",
+      "Schedule"
+    ]
+  },
+  {
     "objectID": "course-syllabus.html",
     "href": "course-syllabus.html",
     "title": "Syllabus - Short Course on R Tools (SCoRT)",
@@ -165,25 +429,25 @@
     ]
   },
   {
-    "objectID": "course-overview.html",
-    "href": "course-overview.html",
-    "title": "Course overview",
+    "objectID": "computing/computing-cheatsheets.html",
+    "href": "computing/computing-cheatsheets.html",
+    "title": "R cheatsheets",
     "section": "",
-    "text": "This is the homepage for Short Course on R Tools (SCoRT) by Dr. Mehdi Maadooliat and Dr. Hossein Haghbin. All course materials will be posted on this site.\nYou can find the course syllabus here and the course schedule here.",
+    "text": "The following cheatsheets come from https://posit.co/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
     "crumbs": [
-      "Course information",
-      "Overview"
+      "Computing",
+      "Cheatsheets"
     ]
   },
   {
-    "objectID": "course-overview.html#class-meetings",
-    "href": "course-overview.html#class-meetings",
-    "title": "Course overview",
-    "section": "Class meetings",
-    "text": "Class meetings\n\n\n\nMeeting\nLocation\nTime\n\n\n\n\nLecture\nMS. Teams\nTue & Thur 11:00 am - 12:15 pm\n\n\nOffice Hours\nMS. Teams\nTue & Thur 12:15 - 1:30 pm",
+    "objectID": "course-links.html",
+    "href": "course-links.html",
+    "title": "Useful links",
+    "section": "",
+    "text": "RStudio\nStat Calculator\nDistribution Calculator\n🔗 on dna\n🔗 StatCalc(JAMM)\n🔗 DistCalc\n\n\nAdvanced Texbooks\n🔗 R Package\n🔗 Advanced R by Hadley Wickham\n🔗 Quarto\n🔗 R Markdown\n🔗 ggplot2: Elegant Graphics for Data Analysis\n🔗 Fundamentals of Data Visualization\n🔗 Data Visualization: A Practical Introduction\n🔗 R for Data Science\n\n\nSome Package documentation\n🔗 ggplot2: ggplot2.tidyverse.org\n🔗 dplyr: dplyr.tidyverse.org\n🔗 tidyr: tidyr.tidyverse.org\n🔗 forcats: forcats.tidyverse.org\n🔗 stringr: stringr.tidyverse.org\n🔗 lubridate: lubridate.tidyverse.org\n🔗 readr: readr.tidyverse.org",
     "crumbs": [
       "Course information",
-      "Overview"
+      "Useful links"
     ]
   },
   {
@@ -194,322 +458,14 @@
     "text": "About this site"
   },
   {
-    "objectID": "slides/Chapter6.html#introduction-to-monte-carlo-integration",
-    "href": "slides/Chapter6.html#introduction-to-monte-carlo-integration",
+    "objectID": "slides/Chapter2.html#outline",
+    "href": "slides/Chapter2.html#outline",
     "title": "Short Course on R Tools",
-    "section": "Introduction to Monte Carlo Integration",
-    "text": "Introduction to Monte Carlo Integration\n\nBasic concepts of Monte Carlo integration\nExample: Integrating using uniform distribution\n\n\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x))\ntheta.hat\n\n[1] 0.6336164\n\n1 - exp(-1)\n\n[1] 0.6321206",
+    "section": "Outline",
+    "text": "Outline\n\nMotivation & Introduction\nGetting Started with cppFunction()\nUsing sourceCpp()\nData Types & Conversions\nRcpp Classes: Lists, DataFrames, Functions, Attributes\nHandling Missing Values\nStandard Template Library (STL)\nCase Studies & Benchmarks\nUsing Rcpp in Packages\nAdvanced Topics & Resources",
     "crumbs": [
       "Slides",
-      "CRAN submission"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter6.html#example-monte-carlo-integration-with-bounded-intervals",
-    "href": "slides/Chapter6.html#example-monte-carlo-integration-with-bounded-intervals",
-    "title": "Short Course on R Tools",
-    "section": "Example: Monte Carlo integration with bounded intervals",
-    "text": "Example: Monte Carlo integration with bounded intervals\n\nm &lt;- 10000\nx &lt;- runif(m, min=2, max=4)\ntheta.hat &lt;- mean(exp(-x)) * 2\ntheta.hat\n\n[1] 0.1167409\n\nexp(-2) - exp(-4)\n\n[1] 0.1170196",
-    "crumbs": [
-      "Slides",
-      "CRAN submission"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter6.html#unbounded-intervals",
-    "href": "slides/Chapter6.html#unbounded-intervals",
-    "title": "Short Course on R Tools",
-    "section": "Unbounded Intervals",
-    "text": "Unbounded Intervals\n\nHandling unbounded intervals in Monte Carlo integration\n\n\n# Plotting a function over an unbounded interval\nx &lt;- seq(.1, 2.5, length.out = 100)\ny &lt;- exp(-x^2 / 2)\nplot(x, y, type=\"l\", main=\"Function Plot for Unbounded Interval\", col=\"blue\")",
-    "crumbs": [
-      "Slides",
-      "CRAN submission"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter6.html#introduction-to-importance-sampling",
-    "href": "slides/Chapter6.html#introduction-to-importance-sampling",
-    "title": "Short Course on R Tools",
-    "section": "Introduction to Importance Sampling",
-    "text": "Introduction to Importance Sampling\n\nImportance sampling and its applications\nExample: Applying importance sampling\n\n\n# Example of importance sampling\ng &lt;- function(x) exp(-x^2 / 2)\nf &lt;- function(x) dnorm(x, mean = 1)\nx &lt;- rnorm(10000, mean = 1)\ntheta.hat &lt;- mean(g(x) / f(x))\ntheta.hat\n\n[1] 2.551057",
-    "crumbs": [
-      "Slides",
-      "CRAN submission"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter6.html#visualizing-importance-sampling",
-    "href": "slides/Chapter6.html#visualizing-importance-sampling",
-    "title": "Short Course on R Tools",
-    "section": "Visualizing Importance Sampling",
-    "text": "Visualizing Importance Sampling\n\n# Compare the original function with the importance sampling function\ncurve(g, from = -3, to = 3, col = \"blue\", lwd = 2, main=\"Importance Sampling: g(x) vs f(x)\")\ncurve(f, add = TRUE, col = \"red\", lty = 2, lwd = 2)\nlegend(\"topright\", legend=c(\"g(x)\", \"f(x)\"), col=c(\"blue\", \"red\"), lty=c(1, 2), lwd=2)",
-    "crumbs": [
-      "Slides",
-      "CRAN submission"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter6.html#control-variates",
-    "href": "slides/Chapter6.html#control-variates",
-    "title": "Short Course on R Tools",
-    "section": "Control Variates",
-    "text": "Control Variates\n\nExplanation of control variates and how they reduce variance\nExample: Using control variates in Monte Carlo integration\n\n\n# Control variates example\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x)) - (mean(x) - 0.5)\ntheta.hat\n\n[1] 0.6360788",
-    "crumbs": [
-      "Slides",
-      "CRAN submission"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter6.html#antithetic-variables",
-    "href": "slides/Chapter6.html#antithetic-variables",
-    "title": "Short Course on R Tools",
-    "section": "Antithetic Variables",
-    "text": "Antithetic Variables\n\nExplanation of antithetic variables and how they reduce variance\nExample: Applying antithetic variables\n\n\n# Antithetic variables example\nu &lt;- runif(5000)\ntheta.hat &lt;- mean((exp(-u) + exp(-(1 - u))) / 2)\ntheta.hat\n\n[1] 0.6319836\n\n1 - exp(-1)\n\n[1] 0.6321206",
-    "crumbs": [
-      "Slides",
-      "CRAN submission"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter1.html#probability-distributions",
-    "href": "slides/Chapter1.html#probability-distributions",
-    "title": "Short Course on R Tools",
-    "section": "Probability Distributions",
-    "text": "Probability Distributions\n\ndnorm(), pnorm(), qnorm()\nExploring statistical tests in R",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter1.html#statistical-tests",
-    "href": "slides/Chapter1.html#statistical-tests",
-    "title": "Short Course on R Tools",
-    "section": "Statistical Tests",
-    "text": "Statistical Tests\n\nt.test(), chisq.test()",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter1.html#defining-functions",
-    "href": "slides/Chapter1.html#defining-functions",
-    "title": "Short Course on R Tools",
-    "section": "Defining Functions",
-    "text": "Defining Functions\n\nfunction(arglist) expr\nReturn values and default arguments\n\n\nsumdice &lt;- function(n) {\n  k &lt;- sample(1:6, size=n, replace=TRUE)\n  return(sum(k))\n}\nsumdice(2)\n\n[1] 5",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter1.html#data-structures-in-r",
-    "href": "slides/Chapter1.html#data-structures-in-r",
-    "title": "Short Course on R Tools",
-    "section": "Data Structures in R",
-    "text": "Data Structures in R\n\nArrays, matrices, and data frames\n\n\n# Creating vectors and matrices\nx &lt;- c(1, 2, 3, 4)\nmatrix_x &lt;- matrix(x, nrow=2, ncol=2)\nprint(matrix_x)\n\n     [,1] [,2]\n[1,]    1    3\n[2,]    2    4\n\n\n\nExample: Iris data set\n\n\ndata(iris)\nsummary(iris)\n\n  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   \n Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  \n 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  \n Median :5.800   Median :3.000   Median :4.350   Median :1.300  \n Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  \n 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  \n Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  \n       Species  \n setosa    :50  \n versicolor:50  \n virginica :50",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter1.html#basic-plots",
-    "href": "slides/Chapter1.html#basic-plots",
-    "title": "Short Course on R Tools",
-    "section": "Basic Plots",
-    "text": "Basic Plots\n\nplot(), hist(), boxplot()\n\n\nCodePlot\n\n\n\nplot(iris);\n# boxplot(iris);\n# hist(iris[,1])",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter1.html#introduction-to-ggplot2",
-    "href": "slides/Chapter1.html#introduction-to-ggplot2",
-    "title": "Short Course on R Tools",
-    "section": "Introduction to ggplot2",
-    "text": "Introduction to ggplot2\n\nVisualizing using ggplot2\n\n\nCodePlot\n\n\n\nlibrary(ggplot2)\nggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) + \n  geom_point() + \n  geom_smooth(method=\"lm\", se=FALSE, color=\"blue\") + \n  theme_minimal() + \n  labs(title=\"Sepal vs Petal Length in Iris Dataset\", x=\"Sepal Length\", y=\"Petal Length\")",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter1.html#managing-files",
-    "href": "slides/Chapter1.html#managing-files",
-    "title": "Short Course on R Tools",
-    "section": "Managing Files",
-    "text": "Managing Files\n\nWorking directories and file input/output\nUsing scripts and automation",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter1.html#dynamic-documents",
-    "href": "slides/Chapter1.html#dynamic-documents",
-    "title": "Short Course on R Tools",
-    "section": "Dynamic Documents",
-    "text": "Dynamic Documents\n\nCreating reports with R Markdown\nIntroduction to knitr package",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter7.html#basic-monte-carlo-estimation",
-    "href": "slides/Chapter7.html#basic-monte-carlo-estimation",
-    "title": "Short Course on R Tools",
-    "section": "Basic Monte Carlo Estimation",
-    "text": "Basic Monte Carlo Estimation\n\nIntroduction to Monte Carlo estimation\nExample: Estimating the expected difference of two normal variables\n\n\nm &lt;- 1000\ng &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(2)\n    g[i] &lt;- abs(x[1] - x[2])\n}\nest &lt;- mean(g)\nest\n\n[1] 1.121213",
-    "crumbs": [
-      "Slides",
-      "Python in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter7.html#visualizing-monte-carlo-simulations",
-    "href": "slides/Chapter7.html#visualizing-monte-carlo-simulations",
-    "title": "Short Course on R Tools",
-    "section": "Visualizing Monte Carlo Simulations",
-    "text": "Visualizing Monte Carlo Simulations\n\n# Histogram of the simulated differences\nhist(g, main=\"Histogram of Differences (Monte Carlo)\", col=\"lightblue\")",
-    "crumbs": [
-      "Slides",
-      "Python in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter7.html#estimating-the-mean-squared-error-mse",
-    "href": "slides/Chapter7.html#estimating-the-mean-squared-error-mse",
-    "title": "Short Course on R Tools",
-    "section": "Estimating the Mean Squared Error (MSE)",
-    "text": "Estimating the Mean Squared Error (MSE)\n\nMonte Carlo estimation of MSE for trimmed means\n\n\nn &lt;- 20\nm &lt;- 1000\nmean_trim &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(n)\n    mean_trim[i] &lt;- mean(x, trim = 0.1)\n}\nmse &lt;- mean((mean_trim - 0)^2)\nmse\n\n[1] 0.05561001",
-    "crumbs": [
-      "Slides",
-      "Python in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter7.html#visualizing-mse-simulations",
-    "href": "slides/Chapter7.html#visualizing-mse-simulations",
-    "title": "Short Course on R Tools",
-    "section": "Visualizing MSE Simulations",
-    "text": "Visualizing MSE Simulations\n\n# Histogram of the trimmed means\nhist(mean_trim, main=\"Trimmed Means (Monte Carlo MSE)\", col=\"lightgreen\")",
-    "crumbs": [
-      "Slides",
-      "Python in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter7.html#additional-monte-carlo-techniques",
-    "href": "slides/Chapter7.html#additional-monte-carlo-techniques",
-    "title": "Short Course on R Tools",
-    "section": "Additional Monte Carlo Techniques",
-    "text": "Additional Monte Carlo Techniques\n\nExploring advanced Monte Carlo techniques for inference\nExample: Hypothesis testing with Monte Carlo methods\n\n\n# Monte Carlo test example: Hypothesis testing\nn &lt;- 50\nm &lt;- 1000\ntest_stat &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(n)\n    test_stat[i] &lt;- mean(x)\n}\np_value &lt;- mean(test_stat &gt;= 1.96)\np_value\n\n[1] 0",
-    "crumbs": [
-      "Slides",
-      "Python in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter7.html#conclusion",
-    "href": "slides/Chapter7.html#conclusion",
-    "title": "Short Course on R Tools",
-    "section": "Conclusion",
-    "text": "Conclusion\n\nRecap of Monte Carlo methods in inference, MSE estimation, and hypothesis testing\nPractice: Apply these methods to other inferential problems\n\n\n\n\n\n🔗 tinyurl.com/SCiRT",
-    "crumbs": [
-      "Slides",
-      "Python in R"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter3.html#sampling-from-a-finite-population",
-    "href": "slides/Chapter3.html#sampling-from-a-finite-population",
-    "title": "Short Course on R Tools",
-    "section": "Sampling from a Finite Population",
-    "text": "Sampling from a Finite Population\n\nIntroduction to finite population sampling\nExample: Tossing coins, choosing lottery numbers\n\n\n# Sampling examples\nsample(0:1, size = 10, replace = TRUE)  # Tossing coins\n\n [1] 1 1 0 1 0 0 1 1 0 1\n\nsample(1:100, size = 6, replace = FALSE)  # Choosing lottery numbers\n\n[1]  8 89 18 31 15 56\n\nsample(letters)  # Permutation of letters\n\n [1] \"e\" \"n\" \"u\" \"w\" \"h\" \"g\" \"d\" \"l\" \"y\" \"b\" \"a\" \"x\" \"q\" \"k\" \"v\" \"c\" \"z\" \"s\" \"r\"\n[20] \"f\" \"t\" \"p\" \"j\" \"i\" \"o\" \"m\"",
-    "crumbs": [
-      "Slides",
-      "GitHub"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter3.html#multinomial-distribution",
-    "href": "slides/Chapter3.html#multinomial-distribution",
-    "title": "Short Course on R Tools",
-    "section": "Multinomial Distribution",
-    "text": "Multinomial Distribution\n\nIntroduction to multinomial distribution\nExample: Sampling from a multinomial distribution\n\n\n# Sample from multinomial distribution\nx &lt;- sample(1:3, size = 100, replace = TRUE, prob = c(.2, .3, .5))\ntable(x)\n\nx\n 1  2  3 \n19 35 46",
-    "crumbs": [
-      "Slides",
-      "GitHub"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter3.html#continuous-case",
-    "href": "slides/Chapter3.html#continuous-case",
-    "title": "Short Course on R Tools",
-    "section": "Continuous Case",
-    "text": "Continuous Case\n\nExplanation of the inverse transform method for continuous distributions\nExample: Simulating exponential random variables\n\n\n# Inverse transform method for exponential distribution\nn &lt;- 1000\nU &lt;- runif(n)\nX &lt;- -log(1 - U)\nhist(X, main=\"Exponential Distribution via Inverse Transform\", col=\"lightblue\")",
-    "crumbs": [
-      "Slides",
-      "GitHub"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter3.html#discrete-case",
-    "href": "slides/Chapter3.html#discrete-case",
-    "title": "Short Course on R Tools",
-    "section": "Discrete Case",
-    "text": "Discrete Case\n\nExample of applying the inverse transform method to discrete random variables\n\n\n# Inverse transform method for geometric distribution\np &lt;- 0.5\nX_geom &lt;- ceiling(log(1 - runif(n)) / log(1 - p))\nhist(X_geom, main=\"Geometric Distribution via Inverse Transform\", col=\"lightgreen\")",
-    "crumbs": [
-      "Slides",
-      "GitHub"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter3.html#introduction-to-acceptance-rejection-method",
-    "href": "slides/Chapter3.html#introduction-to-acceptance-rejection-method",
-    "title": "Short Course on R Tools",
-    "section": "Introduction to Acceptance-Rejection Method",
-    "text": "Introduction to Acceptance-Rejection Method\n\nExplanation of the acceptance-rejection method\nExample: Sampling from a target distribution\n\n\n# Acceptance-rejection method example\ntarget &lt;- function(x) { ifelse(x &gt; 0, exp(-x), 0) }\nproposal &lt;- function(x) { dnorm(x, mean = 2, sd = 1) }\n\nX &lt;- rnorm(1000, mean = 2, sd = 1)\naccept &lt;- runif(1000) &lt; target(X) / (1.5 * proposal(X))\n\nhist(X[accept], main=\"Accepted Samples from Target Distribution\", col=\"lightcoral\")",
-    "crumbs": [
-      "Slides",
-      "GitHub"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter3.html#transformation-of-random-variables",
-    "href": "slides/Chapter3.html#transformation-of-random-variables",
-    "title": "Short Course on R Tools",
-    "section": "Transformation of Random Variables",
-    "text": "Transformation of Random Variables\n\nIntroduction to transformation methods\nExample: Box-Muller transform for generating normal random variables\n\n\n# Box-Muller transform\nn &lt;- 1000\nU1 &lt;- runif(n)\nU2 &lt;- runif(n)\nZ1 &lt;- sqrt(-2 * log(U1)) * cos(2 * pi * U2)\nZ2 &lt;- sqrt(-2 * log(U1)) * sin(2 * pi * U2)\nhist(Z1, main=\"Normal Distribution via Box-Muller\", col=\"lightblue\")",
-    "crumbs": [
-      "Slides",
-      "GitHub"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter3.html#sums-and-mixtures",
-    "href": "slides/Chapter3.html#sums-and-mixtures",
-    "title": "Short Course on R Tools",
-    "section": "Sums and Mixtures",
-    "text": "Sums and Mixtures\n\nExplanation of sums and mixtures of random variables\nExample: Mixture of normals\n\n\n# Mixture of normals\nlibrary(MASS)\nmu1 &lt;- 0; mu2 &lt;- 3; sigma1 &lt;- 1; sigma2 &lt;- 2\np &lt;- 0.3\nX &lt;- ifelse(runif(n) &lt; p, rnorm(n, mu1, sigma1), rnorm(n, mu2, sigma2))\nhist(X, main=\"Mixture of Normal Distributions\", col=\"lightgreen\")",
-    "crumbs": [
-      "Slides",
-      "GitHub"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter8.html#classification-on-mnist",
-    "href": "slides/Chapter8.html#classification-on-mnist",
-    "title": "Short Course on R Tools",
-    "section": "Classification on MNIST",
-    "text": "Classification on MNIST\nmodel %&gt;% compile(\n  optimizer = 'rmsprop',\n  loss = 'categorical_crossentropy',\n  metrics = c('accuracy')\n)\nhistory &lt;- model %&gt;% fit(\n  x_train, y_train,\n  epochs = 10, batch_size = 128,\n  validation_split = 0.2\n)\n\nData preprocessing: normalization, one-hot encoding\nCallbacks: EarlyStopping, ModelCheckpoint\n\n??? note Show training curves: plot(history).",
-    "crumbs": [
-      "Slides",
-      "Deep Learning in R"
+      "RCpp"
     ]
   },
   {
@@ -590,36 +546,91 @@
     ]
   },
   {
-    "objectID": "computing/computing-cheatsheets.html",
-    "href": "computing/computing-cheatsheets.html",
-    "title": "R cheatsheets",
-    "section": "",
-    "text": "The following cheatsheets come from https://posit.co/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
+    "objectID": "slides/Chapter8.html#classification-on-mnist",
+    "href": "slides/Chapter8.html#classification-on-mnist",
+    "title": "Short Course on R Tools",
+    "section": "Classification on MNIST",
+    "text": "Classification on MNIST\nmodel %&gt;% compile(\n  optimizer = 'rmsprop',\n  loss = 'categorical_crossentropy',\n  metrics = c('accuracy')\n)\nhistory &lt;- model %&gt;% fit(\n  x_train, y_train,\n  epochs = 10, batch_size = 128,\n  validation_split = 0.2\n)\n\nData preprocessing: normalization, one-hot encoding\nCallbacks: EarlyStopping, ModelCheckpoint\n\n??? note Show training curves: plot(history).",
     "crumbs": [
-      "Computing",
-      "Cheatsheets"
+      "Slides",
+      "Deep Learning in R"
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Short Course on R Tools - (SCoRT)",
-    "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n\n1\nTue, Aug 26\nDevelop your own professional R package\n📚Chapt 1\nR👩‍💻\n\n\n\n\n\n\nThu, Aug 28\nEnhance performance with Rcpp (C++)\n📚Chapt 2\nR👩‍💻\n\n\n\n\n\n\nFri, Aug 29\n\n\n\n\n\n\n📝 [HW 0]\n\n\n2\nTue, Sep 2\nManage and collaborate via GitHub\n📚Chapt 3\nR👩‍💻\n\n\n\n\n\n\nThu, Sep 4\nObject-Oriented Programming (OOP) in R\n📚Chapt 4\nR Shiny👩‍💻\n\n\n\n\n\n\nFri, Sep 5\n\n\n\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n3\nTue, Sep 9\nCreate dynamic Shiny web applications\n📚Chapt 5\nD2L✍️\n\n\n\n\n\n\nThu, Sep 11\nNavigate the CRAN submission process\n📚Chapt 6\nR👩‍💻\n\n\n\n\n\n\nFri, Sep 12\n\n\n\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n4\nTue, Sep 16\nIntegrate Python in R using Reticulate\n📚Chapt 7\nR👩‍💻\n\n\n\n\n\n\nThu, Sep 18\nDeep Learning in R\n📚Chapt 8\nR Shiny👩‍💻\n\n\n\n\n\n\nFri, Sep 19\n\n\n\n\n\n\n📝 HW 3 at 11:50 pm",
+    "objectID": "slides/Chapter3.html#sampling-from-a-finite-population",
+    "href": "slides/Chapter3.html#sampling-from-a-finite-population",
+    "title": "Short Course on R Tools",
+    "section": "Sampling from a Finite Population",
+    "text": "Sampling from a Finite Population\n\nIntroduction to finite population sampling\nExample: Tossing coins, choosing lottery numbers\n\n\n# Sampling examples\nsample(0:1, size = 10, replace = TRUE)  # Tossing coins\n\n [1] 1 1 1 1 0 1 0 0 1 1\n\nsample(1:100, size = 6, replace = FALSE)  # Choosing lottery numbers\n\n[1] 26 57 20 22 50 77\n\nsample(letters)  # Permutation of letters\n\n [1] \"s\" \"i\" \"j\" \"p\" \"x\" \"b\" \"h\" \"c\" \"n\" \"z\" \"f\" \"l\" \"y\" \"d\" \"o\" \"g\" \"q\" \"w\" \"m\"\n[20] \"t\" \"r\" \"v\" \"k\" \"u\" \"e\" \"a\"",
     "crumbs": [
-      "Course information",
-      "Schedule"
+      "Slides",
+      "GitHub"
     ]
   },
   {
-    "objectID": "course-links.html",
-    "href": "course-links.html",
-    "title": "Useful links",
-    "section": "",
-    "text": "RStudio\nStat Calculator\nDistribution Calculator\n🔗 on dna\n🔗 StatCalc(JAMM)\n🔗 DistCalc\n\n\nAdvanced Texbooks\n🔗 R Package\n🔗 Advanced R by Hadley Wickham\n🔗 Quarto\n🔗 R Markdown\n🔗 ggplot2: Elegant Graphics for Data Analysis\n🔗 Fundamentals of Data Visualization\n🔗 Data Visualization: A Practical Introduction\n🔗 R for Data Science\n\n\nSome Package documentation\n🔗 ggplot2: ggplot2.tidyverse.org\n🔗 dplyr: dplyr.tidyverse.org\n🔗 tidyr: tidyr.tidyverse.org\n🔗 forcats: forcats.tidyverse.org\n🔗 stringr: stringr.tidyverse.org\n🔗 lubridate: lubridate.tidyverse.org\n🔗 readr: readr.tidyverse.org",
+    "objectID": "slides/Chapter3.html#multinomial-distribution",
+    "href": "slides/Chapter3.html#multinomial-distribution",
+    "title": "Short Course on R Tools",
+    "section": "Multinomial Distribution",
+    "text": "Multinomial Distribution\n\nIntroduction to multinomial distribution\nExample: Sampling from a multinomial distribution\n\n\n# Sample from multinomial distribution\nx &lt;- sample(1:3, size = 100, replace = TRUE, prob = c(.2, .3, .5))\ntable(x)\n\nx\n 1  2  3 \n20 34 46",
     "crumbs": [
-      "Course information",
-      "Useful links"
+      "Slides",
+      "GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter3.html#continuous-case",
+    "href": "slides/Chapter3.html#continuous-case",
+    "title": "Short Course on R Tools",
+    "section": "Continuous Case",
+    "text": "Continuous Case\n\nExplanation of the inverse transform method for continuous distributions\nExample: Simulating exponential random variables\n\n\n# Inverse transform method for exponential distribution\nn &lt;- 1000\nU &lt;- runif(n)\nX &lt;- -log(1 - U)\nhist(X, main=\"Exponential Distribution via Inverse Transform\", col=\"lightblue\")",
+    "crumbs": [
+      "Slides",
+      "GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter3.html#discrete-case",
+    "href": "slides/Chapter3.html#discrete-case",
+    "title": "Short Course on R Tools",
+    "section": "Discrete Case",
+    "text": "Discrete Case\n\nExample of applying the inverse transform method to discrete random variables\n\n\n# Inverse transform method for geometric distribution\np &lt;- 0.5\nX_geom &lt;- ceiling(log(1 - runif(n)) / log(1 - p))\nhist(X_geom, main=\"Geometric Distribution via Inverse Transform\", col=\"lightgreen\")",
+    "crumbs": [
+      "Slides",
+      "GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter3.html#introduction-to-acceptance-rejection-method",
+    "href": "slides/Chapter3.html#introduction-to-acceptance-rejection-method",
+    "title": "Short Course on R Tools",
+    "section": "Introduction to Acceptance-Rejection Method",
+    "text": "Introduction to Acceptance-Rejection Method\n\nExplanation of the acceptance-rejection method\nExample: Sampling from a target distribution\n\n\n# Acceptance-rejection method example\ntarget &lt;- function(x) { ifelse(x &gt; 0, exp(-x), 0) }\nproposal &lt;- function(x) { dnorm(x, mean = 2, sd = 1) }\n\nX &lt;- rnorm(1000, mean = 2, sd = 1)\naccept &lt;- runif(1000) &lt; target(X) / (1.5 * proposal(X))\n\nhist(X[accept], main=\"Accepted Samples from Target Distribution\", col=\"lightcoral\")",
+    "crumbs": [
+      "Slides",
+      "GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter3.html#transformation-of-random-variables",
+    "href": "slides/Chapter3.html#transformation-of-random-variables",
+    "title": "Short Course on R Tools",
+    "section": "Transformation of Random Variables",
+    "text": "Transformation of Random Variables\n\nIntroduction to transformation methods\nExample: Box-Muller transform for generating normal random variables\n\n\n# Box-Muller transform\nn &lt;- 1000\nU1 &lt;- runif(n)\nU2 &lt;- runif(n)\nZ1 &lt;- sqrt(-2 * log(U1)) * cos(2 * pi * U2)\nZ2 &lt;- sqrt(-2 * log(U1)) * sin(2 * pi * U2)\nhist(Z1, main=\"Normal Distribution via Box-Muller\", col=\"lightblue\")",
+    "crumbs": [
+      "Slides",
+      "GitHub"
+    ]
+  },
+  {
+    "objectID": "slides/Chapter3.html#sums-and-mixtures",
+    "href": "slides/Chapter3.html#sums-and-mixtures",
+    "title": "Short Course on R Tools",
+    "section": "Sums and Mixtures",
+    "text": "Sums and Mixtures\n\nExplanation of sums and mixtures of random variables\nExample: Mixture of normals\n\n\n# Mixture of normals\nlibrary(MASS)\nmu1 &lt;- 0; mu2 &lt;- 3; sigma1 &lt;- 1; sigma2 &lt;- 2\np &lt;- 0.3\nX &lt;- ifelse(runif(n) &lt; p, rnorm(n, mu1, sigma1), rnorm(n, mu2, sigma2))\nhist(X, main=\"Mixture of Normal Distributions\", col=\"lightgreen\")",
+    "crumbs": [
+      "Slides",
+      "GitHub"
     ]
   }
 ]

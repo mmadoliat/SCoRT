@@ -416,9 +416,8 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </div>
 
 </section>
-<section>
-<section id="outline" class="title-slide slide level1 center">
-<h1>Outline</h1>
+<section id="outline" class="slide level2">
+<h2>Outline</h2>
 <ul>
 <li>Motivation &amp; Introduction</li>
 <li>Getting Started with <code>cppFunction()</code></li>
@@ -432,12 +431,20 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li>Advanced Topics &amp; Resources</li>
 </ul>
 </section>
-<section class="slide level2">
-
-</section></section>
-<section>
 <section id="motivation-introduction" class="title-slide slide level1 center">
 <h1>Motivation &amp; Introduction</h1>
+<div class="fragment fade-in">
+<p>Fade in</p>
+</div>
+<div class="fragment fade-up">
+<p>Slide up while fading in</p>
+</div>
+<div class="fragment fade-left">
+<p>Slide left while fading in</p>
+</div>
+<div class="fragment fade-in-then-semi-out">
+<p>Fade in then semi out</p>
+</div>
 <ul>
 <li><p><strong>Performance Bottlenecks</strong>: loops, recursion, complex operations</p></li>
 <li><p><strong>Rcpp</strong>: smooth bridge between R and C++</p></li>
@@ -450,12 +457,9 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </ul>
 <p>??? note Identify real bottlenecks with profiling before using C++.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
-<section id="getting-started-cppfunction" class="title-slide slide level1 center">
-<h1>Getting Started: <code>cppFunction()</code></h1>
+<section id="using-cppfunction" class="title-slide slide level1 center">
+<h1>Using <code>cppFunction()</code></h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a></a><span class="co">// Define and compile inline C++ function</span></span>
 <span id="cb1-2"><a></a><span class="dt">int</span> add<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> y<span class="op">,</span> <span class="dt">int</span> z<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-3"><a></a>  <span class="cf">return</span> x <span class="op">+</span> y <span class="op">+</span> z<span class="op">;</span></span>
@@ -467,10 +471,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </ul>
 <p>??? note Show live demo: adding two numbers with <code>cppFunction()</code>.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="using-sourcecpp" class="title-slide slide level1 center">
 <h1>Using <code>sourceCpp()</code></h1>
 <ul>
@@ -488,10 +489,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </ul>
 <p>??? note Highlight difference between inline and file-based C++.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="data-types-conversions" class="title-slide slide level1 center">
 <h1>Data Types &amp; Conversions</h1>
 <ul>
@@ -508,9 +506,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </ul>
 <p>??? note Emphasize zero-based indexing in C++!</p>
 </section>
-<section class="slide level2">
 
-</section></section>
 <section>
 <section id="rcpp-core-classes" class="title-slide slide level1 center">
 <h1>Rcpp Core Classes</h1>
@@ -538,11 +534,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li>Create with <code>Vector::create()</code></li>
 </ul>
 <p>??? note Quick example: extracting residuals from <code>lm</code>.</p>
-</section>
-<section class="slide level2">
-
 </section></section>
-<section>
 <section id="handling-missing-values" class="title-slide slide level1 center">
 <h1>Handling Missing Values</h1>
 <ul>
@@ -552,9 +544,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </ul>
 <p>??? note Demonstrate <code>evalCpp("NA_REAL + 1")</code>.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
 <section>
 <section id="standard-template-library-stl" class="title-slide slide level1 center">
 <h1>Standard Template Library (STL)</h1>
@@ -574,9 +564,6 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li>Efficient growth &amp; lookup</li>
 </ul>
 <p>??? note Show run-length encoding (<code>rleC</code>) example.</p>
-</section>
-<section class="slide level2">
-
 </section></section>
 <section>
 <section id="case-studies-benchmarks" class="title-slide slide level1 center">
@@ -598,11 +585,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li>Memory overhead comparisons</li>
 </ul>
 <p>??? note Plot benchmark timings side-by-side.</p>
-</section>
-<section class="slide level2">
-
 </section></section>
-<section>
 <section id="using-rcpp-in-packages" class="title-slide slide level1 center">
 <h1>Using Rcpp in Packages</h1>
 <ul>
@@ -616,10 +599,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </ul>
 <p>??? note Recommend best practices for CI &amp; testing.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="advanced-topics-resources" class="title-slide slide level1 center">
 <h1>Advanced Topics &amp; Resources</h1>
 <ul>
@@ -631,10 +611,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </ul>
 <p>??? note Encourage exploring community resources.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="summary-qa" class="title-slide slide level1 center">
 <h1>Summary &amp; Q&amp;A</h1>
 <ul>
@@ -647,9 +624,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li><p>Questions?</p></li>
 </ul>
 </section>
-<section class="slide level2">
 
-</section></section>
 <section id="thank-you" class="title-slide slide level1 center">
 <h1>Thank You</h1>
 <ul>
