@@ -8,7 +8,7 @@ title-slide-attributes:
 format: revealjs
 ---
 
-# Outline
+## Outline
 
 -   Motivation & Introduction
 -   Getting Started with `cppFunction()`
@@ -21,9 +21,22 @@ format: revealjs
 -   Using Rcpp in Packages
 -   Advanced Topics & Resources
 
-------------------------------------------------------------------------
-
 # Motivation & Introduction
+::: {.fragment .fade-in}
+Fade in
+:::
+
+::: {.fragment .fade-up}
+Slide up while fading in
+:::
+
+::: {.fragment .fade-left}
+Slide left while fading in
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+Fade in then semi out
+:::
 
 -   **Performance Bottlenecks**: loops, recursion, complex operations
 
@@ -37,11 +50,9 @@ format: revealjs
 
 ??? note Identify real bottlenecks with profiling before using C++.
 
-------------------------------------------------------------------------
+# Using `cppFunction()`
 
-# Getting Started: `cppFunction()`
-
-``` cpp
+``` cpp 
 // Define and compile inline C++ function
 int add(int x, int y, int z) {
   return x + y + z;
@@ -54,7 +65,7 @@ int add(int x, int y, int z) {
 
 ??? note Show live demo: adding two numbers with `cppFunction()`.
 
-------------------------------------------------------------------------
+
 
 # Using `sourceCpp()`
 
@@ -76,8 +87,6 @@ int add(int x, int y, int z) {
 
 ??? note Highlight difference between inline and file-based C++.
 
-------------------------------------------------------------------------
-
 # Data Types & Conversions
 
 -   **R vectors ↔ C++ classes**:
@@ -92,8 +101,6 @@ int add(int x, int y, int z) {
     -   Constructors: `NumericVector out(n)`
 
 ??? note Emphasize zero-based indexing in C++!
-
-------------------------------------------------------------------------
 
 # Rcpp Core Classes
 
@@ -119,8 +126,6 @@ int add(int x, int y, int z) {
 
 ??? note Quick example: extracting residuals from `lm`.
 
-------------------------------------------------------------------------
-
 # Handling Missing Values
 
 -   **Scalars**: `NA_INTEGER`, `NA_REAL`, `NA_LOGICAL`, `NA_STRING`
@@ -128,8 +133,6 @@ int add(int x, int y, int z) {
 -   Beware of C++ arithmetic on NA: e.g. `NA_INTEGER + 1`
 
 ??? note Demonstrate `evalCpp("NA_REAL + 1")`.
-
-------------------------------------------------------------------------
 
 # Standard Template Library (STL)
 
@@ -144,8 +147,6 @@ int add(int x, int y, int z) {
 -   Efficient growth & lookup
 
 ??? note Show run-length encoding (`rleC`) example.
-
-------------------------------------------------------------------------
 
 # Case Studies & Benchmarks
 
@@ -165,8 +166,6 @@ NumericMatrix gibbs_cpp(int N, int thin) { ... }
 
 ??? note Plot benchmark timings side-by-side.
 
-------------------------------------------------------------------------
-
 # Using Rcpp in Packages
 
 -   Add to package:
@@ -180,8 +179,6 @@ NumericMatrix gibbs_cpp(int N, int thin) { ... }
 
 ??? note Recommend best practices for CI & testing.
 
-------------------------------------------------------------------------
-
 # Advanced Topics & Resources
 
 -   **Attributes vignette**: `vignette('Rcpp-attributes')`
@@ -192,8 +189,6 @@ NumericMatrix gibbs_cpp(int N, int thin) { ... }
 
 ??? note Encourage exploring community resources.
 
-------------------------------------------------------------------------
-
 # Summary & Q&A
 
 -   Key takeaways:
@@ -203,8 +198,6 @@ NumericMatrix gibbs_cpp(int N, int thin) { ... }
     3.  Master data conversions & STL
 
 -   Questions?
-
-------------------------------------------------------------------------
 
 # Thank You
 
