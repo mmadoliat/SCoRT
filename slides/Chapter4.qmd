@@ -5,31 +5,24 @@ title-slide-attributes:
   data-background-image: mu-bg.png
   data-background-size: stretch
   data-slide-number: none
-format: revealjs
-transition: slide
-slide-number: true
-code-line-numbers: true
-center: true
-echo: false
-warning: false
-message: false
+format: 
+  revealjs:
+    transition: fade
+    scrollable: true
+    revealjs-plugins:
+     - fullscreen
 ---
 
 # Outline
-
+::: {.fragment .fade-up}
 -   OOP Paradigms in R
-
 -   Base Types & Functional OOP
-
 -   S3 Classes & Methods
-
 -   S4 Classes & Methods
-
 -   R6 Classes & Reference Semantics
-
 -   Trade-offs & Best Practices
-
 -   Hands-on Exercises
+:::
 
 # OOP Paradigms in R
 
@@ -51,7 +44,7 @@ message: false
 
 -   Example: simple counter
 
-```         
+``` {.r}         
 make_counter <- function() {
   cnt <- 0
   function() { cnt <<- cnt + 1; cnt }
@@ -71,7 +64,7 @@ c1()  # 2
 
 -   **Generics**: `UseMethod()`
 
-```         
+``` {.r}         
 mean.myclass <- function(x, ...) {
   # custom mean
 }
@@ -93,7 +86,7 @@ mean(x)
 
 -   **Constructor function**:
 
-    ```         
+    ``` {.r}
     new_myclass <- function(x) {
       stopifnot(is.numeric(x))
       structure(x, class = "myclass")
@@ -110,7 +103,7 @@ mean(x)
 
 -   **Definition**: `setClass()` with slots
 
-```         
+``` {.r}
 setClass("Person",
   slots = list(
     name = "character",
@@ -127,13 +120,15 @@ setClass("Person",
 
 -   **Define generic**:
 
-    ```         
+    ``` {.r}         
     setGeneric("greet", function(x) standardGeneric("greet"))
     ```
 
+. . .
+
 -   **Define method**:
 
-    ```         
+    ``` {.r}         
     setMethod("greet", "Person", function(x) {
       paste("Hello, my name is", x@name)
     })
@@ -147,7 +142,7 @@ setClass("Person",
 
 -   **Inheritance**:
 
-    ```         
+    ``` {.r}
     setClass("Employee", contains = "Person",
       slots = list(salary = "numeric"))
     ```
@@ -158,15 +153,13 @@ setClass("Person",
 
 ??? note Encourage robust class definitions.
 
-------------------------------------------------------------------------
-
 # R6: Reference Classes
 
 -   **Encapsulated OOP**: mutable fields + methods
 
 -   **Define**:
 
-    ```         
+    ``` {.r}
     library(R6)
     PersonR6 <- R6Class("PersonR6",
       public = list(
@@ -179,7 +172,7 @@ setClass("Person",
 
 -   **Instantiate & use**:
 
-    ```         
+    ``` {.r}
     p <- PersonR6$new("Bob")
     p$greet()
     ```

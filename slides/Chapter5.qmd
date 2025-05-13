@@ -7,22 +7,23 @@ title-slide-attributes:
   data-slide-number: none
 format:
   revealjs:
-    auto-animate: true
-    slide-number: true
     transition: fade
+    scrollable: true
+    revealjs-plugins:
+     - fullscreen
 ---
 
 # Outline
-::: incremental
-1.  Introduction to Shiny
-2.  App Structure: UI & Server
-3.  Inputs, Outputs, & Reactivity
-4.  Reactive Programming Patterns
-5.  Layouts & Styling
-6.  Modules for Reusable Components
-7.  Advanced Topics: JavaScript, HTML, CSS
-8.  Deployment & Best Practices
-9.  Hands-on Exercises
+::: {.fragment .fade-up}
+-   Introduction to Shiny
+-   App Structure: UI & Server
+-   Inputs, Outputs, & Reactivity
+-   Reactive Programming Patterns
+-   Layouts & Styling
+-   Modules for Reusable Components
+-   Advanced Topics: JavaScript, HTML, CSS
+-   Deployment & Best Practices
+-   Hands-on Exercises
 :::
 
 # 1. Introduction to Shiny
@@ -43,10 +44,34 @@ format:
 
 ??? note Show live example: run `shiny::runExample("01_hello")`.
 
-# 2. App Structure
+# 2. App Structure {auto-animate="true"}
 
-::: {.shrink-code}
-``` {.r code-line-numbers=1-2|3-9|11-15|17 height=200}
+::: shrink-code
+``` {.r code-line-numbers="1-2|3-5|7-9|11" height="200"}
+# app.R single-file app
+library(shiny)
+ui <- fluidPage(
+  ...
+)
+
+server <- function(input, output) {
+  ...
+}
+
+shinyApp(ui, server)
+```
+:::
+
+-   `ui` defines layout and inputs/outputs
+
+-   `server` contains R code & reactivity
+
+??? note Compare single-file vs UI/server file structure.
+
+# 2. App Structure {auto-animate="true"}
+
+::: shrink-code
+``` {.r code-line-numbers="1-2|3-9|11-15|17" height="200"}
 # app.R single-file app
 library(shiny)
 ui <- fluidPage(
@@ -73,6 +98,11 @@ shinyApp(ui, server)
 
 ??? note Compare single-file vs UI/server file structure.
 
+## {fullscreen=true}
+
+<iframe class="stretch" data-src="https://gallery.shinyapps.io/050-kmeans-example/">
+</iframe>
+
 # 3. Inputs & Outputs
 
 -   **Inputs**: `textInput()`, `selectInput()`, `sliderInput()`, etc.
@@ -81,7 +111,7 @@ shinyApp(ui, server)
 
 -   **Binding**: output objects referenced by `output$...`
 
-``` {.r}         
+``` {.r}
 input$slider  # numeric
 input$check   # logical
 ```
@@ -92,14 +122,14 @@ input$check   # logical
 
 -   **Reactive expressions**: cache results
 
-    ``` {.r}
+    ``` r
     rv <- reactive({ rnorm(input$obs) })
     output$plot <- renderPlot(hist(rv()))
     ```
 
 -   **Observers**: side-effect actions
 
-    ``` {.r}
+    ``` r
     observeEvent(input$go, { showModal(...) })
     ```
 
@@ -134,6 +164,8 @@ input$check   # logical
       )
     }
     ```
+
+. . .
 
 -   **Define module server**:
 

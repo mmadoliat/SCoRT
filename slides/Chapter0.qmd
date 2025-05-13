@@ -13,7 +13,7 @@ format:
      - fullscreen
 ---
 
-## Outline {auto-animate="true"}
+## Outline
 ::: {.fragment .fade-up}
 -   Motivation & Introduction
 -   Getting Started with `cppFunction()`
@@ -27,23 +27,18 @@ format:
 -   Advanced Topics & Resources
 :::
 
-# Motivation & Introduction
+## Auto-Animate {auto-animate="true"}
 
--   **Performance Bottlenecks**: loops, recursion, complex operations
+``` {.cpp}
+// Define and compile inline C++ function
+  return x - y - z;
+int add(int x, int y, int z) {
+  return x - y - z;
+  return x - y - z;
+}
+```
 
--   **Rcpp**: smooth bridge between R and C++
-
-. . .
-
--   **Advantages**:
-
-    -   Low overhead function calls
-    -   Access to STL (data structures & algorithms)
-    -   Cleaner, maintainable code
-
-??? note Identify real bottlenecks with profiling before using C++.
-
-# Using `cppFunction()`
+## Auto-Animate {auto-animate="true"}
 
 ``` {.cpp}
 // Define and compile inline C++ function
@@ -52,11 +47,22 @@ int add(int x, int y, int z) {
 }
 ```
 
-::: incremental
+## {fullscreen=true}
+
+<iframe class="stretch" data-src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d6600.253099682651!2d103.64242507676232!3d-1.634994636110386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f100!3m2!1m1!2zMcKwMzgnMDYuMCJTIDEwM8KwMzgnNDIuMCJF!5e1!3m2!1sen!2sus!4v1747146234191!5m2!1sen!2sus"></iframe>
+
+# Using `cppFunction()`
+
+``` cpp
+// Define and compile inline C++ function
+int add(int x, int y, int z) {
+  return x + y + z;
+}
+```
+
 -   Use `cppFunction()` in R console or script
 -   Fast prototyping & testing
 -   Good for small functions
-:::
 
 ??? note Show live demo: adding two numbers with `cppFunction()`.
 
@@ -64,18 +70,14 @@ int add(int x, int y, int z) {
 
 -   Create standalone `.cpp` files with:
 
-    ``` {.cpp}
+    ``` cpp
     #include <Rcpp.h>
     using namespace Rcpp;
     // [[Rcpp::export]]
     double meanC(NumericVector x) { ... }
     ```
 
-. . .
-
 -   Compile with `sourceCpp('file.cpp')`
-
-. . .
 
 -   Benefits:
 
@@ -112,9 +114,9 @@ int add(int x, int y, int z) {
 
 -   Positional vs named args:
 
-``` {.cpp}
-f(_["x"] = xval, _["y"] = yval);
-```
+    ``` cpp
+    f(_["x"] = xval, _["y"] = yval);
+    ```
 
 ## Attributes
 
