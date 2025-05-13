@@ -14,6 +14,7 @@ format:
 ---
 
 # Outline
+
 ::: {.fragment .fade-up}
 -   Introduction & Setup
 -   Fundamentals of Neural Networks
@@ -44,92 +45,127 @@ format:
 
 ??? note Demo environment check: `tensorflow::tf_config()`.
 
-## Classical Programming vs Machine Learning  {auto-animate="true"}
-    - Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
-    
-::: {.fragment .fade-up .center}
-Reality is however quite far from this dream
+## Classical Programming vs Machine Learning {.smaller auto-animate="true"}
+
+- Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
+
+::: {.fragment .fade-in-then-out}
+<span style="color: #d6336c"><center>Reality is however quite far from this dream</center></span>
 :::
 
-## Classical Programming vs Machine Learning  {auto-animate="true"}
-    - Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
-    - AI: the effort to automate intellectual tasks normally performed by humans.
-    
+## Classical Programming vs Machine Learning {.smaller auto-animate="true"}
+
+- Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
+- AI: the effort to automate intellectual tasks normally performed by humans.
+
 ::: r-stack
-![](images/DLiR/classical-programming.png){width=400px}
+![](images/DLiR/classical-programming.png){width="400px"}
 :::
 
-## Classical Programming vs Machine Learning  {auto-animate="true"}
-    - Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
-    - AI: the effort to automate intellectual tasks normally performed by humans.
-    - ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data?
-    
+## Classical Programming vs Machine Learning {.smaller auto-animate="true"}
+
+- Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
+- AI: the effort to automate intellectual tasks normally performed by humans.
+- ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data?
+
 ::: r-stack
-![](images/DLiR/classical-programming.png){width=400px}
-![](images/DLiR/machine-learning.png){width=400px}
+![](images/DLiR/classical-programming.png){width="400px"} ![](images/DLiR/machine-learning.png){width="400px"}
 :::
 
-## Classical Programming vs Machine Learning  {auto-animate="true"}
-    - Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
-    - AI: the effort to automate intellectual tasks normally performed by humans.
-    - ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data?
-    
+## Classical Programming vs Machine Learning {.smaller auto-animate="true"}
+
+- Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
+- AI: the effort to automate intellectual tasks normally performed by humans.
+- ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data?
+
 ::: r-stack
-![](images/DLiR/classical-programming.png){width=400px}
-![](images/DLiR/machine-learning.png){width=400px}
+![](images/DLiR/classical-programming.png){width="400px"} ![](images/DLiR/machine-learning.png){width="400px"}
 :::
 
 ::: {.r-hstack style="margin-top: 1em;"}
 ::: {data-id="box1" auto-animate-delay="0" style="background: #2780e3; width: 200px; height: 150px; margin: 10px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
-AI
+Artificial Intelligence
 :::
 
 ::: {data-id="box2" auto-animate-delay="0.1" style="background: #3fb618; width: 200px; height: 150px; margin: 10px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
-ML
+Machine learning
 :::
 
 ::: {data-id="box3" auto-animate-delay="0.2" style="background: #e83e8c; width: 200px; height: 150px; margin: 10px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
-DL
+Deep learning
 :::
 :::
 
-## Classical Programming vs Machine Learning  {auto-animate="true"}
-    - Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
-    - AI: the effort to automate intellectual tasks normally performed by humans.
-    - ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data?
-    
+## Classical Programming vs Machine Learning {.smaller auto-animate="true"}
+
+- Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
+- AI: the effort to automate intellectual tasks normally performed by humans.
+- ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data?
+
 ::: r-stack
-![](images/DLiR/classical-programming.png){width=400px}
-![](images/DLiR/machine-learning.png){width=400px}
+![](images/DLiR/classical-programming.png){width="400px"} ![](images/DLiR/machine-learning.png){width="400px"}
 :::
 
+::: r-stack
 ::: {.r-stack style="margin-top: 1em;"}
-::: {data-id="box1" style="background: #2780e3; width: 200px; height: 200px; border-radius: 200px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
-AI
+::: {data-id="box1" style="background: #2780e3; width: 600px; height: 200px; border-radius: 200px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
+Artificial Intelligence
 :::
 
-::: {data-id="box2" style="background: #3fb618; width: 130px; height: 130px; border-radius: 200px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
-ML
+::: {data-id="box2" style="background: #3fb618; width: 430px; height: 130px; border-radius: 200px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
+Machine learning
 :::
 
-::: {data-id="box3" style="background: #e83e8c; width: 60px; height: 60px; border-radius: 200px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
-DL
+::: {data-id="box3" style="background: #e83e8c; width: 260px; height: 60px; border-radius: 200px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
+Deep learning
 :::
 :::
 
-## Classical Programming vs Machine Learning {auto-animate="true"}
-    - Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
-    - AI: the effort to automate intellectual tasks normally performed by humans.
-    - ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data?
+![](images/DLiR/AI-ML-DL.png){.fragment width="750"}
+:::
+
+## Recipes of a Machine Learning Algorithm {.smaller auto-animate="true"}
+- Input data points, e.g.
+  - If the task is speech recognition, these data points could be sound files
+  - If the task is image tagging, they could be picture files
 
 ::: r-stack
-![](images/DLiR/nn-1.png){.fragment width="450" height="300"}
+![](images/DLiR/mse-1.png){.fragment width="450"}
+:::
 
-![](images/DLiR/nn-2.png){.fragment width="450" height="300"}
+## Recipes of a Machine Learning Algorithm {.smaller auto-animate="true"}
+- Input data points, e.g.
+  - If the task is speech recognition, these data points could be sound files
+  - If the task is image tagging, they could be picture files
+- Examples of the expected output
+  - In a speech-recognition task, these could be transcripts of sound files
+  - In an image task, expected outputs could tags such as "dog", "cat", and so on
 
-![](images/DLiR/nn-3.png){.fragment width="450" height="300"}
+::: r-stack
+![](images/DLiR/mse-1.png){.fragment width="450"}
 
-![](images/DLiR/nn-4.png){.fragment width="450" height="300"}
+![](images/DLiR/mse-2.png){.fragment width="450"}
+:::
+
+## Recipes of a Machine Learning Algorithm {.smaller auto-animate="true"}
+- Input data points, e.g.
+  - If the task is speech recognition, these data points could be sound files
+  - If the task is image tagging, they could be picture files
+- Examples of the expected output
+  - In a speech-recognition task, these could be transcripts of sound files
+  - In an image task, expected outputs could tags such as "dog", "cat", and so on
+- A way to measure whether the algorithm is doing a good job
+  - This is needed to determine the distance between the output and its expected output. 
+  - The measurement is used as a feedback signal to adjust the way the algorithm works.
+
+::: r-stack
+![](images/DLiR/mse-1.png){.fragment width="450"}
+
+![](images/DLiR/mse-2.png){.fragment width="450"}
+
+![](images/DLiR/mse-3.png){.fragment width="450"}
+
+![](images/DLiR/mse-4.png){.fragment width="450"}
 :::
 
 # 2. Fundamentals of Neural Networks
