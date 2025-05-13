@@ -5,30 +5,25 @@ title-slide-attributes:
   data-background-image: mu-bg.png
   data-background-size: stretch
   data-slide-number: none
-format: revealjs
+format:
+  revealjs:
+    auto-animate: true
+    slide-number: true
+    transition: fade
 ---
 
 # Outline
-
+::: incremental
 1.  Introduction to Shiny
-
 2.  App Structure: UI & Server
-
 3.  Inputs, Outputs, & Reactivity
-
 4.  Reactive Programming Patterns
-
 5.  Layouts & Styling
-
 6.  Modules for Reusable Components
-
 7.  Advanced Topics: JavaScript, HTML, CSS
-
 8.  Deployment & Best Practices
-
 9.  Hands-on Exercises
-
-------------------------------------------------------------------------
+:::
 
 # 1. Introduction to Shiny
 
@@ -48,11 +43,10 @@ format: revealjs
 
 ??? note Show live example: run `shiny::runExample("01_hello")`.
 
-------------------------------------------------------------------------
-
 # 2. App Structure
 
-```         
+::: {.shrink-code}
+``` {.r code-line-numbers=1-2|3-9|11-15|17 height=200}
 # app.R single-file app
 library(shiny)
 ui <- fluidPage(
@@ -71,14 +65,13 @@ server <- function(input, output) {
 
 shinyApp(ui, server)
 ```
+:::
 
 -   `ui` defines layout and inputs/outputs
 
 -   `server` contains R code & reactivity
 
 ??? note Compare single-file vs UI/server file structure.
-
-------------------------------------------------------------------------
 
 # 3. Inputs & Outputs
 
@@ -88,35 +81,31 @@ shinyApp(ui, server)
 
 -   **Binding**: output objects referenced by `output$...`
 
-```         
+``` {.r}         
 input$slider  # numeric
 input$check   # logical
 ```
 
 ??? note Demo: build a dynamic summary table based on user selections.
 
-------------------------------------------------------------------------
-
 # 4. Reactivity Fundamentals
 
 -   **Reactive expressions**: cache results
 
-    ```         
+    ``` {.r}
     rv <- reactive({ rnorm(input$obs) })
     output$plot <- renderPlot(hist(rv()))
     ```
 
 -   **Observers**: side-effect actions
 
-    ```         
+    ``` {.r}
     observeEvent(input$go, { showModal(...) })
     ```
 
 -   **isolate()**: break reactive chain
 
 ??? note Illustrate dependency graph in real-time.
-
-------------------------------------------------------------------------
 
 # 5. Layouts & Styling
 
@@ -132,13 +121,11 @@ input$check   # logical
 
 ??? note Show customizing theme with `bslib`.
 
-------------------------------------------------------------------------
-
 # 6. Modules for Reusability
 
 -   **Define module UI**:
 
-    ```         
+    ``` {.r}
     mod_ui <- function(id) {
       ns <- NS(id)
       tagList(
@@ -150,7 +137,7 @@ input$check   # logical
 
 -   **Define module server**:
 
-    ```         
+    ``` {.r}
     mod_server <- function(id) {
       moduleServer(id, function(input, output, session) {
         output$plot <- renderPlot(hist(rnorm(input$n)))
@@ -161,8 +148,6 @@ input$check   # logical
 -   **Call modules** in main app
 
 ??? note Demonstrate two independent modules on one page.
-
-------------------------------------------------------------------------
 
 # 7. Advanced Topics
 
@@ -175,8 +160,6 @@ input$check   # logical
 -   **Testing & Debugging**: `reactlog`, `shinytest2`
 
 ??? note Show `reactlog::reactlog_enable()` in a sample app.
-
-------------------------------------------------------------------------
 
 # 8. Deployment & Best Practices
 
@@ -202,8 +185,6 @@ input$check   # logical
 
 ??? note Walk through deploying to shinyapps.io.
 
-------------------------------------------------------------------------
-
 # 9. Hands-on Exercises (30 min)
 
 1.  Build a **data explorer**: filter dataset, show summary & plot.
@@ -213,8 +194,6 @@ input$check   # logical
 3.  Implement **dynamic UI**: show inputs based on user choice.
 
 ??? note Pair programming, share solutions afterward.
-
-------------------------------------------------------------------------
 
 # Resources & Further Reading
 
@@ -226,15 +205,11 @@ input$check   # logical
 
 ??? note Encourage reading chapters on modules and structure.
 
-------------------------------------------------------------------------
-
 # Q&A
 
 -   Questions on reactive patterns?
 
 -   Use cases in your projects?
-
-------------------------------------------------------------------------
 
 # Thank You
 

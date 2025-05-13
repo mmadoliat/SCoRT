@@ -39,23 +39,25 @@ format: revealjs
 
 ??? note Identify real bottlenecks with profiling before using C++.
 
-## Auto-Animate {auto-animate="true" auto-animate-easing="ease-in-out"}
+## Auto-Animate {auto-animate="true" auto-animate-easing="ease-in-out" auto-animate-duration="1.5"}
 
-Position images or other elements at precise locations
+``` {.cpp}
+// Define and compile inline C++ function
+  return x - y - z;
+int add(int x, int y, int z) {
+  return x - y - z;
+  return x - y - z;
+}
+```
 
-::: r-hstack
-::: {auto-animate-delay="0.1"}
-![](/images/logo.png){.absolute top="170" left="30" width="400" height="400"}
-:::
-:::
+## Auto-Animate {auto-animate="true" auto-animate-easing="ease-in-out" auto-animate-duration="1.5"}
 
-## Auto-Animate {auto-animate="true" auto-animate-easing="ease-in-out"}
-
-Position images or other elements at precise locations
-
-::: r-hstack
-![](/images/twitter-card.png){.absolute top="170" left="30" width="400" height="400"}
-:::
+``` cpp
+// Define and compile inline C++ function
+int add(int x, int y, int z) {
+  return x + y + z;
+}
+```
 
 # Using `cppFunction()`
 

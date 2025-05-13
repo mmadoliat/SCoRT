@@ -31,8 +31,6 @@ message: false
 
 -   Hands-on Exercises
 
-------------------------------------------------------------------------
-
 # OOP Paradigms in R
 
 -   **Functional OOP**: functions return objects, operate on data
@@ -44,8 +42,6 @@ message: false
 -   **When to use**: design, extensibility, code organization
 
 ??? note Frame conceptual differences and motivate each paradigm.
-
-------------------------------------------------------------------------
 
 # Base Types & Functional OOP
 
@@ -67,8 +63,6 @@ c1()  # 2
 
 ??? note Show how closures simulate objects in base R.
 
-------------------------------------------------------------------------
-
 # S3: Informal Classes
 
 -   **Lightweight**: no formal schema
@@ -85,7 +79,7 @@ x <- structure(c(1,2,3), class = "myclass")
 mean(x)
 ```
 
-### Key Points
+## Key Points
 
 -   `class(x)` order
 
@@ -94,8 +88,6 @@ mean(x)
 -   Overloading + inheritance via class vectors
 
 ??? note Demo: create `print.myclass`, show dispatch.
-
-------------------------------------------------------------------------
 
 # S3 Constructors & Validation
 
@@ -114,8 +106,6 @@ mean(x)
 
 ??? note Emphasize lack of formal slot checks.
 
-------------------------------------------------------------------------
-
 # S4: Formal Classes
 
 -   **Definition**: `setClass()` with slots
@@ -132,8 +122,6 @@ setClass("Person",
 -   **Create instance**: `new("Person", name = "Alice", age = 30)`
 
 ??? note Illustrate slot access via `@` and `slot()`.
-
-------------------------------------------------------------------------
 
 # S4 Generics & Methods
 
@@ -154,8 +142,6 @@ setClass("Person",
 -   **Multiple dispatch**: based on argument classes
 
 ??? note Show example with inheritance & dispatch.
-
-------------------------------------------------------------------------
 
 # S4 Inheritance & Virtual Classes
 
@@ -200,8 +186,6 @@ setClass("Person",
 
 ??? note Compare reference vs value semantics.
 
-------------------------------------------------------------------------
-
 # R6 Advanced Features
 
 -   **Active bindings**
@@ -213,8 +197,6 @@ setClass("Person",
 -   **Use cases**: GUI, stateful objects, iterative algorithms
 
 ??? note Show leak-free design with private fields.
-
-------------------------------------------------------------------------
 
 # Trade-offs & Best Practices
 
@@ -232,8 +214,6 @@ setClass("Person",
 
 ??? note Discuss package design implications.
 
-------------------------------------------------------------------------
-
 # Hands-on Exercises (30 min)
 
 1.  **Create S3 class**: define `circle` with `radius` and methods for area & print
@@ -243,8 +223,6 @@ setClass("Person",
 3.  **R6 counter**: implement counter with reset and step-by-step logging
 
 ??? note Split into small groups, reconvene for solutions.
-
-------------------------------------------------------------------------
 
 # Resources & References
 
@@ -258,8 +236,6 @@ setClass("Person",
 
 ??? note Encourage further reading and experimentation.
 
-------------------------------------------------------------------------
-
 # Q&A
 
 -   Questions on paradigms?
@@ -267,8 +243,6 @@ setClass("Person",
 -   Real-world use cases?
 
 -   Integration with functional programming?
-
-------------------------------------------------------------------------
 
 # Thank You
 

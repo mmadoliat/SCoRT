@@ -112,9 +112,10 @@ table { font-size: 0.75em; }
 #| fig-show: hide
 #| message: false
 
-plot(iris);
-# boxplot(iris);
-# hist(iris[,1])
+par(mfrow = c(1, 3))
+#boxplot(iris)
+#hist(iris[,1])
+plot(iris)
 ```
 
 ## Plot
@@ -122,7 +123,7 @@ plot(iris);
 ```{r}
 #| ref.label: basic
 #| echo: false
-#| fig-asp: 0.3
+#| fig-asp: 0.4
 ```
 :::
 
@@ -152,7 +153,7 @@ ggplot(iris, aes(x=Sepal.Length, y=Petal.Length)) +
 ```{r}
 #| ref.label: setup
 #| echo: false
-#| fig-asp: 0.3
+#| fig-asp: 0.4
 ```
 :::
 

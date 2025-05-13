@@ -11,6 +11,7 @@ $presentation-heading-color: #866fa3; /* Pantone Midnight - Fall 2022 */
 $link-color: #866fa3;
 $code-color: #866fa3;
 $code-block-font-size: 0.7em;
+$presentation-h1-font-size: 1.6em !default;
 $presentation-h2-font-size: 1.4em !default;
 $presentation-font-size-root: 36px !default;
 
@@ -77,7 +78,7 @@ details>summary {
 }
 
 .reveal pre code {
-  width: 1200px;
+  width: 1015px;
 }
 
 .reveal .quarto-title-block .quarto-title-authors .quarto-title-author {
@@ -87,4 +88,10 @@ details>summary {
 .reveal .footer a {
   color: #866fa3;
   background-color: white;
+}
+
+.shrink-code pre {
+  max-height: 500px;
+  overflow-y: auto;
+  font-size: 0.65em;
 }

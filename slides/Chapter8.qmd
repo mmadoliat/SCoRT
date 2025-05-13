@@ -28,8 +28,6 @@ format: revealjs
 
 9.  Hands-on Exercises
 
-------------------------------------------------------------------------
-
 # 1. Introduction & Environment Setup
 
 -   **Why Deep Learning?** complex function approximation, feature engineering
@@ -38,7 +36,7 @@ format: revealjs
 
 -   **Installation**:
 
-    ```         
+    ``` {.r}
     install.packages("keras")
     library(keras)
     install_keras()  # installs TensorFlow
@@ -48,8 +46,6 @@ format: revealjs
 
 ??? note Demo environment check: `tensorflow::tf_config()`.
 
-------------------------------------------------------------------------
-
 # 2. Fundamentals of Neural Networks
 
 -   **Perceptron**: basic neuron → activation(input \* weight + bias)
@@ -58,21 +54,21 @@ format: revealjs
 
 -   **Forward & backward pass**: feedforward, gradient descent
 
-```         
+::: {.shrink-code}
+``` {.r}
 model <- keras_model_sequential() %>%
   layer_dense(units = 32, activation = 'relu', input_shape = c(784)) %>%
   layer_dense(units = 10, activation = 'softmax')
 ```
+:::
 
 ??? note Visualize network architecture with `plot_model()`.
-
-------------------------------------------------------------------------
 
 # 3. Multilayer Perceptrons (MLPs)
 
 ## Classification on MNIST
 
-```         
+``` {.r}
 model %>% compile(
   optimizer = 'rmsprop',
   loss = 'categorical_crossentropy',
@@ -91,15 +87,13 @@ history <- model %>% fit(
 
 ??? note Show training curves: `plot(history)`.
 
-------------------------------------------------------------------------
-
 # 4. Convolutional Neural Networks (CNNs)
 
 -   **Concepts**: filters, pooling, feature maps
 
 -   **Example**:
 
-```         
+``` {.r}
 cnn <- keras_model_sequential() %>%
   layer_conv_2d(filters=32, kernel_size=c(3,3), activation='relu', input_shape=c(28,28,1)) %>%
   layer_max_pooling_2d(pool_size=c(2,2)) %>%
@@ -114,15 +108,13 @@ cnn <- keras_model_sequential() %>%
 
 ??? note Demo augmenting and fitting on CIFAR-10 subset.
 
-------------------------------------------------------------------------
-
 # 5. Recurrent Neural Networks & LSTM
 
 -   **RNN basics**: sequence data, time steps
 
 -   **LSTM**: handling long-term dependencies
 
-```         
+``` {.r}
 rnn <- keras_model_sequential() %>%
   layer_lstm(units=128, input_shape=c(timesteps, features)) %>%
   layer_dense(units=1, activation='sigmoid')
@@ -132,13 +124,11 @@ rnn <- keras_model_sequential() %>%
 
 ??? note Show example on IMDB dataset: `dataset_imdb()`.
 
-------------------------------------------------------------------------
-
 # 6. Autoencoders & Unsupervised Learning
 
 -   **Architecture**: encoder ⇄ bottleneck ⇄ decoder
 
-```         
+``` {.r}
 ae <- keras_model_sequential() %>%
   layer_dense(units=64, activation='relu', input_shape=c(784)) %>%
   layer_dense(units=32, activation='relu') %>%
@@ -149,8 +139,6 @@ ae <- keras_model_sequential() %>%
 -   **Applications**: dimensionality reduction, denoising
 
 ??? note Demo training on noisy MNIST.
-
-------------------------------------------------------------------------
 
 # 7. Model Evaluation & Hyperparameter Tuning
 
@@ -164,8 +152,6 @@ ae <- keras_model_sequential() %>%
 
 ??? note Illustrate hyperband tuning example.
 
-------------------------------------------------------------------------
-
 # 8. Advanced Topics & Deployment
 
 -   **Transfer Learning**: `application_resnet50()`, fine-tuning
@@ -178,8 +164,6 @@ ae <- keras_model_sequential() %>%
 
 ??? note Example: wrap model in Plumber endpoint.
 
-------------------------------------------------------------------------
-
 # 9. Hands-on Exercises (30 min)
 
 1.  Build and train a CNN on Fashion MNIST
@@ -189,8 +173,6 @@ ae <- keras_model_sequential() %>%
 3.  Create an autoencoder for dimensionality reduction and visualize embeddings
 
 ??? note Encourage pair work and code sharing.
-
-------------------------------------------------------------------------
 
 # Resources & Further Reading
 
