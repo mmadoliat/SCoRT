@@ -48,7 +48,7 @@
     "href": "slides/Chapter1.html#defining-functions",
     "title": "Short Course on R Tools",
     "section": "Defining Functions",
-    "text": "Defining Functions\n\nfunction(arglist) expr\nReturn values and default arguments\n\n\nsumdice &lt;- function(n) {\n  k &lt;- sample(1:6, size=n, replace=TRUE)\n  return(sum(k))\n}\nsumdice(2)\n\n[1] 11",
+    "text": "Defining Functions\n\nfunction(arglist) expr\nReturn values and default arguments\n\n\nsumdice &lt;- function(n) {\n  k &lt;- sample(1:6, size=n, replace=TRUE)\n  return(sum(k))\n}\nsumdice(2)\n\n[1] 8",
     "crumbs": [
       "Slides",
       "R package"
@@ -70,7 +70,7 @@
     "href": "slides/Chapter1.html#basic-plots",
     "title": "Short Course on R Tools",
     "section": "Basic Plots",
-    "text": "Basic Plots\n\nplot(), hist(), boxplot()\n\n\nCodePlot\n\n\n\nplot(iris);\n# boxplot(iris);\n# hist(iris[,1])",
+    "text": "Basic Plots\n\nplot(), hist(), boxplot()\n\n\nCodePlot\n\n\n\npar(mfrow = c(1, 3))\n#boxplot(iris)\n#hist(iris[,1])\nplot(iris)",
     "crumbs": [
       "Slides",
       "R package"
@@ -114,7 +114,7 @@
     "href": "slides/Chapter7.html#basic-monte-carlo-estimation",
     "title": "Short Course on R Tools",
     "section": "Basic Monte Carlo Estimation",
-    "text": "Basic Monte Carlo Estimation\n\nIntroduction to Monte Carlo estimation\nExample: Estimating the expected difference of two normal variables\n\n\nm &lt;- 1000\ng &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(2)\n    g[i] &lt;- abs(x[1] - x[2])\n}\nest &lt;- mean(g)\nest\n\n[1] 1.159188",
+    "text": "Basic Monte Carlo Estimation\n\nIntroduction to Monte Carlo estimation\nExample: Estimating the expected difference of two normal variables\n\n\nm &lt;- 1000\ng &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(2)\n    g[i] &lt;- abs(x[1] - x[2])\n}\nest &lt;- mean(g)\nest\n\n[1] 1.139835",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -136,7 +136,7 @@
     "href": "slides/Chapter7.html#estimating-the-mean-squared-error-mse",
     "title": "Short Course on R Tools",
     "section": "Estimating the Mean Squared Error (MSE)",
-    "text": "Estimating the Mean Squared Error (MSE)\n\nMonte Carlo estimation of MSE for trimmed means\n\n\nn &lt;- 20\nm &lt;- 1000\nmean_trim &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(n)\n    mean_trim[i] &lt;- mean(x, trim = 0.1)\n}\nmse &lt;- mean((mean_trim - 0)^2)\nmse\n\n[1] 0.05179812",
+    "text": "Estimating the Mean Squared Error (MSE)\n\nMonte Carlo estimation of MSE for trimmed means\n\n\nn &lt;- 20\nm &lt;- 1000\nmean_trim &lt;- numeric(m)\nfor (i in 1:m) {\n    x &lt;- rnorm(n)\n    mean_trim[i] &lt;- mean(x, trim = 0.1)\n}\nmse &lt;- mean((mean_trim - 0)^2)\nmse\n\n[1] 0.05210035",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -176,11 +176,22 @@
     ]
   },
   {
+    "objectID": "slides/Chapter4.html#key-points",
+    "href": "slides/Chapter4.html#key-points",
+    "title": "Short Course on R Tools",
+    "section": "Key Points",
+    "text": "Key Points\n\nclass(x) order\nNextMethod()\nOverloading + inheritance via class vectors\n\n??? note Demo: create print.myclass, show dispatch.",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
     "objectID": "slides/Chapter6.html#introduction-to-monte-carlo-integration",
     "href": "slides/Chapter6.html#introduction-to-monte-carlo-integration",
     "title": "Short Course on R Tools",
     "section": "Introduction to Monte Carlo Integration",
-    "text": "Introduction to Monte Carlo Integration\n\nBasic concepts of Monte Carlo integration\nExample: Integrating using uniform distribution\n\n\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x))\ntheta.hat\n\n[1] 0.6325286\n\n1 - exp(-1)\n\n[1] 0.6321206",
+    "text": "Introduction to Monte Carlo Integration\n\nBasic concepts of Monte Carlo integration\nExample: Integrating using uniform distribution\n\n\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x))\ntheta.hat\n\n[1] 0.6310819\n\n1 - exp(-1)\n\n[1] 0.6321206",
     "crumbs": [
       "Slides",
       "CRAN submission"
@@ -191,7 +202,7 @@
     "href": "slides/Chapter6.html#example-monte-carlo-integration-with-bounded-intervals",
     "title": "Short Course on R Tools",
     "section": "Example: Monte Carlo integration with bounded intervals",
-    "text": "Example: Monte Carlo integration with bounded intervals\n\nm &lt;- 10000\nx &lt;- runif(m, min=2, max=4)\ntheta.hat &lt;- mean(exp(-x)) * 2\ntheta.hat\n\n[1] 0.117409\n\nexp(-2) - exp(-4)\n\n[1] 0.1170196",
+    "text": "Example: Monte Carlo integration with bounded intervals\n\nm &lt;- 10000\nx &lt;- runif(m, min=2, max=4)\ntheta.hat &lt;- mean(exp(-x)) * 2\ntheta.hat\n\n[1] 0.1171171\n\nexp(-2) - exp(-4)\n\n[1] 0.1170196",
     "crumbs": [
       "Slides",
       "CRAN submission"
@@ -213,7 +224,7 @@
     "href": "slides/Chapter6.html#introduction-to-importance-sampling",
     "title": "Short Course on R Tools",
     "section": "Introduction to Importance Sampling",
-    "text": "Introduction to Importance Sampling\n\nImportance sampling and its applications\nExample: Applying importance sampling\n\n\n# Example of importance sampling\ng &lt;- function(x) exp(-x^2 / 2)\nf &lt;- function(x) dnorm(x, mean = 1)\nx &lt;- rnorm(10000, mean = 1)\ntheta.hat &lt;- mean(g(x) / f(x))\ntheta.hat\n\n[1] 2.487799",
+    "text": "Introduction to Importance Sampling\n\nImportance sampling and its applications\nExample: Applying importance sampling\n\n\n# Example of importance sampling\ng &lt;- function(x) exp(-x^2 / 2)\nf &lt;- function(x) dnorm(x, mean = 1)\nx &lt;- rnorm(10000, mean = 1)\ntheta.hat &lt;- mean(g(x) / f(x))\ntheta.hat\n\n[1] 2.495125",
     "crumbs": [
       "Slides",
       "CRAN submission"
@@ -235,7 +246,7 @@
     "href": "slides/Chapter6.html#control-variates",
     "title": "Short Course on R Tools",
     "section": "Control Variates",
-    "text": "Control Variates\n\nExplanation of control variates and how they reduce variance\nExample: Using control variates in Monte Carlo integration\n\n\n# Control variates example\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x)) - (mean(x) - 0.5)\ntheta.hat\n\n[1] 0.6244833",
+    "text": "Control Variates\n\nExplanation of control variates and how they reduce variance\nExample: Using control variates in Monte Carlo integration\n\n\n# Control variates example\nm &lt;- 10000\nx &lt;- runif(m)\ntheta.hat &lt;- mean(exp(-x)) - (mean(x) - 0.5)\ntheta.hat\n\n[1] 0.6395922",
     "crumbs": [
       "Slides",
       "CRAN submission"
@@ -246,7 +257,7 @@
     "href": "slides/Chapter6.html#antithetic-variables",
     "title": "Short Course on R Tools",
     "section": "Antithetic Variables",
-    "text": "Antithetic Variables\n\nExplanation of antithetic variables and how they reduce variance\nExample: Applying antithetic variables\n\n\n# Antithetic variables example\nu &lt;- runif(5000)\ntheta.hat &lt;- mean((exp(-u) + exp(-(1 - u))) / 2)\ntheta.hat\n\n[1] 0.6318812\n\n1 - exp(-1)\n\n[1] 0.6321206",
+    "text": "Antithetic Variables\n\nExplanation of antithetic variables and how they reduce variance\nExample: Applying antithetic variables\n\n\n# Antithetic variables example\nu &lt;- runif(5000)\ntheta.hat &lt;- mean((exp(-u) + exp(-(1 - u))) / 2)\ntheta.hat\n\n[1] 0.6324561\n\n1 - exp(-1)\n\n[1] 0.6321206",
     "crumbs": [
       "Slides",
       "CRAN submission"
@@ -473,7 +484,7 @@
     "href": "slides/Chapter2.html#auto-animate",
     "title": "Short Course on R Tools",
     "section": "Auto-Animate",
-    "text": "Auto-Animate\nPosition images or other elements at precise locations",
+    "text": "Auto-Animate\n// Define and compile inline C++ function\n  return x - y - z;\nint add(int x, int y, int z) {\n  return x - y - z;\n  return x - y - z;\n}",
     "crumbs": [
       "Slides",
       "RCpp"
@@ -484,7 +495,7 @@
     "href": "slides/Chapter2.html#auto-animate-1",
     "title": "Short Course on R Tools",
     "section": "Auto-Animate",
-    "text": "Auto-Animate\nPosition images or other elements at precise locations",
+    "text": "Auto-Animate\n// Define and compile inline C++ function\nint add(int x, int y, int z) {\n  return x + y + z;\n}",
     "crumbs": [
       "Slides",
       "RCpp"
@@ -583,7 +594,7 @@
     "href": "slides/Chapter3.html#sampling-from-a-finite-population",
     "title": "Short Course on R Tools",
     "section": "Sampling from a Finite Population",
-    "text": "Sampling from a Finite Population\n\nIntroduction to finite population sampling\nExample: Tossing coins, choosing lottery numbers\n\n\n# Sampling examples\nsample(0:1, size = 10, replace = TRUE)  # Tossing coins\n\n [1] 0 1 0 1 1 0 0 0 1 1\n\nsample(1:100, size = 6, replace = FALSE)  # Choosing lottery numbers\n\n[1] 46 89 30 13 85 19\n\nsample(letters)  # Permutation of letters\n\n [1] \"q\" \"w\" \"j\" \"o\" \"z\" \"x\" \"d\" \"a\" \"m\" \"y\" \"u\" \"g\" \"k\" \"v\" \"h\" \"t\" \"n\" \"b\" \"p\"\n[20] \"s\" \"c\" \"r\" \"l\" \"i\" \"e\" \"f\"",
+    "text": "Sampling from a Finite Population\n\nIntroduction to finite population sampling\nExample: Tossing coins, choosing lottery numbers\n\n\n# Sampling examples\nsample(0:1, size = 10, replace = TRUE)  # Tossing coins\n\n [1] 1 1 0 0 1 1 1 0 1 1\n\nsample(1:100, size = 6, replace = FALSE)  # Choosing lottery numbers\n\n[1] 86 24  5 89 64 98\n\nsample(letters)  # Permutation of letters\n\n [1] \"s\" \"d\" \"x\" \"p\" \"w\" \"i\" \"n\" \"z\" \"g\" \"t\" \"m\" \"v\" \"y\" \"o\" \"a\" \"h\" \"c\" \"k\" \"f\"\n[20] \"j\" \"u\" \"q\" \"e\" \"l\" \"b\" \"r\"",
     "crumbs": [
       "Slides",
       "GitHub"
@@ -594,7 +605,7 @@
     "href": "slides/Chapter3.html#multinomial-distribution",
     "title": "Short Course on R Tools",
     "section": "Multinomial Distribution",
-    "text": "Multinomial Distribution\n\nIntroduction to multinomial distribution\nExample: Sampling from a multinomial distribution\n\n\n# Sample from multinomial distribution\nx &lt;- sample(1:3, size = 100, replace = TRUE, prob = c(.2, .3, .5))\ntable(x)\n\nx\n 1  2  3 \n22 30 48",
+    "text": "Multinomial Distribution\n\nIntroduction to multinomial distribution\nExample: Sampling from a multinomial distribution\n\n\n# Sample from multinomial distribution\nx &lt;- sample(1:3, size = 100, replace = TRUE, prob = c(.2, .3, .5))\ntable(x)\n\nx\n 1  2  3 \n21 25 54",
     "crumbs": [
       "Slides",
       "GitHub"

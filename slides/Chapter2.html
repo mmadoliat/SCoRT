@@ -452,28 +452,28 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <p>??? note Identify real bottlenecks with profiling before using C++.</p>
 </div>
 </section>
-<section id="auto-animate" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<section id="auto-animate" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out" data-auto-animate-duration="1.5">
 <h2 data-id="quarto-animate-title">Auto-Animate</h2>
-<p>Position images or other elements at precise locations</p>
-<div class="r-hstack">
-<div data-auto-animate-delay="0.1">
-<p><img data-src="../images/logo.png" class="absolute" style="top: 170px; left: 30px; width: 400px; height: 400px; "></p>
-</div>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode cpp hljs"><span id="cb1-1" class="hljs-ln-code"><a></a><span class="co">// Define and compile inline C++ function</span></span>
+<span id="cb1-2" class="hljs-ln-code"><a></a>  <span class="cf">return</span> x <span class="op">-</span> y <span class="op">-</span> z<span class="op">;</span></span>
+<span id="cb1-3" class="hljs-ln-code"><a></a><span class="dt">int</span> add<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> y<span class="op">,</span> <span class="dt">int</span> z<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-4" class="hljs-ln-code"><a></a>  <span class="cf">return</span> x <span class="op">-</span> y <span class="op">-</span> z<span class="op">;</span></span>
+<span id="cb1-5" class="hljs-ln-code"><a></a>  <span class="cf">return</span> x <span class="op">-</span> y <span class="op">-</span> z<span class="op">;</span></span>
+<span id="cb1-6" class="hljs-ln-code"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="auto-animate-1" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<section id="auto-animate-1" class="slide level2" data-auto-animate="true" data-auto-animate-easing="ease-in-out" data-auto-animate-duration="1.5">
 <h2 data-id="quarto-animate-title">Auto-Animate</h2>
-<p>Position images or other elements at precise locations</p>
-<div class="r-hstack">
-<p><img data-src="../images/twitter-card.png" class="absolute" style="top: 170px; left: 30px; width: 400px; height: 400px; "></p>
-</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource cpp number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode cpp hljs"><span id="cb2-1" class="hljs-ln-code"><a></a><span class="co">// Define and compile inline C++ function</span></span>
+<span id="cb2-2" class="hljs-ln-code"><a></a><span class="dt">int</span> add<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> y<span class="op">,</span> <span class="dt">int</span> z<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-3" class="hljs-ln-code"><a></a>  <span class="cf">return</span> x <span class="op">+</span> y <span class="op">+</span> z<span class="op">;</span></span>
+<span id="cb2-4" class="hljs-ln-code"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section id="using-cppfunction" class="title-slide slide level1 center">
 <h1>Using <code>cppFunction()</code></h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a></a><span class="co">// Define and compile inline C++ function</span></span>
-<span id="cb1-2"><a></a><span class="dt">int</span> add<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> y<span class="op">,</span> <span class="dt">int</span> z<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-3"><a></a>  <span class="cf">return</span> x <span class="op">+</span> y <span class="op">+</span> z<span class="op">;</span></span>
-<span id="cb1-4"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a></a><span class="co">// Define and compile inline C++ function</span></span>
+<span id="cb3-2"><a></a><span class="dt">int</span> add<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> y<span class="op">,</span> <span class="dt">int</span> z<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-3"><a></a>  <span class="cf">return</span> x <span class="op">+</span> y <span class="op">+</span> z<span class="op">;</span></span>
+<span id="cb3-4"><a></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Use <code>cppFunction()</code> in R console or script</li>
 <li>Fast prototyping &amp; testing</li>
@@ -486,10 +486,10 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <h1>Using <code>sourceCpp()</code></h1>
 <ul>
 <li><p>Create standalone <code>.cpp</code> files with:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
-<span id="cb2-2"><a></a><span class="kw">using</span> <span class="kw">namespace</span> Rcpp<span class="op">;</span></span>
-<span id="cb2-3"><a></a><span class="co">// [[Rcpp::export]]</span></span>
-<span id="cb2-4"><a></a><span class="dt">double</span> meanC<span class="op">(</span>NumericVector x<span class="op">)</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
+<span id="cb4-2"><a></a><span class="kw">using</span> <span class="kw">namespace</span> Rcpp<span class="op">;</span></span>
+<span id="cb4-3"><a></a><span class="co">// [[Rcpp::export]]</span></span>
+<span id="cb4-4"><a></a><span class="dt">double</span> meanC<span class="op">(</span>NumericVector x<span class="op">)</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Compile with <code>sourceCpp('file.cpp')</code></p></li>
 <li><p>Benefits:</p>
 <ul>
@@ -534,7 +534,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <ul>
 <li><p><code>Function f</code> &amp; <code>RObject</code> return type</p></li>
 <li><p>Positional vs named args:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a></a>f<span class="op">(</span>_<span class="op">[</span><span class="st">"x"</span><span class="op">]</span> <span class="op">=</span> xval<span class="op">,</span> _<span class="op">[</span><span class="st">"y"</span><span class="op">]</span> <span class="op">=</span> yval<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a></a>f<span class="op">(</span>_<span class="op">[</span><span class="st">"x"</span><span class="op">]</span> <span class="op">=</span> xval<span class="op">,</span> _<span class="op">[</span><span class="st">"y"</span><span class="op">]</span> <span class="op">=</span> yval<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="attributes" class="slide level2">
@@ -582,8 +582,8 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </section>
 <section id="gibbs-sampler" class="slide level2">
 <h2>Gibbs Sampler</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a></a><span class="co">// [[Rcpp::export]]</span></span>
-<span id="cb4-2"><a></a>NumericMatrix gibbs_cpp<span class="op">(</span><span class="dt">int</span> N<span class="op">,</span> <span class="dt">int</span> thin<span class="op">)</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a></a><span class="co">// [[Rcpp::export]]</span></span>
+<span id="cb6-2"><a></a>NumericMatrix gibbs_cpp<span class="op">(</span><span class="dt">int</span> N<span class="op">,</span> <span class="dt">int</span> thin<span class="op">)</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>~20× speedup vs R</li>
 </ul>

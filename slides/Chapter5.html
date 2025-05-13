@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #97947a;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #97947a;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2; background-color: #2b2b2b; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #dcc6e0; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #ffd700; } /* Attribute */
+    code span.bn { color: #dcc6e0; } /* BaseN */
+    code span.bu { color: #f5ab35; } /* BuiltIn */
+    code span.cf { color: #ffa07a; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffa07a; } /* Constant */
+    code span.co { color: #d4d0ab; } /* Comment */
+    code span.cv { color: #d4d0ab; font-style: italic; } /* CommentVar */
+    code span.do { color: #d4d0ab; font-style: italic; } /* Documentation */
+    code span.dt { color: #dcc6e0; } /* DataType */
+    code span.dv { color: #dcc6e0; } /* DecVal */
+    code span.er { color: #dcc6e0; } /* Error */
+    code span.ex { color: #ffd700; } /* Extension */
+    code span.fl { color: #f5ab35; } /* Float */
+    code span.fu { color: #ffd700; } /* Function */
+    code span.im { color: #f8f8f2; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; } /* Keyword */
+    code span.op { color: #00e0e0; } /* Operator */
+    code span.ot { color: #ffa07a; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.sc { color: #00e0e0; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #f5ab35; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #d4d0ab; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -351,25 +416,23 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </div>
 
 </section>
-<section>
 <section id="outline" class="title-slide slide level1 center">
 <h1>Outline</h1>
+<div>
 <ol type="1">
-<li><p>Introduction to Shiny</p></li>
-<li><p>App Structure: UI &amp; Server</p></li>
-<li><p>Inputs, Outputs, &amp; Reactivity</p></li>
-<li><p>Reactive Programming Patterns</p></li>
-<li><p>Layouts &amp; Styling</p></li>
-<li><p>Modules for Reusable Components</p></li>
-<li><p>Advanced Topics: JavaScript, HTML, CSS</p></li>
-<li><p>Deployment &amp; Best Practices</p></li>
-<li><p>Hands-on Exercises</p></li>
+<li class="fragment">Introduction to Shiny</li>
+<li class="fragment">App Structure: UI &amp; Server</li>
+<li class="fragment">Inputs, Outputs, &amp; Reactivity</li>
+<li class="fragment">Reactive Programming Patterns</li>
+<li class="fragment">Layouts &amp; Styling</li>
+<li class="fragment">Modules for Reusable Components</li>
+<li class="fragment">Advanced Topics: JavaScript, HTML, CSS</li>
+<li class="fragment">Deployment &amp; Best Practices</li>
+<li class="fragment">Hands-on Exercises</li>
 </ol>
+</div>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="introduction-to-shiny" class="title-slide slide level1 center">
 <h1>1. Introduction to Shiny</h1>
 <ul>
@@ -387,39 +450,35 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </ul>
 <p>??? note Show live example: run <code>shiny::runExample("01_hello")</code>.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="app-structure" class="title-slide slide level1 center">
 <h1>2. App Structure</h1>
-<pre><code># app.R single-file app
-library(shiny)
-ui &lt;- fluidPage(
-  titlePanel("Hello Shiny"),
-  sidebarLayout(
-    sidebarPanel(sliderInput("obs", "Observations:", 1, 100, 50)),
-    mainPanel(plotOutput("distPlot"))
-  )
-)
-
-server &lt;- function(input, output) {
-  output$distPlot &lt;- renderPlot({
-    hist(rnorm(input$obs))
-  })
-}
-
-shinyApp(ui, server)</code></pre>
+<div class="shrink-code">
+<div class="sourceCode" id="cb1" height="200" data-code-line-numbers="1-2|3-9|11-15|17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># app.R single-file app</span></span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(shiny)</span>
+<span id="cb1-3"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb1-4"><a></a>  <span class="fu">titlePanel</span>(<span class="st">"Hello Shiny"</span>),</span>
+<span id="cb1-5"><a></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb1-6"><a></a>    <span class="fu">sidebarPanel</span>(<span class="fu">sliderInput</span>(<span class="st">"obs"</span>, <span class="st">"Observations:"</span>, <span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">50</span>)),</span>
+<span id="cb1-7"><a></a>    <span class="fu">mainPanel</span>(<span class="fu">plotOutput</span>(<span class="st">"distPlot"</span>))</span>
+<span id="cb1-8"><a></a>  )</span>
+<span id="cb1-9"><a></a>)</span>
+<span id="cb1-10"><a></a></span>
+<span id="cb1-11"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb1-12"><a></a>  output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb1-13"><a></a>    <span class="fu">hist</span>(<span class="fu">rnorm</span>(input<span class="sc">$</span>obs))</span>
+<span id="cb1-14"><a></a>  })</span>
+<span id="cb1-15"><a></a>}</span>
+<span id="cb1-16"><a></a></span>
+<span id="cb1-17"><a></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
 <li><p><code>ui</code> defines layout and inputs/outputs</p></li>
 <li><p><code>server</code> contains R code &amp; reactivity</p></li>
 </ul>
 <p>??? note Compare single-file vs UI/server file structure.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="inputs-outputs" class="title-slide slide level1 center">
 <h1>3. Inputs &amp; Outputs</h1>
 <ul>
@@ -427,30 +486,24 @@ shinyApp(ui, server)</code></pre>
 <li><p><strong>Outputs</strong>: <code>renderPlot()</code>, <code>renderTable()</code>, <code>renderUI()</code>, etc.</p></li>
 <li><p><strong>Binding</strong>: output objects referenced by <code>output$...</code></p></li>
 </ul>
-<pre><code>input$slider  # numeric
-input$check   # logical</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>input<span class="sc">$</span>slider  <span class="co"># numeric</span></span>
+<span id="cb2-2"><a></a>input<span class="sc">$</span>check   <span class="co"># logical</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>??? note Demo: build a dynamic summary table based on user selections.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="reactivity-fundamentals" class="title-slide slide level1 center">
 <h1>4. Reactivity Fundamentals</h1>
 <ul>
 <li><p><strong>Reactive expressions</strong>: cache results</p>
-<pre><code>rv &lt;- reactive({ rnorm(input$obs) })
-output$plot &lt;- renderPlot(hist(rv()))</code></pre></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>rv <span class="ot">&lt;-</span> <span class="fu">reactive</span>({ <span class="fu">rnorm</span>(input<span class="sc">$</span>obs) })</span>
+<span id="cb3-2"><a></a>output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>(<span class="fu">hist</span>(<span class="fu">rv</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Observers</strong>: side-effect actions</p>
-<pre><code>observeEvent(input$go, { showModal(...) })</code></pre></li>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>go, { <span class="fu">showModal</span>(...) })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>isolate()</strong>: break reactive chain</p></li>
 </ul>
 <p>??? note Illustrate dependency graph in real-time.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="layouts-styling" class="title-slide slide level1 center">
 <h1>5. Layouts &amp; Styling</h1>
 <ul>
@@ -461,35 +514,29 @@ output$plot &lt;- renderPlot(hist(rv()))</code></pre></li>
 <pre><code>&lt;link rel="stylesheet" href="styles.css" /&gt;</code></pre>
 <p>??? note Show customizing theme with <code>bslib</code>.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="modules-for-reusability" class="title-slide slide level1 center">
 <h1>6. Modules for Reusability</h1>
 <ul>
 <li><p><strong>Define module UI</strong>:</p>
-<pre><code>mod_ui &lt;- function(id) {
-  ns &lt;- NS(id)
-  tagList(
-    sliderInput(ns("n"), "N:", 1, 100, 25),
-    plotOutput(ns("plot"))
-  )
-}</code></pre></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>mod_ui <span class="ot">&lt;-</span> <span class="cf">function</span>(id) {</span>
+<span id="cb6-2"><a></a>  ns <span class="ot">&lt;-</span> <span class="fu">NS</span>(id)</span>
+<span id="cb6-3"><a></a>  <span class="fu">tagList</span>(</span>
+<span id="cb6-4"><a></a>    <span class="fu">sliderInput</span>(<span class="fu">ns</span>(<span class="st">"n"</span>), <span class="st">"N:"</span>, <span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">25</span>),</span>
+<span id="cb6-5"><a></a>    <span class="fu">plotOutput</span>(<span class="fu">ns</span>(<span class="st">"plot"</span>))</span>
+<span id="cb6-6"><a></a>  )</span>
+<span id="cb6-7"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Define module server</strong>:</p>
-<pre><code>mod_server &lt;- function(id) {
-  moduleServer(id, function(input, output, session) {
-    output$plot &lt;- renderPlot(hist(rnorm(input$n)))
-  })
-}</code></pre></li>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>mod_server <span class="ot">&lt;-</span> <span class="cf">function</span>(id) {</span>
+<span id="cb7-2"><a></a>  <span class="fu">moduleServer</span>(id, <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb7-3"><a></a>    output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>(<span class="fu">hist</span>(<span class="fu">rnorm</span>(input<span class="sc">$</span>n)))</span>
+<span id="cb7-4"><a></a>  })</span>
+<span id="cb7-5"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Call modules</strong> in main app</p></li>
 </ul>
 <p>??? note Demonstrate two independent modules on one page.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="advanced-topics" class="title-slide slide level1 center">
 <h1>7. Advanced Topics</h1>
 <ul>
@@ -500,10 +547,7 @@ output$plot &lt;- renderPlot(hist(rv()))</code></pre></li>
 </ul>
 <p>??? note Show <code>reactlog::reactlog_enable()</code> in a sample app.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="deployment-best-practices" class="title-slide slide level1 center">
 <h1>8. Deployment &amp; Best Practices</h1>
 <ul>
@@ -526,10 +570,7 @@ output$plot &lt;- renderPlot(hist(rv()))</code></pre></li>
 </ul>
 <p>??? note Walk through deploying to shinyapps.io.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="hands-on-exercises-30-min" class="title-slide slide level1 center">
 <h1>9. Hands-on Exercises (30 min)</h1>
 <ol type="1">
@@ -539,10 +580,7 @@ output$plot &lt;- renderPlot(hist(rv()))</code></pre></li>
 </ol>
 <p>??? note Pair programming, share solutions afterward.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="resources-further-reading" class="title-slide slide level1 center">
 <h1>Resources &amp; Further Reading</h1>
 <ul>
@@ -552,10 +590,7 @@ output$plot &lt;- renderPlot(hist(rv()))</code></pre></li>
 </ul>
 <p>??? note Encourage reading chapters on modules and structure.</p>
 </section>
-<section class="slide level2">
 
-</section></section>
-<section>
 <section id="qa" class="title-slide slide level1 center">
 <h1>Q&amp;A</h1>
 <ul>
@@ -563,9 +598,7 @@ output$plot &lt;- renderPlot(hist(rv()))</code></pre></li>
 <li><p>Use cases in your projects?</p></li>
 </ul>
 </section>
-<section class="slide level2">
 
-</section></section>
 <section id="thank-you" class="title-slide slide level1 center">
 <h1>Thank You</h1>
 <ul>

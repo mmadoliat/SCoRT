@@ -455,26 +455,26 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">rnorm</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1]  0.138320073  0.924032124  0.546085999  0.435897001  0.431095437
-  [6]  0.282053303  0.130647640  1.164890893 -0.561796439 -1.699098867
- [11]  0.786951817  0.425241881 -0.788076693  0.410078450 -0.652284071
- [16]  0.746251330 -0.591809177 -1.766265306 -1.156258230  1.753584601
- [21] -0.571307535  1.097752966 -0.005715195  0.656097735 -0.010048630
- [26]  0.883627697 -1.366156159  1.539945275  0.665325345 -0.496786968
- [31]  1.223279632 -0.457483900  0.138124129  1.283514672 -2.019596896
- [36] -1.125650678  0.473964434 -0.261987006  0.029812767 -0.545928188
- [41] -0.622911437  1.559410801 -0.627478100 -0.806376904  1.708534456
- [46] -0.428480354 -0.597872623 -0.188089262 -0.914256267  1.562968615
- [51]  1.653720435 -0.491998944  1.659521832 -0.277721012  1.624235248
- [56]  1.074529308  1.026623759  2.085174678  1.387818385  0.206555875
- [61]  1.754831143 -0.674435194 -1.516290379  0.550832858 -0.501319159
- [66]  1.612918105  0.764584642 -1.347744258  0.623066610 -0.567616948
- [71]  0.001693054  0.925701055 -2.220131002 -0.201391706 -1.046841976
- [76] -0.727246093  1.949299742 -1.648959363 -1.547810877  0.485383085
- [81]  0.093863508  0.757583920 -0.239145111 -1.752910452 -0.250428077
- [86]  0.603769953 -0.916747942  2.058936267  0.955981976  0.193907587
- [91] -1.082216618  0.535346136 -0.137046421 -0.059172562  0.011850160
- [96] -0.249177930 -1.106807516  0.747082603  0.767609208 -0.812178597</code></pre>
+<pre><code>  [1]  1.084324977 -0.227362471  0.813656493  1.581494383 -1.107457783
+  [6] -0.128285483  0.193673309 -1.111838390  1.708835212  0.967465207
+ [11] -1.199182039  0.354955476  0.126667692  0.164209849 -0.671403432
+ [16] -1.485830114  0.758959206  0.619741130  0.009500649  0.333495644
+ [21]  1.841469543 -0.487623294  0.432262292  1.278652022  0.614629670
+ [26] -2.428970326  1.257344468  0.137766930  0.762432934 -1.115094584
+ [31] -2.055895223 -2.373413125 -0.458697833 -0.433714657 -2.201684125
+ [36]  0.897666423  1.228554474 -0.548319940  0.208154435  0.109296582
+ [41]  0.318874388 -0.235419630 -0.367220035 -1.208462945 -0.648065699
+ [46]  1.514601542  0.914718489 -0.101809735 -0.118212212  1.458786423
+ [51] -0.721258353 -0.371972963 -1.028306974  0.752362451  0.572921772
+ [56] -0.759226572  0.808466479 -0.444344425 -1.503217964  0.814529293
+ [61] -0.045806667 -0.810157183  1.737142127 -0.582200627  0.357283829
+ [66]  1.436188045 -0.196307040  1.078734426 -0.129790602 -0.626830731
+ [71]  0.745196249  0.684951739 -0.489589630  2.149397681 -0.242299506
+ [76]  1.616915548  1.587305181  0.849334130  0.834405551 -0.964777431
+ [81] -1.161043841 -0.020914630 -0.851546989 -0.135189624 -1.279202176
+ [86]  0.181097489 -0.206582970 -0.102273102  0.106419924 -1.206512474
+ [91] -0.724582861  0.627402966  0.798212567  0.064053623 -0.741405480
+ [96]  1.148063587  0.471531953  0.456436590 -0.250898315 -1.445302784</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -482,13 +482,13 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
     Welch Two Sample t-test
 
 data:  rnorm(10) and rnorm(10)
-t = 0.60633, df = 17.094, p-value = 0.5523
+t = -1.4678, df = 16.578, p-value = 0.1609
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -0.5399367  0.9756908
+ -1.6479314  0.2972903
 sample estimates:
-mean of x mean of y 
-0.3647599 0.1468828 </code></pre>
+ mean of x  mean of y 
+-0.2394162  0.4359043 </code></pre>
 </div>
 </div>
 </section>
@@ -529,7 +529,7 @@ mean of x mean of y
 <span id="cb7-4"><a></a>}</span>
 <span id="cb7-5"><a></a><span class="fu">sumdice</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 11</code></pre>
+<pre><code>[1] 8</code></pre>
 </div>
 </div>
 </section></section>
@@ -636,9 +636,10 @@ table { font-size: 0.75em; }
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">plot</span>(iris);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co"># boxplot(iris);</span></span>
-<span id="cb14-2"><a></a><span class="co"># hist(iris[,1])</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb13-2"><a></a><span class="co">#boxplot(iris)</span></span>
+<span id="cb13-3"><a></a><span class="co">#hist(iris[,1])</span></span>
+<span id="cb13-4"><a></a><span class="fu">plot</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2">
@@ -665,12 +666,12 @@ table { font-size: 0.75em; }
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="|1|2|3-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb15-2"><a></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Petal.Length)) <span class="sc">+</span> </span>
-<span id="cb15-3"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb15-4"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span> </span>
-<span id="cb15-5"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb15-6"><a></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Sepal vs Petal Length in Iris Dataset"</span>, <span class="at">x=</span><span class="st">"Sepal Length"</span>, <span class="at">y=</span><span class="st">"Petal Length"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="|1|2|3-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb14-2"><a></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Petal.Length)) <span class="sc">+</span> </span>
+<span id="cb14-3"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb14-4"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span> </span>
+<span id="cb14-5"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb14-6"><a></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Sepal vs Petal Length in Iris Dataset"</span>, <span class="at">x=</span><span class="st">"Sepal Length"</span>, <span class="at">y=</span><span class="st">"Petal Length"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2">
