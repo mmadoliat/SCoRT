@@ -50,7 +50,7 @@ format:
 - Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
 
 ::: {.fragment .fade-in-then-out}
-<span style="color: #d6336c"><center>Reality is however quite far from this dream</center></span>
+<center>[Reality is however quite far from this dream]{.text-red}</center>
 :::
 
 ## Classical Programming vs Machine Learning {.smaller auto-animate="true"}
@@ -169,10 +169,40 @@ Deep learning
 :::
 
 ## Anatomy of a Neural Network {auto-animate="true"}
-- The input data and corresponding targets
-- Layers, which are combined into a network (or model)
-- The loss function, which provides feedback for learning
-- The optimizer, which determines how learning proceeds
+- The [input data]{.text-red} and corresponding [targets]{.text-red}
+
+::: r-stack
+![](images/DLiR/nn-1.png){.fragment width="600"}
+:::
+
+## Anatomy of a Neural Network {auto-animate="true"}
+- The [input data]{.text-red} and corresponding [targets]{.text-red}
+- [Layers]{.text-red}, which are combined into a [network (or model)]{.text-red}
+
+::: r-stack
+![](images/DLiR/nn-1.png){.fragment width="600"}
+
+![](images/DLiR/nn-2.png){.fragment width="600"}
+:::
+
+## Anatomy of a Neural Network {auto-animate="true"}
+- The [input data]{.text-red} and corresponding [targets]{.text-red}
+- [Layers]{.text-red}, which are combined into a [network (or model)]{.text-red}
+- The [loss function]{.text-red}, which provides feedback for learning
+
+::: r-stack
+![](images/DLiR/nn-1.png){.fragment width="600"}
+
+![](images/DLiR/nn-2.png){.fragment width="600"}
+
+![](images/DLiR/nn-3.png){.fragment width="600"}
+:::
+
+## Anatomy of a Neural Network {auto-animate="true"}
+- The [input data]{.text-red} and corresponding [targets]{.text-red}
+- [Layers]{.text-red}, which are combined into a [network (or model)]{.text-red}
+- The [loss function]{.text-red}, which provides feedback for learning
+- The [optimizer]{.text-red}, which determines how learning proceeds
 
 ::: r-stack
 ![](images/DLiR/nn-1.png){.fragment width="600"}
@@ -183,6 +213,17 @@ Deep learning
 
 ![](images/DLiR/nn-4.png){.fragment width="600"}
 :::
+
+## LeNet-5: a pioneering 7-level CNN {.smaller}
+::: {.incremental}
+- The first successful practical application of neural nets came in 1989 from Bell Labs, when [Yann LeCun]{.text-red} combined the earlier ideas of convolutional neural networks and backpropagation, and applied them to the problem of classifying handwritten digits. 
+
+- The resulting network, dubbed LeNet, was used by the USPS in the 1990s to automate the reading of ZIP codes on mail envelopes.
+
+- LeNet-5 was applied by several banks to recognize hand-written numbers on checks digitized in 32x32 pixel images.
+:::
+
+<center>![](images/DLiR/cnn.gif){width="600"}</center>
 
 # 2. Fundamentals of Neural Networks
 
