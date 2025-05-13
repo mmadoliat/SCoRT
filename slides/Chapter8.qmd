@@ -168,6 +168,22 @@ Deep learning
 ![](images/DLiR/mse-4.png){.fragment width="450"}
 :::
 
+## Anatomy of a Neural Network {auto-animate="true"}
+- The input data and corresponding targets
+- Layers, which are combined into a network (or model)
+- The loss function, which provides feedback for learning
+- The optimizer, which determines how learning proceeds
+
+::: r-stack
+![](images/DLiR/nn-1.png){.fragment width="600"}
+
+![](images/DLiR/nn-2.png){.fragment width="600"}
+
+![](images/DLiR/nn-3.png){.fragment width="600"}
+
+![](images/DLiR/nn-4.png){.fragment width="600"}
+:::
+
 # 2. Fundamentals of Neural Networks
 
 -   **Perceptron**: basic neuron → activation(input \* weight + bias)
