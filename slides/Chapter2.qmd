@@ -149,7 +149,7 @@ f(_["x"] = xval, _["y"] = yval);
 
 ## Gibbs Sampler
 
-``` cpp
+``` {.cpp}
 // [[Rcpp::export]]
 NumericMatrix gibbs_cpp(int N, int thin) { ... }
 ```

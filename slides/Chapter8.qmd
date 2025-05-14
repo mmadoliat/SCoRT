@@ -35,7 +35,7 @@ format:
 
 -   **Installation**:
 
-    ``` r
+    ``` {.r}
     install.packages("keras")
     library(keras)
     install_keras()  # installs TensorFlow
@@ -51,7 +51,7 @@ format:
 
 . . . 
 
-<div style="margin-top: -30px;"><center>[Reality is however quite far from this dream]{.text-red}</center></div>
+<div style="margin-top: -30px;"><center>[*Reality is however quite far from this dream*]{.text-red}</center></div>
 
 . . .
 
@@ -86,7 +86,7 @@ Deep learning
 
 -   Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
 
-<div style="margin-top: -30px;">[&nbsp;]{.text-red}</center></div>
+<div style="margin-top: -30px;">&nbsp;</center></div>
 
 -   AI: the effort to automate intellectual tasks normally performed by humans.
 
@@ -138,16 +138,16 @@ Deep learning
 ## Anatomy of a Neural Network {auto-animate="true"}
 <div style="margin-top: -20px;"></div>
 ::: incremental
--   The [input data]{.text-red} and corresponding [targets]{.text-red}
+-   The [*input data*]{.text-red} and corresponding [*targets*]{.text-red}
 ![](images/DLiR/nn-1.png){.absolute bottom=0 left=200 width=500}
 
--   [Layers]{.text-red}, which are combined into a [network (or model)]{.text-red}
+-   [*Layers*]{.text-red}, which are combined into a [*network* (or *model*)]{.text-red}
 ![](images/DLiR/nn-2.png){.absolute bottom=0 left=200 width=500}
 
--   The [loss function]{.text-red}, which provides feedback for learning
+-   The [*loss function*]{.text-red}, which provides feedback for learning
 ![](images/DLiR/nn-3.png){.absolute bottom=0 left=200 width=500}
 
--   The [optimizer]{.text-red}, which determines how learning proceeds
+-   The [*optimizer*]{.text-red}, which determines how learning proceeds
 ![](images/DLiR/nn-4.png){.absolute bottom=0 left=200 width=500}
 :::
 
@@ -155,7 +155,7 @@ Deep learning
 [<img src="images/DLiR/LeNet-5_architecture.png" style="opacity: 0.10;">]{.absolute top=75 left=0}
 
 ::: incremental
--   The first successful practical application of neural nets came in 1989 from Bell Labs, when [Yann LeCun]{.text-red} combined the earlier ideas of convolutional neural networks and backpropagation, and applied them to the problem of classifying handwritten digits.
+-   The first successful practical application of neural nets came in 1989 from Bell Labs, when [*Yann LeCun*]{.text-red} combined the earlier ideas of convolutional neural networks and backpropagation, and applied them to the problem of classifying handwritten digits.
 
 -   The resulting network, dubbed LeNet, was used by the USPS in the 1990s to automate the reading of ZIP codes on mail envelopes.
 
@@ -170,7 +170,7 @@ Deep learning
 ::: incremental
 -   In 2011, Dan Ciresan from IDSIA (Switzerland) began to win academic image-classification competitions with GPU-trained deep neural networks
 
--   in 2012, a team led by Alex Krizhevsky and advised by [Geoffrey Hinton]{.text-red} was able to achieve a top-five accuracy of 83.6%--a significant breakthrough (in 2011 it was only 74.3%).
+-   in 2012, a team led by Alex Krizhevsky and advised by [*Geoffrey Hinton*]{.text-red} was able to achieve a top-five accuracy of 83.6%--a significant breakthrough (in 2011 it was only 74.3%).
 ![](images/DLiR/imagenet-2.png){.absolute bottom=0 right=0 width=350 height=300}
 
 -   Three forces are driving advances in ML:
@@ -193,7 +193,7 @@ Deep learning
 ![](images/DLiR/VGG16-2.png){.absolute bottom=0 left=250 width=500}
 :::
 
-# 2. Fundamentals of Neural Networks
+# 2. Fundamentals of Neural Networks {auto-animate="true"}
 
 -   **Perceptron**: basic neuron → activation(input \* weight + bias)
 
@@ -202,7 +202,7 @@ Deep learning
 -   **Forward & backward pass**: feedforward, gradient descent
 
 ::: shrink-code
-``` r
+``` {.r}
 model <- keras_model_sequential(input_shape = c(784)) %>%
   layer_dense(units = 32, activation = 'relu') %>%
   layer_dense(units = 10, activation = 'softmax')
@@ -213,14 +213,14 @@ model <- keras_model_sequential(input_shape = c(784)) %>%
 
 [🔗 Launch R](http://tinyurl.com/dna-Rstudio){target=_blank}
 
-## Neural Network – Parameters - Activation Func. {.r-fit-text}
+## Neural Network – Parameters - Activation Func. {auto-animate="true"}
 
 ![](images/DLiR/nn-01.png){.absolute bottom=0 left=0 width=500}
 
 . . .
 
 <div style="margin-top: 55px;"></div>
-<span style="padding-left: 3.5em;">**A Neural Network**</span>
+<span style="padding-left: 3.5em;">[*A Neural Network*]{.text-red}</span>
 
 . . .
 
@@ -237,13 +237,203 @@ model <- keras_model_sequential(input_shape = c(784)) %>%
 . . . 
 
 <div style="margin-top: -55px;"></div>
-<span style="padding-left: 17.5em;">**Activation Function**</span>
+<span style="padding-left: 17.5em;">[*Activation Function*]{.text-red}</span>
 
 . . .
 
 ![](images/DLiR/af-2.png){.absolute bottom=100 right=0 width=500}
 
+## Linear Activation function
+
+![](images/DLiR/nn01.png){.absolute bottom=0 right=0 width=400}
+
+. . .
+
+![](images/DLiR/nn02.png){.absolute bottom=0 right=0 width=400}
+
+-   $Z=\color{green}{W_1}X+\color{lightblue}{b_1}$
+<div style="margin-top: 40px;"></div>
+
+. . .
+
+![](images/DLiR/nn03.png){.absolute bottom=0 right=0 width=400}
+
+-   $Y=\color{red}{W_2}Z+\color{blue}{b_2}$
+
+. . .
+
+-   $Y=\color{red}{W_2}\{\color{green}{W_1}X+\color{lightblue}{b_1}\}+\color{blue}{b_2}$
+
+. . .
+
+-   $Y=\{\color{red}{W_2}\color{green}{W_1}\}X+\{\color{red}{W_2}\color{lightblue}{b_1}+\color{blue}{b_2}\}$
+<div style="margin-top: 40px;"></div>
+
+. . .
+
+![](images/DLiR/nn04.png){.absolute bottom=0 right=0 width=400 height=580}
+
+-   $Y=\color{red}{\mathbf{W}^*}X+\color{blue}{\mathbf{b}^*}$
+
+. . .
+
+<span style="padding-left: 3.5em;">[**Hidden Layers Disappears**]{.text-red}</span>
+
+## What is TensorFlow?
+
+::: incremental
+-   You define the graph in R
+-   Graph is compiled and optimized
+-   Graph is executed on devices
+-   Nodes represent computations
+-   Data (tensors) flows between them
+:::
+
+&nbsp; [<img src="images/DLiR/tensors_flowing.gif" width=420>]{.absolute bottom=0 right=50 width=420}
+
+## Why TensorFlow in R? 
+
+::: incremental
+-   Hardware independent
+    -   CPU (via Eigen and BLAS)
+    -   GPU (via CUDA and cuDNN)
+    -   TPU (Tensor Processing Unit)
+-   Supports automatic differentiation
+-   Distributed execution and large datasets
+-   Very general built-in optimization algorithms (SGD, Adam) 
+that don't require that all data is in RAM
+-   It can be deployed with a low-latency C++ runtime
+-   R has a lot to offer as an interface language for TensorFlow
+
+:::
+
+&nbsp; [<img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.15;" width=420>]{.absolute bottom=0 right=50 width=420}
+
+## Real-world examples of data tensors {auto-animate="true"  .smaller}
+
+[<img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width=420>]{.absolute bottom=0 right=50 width=420}
+
+-   2D tensors
+    -   Vector data—(samples, features)
+![](images/DLiR/tensor-2d.png){.absolute top=60 left=475 width=150}
+![](images/DLiR/tensor2D.png){.absolute top=50 right=0 width=400}
+
+. . .
+
+-   3D tensors
+    -   Grayscale Images—(samples, height, width) 
+    - Time-series data or sequence data—(samples, timesteps, features)
+
+. . .
+
+![](images/DLiR/tensor-3d.png){.absolute top=290 left=475 width=150}
+![](images/DLiR/tensor3D.png){.absolute top=300 right=0 width=400}
+
+. . . 
+
+<div style="margin-top: 100px;"></div>
+-   4D tensors
+    -   Color Images—(samples, height, width, channels) 
+
+. . .
+
+![](images/DLiR/tensor-4d.png){.absolute top=350 left=150 width=75}
+![](images/DLiR/tensor4D.png){.absolute top=450 right=0 width=275}
+
+. . .
+
+<div style="margin-top: -20px;"></div>
+-   5D tensors
+    -   Video—(samples, frames, height, width, channels)
+
+. . .
+
+![](images/DLiR/tensor-5d.png){.absolute bottom=0 right=300 width=125}
+
+## Installing Keras {.small}
+
+&nbsp; [<img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width=420>]{.absolute bottom=0 right=50 width=420}
+<div style="margin-top: -20px;"></div>
+-   First, install the keras R package:
+``` {.r}
+remotes::install_github("rstudio/keras3");    # OR
+Install.packages("keras3")
+```
+
+. . .
+
+-   To install both the core [Keras](https://keras.rstudio.com/) library as well as the [TensorFlow](https://www.tensorflow.org/) backend
+``` {.r}
+library(keras3)
+keras3::install_keras(backend = "tensorflow")
+```
+
+. . .
+
+-   You need Python installed before installing TensorFlow
+    -   [Anaconda](https://www.anaconda.com/) (Python distribution), a free and open-source software
+
+. . .
+
+<div style="margin-top: -20px;"></div>
+-   You can install TensorFlow with GPU support
+    -   NVIDIA® drivers, 
+    -   CUDA Toolkit v9.0, and 
+    -   cuDNN v7.0
+    
+<div style="margin-top: -20px;"></div>
+are needed: [https://tensorflow.rstudio.com/tools/local_gpu.html](https://tensorflow.rstudio.com/tools/local_gpu.html)
+
+
+## Developing a Deep NN with Keras {.small}
+
+&nbsp; [<img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width=420>]{.absolute bottom=0 right=50 width=420}
+<div style="margin-top: -20px;"></div>
+-   Step 1 - Define your training data: 
+    -   input tensors and target tensors.
+
+. . .
+
+-   Step 2 - Define a network of layers (or model) 
+    -   that maps your inputs to your targets.
+
+. . .
+
+-   Step 3 - Configure the learning process by choosing 
+    -   a loss function, 
+    -   an optimizer, 
+    -   and some metrics to monitor.
+
+. . .
+
+-   Step 4 - Iterate on your training data by calling the 
+    -   **fit()** method of your model.
+
 # 3. Multilayer Perceptrons (MLPs)
+
+## Keras: Step 1 – Data preprocessing {.small}
+&nbsp; [<img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width=420>]{.absolute bottom=0 right=50 width=420}
+<div style="margin-top: -40px;"></div>
+::: shrink-code
+``` {.r code-line-numbers="1|3-4|6-8|9-10|12-14" height="100"}
+library(keras)
+
+# Load MNIST (Modified National Institute of Standards and Technology) 
+images datasets c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
+
+# Flatten images and transform RGB values into [0,1] range 
+x_train <- array_reshape(x_train, c(nrow(x_train), 784))
+x_test <- array_reshape(x_test, c(nrow(x_test), 784))
+x_train <- x_train / 255
+x_test <- x_test / 255
+
+# Convert class vectors to binary class matrices
+y_train <- to_categorical(y_train, 10)
+y_test <- to_categorical(y_test, 10)
+```
+:::
+
+![](images/DLiR/step1.png){.absolute bottom=0 left=50 width=950}
 
 ## Classification on MNIST
 
