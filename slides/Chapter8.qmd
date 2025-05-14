@@ -47,42 +47,28 @@ format:
 
 ## Classical Programming vs Machine Learning {.smaller auto-animate="true"}
 
-- Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
+-   Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
 
-::: {.fragment .fade-in-then-out}
-<center>[Reality is however quite far from this dream]{.text-red}</center>
-:::
+. . . 
 
-## Classical Programming vs Machine Learning {.smaller auto-animate="true"}
+<div style="margin-top: -30px;"><center>[Reality is however quite far from this dream]{.text-red}</center></div>
 
-- Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
-- AI: the effort to automate intellectual tasks normally performed by humans.
+. . .
 
-::: r-stack
-![](images/DLiR/classical-programming.png){width="400px"}
-:::
+-   AI: the effort to automate intellectual tasks normally performed by humans.
 
-## Classical Programming vs Machine Learning {.smaller auto-animate="true"}
+![](images/DLiR/classical-programming.png){.absolute top=210 left=80 width="400px"} 
+<div style="margin-top: 90px;"></div>
 
-- Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
-- AI: the effort to automate intellectual tasks normally performed by humans.
-- ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data?
+. . .
 
-::: r-stack
-![](images/DLiR/classical-programming.png){width="400px"} ![](images/DLiR/machine-learning.png){width="400px"}
-:::
+-   ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data?
+![](images/DLiR/machine-learning.png){.absolute top=225 left=530 width="400px"} 
+<div style="margin-top: -40px;"></div>
 
-## Classical Programming vs Machine Learning {.smaller auto-animate="true"}
+. . .
 
-- Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
-- AI: the effort to automate intellectual tasks normally performed by humans.
-- ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data?
-
-::: r-stack
-![](images/DLiR/classical-programming.png){width="400px"} ![](images/DLiR/machine-learning.png){width="400px"}
-:::
-
-::: {.r-hstack style="margin-top: 1em;"}
+:::::: {.r-hstack style="margin-top: 1em;"}
 ::: {data-id="box1" auto-animate-delay="0" style="background: #2780e3; width: 200px; height: 150px; margin: 10px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
 Artificial Intelligence
 :::
@@ -94,20 +80,25 @@ Machine learning
 ::: {data-id="box3" auto-animate-delay="0.2" style="background: #e83e8c; width: 200px; height: 150px; margin: 10px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
 Deep learning
 :::
-:::
+::::::
 
 ## Classical Programming vs Machine Learning {.smaller auto-animate="true"}
 
-- Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
-- AI: the effort to automate intellectual tasks normally performed by humans.
-- ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data?
+-   Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.
 
-::: r-stack
-![](images/DLiR/classical-programming.png){width="400px"} ![](images/DLiR/machine-learning.png){width="400px"}
-:::
+<div style="margin-top: -30px;">[&nbsp;]{.text-red}</center></div>
 
-::: r-stack
-::: {.r-stack style="margin-top: 1em;"}
+-   AI: the effort to automate intellectual tasks normally performed by humans.
+
+![](images/DLiR/classical-programming.png){.absolute top=210 left=80 width="400px"} 
+<div style="margin-top: 90px;"></div>
+
+-   ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data?
+![](images/DLiR/machine-learning.png){.absolute top=225 left=530 width="400px"} 
+<div style="margin-top: -40px;"></div>
+
+::::::: r-stack
+:::::: {.r-stack style="margin-top: 1em;"}
 ::: {data-id="box1" style="background: #2780e3; width: 600px; height: 200px; border-radius: 200px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
 Artificial Intelligence
 :::
@@ -119,111 +110,88 @@ Machine learning
 ::: {data-id="box3" style="background: #e83e8c; width: 260px; height: 60px; border-radius: 200px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;"}
 Deep learning
 :::
-:::
+::::::
 
 ![](images/DLiR/AI-ML-DL.png){.fragment width="750"}
-:::
+:::::::
 
 ## Recipes of a Machine Learning Algorithm {.smaller auto-animate="true"}
-- Input data points, e.g.
-  - If the task is speech recognition, these data points could be sound files
-  - If the task is image tagging, they could be picture files
+::: incremental
+-   Input data points, e.g.
+![](images/DLiR/mse-1.png){.absolute bottom=0 left=300 width="400"}
+    -   If the task is speech recognition, these data points could be sound files
+    -   If the task is image tagging, they could be picture files
 
-::: r-stack
-![](images/DLiR/mse-1.png){.fragment width="450"}
-:::
+-   Examples of the expected output
+![](images/DLiR/mse-2.png){.absolute bottom=0 left=300 width="400"}
+    -   In a speech-recognition task, these could be transcripts of sound files
+    -   In an image task, expected outputs could tags such as "dog", "cat", and so on
 
-## Recipes of a Machine Learning Algorithm {.smaller auto-animate="true"}
-- Input data points, e.g.
-  - If the task is speech recognition, these data points could be sound files
-  - If the task is image tagging, they could be picture files
-- Examples of the expected output
-  - In a speech-recognition task, these could be transcripts of sound files
-  - In an image task, expected outputs could tags such as "dog", "cat", and so on
+-   A way to measure whether the algorithm is doing a good job
+![](images/DLiR/mse-3.png){.absolute bottom=0 left=300 width="400"}
+    -   This is needed to determine the distance between the output and its expected output.
+    -   The measurement is used as a feedback signal to adjust the way the algorithm works.
+<div style="margin-top: -30px;">![](images/DLiR/mse-4.png){.absolute bottom=0 left=300 width="400"}</div>
 
-::: r-stack
-![](images/DLiR/mse-1.png){.fragment width="450"}
-
-![](images/DLiR/mse-2.png){.fragment width="450"}
-:::
-
-## Recipes of a Machine Learning Algorithm {.smaller auto-animate="true"}
-- Input data points, e.g.
-  - If the task is speech recognition, these data points could be sound files
-  - If the task is image tagging, they could be picture files
-- Examples of the expected output
-  - In a speech-recognition task, these could be transcripts of sound files
-  - In an image task, expected outputs could tags such as "dog", "cat", and so on
-- A way to measure whether the algorithm is doing a good job
-  - This is needed to determine the distance between the output and its expected output. 
-  - The measurement is used as a feedback signal to adjust the way the algorithm works.
-
-::: r-stack
-![](images/DLiR/mse-1.png){.fragment width="450"}
-
-![](images/DLiR/mse-2.png){.fragment width="450"}
-
-![](images/DLiR/mse-3.png){.fragment width="450"}
-
-![](images/DLiR/mse-4.png){.fragment width="450"}
 :::
 
 ## Anatomy of a Neural Network {auto-animate="true"}
-- The [input data]{.text-red} and corresponding [targets]{.text-red}
+<div style="margin-top: -20px;"></div>
+::: incremental
+-   The [input data]{.text-red} and corresponding [targets]{.text-red}
+![](images/DLiR/nn-1.png){.absolute bottom=0 left=200 width=500}
 
-::: r-stack
-![](images/DLiR/nn-1.png){.fragment width="600"}
+-   [Layers]{.text-red}, which are combined into a [network (or model)]{.text-red}
+![](images/DLiR/nn-2.png){.absolute bottom=0 left=200 width=500}
+
+-   The [loss function]{.text-red}, which provides feedback for learning
+![](images/DLiR/nn-3.png){.absolute bottom=0 left=200 width=500}
+
+-   The [optimizer]{.text-red}, which determines how learning proceeds
+![](images/DLiR/nn-4.png){.absolute bottom=0 left=200 width=500}
 :::
 
-## Anatomy of a Neural Network {auto-animate="true"}
-- The [input data]{.text-red} and corresponding [targets]{.text-red}
-- [Layers]{.text-red}, which are combined into a [network (or model)]{.text-red}
+## LeNet-5: a pioneering 7-level CNN {auto-animate="true" .smaller}
+[<img src="images/DLiR/LeNet-5_architecture.png" style="opacity: 0.10;">]{.absolute top=75 left=0}
 
-::: r-stack
-![](images/DLiR/nn-1.png){.fragment width="600"}
+::: incremental
+-   The first successful practical application of neural nets came in 1989 from Bell Labs, when [Yann LeCun]{.text-red} combined the earlier ideas of convolutional neural networks and backpropagation, and applied them to the problem of classifying handwritten digits.
 
-![](images/DLiR/nn-2.png){.fragment width="600"}
+-   The resulting network, dubbed LeNet, was used by the USPS in the 1990s to automate the reading of ZIP codes on mail envelopes.
+
+-   LeNet-5 was applied by several banks to recognize hand-written numbers on checks digitized in 32x32 pixel images.
 :::
 
-## Anatomy of a Neural Network {auto-animate="true"}
-- The [input data]{.text-red} and corresponding [targets]{.text-red}
-- [Layers]{.text-red}, which are combined into a [network (or model)]{.text-red}
-- The [loss function]{.text-red}, which provides feedback for learning
+<center>![](images/DLiR/cnn.gif){width=550}</center>
 
-::: r-stack
-![](images/DLiR/nn-1.png){.fragment width="600"}
+## Why 30+ Years gap? {auto-animate="true"}
+[<img src="images/DLiR/imagenet-1.png" style="opacity: 0.10" width=1200>]{.absolute top=75 left=0}
 
-![](images/DLiR/nn-2.png){.fragment width="600"}
+::: incremental
+-   In 2011, Dan Ciresan from IDSIA (Switzerland) began to win academic image-classification competitions with GPU-trained deep neural networks
 
-![](images/DLiR/nn-3.png){.fragment width="600"}
+-   in 2012, a team led by Alex Krizhevsky and advised by [Geoffrey Hinton]{.text-red} was able to achieve a top-five accuracy of 83.6%--a significant breakthrough (in 2011 it was only 74.3%).
+![](images/DLiR/imagenet-2.png){.absolute bottom=0 right=0 width=350 height=300}
+
+-   Three forces are driving advances in ML:
+    -   Hardware
+    -   Datasets and benchmarks
+    -   Algorithmic advances
 :::
 
-## Anatomy of a Neural Network {auto-animate="true"}
-- The [input data]{.text-red} and corresponding [targets]{.text-red}
-- [Layers]{.text-red}, which are combined into a [network (or model)]{.text-red}
-- The [loss function]{.text-red}, which provides feedback for learning
-- The [optimizer]{.text-red}, which determines how learning proceeds
+## VGG16–CNN for Classification and Detection {auto-animate="true" .smaller}
+[<img src="images/DLiR/VGG16-1.png" style="opacity: 0.10" width="1500">]{.absolute top=0 right=0}
 
-::: r-stack
-![](images/DLiR/nn-1.png){.fragment width="600"}
+::: incremental
+-   VGG16 is a convolutional neural network model proposed by K. Simonyan and A. Zisserman from the University of Oxford.
 
-![](images/DLiR/nn-2.png){.fragment width="600"}
+-   The model achieves 92.7% top-5 test accuracy in ImageNet. It was one of the famous model submitted to ILSVRC-2014.
 
-![](images/DLiR/nn-3.png){.fragment width="600"}
+-   It makes the improvement over AlexNet by replacing large kernel-sized filters (11 and 5 in the first and second convolutional layer, respectively) with multiple 3×3 kernel-sized filters one after another.
 
-![](images/DLiR/nn-4.png){.fragment width="600"}
+-   VGG16 was trained for weeks using NVIDIA Titan Black GPU’s.
+![](images/DLiR/VGG16-2.png){.absolute bottom=0 left=250 width=500}
 :::
-
-## LeNet-5: a pioneering 7-level CNN {.smaller}
-::: {.incremental}
-- The first successful practical application of neural nets came in 1989 from Bell Labs, when [Yann LeCun]{.text-red} combined the earlier ideas of convolutional neural networks and backpropagation, and applied them to the problem of classifying handwritten digits. 
-
-- The resulting network, dubbed LeNet, was used by the USPS in the 1990s to automate the reading of ZIP codes on mail envelopes.
-
-- LeNet-5 was applied by several banks to recognize hand-written numbers on checks digitized in 32x32 pixel images.
-:::
-
-<center>![](images/DLiR/cnn.gif){width="600"}</center>
 
 # 2. Fundamentals of Neural Networks
 
@@ -235,8 +203,8 @@ Deep learning
 
 ::: shrink-code
 ``` r
-model <- keras_model_sequential() %>%
-  layer_dense(units = 32, activation = 'relu', input_shape = c(784)) %>%
+model <- keras_model_sequential(input_shape = c(784)) %>%
+  layer_dense(units = 32, activation = 'relu') %>%
   layer_dense(units = 10, activation = 'softmax')
 ```
 :::
