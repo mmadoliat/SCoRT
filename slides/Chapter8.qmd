@@ -211,6 +211,38 @@ model <- keras_model_sequential(input_shape = c(784)) %>%
 
 ??? note Visualize network architecture with `plot_model()`.
 
+[🔗 Launch R](http://tinyurl.com/dna-Rstudio){target=_blank}
+
+## Neural Network – Parameters - Activation Func. {.r-fit-text}
+
+![](images/DLiR/nn-01.png){.absolute bottom=0 left=0 width=500}
+
+. . .
+
+<div style="margin-top: 55px;"></div>
+<span style="padding-left: 3.5em;">**A Neural Network**</span>
+
+. . .
+
+![](images/DLiR/nn-02.png){.absolute bottom=0 left=0 width=500}
+
+. . . 
+
+![](images/DLiR/nn-03.png){.absolute bottom=0 left=0 width=500}
+
+. . .
+
+![](images/DLiR/af-1.png){.absolute bottom=100 right=0 width=500}
+
+. . . 
+
+<div style="margin-top: -55px;"></div>
+<span style="padding-left: 17.5em;">**Activation Function**</span>
+
+. . .
+
+![](images/DLiR/af-2.png){.absolute bottom=100 right=0 width=500}
+
 # 3. Multilayer Perceptrons (MLPs)
 
 ## Classification on MNIST
