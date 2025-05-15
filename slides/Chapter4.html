@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #97947a;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #97947a;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2; background-color: #2b2b2b; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #dcc6e0; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #ffd700; } /* Attribute */
+    code span.bn { color: #dcc6e0; } /* BaseN */
+    code span.bu { color: #f5ab35; } /* BuiltIn */
+    code span.cf { color: #ffa07a; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffa07a; } /* Constant */
+    code span.co { color: #d4d0ab; } /* Comment */
+    code span.cv { color: #d4d0ab; font-style: italic; } /* CommentVar */
+    code span.do { color: #d4d0ab; font-style: italic; } /* Documentation */
+    code span.dt { color: #dcc6e0; } /* DataType */
+    code span.dv { color: #dcc6e0; } /* DecVal */
+    code span.er { color: #dcc6e0; } /* Error */
+    code span.ex { color: #ffd700; } /* Extension */
+    code span.fl { color: #f5ab35; } /* Float */
+    code span.fu { color: #ffd700; } /* Function */
+    code span.im { color: #f8f8f2; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; } /* Keyword */
+    code span.op { color: #00e0e0; } /* Operator */
+    code span.ot { color: #ffa07a; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.sc { color: #00e0e0; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #f5ab35; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #d4d0ab; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -246,6 +311,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -353,15 +419,17 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </section>
 <section id="outline" class="title-slide slide level1 center">
 <h1>Outline</h1>
+<div class="fragment fade-up">
 <ul>
-<li><p>OOP Paradigms in R</p></li>
-<li><p>Base Types &amp; Functional OOP</p></li>
-<li><p>S3 Classes &amp; Methods</p></li>
-<li><p>S4 Classes &amp; Methods</p></li>
-<li><p>R6 Classes &amp; Reference Semantics</p></li>
-<li><p>Trade-offs &amp; Best Practices</p></li>
-<li><p>Hands-on Exercises</p></li>
+<li>OOP Paradigms in R</li>
+<li>Base Types &amp; Functional OOP</li>
+<li>S3 Classes &amp; Methods</li>
+<li>S4 Classes &amp; Methods</li>
+<li>R6 Classes &amp; Reference Semantics</li>
+<li>Trade-offs &amp; Best Practices</li>
+<li>Hands-on Exercises</li>
 </ul>
+</div>
 </section>
 
 <section id="oop-paradigms-in-r" class="title-slide slide level1 center">
@@ -382,13 +450,13 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li><p><strong>Closures</strong> for capturing state</p></li>
 <li><p>Example: simple counter</p></li>
 </ul>
-<pre><code>make_counter &lt;- function() {
-  cnt &lt;- 0
-  function() { cnt &lt;&lt;- cnt + 1; cnt }
-}
-c1 &lt;- make_counter()
-c1()  # 1
-c1()  # 2</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>make_counter <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb1-2"><a></a>  cnt <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-3"><a></a>  <span class="cf">function</span>() { cnt <span class="ot">&lt;&lt;-</span> cnt <span class="sc">+</span> <span class="dv">1</span>; cnt }</span>
+<span id="cb1-4"><a></a>}</span>
+<span id="cb1-5"><a></a>c1 <span class="ot">&lt;-</span> <span class="fu">make_counter</span>()</span>
+<span id="cb1-6"><a></a><span class="fu">c1</span>()  <span class="co"># 1</span></span>
+<span id="cb1-7"><a></a><span class="fu">c1</span>()  <span class="co"># 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>??? note Show how closures simulate objects in base R.</p>
 </section>
 
@@ -400,13 +468,13 @@ c1()  # 2</code></pre>
 <li><p><strong>Define</strong>: set <code>class</code> attribute</p></li>
 <li><p><strong>Generics</strong>: <code>UseMethod()</code></p></li>
 </ul>
-<pre><code>mean.myclass &lt;- function(x, ...) {
-  # custom mean
-}
-x &lt;- structure(c(1,2,3), class = "myclass")
-mean(x)</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>mean.myclass <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) {</span>
+<span id="cb2-2"><a></a>  <span class="co"># custom mean</span></span>
+<span id="cb2-3"><a></a>}</span>
+<span id="cb2-4"><a></a>x <span class="ot">&lt;-</span> <span class="fu">structure</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">class =</span> <span class="st">"myclass"</span>)</span>
+<span id="cb2-5"><a></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="key-points" class="slide level2 center">
+<section id="key-points" class="slide level2">
 <h2>Key Points</h2>
 <ul>
 <li><p><code>class(x)</code> order</p></li>
@@ -419,10 +487,10 @@ mean(x)</code></pre>
 <h1>S3 Constructors &amp; Validation</h1>
 <ul>
 <li><p><strong>Constructor function</strong>:</p>
-<pre><code>new_myclass &lt;- function(x) {
-  stopifnot(is.numeric(x))
-  structure(x, class = "myclass")
-}</code></pre></li>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>new_myclass <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb3-2"><a></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(x))</span>
+<span id="cb3-3"><a></a>  <span class="fu">structure</span>(x, <span class="at">class =</span> <span class="st">"myclass"</span>)</span>
+<span id="cb3-4"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Validation</strong>: manual checks in constructor</p></li>
 <li><p><strong>Pros/Cons</strong>: flexible vs fragile</p></li>
 </ul>
@@ -434,12 +502,12 @@ mean(x)</code></pre>
 <ul>
 <li><strong>Definition</strong>: <code>setClass()</code> with slots</li>
 </ul>
-<pre><code>setClass("Person",
-  slots = list(
-    name = "character",
-    age  = "numeric"
-  )
-)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">setClass</span>(<span class="st">"Person"</span>,</span>
+<span id="cb4-2"><a></a>  <span class="at">slots =</span> <span class="fu">list</span>(</span>
+<span id="cb4-3"><a></a>    <span class="at">name =</span> <span class="st">"character"</span>,</span>
+<span id="cb4-4"><a></a>    <span class="at">age  =</span> <span class="st">"numeric"</span></span>
+<span id="cb4-5"><a></a>  )</span>
+<span id="cb4-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Create instance</strong>: <code>new("Person", name = "Alice", age = 30)</code></li>
 </ul>
@@ -450,47 +518,48 @@ mean(x)</code></pre>
 <h1>S4 Generics &amp; Methods</h1>
 <ul>
 <li><p><strong>Define generic</strong>:</p>
-<pre><code>setGeneric("greet", function(x) standardGeneric("greet"))</code></pre></li>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">setGeneric</span>(<span class="st">"greet"</span>, <span class="cf">function</span>(x) <span class="fu">standardGeneric</span>(<span class="st">"greet"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<div class="fragment">
+<ul>
 <li><p><strong>Define method</strong>:</p>
-<pre><code>setMethod("greet", "Person", function(x) {
-  paste("Hello, my name is", x@name)
-})</code></pre></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">setMethod</span>(<span class="st">"greet"</span>, <span class="st">"Person"</span>, <span class="cf">function</span>(x) {</span>
+<span id="cb6-2"><a></a>  <span class="fu">paste</span>(<span class="st">"Hello, my name is"</span>, x<span class="sc">@</span>name)</span>
+<span id="cb6-3"><a></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Multiple dispatch</strong>: based on argument classes</p></li>
 </ul>
 <p>??? note Show example with inheritance &amp; dispatch.</p>
+</div>
 </section>
 
-<section>
 <section id="s4-inheritance-virtual-classes" class="title-slide slide level1 center">
 <h1>S4 Inheritance &amp; Virtual Classes</h1>
 <ul>
 <li><p><strong>Inheritance</strong>:</p>
-<pre><code>setClass("Employee", contains = "Person",
-  slots = list(salary = "numeric"))</code></pre></li>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">setClass</span>(<span class="st">"Employee"</span>, <span class="at">contains =</span> <span class="st">"Person"</span>,</span>
+<span id="cb7-2"><a></a>  <span class="at">slots =</span> <span class="fu">list</span>(<span class="at">salary =</span> <span class="st">"numeric"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Virtual classes</strong>: abstract base types</p></li>
 <li><p><strong>Validity methods</strong>: <code>setValidity()</code></p></li>
 </ul>
 <p>??? note Encourage robust class definitions.</p>
 </section>
-<section class="slide level2 center">
 
-</section></section>
 <section id="r6-reference-classes" class="title-slide slide level1 center">
 <h1>R6: Reference Classes</h1>
 <ul>
 <li><p><strong>Encapsulated OOP</strong>: mutable fields + methods</p></li>
 <li><p><strong>Define</strong>:</p>
-<pre><code>library(R6)
-PersonR6 &lt;- R6Class("PersonR6",
-  public = list(
-    name = NULL,
-    initialize = function(name) self$name &lt;- name,
-    greet = function() cat("Hi, I'm", self$name, "\n")
-  )
-)</code></pre></li>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(R6)</span>
+<span id="cb8-2"><a></a>PersonR6 <span class="ot">&lt;-</span> <span class="fu">R6Class</span>(<span class="st">"PersonR6"</span>,</span>
+<span id="cb8-3"><a></a>  <span class="at">public =</span> <span class="fu">list</span>(</span>
+<span id="cb8-4"><a></a>    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb8-5"><a></a>    <span class="at">initialize =</span> <span class="cf">function</span>(name) self<span class="sc">$</span>name <span class="ot">&lt;-</span> name,</span>
+<span id="cb8-6"><a></a>    <span class="at">greet =</span> <span class="cf">function</span>() <span class="fu">cat</span>(<span class="st">"Hi, I'm"</span>, self<span class="sc">$</span>name, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb8-7"><a></a>  )</span>
+<span id="cb8-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>Instantiate &amp; use</strong>:</p>
-<pre><code>p &lt;- PersonR6$new("Bob")
-p$greet()</code></pre></li>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>p <span class="ot">&lt;-</span> PersonR6<span class="sc">$</span><span class="fu">new</span>(<span class="st">"Bob"</span>)</span>
+<span id="cb9-2"><a></a>p<span class="sc">$</span><span class="fu">greet</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 <p>??? note Compare reference vs value semantics.</p>
 </section>
@@ -542,7 +611,7 @@ p$greet()</code></pre></li>
 <p>??? note Discuss package design implications.</p>
 </section>
 
-<section id="hands-on-exercises-30-min" class="title-slide slide level1 center">
+<section id="hands-on-exercises-30-min" class="title-slide slide level1 center scrollable">
 <h1>Hands-on Exercises (30 min)</h1>
 <ol type="1">
 <li><p><strong>Create S3 class</strong>: define <code>circle</code> with <code>radius</code> and methods for area &amp; print</p></li>
@@ -668,7 +737,7 @@ p$greet()</code></pre></li>
         disableLayout: false,
 
         // Vertical centering of slides
-        center: true,
+        center: false,
 
         // Enables touch navigation on devices with touch input
         touch: true,
@@ -744,7 +813,7 @@ p$greet()</code></pre></li>
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'slide',
+        transition: 'fade',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',

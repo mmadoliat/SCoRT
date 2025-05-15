@@ -311,6 +311,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -388,10 +389,10 @@
     }
   </style>
 <meta property="og:title" content="SCoRT - Short Course on R Tools">
-<meta property="og:description" content="Deep Learning with R and Keras">
+<meta property="og:description" content="Deep Learning in R">
 <meta property="og:site_name" content="SCoRT">
 <meta name="twitter:title" content="SCoRT - Short Course on R Tools">
-<meta name="twitter:description" content="Deep Learning with R and Keras">
+<meta name="twitter:description" content="Deep Learning in R">
 <meta name="twitter:image" content="https://tinyurl.com/SCiRT/slides/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
 <meta name="twitter:card" content="summary_large_image">
@@ -402,7 +403,7 @@
 
 <section id="title-slide" data-background-image="mu-bg.png" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
   <h1 class="title">Short Course on R Tools</h1>
-  <p class="subtitle">Deep Learning with R and Keras</p>
+  <p class="subtitle">Deep Learning in R</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -418,19 +419,22 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </section>
 <section id="outline" class="title-slide slide level1 center">
 <h1>Outline</h1>
-<ol type="1">
-<li><p>Introduction &amp; Setup</p></li>
-<li><p>Fundamentals of Neural Networks</p></li>
-<li><p>Building MLPs for Classification &amp; Regression</p></li>
-<li><p>Convolutional Neural Networks (CNNs)</p></li>
-<li><p>Recurrent Neural Networks (RNNs) &amp; LSTM</p></li>
-<li><p>Autoencoders &amp; Unsupervised Learning</p></li>
-<li><p>Model Evaluation &amp; Tuning</p></li>
-<li><p>Advanced Topics &amp; Deployment</p></li>
-<li><p>Hands-on Exercises</p></li>
-</ol>
+<div class="fragment fade-up">
+<ul>
+<li>Introduction &amp; Setup</li>
+<li>Fundamentals of Neural Networks</li>
+<li>Building MLPs for Classification &amp; Regression</li>
+<li>Convolutional Neural Networks (CNNs)</li>
+<li>Recurrent Neural Networks (RNNs) &amp; LSTM</li>
+<li>Autoencoders &amp; Unsupervised Learning</li>
+<li>Model Evaluation &amp; Tuning</li>
+<li>Advanced Topics &amp; Deployment</li>
+<li>Hands-on Exercises</li>
+</ul>
+</div>
 </section>
 
+<section>
 <section id="introduction-environment-setup" class="title-slide slide level1 center">
 <h1>1. Introduction &amp; Environment Setup</h1>
 <ul>
@@ -444,39 +448,458 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </ul>
 <p>??? note Demo environment check: <code>tensorflow::tf_config()</code>.</p>
 </section>
+<section id="classical-programming-vs-machine-learning" class="slide level2 smaller" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Classical Programming vs Machine Learning</h2>
+<ul>
+<li>Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.</li>
+</ul>
+<div class="fragment">
+<div style="margin-top: -30px;">
+<center>
+<span class="text-red"><em>Reality is however quite far from this dream</em></span>
+</center>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>AI: the effort to automate intellectual tasks normally performed by humans.</li>
+</ul>
+<img data-src="images/DLiR/classical-programming.png" class="absolute" style="top: 210px; left: 80px; width: 400px; ">
+<div style="margin-top: 90px;">
 
-<section id="fundamentals-of-neural-networks" class="title-slide slide level1 center">
-<h1>2. Fundamentals of Neural Networks</h1>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data? <img data-src="images/DLiR/machine-learning.png" class="absolute" style="top: 225px; left: 530px; width: 400px; ">
+<div style="margin-top: -40px;">
+
+</div></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="r-hstack" style="margin-top: 1em;">
+<div data-id="box1" data-auto-animate-delay="0" style="background: #2780e3; width: 200px; height: 150px; margin: 10px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;">
+<p>Artificial Intelligence</p>
+</div>
+<div data-id="box2" data-auto-animate-delay="0.1" style="background: #3fb618; width: 200px; height: 150px; margin: 10px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;">
+<p>Machine learning</p>
+</div>
+<div data-id="box3" data-auto-animate-delay="0.2" style="background: #e83e8c; width: 200px; height: 150px; margin: 10px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;">
+<p>Deep learning</p>
+</div>
+</div>
+</div>
+</section>
+<section id="classical-programming-vs-machine-learning-1" class="slide level2 smaller" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Classical Programming vs Machine Learning</h2>
+<ul>
+<li>Deep learning is often presented as algorithms that “work like the brain”, that “think” or “understand”.</li>
+</ul>
+<div style="margin-top: -30px;">
+&nbsp;
+
+</div>
+<ul>
+<li>AI: the effort to automate intellectual tasks normally performed by humans.</li>
+</ul>
+<img data-src="images/DLiR/classical-programming.png" class="absolute" style="top: 210px; left: 80px; width: 400px; ">
+<div style="margin-top: 90px;">
+
+</div>
+<ul>
+<li>ML: Could a computer surprise us? Rather than programmers crafting data-processing rules by hand, could a computer automatically learn these rules by looking at data? <img data-src="images/DLiR/machine-learning.png" class="absolute" style="top: 225px; left: 530px; width: 400px; ">
+<div style="margin-top: -40px;">
+
+</div></li>
+</ul>
+<div class="r-stack">
+<div class="r-stack" style="margin-top: 1em;">
+<div data-id="box1" style="background: #2780e3; width: 600px; height: 200px; border-radius: 200px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;">
+<p>Artificial Intelligence</p>
+</div>
+<div data-id="box2" style="background: #3fb618; width: 430px; height: 130px; border-radius: 200px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;">
+<p>Machine learning</p>
+</div>
+<div data-id="box3" style="background: #e83e8c; width: 260px; height: 60px; border-radius: 200px; display: flex; align-items: top; justify-content: center; color: white; font-size: 0.5em;">
+<p>Deep learning</p>
+</div>
+</div>
+<p><img data-src="images/DLiR/AI-ML-DL.png" class="fragment" width="750"></p>
+</div>
+</section>
+<section id="recipes-of-a-machine-learning-algorithm" class="slide level2 smaller" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Recipes of a Machine Learning Algorithm</h2>
+<div>
+<ul>
+<li class="fragment">Input data points, e.g. <img data-src="images/DLiR/mse-1.png" class="absolute" style="left: 300px; bottom: 0px; width: 400px; ">
+<ul>
+<li class="fragment">If the task is speech recognition, these data points could be sound files</li>
+<li class="fragment">If the task is image tagging, they could be picture files</li>
+</ul></li>
+<li class="fragment">Examples of the expected output <img data-src="images/DLiR/mse-2.png" class="absolute" style="left: 300px; bottom: 0px; width: 400px; ">
+<ul>
+<li class="fragment">In a speech-recognition task, these could be transcripts of sound files</li>
+<li class="fragment">In an image task, expected outputs could tags such as “dog”, “cat”, and so on</li>
+</ul></li>
+<li class="fragment">A way to measure whether the algorithm is doing a good job <img data-src="images/DLiR/mse-3.png" class="absolute" style="left: 300px; bottom: 0px; width: 400px; ">
+<ul>
+<li class="fragment">This is needed to determine the distance between the output and its expected output.</li>
+<li class="fragment">The measurement is used as a feedback signal to adjust the way the algorithm works.
+<div style="margin-top: -30px;">
+<img data-src="images/DLiR/mse-4.png" class="absolute" style="left: 300px; bottom: 0px; width: 400px; ">
+</div></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="anatomy-of-a-neural-network" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Anatomy of a Neural Network</h2>
+<div style="margin-top: -20px;">
+
+</div>
+<div>
+<ul>
+<li class="fragment"><p>The <span class="text-red"><em>input data</em></span> and corresponding <span class="text-red"><em>targets</em></span> <img data-src="images/DLiR/nn-1.png" class="absolute" style="left: 200px; bottom: 0px; width: 500px; "></p></li>
+<li class="fragment"><p><span class="text-red"><em>Layers</em></span>, which are combined into a <span class="text-red"><em>network</em> (or <em>model</em>)</span> <img data-src="images/DLiR/nn-2.png" class="absolute" style="left: 200px; bottom: 0px; width: 500px; "></p></li>
+<li class="fragment"><p>The <span class="text-red"><em>loss function</em></span>, which provides feedback for learning <img data-src="images/DLiR/nn-3.png" class="absolute" style="left: 200px; bottom: 0px; width: 500px; "></p></li>
+<li class="fragment"><p>The <span class="text-red"><em>optimizer</em></span>, which determines how learning proceeds <img data-src="images/DLiR/nn-4.png" class="absolute" style="left: 200px; bottom: 0px; width: 500px; "></p></li>
+</ul>
+</div>
+</section>
+<section id="lenet-5-a-pioneering-7-level-cnn" class="slide level2 smaller" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">LeNet-5: a pioneering 7-level CNN</h2>
+<p><span class="absolute" style="top: 75px; left: 0px; "><img src="images/DLiR/LeNet-5_architecture.png" style="opacity: 0.10;"></span></p>
+<div>
+<ul>
+<li class="fragment"><p>The first successful practical application of neural nets came in 1989 from Bell Labs, when <span class="text-red"><em>Yann LeCun</em></span> combined the earlier ideas of convolutional neural networks and backpropagation, and applied them to the problem of classifying handwritten digits.</p></li>
+<li class="fragment"><p>The resulting network, dubbed LeNet, was used by the USPS in the 1990s to automate the reading of ZIP codes on mail envelopes.</p></li>
+<li class="fragment"><p>LeNet-5 was applied by several banks to recognize hand-written numbers on checks digitized in 32x32 pixel images.</p></li>
+</ul>
+</div>
+<center>
+<img data-src="images/DLiR/cnn.gif" width="550">
+</center>
+</section>
+<section id="why-30-years-gap" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Why 30+ Years gap?</h2>
+<p><span class="absolute" style="top: 75px; left: 0px; "><img src="images/DLiR/imagenet-1.png" style="opacity: 0.10" width="1200"></span></p>
+<div>
+<ul>
+<li class="fragment"><p>In 2011, Dan Ciresan from IDSIA (Switzerland) began to win academic image-classification competitions with GPU-trained deep neural networks</p></li>
+<li class="fragment"><p>in 2012, a team led by Alex Krizhevsky and advised by <span class="text-red"><em>Geoffrey Hinton</em></span> was able to achieve a top-five accuracy of 83.6%–a significant breakthrough (in 2011 it was only 74.3%). <img data-src="images/DLiR/imagenet-2.png" class="absolute" style="bottom: 0px; right: 0px; width: 350px; height: 300px; "></p></li>
+<li class="fragment"><p>Three forces are driving advances in ML:</p>
+<ul>
+<li class="fragment">Hardware</li>
+<li class="fragment">Datasets and benchmarks</li>
+<li class="fragment">Algorithmic advances</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="vgg16cnn-for-classification-and-detection" class="slide level2 smaller" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">VGG16–CNN for Classification and Detection</h2>
+<p><span class="absolute" style="top: 0px; right: 0px; "><img src="images/DLiR/VGG16-1.png" style="opacity: 0.10" width="1500"></span></p>
+<div>
+<ul>
+<li class="fragment"><p>VGG16 is a convolutional neural network model proposed by K. Simonyan and A. Zisserman from the University of Oxford.</p></li>
+<li class="fragment"><p>The model achieves 92.7% top-5 test accuracy in ImageNet. It was one of the famous model submitted to ILSVRC-2014.</p></li>
+<li class="fragment"><p>It makes the improvement over AlexNet by replacing large kernel-sized filters (11 and 5 in the first and second convolutional layer, respectively) with multiple 3×3 kernel-sized filters one after another.</p></li>
+<li class="fragment"><p>VGG16 was trained for weeks using NVIDIA Titan Black GPU’s. <img data-src="images/DLiR/VGG16-2.png" class="absolute" style="left: 250px; bottom: 0px; width: 500px; "></p></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="fundamentals-of-neural-networks" class="title-slide slide level1 center" data-auto-animate="true">
+<h1 data-id="quarto-animate-title">2. Fundamentals of Neural Networks</h1>
 <ul>
 <li><p><strong>Perceptron</strong>: basic neuron → activation(input * weight + bias)</p></li>
 <li><p><strong>Layers</strong>: Dense layers, activation functions (<code>relu</code>, <code>sigmoid</code>, <code>softmax</code>)</p></li>
 <li><p><strong>Forward &amp; backward pass</strong>: feedforward, gradient descent</p></li>
 </ul>
 <div class="shrink-code">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>model <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">32</span>, <span class="at">activation =</span> <span class="st">'relu'</span>, <span class="at">input_shape =</span> <span class="fu">c</span>(<span class="dv">784</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">10</span>, <span class="at">activation =</span> <span class="st">'softmax'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb2-1" class="hljs-ln-code"><a></a>model <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>(<span class="at">input_shape =</span> <span class="fu">c</span>(<span class="dv">784</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-2" class="hljs-ln-code"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">32</span>, <span class="at">activation =</span> <span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3" class="hljs-ln-code"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">10</span>, <span class="at">activation =</span> <span class="st">'softmax'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>??? note Visualize network architecture with <code>plot_model()</code>.</p>
+<p><a href="http://tinyurl.com/dna-Rstudio" target="_blank">🔗 Launch R</a></p>
 </section>
+<section id="neural-network-parameters---activation-func." class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Neural Network – Parameters - Activation Func.</h2>
+<p><img data-src="images/DLiR/nn-01.png" class="absolute" style="left: 0px; bottom: 0px; width: 500px; "></p>
+<div class="fragment">
+<div style="margin-top: 55px;">
 
+</div>
+<p><span style="padding-left: 3.5em;"><span class="text-red"><em>A Neural Network</em></span></span></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/nn-02.png" class="absolute" style="left: 0px; bottom: 0px; width: 500px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/nn-03.png" class="absolute" style="left: 0px; bottom: 0px; width: 500px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/af-1.png" class="absolute" style="bottom: 100px; right: 0px; width: 500px; "></p>
+</div>
+<div class="fragment">
+<div style="margin-top: -55px;">
+
+</div>
+<p><span style="padding-left: 17.5em;"><span class="text-red"><em>Activation Function</em></span></span></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/af-2.png" class="absolute" style="bottom: 100px; right: 0px; width: 500px; "></p>
+</div>
+</section>
+<section id="linear-activation-function" class="slide level2">
+<h2>Linear Activation function</h2>
+<p><img data-src="images/DLiR/nn01.png" class="absolute" style="bottom: 0px; right: 0px; width: 400px; "></p>
+<div class="fragment">
+<p><img data-src="images/DLiR/nn02.png" class="absolute" style="bottom: 0px; right: 0px; width: 400px; "></p>
+<ul>
+<li><span class="math inline">\(Z=\color{green}{W_1}X+\color{lightblue}{b_1}\)</span>
+<div style="margin-top: 40px;">
+
+</div></li>
+</ul>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/nn03.png" class="absolute" style="bottom: 0px; right: 0px; width: 400px; "></p>
+<ul>
+<li><span class="math inline">\(Y=\color{red}{W_2}Z+\color{blue}{b_2}\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(Y=\color{red}{W_2}\{\color{green}{W_1}X+\color{lightblue}{b_1}\}+\color{blue}{b_2}\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(Y=\{\color{red}{W_2}\color{green}{W_1}\}X+\{\color{red}{W_2}\color{lightblue}{b_1}+\color{blue}{b_2}\}\)</span>
+<div style="margin-top: 40px;">
+
+</div></li>
+</ul>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/nn04.png" class="absolute" style="bottom: 0px; right: 0px; width: 400px; height: 580px; "></p>
+<ul>
+<li><span class="math inline">\(Y=\color{red}{\mathbf{W}^*}X+\color{blue}{\mathbf{b}^*}\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<p><span style="padding-left: 3.5em;"><span class="text-red"><strong>Hidden Layers Disappears</strong></span></span></p>
+</div>
+</section>
+<section id="what-is-tensorflow" class="slide level2">
+<h2>What is TensorFlow?</h2>
+<div>
+<ul>
+<li class="fragment">You define the graph in R</li>
+<li class="fragment">Graph is compiled and optimized</li>
+<li class="fragment">Graph is executed on devices</li>
+<li class="fragment">Nodes represent computations</li>
+<li class="fragment">Data (tensors) flows between them</li>
+</ul>
+</div>
+<p>&nbsp; <span class="absolute" style="bottom: 0px; right: 50px; width: 420px; "><img src="images/DLiR/tensors_flowing.gif" width="420"></span></p>
+</section>
+<section id="why-tensorflow-in-r" class="slide level2">
+<h2>Why TensorFlow in R?</h2>
+<div>
+<ul>
+<li class="fragment">Hardware independent
+<ul>
+<li class="fragment">CPU (via Eigen and BLAS)</li>
+<li class="fragment">GPU (via CUDA and cuDNN)</li>
+<li class="fragment">TPU (Tensor Processing Unit)</li>
+</ul></li>
+<li class="fragment">Supports automatic differentiation</li>
+<li class="fragment">Distributed execution and large datasets</li>
+<li class="fragment">Very general built-in optimization algorithms (SGD, Adam) that don’t require that all data is in RAM</li>
+<li class="fragment">It can be deployed with a low-latency C++ runtime</li>
+<li class="fragment">R has a lot to offer as an interface language for TensorFlow</li>
+</ul>
+</div>
+<p>&nbsp; <span class="absolute" style="bottom: 0px; right: 50px; width: 420px; "><img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.15;" width="420"></span></p>
+</section>
+<section id="real-world-examples-of-data-tensors" class="slide level2 smaller" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Real-world examples of data tensors</h2>
+<p><span class="absolute" style="bottom: 0px; right: 50px; width: 420px; "><img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width="420"></span></p>
+<ul>
+<li>2D tensors
+<ul>
+<li>Vector data—(samples, features) <img data-src="images/DLiR/tensor-2d.png" class="absolute" style="top: 60px; left: 475px; width: 150px; "> <img data-src="images/DLiR/tensor2D.png" class="absolute" style="top: 50px; right: 0px; width: 400px; "></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>3D tensors
+<ul>
+<li>Grayscale Images—(samples, height, width)</li>
+<li>Time-series data or sequence data—(samples, timesteps, features)</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/tensor-3d.png" class="absolute" style="top: 290px; left: 475px; width: 150px; "> <img data-src="images/DLiR/tensor3D.png" class="absolute" style="top: 300px; right: 0px; width: 400px; "></p>
+</div>
+<div class="fragment">
+<div style="margin-top: 100px;">
+
+</div>
+<ul>
+<li>4D tensors
+<ul>
+<li>Color Images—(samples, height, width, channels)</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/tensor-4d.png" class="absolute" style="top: 350px; left: 150px; width: 75px; "> <img data-src="images/DLiR/tensor4D.png" class="absolute" style="top: 450px; right: 0px; width: 275px; "></p>
+</div>
+<div class="fragment">
+<div style="margin-top: -20px;">
+
+</div>
+<ul>
+<li>5D tensors
+<ul>
+<li>Video—(samples, frames, height, width, channels)</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/tensor-5d.png" class="absolute" style="bottom: 0px; right: 300px; width: 125px; "></p>
+</div>
+</section>
+<section id="installing-keras" class="slide level2 small">
+<h2>Installing Keras</h2>
+&nbsp; <span class="absolute" style="bottom: 0px; right: 50px; width: 420px; "><img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width="420"></span>
+<div style="margin-top: -20px;">
+
+</div>
+<ul>
+<li>First, install the keras R package:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"rstudio/keras3"</span>);    <span class="co"># OR</span></span>
+<span id="cb3-2"><a></a><span class="fu">Install.packages</span>(<span class="st">"keras3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<ul>
+<li>To install both the core <a href="https://keras.rstudio.com/">Keras</a> library as well as the <a href="https://www.tensorflow.org/">TensorFlow</a> backend</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(keras3)</span>
+<span id="cb4-2"><a></a>keras3<span class="sc">::</span><span class="fu">install_keras</span>(<span class="at">backend =</span> <span class="st">"tensorflow"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<ul>
+<li>You need Python installed before installing TensorFlow
+<ul>
+<li><a href="https://www.anaconda.com/">Anaconda</a> (Python distribution), a free and open-source software</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<div style="margin-top: -20px;">
+
+</div>
+<ul>
+<li>You can install TensorFlow with GPU support
+<ul>
+<li>NVIDIA® drivers,</li>
+<li>CUDA Toolkit v9.0, and</li>
+<li>cuDNN v7.0</li>
+</ul></li>
+</ul>
+<div style="margin-top: -20px;">
+
+</div>
+<p>are needed: <a href="https://tensorflow.rstudio.com/tools/local_gpu.html">https://tensorflow.rstudio.com/tools/local_gpu.html</a></p>
+</div>
+</section>
+<section id="developing-a-deep-nn-with-keras" class="slide level2 small">
+<h2>Developing a Deep NN with Keras</h2>
+&nbsp; <span class="absolute" style="bottom: 0px; right: 50px; width: 420px; "><img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width="420"></span>
+<div style="margin-top: -20px;">
+
+</div>
+<ul>
+<li>Step 1 - Define your training data:
+<ul>
+<li>input tensors and target tensors.</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Step 2 - Define a network of layers (or model)
+<ul>
+<li>that maps your inputs to your targets.</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Step 3 - Configure the learning process by choosing
+<ul>
+<li>a loss function,</li>
+<li>an optimizer,</li>
+<li>and some metrics to monitor.</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Step 4 - Iterate on your training data by calling the
+<ul>
+<li><strong>fit()</strong> method of your model.</li>
+</ul></li>
+</ul>
+</div>
+</section></section>
 <section>
 <section id="multilayer-perceptrons-mlps" class="title-slide slide level1 center">
 <h1>3. Multilayer Perceptrons (MLPs)</h1>
 
 </section>
+<section id="keras-step-1-data-preprocessing" class="slide level2 small">
+<h2>Keras: Step 1 – Data preprocessing</h2>
+&nbsp; <span class="absolute" style="bottom: 0px; right: 50px; width: 420px; "><img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width="420"></span>
+<div style="margin-top: -40px;">
+
+</div>
+<div class="shrink-code">
+<div class="sourceCode" id="cb5" height="100" data-code-line-numbers="1|3-4|6-8|9-10|12-14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(keras)</span>
+<span id="cb5-2"><a></a></span>
+<span id="cb5-3"><a></a><span class="co"># Load MNIST (Modified National Institute of Standards and Technology) </span></span>
+<span id="cb5-4"><a></a>images datasets <span class="fu">c</span>(<span class="fu">c</span>(x_train, y_train), <span class="fu">c</span>(x_test, y_test)) <span class="sc">%&lt;-%</span> <span class="fu">dataset_mnist</span>()</span>
+<span id="cb5-5"><a></a></span>
+<span id="cb5-6"><a></a><span class="co"># Flatten images and transform RGB values into [0,1] range </span></span>
+<span id="cb5-7"><a></a>x_train <span class="ot">&lt;-</span> <span class="fu">array_reshape</span>(x_train, <span class="fu">c</span>(<span class="fu">nrow</span>(x_train), <span class="dv">784</span>))</span>
+<span id="cb5-8"><a></a>x_test <span class="ot">&lt;-</span> <span class="fu">array_reshape</span>(x_test, <span class="fu">c</span>(<span class="fu">nrow</span>(x_test), <span class="dv">784</span>))</span>
+<span id="cb5-9"><a></a>x_train <span class="ot">&lt;-</span> x_train <span class="sc">/</span> <span class="dv">255</span></span>
+<span id="cb5-10"><a></a>x_test <span class="ot">&lt;-</span> x_test <span class="sc">/</span> <span class="dv">255</span></span>
+<span id="cb5-11"><a></a></span>
+<span id="cb5-12"><a></a><span class="co"># Convert class vectors to binary class matrices</span></span>
+<span id="cb5-13"><a></a>y_train <span class="ot">&lt;-</span> <span class="fu">to_categorical</span>(y_train, <span class="dv">10</span>)</span>
+<span id="cb5-14"><a></a>y_test <span class="ot">&lt;-</span> <span class="fu">to_categorical</span>(y_test, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img data-src="images/DLiR/step1.png" class="absolute" style="left: 50px; bottom: 0px; width: 950px; "></p>
+</section>
 <section id="classification-on-mnist" class="slide level2">
 <h2>Classification on MNIST</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>model <span class="sc">%&gt;%</span> <span class="fu">compile</span>(</span>
-<span id="cb3-2"><a></a>  <span class="at">optimizer =</span> <span class="st">'rmsprop'</span>,</span>
-<span id="cb3-3"><a></a>  <span class="at">loss =</span> <span class="st">'categorical_crossentropy'</span>,</span>
-<span id="cb3-4"><a></a>  <span class="at">metrics =</span> <span class="fu">c</span>(<span class="st">'accuracy'</span>)</span>
-<span id="cb3-5"><a></a>)</span>
-<span id="cb3-6"><a></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
-<span id="cb3-7"><a></a>  x_train, y_train,</span>
-<span id="cb3-8"><a></a>  <span class="at">epochs =</span> <span class="dv">10</span>, <span class="at">batch_size =</span> <span class="dv">128</span>,</span>
-<span id="cb3-9"><a></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span></span>
-<span id="cb3-10"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>model <span class="sc">%&gt;%</span> <span class="fu">compile</span>(</span>
+<span id="cb6-2"><a></a>  <span class="at">optimizer =</span> <span class="st">'rmsprop'</span>,</span>
+<span id="cb6-3"><a></a>  <span class="at">loss =</span> <span class="st">'categorical_crossentropy'</span>,</span>
+<span id="cb6-4"><a></a>  <span class="at">metrics =</span> <span class="fu">c</span>(<span class="st">'accuracy'</span>)</span>
+<span id="cb6-5"><a></a>)</span>
+<span id="cb6-6"><a></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
+<span id="cb6-7"><a></a>  x_train, y_train,</span>
+<span id="cb6-8"><a></a>  <span class="at">epochs =</span> <span class="dv">10</span>, <span class="at">batch_size =</span> <span class="dv">128</span>,</span>
+<span id="cb6-9"><a></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span></span>
+<span id="cb6-10"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p><strong>Data preprocessing</strong>: normalization, one-hot encoding</p></li>
 <li><p><strong>Callbacks</strong>: EarlyStopping, ModelCheckpoint</p></li>
@@ -489,14 +912,14 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li><p><strong>Concepts</strong>: filters, pooling, feature maps</p></li>
 <li><p><strong>Example</strong>:</p></li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>cnn <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a></a>  <span class="fu">layer_conv_2d</span>(<span class="at">filters=</span><span class="dv">32</span>, <span class="at">kernel_size=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), <span class="at">activation=</span><span class="st">'relu'</span>, <span class="at">input_shape=</span><span class="fu">c</span>(<span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a></a>  <span class="fu">layer_max_pooling_2d</span>(<span class="at">pool_size=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a></a>  <span class="fu">layer_conv_2d</span>(<span class="at">filters=</span><span class="dv">64</span>, <span class="at">kernel_size=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-5"><a></a>  <span class="fu">layer_max_pooling_2d</span>(<span class="at">pool_size=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-6"><a></a>  <span class="fu">layer_flatten</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb4-7"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">64</span>, <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-8"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">10</span>, <span class="at">activation=</span><span class="st">'softmax'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>cnn <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">layer_conv_2d</span>(<span class="at">filters=</span><span class="dv">32</span>, <span class="at">kernel_size=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), <span class="at">activation=</span><span class="st">'relu'</span>, <span class="at">input_shape=</span><span class="fu">c</span>(<span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">layer_max_pooling_2d</span>(<span class="at">pool_size=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">layer_conv_2d</span>(<span class="at">filters=</span><span class="dv">64</span>, <span class="at">kernel_size=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a></a>  <span class="fu">layer_max_pooling_2d</span>(<span class="at">pool_size=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a></a>  <span class="fu">layer_flatten</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">64</span>, <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">10</span>, <span class="at">activation=</span><span class="st">'softmax'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Image augmentation</strong>: <code>image_data_generator()</code></li>
 </ul>
@@ -509,9 +932,9 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li><p><strong>RNN basics</strong>: sequence data, time steps</p></li>
 <li><p><strong>LSTM</strong>: handling long-term dependencies</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>rnn <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a></a>  <span class="fu">layer_lstm</span>(<span class="at">units=</span><span class="dv">128</span>, <span class="at">input_shape=</span><span class="fu">c</span>(timesteps, features)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">1</span>, <span class="at">activation=</span><span class="st">'sigmoid'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>rnn <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a></a>  <span class="fu">layer_lstm</span>(<span class="at">units=</span><span class="dv">128</span>, <span class="at">input_shape=</span><span class="fu">c</span>(timesteps, features)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">1</span>, <span class="at">activation=</span><span class="st">'sigmoid'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Use case</strong>: sentiment analysis, text generation</li>
 </ul>
@@ -523,11 +946,11 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <ul>
 <li><strong>Architecture</strong>: encoder ⇄ bottleneck ⇄ decoder</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>ae <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">64</span>, <span class="at">activation=</span><span class="st">'relu'</span>, <span class="at">input_shape=</span><span class="fu">c</span>(<span class="dv">784</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">32</span>, <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">64</span>, <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-5"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">784</span>, <span class="at">activation=</span><span class="st">'sigmoid'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>ae <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">64</span>, <span class="at">activation=</span><span class="st">'relu'</span>, <span class="at">input_shape=</span><span class="fu">c</span>(<span class="dv">784</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">32</span>, <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">64</span>, <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">784</span>, <span class="at">activation=</span><span class="st">'sigmoid'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Applications</strong>: dimensionality reduction, denoising</li>
 </ul>
@@ -556,7 +979,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <p>??? note Example: wrap model in Plumber endpoint.</p>
 </section>
 
-<section id="hands-on-exercises-30-min" class="title-slide slide level1 center">
+<section id="hands-on-exercises-30-min" class="title-slide slide level1 center scrollable">
 <h1>9. Hands-on Exercises (30 min)</h1>
 <ol type="1">
 <li><p>Build and train a CNN on Fashion MNIST</p></li>
