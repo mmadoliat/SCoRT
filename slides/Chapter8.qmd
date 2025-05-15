@@ -9,8 +9,6 @@ format:
   revealjs:
     transition: fade
     scrollable: true
-    revealjs-plugins:
-     - fullscreen
 ---
 
 # Outline
