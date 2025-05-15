@@ -5,7 +5,10 @@ title-slide-attributes:
   data-background-image: mu-bg.png
   data-background-size: stretch
   data-slide-number: none
-format: revealjs
+format: 
+  revealjs:
+    transition: fade
+    scrollable: true
 ---
 
 # Lecture 1: Monte Carlo Estimation (Part 1)

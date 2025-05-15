@@ -9,11 +9,10 @@ format:
   revealjs:
     transition: fade
     scrollable: true
-    revealjs-plugins:
-     - fullscreen
 ---
 
 ## Outline
+
 ::: {.fragment .fade-up}
 -   Motivation & Introduction
 -   Getting Started with `cppFunction()`
@@ -29,7 +28,7 @@ format:
 
 ## Auto-Animate {auto-animate="true"}
 
-``` {.cpp}
+``` cpp
 // Define and compile inline C++ function
   return x - y - z;
 int add(int x, int y, int z) {
@@ -40,16 +39,18 @@ int add(int x, int y, int z) {
 
 ## Auto-Animate {auto-animate="true"}
 
-``` {.cpp}
+``` cpp
 // Define and compile inline C++ function
 int add(int x, int y, int z) {
   return x + y + z;
 }
 ```
 
-## {fullscreen=true}
+##  {fullscreen="true"}
 
-<iframe class="stretch" data-src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d6600.253099682651!2d103.64242507676232!3d-1.634994636110386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f100!3m2!1m1!2zMcKwMzgnMDYuMCJTIDEwM8KwMzgnNDIuMCJF!5e1!3m2!1sen!2sus!4v1747146234191!5m2!1sen!2sus"></iframe>
+<iframe class="stretch" data-src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d6600.253099682651!2d103.64242507676232!3d-1.634994636110386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f100!3m2!1m1!2zMcKwMzgnMDYuMCJTIDEwM8KwMzgnNDIuMCJF!5e1!3m2!1sen!2sus!4v1747146234191!5m2!1sen!2sus">
+
+</iframe>
 
 # Using `cppFunction()`
 

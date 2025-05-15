@@ -9,11 +9,10 @@ format:
   revealjs:
     transition: fade
     scrollable: true
-    revealjs-plugins:
-     - fullscreen
 ---
 
 ## Outline {auto-animate="true"}
+
 ::: {.fragment .fade-up}
 -   Motivation & Introduction
 -   Getting Started with `cppFunction()`
@@ -45,7 +44,7 @@ format:
 
 # Using `cppFunction()`
 
-``` {.cpp}
+``` cpp
 // Define and compile inline C++ function
 int add(int x, int y, int z) {
   return x + y + z;
@@ -64,7 +63,7 @@ int add(int x, int y, int z) {
 
 -   Create standalone `.cpp` files with:
 
-    ``` {.cpp}
+    ``` cpp
     #include <Rcpp.h>
     using namespace Rcpp;
     // [[Rcpp::export]]
@@ -112,7 +111,7 @@ int add(int x, int y, int z) {
 
 -   Positional vs named args:
 
-``` {.cpp}
+``` cpp
 f(_["x"] = xval, _["y"] = yval);
 ```
 
@@ -149,7 +148,7 @@ f(_["x"] = xval, _["y"] = yval);
 
 ## Gibbs Sampler
 
-``` {.cpp}
+``` cpp
 // [[Rcpp::export]]
 NumericMatrix gibbs_cpp(int N, int thin) { ... }
 ```

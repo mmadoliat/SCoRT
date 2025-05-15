@@ -9,11 +9,10 @@ format:
   revealjs:
     transition: fade
     scrollable: true
-    revealjs-plugins:
-     - fullscreen
 ---
 
 # Outline
+
 ::: {.fragment .fade-up}
 -   OOP Paradigms in R
 -   Base Types & Functional OOP
@@ -44,7 +43,7 @@ format:
 
 -   Example: simple counter
 
-``` {.r}         
+``` r
 make_counter <- function() {
   cnt <- 0
   function() { cnt <<- cnt + 1; cnt }
@@ -64,7 +63,7 @@ c1()  # 2
 
 -   **Generics**: `UseMethod()`
 
-``` {.r}         
+``` r
 mean.myclass <- function(x, ...) {
   # custom mean
 }
@@ -86,7 +85,7 @@ mean(x)
 
 -   **Constructor function**:
 
-    ``` {.r}
+    ``` r
     new_myclass <- function(x) {
       stopifnot(is.numeric(x))
       structure(x, class = "myclass")
@@ -103,7 +102,7 @@ mean(x)
 
 -   **Definition**: `setClass()` with slots
 
-``` {.r}
+``` r
 setClass("Person",
   slots = list(
     name = "character",
@@ -120,7 +119,7 @@ setClass("Person",
 
 -   **Define generic**:
 
-    ``` {.r}         
+    ``` r
     setGeneric("greet", function(x) standardGeneric("greet"))
     ```
 
@@ -128,7 +127,7 @@ setClass("Person",
 
 -   **Define method**:
 
-    ``` {.r}         
+    ``` r
     setMethod("greet", "Person", function(x) {
       paste("Hello, my name is", x@name)
     })
@@ -142,7 +141,7 @@ setClass("Person",
 
 -   **Inheritance**:
 
-    ``` {.r}
+    ``` r
     setClass("Employee", contains = "Person",
       slots = list(salary = "numeric"))
     ```
@@ -159,7 +158,7 @@ setClass("Person",
 
 -   **Define**:
 
-    ``` {.r}
+    ``` r
     library(R6)
     PersonR6 <- R6Class("PersonR6",
       public = list(
@@ -172,7 +171,7 @@ setClass("Person",
 
 -   **Instantiate & use**:
 
-    ``` {.r}
+    ``` r
     p <- PersonR6$new("Bob")
     p$greet()
     ```

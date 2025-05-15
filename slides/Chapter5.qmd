@@ -9,11 +9,10 @@ format:
   revealjs:
     transition: fade
     scrollable: true
-    revealjs-plugins:
-     - fullscreen
 ---
 
 # Outline
+
 ::: {.fragment .fade-up}
 -   Introduction to Shiny
 -   App Structure: UI & Server
@@ -98,9 +97,10 @@ shinyApp(ui, server)
 
 ??? note Compare single-file vs UI/server file structure.
 
-## {fullscreen=true}
+##  {fullscreen="true"}
 
 <iframe class="stretch" data-src="https://gallery.shinyapps.io/050-kmeans-example/">
+
 </iframe>
 
 # 3. Inputs & Outputs
@@ -111,7 +111,7 @@ shinyApp(ui, server)
 
 -   **Binding**: output objects referenced by `output$...`
 
-``` {.r}
+``` r
 input$slider  # numeric
 input$check   # logical
 ```
@@ -155,7 +155,7 @@ input$check   # logical
 
 -   **Define module UI**:
 
-    ``` {.r}
+    ``` r
     mod_ui <- function(id) {
       ns <- NS(id)
       tagList(
@@ -169,7 +169,7 @@ input$check   # logical
 
 -   **Define module server**:
 
-    ``` {.r}
+    ``` r
     mod_server <- function(id) {
       moduleServer(id, function(input, output, session) {
         output$plot <- renderPlot(hist(rnorm(input$n)))
