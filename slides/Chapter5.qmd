@@ -100,7 +100,6 @@ shinyApp(ui, server)
 ##  {fullscreen="true"}
 
 <iframe class="stretch" data-src="https://gallery.shinyapps.io/050-kmeans-example/">
-
 </iframe>
 
 # 3. Inputs & Outputs

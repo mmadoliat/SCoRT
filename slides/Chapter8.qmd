@@ -277,6 +277,12 @@ model <- keras_model_sequential(input_shape = c(784)) %>%
 
 <span style="padding-left: 3.5em;">[**Hidden Layers Disappears**]{.text-red}</span>
 
+
+##  {fullscreen="true"}
+
+<iframe class="stretch" data-src="http://en.wikipedia.org/wiki/Comparison_of_deep_learning_software">
+</iframe>
+
 ## What is TensorFlow?
 
 ::: incremental
@@ -347,6 +353,11 @@ that don't require that all data is in RAM
 . . .
 
 ![](images/DLiR/tensor-5d.png){.absolute bottom=0 right=300 width=125}
+
+##  {fullscreen="true"}
+<a href="https://trends.google.com/trends/explore?date=2015-01-01%202030-05-15&q=TensorFlow,Pytorch,Keras,TensorFlow%20%2B%20Keras" target="_blank" rel="noopener noreferrer">
+  View Google Trends for TensorFlow, PyTorch, and Keras
+</a>
 
 ## Installing Keras {.small}
 
