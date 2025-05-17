@@ -3,13 +3,13 @@ title: "Useful links"
 ---
 
 +----------------------------+--------------------------------------------------------------------------------------+
-| RStudio                    | 🔗 on [dna](https://tinyurl.com/RS-dna)                                              |
+| Motivating Talk            | 🔗 [Rfssa: An R Package for Functional SSA](http://www.mssc.mu.edu/~mehdi/Rfssa.pdf) |
 |                            |                                                                                      |
 | Stat Calculator            | 🔗 [StatCalc(JAMM)](http://dna.mscsnet.mu.edu:3838/mlab/JAMM/)                       |
 |                            |                                                                                      |
 | Distribution Calculator    | 🔗 [DistCalc](http://dna.mscsnet.mu.edu:3838/mlab/DistCalc/)                         |
 |                            |                                                                                      |
-| Motivating Talk            | 🔗 [Rfssa: An R Package for Functional Singular Spectrum Analysis](slides/Rfssa.pdf) |
+| RStudio                    | 🔗 on [dna](https://tinyurl.com/RS-dna)                                              |
 +----------------------------+--------------------------------------------------------------------------------------+
 | Advanced Texbooks          | 🔗 [R Package](https://r-pkgs.org/)                                                  |
 |                            |                                                                                      |
