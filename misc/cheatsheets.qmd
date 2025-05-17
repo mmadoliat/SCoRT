@@ -1,0 +1,39 @@
+---
+title: "R cheatsheets"
+---
+
+The following cheatsheets come from <https://posit.co/resources/cheatsheets>. We haven't covered every function and functionality listed on them, but you might still find them useful as references.
+
+::::: columns
+::: {.column width="50%"}
+[![](cheatsheets/devtools.png){fig-alt="devtools cheat sheet" fig-align="left" width="300"}](https://rklopotek.blog.uksw.edu.pl/files/2017/09/package-development.pdf)
+
+<br>
+
+[![](cheatsheets/rcpp.png){fig-alt="Rcpp cheat sheet" fig-align="left" width="300"}](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-quickref.pdf)
+
+<br>
+
+[![](cheatsheets/github.png){fig-alt="GitHub cheat sheet" fig-align="left" width="300"}](https://rstudio.github.io/cheatsheets/git-github.pdf)
+
+<br>
+
+[![](cheatsheets/oop.png){fig-alt="advancedR cheat sheet" fig-align="left" width="300"}](https://geomoer.github.io/moer-base-r/assets/data/cheatsheets/advancedR.pdf)
+:::
+
+::: {.column width="50%"}
+[![](cheatsheets/shiny.png){fig-alt="shiny cheat sheet" fig-align="right" width="300"}](https://rstudio.github.io/cheatsheets/shiny.pdf)
+
+<br>
+
+[![](cheatsheets/usethis.png){fig-alt="package development cheat sheet" fig-align="right" width="300"}](https://rstudio.github.io/cheatsheets/package-development.pdf)
+
+<br>
+
+[![](cheatsheets/reticulate.png){fig-alt="reticulate cheat sheet" fig-align="right" width="300"}](https://rstudio.github.io/cheatsheets/reticulate.pdf)
+
+<br>
+
+[![](cheatsheets/keras.png){fig-alt="keras3 cheat sheet" fig-align="right" width="300"}](https://rstudio.github.io/cheatsheets/keras.pdf)
+:::
+:::::

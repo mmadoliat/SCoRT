@@ -63,9 +63,11 @@ website:
             text: Python in R
           - href: slides/Chapter8.qmd
             text: Deep Learning in R
-      - section: "Computing"
+      - section: "Miscellaneous"
         contents:
-          - href: computing/computing-cheatsheets.qmd
+          - href: course-links.qmd
+            text: Useful links
+          - href: misc/cheatsheets.qmd
             text: Cheatsheets
 
   page-footer:
