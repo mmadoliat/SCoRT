@@ -26,7 +26,7 @@
     "href": "index.html",
     "title": "Short Course on R Tools - (SCoRT)",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n\n1\nTue, Aug 26\n Develop your own professional R package\n📚Topic 1  📖R package\n[R👩‍💻]\n\n\n\n\n\n\nThu, Aug 28\nEnhance performance with Rcpp (C++)\n📚Topic 2  (https://teuder.github.io/rcpp4everyone_en/)\nR👩‍💻\n\n\n\n\n\n\nFri, Aug 29\n\n\n\n\n\n\n📝 [HW 0]\n\n\n2\nTue, Sep 2\n Manage and collaborate via GitHub\n📚Topic 3\n[R👩‍💻]\n\n\n\n\n\n\nThu, Sep 4\n Object-Oriented Programming (OOP) in R\n📚Topic 4  📖OOP\nR👩‍💻\n\n\n\n\n\n\nFri, Sep 5\n\n\n\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n3\nTue, Sep 9\n Create dynamic Shiny web applications\n📚Topic 5  📖Shiny\nR👩‍💻\n\n\n\n\n\n\nThu, Sep 11\n Navigate the CRAN submission process\n📚Topic 6  📖Release R package\n[R👩‍💻]\n\n\n\n\n\n\nFri, Sep 12\n\n\n\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n4\nTue, Sep 16\n Integrate Python in R using Reticulate\n📚Topic 7\n[R👩‍💻]\n\n\n\n\n\n\nThu, Sep 18\n Deep Learning in R\n📚Topic 8\nR👩‍💻\n\n\n\n\n\n\nFri, Sep 19\n\n\n\n\n\n\n📝 HW 3 at 11:50 pm",
+    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n\n1\nTue, Aug 26\n Develop your own professional R package\n📚Topic 1  📖R package\nR👩‍💻\n\n\n\n\n\n\nThu, Aug 28\nEnhance performance with Rcpp (C++)\n📚Topic 2  📖Rcpp for everyone\nR👩‍💻\n\n\n\n\n\n\nFri, Aug 29\n\n\n\n\n\n\n📝 HW 0\n\n\n2\nTue, Sep 2\n Manage and collaborate via GitHub\n📚Topic 3  📖Let’s Git started\nR👩‍💻\n\n\n\n\n\n\nThu, Sep 4\n Object-Oriented Programming (OOP) in R\n📚Topic 4  📖OOP\nR👩‍💻\n\n\n\n\n\n\nFri, Sep 5\n\n\n\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n3\nTue, Sep 9\n Create dynamic Shiny web applications\n📚Topic 5  📖Shiny\nR👩‍💻\n\n\n\n\n\n\nThu, Sep 11\n Navigate the CRAN submission process\n📚Topic 6  📖Release R package\nR👩‍💻\n\n\n\n\n\n\nFri, Sep 12\n\n\n\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n4\nTue, Sep 16\n Integrate Python in R using Reticulate\n📚Topic 7  📖Calling Python from R\nR👩‍💻\n\n\n\n\n\n\nThu, Sep 18\n Deep Learning in R\n📚Topic 8  📖Deep Learning with R\nR👩‍💻\n\n\n\n\n\n\nFri, Sep 19\n\n\n\n\n\n\n📝 HW 3 at 11:50 pm",
     "crumbs": [
       "Course information",
       "Schedule"
@@ -81,7 +81,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site."
+    "text": "About this site!"
   },
   {
     "objectID": "course-links.html",
