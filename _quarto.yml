@@ -43,8 +43,6 @@ website:
             text: Syllabus
           - href: index.qmd
             text: Schedule
-          - href: course-links.qmd
-            text: Useful links
       - section: "Slides"
         contents:
           - href: slides/Chapter1.qmd

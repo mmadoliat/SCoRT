@@ -23,6 +23,7 @@ format:
 -   CRAN Policies & Guidelines
 -   Post-Submission Workflow
 -   Hands-On Exercises
+:::
 
 # 1. Introduction & CRAN Overview
 
