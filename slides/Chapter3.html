@@ -389,10 +389,10 @@
     }
   </style>
 <meta property="og:title" content="SCoRT - Short Course on R Tools">
-<meta property="og:description" content="Chapter 3 - Methods for Generating Random Variables">
+<meta property="og:description" content="Manage and collaborate via GitHub">
 <meta property="og:site_name" content="SCoRT">
 <meta name="twitter:title" content="SCoRT - Short Course on R Tools">
-<meta name="twitter:description" content="Chapter 3 - Methods for Generating Random Variables">
+<meta name="twitter:description" content="Manage and collaborate via GitHub">
 <meta name="twitter:image" content="https://tinyurl.com/SCiRT/slides/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
 <meta name="twitter:card" content="summary_large_image">
@@ -403,7 +403,7 @@
 
 <section id="title-slide" data-background-image="mu-bg.png" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
   <h1 class="title">Short Course on R Tools</h1>
-  <p class="subtitle">Chapter 3 - Methods for Generating Random Variables</p>
+  <p class="subtitle">Manage and collaborate via GitHub</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -417,150 +417,205 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </div>
 
 </section>
-<section>
-<section id="lecture-1-sampling-and-permutations-part-1" class="title-slide slide level1 center">
-<h1>Lecture 1: Sampling and Permutations (Part 1)</h1>
-
-</section>
-<section id="sampling-from-a-finite-population" class="slide level2">
-<h2>Sampling from a Finite Population</h2>
+<section id="outline" class="title-slide slide level1 center">
+<h1>Outline</h1>
+<div class="fragment fade-up">
 <ul>
-<li>Introduction to finite population sampling</li>
-<li>Example: Tossing coins, choosing lottery numbers</li>
+<li>Version Control Essentials</li>
+<li>Git &amp; GitHub Basics</li>
+<li>Setting Up in RStudio</li>
+<li>Common Git Workflows</li>
+<li>Branching &amp; Pull Requests</li>
+<li>Collaborating with Issues &amp; Projects</li>
+<li>GitHub Actions for R Projects</li>
+<li>Managing Releases &amp; Packages</li>
+<li>Best Practices &amp; Tips</li>
+<li>Hands-on Exercises</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Sampling examples</span></span>
-<span id="cb1-2"><a></a><span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)  <span class="co"># Tossing coins</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] 0 0 1 0 1 1 0 0 0 1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">size =</span> <span class="dv">6</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)  <span class="co"># Choosing lottery numbers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 90 43 16 82  2 98</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">sample</span>(letters)  <span class="co"># Permutation of letters</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "p" "t" "m" "u" "e" "j" "l" "g" "b" "a" "o" "q" "k" "y" "h" "w" "v" "n" "i"
-[20] "s" "r" "x" "c" "d" "z" "f"</code></pre>
-</div>
 </div>
 </section>
-<section id="multinomial-distribution" class="slide level2">
-<h2>Multinomial Distribution</h2>
-<ul>
-<li>Introduction to multinomial distribution</li>
-<li>Example: Sampling from a multinomial distribution</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Sample from multinomial distribution</span></span>
-<span id="cb7-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">3</span>, .<span class="dv">5</span>))</span>
-<span id="cb7-3"><a></a><span class="fu">table</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x
- 1  2  3 
-17 30 53 </code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="lecture-2-inverse-transform-method-part-2" class="title-slide slide level1 center">
-<h1>Lecture 2: Inverse Transform Method (Part 2)</h1>
 
+<section id="version-control-essentials" class="title-slide slide level1 center">
+<h1>1. Version Control Essentials</h1>
+<ul>
+<li><strong>Why version control?</strong> track changes, revert mistakes, collaborate</li>
+<li><strong>Key concepts</strong>: repository, commit, history, diff, staging</li>
+<li><strong>Git vs GitHub</strong>: local tool vs remote hosting service</li>
+</ul>
+<p>??? note Emphasize reproducibility and collaborative benefits.</p>
 </section>
-<section id="continuous-case" class="slide level2">
-<h2>Continuous Case</h2>
+
+<section id="git-github-basics" class="title-slide slide level1 center">
+<h1>2. Git &amp; GitHub Basics</h1>
 <ul>
-<li>Explanation of the inverse transform method for continuous distributions</li>
-<li>Example: Simulating exponential random variables</li>
+<li><strong>Install Git</strong>: download &amp; configure <code>user.name</code>, <code>user.email</code></li>
+<li><strong>GitHub account</strong>: create, generate SSH key, add to GitHub</li>
+<li><strong>First repo</strong>:</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Inverse transform method for exponential distribution</span></span>
-<span id="cb9-2"><a></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb9-3"><a></a>U <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
-<span id="cb9-4"><a></a>X <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> U)</span>
-<span id="cb9-5"><a></a><span class="fu">hist</span>(X, <span class="at">main=</span><span class="st">"Exponential Distribution via Inverse Transform"</span>, <span class="at">col=</span><span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Chapter3_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
-<section id="discrete-case" class="slide level2">
-<h2>Discrete Case</h2>
-<ul>
-<li>Example of applying the inverse transform method to discrete random variables</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co"># Inverse transform method for geometric distribution</span></span>
-<span id="cb10-2"><a></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb10-3"><a></a>X_geom <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(<span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">runif</span>(n)) <span class="sc">/</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> p))</span>
-<span id="cb10-4"><a></a><span class="fu">hist</span>(X_geom, <span class="at">main=</span><span class="st">"Geometric Distribution via Inverse Transform"</span>, <span class="at">col=</span><span class="st">"lightgreen"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Chapter3_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="lecture-3-acceptance-rejection-method-part-3" class="title-slide slide level1 center">
-<h1>Lecture 3: Acceptance-Rejection Method (Part 3)</h1>
-
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="fu">git</span> init myproject</span>
+<span id="cb1-2"><a></a><span class="bu">cd</span> myproject</span>
+<span id="cb1-3"><a></a><span class="fu">git</span> remote add origin <span class="pp">[</span><span class="ss">git@github.com</span><span class="pp">]</span><span class="er">(</span><span class="ex">mailto:git@github.com</span><span class="kw">)</span><span class="ex">\:username/myproject.git</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>??? note Show GitHub SSH key setup screen.</p>
 </section>
-<section id="introduction-to-acceptance-rejection-method" class="slide level2">
-<h2>Introduction to Acceptance-Rejection Method</h2>
+
+<section id="setting-up-in-rstudio" class="title-slide slide level1 center">
+<h1>3. Setting Up in RStudio</h1>
 <ul>
-<li>Explanation of the acceptance-rejection method</li>
-<li>Example: Sampling from a target distribution</li>
+<li><strong>usethis helpers</strong>:</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># Acceptance-rejection method example</span></span>
-<span id="cb11-2"><a></a>target <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { <span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="fu">exp</span>(<span class="sc">-</span>x), <span class="dv">0</span>) }</span>
-<span id="cb11-3"><a></a>proposal <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>) }</span>
-<span id="cb11-4"><a></a></span>
-<span id="cb11-5"><a></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb11-6"><a></a>accept <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1000</span>) <span class="sc">&lt;</span> <span class="fu">target</span>(X) <span class="sc">/</span> (<span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">proposal</span>(X))</span>
-<span id="cb11-7"><a></a></span>
-<span id="cb11-8"><a></a><span class="fu">hist</span>(X[accept], <span class="at">main=</span><span class="st">"Accepted Samples from Target Distribution"</span>, <span class="at">col=</span><span class="st">"lightcoral"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Chapter3_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="lecture-4-transformation-methods-and-mixtures-part-4" class="title-slide slide level1 center">
-<h1>Lecture 4: Transformation Methods and Mixtures (Part 4)</h1>
-
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_project</span>(<span class="st">"myproject"</span>, <span class="at">rstudio =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-2"><a></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span>
+<span id="cb2-3"><a></a>usethis<span class="sc">::</span><span class="fu">use_github</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>RStudio Git pane</strong>: commit, diff, push, pull</li>
+<li><strong>.gitignore</strong>: generated by <code>use_git_ignore()</code></li>
+</ul>
+<p>??? note Demonstrate one-click setup in RStudio IDE.</p>
 </section>
-<section id="transformation-of-random-variables" class="slide level2">
-<h2>Transformation of Random Variables</h2>
-<ul>
-<li>Introduction to transformation methods</li>
-<li>Example: Box-Muller transform for generating normal random variables</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Box-Muller transform</span></span>
-<span id="cb12-2"><a></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb12-3"><a></a>U1 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
-<span id="cb12-4"><a></a>U2 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n)</span>
-<span id="cb12-5"><a></a>Z1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">log</span>(U1)) <span class="sc">*</span> <span class="fu">cos</span>(<span class="dv">2</span> <span class="sc">*</span> pi <span class="sc">*</span> U2)</span>
-<span id="cb12-6"><a></a>Z2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">log</span>(U1)) <span class="sc">*</span> <span class="fu">sin</span>(<span class="dv">2</span> <span class="sc">*</span> pi <span class="sc">*</span> U2)</span>
-<span id="cb12-7"><a></a><span class="fu">hist</span>(Z1, <span class="at">main=</span><span class="st">"Normal Distribution via Box-Muller"</span>, <span class="at">col=</span><span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
-<img data-src="Chapter3_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
-<section id="sums-and-mixtures" class="slide level2">
-<h2>Sums and Mixtures</h2>
+<section id="common-git-workflows" class="title-slide slide level1 center">
+<h1>4. Common Git Workflows</h1>
+<table>
+<thead>
+<tr class="header">
+<th>Workflow</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Centralized</td>
+<td>solo projects, simple collaboration</td>
+</tr>
+<tr class="even">
+<td>Fork &amp; PR</td>
+<td>open-source contributions</td>
+</tr>
+<tr class="odd">
+<td>Feature Branch</td>
+<td>team feature development, isolation</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li>Explanation of sums and mixtures of random variables</li>
-<li>Example: Mixture of normals</li>
+<li><strong>Syncing forks</strong> with upstream</li>
+<li><strong>Rebasing</strong> vs merging</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Mixture of normals</span></span>
-<span id="cb13-2"><a></a><span class="fu">library</span>(MASS)</span>
-<span id="cb13-3"><a></a>mu1 <span class="ot">&lt;-</span> <span class="dv">0</span>; mu2 <span class="ot">&lt;-</span> <span class="dv">3</span>; sigma1 <span class="ot">&lt;-</span> <span class="dv">1</span>; sigma2 <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb13-4"><a></a>p <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
-<span id="cb13-5"><a></a>X <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">runif</span>(n) <span class="sc">&lt;</span> p, <span class="fu">rnorm</span>(n, mu1, sigma1), <span class="fu">rnorm</span>(n, mu2, sigma2))</span>
-<span id="cb13-6"><a></a><span class="fu">hist</span>(X, <span class="at">main=</span><span class="st">"Mixture of Normal Distributions"</span>, <span class="at">col=</span><span class="st">"lightgreen"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>??? note Recommend feature-branch workflow for teams.</p>
+</section>
 
-</div>
-<img data-src="Chapter3_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section></section>
-<section id="conclusion" class="title-slide slide level1 center">
-<h1>Conclusion</h1>
+<section id="branching-pull-requests" class="title-slide slide level1 center">
+<h1>5. Branching &amp; Pull Requests</h1>
 <ul>
-<li>Recap of random variable generation methods: sampling, inverse transform, acceptance-rejection, and transformations</li>
-<li>Practice problems for next lecture</li>
+<li><strong>Create branch</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="fu">git</span> checkout <span class="at">-b</span> feature-x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Work &amp; commit</strong>, then push:</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="fu">git</span> push <span class="at">-u</span> origin feature-x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Open PR</strong> on GitHub: describe changes, assign reviewers</li>
+<li><strong>Review &amp; merge</strong>: code review, address comments</li>
+</ul>
+<p>??? note Show pull request UI with examples.</p>
+</section>
+
+<section id="collaborating-with-issues-projects" class="title-slide slide level1 center">
+<h1>6. Collaborating with Issues &amp; Projects</h1>
+<ul>
+<li><strong>Issues</strong>: bug reports, feature requests</li>
+<li><strong>Labels &amp; milestones</strong>: categorize and plan work</li>
+<li><strong>Projects</strong>: Kanban boards in GitHub</li>
+<li><strong>Link commits &amp; PRs</strong>: <code>Fixes #123</code></li>
+</ul>
+<p>??? note Create a sample issue and link a PR to it.</p>
+</section>
+
+<section id="github-actions-for-r-projects" class="title-slide slide level1 center">
+<h1>7. GitHub Actions for R Projects</h1>
+<ul>
+<li><strong>CI/CD</strong>: automate checks, tests, pkg build</li>
+<li><strong>Standard workflow</strong>: <code>check-standard</code> via usethis</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a></a><span class="co"># .github/workflows/R-CMD-check.yaml</span></span>
+<span id="cb5-2"><a></a><span class="fu">name</span><span class="kw">:</span><span class="at"> R-CMD-check</span></span>
+<span id="cb5-3"><a></a><span class="fu">on</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">push</span><span class="kw">,</span><span class="at"> pull_request</span><span class="kw">]</span></span>
+<span id="cb5-4"><a></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb5-5"><a></a><span class="at">  </span><span class="fu">R-CMD-check</span><span class="kw">:</span></span>
+<span id="cb5-6"><a></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb5-7"><a></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb5-8"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb5-9"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r@v2</span></span>
+<span id="cb5-10"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-pandoc@v2</span></span>
+<span id="cb5-11"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> Rscript -e 'devtools::install(); devtools::check()'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Badges</strong>: display build status in README</li>
+</ul>
+<p>??? note Demonstrate adding a CI badge via <code>use_github_action_badge()</code>.</p>
+</section>
+
+<section id="managing-releases-packages" class="title-slide slide level1 center">
+<h1>8. Managing Releases &amp; Packages</h1>
+<ul>
+<li><strong>Release branches</strong> or tags:</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="fu">git</span> tag <span class="at">-a</span> v1.0.0 <span class="at">-m</span> <span class="st">"Initial release"</span></span>
+<span id="cb6-2"><a></a><span class="fu">git</span> push <span class="at">--tags</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>GitHub Releases</strong>: draft release notes, attach artifacts</li>
+<li><strong>pkgdown</strong>: build website, auto-deploy via Actions</li>
+<li><strong>CRAN submissions</strong>: trigger release workflow</li>
+</ul>
+<p>??? note Show sample pkgdown YAML and GitHub Pages setup.</p>
+</section>
+
+<section id="best-practices-tips" class="title-slide slide level1 center">
+<h1>9. Best Practices &amp; Tips</h1>
+<ul>
+<li><strong>Commit messages</strong>: short summary + body</li>
+<li><strong>Code review</strong>: consistent style, meaningful feedback</li>
+<li><strong>Rebase vs merge</strong>: keep history clean</li>
+<li><strong>Large files</strong>: use Git LFS, avoid binary data</li>
+<li><strong>Security</strong>: secret management, PAT scopes</li>
+</ul>
+<p>??? note Provide link to GitHub security best practices.</p>
+</section>
+
+<section id="hands-on-exercises-30-min" class="title-slide slide level1 center scrollable">
+<h1>10. Hands-on Exercises (30 min)</h1>
+<ol type="1">
+<li><strong>Initialize</strong> a new RStudio project with Git &amp; GitHub</li>
+<li><strong>Create branch</strong>, add function, push, open PR</li>
+<li><strong>Set up</strong> GitHub Actions for R-CMD-check</li>
+<li><strong>Draft</strong> a GitHub issue and link to PR</li>
+</ol>
+<p>??? note Split into groups; review each other’s repos.</p>
+</section>
+
+<section id="resources-further-reading" class="title-slide slide level1 center">
+<h1>Resources &amp; Further Reading</h1>
+<ul>
+<li><strong>Happy Git &amp; GitHub for the useR</strong>: <a href="https://happygitwithr.com/" class="uri">https://happygitwithr.com/</a></li>
+<li><strong>usethis</strong>: <a href="https://usethis.r-lib.org" class="uri">https://usethis.r-lib.org</a></li>
+<li><strong>GitHub Docs</strong>: workflows, Actions, projects</li>
+</ul>
+<p>??? note Encourage exploring book chapters and cheat sheets.</p>
+</section>
+
+<section id="qa" class="title-slide slide level1 center">
+<h1>Q&amp;A</h1>
+<ul>
+<li>Questions on Git commands?</li>
+<li>Collaboration challenges?</li>
+<li>CI/CD integrations?</li>
+</ul>
+</section>
+
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank You</h1>
+<ul>
+<li>Happy collaborating on GitHub with R!</li>
 </ul>
 
 <div class="quarto-auto-generated-content">
@@ -782,44 +837,6 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

@@ -389,10 +389,10 @@
     }
   </style>
 <meta property="og:title" content="SCoRT - Short Course on R Tools">
-<meta property="og:description" content="Chapter 6 - Monte Carlo Integration and Variance Reduction">
+<meta property="og:description" content="Navigate the CRAN submission process">
 <meta property="og:site_name" content="SCoRT">
 <meta name="twitter:title" content="SCoRT - Short Course on R Tools">
-<meta name="twitter:description" content="Chapter 6 - Monte Carlo Integration and Variance Reduction">
+<meta name="twitter:description" content="Navigate the CRAN submission process">
 <meta name="twitter:image" content="https://tinyurl.com/SCiRT/slides/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
 <meta name="twitter:card" content="summary_large_image">
@@ -403,7 +403,7 @@
 
 <section id="title-slide" data-background-image="mu-bg.png" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
   <h1 class="title">Short Course on R Tools</h1>
-  <p class="subtitle">Chapter 6 - Monte Carlo Integration and Variance Reduction</p>
+  <p class="subtitle">Navigate the CRAN submission process</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -417,145 +417,180 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </div>
 
 </section>
+<section id="outline" class="title-slide slide level1 center">
+<h1>Outline</h1>
+<p>::: {.fragment .fade-up} - Introduction &amp; CRAN Overview - Pre-Submission Preparation - Automated Checks with devtools - usethis Helpers for Release - Releasing with <code>devtools::release()</code> - Common Pitfalls &amp; Debugging - CRAN Policies &amp; Guidelines - Post-Submission Workflow - Hands-On Exercises</p>
+</section>
+
+<section id="introduction-cran-overview" class="title-slide slide level1 center scrollable">
+<h1>1. Introduction &amp; CRAN Overview</h1>
+<ul>
+<li><p><strong>What is CRAN?</strong> central repository for R packages</p></li>
+<li><p><strong>Roles</strong>: authors, CRAN maintainers, users</p></li>
+<li><p><strong>Submission flow</strong>:</p>
+<ol type="1">
+<li>Local checks → 2. devtools release → 3. CRAN review → 4. Publication</li>
+</ol></li>
+</ul>
+<p>??? note High-level diagram of submission pipeline.</p>
+</section>
+
 <section>
-<section id="lecture-1-simple-monte-carlo-integration-part-1" class="title-slide slide level1 center">
-<h1>Lecture 1: Simple Monte Carlo Integration (Part 1)</h1>
+<section id="pre-submission-preparation" class="title-slide slide level1 center">
+<h1>2. Pre-Submission Preparation</h1>
 
 </section>
-<section id="introduction-to-monte-carlo-integration" class="slide level2">
-<h2>Introduction to Monte Carlo Integration</h2>
+<section id="description-namespace" class="slide level2">
+<h2>DESCRIPTION &amp; NAMESPACE</h2>
 <ul>
-<li>Basic concepts of Monte Carlo integration</li>
-<li>Example: Integrating using uniform distribution</li>
+<li>Ensure fields: Version, URL, BugReports, License</li>
+<li>Semantic versioning: increment patch for minor fixes</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>m <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb1-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(m)</span>
-<span id="cb1-3"><a></a>theta.hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">exp</span>(<span class="sc">-</span>x))</span>
-<span id="cb1-4"><a></a>theta.hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6310749</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6321206</code></pre>
-</div>
-</div>
 </section>
-<section id="example-monte-carlo-integration-with-bounded-intervals" class="slide level2">
-<h2>Example: Monte Carlo integration with bounded intervals</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>m <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb5-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(m, <span class="at">min=</span><span class="dv">2</span>, <span class="at">max=</span><span class="dv">4</span>)</span>
-<span id="cb5-3"><a></a>theta.hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">exp</span>(<span class="sc">-</span>x)) <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb5-4"><a></a>theta.hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1170934</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">exp</span>(<span class="sc">-</span><span class="dv">2</span>) <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1170196</code></pre>
-</div>
-</div>
+<section id="documentation-vignettes" class="slide level2">
+<h2>Documentation &amp; Vignettes</h2>
+<ul>
+<li>All help files up to date</li>
+<li>Vignettes build without errors</li>
+</ul>
+</section>
+<section id="tests-coverage" class="slide level2">
+<h2>Tests &amp; Coverage</h2>
+<ul>
+<li><code>devtools::test()</code> passes</li>
+<li>Consider <code>covr::report()</code></li>
+</ul>
+<p>??? note Emphasize <code>R CMD check --as-cran</code> equivalence.</p>
 </section></section>
-<section>
-<section id="lecture-2-monte-carlo-integration-for-unbounded-intervals-part-2" class="title-slide slide level1 center">
-<h1>Lecture 2: Monte Carlo Integration for Unbounded Intervals (Part 2)</h1>
-
-</section>
-<section id="unbounded-intervals" class="slide level2">
-<h2>Unbounded Intervals</h2>
+<section id="automated-checks-with-devtools" class="title-slide slide level1 center">
+<h1>3. Automated Checks with devtools</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># Run full checks</span></span>
+<span id="cb1-2"><a></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span>
+<span id="cb1-3"><a></a><span class="co"># Simulate CRAN environment</span></span>
+<span id="cb1-4"><a></a>devtools<span class="sc">::</span><span class="fu">check</span>(<span class="at">platform =</span> <span class="st">"windows-x86_64"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Handling unbounded intervals in Monte Carlo integration</li>
+<li>Check outputs: warnings, errors, notes</li>
+<li>Use <code>r-pkgs</code> recommendations for note-level fixes</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Plotting a function over an unbounded interval</span></span>
-<span id="cb9-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(.<span class="dv">1</span>, <span class="fl">2.5</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb9-3"><a></a>y <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>x<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb9-4"><a></a><span class="fu">plot</span>(x, y, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">main=</span><span class="st">"Function Plot for Unbounded Interval"</span>, <span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Chapter6_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="lecture-3-importance-sampling-part-3" class="title-slide slide level1 center">
-<h1>Lecture 3: Importance Sampling (Part 3)</h1>
-
+<p>??? note Show sample check log and resolution.</p>
 </section>
-<section id="introduction-to-importance-sampling" class="slide level2">
-<h2>Introduction to Importance Sampling</h2>
+
+<section id="usethis-helpers-for-release" class="title-slide slide level1 center">
+<h1>4. usethis Helpers for Release</h1>
 <ul>
-<li>Importance sampling and its applications</li>
-<li>Example: Applying importance sampling</li>
+<li><code>usethis::use_cran_badge()</code> adds status badge</li>
+<li><code>usethis::use_release_issue()</code> creates GitHub issue template</li>
+<li><code>usethis::use_news_md()</code> manages NEWS.md</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co"># Example of importance sampling</span></span>
-<span id="cb10-2"><a></a>g <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">exp</span>(<span class="sc">-</span>x<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb10-3"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">1</span>)</span>
-<span id="cb10-4"><a></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">1</span>)</span>
-<span id="cb10-5"><a></a>theta.hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">g</span>(x) <span class="sc">/</span> <span class="fu">f</span>(x))</span>
-<span id="cb10-6"><a></a>theta.hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.486201</code></pre>
-</div>
-</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_version</span>(<span class="st">"patch"</span>)</span>
+<span id="cb2-2"><a></a>usethis<span class="sc">::</span><span class="fu">use_news_md</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>??? note Demo bumping version and drafting NEWS.</p>
 </section>
-<section id="visualizing-importance-sampling" class="slide level2">
-<h2>Visualizing Importance Sampling</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="co"># Compare the original function with the importance sampling function</span></span>
-<span id="cb12-2"><a></a><span class="fu">curve</span>(g, <span class="at">from =</span> <span class="sc">-</span><span class="dv">3</span>, <span class="at">to =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">main=</span><span class="st">"Importance Sampling: g(x) vs f(x)"</span>)</span>
-<span id="cb12-3"><a></a><span class="fu">curve</span>(f, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb12-4"><a></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"g(x)"</span>, <span class="st">"f(x)"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
-<img data-src="Chapter6_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="lecture-4-variance-reduction-techniques-part-4" class="title-slide slide level1 center">
-<h1>Lecture 4: Variance Reduction Techniques (Part 4)</h1>
+<section id="releasing-with-devtoolsrelease" class="title-slide slide level1 center">
+<h1>5. Releasing with <code>devtools::release()</code></h1>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>devtools<span class="sc">::</span><span class="fu">release</span>()</span>
+<span id="cb3-2"><a></a><span class="co"># prompts:</span></span>
+<span id="cb3-3"><a></a><span class="co"># Are you ready to submit to CRAN? Yes</span></span>
+<span id="cb3-4"><a></a><span class="co"># Confirm: bump version, commit, tag</span></span>
+<span id="cb3-5"><a></a><span class="co"># Checks run automatically</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Interactive confirmations</li>
+<li>Automatic Git push &amp; tag</li>
+</ul>
+<p>??? note Highlight <code>--no-build-vignettes</code> option if needed.</p>
+</section>
 
+<section id="common-pitfalls-debugging" class="title-slide slide level1 center">
+<h1>6. Common Pitfalls &amp; Debugging</h1>
+<table>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Issue</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CMD check ERRORs</td>
+<td>Fix code, missing imports, syntax</td>
+</tr>
+<tr class="even">
+<td>NOTE: global binding issues</td>
+<td>Use <code>utils::globalVariables()</code></td>
+</tr>
+<tr class="odd">
+<td>Mac OS / Windows specific</td>
+<td>Test on all major platforms; try Docker</td>
+</tr>
+<tr class="even">
+<td>Vignette build failures</td>
+<td>Check missing packages, long file names</td>
+</tr>
+</tbody>
+</table>
+<p>??? note Live fix of a note about argument mismatches.</p>
 </section>
-<section id="control-variates" class="slide level2">
-<h2>Control Variates</h2>
+
+<section id="cran-policies-guidelines" class="title-slide slide level1 center">
+<h1>7. CRAN Policies &amp; Guidelines</h1>
 <ul>
-<li>Explanation of control variates and how they reduce variance</li>
-<li>Example: Using control variates in Monte Carlo integration</li>
+<li><strong>Repository policy</strong>: no heavy data, compiled code only with license</li>
+<li><strong>Package size &amp; dependencies</strong>: keep minimal</li>
+<li><strong>Code of conduct</strong></li>
+<li><strong>Binary vs source</strong>: platform builds</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># Control variates example</span></span>
-<span id="cb13-2"><a></a>m <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb13-3"><a></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(m)</span>
-<span id="cb13-4"><a></a>theta.hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">exp</span>(<span class="sc">-</span>x)) <span class="sc">-</span> (<span class="fu">mean</span>(x) <span class="sc">-</span> <span class="fl">0.5</span>)</span>
-<span id="cb13-5"><a></a>theta.hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6332334</code></pre>
-</div>
-</div>
+<p>??? note Refer to <a href="https://cran.r-project.org/web/packages/policies.html">https://cran.r-project.org/web/packages/policies.html</a>.</p>
 </section>
-<section id="antithetic-variables" class="slide level2">
-<h2>Antithetic Variables</h2>
+
+<section id="post-submission-workflow" class="title-slide slide level1 center">
+<h1>8. Post-Submission Workflow</h1>
 <ul>
-<li>Explanation of antithetic variables and how they reduce variance</li>
-<li>Example: Applying antithetic variables</li>
+<li><strong>CRAN response</strong>: review submitted log, email communication</li>
+<li><strong>Patch release</strong>: if maintainers request changes</li>
+<li><strong>Version tags</strong>: GitHub releases page</li>
+<li><strong>Announcement</strong>: update project website, social media</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># Antithetic variables example</span></span>
-<span id="cb15-2"><a></a>u <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">5000</span>)</span>
-<span id="cb15-3"><a></a>theta.hat <span class="ot">&lt;-</span> <span class="fu">mean</span>((<span class="fu">exp</span>(<span class="sc">-</span>u) <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span>(<span class="dv">1</span> <span class="sc">-</span> u))) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb15-4"><a></a>theta.hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6317443</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="sc">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.6321206</code></pre>
-</div>
-</div>
-</section></section>
-<section id="conclusion" class="title-slide slide level1 center">
-<h1>Conclusion</h1>
+<p>??? note Show sample CRAN acceptance email and next steps.</p>
+</section>
+
+<section id="hands-on-exercises-30-min" class="title-slide slide level1 center scrollable">
+<h1>9. Hands-On Exercises (30 min)</h1>
+<ol type="1">
+<li><strong>Simulate release</strong>: run <code>devtools::release()</code> in demo package</li>
+<li><strong>Fix check notes</strong>: resolve two common notes</li>
+<li><strong>Draft NEWS.md</strong> for a hypothetical minor release</li>
+<li><strong>Use usethis</strong> to add CRAN badge and release issue</li>
+</ol>
+<p>??? note Break into pairs, review each other’s work.</p>
+</section>
+
+<section id="resources-references" class="title-slide slide level1 center">
+<h1>Resources &amp; References</h1>
 <ul>
-<li>Recap of Monte Carlo integration methods, importance sampling, and variance reduction techniques</li>
-<li>Practice: Try implementing Monte Carlo integration with other functions</li>
+<li><strong>CRAN Release Guide</strong>: <a href="https://r-pkgs.org/release.html">https://r-pkgs.org/release.html</a></li>
+<li><strong>devtools docs</strong>: <a href="https://devtools.r-lib.org">https://devtools.r-lib.org</a></li>
+<li><strong>usethis reference</strong>: <a href="https://usethis.r-lib.org">https://usethis.r-lib.org</a></li>
+</ul>
+<p>??? note Provide cheat-sheet of key functions.</p>
+</section>
+
+<section id="qa" class="title-slide slide level1 center">
+<h1>Q&amp;A</h1>
+<ul>
+<li>Specific submission questions?</li>
+<li>Handling platform-specific checks?</li>
+</ul>
+</section>
+
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank You</h1>
+<ul>
+<li>Good luck with your CRAN submissions!</li>
 </ul>
 
 <div class="quarto-auto-generated-content">
@@ -777,44 +812,6 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

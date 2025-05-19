@@ -389,10 +389,10 @@
     }
   </style>
 <meta property="og:title" content="SCoRT - Short Course on R Tools">
-<meta property="og:description" content="Chapter 1 - Introduction">
+<meta property="og:description" content="Develop your own professional R package">
 <meta property="og:site_name" content="SCoRT">
 <meta name="twitter:title" content="SCoRT - Short Course on R Tools">
-<meta name="twitter:description" content="Chapter 1 - Introduction">
+<meta name="twitter:description" content="Develop your own professional R package">
 <meta name="twitter:image" content="https://tinyurl.com/SCiRT/slides/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
 <meta name="twitter:card" content="summary_large_image">
@@ -403,7 +403,7 @@
 
 <section id="title-slide" data-background-image="mu-bg.png" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
   <h1 class="title">Short Course on R Tools</h1>
-  <p class="subtitle">Chapter 1 - Introduction</p>
+  <p class="subtitle">Develop your own professional R package</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -417,299 +417,198 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </div>
 
 </section>
-<section id="overview-of-statistical-computing" class="title-slide slide level1 center">
-<h1>Overview of Statistical Computing</h1>
+<section id="outline" class="title-slide slide level1 center">
+<h1>Outline</h1>
+<div class="fragment fade-up">
 <ul>
-<li>Computational approaches to solving statistical problems</li>
-<li>Difference between statistical computing and computational statistics</li>
-<li>Importance of Monte Carlo methods, optimization, and random number generation</li>
+<li>Why Package Development?</li>
+<li>Package Structure &amp; Setup</li>
+<li>DESCRIPTION &amp; NAMESPACE Files</li>
+<li>Writing Functions &amp; Documentation</li>
+<li>Testing with <code>testthat</code></li>
+<li>Continuous Integration &amp; QA</li>
+<li>Vignettes &amp; Articles</li>
+<li>Building, Checking &amp; Installing</li>
+<li>CRAN Submission &amp; Maintenance</li>
+<li>Hands-on Exercises</li>
 </ul>
+</div>
 </section>
 
-<section id="getting-started-with-r-and-rstudio" class="title-slide slide level1 center">
-<h1>Getting Started with R and RStudio</h1>
+<section id="why-develop-packages" class="title-slide slide level1 center">
+<h1>1. Why Develop Packages?</h1>
 <ul>
-<li>R and RStudio: Installation steps</li>
-<li>Basic syntax in R</li>
-<li>Common operations: Assignment, sequences, and arithmetic</li>
+<li><strong>Reusability</strong>: share code across projects</li>
+<li><strong>Documentation</strong>: built-in help pages</li>
+<li><strong>Testing</strong>: ensure code quality</li>
+<li><strong>Distribution</strong>: CRAN, GitHub, internal repos</li>
+<li><strong>Best Practices</strong>: maintainability &amp; collaboration</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> pi)</span>
-<span id="cb1-2"><a></a><span class="fu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2.506628</code></pre>
-</div>
-</div>
-<ul>
-<li>Assignment operator <code>&lt;-</code> vs <code>=</code></li>
-<li>Console vs script execution in RStudio</li>
-</ul>
+<p>??? note Discuss team workflows and open-source benefits.</p>
 </section>
 
-<section id="r-help-system-and-distributions" class="title-slide slide level1 center">
-<h1>R Help System and Distributions</h1>
+<section id="package-structure-setup" class="title-slide slide level1 center">
+<h1>2. Package Structure &amp; Setup</h1>
 <ul>
-<li><code>help()</code>, <code>?</code> for accessing R documentation</li>
-<li>Searching for help topics and datasets</li>
-<li>Generating random variables and performing statistical tests in R</li>
+<li><p><strong>Directory layout</strong>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>mypkg/</span>
+<span id="cb1-2"><a></a>  DESCRIPTION</span>
+<span id="cb1-3"><a></a>  NAMESPACE</span>
+<span id="cb1-4"><a></a>  R/</span>
+<span id="cb1-5"><a></a>  man/</span>
+<span id="cb1-6"><a></a>  tests/</span>
+<span id="cb1-7"><a></a>  vignettes/</span>
+<span id="cb1-8"><a></a>  data/</span>
+<span id="cb1-9"><a></a>  inst/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Setup using devtools</strong>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="st">"mypkg"</span>)</span>
+<span id="cb2-2"><a></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span>
+<span id="cb2-3"><a></a>usethis<span class="sc">::</span><span class="fu">use_build_ignore</span>(<span class="st">"devtools_history.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">rnorm</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  [1] -0.12891415  1.09090018  1.84380207 -0.52728526 -0.31763638  1.19518818
-  [7] -0.18900227 -2.58751470 -2.08595386  0.53788486  0.74889846  2.79963765
- [13]  0.05890516  0.32113354  1.66694875  0.80480948 -0.74338118  0.74053882
- [19]  0.46579722 -1.55023836 -0.02756247 -0.03203175  1.17873667  1.08536427
- [25] -0.25965384  2.01668239 -1.41996410  0.96609182 -0.68369807  0.67989789
- [31]  0.45757106 -0.25184360  0.36227703 -1.31321686 -0.75166231 -0.12304436
- [37] -0.69335215  2.43582654  0.65241362 -2.08445582 -0.97944302  0.71324779
- [43]  0.76803522 -0.07151100  1.05936564  0.18682121 -0.29374403  1.10483491
- [49]  1.38074388  1.54671966  0.51029608 -0.33249391  1.57971573 -0.06635530
- [55]  2.17439274 -0.12894649 -1.07963592  0.22221716 -2.21128165 -0.26780133
- [61]  0.29662282 -1.73421151  1.25319546 -0.21483003 -0.45819788  0.97878164
- [67]  0.75861757  0.53727648 -1.01094107  0.50951544 -0.74169356  0.35070306
- [73]  0.03728629  1.22851260 -0.07911117  1.24589167  0.22485372 -0.53014779
- [79]  0.47465984 -0.05913313 -0.20824297 -0.03725554  0.38370089  2.49788306
- [85] -3.68714951 -0.90723439  0.28636146 -0.89099149 -1.16823780  0.21416450
- [91]  1.24860532 -0.28199808  0.47852260 -0.09133448 -0.79046756 -0.24963509
- [97] -0.98792990 -0.57900647  1.31456818  0.37108114</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">t.test</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Welch Two Sample t-test
-
-data:  rnorm(10) and rnorm(10)
-t = -0.41512, df = 17.562, p-value = 0.6831
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -1.3654630  0.9155633
-sample estimates:
- mean of x  mean of y 
--0.1184577  0.1064921 </code></pre>
-</div>
-</div>
+<p>??? note Show live demo: <code>create_package()</code> workflow.</p>
 </section>
 
 <section>
-<section id="distributions-and-statistical-tests" class="title-slide slide level1 center">
-<h1>Distributions and Statistical Tests</h1>
+<section id="description-namespace" class="title-slide slide level1 center">
+<h1>3. DESCRIPTION &amp; NAMESPACE</h1>
 
 </section>
-<section id="probability-distributions" class="slide level2">
-<h2>Probability Distributions</h2>
+<section id="description" class="slide level2">
+<h2>DESCRIPTION</h2>
 <ul>
-<li><code>dnorm()</code>, <code>pnorm()</code>, <code>qnorm()</code></li>
-<li>Exploring statistical tests in R</li>
+<li>Fields: <code>Package</code>, <code>Version</code>, <code>Title</code>, <code>Description</code>, <code>Author</code>, <code>Depends</code>, <code>Imports</code>, <code>Suggests</code>, <code>License</code></li>
+<li>Semantic versioning: <code>major.minor.patch</code></li>
 </ul>
 </section>
-<section id="statistical-tests" class="slide level2">
-<h2>Statistical Tests</h2>
+<section id="namespace" class="slide level2">
+<h2>NAMESPACE</h2>
 <ul>
-<li><code>t.test()</code>, <code>chisq.test()</code></li>
+<li>Export functions: <code>export()</code></li>
+<li>Import from other packages: <code>importFrom(dplyr, select)</code></li>
+<li>Generate with roxygen2 or manually</li>
 </ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co">#' @export</span></span>
+<span id="cb3-2"><a></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>??? note Emphasize keeping <code>Imports</code> minimal.</p>
 </section></section>
-<section>
-<section id="functions-in-r" class="title-slide slide level1 center">
-<h1>Functions in R</h1>
-
-</section>
-<section id="defining-functions" class="slide level2">
-<h2>Defining Functions</h2>
+<section id="functions-documentation" class="title-slide slide level1 center">
+<h1>4. Functions &amp; Documentation</h1>
 <ul>
-<li><code>function(arglist) expr</code></li>
-<li>Return values and default arguments</li>
+<li><p><strong>Code placement</strong>: scripts in <code>R/</code></p></li>
+<li><p><strong>Roxygen comments</strong>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co">#' Title</span></span>
+<span id="cb4-2"><a></a><span class="co">#'</span></span>
+<span id="cb4-3"><a></a><span class="co">#' @param x Numeric vector</span></span>
+<span id="cb4-4"><a></a><span class="co">#' @return Numeric</span></span>
+<span id="cb4-5"><a></a><span class="co">#' @examples</span></span>
+<span id="cb4-6"><a></a><span class="co">#' my_function(1:5)</span></span>
+<span id="cb4-7"><a></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Generate docs</strong>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>sumdice <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
-<span id="cb7-2"><a></a>  k <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">size=</span>n, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb7-3"><a></a>  <span class="fu">return</span>(<span class="fu">sum</span>(k))</span>
-<span id="cb7-4"><a></a>}</span>
-<span id="cb7-5"><a></a><span class="fu">sumdice</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 11</code></pre>
-</div>
-</div>
-</section></section>
-<section>
-<section id="data-structures-arrays-data-frames-and-lists" class="title-slide slide level1 center">
-<h1>Data Structures: Arrays, Data Frames, and Lists</h1>
-
-</section>
-<section id="data-structures-in-r" class="slide level2">
-<h2>Data Structures in R</h2>
-<ul>
-<li>Arrays, matrices, and data frames</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="co"># Creating vectors and matrices</span></span>
-<span id="cb9-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb9-3"><a></a>matrix_x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(x, <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol=</span><span class="dv">2</span>)</span>
-<span id="cb9-4"><a></a><span class="fu">print</span>(matrix_x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     [,1] [,2]
-[1,]    1    3
-[2,]    2    4</code></pre>
-</div>
-</div>
-<ul>
-<li>Example: Iris data set</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">data</span>(iris)</span>
-<span id="cb11-2"><a></a><span class="fu">summary</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
- Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
- 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
- Median :5.800   Median :3.000   Median :4.350   Median :1.300  
- Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
- 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
- Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
-       Species  
- setosa    :50  
- versicolor:50  
- virginica :50  
-                
-                
-                </code></pre>
-</div>
-</div>
-</section></section>
-<section id="table-comparison-of-data-structures" class="title-slide slide level1 center">
-<h1>Table: Comparison of Data Structures</h1>
-<style>
-table { font-size: 0.75em; }
-</style>
-<table>
-<colgroup>
-<col style="width: 17%">
-<col style="width: 48%">
-<col style="width: 34%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Definition</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Vector</td>
-<td>1D array of elements</td>
-<td><code>x &lt;- c(1, 2, 3)</code></td>
-</tr>
-<tr class="even">
-<td>Matrix</td>
-<td>2D array, same data type</td>
-<td><code>matrix(1:4, nrow=2)</code></td>
-</tr>
-<tr class="odd">
-<td>Data Frame</td>
-<td>2D array, different data types</td>
-<td><code>data(iris)</code></td>
-</tr>
-<tr class="even">
-<td>List</td>
-<td>Collection of objects (any type)</td>
-<td><code>list(a=1, b="hello")</code></td>
-</tr>
-</tbody>
-</table>
+<p>??? note Highlight best practices for examples and topics.</p>
 </section>
 
-<section>
-<section id="graphics-in-r" class="title-slide slide level1 center">
-<h1>Graphics in R</h1>
+<section id="testing-with-testthat" class="title-slide slide level1 center">
+<h1>5. Testing with <code>testthat</code></h1>
+<ul>
+<li><p><strong>Setup</strong>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_testthat</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Write tests</strong> in <code>tests/testthat/</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">test_that</span>(<span class="st">"sum works"</span>, {</span>
+<span id="cb7-2"><a></a>  <span class="fu">expect_equal</span>(<span class="fu">my_function</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dv">3</span>)</span>
+<span id="cb7-3"><a></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Run tests</strong>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>devtools<span class="sc">::</span><span class="fu">test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>??? note Stress importance of edge-case tests.</p>
+</section>
 
-</section>
-<section id="basic-plots" class="slide level2">
-<h2>Basic Plots</h2>
+<section id="continuous-integration-qa" class="title-slide slide level1 center">
+<h1>6. Continuous Integration &amp; QA</h1>
 <ul>
-<li><code>plot()</code>, <code>hist()</code>, <code>boxplot()</code></li>
+<li><p><strong>CI services</strong>: GitHub Actions, Travis CI, GitLab CI</p></li>
+<li><p><strong>Setup with usethis</strong>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_github_action_check_standard</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Code coverage</strong>: <code>covr</code>, Codecov</p></li>
+<li><p><strong>Linting</strong>: <code>lintr</code>, <code>goodpractice</code></p></li>
 </ul>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Code</a></li><li><a href="#tabset-1-2">Plot</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb13-2"><a></a><span class="co">#boxplot(iris)</span></span>
-<span id="cb13-3"><a></a><span class="co">#hist(iris[,1])</span></span>
-<span id="cb13-4"><a></a><span class="fu">plot</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-1-2">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Chapter1_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<p>??? note Show sample GitHub Actions YAML.</p>
 </section>
-<section id="introduction-to-ggplot2" class="slide level2">
-<h2>Introduction to ggplot2</h2>
-<ul>
-<li>Visualizing using <code>ggplot2</code></li>
-</ul>
-<div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Code</a></li><li><a href="#tabset-2-2">Plot</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="|1|2|3-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb14-2"><a></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x=</span>Sepal.Length, <span class="at">y=</span>Petal.Length)) <span class="sc">+</span> </span>
-<span id="cb14-3"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb14-4"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span> </span>
-<span id="cb14-5"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb14-6"><a></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Sepal vs Petal Length in Iris Dataset"</span>, <span class="at">x=</span><span class="st">"Sepal Length"</span>, <span class="at">y=</span><span class="st">"Petal Length"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-2-2">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Chapter1_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="workspace-and-files---markdown-and-knitr" class="title-slide slide level1 center">
-<h1>Workspace and Files - Markdown and knitr</h1>
 
-</section>
-<section id="managing-files" class="slide level2">
-<h2>Managing Files</h2>
+<section id="vignettes-articles" class="title-slide slide level1 center">
+<h1>7. Vignettes &amp; Articles</h1>
 <ul>
-<li>Working directories and file input/output</li>
-<li>Using scripts and automation</li>
+<li><p><strong>Long-form documentation</strong>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_vignette</span>(<span class="st">"intro"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>R Markdown</strong> in <code>vignettes/</code></p></li>
+<li><p><strong>Build &amp; preview</strong>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>devtools<span class="sc">::</span><span class="fu">build_vignettes</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>??? note Encourage rich examples and narratives.</p>
+</section>
+
+<section id="building-checking-installing" class="title-slide slide level1 center">
+<h1>8. Building, Checking &amp; Installing</h1>
+<ul>
+<li><p><strong>Build package</strong>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>devtools<span class="sc">::</span><span class="fu">build</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Check package</strong>:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Install locally</strong>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Binary vs source</strong>: options for Windows/Mac</p></li>
+</ul>
+<p>??? note Explain common check errors and fixes.</p>
+</section>
+
+<section id="cran-submission-maintenance" class="title-slide slide level1 center">
+<h1>9. CRAN Submission &amp; Maintenance</h1>
+<ul>
+<li><p><strong>CRAN policies</strong>: style, dependencies, tests</p></li>
+<li><p><strong>Submit</strong>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>devtools<span class="sc">::</span><span class="fu">release</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>News/Changelog</strong>: <code>NEWS.md</code></p></li>
+<li><p><strong>Version control</strong>: tagging releases</p></li>
+<li><p><strong>Maintaining</strong>: issues, pull requests, documentation updates</p></li>
+</ul>
+<p>??? note Review CRAN incoming checks and email workflows.</p>
+</section>
+
+<section id="hands-on-exercises-30-min" class="title-slide slide level1 center scrollable">
+<h1>10. Hands-on Exercises (30 min)</h1>
+<ol type="1">
+<li>Create a new package skeleton and add a simple function</li>
+<li>Write roxygen docs and generate help files</li>
+<li>Add tests for edge cases and set up CI</li>
+<li>Draft a vignette showcasing function usage</li>
+</ol>
+<p>??? note Pair up and share GitHub repo links.</p>
+</section>
+
+<section id="resources-further-reading" class="title-slide slide level1 center">
+<h1>Resources &amp; Further Reading</h1>
+<ul>
+<li><strong>Books</strong>: <em>R Packages</em> by Hadley Wickham (<a href="https://r-pkgs.org" class="uri">https://r-pkgs.org</a>)</li>
+<li><strong>devtools</strong>: <a href="https://devtools.r-lib.org" class="uri">https://devtools.r-lib.org</a></li>
+<li><strong>usethis</strong>: helper functions</li>
+<li><strong>CRAN Repository Policy</strong>: CRAN manual</li>
+</ul>
+<p>??? note Provide cheat-sheet links.</p>
+</section>
+
+<section id="qa" class="title-slide slide level1 center">
+<h1>Q&amp;A</h1>
+<ul>
+<li>Questions on package workflows?</li>
+<li>Real-world package examples?</li>
 </ul>
 </section>
-<section id="dynamic-documents" class="slide level2">
-<h2>Dynamic Documents</h2>
+
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank You</h1>
 <ul>
-<li>Creating reports with R Markdown</li>
-<li>Introduction to <code>knitr</code> package</li>
-</ul>
-</section></section>
-<section id="conclusion" class="title-slide slide level1 center">
-<h1>Conclusion</h1>
-<ul>
-<li>Recap of key points: R setup, data structures, functions, and plotting</li>
-<li>Next steps: Exploring probability distributions in R</li>
+<li>Happy packaging with R!</li>
 </ul>
 
 <div class="quarto-auto-generated-content">
@@ -931,44 +830,6 @@ table { font-size: 0.75em; }
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

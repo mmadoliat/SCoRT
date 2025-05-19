@@ -417,104 +417,208 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </div>
 
 </section>
-<section>
-<section id="lecture-1-monte-carlo-estimation-part-1" class="title-slide slide level1 center">
-<h1>Lecture 1: Monte Carlo Estimation (Part 1)</h1>
-
-</section>
-<section id="basic-monte-carlo-estimation" class="slide level2">
-<h2>Basic Monte Carlo Estimation</h2>
+<section id="outline" class="title-slide slide level1 center">
+<h1>Outline</h1>
+<div class="fragment fade-up">
 <ul>
-<li>Introduction to Monte Carlo estimation</li>
-<li>Example: Estimating the expected difference of two normal variables</li>
+<li>Why reticulate?</li>
+<li>Installation &amp; Setup</li>
+<li>Managing Python Environments</li>
+<li>Executing Python Code in R</li>
+<li>Python Objects &amp; Data Conversion</li>
+<li>Sourcing Python Scripts &amp; Modules</li>
+<li>Advanced Interoperability</li>
+<li>reticulate in R Markdown &amp; Quarto</li>
+<li>Shiny &amp; Python Integration</li>
+<li>Debugging &amp; Best Practices</li>
+<li>Hands-on Exercises</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>m <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb1-2"><a></a>g <span class="ot">&lt;-</span> <span class="fu">numeric</span>(m)</span>
-<span id="cb1-3"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>m) {</span>
-<span id="cb1-4"><a></a>    x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">2</span>)</span>
-<span id="cb1-5"><a></a>    g[i] <span class="ot">&lt;-</span> <span class="fu">abs</span>(x[<span class="dv">1</span>] <span class="sc">-</span> x[<span class="dv">2</span>])</span>
-<span id="cb1-6"><a></a>}</span>
-<span id="cb1-7"><a></a>est <span class="ot">&lt;-</span> <span class="fu">mean</span>(g)</span>
-<span id="cb1-8"><a></a>est</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.10905</code></pre>
-</div>
 </div>
 </section>
-<section id="visualizing-monte-carlo-simulations" class="slide level2">
-<h2>Visualizing Monte Carlo Simulations</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># Histogram of the simulated differences</span></span>
-<span id="cb3-2"><a></a><span class="fu">hist</span>(g, <span class="at">main=</span><span class="st">"Histogram of Differences (Monte Carlo)"</span>, <span class="at">col=</span><span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
-<img data-src="Chapter7_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="lecture-2-monte-carlo-mse-estimation-part-2" class="title-slide slide level1 center">
-<h1>Lecture 2: Monte Carlo MSE Estimation (Part 2)</h1>
-
-</section>
-<section id="estimating-the-mean-squared-error-mse" class="slide level2">
-<h2>Estimating the Mean Squared Error (MSE)</h2>
+<section id="why-reticulate" class="title-slide slide level1 center">
+<h1>1. Why reticulate?</h1>
 <ul>
-<li>Monte Carlo estimation of MSE for trimmed means</li>
+<li><strong>Bridging worlds</strong>: seamless R ↔︎ Python integration</li>
+<li><strong>Leverage ecosystems</strong>: use pandas, scikit-learn, TensorFlow</li>
+<li><strong>Reproducibility</strong>: single script combining best of both</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb4-2"><a></a>m <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb4-3"><a></a>mean_trim <span class="ot">&lt;-</span> <span class="fu">numeric</span>(m)</span>
-<span id="cb4-4"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>m) {</span>
-<span id="cb4-5"><a></a>    x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb4-6"><a></a>    mean_trim[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(x, <span class="at">trim =</span> <span class="fl">0.1</span>)</span>
-<span id="cb4-7"><a></a>}</span>
-<span id="cb4-8"><a></a>mse <span class="ot">&lt;-</span> <span class="fu">mean</span>((mean_trim <span class="sc">-</span> <span class="dv">0</span>)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb4-9"><a></a>mse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.05117417</code></pre>
-</div>
-</div>
+<p>??? note Highlight common use cases: data science pipelines, ML workflows.</p>
 </section>
-<section id="visualizing-mse-simulations" class="slide level2">
-<h2>Visualizing MSE Simulations</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co"># Histogram of the trimmed means</span></span>
-<span id="cb6-2"><a></a><span class="fu">hist</span>(mean_trim, <span class="at">main=</span><span class="st">"Trimmed Means (Monte Carlo MSE)"</span>, <span class="at">col=</span><span class="st">"lightgreen"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
-<img data-src="Chapter7_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="lecture-3-advanced-monte-carlo-techniques-part-3" class="title-slide slide level1 center">
-<h1>Lecture 3: Advanced Monte Carlo Techniques (Part 3)</h1>
-
-</section>
-<section id="additional-monte-carlo-techniques" class="slide level2">
-<h2>Additional Monte Carlo Techniques</h2>
+<section id="installation-setup" class="title-slide slide level1 center">
+<h1>2. Installation &amp; Setup</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">"reticulate"</span>)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(reticulate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Exploring advanced Monte Carlo techniques for inference</li>
-<li>Example: Hypothesis testing with Monte Carlo methods</li>
+<li><p><strong>Configure Python</strong>:</p>
+<ul>
+<li><code>py_config()</code> to inspect current setup</li>
+<li><code>use_python("/usr/bin/python3")</code></li>
+</ul></li>
+<li><p><strong>Check availability</strong>: <code>py_available()</code></p></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Monte Carlo test example: Hypothesis testing</span></span>
-<span id="cb7-2"><a></a>n <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb7-3"><a></a>m <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb7-4"><a></a>test_stat <span class="ot">&lt;-</span> <span class="fu">numeric</span>(m)</span>
-<span id="cb7-5"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>m) {</span>
-<span id="cb7-6"><a></a>    x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb7-7"><a></a>    test_stat[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
-<span id="cb7-8"><a></a>}</span>
-<span id="cb7-9"><a></a>p_value <span class="ot">&lt;-</span> <span class="fu">mean</span>(test_stat <span class="sc">&gt;=</span> <span class="fl">1.96</span>)</span>
-<span id="cb7-10"><a></a>p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0</code></pre>
-</div>
-</div>
+<p>??? note Demonstrate <code>py_config()</code> output and path selection.</p>
 </section>
-<section id="conclusion" class="slide level2">
-<h2>Conclusion</h2>
+
+<section id="managing-python-environments" class="title-slide slide level1 center">
+<h1>3. Managing Python Environments</h1>
 <ul>
-<li>Recap of Monte Carlo methods in inference, MSE estimation, and hypothesis testing</li>
-<li>Practice: Apply these methods to other inferential problems</li>
+<li><p><strong>Virtualenv</strong>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">virtualenv_create</span>(<span class="st">"r-reticulate"</span>)</span>
+<span id="cb2-2"><a></a><span class="fu">virtualenv_install</span>(<span class="st">"r-reticulate"</span>, <span class="st">"numpy"</span>, <span class="st">"pandas"</span>)</span>
+<span id="cb2-3"><a></a><span class="fu">use_virtualenv</span>(<span class="st">"r-reticulate"</span>, <span class="at">required =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Conda</strong>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">conda_create</span>(<span class="st">"r-reticulate"</span>, <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"numpy"</span>, <span class="st">"pandas"</span>))</span>
+<span id="cb3-2"><a></a><span class="fu">use_condaenv</span>(<span class="st">"r-reticulate"</span>, <span class="at">required =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>??? note Emphasize isolating project dependencies.</p>
+</section>
+
+<section id="executing-python-code-in-r" class="title-slide slide level1 center">
+<h1>4. Executing Python Code in R</h1>
+<ul>
+<li><p><strong>Inline code</strong>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">py_run_string</span>(<span class="st">"import math; x = math.sqrt(16)"</span>)</span>
+<span id="cb4-2"><a></a>py<span class="sc">$</span>x  <span class="co"># 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Evaluating expressions</strong>:</p></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">py_eval</span>(<span class="st">"2 + 2"</span>)  <span class="co"># 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>??? note Show retrieval of Python variable into R.</p>
+</section>
+
+<section id="python-objects-data-conversion" class="title-slide slide level1 center">
+<h1>5. Python Objects &amp; Data Conversion</h1>
+<ul>
+<li><strong>Basic types</strong>: numeric, integer, logical, character</li>
+<li><strong>Vectors &amp; lists</strong> auto-convert</li>
+<li><strong>Data frames</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>pd <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"pandas"</span>)</span>
+<span id="cb6-2"><a></a>df_py <span class="ot">&lt;-</span> pd<span class="sc">$</span><span class="fu">DataFrame</span>(<span class="fu">list</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span>)))</span>
+<span id="cb6-3"><a></a>df_r <span class="ot">&lt;-</span> <span class="fu">py_to_r</span>(df_py)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Round-trip</strong>: <code>r_to_py()</code></li>
+</ul>
+<p>??? note Compare R <code>data.frame()</code> vs pandas DataFrame.</p>
+</section>
+
+<section id="sourcing-python-scripts-modules" class="title-slide slide level1 center">
+<h1>6. Sourcing Python Scripts &amp; Modules</h1>
+<ul>
+<li><strong>source_python</strong>: load <code>.py</code> file</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">source_python</span>(<span class="st">"utils.py"</span>)</span>
+<span id="cb7-2"><a></a>result <span class="ot">&lt;-</span> <span class="fu">py_func</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p><strong>import</strong>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>utils <span class="ot">&lt;-</span> <span class="fu">import_from_path</span>(<span class="st">"utils"</span>, <span class="at">path =</span> <span class="st">"."</span>)</span>
+<span id="cb8-2"><a></a>utils<span class="sc">$</span><span class="fu">py_func</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>??? note Demonstrate writing a simple Python helper module.</p>
+</section>
+
+<section id="advanced-interoperability" class="title-slide slide level1 center">
+<h1>7. Advanced Interoperability</h1>
+<ul>
+<li><strong>Reticulate classes</strong>: work with Python classes</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>PyClass <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"mymodule"</span>)<span class="sc">$</span>MyClass</span>
+<span id="cb9-2"><a></a>obj <span class="ot">&lt;-</span> PyClass<span class="sc">$</span><span class="fu">new</span>(<span class="dv">5</span>)</span>
+<span id="cb9-3"><a></a>obj<span class="sc">$</span><span class="fu">compute</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p><strong>Callbacks</strong>:</p>
+<ul>
+<li>Pass R functions to Python: <code>r_to_py(my_r_fn)</code></li>
+</ul></li>
+<li><p><strong>NumPy &amp; arrays</strong>: memory sharing</p></li>
+</ul>
+<p>??? note Show example of calling scikit-learn classifier from R.</p>
+</section>
+
+<section id="reticulate-in-r-markdown-quarto" class="title-slide slide level1 center">
+<h1>8. reticulate in R Markdown &amp; Quarto</h1>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a></a><span class="in">```{.python}</span></span>
+<span id="cb10-2"><a></a><span class="in">import numpy as np</span></span>
+<span id="cb10-3"><a></a><span class="in">x = np.arange(10)</span></span>
+<span id="cb10-4"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Chunk engines</strong>: <code>{python}</code>, <code>{python3}</code></li>
+<li><strong>Return to R</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>r_vec <span class="ot">&lt;-</span> py<span class="sc">$</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Quarto YAML</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb12-2"><a></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>??? note Illustrate inline Python in a Quarto document.</p>
+</section>
+
+<section id="shiny-python-integration" class="title-slide slide level1 center">
+<h1>9. Shiny &amp; Python Integration</h1>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">library</span>(shiny)</span>
+<span id="cb13-2"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb13-3"><a></a>  <span class="fu">actionButton</span>(<span class="st">"btn"</span>, <span class="st">"Compute Python"</span>),</span>
+<span id="cb13-4"><a></a>  <span class="fu">verbatimTextOutput</span>(<span class="st">"out"</span>)</span>
+<span id="cb13-5"><a></a>)</span>
+<span id="cb13-6"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb13-7"><a></a>  <span class="fu">observeEvent</span>(input<span class="sc">$</span>btn, {</span>
+<span id="cb13-8"><a></a>    <span class="fu">py_run_string</span>(<span class="st">"import math; res = math.factorial(10)"</span>)</span>
+<span id="cb13-9"><a></a>    output<span class="sc">$</span>out <span class="ot">&lt;-</span> <span class="fu">renderText</span>(py<span class="sc">$</span>res)</span>
+<span id="cb13-10"><a></a>  })</span>
+<span id="cb13-11"><a></a>}</span>
+<span id="cb13-12"><a></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Use cases</strong>: ML inference, data preprocessing</li>
+</ul>
+<p>??? note Live demo of Python-based analytics in Shiny.</p>
+</section>
+
+<section id="debugging-best-practices" class="title-slide slide level1 center">
+<h1>10. Debugging &amp; Best Practices</h1>
+<ul>
+<li><strong>Error tracing</strong>: inspect Python tracebacks</li>
+<li><strong>Suppress startup</strong>: <code>use_python(..., required=TRUE)</code></li>
+<li><strong>Version control</strong>: lock <code>requirements.txt</code></li>
+<li><strong>Performance</strong>: minimize data copying</li>
+</ul>
+<p>??? note Tips for reproducible and robust integrations.</p>
+</section>
+
+<section id="hands-on-exercises-30-min" class="title-slide slide level1 center scrollable">
+<h1>11. Hands-on Exercises (30 min)</h1>
+<ol type="1">
+<li><strong>Create environment</strong> and import a Python library (e.g., seaborn)</li>
+<li><strong>Write Python function</strong> in <code>.py</code> and call it from R</li>
+<li><strong>Convert</strong> a pandas DataFrame to R and back</li>
+<li><strong>Embed</strong> Python chunk in a Quarto doc and render</li>
+</ol>
+<p>??? note Pair programming; share code snippets.</p>
+</section>
+
+<section id="resources-further-reading" class="title-slide slide level1 center">
+<h1>Resources &amp; Further Reading</h1>
+<ul>
+<li>reticulate docs: <a href="https://rstudio.github.io/reticulate/">https://rstudio.github.io/reticulate/</a></li>
+<li>Tutorials: RStudio blog posts</li>
+<li>Community: RStudio Community forums</li>
+</ul>
+<p>??? note Encourage exploring advanced use cases.</p>
+</section>
+
+<section id="qa" class="title-slide slide level1 center">
+<h1>Q&amp;A</h1>
+<ul>
+<li>Questions on environment management?</li>
+<li>Real-world integration scenarios?</li>
+</ul>
+</section>
+
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank You</h1>
+<ul>
+<li>Happy Python + R coding!</li>
 </ul>
 
 <div class="quarto-auto-generated-content">
@@ -523,7 +627,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <p><a href="https://tinyurl.com/SCiRT">🔗 tinyurl.com/SCiRT</a></p>
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
@@ -736,44 +840,6 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
