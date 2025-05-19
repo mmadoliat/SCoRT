@@ -31,7 +31,7 @@ title: "Useful links"
 |                            |                                                                                      |
 |                            | 🔗 Rcpp: [www.rcpp.org](https://www.rcpp.org/)                                       |
 |                            |                                                                                      |
-|                            | 🔗 GitHub: [github.com](https://github.com/)                                         |
+|                            | 🔗 GitHub: [happygitwithr.com](https://happygitwithr.com/)                           |
 |                            |                                                                                      |
 |                            | 🔗 OOP-R6: [r6.r-lib.org](https://r6.r-lib.org/)                                     |
 |                            |                                                                                      |

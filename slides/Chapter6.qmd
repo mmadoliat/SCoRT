@@ -1,6 +1,6 @@
 ---
 title: "Short Course on R Tools"
-subtitle: "Chapter 6 - Monte Carlo Integration and Variance Reduction"
+subtitle: "Navigate the CRAN submission process"
 title-slide-attributes:
   data-background-image: mu-bg.png
   data-background-size: stretch
@@ -11,98 +11,151 @@ format:
     scrollable: true
 ---
 
-# Lecture 1: Simple Monte Carlo Integration (Part 1)
+# Outline
 
-## Introduction to Monte Carlo Integration
+::: {.fragment .fade-up}
+-   Introduction & CRAN Overview
+-   Pre-Submission Preparation
+-   Automated Checks with devtools
+-   usethis Helpers for Release
+-   Releasing with `devtools::release()`
+-   Common Pitfalls & Debugging
+-   CRAN Policies & Guidelines
+-   Post-Submission Workflow
+-   Hands-On Exercises
 
--   Basic concepts of Monte Carlo integration
--   Example: Integrating using uniform distribution
+# 1. Introduction & CRAN Overview
 
-```{r}
-m <- 10000
-x <- runif(m)
-theta.hat <- mean(exp(-x))
-theta.hat
-1 - exp(-1)
+* **What is CRAN?** central repository for R packages
+* **Roles**: authors, CRAN maintainers, users
+* **Submission flow**:
+
+  1. Local checks → 2. devtools release → 3. CRAN review → 4. Publication
+
+??? note
+High-level diagram of submission pipeline.
+
+# 2. Pre-Submission Preparation
+
+## DESCRIPTION & NAMESPACE
+
+* Ensure fields: Version, URL, BugReports, License
+* Semantic versioning: increment patch for minor fixes
+
+## Documentation & Vignettes
+
+* All help files up to date
+* Vignettes build without errors
+
+## Tests & Coverage
+
+* `devtools::test()` passes
+* Consider `covr::report()`
+
+??? note
+Emphasize `R CMD check --as-cran` equivalence.
+
+# 3. Automated Checks with devtools
+
+```{.r}
+# Run full checks
+devtools::check()
+# Simulate CRAN environment
+devtools::check(platform = "windows-x86_64")
 ```
 
-## Example: Monte Carlo integration with bounded intervals
+* Check outputs: warnings, errors, notes
+* Use `r-pkgs` recommendations for note-level fixes
 
-```{r}
-m <- 10000
-x <- runif(m, min=2, max=4)
-theta.hat <- mean(exp(-x)) * 2
-theta.hat
-exp(-2) - exp(-4)
+??? note
+Show sample check log and resolution.
+
+# 4. usethis Helpers for Release
+
+* `usethis::use_cran_badge()` adds status badge
+* `usethis::use_release_issue()` creates GitHub issue template
+* `usethis::use_news_md()` manages NEWS.md
+
+```{.r}
+usethis::use_version("patch")
+usethis::use_news_md()
 ```
 
-# Lecture 2: Monte Carlo Integration for Unbounded Intervals (Part 2)
+??? note
+Demo bumping version and drafting NEWS.
 
-## Unbounded Intervals
+# 5. Releasing with `devtools::release()`
 
--   Handling unbounded intervals in Monte Carlo integration
-
-```{r}
-# Plotting a function over an unbounded interval
-x <- seq(.1, 2.5, length.out = 100)
-y <- exp(-x^2 / 2)
-plot(x, y, type="l", main="Function Plot for Unbounded Interval", col="blue")
+```{.r}
+devtools::release()
+# prompts:
+# Are you ready to submit to CRAN? Yes
+# Confirm: bump version, commit, tag
+# Checks run automatically
 ```
 
-# Lecture 3: Importance Sampling (Part 3)
+* Interactive confirmations
+* Automatic Git push & tag
 
-## Introduction to Importance Sampling
+??? note
+Highlight `--no-build-vignettes` option if needed.
 
--   Importance sampling and its applications
--   Example: Applying importance sampling
+# 6. Common Pitfalls & Debugging
 
-```{r}
-# Example of importance sampling
-g <- function(x) exp(-x^2 / 2)
-f <- function(x) dnorm(x, mean = 1)
-x <- rnorm(10000, mean = 1)
-theta.hat <- mean(g(x) / f(x))
-theta.hat
-```
+| Issue                       | Solution                                |
+| --------------------------- | --------------------------------------- |
+| CMD check ERRORs            | Fix code, missing imports, syntax       |
+| NOTE: global binding issues | Use `utils::globalVariables()`          |
+| Mac OS / Windows specific   | Test on all major platforms; try Docker |
+| Vignette build failures     | Check missing packages, long file names |
 
-## Visualizing Importance Sampling
+??? note
+Live fix of a note about argument mismatches.
 
-```{r}
-# Compare the original function with the importance sampling function
-curve(g, from = -3, to = 3, col = "blue", lwd = 2, main="Importance Sampling: g(x) vs f(x)")
-curve(f, add = TRUE, col = "red", lty = 2, lwd = 2)
-legend("topright", legend=c("g(x)", "f(x)"), col=c("blue", "red"), lty=c(1, 2), lwd=2)
-```
+# 7. CRAN Policies & Guidelines
 
-# Lecture 4: Variance Reduction Techniques (Part 4)
+* **Repository policy**: no heavy data, compiled code only with license
+* **Package size & dependencies**: keep minimal
+* **Code of conduct**
+* **Binary vs source**: platform builds
 
-## Control Variates
+??? note
+Refer to [https://cran.r-project.org/web/packages/policies.html](https://cran.r-project.org/web/packages/policies.html).
 
--   Explanation of control variates and how they reduce variance
--   Example: Using control variates in Monte Carlo integration
+# 8. Post-Submission Workflow
 
-```{r}
-# Control variates example
-m <- 10000
-x <- runif(m)
-theta.hat <- mean(exp(-x)) - (mean(x) - 0.5)
-theta.hat
-```
+* **CRAN response**: review submitted log, email communication
+* **Patch release**: if maintainers request changes
+* **Version tags**: GitHub releases page
+* **Announcement**: update project website, social media
 
-## Antithetic Variables
+??? note
+Show sample CRAN acceptance email and next steps.
 
--   Explanation of antithetic variables and how they reduce variance
--   Example: Applying antithetic variables
+# 9. Hands-On Exercises (30 min)
 
-```{r}
-# Antithetic variables example
-u <- runif(5000)
-theta.hat <- mean((exp(-u) + exp(-(1 - u))) / 2)
-theta.hat
-1 - exp(-1)
-```
+1. **Simulate release**: run `devtools::release()` in demo package
+2. **Fix check notes**: resolve two common notes
+3. **Draft NEWS.md** for a hypothetical minor release
+4. **Use usethis** to add CRAN badge and release issue
 
-# Conclusion
+??? note
+Break into pairs, review each other’s work.
 
--   Recap of Monte Carlo integration methods, importance sampling, and variance reduction techniques
--   Practice: Try implementing Monte Carlo integration with other functions
+# Resources & References
+
+* **CRAN Release Guide**: [https://r-pkgs.org/release.html](https://r-pkgs.org/release.html)
+* **devtools docs**: [https://devtools.r-lib.org](https://devtools.r-lib.org)
+* **usethis reference**: [https://usethis.r-lib.org](https://usethis.r-lib.org)
+
+??? note
+Provide cheat-sheet of key functions.
+
+# Q\&A
+
+* Specific submission questions?
+* Handling platform-specific checks?
+
+# Thank You
+
+* Good luck with your CRAN submissions!
