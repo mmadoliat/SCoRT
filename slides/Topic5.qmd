@@ -1,0 +1,234 @@
+---
+title: "Short Course on R Tools"
+subtitle: "Develop your own professional R package"
+title-slide-attributes:
+  data-background-image: mu-bg.png
+  data-background-size: stretch
+  data-slide-number: none
+format: 
+  revealjs:
+    transition: fade
+    scrollable: true
+---
+
+# Outline
+
+::: {.fragment .fade-up}
+-   Why Package Development?
+-   Package Structure & Setup
+-   DESCRIPTION & NAMESPACE Files
+-   Writing Functions & Documentation
+-   Testing with `testthat`
+-   Continuous Integration & QA
+-   Vignettes & Articles
+-   Building, Checking & Installing
+-   CRAN Submission & Maintenance
+-   Hands-on Exercises
+:::
+
+# 1. Why Develop Packages?
+
+-   **Reusability**: share code across projects
+-   **Documentation**: built-in help pages
+-   **Testing**: ensure code quality
+-   **Distribution**: CRAN, GitHub, internal repos
+-   **Best Practices**: maintainability & collaboration
+
+??? note Discuss team workflows and open-source benefits.
+
+# 2. Package Structure & Setup
+
+-   **Directory layout**:
+
+    ``` text
+    mypkg/
+      DESCRIPTION
+      NAMESPACE
+      R/
+      man/
+      tests/
+      vignettes/
+      data/
+      inst/
+    ```
+
+-   **Setup using devtools**:
+
+    ``` {.r}
+    usethis::create_package("mypkg")
+    usethis::use_git()
+    usethis::use_build_ignore("devtools_history.R")
+    ```
+
+??? note Show live demo: `create_package()` workflow.
+
+# 3. DESCRIPTION & NAMESPACE
+
+## DESCRIPTION
+
+-   Fields: `Package`, `Version`, `Title`, `Description`, `Author`, `Depends`, `Imports`, `Suggests`, `License`
+-   Semantic versioning: `major.minor.patch`
+
+## NAMESPACE
+
+-   Export functions: `export()`
+-   Import from other packages: `importFrom(dplyr, select)`
+-   Generate with roxygen2 or manually
+
+``` {.r}
+#' @export
+my_function <- function(x) x + 1
+```
+
+??? note Emphasize keeping `Imports` minimal.
+
+# 4. Functions & Documentation
+
+-   **Code placement**: scripts in `R/`
+
+-   **Roxygen comments**:
+
+    ``` {.r}
+    #' Title
+    #'
+    #' @param x Numeric vector
+    #' @return Numeric
+    #' @examples
+    #' my_function(1:5)
+    my_function <- function(x) sum(x)
+    ```
+
+-   **Generate docs**:
+
+    ``` {.r}
+    devtools::document()
+    ```
+
+??? note Highlight best practices for examples and topics.
+
+# 5. Testing with `testthat`
+
+-   **Setup**:
+
+    ``` {.r}
+    usethis::use_testthat()
+    ```
+
+-   **Write tests** in `tests/testthat/`:
+
+    ``` {.r}
+    test_that("sum works", {
+      expect_equal(my_function(1,2), 3)
+    })
+    ```
+
+-   **Run tests**:
+
+    ``` {.r}
+    devtools::test()
+    ```
+
+??? note Stress importance of edge-case tests.
+
+# 6. Continuous Integration & QA
+
+-   **CI services**: GitHub Actions, Travis CI, GitLab CI
+
+-   **Setup with usethis**:
+
+    ``` {.r}
+    usethis::use_github_action_check_standard()
+    ```
+
+-   **Code coverage**: `covr`, Codecov
+
+-   **Linting**: `lintr`, `goodpractice`
+
+??? note Show sample GitHub Actions YAML.
+
+# 7. Vignettes & Articles
+
+-   **Long-form documentation**:
+
+    ``` {.r}
+    usethis::use_vignette("intro")
+    ```
+
+-   **R Markdown** in `vignettes/`
+
+-   **Build & preview**:
+
+    ``` {.r}
+    devtools::build_vignettes()
+    ```
+
+??? note Encourage rich examples and narratives.
+
+# 8. Building, Checking & Installing
+
+-   **Build package**:
+
+    ``` {.r}
+    devtools::build()
+    ```
+
+-   **Check package**:
+
+    ``` {.r}
+    devtools::check()
+    ```
+
+-   **Install locally**:
+
+    ``` {.r}
+    devtools::install()
+    ```
+
+-   **Binary vs source**: options for Windows/Mac
+
+??? note Explain common check errors and fixes.
+
+# 9. CRAN Submission & Maintenance
+
+-   **CRAN policies**: style, dependencies, tests
+
+-   **Submit**:
+
+    ``` {.r}
+    devtools::release()
+    ```
+
+-   **News/Changelog**: `NEWS.md`
+
+-   **Version control**: tagging releases
+
+-   **Maintaining**: issues, pull requests, documentation updates
+
+??? note Review CRAN incoming checks and email workflows.
+
+# 10. Hands-on Exercises (30 min)
+
+1.  Create a new package skeleton and add a simple function
+2.  Write roxygen docs and generate help files
+3.  Add tests for edge cases and set up CI
+4.  Draft a vignette showcasing function usage
+
+??? note Pair up and share GitHub repo links.
+
+# Resources & Further Reading
+
+-   **Books**: *R Packages* by Hadley Wickham (<https://r-pkgs.org>)
+-   **devtools**: <https://devtools.r-lib.org>
+-   **usethis**: helper functions
+-   **CRAN Repository Policy**: CRAN manual
+
+??? note Provide cheat-sheet links.
+
+# Q&A
+
+-   Questions on package workflows?
+-   Real-world package examples?
+
+# Thank You
+
+-   Happy packaging with R!

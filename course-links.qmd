@@ -11,9 +11,9 @@ title: "Useful links"
 |                            |                                                                                      |
 | RStudio                    | 🔗 on [dna](https://tinyurl.com/RS-dna)                                              |
 +----------------------------+--------------------------------------------------------------------------------------+
-| Advanced Texbooks          | 🔗 [R Package](https://r-pkgs.org/)                                                  |
+| Advanced Texbooks          | 🔗 [Advanced R by Hadley Wickham](https://adv-r.hadley.nz/)                          |
 |                            |                                                                                      |
-|                            | 🔗 [Advanced R by Hadley Wickham](https://adv-r.hadley.nz/)                          |
+|                            | 🔗 [R Package](https://r-pkgs.org/)                                                  |
 |                            |                                                                                      |
 |                            | 🔗 [Quarto](https://quarto.org/)                                                     |
 |                            |                                                                                      |
@@ -27,19 +27,19 @@ title: "Useful links"
 |                            |                                                                                      |
 |                            | 🔗 [R for Data Science](https://r4ds.hadley.nz/)                                     |
 +----------------------------+--------------------------------------------------------------------------------------+
-| Some Package documentation | 🔗 devtools: [devtools.r-lib.org](https://devtools.r-lib.org/)                       |
-|                            |                                                                                      |
-|                            | 🔗 Rcpp: [www.rcpp.org](https://www.rcpp.org/)                                       |
-|                            |                                                                                      |
-|                            | 🔗 GitHub: [happygitwithr.com](https://happygitwithr.com/)                           |
-|                            |                                                                                      |
-|                            | 🔗 OOP-R6: [r6.r-lib.org](https://r6.r-lib.org/)                                     |
+| Some Package documentation | 🔗 OOP-R6: [r6.r-lib.org](https://r6.r-lib.org/)                                     |
 |                            |                                                                                      |
 |                            | 🔗 shiny: [shiny.posit.co](https://shiny.posit.co/)                                  |
 |                            |                                                                                      |
-|                            | 🔗 CRAN: [cran.r-project.org](https://cran.r-project.org/submit.html)                |
+|                            | 🔗 Rcpp: [www.rcpp.org](https://www.rcpp.org/)                                       |
 |                            |                                                                                      |
 |                            | 🔗 reticulate: [rstudio.github.io/reticulate](https://rstudio.github.io/reticulate/) |
+|                            |                                                                                      |
+|                            | 🔗 devtools: [devtools.r-lib.org](https://devtools.r-lib.org/)                       |
+|                            |                                                                                      |
+|                            | 🔗 GitHub: [happygitwithr.com](https://happygitwithr.com/)                           |
+|                            |                                                                                      |
+|                            | 🔗 CRAN: [cran.r-project.org](https://cran.r-project.org/submit.html)                |
 |                            |                                                                                      |
 |                            | 🔗 keras: [keras3.posit.co](https://keras3.posit.co/)                                |
 +----------------------------+--------------------------------------------------------------------------------------+
