@@ -208,94 +208,6 @@
     "text": "Classification on MNIST\nmodel %&gt;% compile(\n  optimizer = 'rmsprop',\n  loss = 'categorical_crossentropy',\n  metrics = c('accuracy')\n)\nhistory &lt;- model %&gt;% fit(\n  x_train, y_train,\n  epochs = 10, batch_size = 128,\n  validation_split = 0.2\n)\n\nData preprocessing: normalization, one-hot encoding\nCallbacks: EarlyStopping, ModelCheckpoint\n\n??? note Show training curves: plot(history)."
   },
   {
-    "objectID": "slides/Chapter2.html#outline",
-    "href": "slides/Chapter2.html#outline",
-    "title": "Short Course on R Tools",
-    "section": "Outline",
-    "text": "Outline\n\n\nMotivation & Introduction\nGetting Started with cppFunction()\nUsing sourceCpp()\nData Types & Conversions\nRcpp Classes: Lists, DataFrames, Functions, Attributes\nHandling Missing Values\nStandard Template Library (STL)\nCase Studies & Benchmarks\nUsing Rcpp in Packages\nAdvanced Topics & Resources",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter2.html#lists-dataframes",
-    "href": "slides/Chapter2.html#lists-dataframes",
-    "title": "Short Course on R Tools",
-    "section": "Lists & DataFrames",
-    "text": "Lists & DataFrames\n\nList, DataFrame wrappers\nAccess with as&lt;&gt;(), .inherits(), .attr()",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter2.html#functions",
-    "href": "slides/Chapter2.html#functions",
-    "title": "Short Course on R Tools",
-    "section": "Functions",
-    "text": "Functions\n\nFunction f & RObject return type\nPositional vs named args:\n\nf(_[\"x\"] = xval, _[\"y\"] = yval);",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter2.html#attributes",
-    "href": "slides/Chapter2.html#attributes",
-    "title": "Short Course on R Tools",
-    "section": "Attributes",
-    "text": "Attributes\n\nQuery/modify with .attr() and .names()\nCreate with Vector::create()\n\n??? note Quick example: extracting residuals from lm.",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter2.html#iterators-algorithms",
-    "href": "slides/Chapter2.html#iterators-algorithms",
-    "title": "Short Course on R Tools",
-    "section": "Iterators & Algorithms",
-    "text": "Iterators & Algorithms\n\nRange-based for(const auto &x : xs)\nstd::accumulate, std::min_element, etc.",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter2.html#data-structures",
-    "href": "slides/Chapter2.html#data-structures",
-    "title": "Short Course on R Tools",
-    "section": "Data Structures",
-    "text": "Data Structures\n\nstd::vector, std::unordered_set, std::unordered_map\nEfficient growth & lookup\n\n??? note Show run-length encoding (rleC) example.",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter2.html#gibbs-sampler",
-    "href": "slides/Chapter2.html#gibbs-sampler",
-    "title": "Short Course on R Tools",
-    "section": "Gibbs Sampler",
-    "text": "Gibbs Sampler\n// [[Rcpp::export]]\nNumericMatrix gibbs_cpp(int N, int thin) { ... }\n\n~20× speedup vs R",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter2.html#agent-based-model",
-    "href": "slides/Chapter2.html#agent-based-model",
-    "title": "Short Course on R Tools",
-    "section": "Agent-Based Model",
-    "text": "Agent-Based Model\n\nR vectorisation vs Rcpp loops\nMemory overhead comparisons\n\n??? note Plot benchmark timings side-by-side.",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
     "objectID": "slides/Topic6.html#description-namespace",
     "href": "slides/Topic6.html#description-namespace",
     "title": "Short Course on R Tools",
@@ -315,57 +227,6 @@
     "title": "Short Course on R Tools",
     "section": "Tests & Coverage",
     "text": "Tests & Coverage\n\ndevtools::test() passes\nConsider covr::report()\n\n??? note Emphasize R CMD check --as-cran equivalence."
-  },
-  {
-    "objectID": "slides/Chapter6.html#description-namespace",
-    "href": "slides/Chapter6.html#description-namespace",
-    "title": "Short Course on R Tools",
-    "section": "DESCRIPTION & NAMESPACE",
-    "text": "DESCRIPTION & NAMESPACE\n\nEnsure fields: Version, URL, BugReports, License\nSemantic versioning: increment patch for minor fixes",
-    "crumbs": [
-      "Slides",
-      "CRAN submission"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter6.html#documentation-vignettes",
-    "href": "slides/Chapter6.html#documentation-vignettes",
-    "title": "Short Course on R Tools",
-    "section": "Documentation & Vignettes",
-    "text": "Documentation & Vignettes\n\nAll help files up to date\nVignettes build without errors",
-    "crumbs": [
-      "Slides",
-      "CRAN submission"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter6.html#tests-coverage",
-    "href": "slides/Chapter6.html#tests-coverage",
-    "title": "Short Course on R Tools",
-    "section": "Tests & Coverage",
-    "text": "Tests & Coverage\n\ndevtools::test() passes\nConsider covr::report()\n\n??? note Emphasize R CMD check --as-cran equivalence.",
-    "crumbs": [
-      "Slides",
-      "CRAN submission"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site!"
-  },
-  {
-    "objectID": "course-links.html",
-    "href": "course-links.html",
-    "title": "Useful links",
-    "section": "",
-    "text": "Motivating Talk\nStat Calculator\nDistribution Calculator\nRStudio\n🔗 Rfssa: An R Package for Functional SSA\n🔗 StatCalc(JAMM)\n🔗 DistCalc\n🔗 on dna\n\n\nAdvanced Texbooks\n🔗 Advanced R by Hadley Wickham\n🔗 R Package\n🔗 Quarto\n🔗 R Markdown\n🔗 ggplot2: Elegant Graphics for Data Analysis\n🔗 Fundamentals of Data Visualization\n🔗 Data Visualization: A Practical Introduction\n🔗 R for Data Science\n\n\nSome Package documentation\n🔗 OOP-R6: r6.r-lib.org\n🔗 shiny: shiny.posit.co\n🔗 Rcpp: www.rcpp.org\n🔗 reticulate: rstudio.github.io/reticulate\n🔗 devtools: devtools.r-lib.org\n🔗 GitHub: happygitwithr.com\n🔗 CRAN: cran.r-project.org\n🔗 keras: keras3.posit.co",
-    "crumbs": [
-      "Miscellaneous",
-      "Useful links"
-    ]
   },
   {
     "objectID": "course-syllabus.html",
@@ -533,15 +394,22 @@
     ]
   },
   {
-    "objectID": "slides/Chapter4.html#key-points",
-    "href": "slides/Chapter4.html#key-points",
-    "title": "Short Course on R Tools",
-    "section": "Key Points",
-    "text": "Key Points\n\nclass(x) order\nNextMethod()\nOverloading + inheritance via class vectors\n\n??? note Demo: create print.myclass, show dispatch.",
+    "objectID": "course-links.html",
+    "href": "course-links.html",
+    "title": "Useful links",
+    "section": "",
+    "text": "Motivating Talk\nStat Calculator\nDistribution Calculator\nRStudio\n🔗 Rfssa: An R Package for Functional SSA\n🔗 StatCalc(JAMM)\n🔗 DistCalc\n🔗 on dna\n\n\nAdvanced Texbooks\n🔗 Advanced R by Hadley Wickham\n🔗 R Package\n🔗 Quarto\n🔗 R Markdown\n🔗 ggplot2: Elegant Graphics for Data Analysis\n🔗 Fundamentals of Data Visualization\n🔗 Data Visualization: A Practical Introduction\n🔗 R for Data Science\n\n\nSome Package documentation\n🔗 OOP-R6: r6.r-lib.org\n🔗 shiny: shiny.posit.co\n🔗 Rcpp: www.rcpp.org\n🔗 reticulate: rstudio.github.io/reticulate\n🔗 devtools: devtools.r-lib.org\n🔗 GitHub: happygitwithr.com\n🔗 CRAN: cran.r-project.org\n🔗 keras: keras3.posit.co",
     "crumbs": [
-      "Slides",
-      "OOP in R"
+      "Miscellaneous",
+      "Useful links"
     ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site!"
   },
   {
     "objectID": "slides/Topic5.html#description",
@@ -556,28 +424,6 @@
     "title": "Short Course on R Tools",
     "section": "NAMESPACE",
     "text": "NAMESPACE\n\nExport functions: export()\nImport from other packages: importFrom(dplyr, select)\nGenerate with roxygen2 or manually\n\n#' @export\nmy_function &lt;- function(x) x + 1\n??? note Emphasize keeping Imports minimal."
-  },
-  {
-    "objectID": "slides/Chapter1.html#description",
-    "href": "slides/Chapter1.html#description",
-    "title": "Short Course on R Tools",
-    "section": "DESCRIPTION",
-    "text": "DESCRIPTION\n\nFields: Package, Version, Title, Description, Author, Depends, Imports, Suggests, License\nSemantic versioning: major.minor.patch",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
-    "objectID": "slides/Chapter1.html#namespace",
-    "href": "slides/Chapter1.html#namespace",
-    "title": "Short Course on R Tools",
-    "section": "NAMESPACE",
-    "text": "NAMESPACE\n\nExport functions: export()\nImport from other packages: importFrom(dplyr, select)\nGenerate with roxygen2 or manually\n\n#' @export\nmy_function &lt;- function(x) x + 1\n??? note Emphasize keeping Imports minimal.",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
   },
   {
     "objectID": "slides/Topic1.html#key-points",
