@@ -23,52 +23,294 @@ format:
 -   Hands-on Exercises
 :::
 
-# OOP Paradigms in R
+# OOP Paradigms in R {auto-animate="true"}
 
 -   **Functional OOP**: functions return objects, operate on data
 
+::: panel-tabset
+## Code
+
+``` {r}
+#| label: basic
+#| fig-show: hide
+#| message: false
+
+par(mfrow=c(1,3))
+plot(iris$Sepal.Length)
+plot(iris$Species)
+# plot(iris[,1:3])
+# plot(lm(Sepal.Length ~ Sepal.Width, data=iris))
+```
+
+## Plots
+
+```{r}
+#| ref.label: basic
+#| echo: false
+#| fig-asp: 0.3
+```
+:::
+
+# OOP Paradigms in R {auto-animate="true"}
+
 -   **Encapsulated OOP**: objects carry data + methods
+
+::: shrink-code
+``` {.r code-line-numbers="1|2-4|5-6|7-8"}
+library(xgboost)
+data(iris)
+X <- as.matrix(iris[, 1:4])
+y <- as.numeric(iris$Species) - 1
+model <- xgboost(data = X, label = y, nrounds = 10,
+                 objective = "multi:softprob", num_class = 3, verbose = 0)
+# Real use of object$method(args)
+preds <- model$predict(xgb.DMatrix(X))
+```
+:::
+
+. . .
 
 -   **Generics & Method Dispatch**
 
+. . .
+
 -   **When to use**: design, extensibility, code organization
 
-??? note Frame conceptual differences and motivate each paradigm.
+# OOP in R {auto-animate="true"}
 
-# Base Types & Functional OOP
+::: incremental
+-   **S3** is R’s first OOP system, which is an informal implementation of functional OOP.
+-   **S4** is a formal and rigorous rewrite of S3. S4 is implemented in the base *methods* package, which is always installed with R.
+-   **RC** implements encapsulated OO. 
+-   **R6** implements encapsulated OOP like RC, but resolves some important issues.
+:::
 
--   **Environments** as mutable storage
+# OOP in R {auto-animate="true"}
 
--   **Closures** for capturing state
+``` {.r code-line-numbers="1|4-5|8-9|12-14"}
+library(sloop)
 
--   Example: simple counter
 
-``` r
-make_counter <- function() {
-  cnt <- 0
-  function() { cnt <<- cnt + 1; cnt }
-}
-c1 <- make_counter()
-c1()  # 1
-c1()  # 2
+otype(1:10)
+#> [1] "base"
+
+
+otype(mtcars)
+#> [1] "S3"
+
+
+mle_obj <- stats4::mle(function(x = 1) (x - 2) ^ 2)
+otype(mle_obj)
+#> [1] "S4"
 ```
 
-??? note Show how closures simulate objects in base R.
+. . .
+
+![](images/oop/oo-venn.png){.absolute top="0" right="0"}
+
+# Base versus OO objects
+
+``` {.r code-line-numbers="1|2-3|5|6-7"}
+# A base object:
+is.object(1:10)
+#> [1] FALSE
+
+# An OO object
+is.object(mtcars)
+#> [1] TRUE
+```
+
+. . .
+
+-   Technically, the difference between base and OO objects is that OO objects have a “class” attribute:
+
+``` {.r code-line-numbers="1-2|4-5"}
+attr(1:10, "class")
+#> NULL
+
+attr(mtcars, "class")
+#> [1] "data.frame"
+```
+
+# Base Types 
+
+-   Every object has a **base type**. In total, there are 25 different base types. Here are some examples:
+
+::: shrink-code
+``` {.r code-line-numbers="1-2|3-4|5-6|7-8|9-10|11-12|13-14|15-17"}
+typeof(NULL)
+#> [1] "NULL"
+typeof(1L)
+#> [1] "integer"
+typeof(1i)
+#> [1] "complex"
+typeof(mean)
+#> [1] "closure"
+typeof(`[`)
+#> [1] "special"
+typeof(sum)    
+#> [1] "builtin"
+typeof(globalenv())
+#> [1] "environment"
+mle_obj <- stats4::mle(function(x = 1) (x - 2) ^ 2); typeof(mle_obj)
+#> [1] "S4"
+```
+:::
 
 # S3: Informal Classes
 
 -   **Lightweight**: no formal schema
 
+. . . 
+
 -   **Define**: set `class` attribute
 
--   **Generics**: `UseMethod()`
+. . .
 
-``` r
-mean.myclass <- function(x, ...) {
-  # custom mean
-}
+``` {r}
 x <- structure(c(1,2,3), class = "myclass")
 mean(x)
+```
+
+. . . 
+
+``` {r}
+mean.myclass <- function(x, ...) {
+  print("custom mean")
+}
+mean(x)
+```
+
+## Basics
+-   An S3 object is a base type with at least a `class` attribute 
+
+``` {.r code-line-numbers="1-4|5-10|11-14"}
+f <- factor(c("a", "b", "c"))
+f
+#> [1] a b c
+#> Levels: a b c
+attributes(f)
+#> $levels
+#> [1] "a" "b" "c"
+#> 
+#> $class
+#> [1] "factor"
+unclass(f)
+#> [1] 1 2 3
+#> attr(,"levels")
+#> [1] "a" "b" "c"
+```
+
+. . .
+
+::: {style="margin-top: -460px;"}
+::: shrink-code
+``` {.r code-line-numbers="1-3|5-19"}
+time <- strptime(c("2017-01-01", "2020-05-04 03:21"), "%Y-%m-%d")
+str(time)
+#>  POSIXlt[1:2], format: "2017-01-01" "2020-05-04"
+
+class(time) <- NULL
+#> List of 11
+#>  $ sec   : num [1:2] 0 0
+#>  $ min   : int [1:2] 0 0
+#>  $ hour  : int [1:2] 0 0
+#>  $ mday  : int [1:2] 1 4
+#>  $ mon   : int [1:2] 0 4
+#>  $ year  : int [1:2] 117 120
+#>  $ wday  : int [1:2] 0 1
+#>  $ yday  : int [1:2] 0 124
+#>  $ isdst : int [1:2] 0 0
+#>  $ zone  : chr [1:2] "UTC" "UTC"
+#>  $ gmtoff: int [1:2] 0 0
+#>  - attr(*, "tzone")= chr "UTC"
+#>  - attr(*, "balanced")= logi TRUE
+```
+:::
+:::
+
+## Generics and Methods - Method Dispatch
+
+``` {.r code-line-numbers="1-3|5-6|7-8|10-12|13-16"}
+View(print)
+#> function (x, ...) 
+#> UseMethod("print")
+
+ftype(print)
+#> [1] "S3"      "generic"
+ftype(print.factor)
+#> [1] "S3"     "method"
+
+s3_dispatch(print(f))
+#> => print.factor
+#>  * print.default
+s3_dispatch(print(unclass(f)))
+#>    print.integer
+#>    print.numeric
+#> => print.default
+```
+
+## Finding methods
+
+``` {.r code-line-numbers="1-11|13-23"}
+s3_methods_generic("mean")
+#> # A tibble: 7 × 4
+#>   generic class      visible source             
+#>   <chr>   <chr>      <lgl>   <chr>              
+#> 1 mean    Date       TRUE    base               
+#> 2 mean    default    TRUE    base               
+#> 3 mean    difftime   TRUE    base               
+#> 4 mean    POSIXct    TRUE    base               
+#> 5 mean    POSIXlt    TRUE    base               
+#> 6 mean    quosure    FALSE   registered S3method
+#> 7 mean    vctrs_vctr FALSE   registered S3method
+
+s3_methods_class("funts")
+#> # A tibble: 7 × 4
+#>   generic class visible source             
+#>   <chr>   <chr> <lgl>   <chr>              
+#> 1 -       funts FALSE   registered S3method
+#> 2 *       funts FALSE   registered S3method
+#> 3 [       funts FALSE   registered S3method
+#> 4 +       funts FALSE   registered S3method
+#> 5 length  funts FALSE   registered S3method
+#> 6 plot    funts FALSE   registered S3method
+#> 7 print   funts FALSE   registered S3method
+```
+
+## Creating methods
+
+``` {r}
+mean.myclass <- function(x, ...) {
+  print("custom mean")
+}
+mean(x)
+```
+
+. . .
+
+-   A method must have the same arguments as its generic. This is enforced in packages by `R CMD check`.
+
+. . .
+
+-   There is one exception to this rule: if the generic has `...`, the method can contain a superset of the arguments. This allows methods to take arbitrary additional arguments. 
+
+## Classes
+
+``` {.r code-line-numbers="1-2|4-6|8-9|10-11|12-13"}
+# Create and assign class in one step
+x <- structure(list(), class = "my_class")
+
+# Create, then set class
+x <- list()
+class(x) <- "my_class"
+
+class(x)
+#> [1] "my_class"
+inherits(x, "my_class")
+#> [1] TRUE
+inherits(x, "your_class")
+#> [1] FALSE
 ```
 
 ## Key Points
