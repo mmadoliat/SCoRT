@@ -426,6 +426,41 @@
     "text": "NAMESPACE\n\nExport functions: export()\nImport from other packages: importFrom(dplyr, select)\nGenerate with roxygen2 or manually\n\n#' @export\nmy_function &lt;- function(x) x + 1\n??? note Emphasize keeping Imports minimal."
   },
   {
+    "objectID": "slides/Topic1.html#basics",
+    "href": "slides/Topic1.html#basics",
+    "title": "Short Course on R Tools",
+    "section": "Basics",
+    "text": "Basics\n\nAn S3 object is a base type with at least a class attribute\n\nf &lt;- factor(c(\"a\", \"b\", \"c\"))\nf\n#&gt; [1] a b c\n#&gt; Levels: a b c\nattributes(f)\n#&gt; $levels\n#&gt; [1] \"a\" \"b\" \"c\"\n#&gt; \n#&gt; $class\n#&gt; [1] \"factor\"\nunclass(f)\n#&gt; [1] 1 2 3\n#&gt; attr(,\"levels\")\n#&gt; [1] \"a\" \"b\" \"c\"\n\n\n\ntime &lt;- strptime(c(\"2017-01-01\", \"2020-05-04 03:21\"), \"%Y-%m-%d\")\nstr(time)\n#&gt;  POSIXlt[1:2], format: \"2017-01-01\" \"2020-05-04\"\n\nclass(time) &lt;- NULL\n#&gt; List of 11\n#&gt;  $ sec   : num [1:2] 0 0\n#&gt;  $ min   : int [1:2] 0 0\n#&gt;  $ hour  : int [1:2] 0 0\n#&gt;  $ mday  : int [1:2] 1 4\n#&gt;  $ mon   : int [1:2] 0 4\n#&gt;  $ year  : int [1:2] 117 120\n#&gt;  $ wday  : int [1:2] 0 1\n#&gt;  $ yday  : int [1:2] 0 124\n#&gt;  $ isdst : int [1:2] 0 0\n#&gt;  $ zone  : chr [1:2] \"UTC\" \"UTC\"\n#&gt;  $ gmtoff: int [1:2] 0 0\n#&gt;  - attr(*, \"tzone\")= chr \"UTC\"\n#&gt;  - attr(*, \"balanced\")= logi TRUE"
+  },
+  {
+    "objectID": "slides/Topic1.html#generics-and-methods---method-dispatch",
+    "href": "slides/Topic1.html#generics-and-methods---method-dispatch",
+    "title": "Short Course on R Tools",
+    "section": "Generics and Methods - Method Dispatch",
+    "text": "Generics and Methods - Method Dispatch\nView(print)\n#&gt; function (x, ...) \n#&gt; UseMethod(\"print\")\n\nftype(print)\n#&gt; [1] \"S3\"      \"generic\"\nftype(print.factor)\n#&gt; [1] \"S3\"     \"method\"\n\ns3_dispatch(print(f))\n#&gt; =&gt; print.factor\n#&gt;  * print.default\ns3_dispatch(print(unclass(f)))\n#&gt;    print.integer\n#&gt;    print.numeric\n#&gt; =&gt; print.default"
+  },
+  {
+    "objectID": "slides/Topic1.html#finding-methods",
+    "href": "slides/Topic1.html#finding-methods",
+    "title": "Short Course on R Tools",
+    "section": "Finding methods",
+    "text": "Finding methods\ns3_methods_generic(\"mean\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class      visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 mean    Date       TRUE    base               \n#&gt; 2 mean    default    TRUE    base               \n#&gt; 3 mean    difftime   TRUE    base               \n#&gt; 4 mean    POSIXct    TRUE    base               \n#&gt; 5 mean    POSIXlt    TRUE    base               \n#&gt; 6 mean    quosure    FALSE   registered S3method\n#&gt; 7 mean    vctrs_vctr FALSE   registered S3method\n\ns3_methods_class(\"funts\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 -       funts FALSE   registered S3method\n#&gt; 2 *       funts FALSE   registered S3method\n#&gt; 3 [       funts FALSE   registered S3method\n#&gt; 4 +       funts FALSE   registered S3method\n#&gt; 5 length  funts FALSE   registered S3method\n#&gt; 6 plot    funts FALSE   registered S3method\n#&gt; 7 print   funts FALSE   registered S3method"
+  },
+  {
+    "objectID": "slides/Topic1.html#creating-methods",
+    "href": "slides/Topic1.html#creating-methods",
+    "title": "Short Course on R Tools",
+    "section": "Creating methods",
+    "text": "Creating methods\n\nmean.myclass &lt;- function(x, ...) {\n  print(\"custom mean\")\n}\nmean(x)\n\n[1] \"custom mean\"\n\n\n\n\nA method must have the same arguments as its generic. This is enforced in packages by R CMD check.\n\n\n\n\nThere is one exception to this rule: if the generic has ..., the method can contain a superset of the arguments. This allows methods to take arbitrary additional arguments."
+  },
+  {
+    "objectID": "slides/Topic1.html#classes",
+    "href": "slides/Topic1.html#classes",
+    "title": "Short Course on R Tools",
+    "section": "Classes",
+    "text": "Classes\n# Create and assign class in one step\nx &lt;- structure(list(), class = \"my_class\")\n\n# Create, then set class\nx &lt;- list()\nclass(x) &lt;- \"my_class\"\n\nclass(x)\n#&gt; [1] \"my_class\"\ninherits(x, \"my_class\")\n#&gt; [1] TRUE\ninherits(x, \"your_class\")\n#&gt; [1] FALSE"
+  },
+  {
     "objectID": "slides/Topic1.html#key-points",
     "href": "slides/Topic1.html#key-points",
     "title": "Short Course on R Tools",
