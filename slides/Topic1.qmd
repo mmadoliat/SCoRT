@@ -30,7 +30,7 @@ format:
 ::: panel-tabset
 ## Code
 
-``` {r}
+```{r}
 #| label: basic
 #| fig-show: hide
 #| message: false
@@ -80,8 +80,11 @@ preds <- model$predict(xgb.DMatrix(X))
 
 ::: incremental
 -   **S3** is R’s first OOP system, which is an informal implementation of functional OOP.
+
 -   **S4** is a formal and rigorous rewrite of S3. S4 is implemented in the base *methods* package, which is always installed with R.
--   **RC** implements encapsulated OO. 
+
+-   **RC** implements encapsulated OO.
+
 -   **R6** implements encapsulated OOP like RC, but resolves some important issues.
 :::
 
@@ -132,7 +135,7 @@ attr(mtcars, "class")
 #> [1] "data.frame"
 ```
 
-# Base Types 
+# Base Types
 
 -   Every object has a **base type**. In total, there are 25 different base types. Here are some examples:
 
@@ -161,20 +164,20 @@ mle_obj <- stats4::mle(function(x = 1) (x - 2) ^ 2); typeof(mle_obj)
 
 -   **Lightweight**: no formal schema
 
-. . . 
+. . .
 
 -   **Define**: set `class` attribute
 
 . . .
 
-``` {r}
+```{r}
 x <- structure(c(1,2,3), class = "myclass")
 mean(x)
 ```
 
-. . . 
+. . .
 
-``` {r}
+```{r}
 mean.myclass <- function(x, ...) {
   print("custom mean")
 }
@@ -182,35 +185,32 @@ mean(x)
 ```
 
 ## Basics
--   An S3 object is a base type with at least a `class` attribute 
 
-``` {.r code-line-numbers="1-4|5-10|11-14"}
-f <- factor(c("a", "b", "c"))
+-   An S3 object is a base type with at least a `class` attribute
+
+::: shrink-code
+``` {.r code-line-numbers="1-4|5-10|11-14|16-18|20|21-35"}
+f <- factor(c("a", "b", "b"))
 f
-#> [1] a b c
-#> Levels: a b c
+#> [1] a b b
+#> Levels: a b
 attributes(f)
 #> $levels
-#> [1] "a" "b" "c"
+#> [1] "a" "b"
 #> 
 #> $class
 #> [1] "factor"
 unclass(f)
-#> [1] 1 2 3
+#> [1] 1 2 2
 #> attr(,"levels")
-#> [1] "a" "b" "c"
-```
+#> [1] "a" "b"
 
-. . .
-
-::: {style="margin-top: -460px;"}
-::: shrink-code
-``` {.r code-line-numbers="1-3|5-19"}
 time <- strptime(c("2017-01-01", "2020-05-04 03:21"), "%Y-%m-%d")
 str(time)
 #>  POSIXlt[1:2], format: "2017-01-01" "2020-05-04"
 
 class(time) <- NULL
+str(time)
 #> List of 11
 #>  $ sec   : num [1:2] 0 0
 #>  $ min   : int [1:2] 0 0
@@ -227,6 +227,102 @@ class(time) <- NULL
 #>  - attr(*, "balanced")= logi TRUE
 ```
 :::
+
+## Classes
+
+``` {.r code-line-numbers="1-2|4-6|8-9|10-11|12-13"}
+# Create and assign class in one step
+x <- structure(list(), class = "my_class")
+
+# Create, then set class
+x <- list()
+class(x) <- "my_class"
+
+class(x)
+#> [1] "my_class"
+inherits(x, "my_class")
+#> [1] TRUE
+inherits(x, "your_class")
+#> [1] FALSE
+```
+
+. . .
+
+-   R doesn’t stop you from shooting yourself in the foot, but as long as you don’t aim the gun at your toes and pull the trigger, you won’t have a problem.
+
+## Classes - Common Practice
+
+To avoid foot-bullet intersections when creating your own class, you may:
+
+::: incremental
+-   A low-level constructor, `new_myclass()`, that efficiently creates new objects with the correct structure.
+-   A validator, `validate_myclass()`, that performs more computationally expensive checks to ensure that the object has correct values.
+-   A user-friendly helper, `myclass()`, that provides a convenient way for others to create objects of your class.
+:::
+
+## Classes - Example
+
+::: shrink-code
+``` {.r code-line-numbers="1-9|11-26|28-33|35-49|51-58"}
+## 1. Low‐level constructor: assume inputs are ok
+new_myclass <- function(values = numeric(), unit = character(1)) {
+  # no checks here beyond base‐R stopifnot
+  stopifnot(is.numeric(values), is.character(unit), length(unit) == 1)
+  structure(
+    list(values = values, unit = unit),
+    class = "myclass"
+  )
+}
+
+## 2. Validator: more thorough checks
+validate_myclass <- function(x) {
+  if (!inherits(x, "myclass")) {
+    stop("`x` must be a 'myclass' object.", call. = FALSE)
+  }
+  if (!is.numeric(x$values)) {
+    stop("`values` must be numeric.", call. = FALSE)
+  }
+  if (any(is.na(x$values))) {
+    stop("`values` must not contain NA.", call. = FALSE)
+  }
+  if (!is.character(x$unit) || length(x$unit) != 1) {
+    stop("`unit` must be a single character string.", call. = FALSE)
+  }
+  TRUE
+}
+
+## (Optional) a simple print method
+print.myclass <- function(x, ...) {
+  cat("<myclass>  ", length(x$values), "values [unit = ", x$unit, "]\n", sep = "")
+  print(x$values)
+  invisible(x)
+}
+
+## 3. User‐facing helper: coerce/check inputs, then build + validate
+myclass <- function(values, unit = "unitless") {
+  # quick checks / coercions:
+  if (!is.numeric(values)) {
+    values <- as.numeric(values)
+    if (any(is.na(values))) stop("`values` could not be coerced to numeric.", call. = FALSE)
+  }
+  if (!is.character(unit) || length(unit) != 1) {
+    stop("`unit` must be a single character string.", call. = FALSE)
+  }
+  # build & validate
+  obj <- new_myclass(values = values, unit = unit)
+  validate_myclass(obj)
+  obj
+}
+
+## --- Example usage ---
+x <- myclass(c(1.1, 2.2, 3.3), unit = "kg")
+print(x)
+#> <myclass> 3 values [unit = kg]
+#> [1] 1.1 2.2 3.3
+
+# This will error because of an NA:
+# myclass(c(1, NA, 3))
+```
 :::
 
 ## Generics and Methods - Method Dispatch
@@ -280,37 +376,33 @@ s3_methods_class("funts")
 
 ## Creating methods
 
-``` {r}
+::: {style="margin-top: 20px;"}
+```{r}
 mean.myclass <- function(x, ...) {
   print("custom mean")
 }
+
 mean(x)
 ```
+:::
 
 . . .
 
+::: {style="margin-top: 20px;"}
 -   A method must have the same arguments as its generic. This is enforced in packages by `R CMD check`.
+:::
 
 . . .
 
--   There is one exception to this rule: if the generic has `...`, the method can contain a superset of the arguments. This allows methods to take arbitrary additional arguments. 
+-   There is one exception to this rule: if the generic has `...`, the method can contain a superset of the arguments. This allows methods to take arbitrary additional arguments.
 
-## Classes
+## Inheritance
 
-``` {.r code-line-numbers="1-2|4-6|8-9|10-11|12-13"}
-# Create and assign class in one step
-x <- structure(list(), class = "my_class")
-
-# Create, then set class
-x <- list()
-class(x) <- "my_class"
-
-class(x)
-#> [1] "my_class"
-inherits(x, "my_class")
-#> [1] TRUE
-inherits(x, "your_class")
-#> [1] FALSE
+``` {r}
+class(x$values)
+class(ordered(x$values))
+s3_dispatch(print(ordered(x$values)))
+s3_dispatch(ordered(x$values)[1])
 ```
 
 ## Key Points
