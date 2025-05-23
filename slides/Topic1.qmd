@@ -398,12 +398,95 @@ mean(x)
 
 ## Inheritance
 
-``` {r}
-class(x$values)
-class(ordered(x$values))
-s3_dispatch(print(ordered(x$values)))
-s3_dispatch(ordered(x$values)[1])
+```{.r code-line-numbers="1-3|5-6|8-11|13-17"}
+x <- factor("a","b","b")
+class(x)
+#> "factor"
+
+class(ordered(x))
+#> "ordered" "factor"
+
+s3_dispatch(print(ordered(x)))
+#>    print.ordered
+#> => print.factor
+#>  * print.default
+
+s3_dispatch(ordered(x)[1])
+#>    [.ordered
+#> => [.factor
+#>    [.default
+#> -> [ (internal)
 ```
+
+. . .
+
+-    We’ll say that `ordered` is a **subclass** of `factor` and `factor` is a **superclass** of `ordered`.
+
+## Inheritance Cont. {auto-animate="true"}
+
+::: shrink-code
+```{.r code-line-numbers="1-4|6-9|11-13|15-18|20-21"}
+new_secret <- function(x = double()) {
+  stopifnot(is.double(x))
+  structure(x, class = "secret")
+}
+
+print.secret <- function(x, ...) {
+  print(strrep("x", nchar(x)))
+  invisible(x)
+}
+
+x <- new_secret(c(15, 1, 456))
+x
+#> [1] "xx"  "x"   "xxx"
+
+s3_dispatch(x[1])
+#>    [.secret
+#>    [.default
+#> => [ (internal)
+
+x[1]
+#> [1] 15
+```
+:::
+
+. . .
+
+-   To fix this, we need to provide a `[.secret` method.
+
+## Inheritance Cont. - `NextMethod()` {auto-animate="true"}
+
+::: shrink-code
+```{.r code-line-numbers="1-4|6-7"}
+`[.secret` <- function(x, i) {
+  x <- unclass(x)
+  new_secret(x[i])
+}
+
+x[1]
+#> [1] "xx"
+```
+:::
+
+. . .
+
+-   A better solution using `NextMethod()`
+
+::: shrink-code
+```{.r code-line-numbers="1-3|5-6|8-11"}
+`[.secret` <- function(x, i) {
+  new_secret(NextMethod())
+}
+
+x[1]
+#> [1] "xx"
+
+s3_dispatch(x[1])
+#> => [.secret
+#>    [.default
+#> -> [ (internal)
+```
+:::
 
 ## Key Points
 
