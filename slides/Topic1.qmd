@@ -86,6 +86,8 @@ preds <- model$predict(xgb.DMatrix(X))
 -   **RC** implements encapsulated OO.
 
 -   **R6** implements encapsulated OOP like RC, but resolves some important issues.
+
+-   **S7** is a modern, formal OOP system designed to unify and improve upon S3 and S4. It supports multiple dispatch, better type safety, and cleaner syntax, while maintaining compatibility with existing R code.
 :::
 
 # OOP in R {auto-animate="true"}
@@ -159,6 +161,64 @@ mle_obj <- stats4::mle(function(x = 1) (x - 2) ^ 2); typeof(mle_obj)
 #> [1] "S4"
 ```
 :::
+
+# Informal approach to OOP in R
+
+::: shrink-code
+``` {.r code-line-numbers="1-17|19-20|22-38|40-50"}
+# A 'weather_report' object: just a list
+weather <- list(
+  location = list(
+    city = "Seattle",
+    country = "USA",
+    coordinates = c(lat = 47.6062, lon = -122.3321)
+  ),
+  date = as.Date("2025-05-30"),
+  summary = "Cloudy with light rain",
+  temperature = list(
+    morning = 57,
+    afternoon = 63,
+    evening = 60,
+    units = "F"
+  ),
+  alerts = c("Flood watch", "Wind advisory")
+)
+
+# Assign a class
+class(weather) <- "weather_report"
+
+print.weather_report <- function(x) {
+  cat("🌤️  Weather Report\n")
+  cat("-------------------------\n")
+  cat("📍 Location: ", x$location$city, ", ", x$location$country, "\n", sep = "")
+  cat("🗓️  Date: ", format(x$date, "%B %d, %Y"), "\n")
+  cat("📋 Summary: ", x$summary, "\n")
+  cat("🌡 Temperature (", x$temperature$units, "):\n", sep = "")
+  cat("    Morning: ", x$temperature$morning, "\n")
+  cat("    Afternoon: ", x$temperature$afternoon, "\n")
+  cat("    Evening: ", x$temperature$evening, "\n")
+  
+  if (length(x$alerts) > 0) {
+    cat("⚠️ Alerts: ", paste(x$alerts, collapse = "; "), "\n")
+  } else {
+    cat("✅ No active alerts.\n")
+  }
+}
+
+> print(weather)
+🌤️  Weather Report
+-------------------------
+📍 Location: Seattle, USA
+🗓️  Date:  May 30, 2025 
+📋 Summary:  Cloudy with light rain 
+🌡 Temperature (F):
+    Morning:  57 
+    Afternoon:  63 
+    Evening:  60 
+⚠️ Alerts:  Flood watch; Wind advisory 
+```
+:::
+
 
 # S3: Informal Classes
 
