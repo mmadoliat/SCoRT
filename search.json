@@ -496,13 +496,6 @@
     "text": "Inheritance Cont. - NextMethod()\n\n`[.secret` &lt;- function(x, i) {\n  x &lt;- unclass(x)\n  new_secret(x[i])\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\n\n\nA better solution using NextMethod()\n\n\n`[.secret` &lt;- function(x, i) {\n  new_secret(NextMethod())\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\ns3_dispatch(x[1])\n#&gt; =&gt; [.secret\n#&gt;    [.default\n#&gt; -&gt; [ (internal)"
   },
   {
-    "objectID": "slides/Topic1.html#key-points",
-    "href": "slides/Topic1.html#key-points",
-    "title": "Short Course on R Tools",
-    "section": "Key Points",
-    "text": "Key Points\n\nclass(x) order\nNextMethod()\nOverloading + inheritance via class vectors\n\n??? note Demo: create print.myclass, show dispatch."
-  },
-  {
     "objectID": "misc/cheatsheets.html",
     "href": "misc/cheatsheets.html",
     "title": "R cheatsheets",
