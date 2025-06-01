@@ -5,6 +5,8 @@ title-slide-attributes:
   data-background-image: mu-bg.png
   data-background-size: stretch
   data-slide-number: none
+filters: 
+  - webr
 format: 
   revealjs:
     transition: fade
@@ -115,7 +117,7 @@ otype(mle_obj)
 
 # Base versus OO objects
 
-``` {.r code-line-numbers="1|2-3|5|6-7"}
+``` {.r code-line-numbers="1-3|5-7"}
 # A base object:
 is.object(1:10)
 #> [1] FALSE
@@ -139,7 +141,13 @@ attr(mtcars, "class")
 
 # Base Types
 
+::: {style="margin-top: -15px;"}
+:::
+
 -   Every object has a **base type**. In total, there are 25 different base types. Here are some examples:
+
+::: {style="margin-top: -20px;"}
+:::
 
 ::: shrink-code
 ``` {.r code-line-numbers="1-2|3-4|5-6|7-8|9-10|11-12|13-14|15-17"}
@@ -157,7 +165,8 @@ typeof(sum)
 #> [1] "builtin"
 typeof(globalenv())
 #> [1] "environment"
-mle_obj <- stats4::mle(function(x = 1) (x - 2) ^ 2); typeof(mle_obj)
+mle_obj <- stats4::mle(function(x = 1) (x - 2) ^ 2)
+typeof(mle_obj)
 #> [1] "S4"
 ```
 :::
@@ -219,7 +228,6 @@ print.weather_report <- function(x) {
 ```
 :::
 
-
 # S3: Informal Classes
 
 -   **Lightweight**: no formal schema
@@ -237,7 +245,8 @@ mean(x)
 
 . . .
 
-```{r}
+```{webr-r}
+x <- structure(c(1,2,3), class = "myclass")
 mean.myclass <- function(x, ...) {
   print("custom mean")
 }
@@ -458,7 +467,7 @@ mean(x)
 
 ## Inheritance
 
-```{.r code-line-numbers="1-3|5-6|8-11|13-17"}
+``` {.r code-line-numbers="1-3|5-6|8-11|13-17"}
 x <- factor("a","b","b")
 class(x)
 #> "factor"
@@ -480,12 +489,12 @@ s3_dispatch(ordered(x)[1])
 
 . . .
 
--    We’ll say that `ordered` is a **subclass** of `factor` and `factor` is a **superclass** of `ordered`.
+-   We’ll say that `ordered` is a **subclass** of `factor` and `factor` is a **superclass** of `ordered`.
 
 ## Inheritance Cont. {auto-animate="true"}
 
 ::: shrink-code
-```{.r code-line-numbers="1-4|6-9|11-13|15-18|20-21"}
+``` {.r code-line-numbers="1-4|6-9|11-13|15-18|20-21"}
 new_secret <- function(x = double()) {
   stopifnot(is.double(x))
   structure(x, class = "secret")
@@ -517,7 +526,7 @@ x[1]
 ## Inheritance Cont. - `NextMethod()` {auto-animate="true"}
 
 ::: shrink-code
-```{.r code-line-numbers="1-4|6-7"}
+``` {.r code-line-numbers="1-4|6-7"}
 `[.secret` <- function(x, i) {
   x <- unclass(x)
   new_secret(x[i])
@@ -533,7 +542,7 @@ x[1]
 -   A better solution using `NextMethod()`
 
 ::: shrink-code
-```{.r code-line-numbers="1-3|5-6|8-11"}
+``` {.r code-line-numbers="1-3|5-6|8-11"}
 `[.secret` <- function(x, i) {
   new_secret(NextMethod())
 }
@@ -548,49 +557,33 @@ s3_dispatch(x[1])
 ```
 :::
 
-## Key Points
-
--   `class(x)` order
-
--   NextMethod()
-
--   Overloading + inheritance via class vectors
-
-??? note Demo: create `print.myclass`, show dispatch.
-
-# S3 Constructors & Validation
-
--   **Constructor function**:
-
-    ``` r
-    new_myclass <- function(x) {
-      stopifnot(is.numeric(x))
-      structure(x, class = "myclass")
-    }
-    ```
-
--   **Validation**: manual checks in constructor
-
--   **Pros/Cons**: flexible vs fragile
-
-??? note Emphasize lack of formal slot checks.
-
 # S4: Formal Classes
 
--   **Definition**: `setClass()` with slots
-
-``` r
+``` {.r code-line-numbers="1-7|8-17|19-23"}
+# Definition: `setClass()` with slots
 setClass("Person",
   slots = list(
     name = "character",
     age  = "numeric"
   )
 )
+
+# Create instance
+obj1 <- new("Person", name = "Adam", age = 30)
+obj1
+#> An object of class "Person"
+#> Slot "name":
+#> [1] "Adam"
+#> 
+#> Slot "age":
+#> [1] 30
+
+# slot access via `@` and `slot()
+obj1@name
+#> [1] "Adam"
+slot(obj1, "age")
+#> [1] 30
 ```
-
--   **Create instance**: `new("Person", name = "Alice", age = 30)`
-
-??? note Illustrate slot access via `@` and `slot()`.
 
 # S4 Generics & Methods
 
