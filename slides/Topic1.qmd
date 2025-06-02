@@ -5,6 +5,8 @@ title-slide-attributes:
   data-background-image: mu-bg.png
   data-background-size: stretch
   data-slide-number: none
+webr:
+  show-startup-message: false
 filters: 
   - webr
 format: 
@@ -569,8 +571,8 @@ setClass("Person",
 )
 
 # Create instance
-obj1 <- new("Person", name = "Adam", age = 30)
-obj1
+subj1 <- new("Person", name = "Adam", age = 30)
+subj1
 #> An object of class "Person"
 #> Slot "name":
 #> [1] "Adam"
@@ -587,48 +589,63 @@ slot(obj1, "age")
 
 # S4 Generics & Methods
 
+::: incremental
 -   **Define generic**:
 
-    ``` r
+    ``` {.r}
     setGeneric("greet", function(x) standardGeneric("greet"))
     ```
-
-. . .
-
 -   **Define method**:
 
-    ``` r
+    ``` {.r}
     setMethod("greet", "Person", function(x) {
       paste("Hello, my name is", x@name)
     })
     ```
+-   **Example**:
 
--   **Multiple dispatch**: based on argument classes
-
-??? note Show example with inheritance & dispatch.
+    ``` {.r}
+    greet(subj1)
+    #> [1] "Hello, my name is Adam"
+    ```
+:::
 
 # S4 Inheritance & Virtual Classes
 
+::: incremental
 -   **Inheritance**:
 
-    ``` r
+    ``` {.r}
     setClass("Employee", contains = "Person",
       slots = list(salary = "numeric"))
     ```
 
--   **Virtual classes**: abstract base types
+-   **Example**:
 
--   **Validity methods**: `setValidity()`
-
-??? note Encourage robust class definitions.
+    ``` {.r code-line-numbers="1|2-11"}
+    emp1 <- new("Employee", subj1, salary = 75000)
+    emp1
+    #> An object of class "Employee"
+    #> Slot "salary":
+    #> [1] 75000
+    #> 
+    #> Slot "name":
+    #> [1] "Adam"
+    #> 
+    #> Slot "age":
+    #> [1] 30
+    ```
+:::
 
 # R6: Reference Classes
 
+::: incremental
 -   **Encapsulated OOP**: mutable fields + methods
 
 -   **Define**:
 
-    ``` r
+    ::: shrink-code
+    ``` {.r}
     library(R6)
     PersonR6 <- R6Class("PersonR6",
       public = list(
@@ -638,15 +655,18 @@ slot(obj1, "age")
       )
     )
     ```
+    :::
 
 -   **Instantiate & use**:
 
-    ``` r
+    ::: shrink-code
+    ``` {.r code-line-numbers="1|2-3"}
     p <- PersonR6$new("Bob")
     p$greet()
+    #> Hi, I'm Bob 
     ```
-
-??? note Compare reference vs value semantics.
+    :::
+:::
 
 # R6 Advanced Features
 
@@ -660,6 +680,27 @@ slot(obj1, "age")
 
 ??? note Show leak-free design with private fields.
 
+# S7: The New OOP System {auto-animate="true"}
+
+::: incremental
+-   Designed by the R Consortium to unify S3 and S4 and fix issues.
+-   **Key features**:
+    - Multiple dispatch
+    - Formal class definitions
+    - Compatibility with S3/S4
+    - Faster than S4, simpler than R6
+:::
+
+::: shrink-code
+```{r}
+library(methods)
+library(S7)
+
+Circle <- new_class("Circle", properties = list(radius = class_double))
+circle1 <- Circle(radius = 5)
+```
+:::
+
 # Trade-offs & Best Practices
 
 | Paradigm | Pros               | Cons                           |
@@ -667,6 +708,7 @@ slot(obj1, "age")
 | S3       | Simple, flexible   | No schema, fragile dispatch    |
 | S4       | Formal, robust     | Verbose, steep learning curve  |
 | R6       | Encapsulated, fast | Manual memory, low abstraction |
+| S7       | Unified, type-safe	| Newer, evolving ecosystem      |
 
 -   Choose based on complexity & team skill
 
