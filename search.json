@@ -496,6 +496,27 @@
     "text": "Inheritance Cont. - NextMethod()\n\n`[.secret` &lt;- function(x, i) {\n  x &lt;- unclass(x)\n  new_secret(x[i])\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\n\n\nA better solution using NextMethod()\n\n\n`[.secret` &lt;- function(x, i) {\n  new_secret(NextMethod())\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\ns3_dispatch(x[1])\n#&gt; =&gt; [.secret\n#&gt;    [.default\n#&gt; -&gt; [ (internal)"
   },
   {
+    "objectID": "slides/Topic1.html#generics-methods",
+    "href": "slides/Topic1.html#generics-methods",
+    "title": "Short Course on R Tools",
+    "section": "Generics & Methods",
+    "text": "Generics & Methods\n\n\nDefine generic:\nsetGeneric(\"greet\", function(x) standardGeneric(\"greet\"))\nDefine method:\nsetMethod(\"greet\", \"Person\", function(x) {\n  paste(\"Hello, my name is\", x@name)\n})\nExample:\ngreet(subj1)\n#&gt; [1] \"Hello, my name is Adam\""
+  },
+  {
+    "objectID": "slides/Topic1.html#inheritance-virtual-classes",
+    "href": "slides/Topic1.html#inheritance-virtual-classes",
+    "title": "Short Course on R Tools",
+    "section": "Inheritance & Virtual Classes",
+    "text": "Inheritance & Virtual Classes\n\n\nInheritance:\nsetClass(\"Employee\", contains = \"Person\",\n  slots = list(salary = \"numeric\"))\nExample:\nemp1 &lt;- new(\"Employee\", subj1, salary = 75000)\nemp1\n#&gt; An object of class \"Employee\"\n#&gt; Slot \"salary\":\n#&gt; [1] 75000\n#&gt; \n#&gt; Slot \"name\":\n#&gt; [1] \"Adam\"\n#&gt; \n#&gt; Slot \"age\":\n#&gt; [1] 30"
+  },
+  {
+    "objectID": "slides/Topic1.html#advanced-features",
+    "href": "slides/Topic1.html#advanced-features",
+    "title": "Short Course on R Tools",
+    "section": "Advanced Features",
+    "text": "Advanced Features\n\nActive bindings\nInheritance & extension\nPrivate vs public\nUse cases: GUI, stateful objects, iterative algorithms\n\n??? note Show leak-free design with private fields."
+  },
+  {
     "objectID": "misc/cheatsheets.html",
     "href": "misc/cheatsheets.html",
     "title": "R cheatsheets",

@@ -676,7 +676,7 @@
   globalThis.qwebrAutoloadRPackages = true;
 
   // Display a startup message?
-  globalThis.qwebrShowStartupMessage = true;
+  globalThis.qwebrShowStartupMessage = false;
   globalThis.qwebrShowHeaderMessage = false;
 
   // Describe the webR settings that should be used
@@ -688,7 +688,7 @@
   };
 
   // Store cell data
-  globalThis.qwebrCellDetails = [{"options":{"editor-word-wrap":"true","fig-cap":"","editor-max-height":"","fig-width":7,"editor-font-scale":"0.5","context":"interactive","out-height":"","comment":"","dpi":72,"out-width":"700px","message":"true","fig-height":5,"output":"true","label":"unnamed-chunk-1","autorun":"false","warning":"true","results":"markup","classes":"","editor-quick-suggestions":"false","read-only":"false"},"id":1,"code":"x <- structure(c(1,2,3), class = \"myclass\")\nmean.myclass <- function(x, ...) {\n  print(\"custom mean\")\n}\nmean(x)"}];
+  globalThis.qwebrCellDetails = [{"id":1,"options":{"dpi":72,"editor-quick-suggestions":"false","autorun":"false","output":"true","label":"unnamed-chunk-1","fig-height":5,"results":"markup","editor-max-height":"","editor-font-scale":"0.5","out-height":"","context":"interactive","warning":"true","editor-word-wrap":"true","fig-cap":"","comment":"","out-width":"700px","message":"true","read-only":"false","fig-width":7,"classes":""},"code":"x <- structure(c(1,2,3), class = \"myclass\")\nmean.myclass <- function(x, ...) {\n  print(\"custom mean\")\n}\nmean(x)"}];
 
   </script>
   <script type="module">
@@ -2792,6 +2792,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </div>
 </div>
 </section></section>
+<section>
 <section id="s4-formal-classes" class="title-slide slide level1 center">
 <h1>S4: Formal Classes</h1>
 <div class="sourceCode" id="cb21" data-code-line-numbers="1-7|8-17|19-23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="co"># Definition: `setClass()` with slots</span></span>
@@ -2803,8 +2804,8 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <span id="cb21-7"><a></a>)</span>
 <span id="cb21-8"><a></a></span>
 <span id="cb21-9"><a></a><span class="co"># Create instance</span></span>
-<span id="cb21-10"><a></a>obj1 <span class="ot">&lt;-</span> <span class="fu">new</span>(<span class="st">"Person"</span>, <span class="at">name =</span> <span class="st">"Adam"</span>, <span class="at">age =</span> <span class="dv">30</span>)</span>
-<span id="cb21-11"><a></a>obj1</span>
+<span id="cb21-10"><a></a>subj1 <span class="ot">&lt;-</span> <span class="fu">new</span>(<span class="st">"Person"</span>, <span class="at">name =</span> <span class="st">"Adam"</span>, <span class="at">age =</span> <span class="dv">30</span>)</span>
+<span id="cb21-11"><a></a>subj1</span>
 <span id="cb21-12"><a></a><span class="co">#&gt; An object of class "Person"</span></span>
 <span id="cb21-13"><a></a><span class="co">#&gt; Slot "name":</span></span>
 <span id="cb21-14"><a></a><span class="co">#&gt; [1] "Adam"</span></span>
@@ -2818,59 +2819,72 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <span id="cb21-22"><a></a><span class="fu">slot</span>(obj1, <span class="st">"age"</span>)</span>
 <span id="cb21-23"><a></a><span class="co">#&gt; [1] 30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-
-<section id="s4-generics-methods" class="title-slide slide level1 center">
-<h1>S4 Generics &amp; Methods</h1>
+<section id="generics-methods" class="slide level2">
+<h2>Generics &amp; Methods</h2>
+<div>
 <ul>
-<li><p><strong>Define generic</strong>:</p>
+<li class="fragment"><p><strong>Define generic</strong>:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">setGeneric</span>(<span class="st">"greet"</span>, <span class="cf">function</span>(x) <span class="fu">standardGeneric</span>(<span class="st">"greet"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-<div class="fragment">
-<ul>
-<li><p><strong>Define method</strong>:</p>
+<li class="fragment"><p><strong>Define method</strong>:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">setMethod</span>(<span class="st">"greet"</span>, <span class="st">"Person"</span>, <span class="cf">function</span>(x) {</span>
 <span id="cb23-2"><a></a>  <span class="fu">paste</span>(<span class="st">"Hello, my name is"</span>, x<span class="sc">@</span>name)</span>
 <span id="cb23-3"><a></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Multiple dispatch</strong>: based on argument classes</p></li>
+<li class="fragment"><p><strong>Example</strong>:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">greet</span>(subj1)</span>
+<span id="cb24-2"><a></a><span class="co">#&gt; [1] "Hello, my name is Adam"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
-<p>??? note Show example with inheritance &amp; dispatch.</p>
 </div>
 </section>
-
-<section id="s4-inheritance-virtual-classes" class="title-slide slide level1 center">
-<h1>S4 Inheritance &amp; Virtual Classes</h1>
+<section id="inheritance-virtual-classes" class="slide level2">
+<h2>Inheritance &amp; Virtual Classes</h2>
+<div>
 <ul>
-<li><p><strong>Inheritance</strong>:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">setClass</span>(<span class="st">"Employee"</span>, <span class="at">contains =</span> <span class="st">"Person"</span>,</span>
-<span id="cb24-2"><a></a>  <span class="at">slots =</span> <span class="fu">list</span>(<span class="at">salary =</span> <span class="st">"numeric"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Virtual classes</strong>: abstract base types</p></li>
-<li><p><strong>Validity methods</strong>: <code>setValidity()</code></p></li>
+<li class="fragment"><p><strong>Inheritance</strong>:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">setClass</span>(<span class="st">"Employee"</span>, <span class="at">contains =</span> <span class="st">"Person"</span>,</span>
+<span id="cb25-2"><a></a>  <span class="at">slots =</span> <span class="fu">list</span>(<span class="at">salary =</span> <span class="st">"numeric"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li class="fragment"><p><strong>Example</strong>:</p>
+<div class="sourceCode" id="cb26" data-code-line-numbers="1|2-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>emp1 <span class="ot">&lt;-</span> <span class="fu">new</span>(<span class="st">"Employee"</span>, subj1, <span class="at">salary =</span> <span class="dv">75000</span>)</span>
+<span id="cb26-2"><a></a>emp1</span>
+<span id="cb26-3"><a></a><span class="co">#&gt; An object of class "Employee"</span></span>
+<span id="cb26-4"><a></a><span class="co">#&gt; Slot "salary":</span></span>
+<span id="cb26-5"><a></a><span class="co">#&gt; [1] 75000</span></span>
+<span id="cb26-6"><a></a><span class="co">#&gt; </span></span>
+<span id="cb26-7"><a></a><span class="co">#&gt; Slot "name":</span></span>
+<span id="cb26-8"><a></a><span class="co">#&gt; [1] "Adam"</span></span>
+<span id="cb26-9"><a></a><span class="co">#&gt; </span></span>
+<span id="cb26-10"><a></a><span class="co">#&gt; Slot "age":</span></span>
+<span id="cb26-11"><a></a><span class="co">#&gt; [1] 30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
-<p>??? note Encourage robust class definitions.</p>
-</section>
-
+</div>
+</section></section>
+<section>
 <section id="r6-reference-classes" class="title-slide slide level1 center">
 <h1>R6: Reference Classes</h1>
+<div>
 <ul>
-<li><p><strong>Encapsulated OOP</strong>: mutable fields + methods</p></li>
-<li><p><strong>Define</strong>:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">library</span>(R6)</span>
-<span id="cb25-2"><a></a>PersonR6 <span class="ot">&lt;-</span> <span class="fu">R6Class</span>(<span class="st">"PersonR6"</span>,</span>
-<span id="cb25-3"><a></a>  <span class="at">public =</span> <span class="fu">list</span>(</span>
-<span id="cb25-4"><a></a>    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
-<span id="cb25-5"><a></a>    <span class="at">initialize =</span> <span class="cf">function</span>(name) self<span class="sc">$</span>name <span class="ot">&lt;-</span> name,</span>
-<span id="cb25-6"><a></a>    <span class="at">greet =</span> <span class="cf">function</span>() <span class="fu">cat</span>(<span class="st">"Hi, I'm"</span>, self<span class="sc">$</span>name, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb25-7"><a></a>  )</span>
-<span id="cb25-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Instantiate &amp; use</strong>:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>p <span class="ot">&lt;-</span> PersonR6<span class="sc">$</span><span class="fu">new</span>(<span class="st">"Bob"</span>)</span>
-<span id="cb26-2"><a></a>p<span class="sc">$</span><span class="fu">greet</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li class="fragment"><p><strong>Encapsulated OOP</strong>: mutable fields + methods</p></li>
+<li class="fragment"><p><strong>Define</strong>:</p>
+<div class="shrink-code">
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(R6)</span>
+<span id="cb27-2"><a></a>PersonR6 <span class="ot">&lt;-</span> <span class="fu">R6Class</span>(<span class="st">"PersonR6"</span>,</span>
+<span id="cb27-3"><a></a>  <span class="at">public =</span> <span class="fu">list</span>(</span>
+<span id="cb27-4"><a></a>    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb27-5"><a></a>    <span class="at">initialize =</span> <span class="cf">function</span>(name) self<span class="sc">$</span>name <span class="ot">&lt;-</span> name,</span>
+<span id="cb27-6"><a></a>    <span class="at">greet =</span> <span class="cf">function</span>() <span class="fu">cat</span>(<span class="st">"Hi, I'm"</span>, self<span class="sc">$</span>name, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb27-7"><a></a>  )</span>
+<span id="cb27-8"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li class="fragment"><p><strong>Instantiate &amp; use</strong>:</p>
+<div class="shrink-code">
+<div class="sourceCode" id="cb28" data-code-line-numbers="1|2-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>p <span class="ot">&lt;-</span> PersonR6<span class="sc">$</span><span class="fu">new</span>(<span class="st">"Bob"</span>)</span>
+<span id="cb28-2"><a></a>p<span class="sc">$</span><span class="fu">greet</span>()</span>
+<span id="cb28-3"><a></a><span class="co">#&gt; Hi, I'm Bob </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
 </ul>
-<p>??? note Compare reference vs value semantics.</p>
+</div>
 </section>
-
-<section id="r6-advanced-features" class="title-slide slide level1 center">
-<h1>R6 Advanced Features</h1>
+<section id="advanced-features" class="slide level2">
+<h2>Advanced Features</h2>
 <ul>
 <li><p><strong>Active bindings</strong></p></li>
 <li><p><strong>Inheritance &amp; extension</strong></p></li>
@@ -2878,6 +2892,35 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li><p><strong>Use cases</strong>: GUI, stateful objects, iterative algorithms</p></li>
 </ul>
 <p>??? note Show leak-free design with private fields.</p>
+</section></section>
+<section id="s7-the-new-oop-system" class="title-slide slide level1 center" data-auto-animate="true">
+<h1 data-id="quarto-animate-title">S7: The New OOP System</h1>
+<ul>
+<li>Designed by the R Consortium to unify S3+S4 and fix issues.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li><strong>Key features</strong>:
+<ul>
+<li>Multiple dispatch</li>
+<li>Formal class definitions</li>
+<li>Compatibility with S3/S4</li>
+<li>Faster than S4, simpler than R6</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="shrink-code">
+<div class="sourceCode" id="cb29" data-code-line-numbers="1-3|4-5|6-8"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb29-1" class="hljs-ln-code"><a></a><span class="fu">library</span>(S7)</span>
+<span id="cb29-2" class="hljs-ln-code"><a></a>Circle <span class="ot">&lt;-</span> <span class="fu">new_class</span>(<span class="st">"Circle"</span>, <span class="at">properties =</span> <span class="fu">list</span>(<span class="at">radius =</span> class_double))</span>
+<span id="cb29-3" class="hljs-ln-code"><a></a>circle1 <span class="ot">&lt;-</span> <span class="fu">Circle</span>(<span class="at">radius =</span> <span class="dv">5</span>)</span>
+<span id="cb29-4" class="hljs-ln-code"><a></a><span class="fu">typeof</span>(circle1)</span>
+<span id="cb29-5" class="hljs-ln-code"><a></a><span class="co">#&gt; [1] "object"</span></span>
+<span id="cb29-6" class="hljs-ln-code"><a></a>circle1</span>
+<span id="cb29-7" class="hljs-ln-code"><a></a><span class="co">#&gt; &lt;Circle&gt;</span></span>
+<span id="cb29-8" class="hljs-ln-code"><a></a><span class="co">#&gt;  @ radius: num 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 </section>
 
 <section id="trade-offs-best-practices" class="title-slide slide level1 center">
@@ -2905,6 +2948,11 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <td>R6</td>
 <td>Encapsulated, fast</td>
 <td>Manual memory, low abstraction</td>
+</tr>
+<tr class="even">
+<td>S7</td>
+<td>Unified, type-safe</td>
+<td>Newer, evolving ecosystem</td>
 </tr>
 </tbody>
 </table>
