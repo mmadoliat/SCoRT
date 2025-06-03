@@ -1,0 +1,462 @@
+---
+title: "Short Course on R Tools: Object-Oriented Programming in R"
+format:
+  html
+execute:
+  echo: true
+  warning: false
+  message: false
+  error: false
+---
+
+# Outline
+
+-   **OOP Paradigms in R**
+-   **Base Types & Functional OOP**
+-   **S3 Classes & Methods**
+-   **S4 Classes & Methods**
+-   **R6 Classes & Reference Semantics**
+-   **Trade-offs & Best Practices**
+-   **Hands-on Exercises**
+
+------------------------------------------------------------------------
+
+## OOP Paradigms in R
+
+> **Functional OOP**: functions return objects, operate on data\
+> **Encapsulated OOP**: objects carry data + methods\
+> **Generics & Method Dispatch**: generic functions choose methods based on class
+
+------------------------------------------------------------------------
+
+## Example: Functional OOP
+
+```{r}
+# (1) Plotting base graphics for demonstration of functional OOP:
+par(mfrow = c(1, 3))
+
+# Scatterplot of Sepal.Length
+plot(iris$Sepal.Length, main = "Sepal Length", xlab = "", ylab = "")
+
+# Plot of Species (factor)
+plot(iris$Species, main = "Species", xlab = "", ylab = "")
+
+# Linear model example (commented out; remove comments to run)
+# plot(lm(Sepal.Length ~ Sepal.Width, data = iris), main = "LM Diagnostics")
+```
+
+------------------------------------------------------------------------
+
+## Encapsulated OOP Example (using xgboost)
+
+```{r}
+library(mlr3)
+
+# Create a classification task (encapsulates data + metadata)
+task    <- TaskClassif$new(id = "iris_task", backend = iris, target = "Species")
+learner <- lrn("classif.rpart", predict_type = "prob")
+
+# Real use of object$method(args)
+learner$train(task)
+prediction <- learner$predict(task)
+
+# Inspect first few (and last few) predicted probabilities
+head(prediction$prob,3)
+tail(prediction$prob,3)
+```
+
+------------------------------------------------------------------------
+
+# OOP in R: Overview of Systems
+
+-   **S3**: Informal, functional OOP (lightweight class attribute, UseMethod dispatch)\
+-   **S4**: Formal, slots, strict validation, implemented in the *methods* package\
+-   **RC** (Reference Classes): built-in reference semantics (less common)\
+-   **R6**: Modern encapsulated OOP with mutable fields and methods\
+-   **S7**: New unified OOP system (multiple dispatch, type safety, S3/S4 compatibility)
+
+------------------------------------------------------------------------
+
+## Detecting Object Type
+
+```{r}
+library(sloop)
+
+otype(1:10)
+#> [1] "base"
+
+otype(mtcars)
+#> [1] "S3"
+
+mle_obj <- stats4::mle(function(x = 1) (x - 2)^2)
+otype(mle_obj)
+#> [1] "S4"
+```
+
+```{r}
+# Base vs OO objects
+is.object(1:10)
+#> [1] FALSE
+
+is.object(mtcars)
+#> [1] TRUE
+
+# Inspecting the 'class' attribute
+attr(1:10, "class")
+#> NULL
+
+attr(mtcars, "class")
+#> [1] "data.frame"
+```
+
+------------------------------------------------------------------------
+
+# Base Types in R
+
+*Every object in R has a base type. Below are some examples of base types:*
+
+```{r}
+typeof(NULL)         # "NULL"
+typeof(1L)           # "integer"
+typeof(1i)           # "complex"
+typeof(mean)         # "closure"
+typeof(`[`)          # "special"
+typeof(sum)          # "builtin"
+typeof(globalenv())  # "environment"
+
+# An S4 object also registers as a distinct type
+mle_obj <- stats4::mle(function(x = 1) (x - 2)^2)
+typeof(mle_obj)      # "S4"
+```
+
+------------------------------------------------------------------------
+
+# Informal OOP in R (S3-like)
+
+-   Build an object as a plain list\
+-   Assign a `class` attribute\
+-   Define print/summary/etc. methods by naming functions as `generic.classname`
+
+```{r}
+# Create a 'weather_report' object (simple list)
+weather <- list(
+  location = list(city = "Seattle", country = "USA", coordinates = c(lat = 47.6062, lon = -122.3321)),
+  date = as.Date("2025-05-30"),
+  summary = "Cloudy with light rain",
+  temperature = list(morning = 57, afternoon = 63, evening = 60, units = "F"),
+  alerts = c("Flood watch", "Wind advisory")
+)
+
+# Assign S3 class
+class(weather) <- "weather_report"
+
+# Define a print method for the 'weather_report' class
+print.weather_report <- function(x) {
+  cat("🌤️  Weather Report
+")
+  cat("-------------------------
+")
+  cat("📍 Location: ", x$location$city, ", ", x$location$country, "
+", sep = "")
+  cat("🗓️  Date: ", format(x$date, "%B %d, %Y"), "
+", sep = "")
+  cat("📋 Summary: ", x$summary, "
+", sep = "")
+  cat("🌡 Temperature (", x$temperature$units, "):
+", sep = "")
+  cat("    Morning:  ", x$temperature$morning, "
+", sep = "")
+  cat("    Afternoon:  ", x$temperature$afternoon, "
+", sep = "")
+  cat("    Evening:  ", x$temperature$evening, "
+", sep = "")
+  if (length(x$alerts) > 0) {
+    cat("⚠️ Alerts: ", paste(x$alerts, collapse = "; "), "
+", sep = "")
+  } else {
+    cat("✅ No active alerts.
+")
+  }
+  invisible(x)
+}
+
+# Call the custom print method
+print(weather)
+```
+
+------------------------------------------------------------------------
+
+# S3: Informal Classes and Dispatch
+
+-   **Class Definition**: assign class attribute\
+-   **Method Definition**: name functions as `generic.classname`
+
+```{r}
+# Create an S3 object in one line
+x <- structure(list(a = 1, b = 2), class = "myclass")
+
+# Define a custom mean method for 'myclass'
+mean.myclass <- function(x, ...) {
+  print("custom mean for myclass")
+}
+
+# Test the new method
+mean(x)
+```
+
+## Inspecting S3 Details
+
+```{r}
+# Example: factor is an S3 class
+f <- factor(c("a", "b", "b"))
+attributes(f)
+
+# Unclassing drops the 'factor' class
+unclass(f)
+
+# Time object (POSIXlt) is also S3
+time <- strptime(c("2017-01-01", "2020-05-04 03:21"), "%Y-%m-%d")
+str(time)
+
+# Drop the class attribute and inspect underlying structure
+class(time) <- NULL
+str(time)
+```
+
+------------------------------------------------------------------------
+
+# S3: Common Constructor Pattern
+
+1.  **Low-level constructor**: `new_myclass()`\
+2.  **Validator**: `validate_myclass()`\
+3.  **User-facing helper**: `myclass()`
+
+```{r}
+## 1. Low‐level constructor: assume inputs are valid
+new_myclass <- function(values = numeric(), unit = character(1)) {
+  stopifnot(is.numeric(values), is.character(unit), length(unit) == 1)
+  structure(
+    list(values = values, unit = unit),
+    class = "myclass"
+  )
+}
+
+## 2. Validator: check consistency
+validate_myclass <- function(x) {
+  if (!inherits(x, "myclass")) {
+    stop("`x` must be a 'myclass' object.", call. = FALSE)
+  }
+  if (!is.numeric(x$values)) {
+    stop("`values` must be numeric.", call. = FALSE)
+  }
+  if (any(is.na(x$values))) {
+    stop("`values` must not contain NA.", call. = FALSE)
+  }
+  if (!is.character(x$unit) || length(x$unit) != 1) {
+    stop("`unit` must be a single character string.", call. = FALSE)
+  }
+  TRUE
+}
+
+## 3. User‐facing helper: build & validate
+myclass <- function(values, unit = "unitless") {
+  if (!is.numeric(values)) {
+    values <- as.numeric(values)
+    if (any(is.na(values))) {
+      stop("`values` could not be coerced to numeric.", call. = FALSE)
+    }
+  }
+  if (!is.character(unit) || length(unit) != 1) {
+    stop("`unit` must be a single character string.", call. = FALSE)
+  }
+  obj <- new_myclass(values = values, unit = unit)
+  validate_myclass(obj)
+  obj
+}
+
+## Example usage
+x <- myclass(c(1.1, 2.2, 3.3), unit = "kg")
+print(x)
+
+# This will error due to NA
+# myclass(c(1, NA, 3))
+```
+
+------------------------------------------------------------------------
+
+# S3: Generics and Method Dispatch
+
+-   Use `UseMethod("generic")` inside generic definitions\
+-   Methods must match the generic’s arguments (unless generic uses `...`)
+
+```{r}
+library(sloop)
+
+# View generic function signature for 'print'
+show(print)
+ftype(print)         # "S3" "generic"
+ftype(print.factor)  # "S3" "method"
+
+# Show dispatch path for printing a factor
+f <- ordered(c("a", "b", "b"))
+s3_dispatch(print(f))
+
+# Show dispatch path for printing an unclassed factor
+s3_dispatch(print(unclass(f)))
+```
+
+------------------------------------------------------------------------
+
+# S3: Finding Methods
+
+```{r}
+# List all methods for generic 'mean'
+s3_methods_generic("mean")
+
+# List all generics that have methods for class 'funts'
+s3_methods_class("funts")
+```
+
+------------------------------------------------------------------------
+
+# S3: Inheritance and `NextMethod()`
+
+```{r}
+# Example: define a 'secret' class that masks its values
+new_secret <- function(x = double()) {
+  stopifnot(is.double(x))
+  structure(x, class = "secret")
+}
+
+print.secret <- function(x, ...) {
+  print(strrep("x", nchar(as.character(x))))
+  invisible(x)
+}
+
+x <- new_secret(c(15, 1, 456))
+x
+#> [1] "xx"  "x"   "xxx"
+
+# Default subsetting drops the class
+x[1]
+#> [1] 15
+
+# Provide a `[.secret` method to preserve the class
+`[.secret` <- function(x, i) {
+  new_secret(NextMethod())
+}
+
+x[1]
+#> [1] "xx"
+```
+
+------------------------------------------------------------------------
+
+# S4: Formal Classes
+
+```{r}
+# Define a new S4 class "Person" with slots
+setClass("Person",
+  slots = list(
+    name = "character",
+    age  = "numeric"
+  )
+)
+
+# Create an instance of "Person"
+subj1 <- new("Person", name = "Adam", age = 30)
+subj1
+
+# Access slots via "@" or slot()
+subj1@name
+slot(subj1, "age")
+```
+
+## S4: Generics & Methods
+
+```{r}
+# Define a generic function "greet"
+setGeneric("greet", function(x) standardGeneric("greet"))
+
+# Define a method for class "Person"
+setMethod("greet", "Person", function(x) {
+  paste("Hello, my name is", x@name)
+})
+
+# Call the new method
+greet(subj1)
+#> [1] "Hello, my name is Adam"
+```
+
+## S4: Inheritance & Virtual Classes
+
+```{r}
+# Define a subclass "Employee" that contains "Person"
+setClass("Employee",
+  contains = "Person",
+  slots = list(salary = "numeric")
+)
+
+# Create an instance of "Employee"
+emp1 <- new("Employee", subj1, salary = 75000)
+emp1
+
+# Inspect slots
+emp1@name
+emp1@age
+emp1@salary
+```
+
+------------------------------------------------------------------------
+
+# R6: Reference Classes (Encapsulated OOP)
+
+-   Mutable fields\
+-   Methods inside the class definition\
+-   Use `$new()` to instantiate
+
+```{r}
+library(R6)
+
+# Define an R6 class "PersonR6"
+PersonR6 <- R6Class(
+  "PersonR6",
+  public = list(
+    name = NULL,
+    initialize = function(name) {
+      self$name <- name
+    },
+    greet = function() {
+      cat("Hi, I'm", self$name, "
+")
+    }
+  )
+)
+
+# Instantiate and use
+p <- PersonR6$new("Bob")
+p$greet()
+#> Hi, I'm Bob
+```
+
+------------------------------------------------------------------------
+
+# S7: The New OOP System {auto-animate="true"}
+
+-   Designed by the R Consortium to unify S3+S4 and fix issues.
+-   **Key features**:
+    -   Multiple dispatch
+    -   Formal class definitions
+    -   Compatibility with S3/S4
+    -   Faster than S4, simpler than R6
+
+```{r}
+library(S7)
+Circle <- new_class("Circle", properties = list(radius = class_double))
+circle1 <- Circle(radius = 5)
+typeof(circle1)
+#> [1] "object"
+circle1
+#> <Circle>
+#>  @ radius: num 5
+```

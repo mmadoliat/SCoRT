@@ -23,6 +23,7 @@ format:
 -   S3 Classes & Methods
 -   S4 Classes & Methods
 -   R6 Classes & Reference Semantics
+-   S7 Classes - The New OOP System
 -   Trade-offs & Best Practices
 -   Hands-on Exercises
 :::
@@ -60,15 +61,16 @@ plot(iris$Species)
 -   **Encapsulated OOP**: objects carry data + methods
 
 ::: shrink-code
-``` {.r code-line-numbers="1|2-4|5-6|7-8"}
-library(xgboost)
-data(iris)
-X <- as.matrix(iris[, 1:4])
-y <- as.numeric(iris$Species) - 1
-model <- xgboost(data = X, label = y, nrounds = 10,
-                 objective = "multi:softprob", num_class = 3, verbose = 0)
+``` {.r code-line-numbers="1|3-5|7-9"}
+library(mlr3)
+
+# Create a classification task (encapsulates data + metadata)
+task    <- TaskClassif$new(id = "iris_task", backend = iris, target = "Species")
+learner <- lrn("classif.rpart", predict_type = "prob")
+
 # Real use of object$method(args)
-preds <- model$predict(xgb.DMatrix(X))
+learner$train(task)
+prediction <- learner$predict(task)
 ```
 :::
 
@@ -671,26 +673,35 @@ slot(obj1, "age")
 ## Advanced Features
 
 -   **Active bindings**
-
 -   **Inheritance & extension**
-
 -   **Private vs public**
-
 -   **Use cases**: GUI, stateful objects, iterative algorithms
-
-??? note Show leak-free design with private fields.
-
-# S7: The New OOP System {auto-animate="true"}
-
--   Designed by the R Consortium to unify S3+S4 and fix issues.
 
 . . .
 
+![](images/oop/R6_Features.png){.absolute bottom="0" left="200" height="370"}
+
+
+# S7: The New OOP System {auto-animate="true"}
+
+::: {style="margin-top: -15px;"}
+:::
+
+-   Designed by the R Consortium to unify S3+S4 and fix issues.
+
+::: {style="margin-top: -30px;"}
+:::
+
+. . .
+
+::: {.medium}
 -   **Key features**:
+
     - Multiple dispatch
     - Formal class definitions
     - Compatibility with S3/S4
     - Faster than S4, simpler than R6
+:::
 
 . . .
 
@@ -709,12 +720,16 @@ circle1
 
 # Trade-offs & Best Practices
 
+::: {.medium}
 | Paradigm | Pros               | Cons                           |
 |----------|--------------------|--------------------------------|
 | S3       | Simple, flexible   | No schema, fragile dispatch    |
 | S4       | Formal, robust     | Verbose, steep learning curve  |
 | R6       | Encapsulated, fast | Manual memory, low abstraction |
 | S7       | Unified, type-safe	| Newer, evolving ecosystem      |
+:::
+
+. . .
 
 -   Choose based on complexity & team skill
 
@@ -722,17 +737,18 @@ circle1
 
 -   Write unit tests for OO code
 
-??? note Discuss package design implications.
-
 # Hands-on Exercises (30 min)
 
-1.  **Create S3 class**: define `circle` with `radius` and methods for area & print
+-   [An S3 implementation of KNN Regression](https://github.com/mmadoliat/WSoRT/blob/main/R/knn_s3.R){target="_blank"}
+-   [A formula based implementation of KNN Regression](https://github.com/mmadoliat/WSoRT/blob/main/R/knn_s3_formula.R){target="_blank"}
 
-2.  **S4 hierarchy**: model shapes (`Shape` virtual, `Circle`, `Rectangle` classes)
+. . .
 
-3.  **R6 counter**: implement counter with reset and step-by-step logging
+![](images/oop/knn1.png){.absolute left=200}
 
-??? note Split into small groups, reconvene for solutions.
+. . . 
+
+![](images/oop/knn2.png){.absolute left=200}
 
 # Resources & References
 
