@@ -688,7 +688,7 @@
   };
 
   // Store cell data
-  globalThis.qwebrCellDetails = [{"id":1,"options":{"dpi":72,"editor-quick-suggestions":"false","autorun":"false","output":"true","label":"unnamed-chunk-1","fig-height":5,"results":"markup","editor-max-height":"","editor-font-scale":"0.5","out-height":"","context":"interactive","warning":"true","editor-word-wrap":"true","fig-cap":"","comment":"","out-width":"700px","message":"true","read-only":"false","fig-width":7,"classes":""},"code":"x <- structure(c(1,2,3), class = \"myclass\")\nmean.myclass <- function(x, ...) {\n  print(\"custom mean\")\n}\nmean(x)"}];
+  globalThis.qwebrCellDetails = [{"id":1,"code":"x <- structure(c(1,2,3), class = \"myclass\")\nmean.myclass <- function(x, ...) {\n  print(\"custom mean\")\n}\nmean(x)","options":{"label":"unnamed-chunk-1","editor-quick-suggestions":"false","fig-width":7,"autorun":"false","context":"interactive","comment":"","out-height":"","editor-max-height":"","message":"true","results":"markup","editor-word-wrap":"true","warning":"true","editor-font-scale":"0.5","fig-height":5,"fig-cap":"","dpi":72,"output":"true","read-only":"false","classes":"","out-width":"700px"}}];
 
   </script>
   <script type="module">
@@ -2263,6 +2263,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li>S3 Classes &amp; Methods</li>
 <li>S4 Classes &amp; Methods</li>
 <li>R6 Classes &amp; Reference Semantics</li>
+<li>S7 Classes - The New OOP System</li>
 <li>Trade-offs &amp; Best Practices</li>
 <li>Hands-on Exercises</li>
 </ul>
@@ -2271,6 +2272,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 
 <section id="oop-paradigms-in-r" class="title-slide slide level1 center" data-auto-animate="true">
 <h1 data-id="quarto-animate-title">OOP Paradigms in R</h1>
+<p><span class="absolute" style="top: 0px; right: 0px; width: 400px; "><img src="images/oop/oop-vs-fp.jpg" style="opacity: 0.25;" width="400"></span></p>
 <ul>
 <li><strong>Functional OOP</strong>: functions return objects, operate on data</li>
 </ul>
@@ -2303,24 +2305,22 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 
 <section id="oop-paradigms-in-r-1" class="title-slide slide level1 center" data-auto-animate="true">
 <h1 data-id="quarto-animate-title">OOP Paradigms in R</h1>
+
+<img src="images/oop/oop-vs-fp.jpg" style="opacity: .05;" width="1500" class="r-stretch"><div style="margin-top: -600px;">
+
+</div>
 <ul>
 <li><strong>Encapsulated OOP</strong>: objects carry data + methods</li>
 </ul>
-<div class="shrink-code">
-<div class="sourceCode" id="cb2" data-code-line-numbers="1|2-4|5-6|7-8"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb2-1" class="hljs-ln-code"><a></a><span class="fu">library</span>(xgboost)</span>
-<span id="cb2-2" class="hljs-ln-code"><a></a><span class="fu">data</span>(iris)</span>
-<span id="cb2-3" class="hljs-ln-code"><a></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
-<span id="cb2-4" class="hljs-ln-code"><a></a>y <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(iris<span class="sc">$</span>Species) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb2-5" class="hljs-ln-code"><a></a>model <span class="ot">&lt;-</span> <span class="fu">xgboost</span>(<span class="at">data =</span> X, <span class="at">label =</span> y, <span class="at">nrounds =</span> <span class="dv">10</span>,</span>
-<span id="cb2-6" class="hljs-ln-code"><a></a>                 <span class="at">objective =</span> <span class="st">"multi:softprob"</span>, <span class="at">num_class =</span> <span class="dv">3</span>, <span class="at">verbose =</span> <span class="dv">0</span>)</span>
+<div class="sourceCode" id="cb2" data-code-line-numbers="1|3-5|7-9"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb2-1" class="hljs-ln-code"><a></a><span class="fu">library</span>(mlr3)</span>
+<span id="cb2-2" class="hljs-ln-code"><a></a></span>
+<span id="cb2-3" class="hljs-ln-code"><a></a><span class="co"># Create a classification task (encapsulates data + metadata)</span></span>
+<span id="cb2-4" class="hljs-ln-code"><a></a>task    <span class="ot">&lt;-</span> TaskClassif<span class="sc">$</span><span class="fu">new</span>(<span class="at">id =</span> <span class="st">"iris_task"</span>, <span class="at">backend =</span> iris, <span class="at">target =</span> <span class="st">"Species"</span>)</span>
+<span id="cb2-5" class="hljs-ln-code"><a></a>learner <span class="ot">&lt;-</span> <span class="fu">lrn</span>(<span class="st">"classif.rpart"</span>, <span class="at">predict_type =</span> <span class="st">"prob"</span>)</span>
+<span id="cb2-6" class="hljs-ln-code"><a></a></span>
 <span id="cb2-7" class="hljs-ln-code"><a></a><span class="co"># Real use of object$method(args)</span></span>
-<span id="cb2-8" class="hljs-ln-code"><a></a>preds <span class="ot">&lt;-</span> model<span class="sc">$</span><span class="fu">predict</span>(<span class="fu">xgb.DMatrix</span>(X))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
-<ul>
-<li><strong>Generics &amp; Method Dispatch</strong></li>
-</ul>
-</div>
+<span id="cb2-8" class="hljs-ln-code"><a></a>learner<span class="sc">$</span><span class="fu">train</span>(task)</span>
+<span id="cb2-9" class="hljs-ln-code"><a></a>prediction <span class="ot">&lt;-</span> learner<span class="sc">$</span><span class="fu">predict</span>(task)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <ul>
 <li><strong>When to use</strong>: design, extensibility, code organization</li>
@@ -2330,6 +2330,10 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 
 <section id="oop-in-r" class="title-slide slide level1 center" data-auto-animate="true">
 <h1 data-id="quarto-animate-title">OOP in R</h1>
+
+<img src="images/oop/oop-vs-fp.jpg" style="opacity: .05;" width="1500" class="r-stretch"><div style="margin-top: -600px;">
+
+</div>
 <div>
 <ul>
 <li class="fragment"><p><strong>S3</strong> is R’s first OOP system, which is an informal implementation of functional OOP.</p></li>
@@ -2474,6 +2478,8 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <section>
 <section id="s3-informal-classes" class="title-slide slide level1 center">
 <h1>S3: Informal Classes</h1>
+<div id="qwebr-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <ul>
 <li><strong>Lightweight</strong>: no formal schema</li>
 </ul>
@@ -2481,8 +2487,6 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <ul>
 <li><strong>Define</strong>: set <code>class</code> attribute</li>
 </ul>
-</div>
-<div class="fragment">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">structure</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">class =</span> <span class="st">"myclass"</span>)</span>
 <span id="cb8-2"><a></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2490,10 +2494,6 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
-</div>
-<div class="fragment">
-<div id="qwebr-insertion-location-1"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 </section>
 <section id="basics" class="slide level2">
@@ -2886,21 +2886,30 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <section id="advanced-features" class="slide level2">
 <h2>Advanced Features</h2>
 <ul>
-<li><p><strong>Active bindings</strong></p></li>
-<li><p><strong>Inheritance &amp; extension</strong></p></li>
-<li><p><strong>Private vs public</strong></p></li>
-<li><p><strong>Use cases</strong>: GUI, stateful objects, iterative algorithms</p></li>
+<li><strong>Active bindings</strong></li>
+<li><strong>Inheritance &amp; extension</strong></li>
+<li><strong>Private vs public</strong></li>
+<li><strong>Use cases</strong>: GUI, stateful objects, iterative algorithms</li>
 </ul>
-<p>??? note Show leak-free design with private fields.</p>
+<div class="fragment">
+<p><img data-src="images/oop/R6_Features.png" class="absolute" style="left: 200px; bottom: 0px; height: 370px; "></p>
+</div>
 </section></section>
 <section id="s7-the-new-oop-system" class="title-slide slide level1 center" data-auto-animate="true">
 <h1 data-id="quarto-animate-title">S7: The New OOP System</h1>
+<div style="margin-top: -15px;">
+
+</div>
 <ul>
 <li>Designed by the R Consortium to unify S3+S4 and fix issues.</li>
 </ul>
+<div style="margin-top: -30px;">
+
+</div>
 <div class="fragment">
+<div class="medium">
 <ul>
-<li><strong>Key features</strong>:
+<li><p><strong>Key features</strong>:</p>
 <ul>
 <li>Multiple dispatch</li>
 <li>Formal class definitions</li>
@@ -2908,6 +2917,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li>Faster than S4, simpler than R6</li>
 </ul></li>
 </ul>
+</div>
 </div>
 <div class="fragment">
 <div class="shrink-code">
@@ -2925,6 +2935,7 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 
 <section id="trade-offs-best-practices" class="title-slide slide level1 center">
 <h1>Trade-offs &amp; Best Practices</h1>
+<div class="medium">
 <table>
 <thead>
 <tr class="header">
@@ -2956,49 +2967,68 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </tr>
 </tbody>
 </table>
+</div>
+<div class="fragment">
 <ul>
 <li><p>Choose based on complexity &amp; team skill</p></li>
 <li><p>Document constructors &amp; methods clearly</p></li>
 <li><p>Write unit tests for OO code</p></li>
 </ul>
-<p>??? note Discuss package design implications.</p>
+</div>
 </section>
 
-<section id="hands-on-exercises-30-min" class="title-slide slide level1 center scrollable">
-<h1>Hands-on Exercises (30 min)</h1>
-<ol type="1">
-<li><p><strong>Create S3 class</strong>: define <code>circle</code> with <code>radius</code> and methods for area &amp; print</p></li>
-<li><p><strong>S4 hierarchy</strong>: model shapes (<code>Shape</code> virtual, <code>Circle</code>, <code>Rectangle</code> classes)</p></li>
-<li><p><strong>R6 counter</strong>: implement counter with reset and step-by-step logging</p></li>
-</ol>
-<p>??? note Split into small groups, reconvene for solutions.</p>
-</section>
+<section id="hands-on-exercises-30-min" class="title-slide slide level1 center" data-auto-animate="true">
+<h1 data-id="quarto-animate-title">Hands-on Exercises (30 min)</h1>
+<p><img data-src="images/oop/knn1.png" width="1000"></p>
+<div class="fragment">
+<div style="margin-top: -476px;">
+<p><img data-src="images/oop/knn2.png" width="1000"></p>
+</div>
+</div>
+<div class="fragment">
+<div style="margin-top: -24px;">
 
-<section id="resources-references" class="title-slide slide level1 center">
-<h1>Resources &amp; References</h1>
+</div>
 <ul>
-<li><p><strong>Advanced R</strong>: OO chapters by Hadley Wickham</p></li>
-<li><p>R Documentation: <code>?Methods</code>, <code>?R6Class</code></p></li>
-<li><p>CRAN packages: <code>methods</code>, <code>R6</code></p></li>
-<li><p>Articles: stat.ethz.ch/~jlamp/news/oop</p></li>
+<li><a href="https://github.com/mmadoliat/WSoRT/blob/main/R/knn_s3.R" target="_blank">An S3 implementation of KNN Regression</a></li>
+<li><a href="https://github.com/mmadoliat/WSoRT/blob/main/R/knn_s3_formula.R" target="_blank">A formula based implementation of KNN Regression</a></li>
 </ul>
-<p>??? note Encourage further reading and experimentation.</p>
+</div>
 </section>
 
-<section id="qa" class="title-slide slide level1 center">
-<h1>Q&amp;A</h1>
+<section id="resources-references" class="title-slide slide level1 center" data-auto-animate="true">
+<h1 data-id="quarto-animate-title">Resources &amp; References</h1>
+
+<img src="images/oop/oop-vs-fp.jpg" style="opacity: .05;" width="1500" class="r-stretch"><div style="margin-top: -600px;">
+
+</div>
 <ul>
-<li><p>Questions on paradigms?</p></li>
-<li><p>Real-world use cases?</p></li>
-<li><p>Integration with functional programming?</p></li>
+<li><strong>Advanced R</strong>: <a href="https://adv-r.hadley.nz/oo.html">OO chapters by Hadley Wickham</a>
+<ul>
+<li><a href="https://adv-r.hadley.nz/s3.html">S3</a></li>
+<li><a href="https://adv-r.hadley.nz/s4.html">S4</a></li>
+<li><a href="https://adv-r.hadley.nz/r6.html">R6</a></li>
+</ul></li>
+<li>R Consortium Object-Oriented Programming Working Group
+<ul>
+<li><a href="https://rconsortium.github.io/S7/">S7 GitHub page</a></li>
+</ul></li>
 </ul>
 </section>
 
-<section id="thank-you" class="title-slide slide level1 center">
-<h1>Thank You</h1>
+<section id="qa" class="title-slide slide level1 center" data-auto-animate="true">
+<h1 data-id="quarto-animate-title">Q&amp;A</h1>
+<p><img src="images/oop/oop-vs-fp.jpg" style="opacity: .05;" width="1500"></p>
+<div style="margin-top: -500px;">
+
+</div>
+<div style="text-align: center;">
+<div class="large">
+<p><strong>Thank You</strong></p>
+</div>
+</div>
 <ul>
-<li><p>Slides source: adv-r OO chapter</p></li>
-<li><p>Feedback welcome!</p></li>
+<li>Feedback welcome!</li>
 </ul>
 
 <div class="quarto-auto-generated-content">
