@@ -13,6 +13,7 @@ format:
   revealjs:
     transition: fade
     scrollable: true
+    fig-asp: 1
 ---
 
 # Outline
@@ -29,6 +30,8 @@ format:
 :::
 
 # OOP Paradigms in R {auto-animate="true"}
+
+[<img src="images/oop/oop-vs-fp.jpg" style="opacity: 0.25;" width="400"/>]{.absolute top="0" right="0" width="400"}
 
 -   **Functional OOP**: functions return objects, operate on data
 
@@ -58,9 +61,13 @@ plot(iris$Species)
 
 # OOP Paradigms in R {auto-animate="true"}
 
+<img src="images/oop/oop-vs-fp.jpg" style="opacity: .05;" width="1500">
+
+::: {style="margin-top: -600px;"}
+:::
+
 -   **Encapsulated OOP**: objects carry data + methods
 
-::: shrink-code
 ``` {.r code-line-numbers="1|3-5|7-9"}
 library(mlr3)
 
@@ -72,17 +79,17 @@ learner <- lrn("classif.rpart", predict_type = "prob")
 learner$train(task)
 prediction <- learner$predict(task)
 ```
-:::
-
-. . .
-
--   **Generics & Method Dispatch**
 
 . . .
 
 -   **When to use**: design, extensibility, code organization
 
 # OOP in R {auto-animate="true"}
+
+<img src="images/oop/oop-vs-fp.jpg" style="opacity: .05;" width="1500">
+
+::: {style="margin-top: -600px;"}
+:::
 
 ::: incremental
 -   **S3** is R’s first OOP system, which is an informal implementation of functional OOP.
@@ -234,26 +241,22 @@ print.weather_report <- function(x) {
 
 # S3: Informal Classes
 
+```{webr-r}
+x <- structure(c(1,2,3), class = "myclass")
+mean.myclass <- function(x, ...) {
+  print("custom mean")
+}
+mean(x)
+```
+
 -   **Lightweight**: no formal schema
 
 . . .
 
 -   **Define**: set `class` attribute
 
-. . .
-
 ```{r}
 x <- structure(c(1,2,3), class = "myclass")
-mean(x)
-```
-
-. . .
-
-```{webr-r}
-x <- structure(c(1,2,3), class = "myclass")
-mean.myclass <- function(x, ...) {
-  print("custom mean")
-}
 mean(x)
 ```
 
@@ -737,41 +740,52 @@ circle1
 
 -   Write unit tests for OO code
 
-# Hands-on Exercises (30 min)
+# Hands-on Exercises (30 min) {auto-animate="true"}
+
+![](images/oop/knn1.png){width=1000}
+
+. . . 
+
+::: {style="margin-top: -476px;"}
+![](images/oop/knn2.png){width=1000}
+:::
+
+. . .
+
+
+::: {style="margin-top: -24px;"}
+:::
 
 -   [An S3 implementation of KNN Regression](https://github.com/mmadoliat/WSoRT/blob/main/R/knn_s3.R){target="_blank"}
 -   [A formula based implementation of KNN Regression](https://github.com/mmadoliat/WSoRT/blob/main/R/knn_s3_formula.R){target="_blank"}
 
-. . .
+# Resources & References {auto-animate="true"}
 
-![](images/oop/knn1.png){.absolute left=200}
+<img src="images/oop/oop-vs-fp.jpg" style="opacity: .05;" width="1500">
 
-. . . 
+::: {style="margin-top: -600px;"}
+:::
 
-![](images/oop/knn2.png){.absolute left=200}
+-   **Advanced R**: [OO chapters by Hadley Wickham](https://adv-r.hadley.nz/oo.html)
+    -   [S3](https://adv-r.hadley.nz/s3.html)
+    -   [S4](https://adv-r.hadley.nz/s4.html)
+    -   [R6](https://adv-r.hadley.nz/r6.html)
+-   R Consortium Object-Oriented Programming Working Group    
+    -   [S7 GitHub page](https://rconsortium.github.io/S7/)
 
-# Resources & References
+# Q&A {auto-animate="true"}
 
--   **Advanced R**: OO chapters by Hadley Wickham
+<img src="images/oop/oop-vs-fp.jpg" style="opacity: .05;" width="1500">
 
--   R Documentation: `?Methods`, `?R6Class`
+::: {style="margin-top: -500px;"}
+:::
 
--   CRAN packages: `methods`, `R6`
+<div style="text-align: center;">
 
--   Articles: stat.ethz.ch/\~jlamp/news/oop
+::: {.large}
+**Thank You**
+:::
 
-??? note Encourage further reading and experimentation.
-
-# Q&A
-
--   Questions on paradigms?
-
--   Real-world use cases?
-
--   Integration with functional programming?
-
-# Thank You
-
--   Slides source: adv-r OO chapter
+</div>
 
 -   Feedback welcome!
