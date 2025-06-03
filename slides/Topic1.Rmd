@@ -1,12 +1,11 @@
 ---
 title: "Short Course on R Tools: Object-Oriented Programming in R"
-format:
-  html
-execute:
-  echo: true
-  warning: false
-  message: false
-  error: false
+output:
+  html_document:
+    echo: true
+    warning: false
+    message: false
+    error: false
 ---
 
 # Outline
@@ -23,9 +22,7 @@ execute:
 
 ## OOP Paradigms in R
 
-> **Functional OOP**: functions return objects, operate on data\
-> **Encapsulated OOP**: objects carry data + methods\
-> **Generics & Method Dispatch**: generic functions choose methods based on class
+> **Functional OOP**: functions return objects, operate on data **Encapsulated OOP**: objects carry data + methods **Generics & Method Dispatch**: generic functions choose methods based on class
 
 ------------------------------------------------------------------------
 
@@ -47,7 +44,7 @@ plot(iris$Species, main = "Species", xlab = "", ylab = "")
 
 ------------------------------------------------------------------------
 
-## Encapsulated OOP Example (using xgboost)
+## Encapsulated OOP Example (using mlr3)
 
 ```{r}
 library(mlr3)
@@ -61,18 +58,18 @@ learner$train(task)
 prediction <- learner$predict(task)
 
 # Inspect first few (and last few) predicted probabilities
-head(prediction$prob,3)
-tail(prediction$prob,3)
+head(prediction$prob, 3)
+tail(prediction$prob, 3)
 ```
 
 ------------------------------------------------------------------------
 
 # OOP in R: Overview of Systems
 
--   **S3**: Informal, functional OOP (lightweight class attribute, UseMethod dispatch)\
--   **S4**: Formal, slots, strict validation, implemented in the *methods* package\
--   **RC** (Reference Classes): built-in reference semantics (less common)\
--   **R6**: Modern encapsulated OOP with mutable fields and methods\
+-   **S3**: Informal, functional OOP (lightweight class attribute, UseMethod dispatch)
+-   **S4**: Formal, slots, strict validation, implemented in the *methods* package
+-   **RC** (Reference Classes): built-in reference semantics (less common)
+-   **R6**: Modern encapsulated OOP with mutable fields and methods
 -   **S7**: New unified OOP system (multiple dispatch, type safety, S3/S4 compatibility)
 
 ------------------------------------------------------------------------
@@ -133,8 +130,8 @@ typeof(mle_obj)      # "S4"
 
 # Informal OOP in R (S3-like)
 
--   Build an object as a plain list\
--   Assign a `class` attribute\
+-   Build an object as a plain list
+-   Assign a `class` attribute
 -   Define print/summary/etc. methods by naming functions as `generic.classname`
 
 ```{r}
@@ -188,7 +185,7 @@ print(weather)
 
 # S3: Informal Classes and Dispatch
 
--   **Class Definition**: assign class attribute\
+-   **Class Definition**: assign class attribute
 -   **Method Definition**: name functions as `generic.classname`
 
 ```{r}
@@ -227,12 +224,12 @@ str(time)
 
 # S3: Common Constructor Pattern
 
-1.  **Low-level constructor**: `new_myclass()`\
-2.  **Validator**: `validate_myclass()`\
+1.  **Low-level constructor**: `new_myclass()`
+2.  **Validator**: `validate_myclass()`
 3.  **User-facing helper**: `myclass()`
 
 ```{r}
-## 1. Low‐level constructor: assume inputs are valid
+## 1. Low-level constructor: assume inputs are valid
 new_myclass <- function(values = numeric(), unit = character(1)) {
   stopifnot(is.numeric(values), is.character(unit), length(unit) == 1)
   structure(
@@ -258,7 +255,7 @@ validate_myclass <- function(x) {
   TRUE
 }
 
-## 3. User‐facing helper: build & validate
+## 3. User-facing helper: build & validate
 myclass <- function(values, unit = "unitless") {
   if (!is.numeric(values)) {
     values <- as.numeric(values)
@@ -286,7 +283,7 @@ print(x)
 
 # S3: Generics and Method Dispatch
 
--   Use `UseMethod("generic")` inside generic definitions\
+-   Use `UseMethod("generic")` inside generic definitions
 -   Methods must match the generic’s arguments (unless generic uses `...`)
 
 ```{r}
@@ -411,8 +408,8 @@ emp1@salary
 
 # R6: Reference Classes (Encapsulated OOP)
 
--   Mutable fields\
--   Methods inside the class definition\
+-   Mutable fields
+-   Methods inside the class definition
 -   Use `$new()` to instantiate
 
 ```{r}

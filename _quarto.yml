@@ -45,21 +45,19 @@ website:
             text: Schedule
       - section: "Slides"
         contents:
-          - href: slides/Chapter1.qmd
-            text: R package
-          - href: slides/Chapter2.qmd
-            text: RCpp
-          - href: slides/Chapter3.qmd
-            text: GitHub
-          - href: slides/Chapter4.qmd
+          - href: slides/Topic1.qmd
             text: OOP in R
-          - href: slides/Chapter5.qmd
+          - href: slides/Topic2.qmd
             text: Shiny
-          - href: slides/Chapter6.qmd
-            text: CRAN submission
-          - href: slides/Chapter7.qmd
+          - href: slides/Topic3.qmd
+            text: RCpp
+          - href: slides/Topic4.qmd
             text: Python in R
-          - href: slides/Chapter8.qmd
+          - href: slides/Topic5.qmd
+            text: R package
+          - href: slides/Topic6.qmd
+            text: GitHub / CRAN submission
+          - href: slides/Topic7.qmd
             text: Deep Learning in R
       - section: "Miscellaneous"
         contents:
