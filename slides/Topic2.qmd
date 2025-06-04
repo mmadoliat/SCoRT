@@ -37,11 +37,11 @@ format:
 
 -   **Tutorial sources**:
 
-    -   RStudio official tutorial
+    -   [RStudio official tutorial](https://shiny.posit.co/r/getstarted)
 
-    -   *Mastering Shiny* by Hadley Wickham
+    -   [*Mastering Shiny* by Hadley Wickham](https://mastering-shiny.org/)
 
-??? note Show live example: run `shiny::runExample("01_hello")`.
+-   [🔗 Launch R](http://tinyurl.com/dna-Rstudio){target="_blank"}: run `shiny::runExample("01_hello")`.
 
 # 2. App Structure {auto-animate="true"}
 
@@ -64,8 +64,6 @@ shinyApp(ui, server)
 -   `ui` defines layout and inputs/outputs
 
 -   `server` contains R code & reactivity
-
-??? note Compare single-file vs UI/server file structure.
 
 # 2. App Structure {auto-animate="true"}
 
@@ -97,10 +95,13 @@ shinyApp(ui, server)
 
 ??? note Compare single-file vs UI/server file structure.
 
-##  {fullscreen="true"}
+## Shinyapps Gallery
 
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/050-kmeans-example/">
-</iframe>
+<iframe class="stretch" data-src="https://gallery.shinyapps.io/001-hello/"></iframe>
+
+## Shinyapps Gallery
+
+<iframe class="stretch" data-src="https://gallery.shinyapps.io/050-kmeans-example/"></iframe>
 
 # 3. Inputs & Outputs
 
@@ -115,7 +116,13 @@ input$slider  # numeric
 input$check   # logical
 ```
 
-??? note Demo: build a dynamic summary table based on user selections.
+## Widgets - Input
+
+<iframe class="stretch" data-src="https://shiny.posit.co/r/gallery/widgets/widget-gallery/"></iframe>
+
+## Widgets - Output Table
+
+<iframe class="stretch" data-src="https://gallery.shinyapps.io/109-render-table/"></iframe>
 
 # 4. Reactivity Fundamentals
 
