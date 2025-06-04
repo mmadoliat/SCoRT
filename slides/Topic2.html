@@ -445,11 +445,11 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li><p><strong>When to use</strong>: dashboards, interactive reports, teaching tools</p></li>
 <li><p><strong>Tutorial sources</strong>:</p>
 <ul>
-<li><p>RStudio official tutorial</p></li>
-<li><p><em>Mastering Shiny</em> by Hadley Wickham</p></li>
+<li><p><a href="https://shiny.posit.co/r/getstarted">RStudio official tutorial</a></p></li>
+<li><p><a href="https://mastering-shiny.org/"><em>Mastering Shiny</em> by Hadley Wickham</a></p></li>
 </ul></li>
+<li><p><a href="http://tinyurl.com/dna-Rstudio" target="_blank">🔗 Launch R</a>: run <code>shiny::runExample("01_hello")</code>.</p></li>
 </ul>
-<p>??? note Show live example: run <code>shiny::runExample("01_hello")</code>.</p>
 </section>
 
 <section id="app-structure" class="title-slide slide level1 center" data-auto-animate="true">
@@ -471,7 +471,6 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 <li><p><code>ui</code> defines layout and inputs/outputs</p></li>
 <li><p><code>server</code> contains R code &amp; reactivity</p></li>
 </ul>
-<p>??? note Compare single-file vs UI/server file structure.</p>
 </section>
 
 <section>
@@ -502,11 +501,17 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </ul>
 <p>??? note Compare single-file vs UI/server file structure.</p>
 </section>
-<section id="section" class="slide level2" data-fullscreen="true">
-<h2></h2>
+<section id="shinyapps-gallery" class="slide level2">
+<h2>Shinyapps Gallery</h2>
+<iframe class="stretch" data-src="https://gallery.shinyapps.io/001-hello/">
+</iframe>
+</section>
+<section id="shinyapps-gallery-1" class="slide level2">
+<h2>Shinyapps Gallery</h2>
 <iframe class="stretch" data-src="https://gallery.shinyapps.io/050-kmeans-example/">
 </iframe>
 </section></section>
+<section>
 <section id="inputs-outputs" class="title-slide slide level1 center">
 <h1>3. Inputs &amp; Outputs</h1>
 <ul>
@@ -516,9 +521,17 @@ Drs. Mehdi Maadooliat and Hossein Haghbin
 </ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>input<span class="sc">$</span>slider  <span class="co"># numeric</span></span>
 <span id="cb3-2"><a></a>input<span class="sc">$</span>check   <span class="co"># logical</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>??? note Demo: build a dynamic summary table based on user selections.</p>
 </section>
-
+<section id="widgets---input" class="slide level2">
+<h2>Widgets - Input</h2>
+<iframe class="stretch" data-src="https://shiny.posit.co/r/gallery/widgets/widget-gallery/">
+</iframe>
+</section>
+<section id="widgets---output-table" class="slide level2">
+<h2>Widgets - Output Table</h2>
+<iframe class="stretch" data-src="https://gallery.shinyapps.io/109-render-table/">
+</iframe>
+</section></section>
 <section id="reactivity-fundamentals" class="title-slide slide level1 center">
 <h1>4. Reactivity Fundamentals</h1>
 <ul>
