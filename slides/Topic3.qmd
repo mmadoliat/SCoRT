@@ -29,8 +29,8 @@ format:
 # Motivation & Introduction
 
 -   **Performance Bottlenecks**: loops, recursion, complex operations
-
 -   **Rcpp**: smooth bridge between R and C++
+-   Do things you could not do before
 
 . . .
 
@@ -40,15 +40,42 @@ format:
     -   Access to STL (data structures & algorithms)
     -   Cleaner, maintainable code
 
-??? note Identify real bottlenecks with profiling before using C++.
+# Simple Example
 
-# Using `cppFunction()`
+-   R Version of ‘is this number odd or even’
 
-``` cpp
-// Define and compile inline C++ function
-int add(int x, int y, int z) {
-  return x + y + z;
+``` {.r}
+isOdd_r <- function(num = 10L) {
+  result = (num %% 2L == 1L)
+  return(result)
 }
+c(isOdd_r(42L), isOdd_r(43L))
+># [1] FALSE TRUE
+```
+
+. . .
+
+-   C++ Version of ‘is this number odd or even’
+
+``` {.cpp}
+bool isOdd_cpp(int num = 10) {
+  bool result = (num % 2 == 1);
+  return result;
+}
+```
+
+## Simple Example - Using `cppFunction()`
+
+- Rcpp Version of ‘is this number odd or even’
+
+``` {.r code-line-numbers="1,5|2-4|6-7"}
+Rcpp::cppFunction("
+bool isOdd_cpp(int num = 10) {
+  bool result = (num % 2 == 1);
+  return result;
+}")
+c(isOdd_cpp(42L), isOdd_cpp(43L))
+># [1] FALSE TRUE
 ```
 
 ::: incremental
@@ -57,31 +84,250 @@ int add(int x, int y, int z) {
 -   Good for small functions
 :::
 
-??? note Show live demo: adding two numbers with `cppFunction()`.
+# Second Example: VAR(1)
 
-# Using `sourceCpp()`
+Let’s consider a simple possible $VAR(1)$ system of $k$ variables.
+
+For $k = 2$:
+
+$$
+X_t = X_{t-1} B + E_t
+$$
+
+where $X_t$ is a row vector of length $2$, $B$ is a $2×2$ matrix, and $E_t$ is a row of the error matrix of $2$ columns.
+
+## Second Example: VAR(1)
+
+In R (cpp) code, given both the coefficient and error matrices:
+
+::: shrink-code
+``` {.r}
+rSim <- function(B, E) {
+  X <- matrix(0, nrow(E), ncol(E))
+  for (r in 2:nrow(E)) {
+    X[r, ] = X[r-1, ] %*% B + E[r, ]
+  }
+  return(X)
+}
+```
+:::
+
+. . .
+
+cpp:
+
+::: shrink-code
+``` {.cpp}
+arma::mat cppSim(arma::mat B, arma::mat E) {
+  int m = E.n_rows, n = E.n_cols;
+  arma::mat X(m, n);
+  X.row(0) = arma::zeros<arma::mat>(1, n);
+  for (int r = 1; r < m; r++) {
+    X.row(r) = X.row(r-1) * B + E.row(r);
+  }
+  return X;
+}
+```
+:::
+
+## Second Example: VAR(1)
+
+::: shrink-code
+``` {.r code-line-numbers="1,9|1-9|11-12|13-17"}
+Rcpp::cppFunction('arma::mat cppSim(arma::mat B, arma::mat E) {
+  int m = E.n_rows, n = E.n_cols;
+  arma::mat X(m, n);
+  X.row(0) = arma::zeros<arma::mat>(1, n);
+  for (int r = 1; r < m; r++) {
+    X.row(r) = X.row(r-1) * B + E.row(r);
+  }
+  return X;
+}', depends="RcppArmadillo")
+
+a <- matrix(c(0.5, 0.1, 0.1, 0.5), nrow = 2)
+e <- matrix(rnorm(10000), ncol = 2)
+rbenchmark::benchmark(cppSim(a, e), rSim(a, e), order="relative")[, 1:4]
+
+>#    test           replications elapsed relative
+># 1  cppSim(a, e)  100         0.010   1.0
+># 2  rSim(a, e)    100         0.728  72.8
+```
+:::
+
+# Growth of Rcpp
+
+::: {style="margin-top: 50px;"}
+:::
+
+::: incremental
+-   Sometimes speed is not the only reason
+    - Easy access to C/C++ libraries
+    - C & C++ provide numerous libraries + APIs
+    - Easy to provide access to as Rcpp eases data transfer
+-   Rcpp is currently used by
+    - 3053 CRAN packages
+    - 250+ BioConductor packages
+    - an unknown (but “large”) number of GitHub projects
+
+:::
+
+<div style="margin-top: -600px;"></div>
+
+<img src="images/rcpp/rcpp-growth.png" width="500" style="opacity: 0.25;" align="center">
+
+
+## Pagerank
+
+``` {.r code-line-numbers="1-3|5-7|9-10"}
+#remotes::install_github("https://github.com/andrie/pagerank.git")
+suppressMessages(library(utils))
+library(pagerank)
+
+cran <- "https://cloud.r-project.org"
+pr <- compute_pagerank(cran)
+round(100 * pr[1:5], 3)
+
+>#   Rcpp    ggplot2     dplyr      MASS   magrittr
+># 2.744     1.516       1.274    1.122    0.814
+```
+
+. . .
+
+<div style="margin-top: -100px;"></div>
+
+![](images/rcpp/pagerank.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
+
+## Percentage of Compiled Packages
+
+``` {.r code-line-numbers="1-2|4-6|8-10|12-13"}
+db <- tools::CRAN_package_db()       # added in R 3.4.0
+db <- db[!duplicated(db[, 1]), ]     # rows: number of packages
+
+nTot <- nrow(db)                     # columns: different attributes
+nRcpp <- length(tools::dependsOnPkgs("Rcpp", recursive = FALSE, installed = db))
+nCompiled <- table(db[, "NeedsCompilation"])[["yes"]]
+
+propRcpp <- nRcpp / nCompiled * 100
+data.frame(tot = nTot, totRcpp = nRcpp, totCompiled = nCompiled,
+           RcppPctOfCompiled = propRcpp)
+
+>#   tot   totRcpp   totCompiled   RcppPctOfCompiled
+># 1 22501    3053        4981          61.29291
+```
+
+# Rcpp in Rstudio - Using `sourceCpp()`
 
 -   Create standalone `.cpp` files with:
 
-    ``` cpp
+    ``` {.cpp}
+    # "file.cpp" contents
+    
     #include <Rcpp.h>
     using namespace Rcpp;
     // [[Rcpp::export]]
-    double meanC(NumericVector x) { ... }
+    NumericVector timesTwo(NumericVector x) {
+      return x * 2;
+    }
     ```
 
 . . .
 
 -   Compile with `sourceCpp('file.cpp')`
 
-. . .
+    ``` {.r}
+    sourceCpp('file.cpp')
+    timesTwo(42)
+    ># 84
+    ```
 
+## Using `sourceCpp()`
+
+::: incremental
+-   So what just happened?
+    - We defined a simple C++ function  
+    - It operates on a numeric vector argument  
+    - We ask Rcpp to ‘source it’ for us  
+    - Behind the scenes Rcpp creates a wrapper  
+    - Rcpp then compiles, links, and loads the wrapper  
+    - The function is available in R under its C++ name 
 -   Benefits:
-
     -   Editor support (syntax highlighting)
     -   Easier debugging & error tracking
 
-??? note Highlight difference between inline and file-based C++.
+:::
+
+<div style="margin-top: -600px;"></div>
+
+<img src="images/rcpp/rcpp-rstudio.png" width="500" style="opacity: 0.25;" align="center">
+
+# Another Example: Focus on Speed
+
+Consider a function defined as
+
+$$
+f(n) =
+\begin{cases}
+n & \text{when } n < 2 \\
+f(n-1) + f(n-2) & \text{when } n \ge 2
+\end{cases}
+$$
+that creates [Fibonacci]{.text-red} numbers. R implementation and use:
+
+. . .
+
+``` {.r}
+f <- function(n) {
+  if (n < 2) return(n)
+  return(f(n - 1) + f(n - 2))
+}
+sapply(0:10, f)  # Using it on first 11 arguments
+
+># [1] 0 1 1 2 3 5 8 13 21 34 55
+```
+
+## Another Example: Timing R Implementation
+
+``` {.r}
+library(rbenchmark)
+benchmark(f(15), f(20), f(25))[, 1:4]
+
+># test         replications elapsed   relative
+># 1 f(15)       100          0.06      1.0
+># 2 f(20)       100          0.75     12.5
+># 3 f(25)       100          7.92    132.0
+```
+
+
+## Another Example: C++ Implementation
+
+``` {.cpp}
+int g(int n) {
+  if (n < 2) return(n);
+  return(g(n - 1) + g(n - 2));
+}
+
+Rcpp::cppFunction('int g(int n) {
+  if (n < 2) return(n);
+  return(g(n - 1) + g(n - 2)); }')
+
+sapply(0:10, g)  # Using it on first 11 arguments
+
+># [1] 0 1 1 2 3 5 8 13 21 34 55
+```
+
+
+## Another Example: Comparing Timing
+
+```r
+library(rbenchmark)
+benchmark(f(25), g(25))[, 1:4]
+
+>#   test      replications elapsed   relative
+># 1 f(25)      100          8.02     267.333
+># 2 g(25)      100          0.03       1.000
+```
+
+- A nice gain of a few orders of magnitude.
 
 # Data Types & Conversions
 
@@ -96,7 +342,6 @@ int add(int x, int y, int z) {
     -   `.size()`, `.begin()`, `.end()`
     -   Constructors: `NumericVector out(n)`
 
-??? note Emphasize zero-based indexing in C++!
 
 # Rcpp Core Classes
 
