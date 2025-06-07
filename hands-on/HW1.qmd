@@ -1,8 +1,9 @@
 ---
 title: 'Workshop Homework: OOP, Shiny & Rcpp'
 theme: simplex
-format: pdf
-editor: visual
+format: 
+  html: default
+  pdf: default
 ---
 
 # Homework Assignment
