@@ -26,153 +26,512 @@
     "href": "index.html",
     "title": "Short Course on R Tools - (SCoRT)",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n\n1\nTue, Jul 15\n Object-Oriented Programming (OOP) in R\n📚Topic 1  📖OOP\nR👩‍💻\n\n\n\n\n\n\nWed, Jul 16\n Create dynamic Shiny web applications\n📚Topic 2  📖Shiny\nR👩‍💻\n\n\n\n\n\n\nThu, Jul 17\nEnhance performance with Rcpp (C++)\n📚Topic 3  📖Rcpp for everyone\nR👩‍💻\n\n\n\n\n\n\nFri, Jul 18\n\n\n\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n2\nTue, Jul 22\n Integrate Python in R using Reticulate\n📚Topic 4  📖Calling Python from R\nR👩‍💻\n\n\n\n\n\n\nWed, Jul 23\n Develop your own professional R package\n📚Topic 5  📖R package\nR👩‍💻\n\n\n\n\n\n\nThu, Jul 24\n Collaborate via GitHub / CRAN submission process\n📚Topic 6  📖Let’s Git started  📖Release R package\nR👩‍💻\n\n\n\n\n\n\nFri, Jul 25\n\n\n\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n3\nTue, Jul 29\n Deep Learning in R\n📚Topic 7  📖Deep Learning with R\nR👩‍💻",
+    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n\n1\nTue, Jul 15\n Object-Oriented Programming (OOP) in R\n📚Topic 1  📖OOP\nR👩‍💻  R\n\n\n\n\n\n\nWed, Jul 16\n Create dynamic Shiny web applications\n📚Topic 2  📖Shiny\nR👩‍💻  R🛠️\n\n\n\n\n\n\nThu, Jul 17\nEnhance performance with Rcpp (C++)\n📚Topic 3  📖Rcpp for everyone\nR👩‍💻  R🛠️\n\n\n\n\n\n\nFri, Jul 18\n\n\n\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n2\nTue, Jul 22\n Integrate Python in R using Reticulate\n📚Topic 4  📖Calling Python from R\nR👩‍💻\n\n\n\n\n\n\nWed, Jul 23\n Develop your own professional R package\n📚Topic 5  📖R package\nR👩‍💻\n\n\n\n\n\n\nThu, Jul 24\n Collaborate via GitHub / CRAN submission process\n📚Topic 6  📖Let’s Git started  📖Release R package\nR👩‍💻\n\n\n\n\n\n\nFri, Jul 25\n\n\n\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n3\nTue, Jul 29\n Deep Learning in R\n📚Topic 7  📖Deep Learning with R\nR👩‍💻",
     "crumbs": [
       "Course information",
       "Schedule"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#outline",
-    "href": "slides/Topic3.html#outline",
+    "objectID": "slides/Topic1.html#basics",
+    "href": "slides/Topic1.html#basics",
     "title": "Short Course on R Tools",
-    "section": "Outline",
-    "text": "Outline\n\n\nMotivation & Introduction\nGetting Started with evalCpp() & cppFunction()\nUsing sourceCpp()\nData Types & Conversions\nStandard Template Library (STL)\nUsing Rcpp in Packages\nAdvanced Topics & Resources",
+    "section": "Basics",
+    "text": "Basics\n\nAn S3 object is a base type with at least a class attribute\n\n\nf &lt;- factor(c(\"a\", \"b\", \"b\"))\nf\n#&gt; [1] a b b\n#&gt; Levels: a b\nattributes(f)\n#&gt; $levels\n#&gt; [1] \"a\" \"b\"\n#&gt; \n#&gt; $class\n#&gt; [1] \"factor\"\nunclass(f)\n#&gt; [1] 1 2 2\n#&gt; attr(,\"levels\")\n#&gt; [1] \"a\" \"b\"\n\ntime &lt;- strptime(c(\"2017-01-01\", \"2020-05-04 03:21\"), \"%Y-%m-%d\")\nstr(time)\n#&gt;  POSIXlt[1:2], format: \"2017-01-01\" \"2020-05-04\"\n\nclass(time) &lt;- NULL\nstr(time)\n#&gt; List of 11\n#&gt;  $ sec   : num [1:2] 0 0\n#&gt;  $ min   : int [1:2] 0 0\n#&gt;  $ hour  : int [1:2] 0 0\n#&gt;  $ mday  : int [1:2] 1 4\n#&gt;  $ mon   : int [1:2] 0 4\n#&gt;  $ year  : int [1:2] 117 120\n#&gt;  $ wday  : int [1:2] 0 1\n#&gt;  $ yday  : int [1:2] 0 124\n#&gt;  $ isdst : int [1:2] 0 0\n#&gt;  $ zone  : chr [1:2] \"UTC\" \"UTC\"\n#&gt;  $ gmtoff: int [1:2] 0 0\n#&gt;  - attr(*, \"tzone\")= chr \"UTC\"\n#&gt;  - attr(*, \"balanced\")= logi TRUE",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#basic-usage-evalcpp",
-    "href": "slides/Topic3.html#basic-usage-evalcpp",
+    "objectID": "slides/Topic1.html#classes",
+    "href": "slides/Topic1.html#classes",
     "title": "Short Course on R Tools",
-    "section": "Basic Usage: evalCpp()",
-    "text": "Basic Usage: evalCpp()\n\nevalCpp() evaluates a single C++ expression. Includes and dependencies can be declared.\nThis allows us to quickly check C++ constructs.\n\nlibrary(Rcpp)\n\nevalCpp(\"2 + 2\")  # simple test\n&gt;# [1] 4\n\nevalCpp(\"std::numeric_limits&lt;double&gt;::max()\")\n&gt;# [1] 1.79769e+308",
+    "section": "Classes",
+    "text": "Classes\n# Create and assign class in one step\nx &lt;- structure(list(), class = \"my_class\")\n\n# Create, then set class\nx &lt;- list()\nclass(x) &lt;- \"my_class\"\n\nclass(x)\n#&gt; [1] \"my_class\"\ninherits(x, \"my_class\")\n#&gt; [1] TRUE\ninherits(x, \"your_class\")\n#&gt; [1] FALSE\n\n\nR doesn’t stop you from shooting yourself in the foot, but as long as you don’t aim the gun at your toes and pull the trigger, you won’t have a problem.",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#simple-example---using-cppfunction",
-    "href": "slides/Topic3.html#simple-example---using-cppfunction",
+    "objectID": "slides/Topic1.html#classes---common-practice",
+    "href": "slides/Topic1.html#classes---common-practice",
     "title": "Short Course on R Tools",
-    "section": "Simple Example - Using cppFunction()",
-    "text": "Simple Example - Using cppFunction()\n\nRcpp Version of ‘is this number odd or even’\n\nRcpp::cppFunction(\"\nbool isOdd_cpp(int num = 10) {\n  bool result = (num % 2 == 1);\n  return result;\n}\")\nc(isOdd_cpp(42L), isOdd_cpp(43L))\n&gt;# [1] FALSE TRUE\n\n\nUse cppFunction() in R console or script\nFast prototyping & testing\nGood for small functions",
+    "section": "Classes - Common Practice",
+    "text": "Classes - Common Practice\nTo avoid foot-bullet intersections when creating your own class, you may:\n\n\nA low-level constructor, new_myclass(), that efficiently creates new objects with the correct structure.\nA validator, validate_myclass(), that performs more computationally expensive checks to ensure that the object has correct values.\nA user-friendly helper, myclass(), that provides a convenient way for others to create objects of your class.",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#second-example-var1-1",
-    "href": "slides/Topic3.html#second-example-var1-1",
+    "objectID": "slides/Topic1.html#classes---example",
+    "href": "slides/Topic1.html#classes---example",
     "title": "Short Course on R Tools",
-    "section": "Second Example: VAR(1)",
-    "text": "Second Example: VAR(1)\nIn R (C++) code, given both the coefficient and error matrices:\n\nrSim &lt;- function(B, E) {\n  X &lt;- matrix(0, nrow(E), ncol(E))\n  for (r in 2:nrow(E)) {\n    X[r, ] = X[r-1, ] %*% B + E[r, ]\n  }\n  return(X)\n}\n\n\nC++ Version:\n\narma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}",
+    "section": "Classes - Example",
+    "text": "Classes - Example\n\n## 1. Low‐level constructor: assume inputs are ok\nnew_myclass &lt;- function(values = numeric(), unit = character(1)) {\n  # no checks here beyond base‐R stopifnot\n  stopifnot(is.numeric(values), is.character(unit), length(unit) == 1)\n  structure(\n    list(values = values, unit = unit),\n    class = \"myclass\"\n  )\n}\n\n## 2. Validator: more thorough checks\nvalidate_myclass &lt;- function(x) {\n  if (!inherits(x, \"myclass\")) {\n    stop(\"`x` must be a 'myclass' object.\", call. = FALSE)\n  }\n  if (!is.numeric(x$values)) {\n    stop(\"`values` must be numeric.\", call. = FALSE)\n  }\n  if (any(is.na(x$values))) {\n    stop(\"`values` must not contain NA.\", call. = FALSE)\n  }\n  if (!is.character(x$unit) || length(x$unit) != 1) {\n    stop(\"`unit` must be a single character string.\", call. = FALSE)\n  }\n  TRUE\n}\n\n## (Optional) a simple print method\nprint.myclass &lt;- function(x, ...) {\n  cat(\"&lt;myclass&gt;  \", length(x$values), \"values [unit = \", x$unit, \"]\\n\", sep = \"\")\n  print(x$values)\n  invisible(x)\n}\n\n## 3. User‐facing helper: coerce/check inputs, then build + validate\nmyclass &lt;- function(values, unit = \"unitless\") {\n  # quick checks / coercions:\n  if (!is.numeric(values)) {\n    values &lt;- as.numeric(values)\n    if (any(is.na(values))) stop(\"`values` could not be coerced to numeric.\", call. = FALSE)\n  }\n  if (!is.character(unit) || length(unit) != 1) {\n    stop(\"`unit` must be a single character string.\", call. = FALSE)\n  }\n  # build & validate\n  obj &lt;- new_myclass(values = values, unit = unit)\n  validate_myclass(obj)\n  obj\n}\n\n## --- Example usage ---\nx &lt;- myclass(c(1.1, 2.2, 3.3), unit = \"kg\")\nprint(x)\n#&gt; &lt;myclass&gt; 3 values [unit = kg]\n#&gt; [1] 1.1 2.2 3.3\n\n# This will error because of an NA:\n# myclass(c(1, NA, 3))",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#second-example-var1-2",
-    "href": "slides/Topic3.html#second-example-var1-2",
+    "objectID": "slides/Topic1.html#generics-and-methods---method-dispatch",
+    "href": "slides/Topic1.html#generics-and-methods---method-dispatch",
     "title": "Short Course on R Tools",
-    "section": "Second Example: VAR(1)",
-    "text": "Second Example: VAR(1)\n\nRcpp::cppFunction('arma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}', depends=\"RcppArmadillo\")\n\na &lt;- matrix(c(0.5, 0.1, 0.1, 0.5), nrow = 2)\ne &lt;- matrix(rnorm(10000), ncol = 2)\nrbenchmark::benchmark(cppSim(a, e), rSim(a, e), order=\"relative\")[, 1:4]\n\n&gt;#    test           replications elapsed relative\n&gt;# 1  cppSim(a, e)  100         0.010   1.0\n&gt;# 2  rSim(a, e)    100         0.728  72.8",
+    "section": "Generics and Methods - Method Dispatch",
+    "text": "Generics and Methods - Method Dispatch\nView(print)\n#&gt; function (x, ...) \n#&gt; UseMethod(\"print\")\n\nftype(print)\n#&gt; [1] \"S3\"      \"generic\"\nftype(print.factor)\n#&gt; [1] \"S3\"     \"method\"\n\ns3_dispatch(print(f))\n#&gt; =&gt; print.factor\n#&gt;  * print.default\ns3_dispatch(print(unclass(f)))\n#&gt;    print.integer\n#&gt;    print.numeric\n#&gt; =&gt; print.default",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#pagerank",
-    "href": "slides/Topic3.html#pagerank",
+    "objectID": "slides/Topic1.html#finding-methods",
+    "href": "slides/Topic1.html#finding-methods",
     "title": "Short Course on R Tools",
-    "section": "Pagerank",
-    "text": "Pagerank\n#remotes::install_github(\"https://github.com/andrie/pagerank.git\")\nsuppressMessages(library(utils))\nlibrary(pagerank)\n\ncran &lt;- \"https://cloud.r-project.org\"\npr &lt;- compute_pagerank(cran)\nround(100 * pr[1:5], 3)\n\n&gt;#   Rcpp    ggplot2     dplyr      MASS   magrittr\n&gt;# 2.744     1.516       1.274    1.122    0.814",
+    "section": "Finding methods",
+    "text": "Finding methods\ns3_methods_generic(\"mean\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class      visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 mean    Date       TRUE    base               \n#&gt; 2 mean    default    TRUE    base               \n#&gt; 3 mean    difftime   TRUE    base               \n#&gt; 4 mean    POSIXct    TRUE    base               \n#&gt; 5 mean    POSIXlt    TRUE    base               \n#&gt; 6 mean    quosure    FALSE   registered S3method\n#&gt; 7 mean    vctrs_vctr FALSE   registered S3method\n\ns3_methods_class(\"funts\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 -       funts FALSE   registered S3method\n#&gt; 2 *       funts FALSE   registered S3method\n#&gt; 3 [       funts FALSE   registered S3method\n#&gt; 4 +       funts FALSE   registered S3method\n#&gt; 5 length  funts FALSE   registered S3method\n#&gt; 6 plot    funts FALSE   registered S3method\n#&gt; 7 print   funts FALSE   registered S3method",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#percentage-of-compiled-packages",
-    "href": "slides/Topic3.html#percentage-of-compiled-packages",
+    "objectID": "slides/Topic1.html#creating-methods",
+    "href": "slides/Topic1.html#creating-methods",
     "title": "Short Course on R Tools",
-    "section": "Percentage of Compiled Packages",
-    "text": "Percentage of Compiled Packages\ndb &lt;- tools::CRAN_package_db()       # added in R 3.4.0\ndb &lt;- db[!duplicated(db[, 1]), ]     # rows: number of packages\n\nnTot &lt;- nrow(db)                     # columns: different attributes\nnRcpp &lt;- length(tools::dependsOnPkgs(\"Rcpp\", recursive = FALSE, installed = db))\nnCompiled &lt;- table(db[, \"NeedsCompilation\"])[[\"yes\"]]\n\npropRcpp &lt;- nRcpp / nCompiled * 100\ndata.frame(tot = nTot, totRcpp = nRcpp, totCompiled = nCompiled,\n           RcppPctOfCompiled = propRcpp)\n\n&gt;#   tot   totRcpp   totCompiled   RcppPctOfCompiled\n&gt;# 1 22501    3053        4981          61.29291",
+    "section": "Creating methods",
+    "text": "Creating methods\n\n\nmean.myclass &lt;- function(x, ...) {\n  print(\"custom mean\")\n}\n\nmean(x)\n\n[1] \"custom mean\"\n\n\n\n\n\n\nA method must have the same arguments as its generic. This is enforced in packages by R CMD check.\n\n\n\n\n\nThere is one exception to this rule: if the generic has ..., the method can contain a superset of the arguments. This allows methods to take arbitrary additional arguments.",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#using-sourcecpp",
-    "href": "slides/Topic3.html#using-sourcecpp",
+    "objectID": "slides/Topic1.html#inheritance",
+    "href": "slides/Topic1.html#inheritance",
     "title": "Short Course on R Tools",
-    "section": "Using sourceCpp()",
-    "text": "Using sourceCpp()\n\n\nSo what just happened?\n\nWe defined a simple C++ function\n\nIt operates on a numeric vector argument\n\nWe ask Rcpp to ‘source it’ for us\n\nBehind the scenes Rcpp creates a wrapper\n\nRcpp then compiles, links, and loads the wrapper\n\nThe function is available in R under its C++ name\n\nBenefits:\n\nEditor support (syntax highlighting)\nEasier debugging & error tracking",
+    "section": "Inheritance",
+    "text": "Inheritance\nx &lt;- factor(\"a\",\"b\",\"b\")\nclass(x)\n#&gt; \"factor\"\n\nclass(ordered(x))\n#&gt; \"ordered\" \"factor\"\n\ns3_dispatch(print(ordered(x)))\n#&gt;    print.ordered\n#&gt; =&gt; print.factor\n#&gt;  * print.default\n\ns3_dispatch(ordered(x)[1])\n#&gt;    [.ordered\n#&gt; =&gt; [.factor\n#&gt;    [.default\n#&gt; -&gt; [ (internal)\n\n\nWe’ll say that ordered is a subclass of factor and factor is a superclass of ordered.",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#another-example-timing-r-implementation",
-    "href": "slides/Topic3.html#another-example-timing-r-implementation",
+    "objectID": "slides/Topic1.html#inheritance-cont.",
+    "href": "slides/Topic1.html#inheritance-cont.",
     "title": "Short Course on R Tools",
-    "section": "Another Example: Timing R Implementation",
-    "text": "Another Example: Timing R Implementation\n\nThe R implementation:\n\n\nf &lt;- function(n) {\n  if (n &lt; 2) return(n)\n  return(f(n - 1) + f(n - 2))\n}\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(15), f(20), f(25))[, 1:4]\n\n&gt;# test         replications elapsed   relative\n&gt;# 1 f(15)       100          0.06      1.0\n&gt;# 2 f(20)       100          0.75     12.5\n&gt;# 3 f(25)       100          7.92    132.0",
+    "section": "Inheritance Cont.",
+    "text": "Inheritance Cont.\n\nnew_secret &lt;- function(x = double()) {\n  stopifnot(is.double(x))\n  structure(x, class = \"secret\")\n}\n\nprint.secret &lt;- function(x, ...) {\n  print(strrep(\"x\", nchar(x)))\n  invisible(x)\n}\n\nx &lt;- new_secret(c(15, 1, 456))\nx\n#&gt; [1] \"xx\"  \"x\"   \"xxx\"\n\ns3_dispatch(x[1])\n#&gt;    [.secret\n#&gt;    [.default\n#&gt; =&gt; [ (internal)\n\nx[1]\n#&gt; [1] 15\n\n\n\nTo fix this, we need to provide a [.secret method.",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#another-example-c-implementation",
-    "href": "slides/Topic3.html#another-example-c-implementation",
+    "objectID": "slides/Topic1.html#inheritance-cont.---nextmethod",
+    "href": "slides/Topic1.html#inheritance-cont.---nextmethod",
     "title": "Short Course on R Tools",
-    "section": "Another Example: C++ Implementation",
-    "text": "Another Example: C++ Implementation\nint g(int n) {\n  if (n &lt; 2) return(n);\n  return(g(n - 1) + g(n - 2));\n}\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\nsapply(0:10, g)  # Using it on first 11 arguments\n\n&gt;# [1] 0 1 1 2 3 5 8 13 21 34 55",
+    "section": "Inheritance Cont. - NextMethod()",
+    "text": "Inheritance Cont. - NextMethod()\n\n`[.secret` &lt;- function(x, i) {\n  x &lt;- unclass(x)\n  new_secret(x[i])\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\n\n\nA better solution using NextMethod()\n\n\n`[.secret` &lt;- function(x, i) {\n  new_secret(NextMethod())\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\ns3_dispatch(x[1])\n#&gt; =&gt; [.secret\n#&gt;    [.default\n#&gt; -&gt; [ (internal)",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#another-example-comparing-timing",
-    "href": "slides/Topic3.html#another-example-comparing-timing",
+    "objectID": "slides/Topic1.html#generics-methods",
+    "href": "slides/Topic1.html#generics-methods",
     "title": "Short Course on R Tools",
-    "section": "Another Example: Comparing Timing",
-    "text": "Another Example: Comparing Timing\n\nRcpp implementation:\n\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(25), g(25))[, 1:4]\n\n&gt;#   test      replications elapsed   relative\n&gt;# 1 f(25)      100          8.02     267.333\n&gt;# 2 g(25)      100          0.03       1.000\n\n\n\nA nice gain of a few orders of magnitude.",
+    "section": "Generics & Methods",
+    "text": "Generics & Methods\n\n\nDefine generic:\nsetGeneric(\"greet\", function(x) standardGeneric(\"greet\"))\nDefine method:\nsetMethod(\"greet\", \"Person\", function(x) {\n  paste(\"Hello, my name is\", x@name)\n})\nExample:\ngreet(subj1)\n#&gt; [1] \"Hello, my name is Adam\"",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#types",
-    "href": "slides/Topic3.html#types",
+    "objectID": "slides/Topic1.html#inheritance-virtual-classes",
+    "href": "slides/Topic1.html#inheritance-virtual-classes",
     "title": "Short Course on R Tools",
-    "section": "Types",
-    "text": "Types\nR Type mapping:\n\nStandard R types (integer, numeric, list, function, … and compound objects) are mapped to corresponding C++ types:\n\nlibrary(Rcpp)\ncppFunction(\"NumericVector logabs(NumericVector x) {\n  return log(abs(x));\n}\")\nlogabs(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438\n\n\nVectorized C++! Here log(abs()) runs directly on vectors as R would.",
+    "section": "Inheritance & Virtual Classes",
+    "text": "Inheritance & Virtual Classes\n\n\nInheritance:\nsetClass(\"Employee\", contains = \"Person\",\n  slots = list(salary = \"numeric\"))\nExample:\nemp1 &lt;- new(\"Employee\", subj1, salary = 75000)\nemp1\n#&gt; An object of class \"Employee\"\n#&gt; Slot \"salary\":\n#&gt; [1] 75000\n#&gt; \n#&gt; Slot \"name\":\n#&gt; [1] \"Adam\"\n#&gt; \n#&gt; Slot \"age\":\n#&gt; [1] 30",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#stl-type-mapping",
-    "href": "slides/Topic3.html#stl-type-mapping",
+    "objectID": "slides/Topic1.html#advanced-features",
+    "href": "slides/Topic1.html#advanced-features",
     "title": "Short Course on R Tools",
-    "section": "STL Type Mapping",
-    "text": "STL Type Mapping\n\ncode/logabs2.cpp\n\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n\ninline double f(double x) { return ::log(::fabs(x)); }\n\n// [[Rcpp::export]]\nstd::vector&lt;double&gt; logabs2(std::vector&lt;double&gt; x) {\n  std::transform(x.begin(), x.end(), x.begin(), f);\n  return x;\n}\n\nNot vectorized but ‘sweeps’ f() along std::vector&lt;double&gt; via STL std::transform().\n\nlibrary(Rcpp)\nsourceCpp(\"code/logabs2.cpp\")\nlogabs2(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438",
+    "section": "Advanced Features",
+    "text": "Advanced Features\n\nActive bindings\nInheritance & extension\nPrivate vs public\nUse cases: GUI, stateful objects, iterative algorithms",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic2.html#structure-of-a-shiny-app-1",
+    "href": "slides/Topic2.html#structure-of-a-shiny-app-1",
+    "title": "Short Course on R Tools",
+    "section": "Structure of a Shiny App",
+    "text": "Structure of a Shiny App\n\n# app.R single-file app\nlibrary(shiny)\nui &lt;- fluidPage(\n  titlePanel(\"Hello Shiny\"),\n  sidebarLayout(\n    sidebarPanel(sliderInput(\"obs\", \"Observations:\", 1, 100, 50)),\n    mainPanel(plotOutput(\"distPlot\"))\n  )\n)\n\nserver &lt;- function(input, output) {\n  output$distPlot &lt;- renderPlot({\n    hist(rnorm(input$obs))\n  })\n}\n\nshinyApp(ui, server)\n\n\nui defines layout and inputs/outputs\nserver contains R code & reactivity",
+    "crumbs": [
+      "Slides",
+      "Shiny"
+    ]
+  },
+  {
+    "objectID": "slides/Topic2.html#structure-of-a-shiny-app-2",
+    "href": "slides/Topic2.html#structure-of-a-shiny-app-2",
+    "title": "Short Course on R Tools",
+    "section": "Structure of a Shiny App",
+    "text": "Structure of a Shiny App\nShiny apps come in two parts:\n\n\n\nUI\n\nDefines the layout and appearance.\nContains elements such as:\n\nlayout structures (sidebars)\ninputs (text boxes, sliders, buttons)\noutputs (plots, tables)\n\n\n\n\nServer\n\nPerforms calculations.\nContains the logic to respond to user inputs, and update outputs.\nCommunicates with the UI to dynamically render outputs.",
+    "crumbs": [
+      "Slides",
+      "Shiny"
+    ]
+  },
+  {
+    "objectID": "slides/Topic2.html#exercise",
+    "href": "slides/Topic2.html#exercise",
+    "title": "Short Course on R Tools",
+    "section": "Exercise",
+    "text": "Exercise\n\n\n\n−+\n05:00\n\n\n\n\nOpen up your IDE of choice.\nMake sure you have the {shiny} package installed.\nCreate an app.R file.\nAdd ui and server elements, as well as shiny::shinyApp(ui, server).\nCheck it works.",
+    "crumbs": [
+      "Slides",
+      "Shiny"
+    ]
+  },
+  {
+    "objectID": "slides/Topic2.html#shinyapps-gallery-1",
+    "href": "slides/Topic2.html#shinyapps-gallery-1",
+    "title": "Short Course on R Tools",
+    "section": "Shinyapps Gallery",
+    "text": "Shinyapps Gallery",
+    "crumbs": [
+      "Slides",
+      "Shiny"
+    ]
+  },
+  {
+    "objectID": "slides/Topic2.html#widgets---input",
+    "href": "slides/Topic2.html#widgets---input",
+    "title": "Short Course on R Tools",
+    "section": "Widgets - Input",
+    "text": "Widgets - Input",
+    "crumbs": [
+      "Slides",
+      "Shiny"
+    ]
+  },
+  {
+    "objectID": "slides/Topic2.html#widgets---output-table",
+    "href": "slides/Topic2.html#widgets---output-table",
+    "title": "Short Course on R Tools",
+    "section": "Widgets - Output Table",
+    "text": "Widgets - Output Table\n\n\n\n🔗 &lt;/&gt; VIEW CODE",
+    "crumbs": [
+      "Slides",
+      "Shiny"
+    ]
+  },
+  {
+    "objectID": "slides/Topic2.html#reactivity-demo",
+    "href": "slides/Topic2.html#reactivity-demo",
+    "title": "Short Course on R Tools",
+    "section": "Reactivity Demo",
+    "text": "Reactivity Demo",
+    "crumbs": [
+      "Slides",
+      "Shiny"
+    ]
+  },
+  {
+    "objectID": "slides/Topic2.html#isolate-demo",
+    "href": "slides/Topic2.html#isolate-demo",
+    "title": "Short Course on R Tools",
+    "section": "Isolate Demo",
+    "text": "Isolate Demo",
+    "crumbs": [
+      "Slides",
+      "Shiny"
+    ]
+  },
+  {
+    "objectID": "slides/Topic2.html#observers-demo",
+    "href": "slides/Topic2.html#observers-demo",
+    "title": "Short Course on R Tools",
+    "section": "Observers Demo",
+    "text": "Observers Demo",
+    "crumbs": [
+      "Slides",
+      "Shiny"
+    ]
+  },
+  {
+    "objectID": "slides/Topic2.html#shinylive-deployment",
+    "href": "slides/Topic2.html#shinylive-deployment",
+    "title": "Short Course on R Tools",
+    "section": "Shinylive deployment",
+    "text": "Shinylive deployment",
+    "crumbs": [
+      "Slides",
+      "Shiny"
+    ]
+  },
+  {
+    "objectID": "slides/Topic2.html#shinylive-deployment-1",
+    "href": "slides/Topic2.html#shinylive-deployment-1",
+    "title": "Short Course on R Tools",
+    "section": "Shinylive deployment",
+    "text": "Shinylive deployment\nSee posit-dev.github.io/r-shinylive.\n\nThe {shinylive} package converts a standard shiny app into a shinylive app:\ninstall.packages(\"shinylive\")\nAssuming your app.R file is in a folder called app:\nshinylive::export(\"app\", \"site\")\nYou can then use the files in the site folder to deploy it as a normal website.\n*not all R packages are available for shinylive.\n**initial load time is still quite slow.",
+    "crumbs": [
+      "Slides",
+      "Shiny"
+    ]
+  },
+  {
+    "objectID": "slides/Topic5.html#description",
+    "href": "slides/Topic5.html#description",
+    "title": "Short Course on R Tools",
+    "section": "DESCRIPTION",
+    "text": "DESCRIPTION\n\nFields: Package, Version, Title, Description, Author, Depends, Imports, Suggests, License\nSemantic versioning: major.minor.patch",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Topic5.html#namespace",
+    "href": "slides/Topic5.html#namespace",
+    "title": "Short Course on R Tools",
+    "section": "NAMESPACE",
+    "text": "NAMESPACE\n\nExport functions: export()\nImport from other packages: importFrom(dplyr, select)\nGenerate with roxygen2 or manually\n\n#' @export\nmy_function &lt;- function(x) x + 1\n??? note Emphasize keeping Imports minimal.",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site!"
+  },
+  {
+    "objectID": "course-links.html",
+    "href": "course-links.html",
+    "title": "Useful links",
+    "section": "",
+    "text": "Motivating Talk\nStat Calculator\nDistribution Calculator\nRStudio\n🔗 Rfssa: An R Package for Functional SSA\n🔗 StatCalc(JAMM)\n🔗 DistCalc\n🔗 on dna\n\n\nAdvanced Texbooks\n🔗 Advanced R by Hadley Wickham\n🔗 R Package\n🔗 Quarto\n🔗 R Markdown\n🔗 ggplot2: Elegant Graphics for Data Analysis\n🔗 Fundamentals of Data Visualization\n🔗 Data Visualization: A Practical Introduction\n🔗 R for Data Science\n\n\nSome Package documentation\n🔗 OOP-R6: r6.r-lib.org\n🔗 shiny: shiny.posit.co\n🔗 Rcpp: www.rcpp.org\n🔗 reticulate: rstudio.github.io/reticulate\n🔗 devtools: devtools.r-lib.org\n🔗 GitHub: happygitwithr.com\n🔗 CRAN: cran.r-project.org\n🔗 keras: keras3.posit.co",
+    "crumbs": [
+      "Miscellaneous",
+      "Useful links"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html",
+    "href": "course-syllabus.html",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "",
+    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#course-information",
+    "href": "course-syllabus.html#course-information",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "",
+    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#instructors-details",
+    "href": "course-syllabus.html#instructors-details",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Instructors Details",
+    "text": "Instructors Details\n\nName: Mehdi Maadooliat, Ph.D.\nName: Hossein Haghbin, Ph.D.\nOffice Hours: Tu & Th 12:15 - 1:30pm or by e-mail",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#course-description",
+    "href": "course-syllabus.html#course-description",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Course Description",
+    "text": "Course Description\nA modern course in probability. Foundations of probability for modeling random processes with computational techniques. Topics include counting techniques, probability of events, random variables, distribution functions, probability functions, probability density functions, expectation, moments, moment generating functions, special discrete and continuous distributions, sampling distributions, transformation of variables, prior and posterior distributions, Law of Large Numbers, Central Limit Theorem, the Bayesian paradigm. Numerical and computational methods will be covered throughout topics.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#learning-outcomes",
+    "href": "course-syllabus.html#learning-outcomes",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nBy the end of the course, students will:\n\nUnderstand and Apply Fundamental Probability Concepts\nAnalyze and Model Random Processes\nPerform Variable Transformations\nImplement Computational Techniques\nInterpret Statistical Theorems\nCritically Evaluate Probabilistic Models\nCommunicate Probabilistic Findings",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#prerequisites",
+    "href": "course-syllabus.html#prerequisites",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nThree semesters of mathematics beyond calculus and MATH 4720 or equiv.\nPreferable knowledge is MSSC 5700 and MSSC 5710.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#textbooks",
+    "href": "course-syllabus.html#textbooks",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Textbooks",
+    "text": "Textbooks\n\nProbability and Statistics with R, 2nd edition by Maria Dolores Ugarte, Ana F. Militino, Alan T. Arnholt, 2016. ISBN: 9781466504394.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#grading-breakdown",
+    "href": "course-syllabus.html#grading-breakdown",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Grading Breakdown",
+    "text": "Grading Breakdown\n\nHomework: 30%\nProject: 10%\nMidterm Exam: 30%\nFinal Exam: 30%\n\n\nGrading Scale\n\n\n\nGrade\nRange\n\n\n\n\nA\n93.5 - 100%\n\n\nA-\n90- 93.49%\n\n\nB+\n86.5 - 89.99%\n\n\nB\n83.5 - 86.49%\n\n\nB-\n80 - 83.49%\n\n\nC+\n76.5 - 79.99%\n\n\nC\n73.5 - 76.49%\n\n\nC-\n70 - 73.49%\n\n\nD+\n66.5 - 69.99%\n\n\nD\n60 - 66.49%\n\n\nF\n&lt; 59.99%",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#exams",
+    "href": "course-syllabus.html#exams",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Exams",
+    "text": "Exams\nTentatively, there will be a midterm (in class) on Oct. 23rd, plus the final (in class or take home): Dec. 8th from 10:30 - 12:30pm.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#homework",
+    "href": "course-syllabus.html#homework",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Homework",
+    "text": "Homework\nHomework is required so that you get a better understanding of the material covered, plus it will help you to keep up. You will get a better understanding of the material if you discuss it with someone. However, you must submit YOUR OWN work to D2L website. Assignments are mostly due at 11:50pm (check for due dates in D2L).\nNO LATE HOMEWORK WILL BE ACCEPTED NOR WILL YOU BE ALLOWED TO MAKE UP MISSED HOMEWORK! Plan accordingly! It is better to submit something, even if it is incomplete. You need to type your homework (preferably using LaTeX, or Quarto) and submit it as a PDF file. Scanned homework will be graded out of 80. Low quality scanned homework will be considered as NO submission.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#make-up-policy",
+    "href": "course-syllabus.html#make-up-policy",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Make-up Policy",
+    "text": "Make-up Policy\nThere will not be any make-up exam or homework unless there is an emergency.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#attendance",
+    "href": "course-syllabus.html#attendance",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Attendance",
+    "text": "Attendance\nAttendance is required and subject to the College of Arts and Sciences policy.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#academic-honesty",
+    "href": "course-syllabus.html#academic-honesty",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Academic Honesty",
+    "text": "Academic Honesty\nStudents are expected to follow the University’s policy on academic honesty as outlined in the Bulletin.\nTL;DR: Don’t cheat!\nPlease abide by the following as you work on assignments in this course:\n\nCollaboration: Only work that is clearly assigned as team work should be completed collaboratively.\n\nThe homework assignments must also be completed individually and you are welcomed to discuss the assignment with classmates at a high level (e.g., discuss what’s the best way for approaching a problem, what functions are useful for accomplishing a particular task, etc.). However you may not directly share answers to questions (including any code) with anyone other than myself.\nFor the projects, collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.\nOn individual assignments you may not directly share code with another student in this class, and on team assignments you may not directly share code with another team in this class.\n\nOnline resources: I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course’s policy is that you may make use of any online resources (e.g., StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.\nUse of generative artificial intelligence (AI): You should treat generative AI, such as ChatGPT, the same as other online resources. There are two guiding principles that govern how you can use AI in this course:1 (1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. We will practice using AI to facilitate—rather than hinder—learning. (2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n✅ AI tools for code: You may make use of the technology for coding examples on assignments; if you do so, you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. You may use these guidelines for citing AI-generated content.\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\nYou are ultimately responsible for the work you turn in; it should reflect your understanding of the course content.\n\nIf you are unsure if the use of a particular resource complies with the academic honesty policy, please ask the instructor.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#important-dates",
+    "href": "course-syllabus.html#important-dates",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Important dates",
+    "text": "Important dates\n\nMonday, August 25: Classes begin\nTuesday, September 2: Drop/add ends\nThursday - Friday, October 16 - 17: Fall Break\nFriday, November 14: Last day to withdraw with W\nThursday - Monday, November 26 - 30: Thanksgiving Holiday\nSaturday, December 6: Classes end\nMonday, December 8, 10:30 am - 12:30 pm: Final Exam\n\nFor more important dates, see the full MU Academic Calendar.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#important-note",
+    "href": "course-syllabus.html#important-note",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Important Note",
+    "text": "Important Note\nThe syllabus may be modified throughout the course. Any substantial modifications will result in a reissued syllabus.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "slides/Topic6.html#description-namespace",
+    "href": "slides/Topic6.html#description-namespace",
+    "title": "Short Course on R Tools",
+    "section": "DESCRIPTION & NAMESPACE",
+    "text": "DESCRIPTION & NAMESPACE\n\nEnsure fields: Version, URL, BugReports, License\nSemantic versioning: increment patch for minor fixes",
+    "crumbs": [
+      "Slides",
+      "GitHub / CRAN submission"
+    ]
+  },
+  {
+    "objectID": "slides/Topic6.html#documentation-vignettes",
+    "href": "slides/Topic6.html#documentation-vignettes",
+    "title": "Short Course on R Tools",
+    "section": "Documentation & Vignettes",
+    "text": "Documentation & Vignettes\n\nAll help files up to date\nVignettes build without errors",
+    "crumbs": [
+      "Slides",
+      "GitHub / CRAN submission"
+    ]
+  },
+  {
+    "objectID": "slides/Topic6.html#tests-coverage",
+    "href": "slides/Topic6.html#tests-coverage",
+    "title": "Short Course on R Tools",
+    "section": "Tests & Coverage",
+    "text": "Tests & Coverage\n\ndevtools::test() passes\nConsider covr::report()\n\n??? note Emphasize R CMD check --as-cran equivalence.",
+    "crumbs": [
+      "Slides",
+      "GitHub / CRAN submission"
     ]
   },
   {
@@ -363,505 +722,146 @@
     ]
   },
   {
-    "objectID": "slides/Topic6.html#description-namespace",
-    "href": "slides/Topic6.html#description-namespace",
+    "objectID": "slides/Topic3.html#outline",
+    "href": "slides/Topic3.html#outline",
     "title": "Short Course on R Tools",
-    "section": "DESCRIPTION & NAMESPACE",
-    "text": "DESCRIPTION & NAMESPACE\n\nEnsure fields: Version, URL, BugReports, License\nSemantic versioning: increment patch for minor fixes",
+    "section": "Outline",
+    "text": "Outline\n\n\nMotivation & Introduction\nGetting Started with evalCpp() & cppFunction()\nUsing sourceCpp()\nData Types & Conversions\nStandard Template Library (STL)\nUsing Rcpp in Packages\nAdvanced Topics & Resources",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#documentation-vignettes",
-    "href": "slides/Topic6.html#documentation-vignettes",
+    "objectID": "slides/Topic3.html#basic-usage-evalcpp",
+    "href": "slides/Topic3.html#basic-usage-evalcpp",
     "title": "Short Course on R Tools",
-    "section": "Documentation & Vignettes",
-    "text": "Documentation & Vignettes\n\nAll help files up to date\nVignettes build without errors",
+    "section": "Basic Usage: evalCpp()",
+    "text": "Basic Usage: evalCpp()\n\nevalCpp() evaluates a single C++ expression. Includes and dependencies can be declared.\nThis allows us to quickly check C++ constructs.\n\nlibrary(Rcpp)\n\nevalCpp(\"2 + 2\")  # simple test\n&gt;# [1] 4\n\nevalCpp(\"std::numeric_limits&lt;double&gt;::max()\")\n&gt;# [1] 1.79769e+308",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#tests-coverage",
-    "href": "slides/Topic6.html#tests-coverage",
+    "objectID": "slides/Topic3.html#simple-example---using-cppfunction",
+    "href": "slides/Topic3.html#simple-example---using-cppfunction",
     "title": "Short Course on R Tools",
-    "section": "Tests & Coverage",
-    "text": "Tests & Coverage\n\ndevtools::test() passes\nConsider covr::report()\n\n??? note Emphasize R CMD check --as-cran equivalence.",
+    "section": "Simple Example - Using cppFunction()",
+    "text": "Simple Example - Using cppFunction()\n\nRcpp Version of ‘is this number odd or even’\n\nRcpp::cppFunction(\"\nbool isOdd_cpp(int num = 10) {\n  bool result = (num % 2 == 1);\n  return result;\n}\")\nc(isOdd_cpp(42L), isOdd_cpp(43L))\n&gt;# [1] FALSE TRUE\n\n\nUse cppFunction() in R console or script\nFast prototyping & testing\nGood for small functions",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "RCpp"
     ]
   },
   {
-    "objectID": "course-syllabus.html",
-    "href": "course-syllabus.html",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "",
-    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#course-information",
-    "href": "course-syllabus.html#course-information",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "",
-    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#instructors-details",
-    "href": "course-syllabus.html#instructors-details",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Instructors Details",
-    "text": "Instructors Details\n\nName: Mehdi Maadooliat, Ph.D.\nName: Hossein Haghbin, Ph.D.\nOffice Hours: Tu & Th 12:15 - 1:30pm or by e-mail",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#course-description",
-    "href": "course-syllabus.html#course-description",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Course Description",
-    "text": "Course Description\nA modern course in probability. Foundations of probability for modeling random processes with computational techniques. Topics include counting techniques, probability of events, random variables, distribution functions, probability functions, probability density functions, expectation, moments, moment generating functions, special discrete and continuous distributions, sampling distributions, transformation of variables, prior and posterior distributions, Law of Large Numbers, Central Limit Theorem, the Bayesian paradigm. Numerical and computational methods will be covered throughout topics.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#learning-outcomes",
-    "href": "course-syllabus.html#learning-outcomes",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Learning Outcomes",
-    "text": "Learning Outcomes\nBy the end of the course, students will:\n\nUnderstand and Apply Fundamental Probability Concepts\nAnalyze and Model Random Processes\nPerform Variable Transformations\nImplement Computational Techniques\nInterpret Statistical Theorems\nCritically Evaluate Probabilistic Models\nCommunicate Probabilistic Findings",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#prerequisites",
-    "href": "course-syllabus.html#prerequisites",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Prerequisites",
-    "text": "Prerequisites\n\nThree semesters of mathematics beyond calculus and MATH 4720 or equiv.\nPreferable knowledge is MSSC 5700 and MSSC 5710.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#textbooks",
-    "href": "course-syllabus.html#textbooks",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Textbooks",
-    "text": "Textbooks\n\nProbability and Statistics with R, 2nd edition by Maria Dolores Ugarte, Ana F. Militino, Alan T. Arnholt, 2016. ISBN: 9781466504394.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#grading-breakdown",
-    "href": "course-syllabus.html#grading-breakdown",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Grading Breakdown",
-    "text": "Grading Breakdown\n\nHomework: 30%\nProject: 10%\nMidterm Exam: 30%\nFinal Exam: 30%\n\n\nGrading Scale\n\n\n\nGrade\nRange\n\n\n\n\nA\n93.5 - 100%\n\n\nA-\n90- 93.49%\n\n\nB+\n86.5 - 89.99%\n\n\nB\n83.5 - 86.49%\n\n\nB-\n80 - 83.49%\n\n\nC+\n76.5 - 79.99%\n\n\nC\n73.5 - 76.49%\n\n\nC-\n70 - 73.49%\n\n\nD+\n66.5 - 69.99%\n\n\nD\n60 - 66.49%\n\n\nF\n&lt; 59.99%",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#exams",
-    "href": "course-syllabus.html#exams",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Exams",
-    "text": "Exams\nTentatively, there will be a midterm (in class) on Oct. 23rd, plus the final (in class or take home): Dec. 8th from 10:30 - 12:30pm.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#homework",
-    "href": "course-syllabus.html#homework",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Homework",
-    "text": "Homework\nHomework is required so that you get a better understanding of the material covered, plus it will help you to keep up. You will get a better understanding of the material if you discuss it with someone. However, you must submit YOUR OWN work to D2L website. Assignments are mostly due at 11:50pm (check for due dates in D2L).\nNO LATE HOMEWORK WILL BE ACCEPTED NOR WILL YOU BE ALLOWED TO MAKE UP MISSED HOMEWORK! Plan accordingly! It is better to submit something, even if it is incomplete. You need to type your homework (preferably using LaTeX, or Quarto) and submit it as a PDF file. Scanned homework will be graded out of 80. Low quality scanned homework will be considered as NO submission.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#make-up-policy",
-    "href": "course-syllabus.html#make-up-policy",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Make-up Policy",
-    "text": "Make-up Policy\nThere will not be any make-up exam or homework unless there is an emergency.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#attendance",
-    "href": "course-syllabus.html#attendance",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Attendance",
-    "text": "Attendance\nAttendance is required and subject to the College of Arts and Sciences policy.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#academic-honesty",
-    "href": "course-syllabus.html#academic-honesty",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Academic Honesty",
-    "text": "Academic Honesty\nStudents are expected to follow the University’s policy on academic honesty as outlined in the Bulletin.\nTL;DR: Don’t cheat!\nPlease abide by the following as you work on assignments in this course:\n\nCollaboration: Only work that is clearly assigned as team work should be completed collaboratively.\n\nThe homework assignments must also be completed individually and you are welcomed to discuss the assignment with classmates at a high level (e.g., discuss what’s the best way for approaching a problem, what functions are useful for accomplishing a particular task, etc.). However you may not directly share answers to questions (including any code) with anyone other than myself.\nFor the projects, collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.\nOn individual assignments you may not directly share code with another student in this class, and on team assignments you may not directly share code with another team in this class.\n\nOnline resources: I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course’s policy is that you may make use of any online resources (e.g., StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.\nUse of generative artificial intelligence (AI): You should treat generative AI, such as ChatGPT, the same as other online resources. There are two guiding principles that govern how you can use AI in this course:1 (1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. We will practice using AI to facilitate—rather than hinder—learning. (2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n✅ AI tools for code: You may make use of the technology for coding examples on assignments; if you do so, you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. You may use these guidelines for citing AI-generated content.\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\nYou are ultimately responsible for the work you turn in; it should reflect your understanding of the course content.\n\nIf you are unsure if the use of a particular resource complies with the academic honesty policy, please ask the instructor.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#important-dates",
-    "href": "course-syllabus.html#important-dates",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Important dates",
-    "text": "Important dates\n\nMonday, August 25: Classes begin\nTuesday, September 2: Drop/add ends\nThursday - Friday, October 16 - 17: Fall Break\nFriday, November 14: Last day to withdraw with W\nThursday - Monday, November 26 - 30: Thanksgiving Holiday\nSaturday, December 6: Classes end\nMonday, December 8, 10:30 am - 12:30 pm: Final Exam\n\nFor more important dates, see the full MU Academic Calendar.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#important-note",
-    "href": "course-syllabus.html#important-note",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Important Note",
-    "text": "Important Note\nThe syllabus may be modified throughout the course. Any substantial modifications will result in a reissued syllabus.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-links.html",
-    "href": "course-links.html",
-    "title": "Useful links",
-    "section": "",
-    "text": "Motivating Talk\nStat Calculator\nDistribution Calculator\nRStudio\n🔗 Rfssa: An R Package for Functional SSA\n🔗 StatCalc(JAMM)\n🔗 DistCalc\n🔗 on dna\n\n\nAdvanced Texbooks\n🔗 Advanced R by Hadley Wickham\n🔗 R Package\n🔗 Quarto\n🔗 R Markdown\n🔗 ggplot2: Elegant Graphics for Data Analysis\n🔗 Fundamentals of Data Visualization\n🔗 Data Visualization: A Practical Introduction\n🔗 R for Data Science\n\n\nSome Package documentation\n🔗 OOP-R6: r6.r-lib.org\n🔗 shiny: shiny.posit.co\n🔗 Rcpp: www.rcpp.org\n🔗 reticulate: rstudio.github.io/reticulate\n🔗 devtools: devtools.r-lib.org\n🔗 GitHub: happygitwithr.com\n🔗 CRAN: cran.r-project.org\n🔗 keras: keras3.posit.co",
-    "crumbs": [
-      "Miscellaneous",
-      "Useful links"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site!"
-  },
-  {
-    "objectID": "slides/Topic5.html#description",
-    "href": "slides/Topic5.html#description",
+    "objectID": "slides/Topic3.html#second-example-var1-1",
+    "href": "slides/Topic3.html#second-example-var1-1",
     "title": "Short Course on R Tools",
-    "section": "DESCRIPTION",
-    "text": "DESCRIPTION\n\nFields: Package, Version, Title, Description, Author, Depends, Imports, Suggests, License\nSemantic versioning: major.minor.patch",
+    "section": "Second Example: VAR(1)",
+    "text": "Second Example: VAR(1)\nIn R (C++) code, given both the coefficient and error matrices:\n\nrSim &lt;- function(B, E) {\n  X &lt;- matrix(0, nrow(E), ncol(E))\n  for (r in 2:nrow(E)) {\n    X[r, ] = X[r-1, ] %*% B + E[r, ]\n  }\n  return(X)\n}\n\n\nC++ Version:\n\narma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}",
     "crumbs": [
       "Slides",
-      "R package"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic5.html#namespace",
-    "href": "slides/Topic5.html#namespace",
+    "objectID": "slides/Topic3.html#second-example-var1-2",
+    "href": "slides/Topic3.html#second-example-var1-2",
     "title": "Short Course on R Tools",
-    "section": "NAMESPACE",
-    "text": "NAMESPACE\n\nExport functions: export()\nImport from other packages: importFrom(dplyr, select)\nGenerate with roxygen2 or manually\n\n#' @export\nmy_function &lt;- function(x) x + 1\n??? note Emphasize keeping Imports minimal.",
+    "section": "Second Example: VAR(1)",
+    "text": "Second Example: VAR(1)\n\nRcpp::cppFunction('arma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}', depends=\"RcppArmadillo\")\n\na &lt;- matrix(c(0.5, 0.1, 0.1, 0.5), nrow = 2)\ne &lt;- matrix(rnorm(10000), ncol = 2)\nrbenchmark::benchmark(cppSim(a, e), rSim(a, e), order=\"relative\")[, 1:4]\n\n&gt;#    test           replications elapsed relative\n&gt;# 1  cppSim(a, e)  100         0.010   1.0\n&gt;# 2  rSim(a, e)    100         0.728  72.8",
     "crumbs": [
       "Slides",
-      "R package"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#structure-of-a-shiny-app-1",
-    "href": "slides/Topic2.html#structure-of-a-shiny-app-1",
+    "objectID": "slides/Topic3.html#pagerank",
+    "href": "slides/Topic3.html#pagerank",
     "title": "Short Course on R Tools",
-    "section": "Structure of a Shiny App",
-    "text": "Structure of a Shiny App\n\n# app.R single-file app\nlibrary(shiny)\nui &lt;- fluidPage(\n  titlePanel(\"Hello Shiny\"),\n  sidebarLayout(\n    sidebarPanel(sliderInput(\"obs\", \"Observations:\", 1, 100, 50)),\n    mainPanel(plotOutput(\"distPlot\"))\n  )\n)\n\nserver &lt;- function(input, output) {\n  output$distPlot &lt;- renderPlot({\n    hist(rnorm(input$obs))\n  })\n}\n\nshinyApp(ui, server)\n\n\nui defines layout and inputs/outputs\nserver contains R code & reactivity",
+    "section": "Pagerank",
+    "text": "Pagerank\n#remotes::install_github(\"https://github.com/andrie/pagerank.git\")\nsuppressMessages(library(utils))\nlibrary(pagerank)\n\ncran &lt;- \"https://cloud.r-project.org\"\npr &lt;- compute_pagerank(cran)\nround(100 * pr[1:5], 3)\n\n&gt;#   Rcpp    ggplot2     dplyr      MASS   magrittr\n&gt;# 2.744     1.516       1.274    1.122    0.814",
     "crumbs": [
       "Slides",
-      "Shiny"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#structure-of-a-shiny-app-2",
-    "href": "slides/Topic2.html#structure-of-a-shiny-app-2",
+    "objectID": "slides/Topic3.html#percentage-of-compiled-packages",
+    "href": "slides/Topic3.html#percentage-of-compiled-packages",
     "title": "Short Course on R Tools",
-    "section": "Structure of a Shiny App",
-    "text": "Structure of a Shiny App\nShiny apps come in two parts:\n\n\n\nUI\n\nDefines the layout and appearance.\nContains elements such as:\n\nlayout structures (sidebars)\ninputs (text boxes, sliders, buttons)\noutputs (plots, tables)\n\n\n\n\nServer\n\nPerforms calculations.\nContains the logic to respond to user inputs, and update outputs.\nCommunicates with the UI to dynamically render outputs.",
+    "section": "Percentage of Compiled Packages",
+    "text": "Percentage of Compiled Packages\ndb &lt;- tools::CRAN_package_db()       # added in R 3.4.0\ndb &lt;- db[!duplicated(db[, 1]), ]     # rows: number of packages\n\nnTot &lt;- nrow(db)                     # columns: different attributes\nnRcpp &lt;- length(tools::dependsOnPkgs(\"Rcpp\", recursive = FALSE, installed = db))\nnCompiled &lt;- table(db[, \"NeedsCompilation\"])[[\"yes\"]]\n\npropRcpp &lt;- nRcpp / nCompiled * 100\ndata.frame(tot = nTot, totRcpp = nRcpp, totCompiled = nCompiled,\n           RcppPctOfCompiled = propRcpp)\n\n&gt;#   tot   totRcpp   totCompiled   RcppPctOfCompiled\n&gt;# 1 22501    3053        4981          61.29291",
     "crumbs": [
       "Slides",
-      "Shiny"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#exercise",
-    "href": "slides/Topic2.html#exercise",
+    "objectID": "slides/Topic3.html#using-sourcecpp",
+    "href": "slides/Topic3.html#using-sourcecpp",
     "title": "Short Course on R Tools",
-    "section": "Exercise",
-    "text": "Exercise\n\n\n\n−+\n05:00\n\n\n\n\nOpen up your IDE of choice.\nMake sure you have the {shiny} package installed.\nCreate an app.R file.\nAdd ui and server elements, as well as shiny::shinyApp(ui, server).\nCheck it works.",
+    "section": "Using sourceCpp()",
+    "text": "Using sourceCpp()\n\n\nSo what just happened?\n\nWe defined a simple C++ function\n\nIt operates on a numeric vector argument\n\nWe ask Rcpp to ‘source it’ for us\n\nBehind the scenes Rcpp creates a wrapper\n\nRcpp then compiles, links, and loads the wrapper\n\nThe function is available in R under its C++ name\n\nBenefits:\n\nEditor support (syntax highlighting)\nEasier debugging & error tracking",
     "crumbs": [
       "Slides",
-      "Shiny"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#shinyapps-gallery-1",
-    "href": "slides/Topic2.html#shinyapps-gallery-1",
+    "objectID": "slides/Topic3.html#another-example-timing-r-implementation",
+    "href": "slides/Topic3.html#another-example-timing-r-implementation",
     "title": "Short Course on R Tools",
-    "section": "Shinyapps Gallery",
-    "text": "Shinyapps Gallery",
+    "section": "Another Example: Timing R Implementation",
+    "text": "Another Example: Timing R Implementation\n\nThe R implementation:\n\n\nf &lt;- function(n) {\n  if (n &lt; 2) return(n)\n  return(f(n - 1) + f(n - 2))\n}\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(15), f(20), f(25))[, 1:4]\n\n&gt;# test         replications elapsed   relative\n&gt;# 1 f(15)       100          0.06      1.0\n&gt;# 2 f(20)       100          0.75     12.5\n&gt;# 3 f(25)       100          7.92    132.0",
     "crumbs": [
       "Slides",
-      "Shiny"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#widgets---input",
-    "href": "slides/Topic2.html#widgets---input",
+    "objectID": "slides/Topic3.html#another-example-c-implementation",
+    "href": "slides/Topic3.html#another-example-c-implementation",
     "title": "Short Course on R Tools",
-    "section": "Widgets - Input",
-    "text": "Widgets - Input",
+    "section": "Another Example: C++ Implementation",
+    "text": "Another Example: C++ Implementation\nint g(int n) {\n  if (n &lt; 2) return(n);\n  return(g(n - 1) + g(n - 2));\n}\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\nsapply(0:10, g)  # Using it on first 11 arguments\n\n&gt;# [1] 0 1 1 2 3 5 8 13 21 34 55",
     "crumbs": [
       "Slides",
-      "Shiny"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#widgets---output-table",
-    "href": "slides/Topic2.html#widgets---output-table",
+    "objectID": "slides/Topic3.html#another-example-comparing-timing",
+    "href": "slides/Topic3.html#another-example-comparing-timing",
     "title": "Short Course on R Tools",
-    "section": "Widgets - Output Table",
-    "text": "Widgets - Output Table\n\n\n\n🔗 &lt;/&gt; VIEW CODE",
+    "section": "Another Example: Comparing Timing",
+    "text": "Another Example: Comparing Timing\n\nRcpp implementation:\n\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(25), g(25))[, 1:4]\n\n&gt;#   test      replications elapsed   relative\n&gt;# 1 f(25)      100          8.02     267.333\n&gt;# 2 g(25)      100          0.03       1.000\n\n\n\nA nice gain of a few orders of magnitude.",
     "crumbs": [
       "Slides",
-      "Shiny"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#reactivity-demo",
-    "href": "slides/Topic2.html#reactivity-demo",
+    "objectID": "slides/Topic3.html#types",
+    "href": "slides/Topic3.html#types",
     "title": "Short Course on R Tools",
-    "section": "Reactivity Demo",
-    "text": "Reactivity Demo",
+    "section": "Types",
+    "text": "Types\nR Type mapping:\n\nStandard R types (integer, numeric, list, function, … and compound objects) are mapped to corresponding C++ types:\n\nlibrary(Rcpp)\ncppFunction(\"NumericVector logabs(NumericVector x) {\n  return log(abs(x));\n}\")\nlogabs(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438\n\n\nVectorized C++! Here log(abs()) runs directly on vectors as R would.",
     "crumbs": [
       "Slides",
-      "Shiny"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#isolate-demo",
-    "href": "slides/Topic2.html#isolate-demo",
+    "objectID": "slides/Topic3.html#stl-type-mapping",
+    "href": "slides/Topic3.html#stl-type-mapping",
     "title": "Short Course on R Tools",
-    "section": "Isolate Demo",
-    "text": "Isolate Demo",
+    "section": "STL Type Mapping",
+    "text": "STL Type Mapping\n\ncode/logabs2.cpp\n\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n\ninline double f(double x) { return ::log(::fabs(x)); }\n\n// [[Rcpp::export]]\nstd::vector&lt;double&gt; logabs2(std::vector&lt;double&gt; x) {\n  std::transform(x.begin(), x.end(), x.begin(), f);\n  return x;\n}\n\nNot vectorized but ‘sweeps’ f() along std::vector&lt;double&gt; via STL std::transform().\n\nlibrary(Rcpp)\nsourceCpp(\"code/logabs2.cpp\")\nlogabs2(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438",
     "crumbs": [
       "Slides",
-      "Shiny"
-    ]
-  },
-  {
-    "objectID": "slides/Topic2.html#observers-demo",
-    "href": "slides/Topic2.html#observers-demo",
-    "title": "Short Course on R Tools",
-    "section": "Observers Demo",
-    "text": "Observers Demo",
-    "crumbs": [
-      "Slides",
-      "Shiny"
-    ]
-  },
-  {
-    "objectID": "slides/Topic2.html#shinylive-deployment",
-    "href": "slides/Topic2.html#shinylive-deployment",
-    "title": "Short Course on R Tools",
-    "section": "Shinylive deployment",
-    "text": "Shinylive deployment",
-    "crumbs": [
-      "Slides",
-      "Shiny"
-    ]
-  },
-  {
-    "objectID": "slides/Topic2.html#shinylive-deployment-1",
-    "href": "slides/Topic2.html#shinylive-deployment-1",
-    "title": "Short Course on R Tools",
-    "section": "Shinylive deployment",
-    "text": "Shinylive deployment\nSee posit-dev.github.io/r-shinylive.\n\nThe {shinylive} package converts a standard shiny app into a shinylive app:\ninstall.packages(\"shinylive\")\nAssuming your app.R file is in a folder called app:\nshinylive::export(\"app\", \"site\")\nYou can then use the files in the site folder to deploy it as a normal website.\n*not all R packages are available for shinylive.\n**initial load time is still quite slow.",
-    "crumbs": [
-      "Slides",
-      "Shiny"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#basics",
-    "href": "slides/Topic1.html#basics",
-    "title": "Short Course on R Tools",
-    "section": "Basics",
-    "text": "Basics\n\nAn S3 object is a base type with at least a class attribute\n\n\nf &lt;- factor(c(\"a\", \"b\", \"b\"))\nf\n#&gt; [1] a b b\n#&gt; Levels: a b\nattributes(f)\n#&gt; $levels\n#&gt; [1] \"a\" \"b\"\n#&gt; \n#&gt; $class\n#&gt; [1] \"factor\"\nunclass(f)\n#&gt; [1] 1 2 2\n#&gt; attr(,\"levels\")\n#&gt; [1] \"a\" \"b\"\n\ntime &lt;- strptime(c(\"2017-01-01\", \"2020-05-04 03:21\"), \"%Y-%m-%d\")\nstr(time)\n#&gt;  POSIXlt[1:2], format: \"2017-01-01\" \"2020-05-04\"\n\nclass(time) &lt;- NULL\nstr(time)\n#&gt; List of 11\n#&gt;  $ sec   : num [1:2] 0 0\n#&gt;  $ min   : int [1:2] 0 0\n#&gt;  $ hour  : int [1:2] 0 0\n#&gt;  $ mday  : int [1:2] 1 4\n#&gt;  $ mon   : int [1:2] 0 4\n#&gt;  $ year  : int [1:2] 117 120\n#&gt;  $ wday  : int [1:2] 0 1\n#&gt;  $ yday  : int [1:2] 0 124\n#&gt;  $ isdst : int [1:2] 0 0\n#&gt;  $ zone  : chr [1:2] \"UTC\" \"UTC\"\n#&gt;  $ gmtoff: int [1:2] 0 0\n#&gt;  - attr(*, \"tzone\")= chr \"UTC\"\n#&gt;  - attr(*, \"balanced\")= logi TRUE",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#classes",
-    "href": "slides/Topic1.html#classes",
-    "title": "Short Course on R Tools",
-    "section": "Classes",
-    "text": "Classes\n# Create and assign class in one step\nx &lt;- structure(list(), class = \"my_class\")\n\n# Create, then set class\nx &lt;- list()\nclass(x) &lt;- \"my_class\"\n\nclass(x)\n#&gt; [1] \"my_class\"\ninherits(x, \"my_class\")\n#&gt; [1] TRUE\ninherits(x, \"your_class\")\n#&gt; [1] FALSE\n\n\nR doesn’t stop you from shooting yourself in the foot, but as long as you don’t aim the gun at your toes and pull the trigger, you won’t have a problem.",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#classes---common-practice",
-    "href": "slides/Topic1.html#classes---common-practice",
-    "title": "Short Course on R Tools",
-    "section": "Classes - Common Practice",
-    "text": "Classes - Common Practice\nTo avoid foot-bullet intersections when creating your own class, you may:\n\n\nA low-level constructor, new_myclass(), that efficiently creates new objects with the correct structure.\nA validator, validate_myclass(), that performs more computationally expensive checks to ensure that the object has correct values.\nA user-friendly helper, myclass(), that provides a convenient way for others to create objects of your class.",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#classes---example",
-    "href": "slides/Topic1.html#classes---example",
-    "title": "Short Course on R Tools",
-    "section": "Classes - Example",
-    "text": "Classes - Example\n\n## 1. Low‐level constructor: assume inputs are ok\nnew_myclass &lt;- function(values = numeric(), unit = character(1)) {\n  # no checks here beyond base‐R stopifnot\n  stopifnot(is.numeric(values), is.character(unit), length(unit) == 1)\n  structure(\n    list(values = values, unit = unit),\n    class = \"myclass\"\n  )\n}\n\n## 2. Validator: more thorough checks\nvalidate_myclass &lt;- function(x) {\n  if (!inherits(x, \"myclass\")) {\n    stop(\"`x` must be a 'myclass' object.\", call. = FALSE)\n  }\n  if (!is.numeric(x$values)) {\n    stop(\"`values` must be numeric.\", call. = FALSE)\n  }\n  if (any(is.na(x$values))) {\n    stop(\"`values` must not contain NA.\", call. = FALSE)\n  }\n  if (!is.character(x$unit) || length(x$unit) != 1) {\n    stop(\"`unit` must be a single character string.\", call. = FALSE)\n  }\n  TRUE\n}\n\n## (Optional) a simple print method\nprint.myclass &lt;- function(x, ...) {\n  cat(\"&lt;myclass&gt;  \", length(x$values), \"values [unit = \", x$unit, \"]\\n\", sep = \"\")\n  print(x$values)\n  invisible(x)\n}\n\n## 3. User‐facing helper: coerce/check inputs, then build + validate\nmyclass &lt;- function(values, unit = \"unitless\") {\n  # quick checks / coercions:\n  if (!is.numeric(values)) {\n    values &lt;- as.numeric(values)\n    if (any(is.na(values))) stop(\"`values` could not be coerced to numeric.\", call. = FALSE)\n  }\n  if (!is.character(unit) || length(unit) != 1) {\n    stop(\"`unit` must be a single character string.\", call. = FALSE)\n  }\n  # build & validate\n  obj &lt;- new_myclass(values = values, unit = unit)\n  validate_myclass(obj)\n  obj\n}\n\n## --- Example usage ---\nx &lt;- myclass(c(1.1, 2.2, 3.3), unit = \"kg\")\nprint(x)\n#&gt; &lt;myclass&gt; 3 values [unit = kg]\n#&gt; [1] 1.1 2.2 3.3\n\n# This will error because of an NA:\n# myclass(c(1, NA, 3))",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#generics-and-methods---method-dispatch",
-    "href": "slides/Topic1.html#generics-and-methods---method-dispatch",
-    "title": "Short Course on R Tools",
-    "section": "Generics and Methods - Method Dispatch",
-    "text": "Generics and Methods - Method Dispatch\nView(print)\n#&gt; function (x, ...) \n#&gt; UseMethod(\"print\")\n\nftype(print)\n#&gt; [1] \"S3\"      \"generic\"\nftype(print.factor)\n#&gt; [1] \"S3\"     \"method\"\n\ns3_dispatch(print(f))\n#&gt; =&gt; print.factor\n#&gt;  * print.default\ns3_dispatch(print(unclass(f)))\n#&gt;    print.integer\n#&gt;    print.numeric\n#&gt; =&gt; print.default",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#finding-methods",
-    "href": "slides/Topic1.html#finding-methods",
-    "title": "Short Course on R Tools",
-    "section": "Finding methods",
-    "text": "Finding methods\ns3_methods_generic(\"mean\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class      visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 mean    Date       TRUE    base               \n#&gt; 2 mean    default    TRUE    base               \n#&gt; 3 mean    difftime   TRUE    base               \n#&gt; 4 mean    POSIXct    TRUE    base               \n#&gt; 5 mean    POSIXlt    TRUE    base               \n#&gt; 6 mean    quosure    FALSE   registered S3method\n#&gt; 7 mean    vctrs_vctr FALSE   registered S3method\n\ns3_methods_class(\"funts\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 -       funts FALSE   registered S3method\n#&gt; 2 *       funts FALSE   registered S3method\n#&gt; 3 [       funts FALSE   registered S3method\n#&gt; 4 +       funts FALSE   registered S3method\n#&gt; 5 length  funts FALSE   registered S3method\n#&gt; 6 plot    funts FALSE   registered S3method\n#&gt; 7 print   funts FALSE   registered S3method",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#creating-methods",
-    "href": "slides/Topic1.html#creating-methods",
-    "title": "Short Course on R Tools",
-    "section": "Creating methods",
-    "text": "Creating methods\n\n\nmean.myclass &lt;- function(x, ...) {\n  print(\"custom mean\")\n}\n\nmean(x)\n\n[1] \"custom mean\"\n\n\n\n\n\n\nA method must have the same arguments as its generic. This is enforced in packages by R CMD check.\n\n\n\n\n\nThere is one exception to this rule: if the generic has ..., the method can contain a superset of the arguments. This allows methods to take arbitrary additional arguments.",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#inheritance",
-    "href": "slides/Topic1.html#inheritance",
-    "title": "Short Course on R Tools",
-    "section": "Inheritance",
-    "text": "Inheritance\nx &lt;- factor(\"a\",\"b\",\"b\")\nclass(x)\n#&gt; \"factor\"\n\nclass(ordered(x))\n#&gt; \"ordered\" \"factor\"\n\ns3_dispatch(print(ordered(x)))\n#&gt;    print.ordered\n#&gt; =&gt; print.factor\n#&gt;  * print.default\n\ns3_dispatch(ordered(x)[1])\n#&gt;    [.ordered\n#&gt; =&gt; [.factor\n#&gt;    [.default\n#&gt; -&gt; [ (internal)\n\n\nWe’ll say that ordered is a subclass of factor and factor is a superclass of ordered.",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#inheritance-cont.",
-    "href": "slides/Topic1.html#inheritance-cont.",
-    "title": "Short Course on R Tools",
-    "section": "Inheritance Cont.",
-    "text": "Inheritance Cont.\n\nnew_secret &lt;- function(x = double()) {\n  stopifnot(is.double(x))\n  structure(x, class = \"secret\")\n}\n\nprint.secret &lt;- function(x, ...) {\n  print(strrep(\"x\", nchar(x)))\n  invisible(x)\n}\n\nx &lt;- new_secret(c(15, 1, 456))\nx\n#&gt; [1] \"xx\"  \"x\"   \"xxx\"\n\ns3_dispatch(x[1])\n#&gt;    [.secret\n#&gt;    [.default\n#&gt; =&gt; [ (internal)\n\nx[1]\n#&gt; [1] 15\n\n\n\nTo fix this, we need to provide a [.secret method.",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#inheritance-cont.---nextmethod",
-    "href": "slides/Topic1.html#inheritance-cont.---nextmethod",
-    "title": "Short Course on R Tools",
-    "section": "Inheritance Cont. - NextMethod()",
-    "text": "Inheritance Cont. - NextMethod()\n\n`[.secret` &lt;- function(x, i) {\n  x &lt;- unclass(x)\n  new_secret(x[i])\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\n\n\nA better solution using NextMethod()\n\n\n`[.secret` &lt;- function(x, i) {\n  new_secret(NextMethod())\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\ns3_dispatch(x[1])\n#&gt; =&gt; [.secret\n#&gt;    [.default\n#&gt; -&gt; [ (internal)",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#generics-methods",
-    "href": "slides/Topic1.html#generics-methods",
-    "title": "Short Course on R Tools",
-    "section": "Generics & Methods",
-    "text": "Generics & Methods\n\n\nDefine generic:\nsetGeneric(\"greet\", function(x) standardGeneric(\"greet\"))\nDefine method:\nsetMethod(\"greet\", \"Person\", function(x) {\n  paste(\"Hello, my name is\", x@name)\n})\nExample:\ngreet(subj1)\n#&gt; [1] \"Hello, my name is Adam\"",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#inheritance-virtual-classes",
-    "href": "slides/Topic1.html#inheritance-virtual-classes",
-    "title": "Short Course on R Tools",
-    "section": "Inheritance & Virtual Classes",
-    "text": "Inheritance & Virtual Classes\n\n\nInheritance:\nsetClass(\"Employee\", contains = \"Person\",\n  slots = list(salary = \"numeric\"))\nExample:\nemp1 &lt;- new(\"Employee\", subj1, salary = 75000)\nemp1\n#&gt; An object of class \"Employee\"\n#&gt; Slot \"salary\":\n#&gt; [1] 75000\n#&gt; \n#&gt; Slot \"name\":\n#&gt; [1] \"Adam\"\n#&gt; \n#&gt; Slot \"age\":\n#&gt; [1] 30",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#advanced-features",
-    "href": "slides/Topic1.html#advanced-features",
-    "title": "Short Course on R Tools",
-    "section": "Advanced Features",
-    "text": "Advanced Features\n\nActive bindings\nInheritance & extension\nPrivate vs public\nUse cases: GUI, stateful objects, iterative algorithms",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
+      "RCpp"
     ]
   },
   {
