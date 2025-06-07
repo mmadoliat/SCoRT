@@ -490,7 +490,7 @@ logabs2(seq(-5, 5, by = 2))
 
 # Summary & Q&A {auto-animate="true"}
 
-![](images/Rcpp/rcpp.png){.absolute top="100" right="0" width="400"}
+![](images/rcpp/rcpp.png){.absolute top="100" right="0" width="400"}
 
 -   Key takeaways:
     1.  Profile before optimizing
