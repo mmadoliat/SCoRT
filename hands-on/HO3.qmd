@@ -1,6 +1,5 @@
 ---
 title: "Hands-on: Accelerating k-NN with Rcpp"
-format: pdf
 code-line-numbers: true
 ---
 

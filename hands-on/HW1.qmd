@@ -1,6 +1,5 @@
 ---
 title: 'Workshop Homework: OOP, Shiny & Rcpp'
-format: pdf
 theme: simplex
 ---
 
