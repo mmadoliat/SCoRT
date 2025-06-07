@@ -10,7 +10,7 @@ format:
     transition: fade
     scrollable: true
 ---
-
+ 
 ## Outline {auto-animate="true"}
 
 ::: {.fragment .fade-up}
