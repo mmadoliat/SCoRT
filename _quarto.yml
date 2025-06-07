@@ -59,6 +59,16 @@ website:
             text: GitHub / CRAN submission
           - href: slides/Topic7.qmd
             text: Deep Learning in R
+      - section: "Hands-on / HW"
+        contents:
+          - href: hands-on/HO1.qmd
+            text: OOP in R
+          - href: hands-on/HO2.qmd
+            text: Shiny
+          - href: hands-on/HO3.qmd
+            text: RCpp
+          - href: hands-on/HW1.qmd
+            text: First Week HW
       - section: "Miscellaneous"
         contents:
           - href: course-links.qmd
