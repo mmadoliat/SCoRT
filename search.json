@@ -37,7 +37,18 @@
     "href": "slides/Topic3.html#outline",
     "title": "Short Course on R Tools",
     "section": "Outline",
-    "text": "Outline\n\n\nMotivation & Introduction\nGetting Started with cppFunction()\nUsing sourceCpp()\nData Types & Conversions\nRcpp Classes: Lists, DataFrames, Functions, Attributes\nHandling Missing Values\nStandard Template Library (STL)\nCase Studies & Benchmarks\nUsing Rcpp in Packages\nAdvanced Topics & Resources",
+    "text": "Outline\n\n\nMotivation & Introduction\nGetting Started with evalCpp() & cppFunction()\nUsing sourceCpp()\nData Types & Conversions\nStandard Template Library (STL)\nUsing Rcpp in Packages\nAdvanced Topics & Resources",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#basic-usage-evalcpp",
+    "href": "slides/Topic3.html#basic-usage-evalcpp",
+    "title": "Short Course on R Tools",
+    "section": "Basic Usage: evalCpp()",
+    "text": "Basic Usage: evalCpp()\n\nevalCpp() evaluates a single C++ expression. Includes and dependencies can be declared.\nThis allows us to quickly check C++ constructs.\n\nlibrary(Rcpp)\n\nevalCpp(\"2 + 2\")  # simple test\n&gt;# [1] 4\n\nevalCpp(\"std::numeric_limits&lt;double&gt;::max()\")\n&gt;# [1] 1.79769e+308",
     "crumbs": [
       "Slides",
       "RCpp"
@@ -59,7 +70,7 @@
     "href": "slides/Topic3.html#second-example-var1-1",
     "title": "Short Course on R Tools",
     "section": "Second Example: VAR(1)",
-    "text": "Second Example: VAR(1)\nIn R (cpp) code, given both the coefficient and error matrices:\n\nrSim &lt;- function(B, E) {\n  X &lt;- matrix(0, nrow(E), ncol(E))\n  for (r in 2:nrow(E)) {\n    X[r, ] = X[r-1, ] %*% B + E[r, ]\n  }\n  return(X)\n}\n\n\ncpp:\n\narma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}",
+    "text": "Second Example: VAR(1)\nIn R (C++) code, given both the coefficient and error matrices:\n\nrSim &lt;- function(B, E) {\n  X &lt;- matrix(0, nrow(E), ncol(E))\n  for (r in 2:nrow(E)) {\n    X[r, ] = X[r-1, ] %*% B + E[r, ]\n  }\n  return(X)\n}\n\n\nC++ Version:\n\narma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}",
     "crumbs": [
       "Slides",
       "RCpp"
@@ -114,7 +125,7 @@
     "href": "slides/Topic3.html#another-example-timing-r-implementation",
     "title": "Short Course on R Tools",
     "section": "Another Example: Timing R Implementation",
-    "text": "Another Example: Timing R Implementation\nlibrary(rbenchmark)\nbenchmark(f(15), f(20), f(25))[, 1:4]\n\n&gt;# test         replications elapsed   relative\n&gt;# 1 f(15)       100          0.06      1.0\n&gt;# 2 f(20)       100          0.75     12.5\n&gt;# 3 f(25)       100          7.92    132.0",
+    "text": "Another Example: Timing R Implementation\n\nThe R implementation:\n\n\nf &lt;- function(n) {\n  if (n &lt; 2) return(n)\n  return(f(n - 1) + f(n - 2))\n}\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(15), f(20), f(25))[, 1:4]\n\n&gt;# test         replications elapsed   relative\n&gt;# 1 f(15)       100          0.06      1.0\n&gt;# 2 f(20)       100          0.75     12.5\n&gt;# 3 f(25)       100          7.92    132.0",
     "crumbs": [
       "Slides",
       "RCpp"
@@ -125,7 +136,7 @@
     "href": "slides/Topic3.html#another-example-c-implementation",
     "title": "Short Course on R Tools",
     "section": "Another Example: C++ Implementation",
-    "text": "Another Example: C++ Implementation\nint g(int n) {\n  if (n &lt; 2) return(n);\n  return(g(n - 1) + g(n - 2));\n}\n\nRcpp::cppFunction('int g(int n) {\n  if (n &lt; 2) return(n);\n  return(g(n - 1) + g(n - 2)); }')\n\nsapply(0:10, g)  # Using it on first 11 arguments\n\n&gt;# [1] 0 1 1 2 3 5 8 13 21 34 55",
+    "text": "Another Example: C++ Implementation\nint g(int n) {\n  if (n &lt; 2) return(n);\n  return(g(n - 1) + g(n - 2));\n}\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\nsapply(0:10, g)  # Using it on first 11 arguments\n\n&gt;# [1] 0 1 1 2 3 5 8 13 21 34 55",
     "crumbs": [
       "Slides",
       "RCpp"
@@ -136,84 +147,29 @@
     "href": "slides/Topic3.html#another-example-comparing-timing",
     "title": "Short Course on R Tools",
     "section": "Another Example: Comparing Timing",
-    "text": "Another Example: Comparing Timing\nlibrary(rbenchmark)\nbenchmark(f(25), g(25))[, 1:4]\n\n&gt;#   test      replications elapsed   relative\n&gt;# 1 f(25)      100          8.02     267.333\n&gt;# 2 g(25)      100          0.03       1.000\n\nA nice gain of a few orders of magnitude.",
+    "text": "Another Example: Comparing Timing\n\nRcpp implementation:\n\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(25), g(25))[, 1:4]\n\n&gt;#   test      replications elapsed   relative\n&gt;# 1 f(25)      100          8.02     267.333\n&gt;# 2 g(25)      100          0.03       1.000\n\n\n\nA nice gain of a few orders of magnitude.",
     "crumbs": [
       "Slides",
       "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#lists-dataframes",
-    "href": "slides/Topic3.html#lists-dataframes",
+    "objectID": "slides/Topic3.html#types",
+    "href": "slides/Topic3.html#types",
     "title": "Short Course on R Tools",
-    "section": "Lists & DataFrames",
-    "text": "Lists & DataFrames\n\nList, DataFrame wrappers\nAccess with as&lt;&gt;(), .inherits(), .attr()",
+    "section": "Types",
+    "text": "Types\nR Type mapping:\n\nStandard R types (integer, numeric, list, function, … and compound objects) are mapped to corresponding C++ types:\n\nlibrary(Rcpp)\ncppFunction(\"NumericVector logabs(NumericVector x) {\n  return log(abs(x));\n}\")\nlogabs(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438\n\n\nVectorized C++! Here log(abs()) runs directly on vectors as R would.",
     "crumbs": [
       "Slides",
       "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#functions",
-    "href": "slides/Topic3.html#functions",
+    "objectID": "slides/Topic3.html#stl-type-mapping",
+    "href": "slides/Topic3.html#stl-type-mapping",
     "title": "Short Course on R Tools",
-    "section": "Functions",
-    "text": "Functions\n\nFunction f & RObject return type\nPositional vs named args:\n\nf(_[\"x\"] = xval, _[\"y\"] = yval);",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Topic3.html#attributes",
-    "href": "slides/Topic3.html#attributes",
-    "title": "Short Course on R Tools",
-    "section": "Attributes",
-    "text": "Attributes\n\nQuery/modify with .attr() and .names()\nCreate with Vector::create()\n\n??? note Quick example: extracting residuals from lm.",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Topic3.html#iterators-algorithms",
-    "href": "slides/Topic3.html#iterators-algorithms",
-    "title": "Short Course on R Tools",
-    "section": "Iterators & Algorithms",
-    "text": "Iterators & Algorithms\n\nRange-based for(const auto &x : xs)\nstd::accumulate, std::min_element, etc.",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Topic3.html#data-structures",
-    "href": "slides/Topic3.html#data-structures",
-    "title": "Short Course on R Tools",
-    "section": "Data Structures",
-    "text": "Data Structures\n\nstd::vector, std::unordered_set, std::unordered_map\nEfficient growth & lookup\n\n??? note Show run-length encoding (rleC) example.",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Topic3.html#gibbs-sampler",
-    "href": "slides/Topic3.html#gibbs-sampler",
-    "title": "Short Course on R Tools",
-    "section": "Gibbs Sampler",
-    "text": "Gibbs Sampler\n// [[Rcpp::export]]\nNumericMatrix gibbs_cpp(int N, int thin) { ... }\n\n~20× speedup vs R",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
-  },
-  {
-    "objectID": "slides/Topic3.html#agent-based-model",
-    "href": "slides/Topic3.html#agent-based-model",
-    "title": "Short Course on R Tools",
-    "section": "Agent-Based Model",
-    "text": "Agent-Based Model\n\nR vectorisation vs Rcpp loops\nMemory overhead comparisons\n\n??? note Plot benchmark timings side-by-side.",
+    "section": "STL Type Mapping",
+    "text": "STL Type Mapping\n\ncode/logabs2.cpp\n\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n\ninline double f(double x) { return ::log(::fabs(x)); }\n\n// [[Rcpp::export]]\nstd::vector&lt;double&gt; logabs2(std::vector&lt;double&gt; x) {\n  std::transform(x.begin(), x.end(), x.begin(), f);\n  return x;\n}\n\nNot vectorized but ‘sweeps’ f() along std::vector&lt;double&gt; via STL std::transform().\n\nlibrary(Rcpp)\nsourceCpp(\"code/logabs2.cpp\")\nlogabs2(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438",
     "crumbs": [
       "Slides",
       "RCpp"
