@@ -11,6 +11,7 @@ format:
     scrollable: true
 ---
 
+
 # Outline
 
 ::: {.fragment .fade-up}
@@ -22,6 +23,7 @@ format:
 -   Deployment & Best Practices
 -   Hands-on Exercises
 :::
+
 
 # Introduction to Shiny
 
@@ -45,6 +47,7 @@ format:
 
 <img src="images/shiny/shiny.png" width="500" style="opacity: 0.05;" align="right">
 
+
 # Structure of a Shiny App {auto-animate="true"}
 
 ::: shrink-code
@@ -66,6 +69,7 @@ shinyApp(ui, server)
 -   `ui` defines layout and inputs/outputs
 
 -   `server` contains R code & reactivity
+
 
 ## Structure of a Shiny App {auto-animate="true"}
 
@@ -94,6 +98,7 @@ shinyApp(ui, server)
 -   `ui` defines layout and inputs/outputs
 
 -   `server` contains R code & reactivity
+
 
 ## Structure of a Shiny App {auto-animate="true"}
 
@@ -129,6 +134,7 @@ Shiny apps come in two parts:
 
 :::
 
+
 # Shinyapps Gallery
 
 <iframe class="stretch" data-src="https://gallery.shinyapps.io/001-hello/">
@@ -139,7 +145,8 @@ Shiny apps come in two parts:
 [🔗 Launch R](http://tinyurl.com/dna-Rstudio){target="_blank"}: File > New File > Shiny Web App...
 :::
 
-## Exercise 1
+
+## Exercise
 
 ```{r}
 #| label: ex-1-timer
@@ -169,11 +176,13 @@ countdown::countdown(
 
 * Check it works.
 
+
 ## Shinyapps Gallery
 
 <iframe class="stretch" data-src="https://gallery.shinyapps.io/050-kmeans-example/">
 
 </iframe>
+
 
 # Inputs & Outputs
 
@@ -188,11 +197,13 @@ input$slider  # numeric
 input$check   # logical
 ```
 
+
 ## Widgets - Input
 
 <iframe class="stretch" data-src="https://gallery.shinyapps.io/081-widgets-gallery/">
 
 </iframe>
+
 
 ## Widgets - Output Table
 
@@ -203,6 +214,7 @@ input$check   # logical
 :::{.smallest}
 [🔗 <\/> VIEW CODE](https://github.com/rstudio/shiny-examples/tree/main/109-render-table/){target="_blank"}
 :::
+
 
 # Reactivity Fundamentals
 
@@ -228,11 +240,13 @@ input$check   # logical
     observeEvent(input$go, { showModal(...) })
     ```
 
+
 ## Reactivity Demo
 
 <iframe class="stretch" data-src="https://gallery.shinyapps.io/003-reactivity/">
 
 </iframe>
+
 
 ## Isolate Demo
 
@@ -240,11 +254,13 @@ input$check   # logical
 
 </iframe>
 
+
 ## Observers Demo
 
 <iframe class="stretch" data-src="https://gallery.shinyapps.io/055-observer-demo/">
 
 </iframe>
+
 
 # Deploying a Shiny app 
 
@@ -280,9 +296,17 @@ input$check   # logical
 
 :::
 
+
 ## Shinylive deployment
 
-![](images/shiny/shinylive.jpg){fig-align="center" fig-alt="Shinylive diagram" width="50%"}
+![](images/shiny/traditional.png){fig-align="left" fig-alt="Traditional diagram" width="70%"}
+
+::: {style="margin-top: -75px;"}
+:::
+
+. . .
+
+![](images/shiny/shinylive.png){fig-align="right" fig-alt="Shinylive diagram" width="70%"}
 
 
 ## Shinylive deployment
@@ -324,6 +348,7 @@ You can then use the files in the `site` folder to deploy it as a normal website
 
 * Start with pen and paper... (think about user experience!)
 
+
 # Hands-on Exercises (30 min) {auto-animate="true"}
 
 ![](images/oop/knn1.png){width="1000"}
@@ -339,11 +364,12 @@ You can then use the files in the `site` folder to deploy it as a normal website
 
 -   [KNN Regression via shiny](https://github.com/mmadoliat/WSoRT/blob/main/R/app.R){target="_blank"}
 
+
 # Resources & Further Reading {auto-animate="true"}
 
--   RStudio tutorial: https://shiny.rstudio.com/tutorial/
+-   RStudio tutorial: [shiny.rstudio.com/tutorial](https://shiny.rstudio.com/tutorial/)
 
--   *Mastering Shiny*: https://mastering-shiny.org/
+-   Mastering Shiny: [mastering-shiny.org](https://mastering-shiny.org/)
 
 -   ShinyUiEditor: [rstudio.github.io/shinyuieditor](https://rstudio.github.io/shinyuieditor/)
 
