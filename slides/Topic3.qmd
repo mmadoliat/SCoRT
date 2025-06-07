@@ -10,21 +10,20 @@ format:
     transition: fade
     scrollable: true
 ---
- 
+
+
 ## Outline {auto-animate="true"}
 
 ::: {.fragment .fade-up}
 -   Motivation & Introduction
--   Getting Started with `cppFunction()`
+-   Getting Started with `evalCpp()` & `cppFunction()`
 -   Using `sourceCpp()`
 -   Data Types & Conversions
--   Rcpp Classes: Lists, DataFrames, Functions, Attributes
--   Handling Missing Values
 -   Standard Template Library (STL)
--   Case Studies & Benchmarks
 -   Using Rcpp in Packages
 -   Advanced Topics & Resources
 :::
+
 
 # Motivation & Introduction
 
@@ -40,11 +39,29 @@ format:
     -   Access to STL (data structures & algorithms)
     -   Cleaner, maintainable code
 
+
+## Basic Usage: `evalCpp()`
+
+-   `evalCpp()` evaluates a single C++ expression. Includes and dependencies can be declared.
+
+-   This allows us to quickly check C++ constructs.
+
+``` {.r code-line-numbers="1|3-4|6-7"}
+library(Rcpp)
+
+evalCpp("2 + 2")  # simple test
+># [1] 4
+
+evalCpp("std::numeric_limits<double>::max()")
+># [1] 1.79769e+308
+```
+
+
 # Simple Example
 
 -   R Version of ‘is this number odd or even’
 
-``` {.r}
+``` {.r code-line-numbers="1-4|5-6"}
 isOdd_r <- function(num = 10L) {
   result = (num %% 2L == 1L)
   return(result)
@@ -64,9 +81,10 @@ bool isOdd_cpp(int num = 10) {
 }
 ```
 
+
 ## Simple Example - Using `cppFunction()`
 
-- Rcpp Version of ‘is this number odd or even’
+-   Rcpp Version of ‘is this number odd or even’
 
 ``` {.r code-line-numbers="1,5|2-4|6-7"}
 Rcpp::cppFunction("
@@ -84,6 +102,7 @@ c(isOdd_cpp(42L), isOdd_cpp(43L))
 -   Good for small functions
 :::
 
+
 # Second Example: VAR(1)
 
 Let’s consider a simple possible $VAR(1)$ system of $k$ variables.
@@ -96,9 +115,10 @@ $$
 
 where $X_t$ is a row vector of length $2$, $B$ is a $2×2$ matrix, and $E_t$ is a row of the error matrix of $2$ columns.
 
+
 ## Second Example: VAR(1)
 
-In R (cpp) code, given both the coefficient and error matrices:
+In R (C++) code, given both the coefficient and error matrices:
 
 ::: shrink-code
 ``` {.r}
@@ -114,7 +134,7 @@ rSim <- function(B, E) {
 
 . . .
 
-cpp:
+C++ Version:
 
 ::: shrink-code
 ``` {.cpp}
@@ -129,6 +149,7 @@ arma::mat cppSim(arma::mat B, arma::mat E) {
 }
 ```
 :::
+
 
 ## Second Example: VAR(1)
 
@@ -154,6 +175,7 @@ rbenchmark::benchmark(cppSim(a, e), rSim(a, e), order="relative")[, 1:4]
 ```
 :::
 
+
 # Growth of Rcpp
 
 ::: {style="margin-top: 50px;"}
@@ -161,19 +183,19 @@ rbenchmark::benchmark(cppSim(a, e), rSim(a, e), order="relative")[, 1:4]
 
 ::: incremental
 -   Sometimes speed is not the only reason
-    - Easy access to C/C++ libraries
-    - C & C++ provide numerous libraries + APIs
-    - Easy to provide access to as Rcpp eases data transfer
+    -   Easy access to C/C++ libraries
+    -   C & C++ provide numerous libraries + APIs
+    -   Easy to provide access to as Rcpp eases data transfer
 -   Rcpp is currently used by
-    - 3053 CRAN packages
-    - 250+ BioConductor packages
-    - an unknown (but “large”) number of GitHub projects
-
+    -   3053 CRAN packages
+    -   250+ BioConductor packages
+    -   an unknown (but “large”) number of GitHub projects
 :::
 
-<div style="margin-top: -600px;"></div>
+::: {style="margin-top: -600px;"}
+:::
 
-<img src="images/rcpp/rcpp-growth.png" width="500" style="opacity: 0.25;" align="center">
+<img src="images/rcpp/rcpp-growth.png" width="500" style="opacity: 0.25;" align="center"/>
 
 
 ## Pagerank
@@ -193,9 +215,11 @@ round(100 * pr[1:5], 3)
 
 . . .
 
-<div style="margin-top: -100px;"></div>
+::: {style="margin-top: -100px;"}
+:::
 
 ![](images/rcpp/pagerank.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
+
 
 ## Percentage of Compiled Packages
 
@@ -215,13 +239,14 @@ data.frame(tot = nTot, totRcpp = nRcpp, totCompiled = nCompiled,
 ># 1 22501    3053        4981          61.29291
 ```
 
+
 # Rcpp in Rstudio - Using `sourceCpp()`
 
 -   Create standalone `.cpp` files with:
 
-    ``` {.cpp}
+    ``` {.cpp code-line-numbers="1|3-5|6-8"}
     # "file.cpp" contents
-    
+
     #include <Rcpp.h>
     using namespace Rcpp;
     // [[Rcpp::export]]
@@ -234,31 +259,33 @@ data.frame(tot = nTot, totRcpp = nRcpp, totCompiled = nCompiled,
 
 -   Compile with `sourceCpp('file.cpp')`
 
-    ``` {.r}
+    ``` {.r code-line-numbers="1|2-3"}
     sourceCpp('file.cpp')
     timesTwo(42)
     ># 84
     ```
 
+
 ## Using `sourceCpp()`
 
 ::: incremental
 -   So what just happened?
-    - We defined a simple C++ function  
-    - It operates on a numeric vector argument  
-    - We ask Rcpp to ‘source it’ for us  
-    - Behind the scenes Rcpp creates a wrapper  
-    - Rcpp then compiles, links, and loads the wrapper  
-    - The function is available in R under its C++ name 
+    -   We defined a simple C++ function\
+    -   It operates on a numeric vector argument\
+    -   We ask Rcpp to ‘source it’ for us\
+    -   Behind the scenes Rcpp creates a wrapper\
+    -   Rcpp then compiles, links, and loads the wrapper\
+    -   The function is available in R under its C++ name
 -   Benefits:
     -   Editor support (syntax highlighting)
     -   Easier debugging & error tracking
-
 :::
 
-<div style="margin-top: -600px;"></div>
+::: {style="margin-top: -600px;"}
+:::
 
-<img src="images/rcpp/rcpp-rstudio.png" width="500" style="opacity: 0.25;" align="center">
+<img src="images/rcpp/rcpp-rstudio.png" width="500" style="opacity: 0.25;" align="center"/>
+
 
 # Another Example: Focus on Speed
 
@@ -270,12 +297,11 @@ f(n) =
 n & \text{when } n < 2 \\
 f(n-1) + f(n-2) & \text{when } n \ge 2
 \end{cases}
-$$
-that creates [Fibonacci]{.text-red} numbers. R implementation and use:
+$$ that creates [Fibonacci]{.text-red} sequence. The R implementation and use:
 
 . . .
 
-``` {.r}
+``` {.r code-line-numbers="1,4|2|3|5-7"}
 f <- function(n) {
   if (n < 2) return(n)
   return(f(n - 1) + f(n - 2))
@@ -285,9 +311,25 @@ sapply(0:10, f)  # Using it on first 11 arguments
 ># [1] 0 1 1 2 3 5 8 13 21 34 55
 ```
 
+
 ## Another Example: Timing R Implementation
 
-``` {.r}
+-   The R implementation:
+
+::: shrink-code
+``` r
+f <- function(n) {
+  if (n < 2) return(n)
+  return(f(n - 1) + f(n - 2))
+}
+```
+:::
+
+. . .
+
+-   Timing:
+
+``` {.r code-line-numbers="1-2|4-7"}
 library(rbenchmark)
 benchmark(f(15), f(20), f(25))[, 1:4]
 
@@ -300,15 +342,17 @@ benchmark(f(15), f(20), f(25))[, 1:4]
 
 ## Another Example: C++ Implementation
 
-``` {.cpp}
+``` {.cpp code-line-numbers="1-4|6-10|12-14"}
 int g(int n) {
   if (n < 2) return(n);
   return(g(n - 1) + g(n - 2));
 }
 
-Rcpp::cppFunction('int g(int n) {
-  if (n < 2) return(n);
-  return(g(n - 1) + g(n - 2)); }')
+Rcpp::cppFunction('
+  int g(int n) {
+    if (n < 2) return(n);
+    return(g(n - 1) + g(n - 2)); 
+  }')
 
 sapply(0:10, g)  # Using it on first 11 arguments
 
@@ -318,7 +362,23 @@ sapply(0:10, g)  # Using it on first 11 arguments
 
 ## Another Example: Comparing Timing
 
-```r
+-   Rcpp implementation:
+
+::: shrink-code
+``` r
+Rcpp::cppFunction('
+  int g(int n) {
+    if (n < 2) return(n);
+    return(g(n - 1) + g(n - 2)); 
+  }')
+```
+:::
+
+. . .
+
+-   Timing:
+
+``` {.r code-line-numbers="1-2|4-6"}
 library(rbenchmark)
 benchmark(f(25), g(25))[, 1:4]
 
@@ -327,7 +387,10 @@ benchmark(f(25), g(25))[, 1:4]
 ># 2 g(25)      100          0.03       1.000
 ```
 
-- A nice gain of a few orders of magnitude.
+. . .
+
+-   A nice gain of a few orders of magnitude.
+
 
 # Data Types & Conversions
 
@@ -343,69 +406,64 @@ benchmark(f(25), g(25))[, 1:4]
     -   Constructors: `NumericVector out(n)`
 
 
-# Rcpp Core Classes
+## Types
 
-## Lists & DataFrames
+R Type mapping:
 
--   `List`, `DataFrame` wrappers
--   Access with `as<>()`, `.inherits()`, `.attr()`
+-   Standard R types (integer, numeric, list, function, ... and compound objects) are mapped to corresponding C++ types:
 
-## Functions
-
--   `Function f` & `RObject` return type
-
--   Positional vs named args:
-
-``` cpp
-f(_["x"] = xval, _["y"] = yval);
+``` {.r code-line-numbers="1-4|5-6"}
+library(Rcpp)
+cppFunction("NumericVector logabs(NumericVector x) {
+  return log(abs(x));
+}")
+logabs(seq(-5, 5, by = 2))
+># [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438
 ```
 
-## Attributes
+. . .
 
--   Query/modify with `.attr()` and `.names()`
--   Create with `Vector::create()`
+-   Vectorized C++! Here `log(abs())` runs directly on vectors as R would.
 
-??? note Quick example: extracting residuals from `lm`.
 
-# Handling Missing Values
+## STL Type Mapping
 
--   **Scalars**: `NA_INTEGER`, `NA_REAL`, `NA_LOGICAL`, `NA_STRING`
--   **Vectors**: explicit use of NA constants
--   Beware of C++ arithmetic on NA: e.g. `NA_INTEGER + 1`
+-   [`code/logabs2.cpp`]{.small}
 
-??? note Demonstrate `evalCpp("NA_REAL + 1")`.
+::: shrink-code
+``` {.cpp height="100"}
+#include <Rcpp.h>
+using namespace Rcpp;
 
-# Standard Template Library (STL)
+inline double f(double x) { return ::log(::fabs(x)); }
 
-## Iterators & Algorithms
-
--   Range-based `for(const auto &x : xs)`
--   `std::accumulate`, `std::min_element`, etc.
-
-## Data Structures
-
--   `std::vector`, `std::unordered_set`, `std::unordered_map`
--   Efficient growth & lookup
-
-??? note Show run-length encoding (`rleC`) example.
-
-# Case Studies & Benchmarks
-
-## Gibbs Sampler
-
-``` cpp
 // [[Rcpp::export]]
-NumericMatrix gibbs_cpp(int N, int thin) { ... }
+std::vector<double> logabs2(std::vector<double> x) {
+  std::transform(x.begin(), x.end(), x.begin(), f);
+  return x;
+}
+```
+:::
+
+[Not vectorized but ‘sweeps’ f() along `std::vector<double>` via STL `std::transform()`.]{.smallest}
+
+. . .
+
+``` r
+library(Rcpp)
+sourceCpp("code/logabs2.cpp")
+logabs2(seq(-5, 5, by = 2))
+># [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438
 ```
 
--   \~20× speedup vs R
+# Hands-on Exercises (30 min) {auto-animate="true"}
 
-## Agent-Based Model
+![](images/oop/knn2.png){width="1000"}
 
--   R vectorisation vs Rcpp loops
--   Memory overhead comparisons
+. . .
 
-??? note Plot benchmark timings side-by-side.
+-   [KNN Regression and Rcpp](https://github.com/mmadoliat/WSoRT/blob/main/runthis.R){target="_blank"}
+
 
 # Using Rcpp in Packages
 
@@ -418,7 +476,8 @@ NumericMatrix gibbs_cpp(int N, int thin) { ... }
 
 -   Run `Rcpp::compileAttributes()` to generate bindings
 
-??? note Recommend best practices for CI & testing.
+-   [Thirteen Simple Steps Vignette](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-libraries.pdf) by Dirk Eddelbuettel
+
 
 # Advanced Topics & Resources
 
@@ -428,19 +487,27 @@ NumericMatrix gibbs_cpp(int N, int thin) { ... }
 -   Books: *Effective C++*, *Effective STL*
 -   Online: Rcpp homepage, mailing list
 
-??? note Encourage exploring community resources.
 
-# Summary & Q&A
+# Summary & Q&A {auto-animate="true"}
+
+![](images/Rcpp/rcpp.png){.absolute top="100" right="0" width="400"}
 
 -   Key takeaways:
-
     1.  Profile before optimizing
     2.  Inline vs file-based workflows
     3.  Master data conversions & STL
 
--   Questions?
+. . .
 
-# Thank You
+-   **Questions?**
+
+. . .
+
+:::: {style="text-align: center;"}
+::: large
+**Thank You**
+:::
+::::
 
 -   [rcpp.org](https://www.rcpp.org)
 -   [Hadley Wickham,*Advanced R*](https://adv-r.hadley.nz/rcpp.html)

@@ -351,16 +351,9 @@ You can then use the files in the `site` folder to deploy it as a normal website
 
 # Hands-on Exercises (30 min) {auto-animate="true"}
 
-![](images/oop/knn1.png){width="1000"}
-
-::: {style="margin-top: -476px;"}
 ![](images/oop/knn2.png){width="1000"}
-:::
 
 . . .
-
-::: {style="margin-top: -24px;"}
-:::
 
 -   [KNN Regression via shiny](https://github.com/mmadoliat/WSoRT/blob/main/R/app.R){target="_blank"}
 
