@@ -33,193 +33,6 @@
     ]
   },
   {
-    "objectID": "course-syllabus.html",
-    "href": "course-syllabus.html",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "",
-    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#course-information",
-    "href": "course-syllabus.html#course-information",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "",
-    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#instructors-details",
-    "href": "course-syllabus.html#instructors-details",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Instructors Details",
-    "text": "Instructors Details\n\nName: Mehdi Maadooliat, Ph.D.\nName: Hossein Haghbin, Ph.D.\nOffice Hours: Tu & Th 12:15 - 1:30pm or by e-mail",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#course-description",
-    "href": "course-syllabus.html#course-description",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Course Description",
-    "text": "Course Description\nA modern course in probability. Foundations of probability for modeling random processes with computational techniques. Topics include counting techniques, probability of events, random variables, distribution functions, probability functions, probability density functions, expectation, moments, moment generating functions, special discrete and continuous distributions, sampling distributions, transformation of variables, prior and posterior distributions, Law of Large Numbers, Central Limit Theorem, the Bayesian paradigm. Numerical and computational methods will be covered throughout topics.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#learning-outcomes",
-    "href": "course-syllabus.html#learning-outcomes",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Learning Outcomes",
-    "text": "Learning Outcomes\nBy the end of the course, students will:\n\nUnderstand and Apply Fundamental Probability Concepts\nAnalyze and Model Random Processes\nPerform Variable Transformations\nImplement Computational Techniques\nInterpret Statistical Theorems\nCritically Evaluate Probabilistic Models\nCommunicate Probabilistic Findings",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#prerequisites",
-    "href": "course-syllabus.html#prerequisites",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Prerequisites",
-    "text": "Prerequisites\n\nThree semesters of mathematics beyond calculus and MATH 4720 or equiv.\nPreferable knowledge is MSSC 5700 and MSSC 5710.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#textbooks",
-    "href": "course-syllabus.html#textbooks",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Textbooks",
-    "text": "Textbooks\n\nProbability and Statistics with R, 2nd edition by Maria Dolores Ugarte, Ana F. Militino, Alan T. Arnholt, 2016. ISBN: 9781466504394.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#grading-breakdown",
-    "href": "course-syllabus.html#grading-breakdown",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Grading Breakdown",
-    "text": "Grading Breakdown\n\nHomework: 30%\nProject: 10%\nMidterm Exam: 30%\nFinal Exam: 30%\n\n\nGrading Scale\n\n\n\nGrade\nRange\n\n\n\n\nA\n93.5 - 100%\n\n\nA-\n90- 93.49%\n\n\nB+\n86.5 - 89.99%\n\n\nB\n83.5 - 86.49%\n\n\nB-\n80 - 83.49%\n\n\nC+\n76.5 - 79.99%\n\n\nC\n73.5 - 76.49%\n\n\nC-\n70 - 73.49%\n\n\nD+\n66.5 - 69.99%\n\n\nD\n60 - 66.49%\n\n\nF\n&lt; 59.99%",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#exams",
-    "href": "course-syllabus.html#exams",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Exams",
-    "text": "Exams\nTentatively, there will be a midterm (in class) on Oct. 23rd, plus the final (in class or take home): Dec. 8th from 10:30 - 12:30pm.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#homework",
-    "href": "course-syllabus.html#homework",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Homework",
-    "text": "Homework\nHomework is required so that you get a better understanding of the material covered, plus it will help you to keep up. You will get a better understanding of the material if you discuss it with someone. However, you must submit YOUR OWN work to D2L website. Assignments are mostly due at 11:50pm (check for due dates in D2L).\nNO LATE HOMEWORK WILL BE ACCEPTED NOR WILL YOU BE ALLOWED TO MAKE UP MISSED HOMEWORK! Plan accordingly! It is better to submit something, even if it is incomplete. You need to type your homework (preferably using LaTeX, or Quarto) and submit it as a PDF file. Scanned homework will be graded out of 80. Low quality scanned homework will be considered as NO submission.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#make-up-policy",
-    "href": "course-syllabus.html#make-up-policy",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Make-up Policy",
-    "text": "Make-up Policy\nThere will not be any make-up exam or homework unless there is an emergency.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#attendance",
-    "href": "course-syllabus.html#attendance",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Attendance",
-    "text": "Attendance\nAttendance is required and subject to the College of Arts and Sciences policy.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#academic-honesty",
-    "href": "course-syllabus.html#academic-honesty",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Academic Honesty",
-    "text": "Academic Honesty\nStudents are expected to follow the University’s policy on academic honesty as outlined in the Bulletin.\nTL;DR: Don’t cheat!\nPlease abide by the following as you work on assignments in this course:\n\nCollaboration: Only work that is clearly assigned as team work should be completed collaboratively.\n\nThe homework assignments must also be completed individually and you are welcomed to discuss the assignment with classmates at a high level (e.g., discuss what’s the best way for approaching a problem, what functions are useful for accomplishing a particular task, etc.). However you may not directly share answers to questions (including any code) with anyone other than myself.\nFor the projects, collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.\nOn individual assignments you may not directly share code with another student in this class, and on team assignments you may not directly share code with another team in this class.\n\nOnline resources: I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course’s policy is that you may make use of any online resources (e.g., StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.\nUse of generative artificial intelligence (AI): You should treat generative AI, such as ChatGPT, the same as other online resources. There are two guiding principles that govern how you can use AI in this course:1 (1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. We will practice using AI to facilitate—rather than hinder—learning. (2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n✅ AI tools for code: You may make use of the technology for coding examples on assignments; if you do so, you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. You may use these guidelines for citing AI-generated content.\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\nYou are ultimately responsible for the work you turn in; it should reflect your understanding of the course content.\n\nIf you are unsure if the use of a particular resource complies with the academic honesty policy, please ask the instructor.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#important-dates",
-    "href": "course-syllabus.html#important-dates",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Important dates",
-    "text": "Important dates\n\nMonday, August 25: Classes begin\nTuesday, September 2: Drop/add ends\nThursday - Friday, October 16 - 17: Fall Break\nFriday, November 14: Last day to withdraw with W\nThursday - Monday, November 26 - 30: Thanksgiving Holiday\nSaturday, December 6: Classes end\nMonday, December 8, 10:30 am - 12:30 pm: Final Exam\n\nFor more important dates, see the full MU Academic Calendar.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#important-note",
-    "href": "course-syllabus.html#important-note",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Important Note",
-    "text": "Important Note\nThe syllabus may be modified throughout the course. Any substantial modifications will result in a reissued syllabus.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "slides/Topic5.html#description",
-    "href": "slides/Topic5.html#description",
-    "title": "Short Course on R Tools",
-    "section": "DESCRIPTION",
-    "text": "DESCRIPTION\n\nFields: Package, Version, Title, Description, Author, Depends, Imports, Suggests, License\nSemantic versioning: major.minor.patch",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
-    "objectID": "slides/Topic5.html#namespace",
-    "href": "slides/Topic5.html#namespace",
-    "title": "Short Course on R Tools",
-    "section": "NAMESPACE",
-    "text": "NAMESPACE\n\nExport functions: export()\nImport from other packages: importFrom(dplyr, select)\nGenerate with roxygen2 or manually\n\n#' @export\nmy_function &lt;- function(x) x + 1\n??? note Emphasize keeping Imports minimal.",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
     "objectID": "slides/Topic3.html#outline",
     "href": "slides/Topic3.html#outline",
     "title": "Short Course on R Tools",
@@ -495,13 +308,6 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site!"
-  },
-  {
     "objectID": "slides/Topic6.html#description-namespace",
     "href": "slides/Topic6.html#description-namespace",
     "title": "Short Course on R Tools",
@@ -535,6 +341,211 @@
     ]
   },
   {
+    "objectID": "course-syllabus.html",
+    "href": "course-syllabus.html",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "",
+    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#course-information",
+    "href": "course-syllabus.html#course-information",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "",
+    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#instructors-details",
+    "href": "course-syllabus.html#instructors-details",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Instructors Details",
+    "text": "Instructors Details\n\nName: Mehdi Maadooliat, Ph.D.\nName: Hossein Haghbin, Ph.D.\nOffice Hours: Tu & Th 12:15 - 1:30pm or by e-mail",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#course-description",
+    "href": "course-syllabus.html#course-description",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Course Description",
+    "text": "Course Description\nA modern course in probability. Foundations of probability for modeling random processes with computational techniques. Topics include counting techniques, probability of events, random variables, distribution functions, probability functions, probability density functions, expectation, moments, moment generating functions, special discrete and continuous distributions, sampling distributions, transformation of variables, prior and posterior distributions, Law of Large Numbers, Central Limit Theorem, the Bayesian paradigm. Numerical and computational methods will be covered throughout topics.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#learning-outcomes",
+    "href": "course-syllabus.html#learning-outcomes",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nBy the end of the course, students will:\n\nUnderstand and Apply Fundamental Probability Concepts\nAnalyze and Model Random Processes\nPerform Variable Transformations\nImplement Computational Techniques\nInterpret Statistical Theorems\nCritically Evaluate Probabilistic Models\nCommunicate Probabilistic Findings",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#prerequisites",
+    "href": "course-syllabus.html#prerequisites",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nThree semesters of mathematics beyond calculus and MATH 4720 or equiv.\nPreferable knowledge is MSSC 5700 and MSSC 5710.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#textbooks",
+    "href": "course-syllabus.html#textbooks",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Textbooks",
+    "text": "Textbooks\n\nProbability and Statistics with R, 2nd edition by Maria Dolores Ugarte, Ana F. Militino, Alan T. Arnholt, 2016. ISBN: 9781466504394.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#grading-breakdown",
+    "href": "course-syllabus.html#grading-breakdown",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Grading Breakdown",
+    "text": "Grading Breakdown\n\nHomework: 30%\nProject: 10%\nMidterm Exam: 30%\nFinal Exam: 30%\n\n\nGrading Scale\n\n\n\nGrade\nRange\n\n\n\n\nA\n93.5 - 100%\n\n\nA-\n90- 93.49%\n\n\nB+\n86.5 - 89.99%\n\n\nB\n83.5 - 86.49%\n\n\nB-\n80 - 83.49%\n\n\nC+\n76.5 - 79.99%\n\n\nC\n73.5 - 76.49%\n\n\nC-\n70 - 73.49%\n\n\nD+\n66.5 - 69.99%\n\n\nD\n60 - 66.49%\n\n\nF\n&lt; 59.99%",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#exams",
+    "href": "course-syllabus.html#exams",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Exams",
+    "text": "Exams\nTentatively, there will be a midterm (in class) on Oct. 23rd, plus the final (in class or take home): Dec. 8th from 10:30 - 12:30pm.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#homework",
+    "href": "course-syllabus.html#homework",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Homework",
+    "text": "Homework\nHomework is required so that you get a better understanding of the material covered, plus it will help you to keep up. You will get a better understanding of the material if you discuss it with someone. However, you must submit YOUR OWN work to D2L website. Assignments are mostly due at 11:50pm (check for due dates in D2L).\nNO LATE HOMEWORK WILL BE ACCEPTED NOR WILL YOU BE ALLOWED TO MAKE UP MISSED HOMEWORK! Plan accordingly! It is better to submit something, even if it is incomplete. You need to type your homework (preferably using LaTeX, or Quarto) and submit it as a PDF file. Scanned homework will be graded out of 80. Low quality scanned homework will be considered as NO submission.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#make-up-policy",
+    "href": "course-syllabus.html#make-up-policy",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Make-up Policy",
+    "text": "Make-up Policy\nThere will not be any make-up exam or homework unless there is an emergency.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#attendance",
+    "href": "course-syllabus.html#attendance",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Attendance",
+    "text": "Attendance\nAttendance is required and subject to the College of Arts and Sciences policy.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#academic-honesty",
+    "href": "course-syllabus.html#academic-honesty",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Academic Honesty",
+    "text": "Academic Honesty\nStudents are expected to follow the University’s policy on academic honesty as outlined in the Bulletin.\nTL;DR: Don’t cheat!\nPlease abide by the following as you work on assignments in this course:\n\nCollaboration: Only work that is clearly assigned as team work should be completed collaboratively.\n\nThe homework assignments must also be completed individually and you are welcomed to discuss the assignment with classmates at a high level (e.g., discuss what’s the best way for approaching a problem, what functions are useful for accomplishing a particular task, etc.). However you may not directly share answers to questions (including any code) with anyone other than myself.\nFor the projects, collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.\nOn individual assignments you may not directly share code with another student in this class, and on team assignments you may not directly share code with another team in this class.\n\nOnline resources: I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course’s policy is that you may make use of any online resources (e.g., StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.\nUse of generative artificial intelligence (AI): You should treat generative AI, such as ChatGPT, the same as other online resources. There are two guiding principles that govern how you can use AI in this course:1 (1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. We will practice using AI to facilitate—rather than hinder—learning. (2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n✅ AI tools for code: You may make use of the technology for coding examples on assignments; if you do so, you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. You may use these guidelines for citing AI-generated content.\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\nYou are ultimately responsible for the work you turn in; it should reflect your understanding of the course content.\n\nIf you are unsure if the use of a particular resource complies with the academic honesty policy, please ask the instructor.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#important-dates",
+    "href": "course-syllabus.html#important-dates",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Important dates",
+    "text": "Important dates\n\nMonday, August 25: Classes begin\nTuesday, September 2: Drop/add ends\nThursday - Friday, October 16 - 17: Fall Break\nFriday, November 14: Last day to withdraw with W\nThursday - Monday, November 26 - 30: Thanksgiving Holiday\nSaturday, December 6: Classes end\nMonday, December 8, 10:30 am - 12:30 pm: Final Exam\n\nFor more important dates, see the full MU Academic Calendar.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#important-note",
+    "href": "course-syllabus.html#important-note",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Important Note",
+    "text": "Important Note\nThe syllabus may be modified throughout the course. Any substantial modifications will result in a reissued syllabus.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-links.html",
+    "href": "course-links.html",
+    "title": "Useful links",
+    "section": "",
+    "text": "Motivating Talk\nStat Calculator\nDistribution Calculator\nRStudio\n🔗 Rfssa: An R Package for Functional SSA\n🔗 StatCalc(JAMM)\n🔗 DistCalc\n🔗 on dna\n\n\nAdvanced Texbooks\n🔗 Advanced R by Hadley Wickham\n🔗 R Package\n🔗 Quarto\n🔗 R Markdown\n🔗 ggplot2: Elegant Graphics for Data Analysis\n🔗 Fundamentals of Data Visualization\n🔗 Data Visualization: A Practical Introduction\n🔗 R for Data Science\n\n\nSome Package documentation\n🔗 OOP-R6: r6.r-lib.org\n🔗 shiny: shiny.posit.co\n🔗 Rcpp: www.rcpp.org\n🔗 reticulate: rstudio.github.io/reticulate\n🔗 devtools: devtools.r-lib.org\n🔗 GitHub: happygitwithr.com\n🔗 CRAN: cran.r-project.org\n🔗 keras: keras3.posit.co",
+    "crumbs": [
+      "Miscellaneous",
+      "Useful links"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site!"
+  },
+  {
+    "objectID": "slides/Topic5.html#description",
+    "href": "slides/Topic5.html#description",
+    "title": "Short Course on R Tools",
+    "section": "DESCRIPTION",
+    "text": "DESCRIPTION\n\nFields: Package, Version, Title, Description, Author, Depends, Imports, Suggests, License\nSemantic versioning: major.minor.patch",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Topic5.html#namespace",
+    "href": "slides/Topic5.html#namespace",
+    "title": "Short Course on R Tools",
+    "section": "NAMESPACE",
+    "text": "NAMESPACE\n\nExport functions: export()\nImport from other packages: importFrom(dplyr, select)\nGenerate with roxygen2 or manually\n\n#' @export\nmy_function &lt;- function(x) x + 1\n??? note Emphasize keeping Imports minimal.",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
     "objectID": "slides/Topic2.html#structure-of-a-shiny-app-1",
     "href": "slides/Topic2.html#structure-of-a-shiny-app-1",
     "title": "Short Course on R Tools",
@@ -557,11 +568,11 @@
     ]
   },
   {
-    "objectID": "slides/Topic2.html#exercise-1",
-    "href": "slides/Topic2.html#exercise-1",
+    "objectID": "slides/Topic2.html#exercise",
+    "href": "slides/Topic2.html#exercise",
     "title": "Short Course on R Tools",
-    "section": "Exercise 1",
-    "text": "Exercise 1\n\n\n\n−+\n05:00\n\n\n\n\nOpen up your IDE of choice.\nMake sure you have the {shiny} package installed.\nCreate an app.R file.\nAdd ui and server elements, as well as shiny::shinyApp(ui, server).\nCheck it works.",
+    "section": "Exercise",
+    "text": "Exercise\n\n\n\n−+\n05:00\n\n\n\n\nOpen up your IDE of choice.\nMake sure you have the {shiny} package installed.\nCreate an app.R file.\nAdd ui and server elements, as well as shiny::shinyApp(ui, server).\nCheck it works.",
     "crumbs": [
       "Slides",
       "Shiny"
@@ -807,17 +818,6 @@
     "crumbs": [
       "Miscellaneous",
       "Cheatsheets"
-    ]
-  },
-  {
-    "objectID": "course-links.html",
-    "href": "course-links.html",
-    "title": "Useful links",
-    "section": "",
-    "text": "Motivating Talk\nStat Calculator\nDistribution Calculator\nRStudio\n🔗 Rfssa: An R Package for Functional SSA\n🔗 StatCalc(JAMM)\n🔗 DistCalc\n🔗 on dna\n\n\nAdvanced Texbooks\n🔗 Advanced R by Hadley Wickham\n🔗 R Package\n🔗 Quarto\n🔗 R Markdown\n🔗 ggplot2: Elegant Graphics for Data Analysis\n🔗 Fundamentals of Data Visualization\n🔗 Data Visualization: A Practical Introduction\n🔗 R for Data Science\n\n\nSome Package documentation\n🔗 OOP-R6: r6.r-lib.org\n🔗 shiny: shiny.posit.co\n🔗 Rcpp: www.rcpp.org\n🔗 reticulate: rstudio.github.io/reticulate\n🔗 devtools: devtools.r-lib.org\n🔗 GitHub: happygitwithr.com\n🔗 CRAN: cran.r-project.org\n🔗 keras: keras3.posit.co",
-    "crumbs": [
-      "Miscellaneous",
-      "Useful links"
     ]
   }
 ]
