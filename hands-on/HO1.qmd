@@ -1,6 +1,7 @@
 ---
 title: "Hands-on: k-NN Regression with S3 OOP"
 format: pdf
+editor: visual
 ---
 
 ## Overview

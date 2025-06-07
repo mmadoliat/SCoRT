@@ -1,6 +1,7 @@
 ---
 title: "Hands-on: k-NN Regression in Shiny"
 format: pdf
+editor: visual
 ---
 
 ## Overview
