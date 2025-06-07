@@ -1,7 +1,6 @@
 ---
-title: "Computational Statistics - HW 1"
+title: "Hands-on: Accelerating k-NN with Rcpp"
 format: pdf
-editor: visual
 code-line-numbers: true
 ---
 
@@ -9,11 +8,12 @@ code-line-numbers: true
 
 In this 30 min session you will:
 
-1. Download and inspect the C++ implementation for k‑NN.
-2. Compile and load the Rcpp code.
-3. Run benchmarks comparing pure-R vs Rcpp predictions.
-4. Analyze how sample size and dimensionality affect performance.
----
+1.  Download and inspect the C++ implementation for k‑NN.
+2.  Compile and load the Rcpp code.
+3.  Run benchmarks comparing pure-R vs Rcpp predictions.
+4.  Analyze how sample size and dimensionality affect performance.
+
+------------------------------------------------------------------------
 
 ## Setup
 

@@ -1,7 +1,6 @@
 ---
-title: "Computational Statistics - HW 1"
+title: "Hands-on: k-NN Regression in Shiny"
 format: pdf
-editor: visual
 ---
 
 ## Overview
@@ -12,9 +11,9 @@ In this 30 min session you will:
 
 -   Adjust **k**, select backend (R vs C++)
 
--   
+-   Observe train/test performance and parity plots
 
-    ## Observe train/test performance and parity plots
+------------------------------------------------------------------------
 
 ## Setup
 

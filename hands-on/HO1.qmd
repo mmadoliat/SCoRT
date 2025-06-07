@@ -1,7 +1,6 @@
 ---
 title: "Computational Statistics - HW 1"
 format: pdf
-editor: visual
 ---
 
 ## Overview
