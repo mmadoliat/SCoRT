@@ -44,6 +44,105 @@
     ]
   },
   {
+    "objectID": "slides/Topic3.html#simple-example---using-cppfunction",
+    "href": "slides/Topic3.html#simple-example---using-cppfunction",
+    "title": "Short Course on R Tools",
+    "section": "Simple Example - Using cppFunction()",
+    "text": "Simple Example - Using cppFunction()\n\nRcpp Version of ‘is this number odd or even’\n\nRcpp::cppFunction(\"\nbool isOdd_cpp(int num = 10) {\n  bool result = (num % 2 == 1);\n  return result;\n}\")\nc(isOdd_cpp(42L), isOdd_cpp(43L))\n&gt;# [1] FALSE TRUE\n\n\nUse cppFunction() in R console or script\nFast prototyping & testing\nGood for small functions",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#second-example-var1-1",
+    "href": "slides/Topic3.html#second-example-var1-1",
+    "title": "Short Course on R Tools",
+    "section": "Second Example: VAR(1)",
+    "text": "Second Example: VAR(1)\nIn R (cpp) code, given both the coefficient and error matrices:\n\nrSim &lt;- function(B, E) {\n  X &lt;- matrix(0, nrow(E), ncol(E))\n  for (r in 2:nrow(E)) {\n    X[r, ] = X[r-1, ] %*% B + E[r, ]\n  }\n  return(X)\n}\n\n\ncpp:\n\narma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#second-example-var1-2",
+    "href": "slides/Topic3.html#second-example-var1-2",
+    "title": "Short Course on R Tools",
+    "section": "Second Example: VAR(1)",
+    "text": "Second Example: VAR(1)\n\nRcpp::cppFunction('arma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}', depends=\"RcppArmadillo\")\n\na &lt;- matrix(c(0.5, 0.1, 0.1, 0.5), nrow = 2)\ne &lt;- matrix(rnorm(10000), ncol = 2)\nrbenchmark::benchmark(cppSim(a, e), rSim(a, e), order=\"relative\")[, 1:4]\n\n&gt;#    test           replications elapsed relative\n&gt;# 1  cppSim(a, e)  100         0.010   1.0\n&gt;# 2  rSim(a, e)    100         0.728  72.8",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#pagerank",
+    "href": "slides/Topic3.html#pagerank",
+    "title": "Short Course on R Tools",
+    "section": "Pagerank",
+    "text": "Pagerank\n#remotes::install_github(\"https://github.com/andrie/pagerank.git\")\nsuppressMessages(library(utils))\nlibrary(pagerank)\n\ncran &lt;- \"https://cloud.r-project.org\"\npr &lt;- compute_pagerank(cran)\nround(100 * pr[1:5], 3)\n\n&gt;#   Rcpp    ggplot2     dplyr      MASS   magrittr\n&gt;# 2.744     1.516       1.274    1.122    0.814",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#percentage-of-compiled-packages",
+    "href": "slides/Topic3.html#percentage-of-compiled-packages",
+    "title": "Short Course on R Tools",
+    "section": "Percentage of Compiled Packages",
+    "text": "Percentage of Compiled Packages\ndb &lt;- tools::CRAN_package_db()       # added in R 3.4.0\ndb &lt;- db[!duplicated(db[, 1]), ]     # rows: number of packages\n\nnTot &lt;- nrow(db)                     # columns: different attributes\nnRcpp &lt;- length(tools::dependsOnPkgs(\"Rcpp\", recursive = FALSE, installed = db))\nnCompiled &lt;- table(db[, \"NeedsCompilation\"])[[\"yes\"]]\n\npropRcpp &lt;- nRcpp / nCompiled * 100\ndata.frame(tot = nTot, totRcpp = nRcpp, totCompiled = nCompiled,\n           RcppPctOfCompiled = propRcpp)\n\n&gt;#   tot   totRcpp   totCompiled   RcppPctOfCompiled\n&gt;# 1 22501    3053        4981          61.29291",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#using-sourcecpp",
+    "href": "slides/Topic3.html#using-sourcecpp",
+    "title": "Short Course on R Tools",
+    "section": "Using sourceCpp()",
+    "text": "Using sourceCpp()\n\n\nSo what just happened?\n\nWe defined a simple C++ function\n\nIt operates on a numeric vector argument\n\nWe ask Rcpp to ‘source it’ for us\n\nBehind the scenes Rcpp creates a wrapper\n\nRcpp then compiles, links, and loads the wrapper\n\nThe function is available in R under its C++ name\n\nBenefits:\n\nEditor support (syntax highlighting)\nEasier debugging & error tracking",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#another-example-timing-r-implementation",
+    "href": "slides/Topic3.html#another-example-timing-r-implementation",
+    "title": "Short Course on R Tools",
+    "section": "Another Example: Timing R Implementation",
+    "text": "Another Example: Timing R Implementation\nlibrary(rbenchmark)\nbenchmark(f(15), f(20), f(25))[, 1:4]\n\n&gt;# test         replications elapsed   relative\n&gt;# 1 f(15)       100          0.06      1.0\n&gt;# 2 f(20)       100          0.75     12.5\n&gt;# 3 f(25)       100          7.92    132.0",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#another-example-c-implementation",
+    "href": "slides/Topic3.html#another-example-c-implementation",
+    "title": "Short Course on R Tools",
+    "section": "Another Example: C++ Implementation",
+    "text": "Another Example: C++ Implementation\nint g(int n) {\n  if (n &lt; 2) return(n);\n  return(g(n - 1) + g(n - 2));\n}\n\nRcpp::cppFunction('int g(int n) {\n  if (n &lt; 2) return(n);\n  return(g(n - 1) + g(n - 2)); }')\n\nsapply(0:10, g)  # Using it on first 11 arguments\n\n&gt;# [1] 0 1 1 2 3 5 8 13 21 34 55",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#another-example-comparing-timing",
+    "href": "slides/Topic3.html#another-example-comparing-timing",
+    "title": "Short Course on R Tools",
+    "section": "Another Example: Comparing Timing",
+    "text": "Another Example: Comparing Timing\nlibrary(rbenchmark)\nbenchmark(f(25), g(25))[, 1:4]\n\n&gt;#   test      replications elapsed   relative\n&gt;# 1 f(25)      100          8.02     267.333\n&gt;# 2 g(25)      100          0.03       1.000\n\nA nice gain of a few orders of magnitude.",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
     "objectID": "slides/Topic3.html#lists-dataframes",
     "href": "slides/Topic3.html#lists-dataframes",
     "title": "Short Course on R Tools",
