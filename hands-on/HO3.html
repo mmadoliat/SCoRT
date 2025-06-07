@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>SCoRT – Short Course on R Tools - (SCoRT)</title>
+<title>SCoRT – Hands-on: Accelerating k-NN with Rcpp</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,28 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./slides/Topic1.html" rel="next">
-<link href="./course-syllabus.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../hands-on/HW1.html" rel="next">
+<link href="../hands-on/HO2.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,15 +105,13 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="SCoRT - Short Course on R Tools - (SCoRT)">
+<meta property="og:title" content="SCoRT - Hands-on: Accelerating k-NN with Rcpp">
 <meta property="og:description" content="Homepage for ‘Short Course on R Tools’, Summer 2025.">
 <meta property="og:site_name" content="SCoRT">
-<meta name="twitter:title" content="SCoRT - Short Course on R Tools - (SCoRT)">
+<meta name="twitter:title" content="SCoRT - Hands-on: Accelerating k-NN with Rcpp">
 <meta name="twitter:description" content="Homepage for ‘Short Course on R Tools’, Summer 2025.">
-<meta name="twitter:image" content="https://tinyurl.com/SCiRT/images/twitter-card.png">
+<meta name="twitter:image" content="https://tinyurl.com/SCiRT/hands-on/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
-<meta name="twitter:image-height" content="1080">
-<meta name="twitter:image-width" content="1920">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -92,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-overview.html">Course information</a></li><li class="breadcrumb-item"><a href="./index.html">Schedule</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../hands-on/HO1.html">Hands-on / HW</a></li><li class="breadcrumb-item"><a href="../hands-on/HO3.html">RCpp</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -106,8 +138,8 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/mmadoliat/SCoRT/" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
@@ -125,28 +157,28 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
  <span class="menu-text">Course information</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
@@ -163,43 +195,43 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/Topic1.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/Topic1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">OOP in R</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/Topic2.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/Topic2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Shiny</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/Topic3.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/Topic3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">RCpp</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/Topic4.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/Topic4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Python in R</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/Topic5.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/Topic5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R package</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/Topic6.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/Topic6.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GitHub / CRAN submission</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./slides/Topic7.html" class="sidebar-item-text sidebar-link">
+  <a href="../slides/Topic7.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deep Learning in R</span></a>
   </div>
 </li>
@@ -207,34 +239,34 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">Hands-on / HW</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hands-on/HO1.html" class="sidebar-item-text sidebar-link">
+  <a href="../hands-on/HO1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">OOP in R</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hands-on/HO2.html" class="sidebar-item-text sidebar-link">
+  <a href="../hands-on/HO2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Shiny</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hands-on/HO3.html" class="sidebar-item-text sidebar-link">
+  <a href="../hands-on/HO3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">RCpp</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hands-on/HW1.html" class="sidebar-item-text sidebar-link">
+  <a href="../hands-on/HW1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">First Week HW</span></a>
   </div>
 </li>
@@ -251,13 +283,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course-links.html" class="sidebar-item-text sidebar-link">
+  <a href="../course-links.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Useful links</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./misc/cheatsheets.html" class="sidebar-item-text sidebar-link">
+  <a href="../misc/cheatsheets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Cheatsheets</span></a>
   </div>
 </li>
@@ -268,15 +300,27 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#compile-the-c-code" id="toc-compile-the-c-code" class="nav-link" data-scroll-target="#compile-the-c-code">1. Compile the C++ code</a></li>
+  <li><a href="#inspect-the-runner-script" id="toc-inspect-the-runner-script" class="nav-link" data-scroll-target="#inspect-the-runner-script">2. Inspect the runner script</a></li>
+  <li><a href="#vary-parameters" id="toc-vary-parameters" class="nav-link" data-scroll-target="#vary-parameters">3. Vary parameters</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">4. Discussion</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next steps</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mmadoliat/SCoRT/edit/main/hands-on/HO3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mmadoliat/SCoRT/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="HO3.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./course-overview.html">Course information</a></li><li class="breadcrumb-item"><a href="./index.html">Schedule</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../hands-on/HO1.html">Hands-on / HW</a></li><li class="breadcrumb-item"><a href="../hands-on/HO3.html">RCpp</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Short Course on R Tools - (SCoRT)</h1>
+<h1 class="title">Hands-on: Accelerating k-NN with Rcpp</h1>
 </div>
 
 
@@ -293,572 +337,86 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<div id="dooqnhmzbb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dooqnhmzbb table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#dooqnhmzbb thead, #dooqnhmzbb tbody, #dooqnhmzbb tfoot, #dooqnhmzbb tr, #dooqnhmzbb td, #dooqnhmzbb th {
-  border-style: none;
-}
-
-#dooqnhmzbb p {
-  margin: 0;
-  padding: 0;
-}
-
-#dooqnhmzbb .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 13px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#dooqnhmzbb .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#dooqnhmzbb .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#dooqnhmzbb .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#dooqnhmzbb .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#dooqnhmzbb .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#dooqnhmzbb .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#dooqnhmzbb .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#dooqnhmzbb .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#dooqnhmzbb .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#dooqnhmzbb .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#dooqnhmzbb .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#dooqnhmzbb .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#dooqnhmzbb .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#dooqnhmzbb .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#dooqnhmzbb .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#dooqnhmzbb .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#dooqnhmzbb .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#dooqnhmzbb .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#dooqnhmzbb .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#dooqnhmzbb .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#dooqnhmzbb .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#dooqnhmzbb .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#dooqnhmzbb .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#dooqnhmzbb .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#dooqnhmzbb .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#dooqnhmzbb .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#dooqnhmzbb .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#dooqnhmzbb .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#dooqnhmzbb .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#dooqnhmzbb .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#dooqnhmzbb .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#dooqnhmzbb .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#dooqnhmzbb .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#dooqnhmzbb .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#dooqnhmzbb .gt_left {
-  text-align: left;
-}
-
-#dooqnhmzbb .gt_center {
-  text-align: center;
-}
-
-#dooqnhmzbb .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#dooqnhmzbb .gt_font_normal {
-  font-weight: normal;
-}
-
-#dooqnhmzbb .gt_font_bold {
-  font-weight: bold;
-}
-
-#dooqnhmzbb .gt_font_italic {
-  font-style: italic;
-}
-
-#dooqnhmzbb .gt_super {
-  font-size: 65%;
-}
-
-#dooqnhmzbb .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#dooqnhmzbb .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#dooqnhmzbb .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#dooqnhmzbb .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#dooqnhmzbb .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#dooqnhmzbb .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#dooqnhmzbb .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#dooqnhmzbb .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#dooqnhmzbb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead>
-<tr class="header gt_col_headings">
-<th id="week" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>WEEK</strong></th>
-<th id="date" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><strong>DATE</strong></th>
-<th id="topic" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>TOPIC</strong></th>
-<th id="materials" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>MATERIALS</strong></th>
-<th id="code" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>CODE</strong></th>
-<th id="due" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>DUE</strong></th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_center" headers="week">1</td>
-<td class="gt_row gt_right" headers="date" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">Tue, Jul 15</td>
-<td class="gt_row gt_left" headers="topic" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><img src="./images/logo-r6.png" width="50"> Object-Oriented Programming (OOP) in R</td>
-<td class="gt_row gt_left" headers="materials" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">📚<a href="./slides/Topic1.html">Topic 1</a> <br> 📖<a href="https://adv-r.hadley.nz/oo.html">OOP</a></td>
-<td class="gt_row gt_left" headers="code" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><a href="https://github.com/mmadoliat/WSoRT/blob/main/slides/Topic1.Rmd">R👩‍💻</a> <br> <a href="./hands-on/HO1.html">R🛠️</a></td>
-<td class="gt_row gt_left" headers="due"><br>
-</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_center gt_striped" headers="week"><br>
-</td>
-<td class="gt_row gt_right gt_striped" headers="date" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">Wed, Jul 16</td>
-<td class="gt_row gt_left gt_striped" headers="topic" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><img src="./images/logo-shiny.png" width="50"> Create dynamic Shiny web applications</td>
-<td class="gt_row gt_left gt_striped" headers="materials" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">📚<a href="./slides/Topic2.html">Topic 2</a> <br> 📖<a href="https://shiny.posit.co/">Shiny</a></td>
-<td class="gt_row gt_left gt_striped" headers="code" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><a href="https://github.com/rstudio/shiny-examples/">R👩‍💻</a> <br> <a href="./hands-on/HO2.html">R🛠️</a></td>
-<td class="gt_row gt_left gt_striped" headers="due"><br>
-</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_center" headers="week"><br>
-</td>
-<td class="gt_row gt_right" headers="date" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">Thu, Jul 17</td>
-<td class="gt_row gt_left" headers="topic" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><img src="./images/logo-rcpp.png" width="50">Enhance performance with Rcpp (C++)</td>
-<td class="gt_row gt_left" headers="materials" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">📚<a href="./slides/Topic3.html">Topic 3</a> <br> 📖<a href="https://teuder.github.io/rcpp4everyone_en/">Rcpp for everyone</a></td>
-<td class="gt_row gt_left" headers="code" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><a href="https://github.com/mmadoliat/WSoRT/blob/main/slides/Topic3.Rmd">R👩‍💻</a> <br> <a href="./hands-on/HO3.html">R🛠️</a></td>
-<td class="gt_row gt_left" headers="due"><br>
-</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_center gt_striped" headers="week"><br>
-</td>
-<td class="gt_row gt_right gt_striped" headers="date" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">Fri, Jul 18</td>
-<td class="gt_row gt_left gt_striped" headers="topic" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><br>
-</td>
-<td class="gt_row gt_left gt_striped" headers="materials" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><br>
-</td>
-<td class="gt_row gt_left gt_striped" headers="code" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><br>
-</td>
-<td class="gt_row gt_left gt_striped" headers="due">📝 <a href="./hands-on/HW1.html">HW 1</a> at 11:50 pm</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_center" headers="week">2</td>
-<td class="gt_row gt_right" headers="date" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">Tue, Jul 22</td>
-<td class="gt_row gt_left" headers="topic" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><img src="./images/logo-reticulate.png" width="50"> Integrate Python in R using Reticulate</td>
-<td class="gt_row gt_left" headers="materials" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">📚<a href="./slides/Topic4.html">Topic 4</a> <br> 📖<a href="https://rstudio.github.io/reticulate/articles/calling_python.html">Calling Python from R</a></td>
-<td class="gt_row gt_left" headers="code" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">R👩‍💻</td>
-<td class="gt_row gt_left" headers="due"><br>
-</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_center gt_striped" headers="week"><br>
-</td>
-<td class="gt_row gt_right gt_striped" headers="date" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">Wed, Jul 23</td>
-<td class="gt_row gt_left gt_striped" headers="topic" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><img src="./images/logo-devtools.png" width="50"> Develop your own professional R package</td>
-<td class="gt_row gt_left gt_striped" headers="materials" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">📚<a href="./slides/Topic5.html">Topic 5</a> <br> 📖<a href="https://r-pkgs.org/">R package</a></td>
-<td class="gt_row gt_left gt_striped" headers="code" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">R👩‍💻</td>
-<td class="gt_row gt_left gt_striped" headers="due"><br>
-</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_center" headers="week"><br>
-</td>
-<td class="gt_row gt_right" headers="date" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">Thu, Jul 24</td>
-<td class="gt_row gt_left" headers="topic" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><img src="./images/logo-github.png" width="50"> Collaborate via GitHub / CRAN submission process</td>
-<td class="gt_row gt_left" headers="materials" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">📚<a href="./slides/Topic6.html">Topic 6</a> <br> 📖<a href="https://happygitwithr.com/">Let’s Git started</a> <br> 📖<a href="https://r-pkgs.org/release.html">Release R package</a></td>
-<td class="gt_row gt_left" headers="code" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">R👩‍💻</td>
-<td class="gt_row gt_left" headers="due"><br>
-</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_center gt_striped" headers="week"><br>
-</td>
-<td class="gt_row gt_right gt_striped" headers="date" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">Fri, Jul 25</td>
-<td class="gt_row gt_left gt_striped" headers="topic" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><br>
-</td>
-<td class="gt_row gt_left gt_striped" headers="materials" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><br>
-</td>
-<td class="gt_row gt_left gt_striped" headers="code" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><br>
-</td>
-<td class="gt_row gt_left gt_striped" headers="due">📝 <a href="./hands-on/HW2.html">HW 2</a> at 11:50 pm</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_center" headers="week">3</td>
-<td class="gt_row gt_right" headers="date" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">Tue, Jul 29</td>
-<td class="gt_row gt_left" headers="topic" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><img src="./images/logo-tensorflow.png" width="50"> Deep Learning in R</td>
-<td class="gt_row gt_left" headers="materials" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3">📚<a href="./slides/Topic7.html">Topic 7</a> <br> 📖<a href="https://www.manning.com/books/deep-learning-with-r">Deep Learning with R</a></td>
-<td class="gt_row gt_left" headers="code" style="border-right-width: 1px; border-right-style: solid; border-right-color: #D3D3D3"><a href="https://raw.githubusercontent.com/mmadoliat/CompStat/refs/heads/master/R/DLiR/DLiR.zip">R👩‍💻</a></td>
-<td class="gt_row gt_left" headers="due"><br>
-</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</div>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>In this 30 min session you will:</p>
+<ol type="1">
+<li>Download and inspect the C++ implementation for k‑NN.</li>
+<li>Compile and load the Rcpp code.</li>
+<li>Run benchmarks comparing pure-R vs Rcpp predictions.</li>
+<li>Analyze how sample size and dimensionality affect performance.</li>
+</ol>
+<hr>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>Download the C++ and helper scripts into your working directory:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">curl</span> <span class="at">-O</span> https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/src/knn_pred.cpp</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="ex">curl</span> <span class="at">-O</span> https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/runthis.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Open the files in your editor to review the code:</p>
+<ul>
+<li><strong>knn_pred.cpp</strong> contains the <code>knn_pred_cpp()</code> function (Rcpp).</li>
+<li><strong>runthis.R</strong> sources both R and C++ implementations and runs <code>microbenchmark()</code>.</li>
+</ul>
+<hr>
+</section>
+<section id="compile-the-c-code" class="level2">
+<h2 class="anchored" data-anchor-id="compile-the-c-code">1. Compile the C++ code</h2>
+<p>In an R console or RStudio, run:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>Rcpp<span class="sc">::</span><span class="fu">sourceCpp</span>(<span class="st">"knn_pred.cpp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If successful, you should see <code>knn_pred_cpp</code> available:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ls</span>(<span class="st">"package:base"</span>) <span class="co"># confirm knn_pred_cpp is loaded</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># [1] "knn_pred_cpp"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="inspect-the-runner-script" class="level2">
+<h2 class="anchored" data-anchor-id="inspect-the-runner-script">2. Inspect the runner script</h2>
+<p>Open <strong>runthis.R</strong>, which contains:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">source</span>(<span class="st">"R/knn_s3_formula.R"</span>)  <span class="co"># loads knn_s3 and predict()</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">source</span>(<span class="st">"knn_pred.cpp"</span>)        <span class="co"># loads Rcpp function</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># Simulate data and benchmark</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>data <span class="ot">&lt;-</span> <span class="fu">simulate_knn_data</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">p =</span> <span class="dv">5</span>, <span class="at">m =</span> <span class="dv">200</span>, <span class="at">k =</span> <span class="dv">10</span>)</span>
+<span id="cb4-6"><a href="#cb4-6"></a>mb <span class="ot">&lt;-</span> microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="at">Rcpp =</span> <span class="fu">knn_pred_cpp</span>(data<span class="sc">$</span>train_x, data<span class="sc">$</span>train_y, data<span class="sc">$</span>test_x, data<span class="sc">$</span>k),</span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="at">R    =</span> <span class="fu">knn_pred_R</span>(data<span class="sc">$</span>train_x, data<span class="sc">$</span>train_y, data<span class="sc">$</span>test_x, data<span class="sc">$</span>k),</span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="at">times =</span> <span class="dv">20</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="fu">print</span>(mb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Try running this script:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">source</span>(<span class="st">"runthis.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+<section id="vary-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="vary-parameters">3. Vary parameters</h2>
+<p>Modify <strong>runthis.R</strong> or re-run interactively to examine different settings:</p>
+<ul>
+<li>Increase <strong>n</strong> (training size) from 1000 to 5000 or 10000.</li>
+<li>Increase <strong>p</strong> (dimensions) from 5 to 20 or 50.</li>
+<li>Observe how the Rcpp version scales relative to pure-R.</li>
+</ul>
+<p>Focus on how the Rcpp implementation stays much faster as complexity grows.</p>
+<hr>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">4. Discussion</h2>
+<ul>
+<li>Where does Rcpp help most?</li>
+<li>Are there settings where pure R is sufficient?</li>
+<li>How might you further optimize (e.g., using STL partial_sort)?</li>
+</ul>
+<hr>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
+<ul>
+<li>Try integrating this into your <code>knn_s3</code> class and Shiny app.</li>
+<li>Explore parallel Rcpp implementations (OpenMP).</li>
+<li>Consider other statistical routines with nested loops.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1394,13 +952,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./course-syllabus.html" class="pagination-link" aria-label="Syllabus">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Syllabus</span>
+      <a href="../hands-on/HO2.html" class="pagination-link" aria-label="Shiny">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Shiny</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./slides/Topic1.html" class="pagination-link" aria-label="OOP in R">
-        <span class="nav-page-text">OOP in R</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../hands-on/HW1.html" class="pagination-link" aria-label="First Week HW">
+        <span class="nav-page-text">First Week HW</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1412,7 +970,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/mmadoliat/SCoRT/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mmadoliat/SCoRT/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mmadoliat/SCoRT/edit/main/hands-on/HO3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mmadoliat/SCoRT/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
