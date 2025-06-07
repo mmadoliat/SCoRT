@@ -1,0 +1,41 @@
+---
+title: "Hands-on: k-NN Regression in Shiny"
+format: html
+theme: cosmo
+editor: visual
+--------------
+
+## Overview
+
+In this 30 min session you will:
+
+* Launch and explore the k-NN Shiny app
+* Adjust **k**, select backend (R vs C++)
+* Observe train/test performance and parity plots
+
+---
+
+## Setup
+
+Download the Shiny app:
+
+```bash
+curl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/app.R
+```
+
+---
+
+## Launch the App
+
+```{r}
+# Run the Shiny application
+shiny::runApp('app.R')
+```
+
+---
+
+## Tasks
+
+1. Change the train/test split ratio in `make_split()` (e.g. 80/20).
+2. Add a slider input for the split ratio in `ui` and update server logic.
+3. Extend the performance panel to show Mean Absolute Error (MAE).
