@@ -437,16 +437,28 @@ Mehdi Maadooliat and Hossein Haghbin
 <section>
 <section id="introduction-environment-setup" class="title-slide slide level1 center">
 <h1>1. Introduction &amp; Environment Setup</h1>
+<div>
 <ul>
-<li><p><strong>Why Deep Learning?</strong> complex function approximation, feature engineering</p></li>
-<li><p><strong>Keras in R</strong>: high-level API for TensorFlow backend</p></li>
-<li><p><strong>Installation</strong>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">"keras"</span>)</span>
-<span id="cb1-2"><a></a><span class="fu">library</span>(keras)</span>
+<li class="fragment"><p><strong>Why Deep Learning?</strong> complex function approximation, feature engineering</p></li>
+<li class="fragment"><p><strong>Keras in R</strong>: high-level API for TensorFlow backend</p></li>
+<li class="fragment"><p><strong>Installation</strong>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">"keras3"</span>)</span>
+<span id="cb1-2"><a></a><span class="fu">library</span>(keras3)</span>
 <span id="cb1-3"><a></a><span class="fu">install_keras</span>()  <span class="co"># installs TensorFlow</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Project structure</strong>: data/, scripts/, models/</p></li>
+<li class="fragment"><p><strong>Backend Setup</strong>: Automatically installs TensorFlow backend</p></li>
+<li class="fragment"><p><strong>Benefits</strong>:</p></li>
 </ul>
-<p>??? note Demo environment check: <code>tensorflow::tf_config()</code>.</p>
+</div>
+<div class="fragment">
+<div style="margin-top: -30px; margin-left: 50px;">
+<div class="small">
+<ul>
+<li>Seamlessly integrates R with TensorFlow</li>
+<li>Easy access to deep learning tools within R environment: <code>tensorflow::tf_config()</code>.</li>
+</ul>
+</div>
+</div>
+</div>
 </section>
 <section id="classical-programming-vs-machine-learning" class="slide level2 smaller" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Classical Programming vs Machine Learning</h2>
@@ -694,10 +706,13 @@ Mehdi Maadooliat and Hossein Haghbin
 <p><span style="padding-left: 3.5em;"><span class="text-red"><strong>Hidden Layers Disappears</strong></span></span></p>
 </div>
 </section>
-<section id="section" class="slide level2" data-fullscreen="true">
+<section id="section" class="slide level2">
 <h2></h2>
 <iframe class="stretch" data-src="http://en.wikipedia.org/wiki/Comparison_of_deep_learning_software">
 </iframe>
+<div class="smallest">
+<p><a href="http://en.wikipedia.org/wiki/Comparison_of_deep_learning_software">🔗 Wikipedia: Deep learning software</a></p>
+</div>
 </section>
 <section id="what-is-tensorflow" class="slide level2">
 <h2>What is TensorFlow?</h2>
@@ -781,9 +796,21 @@ Mehdi Maadooliat and Hossein Haghbin
 <p><img data-src="images/DLiR/tensor-5d.png" class="absolute" style="bottom: 0px; right: 300px; width: 125px; "></p>
 </div>
 </section>
-<section id="section-1" class="slide level2" data-fullscreen="true">
-<h2></h2>
-<p><a href="https://trends.google.com/trends/explore?date=2015-01-01%202030-05-15&amp;q=TensorFlow,Pytorch,Keras,TensorFlow%20%2B%20Keras" target="_blank" rel="noopener noreferrer"> View Google Trends for TensorFlow, PyTorch, and Keras </a></p>
+<section id="why-keras" class="slide level2">
+<h2>Why Keras?</h2>
+<div class="small">
+<ul>
+<li>It allows the same code to run seamlessly on CPU or GPU.</li>
+<li>It has a user-friendly API that makes it easy to quickly prototype deep-learning models.</li>
+</ul>
+</div>
+<div style="width: 700px; height: 500px; overflow:hidden;">
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/4116_RC01/embed_loader.js"></script>
+<script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"TensorFlow","geo":"","time":"2015-01-01 2030-05-15"},{"keyword":"Pytorch","geo":"","time":"2015-01-01 2030-05-15"},{"keyword":"Keras","geo":"","time":"2015-01-01 2030-05-15"},{"keyword":"TensorFlow + Keras","geo":"","time":"2015-01-01 2030-05-15"}],"category":0,"property":""}, {"exploreQuery":"date=2015-01-01%202030-05-15&q=TensorFlow,Pytorch,Keras,TensorFlow%20%2B%20Keras","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/keras.png" class="absolute" style="bottom: 325px; right: 0px; width: 350px; "> <img data-src="images/DLiR/keras-2.png" class="absolute" style="bottom: 0px; right: 30px; width: 275px; "></p>
+</div>
 </section>
 <section id="installing-keras" class="slide level2 small">
 <h2>Installing Keras</h2>
@@ -880,7 +907,7 @@ Mehdi Maadooliat and Hossein Haghbin
 
 </div>
 <div class="shrink-code">
-<div class="sourceCode" id="cb5" height="100" data-code-line-numbers="1|3-4|6-8|9-10|12-14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(keras)</span>
+<div class="sourceCode" id="cb5" height="100" data-code-line-numbers="1|3-4|6-8|9-10|12-14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(keras3)</span>
 <span id="cb5-2"><a></a></span>
 <span id="cb5-3"><a></a><span class="co"># Load MNIST (Modified National Institute of Standards and Technology) </span></span>
 <span id="cb5-4"><a></a>images datasets <span class="fu">c</span>(<span class="fu">c</span>(x_train, y_train), <span class="fu">c</span>(x_test, y_test)) <span class="sc">%&lt;-%</span> <span class="fu">dataset_mnist</span>()</span>
@@ -897,18 +924,221 @@ Mehdi Maadooliat and Hossein Haghbin
 </div>
 <p><img data-src="images/DLiR/step1.png" class="absolute" style="left: 50px; bottom: 0px; width: 950px; "></p>
 </section>
+<section id="keras-step-2-model-definition" class="slide level2 small">
+<h2>Keras: Step 2 – Model definition</h2>
+&nbsp; <span class="absolute" style="bottom: 0px; right: 50px; width: 420px; "><img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width="420"></span>
+<div style="margin-top: -40px;">
+
+</div>
+<div class="scrollable" style="height: 300px; overflow-y: auto;">
+<div class="shrink-code">
+<div class="sourceCode" id="cb6" data-code-line-numbers="1|1-3|4|5-6|7|9-26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>model <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>(<span class="at">input_shape =</span> <span class="fu">c</span>(<span class="dv">784</span>)) </span>
+<span id="cb6-2"><a></a>model <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a></a>     <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">256</span>, <span class="at">activation =</span> <span class="st">'relu'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a></a>     <span class="fu">layer_dropout</span>(<span class="at">rate =</span> <span class="fl">0.4</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-5"><a></a>     <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">128</span>, <span class="at">activation =</span> <span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a></a>     <span class="fu">layer_dropout</span>(<span class="at">rate =</span> <span class="fl">0.3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a></a>     <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">10</span>, <span class="at">activation =</span> <span class="st">'softmax'</span>)</span>
+<span id="cb6-8"><a></a>     </span>
+<span id="cb6-9"><a></a><span class="fu">summary</span>(model)</span>
+<span id="cb6-10"><a></a><span class="sc">&gt;</span><span class="co"># Model: "sequential"</span></span>
+<span id="cb6-11"><a></a><span class="er">&gt;</span><span class="co"># │ Layer (type)          │ Output Shape     │ Param # │</span></span>
+<span id="cb6-12"><a></a><span class="er">&gt;</span><span class="co"># ├-----------------------┼------------------┼---------┤</span></span>
+<span id="cb6-13"><a></a><span class="er">&gt;</span><span class="co"># │ dense_11 (Dense)      │ (None, 256)      │ 200,960 │</span></span>
+<span id="cb6-14"><a></a><span class="er">&gt;</span><span class="co"># │ dropout_3 (Dropout)   │ (None, 256)      │       0 │</span></span>
+<span id="cb6-15"><a></a><span class="er">&gt;</span><span class="co"># │ dense_10 (Dense)      │ (None, 128)      │  32,896 │</span></span>
+<span id="cb6-16"><a></a><span class="er">&gt;</span><span class="co"># │ dropout_2 (Dropout)   │ (None, 128)      │       0 │</span></span>
+<span id="cb6-17"><a></a><span class="er">&gt;</span><span class="co"># │ dense_9 (Dense)       │ (None, 10)       │   1,290 │</span></span>
+<span id="cb6-18"><a></a><span class="er">&gt;</span><span class="co"># └-----------------------┴------------------┴---------┘</span></span>
+<span id="cb6-19"><a></a><span class="er">&gt;</span><span class="co">#  Total params: 235,146 (918.54 KB)</span></span>
+<span id="cb6-20"><a></a><span class="er">&gt;</span><span class="co">#  Trainable params: 235,146 (918.54 KB)</span></span>
+<span id="cb6-21"><a></a><span class="er">&gt;</span><span class="co">#  Non-trainable params: 0 (0.00 B)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><img data-src="images/DLiR/step2.png" class="absolute" style="left: 0px; bottom: 25px; width: 550px; "></p>
+<div class="fragment">
+<p><img data-src="images/DLiR/dropout.gif" class="absolute" style="bottom: 25px; right: 0px; width: 500px; "></p>
+</div>
+</section>
+<section id="multi-class-vs-multi-label-classification" class="slide level2">
+<h2>Multi-Class vs Multi-Label Classification</h2>
+<p><img data-src="images/DLiR/mcml-1.png" class="absolute" style="left: 0px; bottom: 115px; width: 1000px; "></p>
+<div class="fragment">
+<p><img data-src="images/DLiR/mcml-2.png" class="absolute" style="left: 0px; bottom: 115px; width: 1200px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/mcml-3.png" class="absolute" style="left: 0px; bottom: 115px; width: 1000px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/mcml-4.png" class="absolute" style="left: 0px; bottom: 115px; width: 1200px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/mcml-5.png" class="absolute" style="left: 0px; bottom: 115px; width: 1200px; "></p>
+</div>
+</section>
+<section id="multi-class-vs-multi-label-classification-cont." class="slide level2">
+<h2>Multi-Class vs Multi-Label Classification (Cont.)</h2>
+<p><img data-src="images/DLiR/mcml-6.png" class="absolute" style="left: 0px; bottom: 35px; width: 1000px; "></p>
+<div class="fragment">
+<p><img data-src="images/DLiR/mcml-7.png" class="absolute" style="left: 0px; bottom: 35px; width: 1200px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/mcml-8.png" class="absolute" style="left: 0px; bottom: 35px; width: 1000px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/mcml-9.png" class="absolute" style="left: 0px; bottom: 35px; width: 1200px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/mcml-10.png" class="absolute" style="left: 0px; bottom: 35px; width: 1200px; "></p>
+</div>
+</section>
+<section id="multi-class-vs-multi-label-classification-cont.-1" class="slide level2">
+<h2>Multi-Class vs Multi-Label Classification (Cont.)</h2>
+<p><img data-src="images/DLiR/mcml-11.png" class="absolute" style="left: 0px; bottom: 35px; width: 1000px; "></p>
+<div class="fragment">
+<p><img data-src="images/DLiR/mcml-12.png" class="absolute" style="left: 0px; bottom: 35px; width: 1200px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/DLiR/mcml-13.png" class="absolute" style="left: 0px; bottom: 35px; width: 1000px; "></p>
+</div>
+</section>
+<section id="keras-step-3-compile-model" class="slide level2 small">
+<h2>Keras: Step 3 – Compile Model</h2>
+&nbsp; <span class="absolute" style="bottom: 0px; right: 50px; width: 420px; "><img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width="420"></span>
+<div style="margin-top: -40px;">
+
+</div>
+<ul>
+<li>Model compilation prepares the model for training by:
+<ul>
+<li>Converting the layers into a TensorFlow graph</li>
+<li>Applying the specified loss function and optimizer</li>
+<li>Arranging for the collection of metrics during training</li>
+</ul></li>
+</ul>
+<div class="shrink-code">
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>model <span class="sc">%&gt;%</span> <span class="fu">compile</span>(</span>
+<span id="cb7-2"><a></a>  <span class="at">loss =</span> <span class="st">'categorical_crossentropy'</span>,</span>
+<span id="cb7-3"><a></a>  <span class="at">optimizer =</span> <span class="fu">optimizer_rmsprop</span>(),</span>
+<span id="cb7-4"><a></a>  <span class="at">metrics =</span> <span class="fu">c</span>(<span class="st">'accuracy'</span>)</span>
+<span id="cb7-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img data-src="images/DLiR/step3a.png" class="absolute" style="bottom: 300px; right: 0px; width: 225px; "></p>
+<div class="fragment">
+<p><img data-src="images/DLiR/step3b.png" class="absolute" style="bottom: 0px; right: 0px; width: 930px; "></p>
+</div>
+</section>
+<section id="keras-step-4-model-training" class="slide level2 small">
+<h2>Keras: Step 4 – Model Training</h2>
+&nbsp; <span class="absolute" style="bottom: 0px; right: 50px; width: 420px; "><img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width="420"></span>
+<div style="margin-top: -40px;">
+
+</div>
+<ul>
+<li>Use the <code>fit()</code> to train the model for 10 epochs using batches of 128 images:
+<ul>
+<li>Feed 128 samples at a time to the model (batch_size = 128)</li>
+<li>Traverse the input dataset 10 times (epochs = 10)</li>
+<li>Hold out 20% of the data for validation (validation_split = 0.2)</li>
+</ul></li>
+</ul>
+<div class="shrink-code">
+<div class="sourceCode" id="cb8" data-code-line-numbers="1,6|2|3|4|5|1-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
+<span id="cb8-2"><a></a>  x_train, y_train, </span>
+<span id="cb8-3"><a></a>  <span class="at">batch_size =</span> <span class="dv">128</span>, </span>
+<span id="cb8-4"><a></a>  <span class="at">epochs =</span> <span class="dv">10</span>,</span>
+<span id="cb8-5"><a></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span></span>
+<span id="cb8-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="scrollable" style="height: 100px; overflow-y: auto;">
+<div class="smallest">
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>Epoch <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb9-2"><a></a><span class="dv">375</span><span class="sc">/</span><span class="dv">375</span> ━━━━━ <span class="dv">3</span>s <span class="dv">5</span>ms<span class="sc">/</span>step <span class="sc">-</span> accuracy<span class="sc">:</span> <span class="fl">0.7831</span> <span class="sc">-</span> loss<span class="sc">:</span> <span class="fl">0.6970</span> <span class="sc">-</span> val_accuracy<span class="sc">:</span> <span class="fl">0.9513</span> <span class="sc">-</span> val_loss<span class="sc">:</span> <span class="fl">0.1640</span></span>
+<span id="cb9-3"><a></a>Epoch <span class="dv">2</span><span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb9-4"><a></a><span class="dv">375</span><span class="sc">/</span><span class="dv">375</span> ━━━━━ <span class="dv">1</span>s <span class="dv">3</span>ms<span class="sc">/</span>step <span class="sc">-</span> accuracy<span class="sc">:</span> <span class="fl">0.9371</span> <span class="sc">-</span> loss<span class="sc">:</span> <span class="fl">0.2123</span> <span class="sc">-</span> val_accuracy<span class="sc">:</span> <span class="fl">0.9628</span> <span class="sc">-</span> val_loss<span class="sc">:</span> <span class="fl">0.1249</span></span>
+<span id="cb9-5"><a></a>Epoch <span class="dv">3</span><span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb9-6"><a></a><span class="dv">375</span><span class="sc">/</span><span class="dv">375</span> ━━━━━ <span class="dv">1</span>s <span class="dv">3</span>ms<span class="sc">/</span>step <span class="sc">-</span> accuracy<span class="sc">:</span> <span class="fl">0.9539</span> <span class="sc">-</span> loss<span class="sc">:</span> <span class="fl">0.1540</span> <span class="sc">-</span> val_accuracy<span class="sc">:</span> <span class="fl">0.9666</span> <span class="sc">-</span> val_loss<span class="sc">:</span> <span class="fl">0.1098</span></span>
+<span id="cb9-7"><a></a>Epoch <span class="dv">4</span><span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb9-8"><a></a><span class="dv">375</span><span class="sc">/</span><span class="dv">375</span> ━━━━━ <span class="dv">1</span>s <span class="dv">3</span>ms<span class="sc">/</span>step <span class="sc">-</span> accuracy<span class="sc">:</span> <span class="fl">0.9612</span> <span class="sc">-</span> loss<span class="sc">:</span> <span class="fl">0.1301</span> <span class="sc">-</span> val_accuracy<span class="sc">:</span> <span class="fl">0.9743</span> <span class="sc">-</span> val_loss<span class="sc">:</span> <span class="fl">0.0865</span></span>
+<span id="cb9-9"><a></a>Epoch <span class="dv">5</span><span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb9-10"><a></a><span class="dv">375</span><span class="sc">/</span><span class="dv">375</span> ━━━━━ <span class="dv">1</span>s <span class="dv">3</span>ms<span class="sc">/</span>step <span class="sc">-</span> accuracy<span class="sc">:</span> <span class="fl">0.9663</span> <span class="sc">-</span> loss<span class="sc">:</span> <span class="fl">0.1145</span> <span class="sc">-</span> val_accuracy<span class="sc">:</span> <span class="fl">0.9730</span> <span class="sc">-</span> val_loss<span class="sc">:</span> <span class="fl">0.0921</span></span>
+<span id="cb9-11"><a></a>Epoch <span class="dv">6</span><span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb9-12"><a></a><span class="dv">375</span><span class="sc">/</span><span class="dv">375</span> ━━━━━ <span class="dv">1</span>s <span class="dv">3</span>ms<span class="sc">/</span>step <span class="sc">-</span> accuracy<span class="sc">:</span> <span class="fl">0.9688</span> <span class="sc">-</span> loss<span class="sc">:</span> <span class="fl">0.1020</span> <span class="sc">-</span> val_accuracy<span class="sc">:</span> <span class="fl">0.9736</span> <span class="sc">-</span> val_loss<span class="sc">:</span> <span class="fl">0.0923</span></span>
+<span id="cb9-13"><a></a>Epoch <span class="dv">7</span><span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb9-14"><a></a><span class="dv">375</span><span class="sc">/</span><span class="dv">375</span> ━━━━━ <span class="dv">1</span>s <span class="dv">3</span>ms<span class="sc">/</span>step <span class="sc">-</span> accuracy<span class="sc">:</span> <span class="fl">0.9726</span> <span class="sc">-</span> loss<span class="sc">:</span> <span class="fl">0.0940</span> <span class="sc">-</span> val_accuracy<span class="sc">:</span> <span class="fl">0.9770</span> <span class="sc">-</span> val_loss<span class="sc">:</span> <span class="fl">0.0822</span></span>
+<span id="cb9-15"><a></a>Epoch <span class="dv">8</span><span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb9-16"><a></a><span class="dv">375</span><span class="sc">/</span><span class="dv">375</span> ━━━━━ <span class="dv">1</span>s <span class="dv">3</span>ms<span class="sc">/</span>step <span class="sc">-</span> accuracy<span class="sc">:</span> <span class="fl">0.9742</span> <span class="sc">-</span> loss<span class="sc">:</span> <span class="fl">0.0875</span> <span class="sc">-</span> val_accuracy<span class="sc">:</span> <span class="fl">0.9770</span> <span class="sc">-</span> val_loss<span class="sc">:</span> <span class="fl">0.0815</span></span>
+<span id="cb9-17"><a></a>Epoch <span class="dv">9</span><span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb9-18"><a></a><span class="dv">375</span><span class="sc">/</span><span class="dv">375</span> ━━━━━ <span class="dv">1</span>s <span class="dv">3</span>ms<span class="sc">/</span>step <span class="sc">-</span> accuracy<span class="sc">:</span> <span class="fl">0.9750</span> <span class="sc">-</span> loss<span class="sc">:</span> <span class="fl">0.0791</span> <span class="sc">-</span> val_accuracy<span class="sc">:</span> <span class="fl">0.9785</span> <span class="sc">-</span> val_loss<span class="sc">:</span> <span class="fl">0.0810</span></span>
+<span id="cb9-19"><a></a>Epoch <span class="dv">10</span><span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb9-20"><a></a><span class="dv">375</span><span class="sc">/</span><span class="dv">375</span> ━━━━━ <span class="dv">1</span>s <span class="dv">3</span>ms<span class="sc">/</span>step <span class="sc">-</span> accuracy<span class="sc">:</span> <span class="fl">0.9769</span> <span class="sc">-</span> loss<span class="sc">:</span> <span class="fl">0.0744</span> <span class="sc">-</span> val_accuracy<span class="sc">:</span> <span class="fl">0.9777</span> <span class="sc">-</span> val_loss<span class="sc">:</span> <span class="fl">0.0835</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="shrink-code">
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>model <span class="sc">%&gt;%</span> <span class="fu">evaluate</span>(x_test, y_test)</span>
+<span id="cb10-2"><a></a><span class="sc">&gt;</span><span class="co"># 313/313 ━━━━━ 0s 771us/step - accuracy: 0.9747 - loss: 0.0930</span></span>
+<span id="cb10-3"><a></a><span class="er">&gt;</span><span class="co"># $accuracy</span></span>
+<span id="cb10-4"><a></a><span class="er">&gt;</span><span class="co"># [1] 0.9791</span></span>
+<span id="cb10-5"><a></a><span class="er">&gt;</span><span class="co"># </span></span>
+<span id="cb10-6"><a></a><span class="er">&gt;</span><span class="co"># $loss</span></span>
+<span id="cb10-7"><a></a><span class="er">&gt;</span><span class="co"># [1] 0.0784568</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="keras-evaluation-and-prediction" class="slide level2 small">
+<h2>Keras: Evaluation and prediction</h2>
+<p>&nbsp; <span class="absolute" style="bottom: 0px; right: 50px; width: 420px; "><img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width="420"></span></p>
+<div class="shrink-code">
+<div class="sourceCode" id="cb11" data-code-line-numbers="1|4-11|13-24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">plot</span>(history)</span>
+<span id="cb11-2"><a></a></span>
+<span id="cb11-3"><a></a></span>
+<span id="cb11-4"><a></a>model <span class="sc">%&gt;%</span> <span class="fu">predict</span>(x_test[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,]) <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, which.max)<span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb11-5"><a></a><span class="sc">&gt;</span><span class="co"># 4/4 ━━━━━━━━━━━━━━━━━━━━ 0s 957us/step</span></span>
+<span id="cb11-6"><a></a><span class="er">&gt;</span><span class="co">#   [1] 7 2 1 0 4 1 4 9 6 9 0 6 9 0 1 5 9 7</span></span>
+<span id="cb11-7"><a></a><span class="er">&gt;</span><span class="co">#  [19] 3 4 9 6 6 5 4 0 7 4 0 1 3 1 3 4 7 2</span></span>
+<span id="cb11-8"><a></a><span class="er">&gt;</span><span class="co">#  [37] 7 1 2 1 1 7 4 2 3 5 1 2 4 4 6 3 5 5</span></span>
+<span id="cb11-9"><a></a><span class="er">&gt;</span><span class="co">#  [55] 6 0 4 1 9 5 7 8 9 3 7 4 6 4 3 0 7 0</span></span>
+<span id="cb11-10"><a></a><span class="er">&gt;</span><span class="co">#  [73] 2 9 1 7 3 2 9 7 7 6 2 7 8 4 7 3 6 1</span></span>
+<span id="cb11-11"><a></a><span class="er">&gt;</span><span class="co">#  [91] 3 6 9 3 1 4 1 7 6 9</span></span>
+<span id="cb11-12"><a></a></span>
+<span id="cb11-13"><a></a><span class="fu">round</span>(model <span class="sc">%&gt;%</span> <span class="fu">predict</span>(x_test[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,]),<span class="dv">5</span>)</span>
+<span id="cb11-14"><a></a><span class="sc">&gt;</span><span class="co"># 1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 16ms/step</span></span>
+<span id="cb11-15"><a></a><span class="er">&gt;</span><span class="co">#          [,1]    [,2]  [,3]  [,4]    [,5]    [,6]    [,7]    [,8]  [,9]   [,10]</span></span>
+<span id="cb11-16"><a></a><span class="er">&gt;</span><span class="co">#  [1,] 0.00000 0.00000 0e+00 0.000 0.00000 0.00000 0.00000 1.00000 0e+00 0.00000</span></span>
+<span id="cb11-17"><a></a><span class="er">&gt;</span><span class="co">#  [2,] 0.00000 0.00000 1e+00 0.000 0.00000 0.00000 0.00000 0.00000 0e+00 0.00000</span></span>
+<span id="cb11-18"><a></a><span class="er">&gt;</span><span class="co">#  [3,] 0.00000 0.99983 1e-05 0.000 0.00001 0.00000 0.00000 0.00014 1e-05 0.00000</span></span>
+<span id="cb11-19"><a></a><span class="er">&gt;</span><span class="co">#  [4,] 0.99986 0.00000 6e-05 0.000 0.00000 0.00000 0.00007 0.00000 0e+00 0.00000</span></span>
+<span id="cb11-20"><a></a><span class="er">&gt;</span><span class="co">#  [5,] 0.00000 0.00000 0e+00 0.000 0.99995 0.00000 0.00000 0.00000 0e+00 0.00005</span></span>
+<span id="cb11-21"><a></a><span class="er">&gt;</span><span class="co">#  [6,] 0.00000 0.99998 0e+00 0.000 0.00000 0.00000 0.00000 0.00002 0e+00 0.00000</span></span>
+<span id="cb11-22"><a></a><span class="er">&gt;</span><span class="co">#  [7,] 0.00000 0.00000 0e+00 0.000 0.99984 0.00000 0.00000 0.00000 3e-05 0.00013</span></span>
+<span id="cb11-23"><a></a><span class="er">&gt;</span><span class="co">#  [8,] 0.00000 0.00001 1e-05 0.002 0.00007 0.00007 0.00000 0.00044 4e-05 0.99737</span></span>
+<span id="cb11-24"><a></a><span class="er">&gt;</span><span class="co">#  [9,] 0.00000 0.00000 0e+00 0.000 0.00000 0.30770 0.69230 0.00000 0e+00 0.00000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img data-src="images/DLiR/loss-acc.png" class="absolute" style="top: 185px; right: 65px; width: 340px; "></p>
+</section>
+<section id="keras-demo" class="slide level2">
+<h2>Keras Demo</h2>
+<ul>
+<li><a href="https://keras3.posit.co/articles/getting_started.html">keras3.posit.co</a></li>
+<li><a href="http://tinyurl.com/dna-Rstudio" target="_blank">🔗 Launch R</a></li>
+</ul>
+<p><img data-src="images/DLiR/keras-demo.png" class="absolute" style="bottom: 0px; right: 0px; width: 750px; "></p>
+</section>
 <section id="classification-on-mnist" class="slide level2">
 <h2>Classification on MNIST</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>model <span class="sc">%&gt;%</span> <span class="fu">compile</span>(</span>
-<span id="cb6-2"><a></a>  <span class="at">optimizer =</span> <span class="st">'rmsprop'</span>,</span>
-<span id="cb6-3"><a></a>  <span class="at">loss =</span> <span class="st">'categorical_crossentropy'</span>,</span>
-<span id="cb6-4"><a></a>  <span class="at">metrics =</span> <span class="fu">c</span>(<span class="st">'accuracy'</span>)</span>
-<span id="cb6-5"><a></a>)</span>
-<span id="cb6-6"><a></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
-<span id="cb6-7"><a></a>  x_train, y_train,</span>
-<span id="cb6-8"><a></a>  <span class="at">epochs =</span> <span class="dv">10</span>, <span class="at">batch_size =</span> <span class="dv">128</span>,</span>
-<span id="cb6-9"><a></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span></span>
-<span id="cb6-10"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>model <span class="sc">%&gt;%</span> <span class="fu">compile</span>(</span>
+<span id="cb12-2"><a></a>  <span class="at">optimizer =</span> <span class="st">'rmsprop'</span>,</span>
+<span id="cb12-3"><a></a>  <span class="at">loss =</span> <span class="st">'categorical_crossentropy'</span>,</span>
+<span id="cb12-4"><a></a>  <span class="at">metrics =</span> <span class="fu">c</span>(<span class="st">'accuracy'</span>)</span>
+<span id="cb12-5"><a></a>)</span>
+<span id="cb12-6"><a></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
+<span id="cb12-7"><a></a>  x_train, y_train,</span>
+<span id="cb12-8"><a></a>  <span class="at">epochs =</span> <span class="dv">10</span>, <span class="at">batch_size =</span> <span class="dv">128</span>,</span>
+<span id="cb12-9"><a></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span></span>
+<span id="cb12-10"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p><strong>Data preprocessing</strong>: normalization, one-hot encoding</p></li>
 <li><p><strong>Callbacks</strong>: EarlyStopping, ModelCheckpoint</p></li>
@@ -921,14 +1151,14 @@ Mehdi Maadooliat and Hossein Haghbin
 <li><p><strong>Concepts</strong>: filters, pooling, feature maps</p></li>
 <li><p><strong>Example</strong>:</p></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>cnn <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">layer_conv_2d</span>(<span class="at">filters=</span><span class="dv">32</span>, <span class="at">kernel_size=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), <span class="at">activation=</span><span class="st">'relu'</span>, <span class="at">input_shape=</span><span class="fu">c</span>(<span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a></a>  <span class="fu">layer_max_pooling_2d</span>(<span class="at">pool_size=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a></a>  <span class="fu">layer_conv_2d</span>(<span class="at">filters=</span><span class="dv">64</span>, <span class="at">kernel_size=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-5"><a></a>  <span class="fu">layer_max_pooling_2d</span>(<span class="at">pool_size=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-6"><a></a>  <span class="fu">layer_flatten</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb7-7"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">64</span>, <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-8"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">10</span>, <span class="at">activation=</span><span class="st">'softmax'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>cnn <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">layer_conv_2d</span>(<span class="at">filters=</span><span class="dv">32</span>, <span class="at">kernel_size=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), <span class="at">activation=</span><span class="st">'relu'</span>, <span class="at">input_shape=</span><span class="fu">c</span>(<span class="dv">28</span>,<span class="dv">28</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">layer_max_pooling_2d</span>(<span class="at">pool_size=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">layer_conv_2d</span>(<span class="at">filters=</span><span class="dv">64</span>, <span class="at">kernel_size=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>), <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a></a>  <span class="fu">layer_max_pooling_2d</span>(<span class="at">pool_size=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a></a>  <span class="fu">layer_flatten</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">64</span>, <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-8"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">10</span>, <span class="at">activation=</span><span class="st">'softmax'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Image augmentation</strong>: <code>image_data_generator()</code></li>
 </ul>
@@ -941,9 +1171,9 @@ Mehdi Maadooliat and Hossein Haghbin
 <li><p><strong>RNN basics</strong>: sequence data, time steps</p></li>
 <li><p><strong>LSTM</strong>: handling long-term dependencies</p></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>rnn <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a></a>  <span class="fu">layer_lstm</span>(<span class="at">units=</span><span class="dv">128</span>, <span class="at">input_shape=</span><span class="fu">c</span>(timesteps, features)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">1</span>, <span class="at">activation=</span><span class="st">'sigmoid'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>rnn <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">layer_lstm</span>(<span class="at">units=</span><span class="dv">128</span>, <span class="at">input_shape=</span><span class="fu">c</span>(timesteps, features)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">1</span>, <span class="at">activation=</span><span class="st">'sigmoid'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Use case</strong>: sentiment analysis, text generation</li>
 </ul>
@@ -955,11 +1185,11 @@ Mehdi Maadooliat and Hossein Haghbin
 <ul>
 <li><strong>Architecture</strong>: encoder ⇄ bottleneck ⇄ decoder</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>ae <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">64</span>, <span class="at">activation=</span><span class="st">'relu'</span>, <span class="at">input_shape=</span><span class="fu">c</span>(<span class="dv">784</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">32</span>, <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">64</span>, <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-5"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">784</span>, <span class="at">activation=</span><span class="st">'sigmoid'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>ae <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">64</span>, <span class="at">activation=</span><span class="st">'relu'</span>, <span class="at">input_shape=</span><span class="fu">c</span>(<span class="dv">784</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">32</span>, <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">64</span>, <span class="at">activation=</span><span class="st">'relu'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a></a>  <span class="fu">layer_dense</span>(<span class="at">units=</span><span class="dv">784</span>, <span class="at">activation=</span><span class="st">'sigmoid'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Applications</strong>: dimensionality reduction, denoising</li>
 </ul>
