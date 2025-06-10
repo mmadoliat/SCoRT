@@ -20,12 +20,11 @@ format:
 -   Convolutional Neural Networks (CNNs)
 -   Recurrent Neural Networks (RNNs) & LSTM
 -   Autoencoders & Unsupervised Learning
--   Model Evaluation & Tuning
 -   Advanced Topics & Deployment
 -   Hands-on Exercises
 :::
 
-# 1. Introduction & Environment Setup
+# 1. Introduction & Setup
 
 ::: incremental
 -   **Why Deep Learning?** complex function approximation, feature engineering
@@ -119,7 +118,7 @@ Deep learning
 :::
 ::::::
 
-![](images/DLiR/AI-ML-DL.png){.fragment width="750"}
+![](images/DLiR/AI-ML-DL.png){.fragment width="720"}
 :::::::
 
 ## Recipes of a Machine Learning Algorithm {.smaller auto-animate="true"}
@@ -146,17 +145,21 @@ Deep learning
 <div style="margin-top: -20px;"></div>
 ::: incremental
 -   The [*input data*]{.text-red} and corresponding [*targets*]{.text-red}
-![](images/DLiR/nn-1.png){.absolute bottom=0 left=200 width=500}
+![](images/DLiR/nn-1.png){.absolute bottom=0 left=40 width=500}
 
 -   [*Layers*]{.text-red}, which are combined into a [*network* (or *model*)]{.text-red}
-![](images/DLiR/nn-2.png){.absolute bottom=0 left=200 width=500}
+![](images/DLiR/nn-2.png){.absolute bottom=0 left=40 width=500}
 
 -   The [*loss function*]{.text-red}, which provides feedback for learning
-![](images/DLiR/nn-3.png){.absolute bottom=0 left=200 width=500}
+![](images/DLiR/nn-3.png){.absolute bottom=0 left=40 width=500}
 
 -   The [*optimizer*]{.text-red}, which determines how learning proceeds
-![](images/DLiR/nn-4.png){.absolute bottom=0 left=200 width=500}
+![](images/DLiR/nn-4.png){.absolute bottom=0 left=40 width=500}
 :::
+
+. . .
+
+![](images/DLiR/backprop.gif){.absolute bottom=0 right=0 width=500}
 
 ## LeNet-5: a pioneering 7-level CNN {auto-animate="true" .smaller}
 [<img src="images/DLiR/LeNet-5_architecture.png" style="opacity: 0.10;">]{.absolute top=75 left=0}
@@ -209,14 +212,15 @@ Deep learning
 -   **Forward & backward pass**: feedforward, gradient descent
 
 ::: shrink-code
-``` {.r}
+``` {.r code-line-numbers="1-3|4"}
 model <- keras_model_sequential(input_shape = c(784)) %>%
   layer_dense(units = 32, activation = 'relu') %>%
   layer_dense(units = 10, activation = 'softmax')
+  plot(model)
 ```
 :::
 
-??? note Visualize network architecture with `plot_model()`.
+-   Visualize network architecture with `plot()`.
 
 [🔗 Launch R](http://tinyurl.com/dna-Rstudio){target=_blank}
 
@@ -287,10 +291,9 @@ model <- keras_model_sequential(input_shape = c(784)) %>%
 <span style="padding-left: 3.5em;">[**Hidden Layers Disappears**]{.text-red}</span>
 
 
-## {.slide}
+## Deep learning software
 
-<iframe class="stretch" data-src="http://en.wikipedia.org/wiki/Comparison_of_deep_learning_software">
-</iframe>
+<center>![](images/DLiR/DLiWiki.png){width=770}</center>
 
 ::: smallest
 [🔗 Wikipedia: Deep learning software](http://en.wikipedia.org/wiki/Comparison_of_deep_learning_software)
@@ -444,6 +447,8 @@ are needed: [https://tensorflow.rstudio.com/tools/local_gpu.html](https://tensor
 
 # 3. Multilayer Perceptrons (MLPs)
 
+![](images/DLiR/MNIST-2.gif){width=950}
+
 ## Keras: Step 1 – Data preprocessing {.small}
 &nbsp; [<img src="images/DLiR/tensors_flowing.gif" style="opacity: 0.05;" width=420>]{.absolute bottom=0 right=50 width=420}
 <div style="margin-top: -40px;"></div>
@@ -451,8 +456,8 @@ are needed: [https://tensorflow.rstudio.com/tools/local_gpu.html](https://tensor
 ``` {.r code-line-numbers="1|3-4|6-8|9-10|12-14" height="100"}
 library(keras3)
 
-# Load MNIST (Modified National Institute of Standards and Technology) 
-images datasets c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
+# Load MNIST (Modified National Institute of Standards and Technology) images datasets
+c(c(x_train, y_train), c(x_test, y_test)) %<-% dataset_mnist()
 
 # Flatten images and transform RGB values into [0,1] range 
 x_train <- array_reshape(x_train, c(nrow(x_train), 784))
@@ -567,7 +572,7 @@ summary(model)
     - Arranging for the collection of metrics during training
     
 ::: shrink-code
-``` {.r}
+``` {.r code-line-numbers="1,5|2|3|4|1-5"}
 model %>% compile(
   loss = 'categorical_crossentropy',
   optimizer = optimizer_rmsprop(),
@@ -685,36 +690,42 @@ round(model %>% predict(x_test[1:9,]),5)
 
 ![](images/DLiR/keras-demo.png){.absolute bottom=0 right=0 width=750}
 
-## Classification on MNIST
+## Keras API: Layers
 
-``` r
-model %>% compile(
-  optimizer = 'rmsprop',
-  loss = 'categorical_crossentropy',
-  metrics = c('accuracy')
-)
-history <- model %>% fit(
-  x_train, y_train,
-  epochs = 10, batch_size = 128,
-  validation_split = 0.2
-)
+- 90+ layers available (you can also create your own)
+
+![](images/DLiR/layers.png){.absolute top=150 right=200 width=600}
+
+. . .
+
+<div style="margin-top: 300px; margin-left: 50px;"></div>
+
+::: small
+``` {.r}
+layer_dense(units = 64, kernel_regularizer = regularizer_l1(0.01))
+layer_dense(units = 64, bias_regularizer = regularizer_l2(0.01))
 ```
+:::
 
--   **Data preprocessing**: normalization, one-hot encoding
+![](images/DLiR/layers-dense.png){.absolute bottom=30 left=0 width=350}
 
--   **Callbacks**: EarlyStopping, ModelCheckpoint
+. . .
 
-??? note Show training curves: `plot(history)`.
+![](images/DLiR/layers-cnn.png){.absolute bottom=0 right=350 width=350}
 
-# 4. Convolutional Neural Networks (CNNs)
+. . .
+
+![](images/DLiR/layers-recurrent.png){.absolute bottom=30 right=0 width=350}
+
+# Convolutional Neural Networks (CNNs)
 
 -   **Concepts**: filters, pooling, feature maps
-
 -   **Example**:
 
-``` r
-cnn <- keras_model_sequential() %>%
-  layer_conv_2d(filters=32, kernel_size=c(3,3), activation='relu', input_shape=c(28,28,1)) %>%
+::: shrink-code
+``` {.r code-line-numbers="1-2|3|4-5|6|7|8"}
+cnn <- keras_model_sequential(input_shape=c(28,28,1)) %>%
+  layer_conv_2d(filters=32, kernel_size=c(3,3), activation='relu') %>%
   layer_max_pooling_2d(pool_size=c(2,2)) %>%
   layer_conv_2d(filters=64, kernel_size=c(3,3), activation='relu') %>%
   layer_max_pooling_2d(pool_size=c(2,2)) %>%
@@ -722,85 +733,144 @@ cnn <- keras_model_sequential() %>%
   layer_dense(units=64, activation='relu') %>%
   layer_dense(units=10, activation='softmax')
 ```
+:::
 
--   **Image augmentation**: `image_data_generator()`
+![](images/DLiR/cnn-2.gif){.absolute top=480 right=350 width=450}
 
-??? note Demo augmenting and fitting on CIFAR-10 subset.
-
-# 5. Recurrent Neural Networks & LSTM
+# Recurrent Neural Networks & LSTM
 
 -   **RNN basics**: sequence data, time steps
-
 -   **LSTM**: handling long-term dependencies
 
-``` r
+::: shrink-code
+``` {.r}
 rnn <- keras_model_sequential() %>%
   layer_lstm(units=128, input_shape=c(timesteps, features)) %>%
   layer_dense(units=1, activation='sigmoid')
 ```
-
+:::
 -   **Use case**: sentiment analysis, text generation
 
-??? note Show example on IMDB dataset: `dataset_imdb()`.
+![](images/DLiR/rnn.gif){.absolute top=400 right=250 width=650}
 
-# 6. Autoencoders & Unsupervised Learning
+## Embedding Layers {.small}
+
+- Vectorization of text that reflects semantic relationships between words
+
+![](images/DLiR/one-hot-encoding.png){.absolute top=140 left=50 width=450}
+![](images/DLiR/embedding.png){.absolute top=100 right=50 width=450}
+<div style="margin-top: 320px; margin-left: 50px;"></div>
+
+. . .
+
+::: shrink-code
+``` {.r code-line-numbers="2|1-4"}
+model <- keras_model_sequential() %>%
+  layer_embedding(input_dim = 10000, output_dim = 8) %>%
+  layer_flatten() %>%
+  layer_dense(units = 1, activation = "sigmoid")
+```
+:::
+
+. . .
+
+- How to use?
+    - Learn the embeddings jointly with the main task (e.g. classification); or
+    - Load pre-trained word embeddings (e.g. Word2vec, GloVe)
+
+# Autoencoders & Unsupervised Learning
 
 -   **Architecture**: encoder ⇄ bottleneck ⇄ decoder
 
-``` r
-ae <- keras_model_sequential() %>%
-  layer_dense(units=64, activation='relu', input_shape=c(784)) %>%
+::: shrink-code
+``` {.r code-line-numbers="1-2|3|4-5"}
+ae <- keras_model_sequential(input_shape=c(784)) %>%
+  layer_dense(units=64, activation='relu') %>%
   layer_dense(units=32, activation='relu') %>%
   layer_dense(units=64, activation='relu') %>%
   layer_dense(units=784, activation='sigmoid')
 ```
+:::
+-   [**Applications**](https://www.saberhq.com/blog/autoencoders): Dimension reduction, Denoising, Anomaly detection, Image segmentation, Neural inpainting
 
--   **Applications**: dimensionality reduction, denoising
+![](images/DLiR/autoencoder.gif){.absolute top=430 right=300 width=450}
 
-??? note Demo training on noisy MNIST.
-
-# 7. Model Evaluation & Hyperparameter Tuning
-
--   **Metrics**: accuracy, precision/recall, ROC-AUC
-
--   **Plots**: confusion matrix, learning curves
-
--   **Tuning**: `tfruns`, `keras_tuner`
-
--   **K-fold CV**: manual splits or `rsample`
-
-??? note Illustrate hyperband tuning example.
-
-# 8. Advanced Topics & Deployment
+# Advanced Topics & Deployment
 
 -   **Transfer Learning**: `application_resnet50()`, fine-tuning
-
 -   **Custom layers & callbacks**
-
+-   **Generative deep learning**: Text generation, DeepDream, Variational autoencoders, Generative adversarial networks
 -   **Model saving/loading**: `save_model_hdf5()`, `load_model_hdf5()`
-
 -   **Deployment**: Plumber API, TensorFlow Serving, Shiny integration
 
-??? note Example: wrap model in Plumber endpoint.
-
-# 9. Hands-on Exercises (30 min)
+## Hands-on Exercises
 
 1.  Build and train a CNN on Fashion MNIST
+    - [MNIST CNN in keras3](https://keras3.posit.co/articles/examples/vision/mnist_convnet.html)
+<div style="margin-top: -30px; margin-left: 50px;"></div>
 
-2.  Implement an LSTM for sequence prediction (e.g., sine wave)
+. . .
 
+2.  Implement an LSTM for
+    - [Text Classification in keras3](https://keras3.posit.co/articles/examples/nlp/text_classification_from_scratch.html)
+<div style="margin-top: -30px; margin-left: 50px;"></div>
+![](images/DLiR/one-hot-encoding.png){.absolute top=190 right=50 width=450}
+
+. . .
+ 
 3.  Create an autoencoder for dimensionality reduction and visualize embeddings
-
-??? note Encourage pair work and code sharing.
+![](images/DLiR/embedding.png){.absolute bottom=0 right=120 width=400}
 
 # Resources & Further Reading
+-   Book: [**Deep Learning with R**](https://www.manning.com/books/deep-learning-with-r-second-edition) by Francois Chollet & J.J. Allaire
+<div style="margin-top: -30px; margin-left: 50px;"></div>
+![](images/DLiR/DL-book.png){.absolute top=190 right=50 width=150}
 
--   Book: *Deep Learning with R* by Francois Chollet & J.J. Allaire
+. . .
 
--   Keras docs: https://keras.rstudio.com/
+-   [**Deep Learning**](https://www.deeplearningbook.org/) Book: https://www.deeplearningbook.org/
+<div style="margin-top: -30px; margin-left: 50px;"></div>
+![](images/DLiR/DLiR.png){.absolute top=390 right=50 width=150}
 
--   TensorFlow for R: https://tensorflow.rstudio.com/
+. . .
 
--   Tutorials: https://www.coursera.org/learn/deep-learning
+- Datacamp Tutorials:
+  - [Keras: Deep Learning in R](https://www.datacamp.com/community/tutorials/keras-r-deep-learning)
+  - [Keras Tutorial: Deep Learning in Python](https://www.datacamp.com/tutorial/deep-learning-python)
+  - [TensorFlow Tutorial For Beginners](https://www.datacamp.com/tutorial/tensorflow-tutorial)
+<div style="margin-top: -30px; margin-left: 50px;"></div>
 
-??? note Provide links for reference.
+. . .
+
+-   [Keras3 for R](https://keras3.posit.co/): https://keras3.posit.co/
+-   [TensorFlow for R](https://tensorflow.rstudio.com/): https://tensorflow.rstudio.com/
+<div style="margin-top: -30px; margin-left: 50px;"></div>
+
+. . .
+
+- [Deep Learning Specializations in Coursera](https://www.coursera.org/specializations/deep-learning)
+
+## Keras for R cheatsheet
+
+<center>![](images/DLiR/cheatsheet.png){width=700}</center>
+
+::: smallest
+[🔗 Rstudio: Keras cheatsheet](https://rstudio.github.io/cheatsheets/html/keras.html)
+:::
+
+# Q&A {auto-animate="true"}
+
+<img src="images/DLiR/DL-babies.png" width="600" style="opacity: 0.5;" align="right">
+
+::: {style="margin-top: 200px;"}
+:::
+
+:::: {style="text-align: center;"}
+::: large
+**Thank You**
+:::
+::::
+
+-   Enjoy Deep Learning!
+
+
