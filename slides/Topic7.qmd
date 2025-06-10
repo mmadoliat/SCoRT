@@ -851,8 +851,9 @@ ae <- keras_model_sequential(input_shape=c(784)) %>%
 - [Deep Learning Specializations in Coursera](https://www.coursera.org/specializations/deep-learning)
 
 ## Keras for R cheatsheet
-
-<center>![](images/DLiR/cheatsheet.png){width=700}</center>
+<div style="margin-top: -30px; margin-left: 50px;"></div>
+<center>![](../misc/cheatsheets/keras.png){width=760}</center>
+<div style="margin-top: -30px; margin-left: 50px;"></div>
 
 ::: smallest
 [🔗 Rstudio: Keras cheatsheet](https://rstudio.github.io/cheatsheets/html/keras.html)
