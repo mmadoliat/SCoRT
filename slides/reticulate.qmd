@@ -4,7 +4,7 @@ author: "Nina Norgren"
 institute: ""
 image: "assets/featured.webp"
 title-slide-attributes:
-  data-background-image: "../mu-bg.png"
+  data-background-image: "mu-bg.png"
   data-background-size: stretch
   data-slide-number: none
 format: 

@@ -5,7 +5,7 @@ description: "Building packages in R."
 institute: ""
 image: "assets/featured.webp"
 title-slide-attributes:
-  data-background-image: "../mu-bg.png"
+  data-background-image: "../../slides/mu-bg.png"
   data-background-size: stretch
   data-slide-number: none
 format: 
