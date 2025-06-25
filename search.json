@@ -4,7 +4,7 @@
     "href": "course-overview.html",
     "title": "Course overview",
     "section": "",
-    "text": "This is the homepage for Short Course on R Tools (SCoRT) by Dr. Mehdi Maadooliat and Dr. Hossein Haghbin. All course materials will be posted on this site.\nYou can find the course syllabus here and the course schedule here.",
+    "text": "This is the homepage for Short Course on R Tools (SCoRT) by Dr. Mehdi Maadooliat. All course materials will be posted on this site.\nYou can find the course syllabus here and the course schedule here.",
     "crumbs": [
       "Course information",
       "Overview"
@@ -26,11 +26,46 @@
     "href": "index.html",
     "title": "Short Course on R Tools - (SCoRT)",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n\n1\nTue, Jul 15\n Object-Oriented Programming (OOP) in R\n📚Topic 1  📖OOP\nR👩‍💻  R🛠️\n\n\n\n\n\n\nWed, Jul 16\n Create dynamic Shiny web applications\n📚Topic 2  📖Shiny\nR👩‍💻  R🛠️\n\n\n\n\n\n\nThu, Jul 17\nEnhance performance with Rcpp (C++)\n📚Topic 3  📖Rcpp for everyone\nR👩‍💻  R🛠️\n\n\n\n\n\n\nFri, Jul 18\n\n\n\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n2\nTue, Jul 22\n Integrate Python in R using Reticulate\n📚Topic 4  📖Calling Python from R\nR👩‍💻\n\n\n\n\n\n\nWed, Jul 23\n Develop your own professional R package\n📚Topic 5  📖R package\nR👩‍💻\n\n\n\n\n\n\nThu, Jul 24\n Collaborate via GitHub / CRAN submission process\n📚Topic 6  📖Let’s Git started  📖Release R package\nR👩‍💻\n\n\n\n\n\n\nFri, Jul 25\n\n\n\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n3\nTue, Jul 29\n Deep Learning in R\n📚Topic 7 (🖥️part II) 📖Deep Learning with R\nR👩‍💻  R🛠️",
+    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n1\nTue, Jul 15\n\n Object-Oriented Programming (OOP) in R\n📚Topic 1  📖OOP\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nWed, Jul 16\n\n Create dynamic Shiny web applications\n📚Topic 2  📖Shiny\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nThu, Jul 17\n\nEnhance performance with Rcpp (C++)\n📚Topic 3  📖Rcpp for everyone\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nFri, Jul 18\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n2\nTue, Jul 22\n\n Integrate Python in R using Reticulate\n📚Topic 4(🖥️ref)  📖Calling Python from R\n\nR👩‍💻 R🛠️\n\n\n\n\n\nWed, Jul 23\n\n Develop your own professional R package\n📚Topic 5(🖥️ref)  📖R package\n\nR👩‍💻 R🛠️\n\n\n\n\n\nThu, Jul 24\n\n Collaborate via GitHub / CRAN submission process\n📚Topic 6(🖥️ref)  📖Let’s Git started  📖Release R package\n\nR👩‍💻 R🛠️\n\n\n\n\n\nFri, Jul 25\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n3\nTue, Jul 29\n\n Deep Learning in R\n📚Topic 7 (🖥️part II) 📖Deep Learning with R\n\n\nR👩‍💻 R🛠️",
     "crumbs": [
       "Course information",
       "Schedule"
     ]
+  },
+  {
+    "objectID": "hands-on/git/index.html",
+    "href": "hands-on/git/index.html",
+    "title": "git and R",
+    "section": "",
+    "text": "Note\n\n\n\nThis is the lab on using git and GitHub with R. It will take you through some basic steps to start using git with your R code and how to work with others on the same code. When you are comfortable there are some more exercises showing good to know functionalities of git and GitHub.\nThis lab assumes that you have a GitHub account, commandline git and correct git configurations. If you do not and need help, please contact a TA."
+  },
+  {
+    "objectID": "hands-on/git/index.html#install-packages",
+    "href": "hands-on/git/index.html#install-packages",
+    "title": "git and R",
+    "section": "Install packages",
+    "text": "Install packages\nThe first thing we want to do is install the package required for the exercise.\n\ninstall.packages(\"usethis\")"
+  },
+  {
+    "objectID": "hands-on/git/index.html#working-with-git-and-github-starting-from-rstudio",
+    "href": "hands-on/git/index.html#working-with-git-and-github-starting-from-rstudio",
+    "title": "git and R",
+    "section": "Working with git and GitHub starting from RStudio",
+    "text": "Working with git and GitHub starting from RStudio\nLet’s go through the common situation of starting a new project and connecting it to git and GitHub. Let’s create a mental model for this: Hypothetically, you have just been asked to perform some data analysis, produce some plots, and now it is time to start!\n\nIn RStudio, create a new project in a new directory. You can initialize it as a git repository upon creation or you can do that after using usethis::use_git().\nConnect it to GitHub using usethis::use_github().\nCreate an R script in your project and write some code. You are free to do whatever you want here. Write a function, create a plot, use a public dataset. Go crazy!\nUse the RStudio git pane to commit your code including a commit message.\n\n\n\npush the changes to your GitHub repository. Then go to GitHub and check that you can see your changes there. In your mental model, this is you sharing your code with your collaborators or users.\nNow introduce some changes to your script from GitHub and commit them. At this point, your GitHub repository is one commit ahead of your local repository. In the mental model, this can be your collaborators making changes in their local repository and pushing it to your shared GitHub project, or a user suggesting a change, that you accept, in your publicly available R-package, used by millions. For now, lets ignore thinking about who has access to commit to your repository, but do not worry, there are ways to safeguard this. Your code can be open on GitHub without other people being able to ruin it so you have to constantly go back to a previous unruined commit!\nTo transfer the changes in the GitHub repository to your local repository, go back to RStudio and use the blue arrow in the git pane to pull the changes. In the mental model this is you updating your code with the code contributed by your collaborators. Notice here that if if you had in the meantime made some changes to the local repository in the same R script and position as you had on GitHub, there would be what is called a “merge conflict” when you tried to pull. We will get to those later.\nLet’s look at the diff operation. Make some changes in your local repository R script again, both removing and adding something, then press the diff button in the git pane. This should bring up a new window that is similar to the image below. As you can see it clearly shows you what has been added and what has been removed, what the difference is since your last commit.\n\n\n\nGo ahead and commit the changes you made. No need to push them to GitHub. Now lets go into our mental model and say that you did not like those changes. You have done something you regret, or broken something, and you want to go back. One of the main points of version control after all is the ability to go back. To revert to the last commit state you can use the Revert.. button in RStudios git pane, it is in a dropdown from the cogwheel. Go ahead and test it!\nIf you want to go further back to an older commit you will have to use the terminal pane in RStudio. In essence, you are using git from the terminal in your local repository. Here are the commands:\n\n\ngit reset HEAD~1\ngit restore &lt;our R script&gt;\n\ngit reset HEAD~n steps you back in your commit history n commits. In this case HEAD~1 means go one commit back. Look at your R script, are the changes you made still there? They should be. You have gone back one commit, not removed the changes you made during that commit. But now that we are on this commit you can git restore your R script file to take it back to the way it was at the start of current commit. Go ahead and try it out and make sure it works as you would expect it to!\n\nNow you should have all the tools you need to work with git in a basic capacity, starting from a new project on your device. Notice that you do not need to start from a new project, you can also take a folder with lots of work you have already performed and make it an R project and initialize git in it. It will of course only track changes from that point, not what you have done previously, but it is still a good idea!\nThe point here being that starting from scratch or starting from a bunch of work that you have already done, or starting by creating a GitHub repository and pulling that into RStudio using File &gt; New Project &gt; Version Control &gt; Git , there are tools for any situation and it is not too late to start working reproducibly, collaboratively and with backups using git!"
+  },
+  {
+    "objectID": "hands-on/git/index.html#additional-topics-and-exercises",
+    "href": "hands-on/git/index.html#additional-topics-and-exercises",
+    "title": "git and R",
+    "section": "Additional topics and exercises",
+    "text": "Additional topics and exercises\nBranches\nBranches in git are a way to create a separate version controlled instance of your repository. Think of your git changes as a tree trunk, growing as you add and commit, but always possible to reset and go back down to a lower point on the trunk. Then branching is the equivalent of a branch shooting out at a certain point on that trunk with the possibility to grow as you develop that branch. This permits you or someone else to work on a separate idea at the same time as you continue to develop the trunk. Say for example that you have a situation where there is a stable release of your R package and you do not want to push changes to this. So you create a branch called “development” and when you are happy with it you merge that branch back into the trunk!\n\nUseful commands for branches from terminal:\n\n\ngit branch &lt;name of branch&gt; : Create a new branch.\n\ngit branch : See list of branches. Current branch marked with *.\n\ngit checkout &lt;name of branch&gt; : Move to branch.\n\ngit merge &lt;name of branch&gt; : Merge the branch you are currently on with the branch named in command.\n\nHowever, you can work with branches from RStudio as well! To do this you can use the purpleish button in git pane that looks like two squares connected with a diamond. Once you have created a new branch you can switch branches to the right of the branch button in the git pane.\nExercise:\n\nEither create a new git version controlled R project in Rstudio, or continue from your last one.\nCreate a new branch using RStudio. Make sure you are on that branch afterwards.\nIntroduce some changes in your R script. commit them. In our mental model, this is you developing something experimental until you are satisfied with it.\nSwitch back to the main branch.\nTo merge the new branch with our main branch we will use the terminal again. In the RStudio terminal perform the merge. In the mental model this you being satisfied with the development branch and calling it a stable release, a part of the main body of code!\n\nCongratulations, you now know how to create a branch, switch between branches, and merge the branch back into main.\nMerge conflicts\nEarlier we thought about the issue of changes being introduces in the same file and position in your local copy of a repository and in the GitHub version of the repository at the same time. A so called “merge conflict”. This can also happen if you are working on two branches, introduce changes in the same places, and then try to merge! But you should try not to worry too much about merge conflicts, they can be solved if you know what you are doing.\n\nIntroduce changes in the same part of your code on your main and new branch. commit the changes.\nUse git merge &lt;name of branch&gt; from the main branch. This should result in the merge conflict.\n\nThe output you should get from the merge is similar to:\n\nAuto-merging file.R\nCONFLICT (content): Merge conflict in file.R\nAutomatic merge failed; fix conflicts and then commit the result.\n\nYou can also use git status from terminal to check which file is modified and why.\nOnce a merge conflict occurs the file affected is modified to reflect the conflicting areas. It can look something like this:\n\n#Hello world!\"\n\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\na &lt;- 2\n\nb &lt;- 2\n=======\na &lt;- 3\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; test\n\nIn this instance it is telling us that in branch named “test” a &lt;- 3but on our main branch a &lt;- 2 and b &lt;- 2 has also been added. To pick which one you want to go with simply delete the &gt;&gt;,&lt;&lt;,== notifiers and whichever rows of code that you do not want. Once you have done this, finalize the merge by commiting the changed files.\n\nFix your merge conflict and finalize the merge.\n\nGood job! You know know how to resolve merge conflicts!\nForks and pull requests\nForking a repository on GitHub means creating a copy of the repository on your GitHub user. This can be very useful if you want to make some changes to a repository that you do not have push access to, for example. It is also a great way collaborate because it adds more backups of the repository and because of “pull requests”, which are a way of implementing your local changes to the source repository where the owner of the repository has the power to review and choose whether to accept them or not.\nFor example, in this RaukR course we have a repository for all the teaching materials that all teachers have forked, made changes to and then submitted a pull request back to the source repository.\nTo fork a repository you can either use the GitHub website of the repository you want to fork, or you can use usethis. If you are using RStudio it will also automatically create a R project for the local repository.\n\nusethis::create_from_github(\n  \"https://github.com/&lt;user name of owner&gt;/&lt;repository name&gt;\",\n  destdir = \"~/path/to/place/repo/\",\n  fork = TRUE\n)\n\nThis command does a lot of things, from happygitwithr\n\n\nForks the source repo on GitHub.\nClones your fork to a new local repo (and RStudio Project). This configures your fork as the origin remote.\nConfigures the source repo as the upstream remote.\nSets the upstream tracking branch for main (or whatever the default branch is) to upstream/main.\nOpens a new RStudio instance in the new local repo (and RStudio Project).\n\n\nWe have not covered “upstream” and “remote” in our git vocabulary yet. Basically remotes are connections for your repository, and being upstream means being a repository closer to the source than your repository, which is downstream (as it is a fork). So the sentence “Configures the source repo as the upstream remote” translates to adding a connection specifying that the source repository is where your repository came from. This connection is used to update your fork with any future changes that occur in the source repository.\n\nFork the repository https://github.com/Sebastian-D/testgit using one of the methods described. Also clone a local copy of it. Make sure you can find your fork on GitHub.\n\nNow we are ready to make some changes to the code in our local repository. But before this we should create a new branch for the pull request. For this we can use usethis::pr_init(branch = \"branchName\"). This will also automatically switch to the branch.\n\nCreate a branch then make some changes to the repository. In the mental model you are implementing some feature or fixing some bug.\nadd and commit the changes with a commit message.\n\nTo submit a pull request you can use pr_push(). This should open a browser where you can submit the pull request. If the maintainer of the source repository wants to modify the pull request he can either do this himself or suggest some changes to you, whereupon you make the changes the run pr_push() again.\n\nSubmit the pull request! Go ahead and view it on GitHub.\n\nThere is a whole family of pr-* functions for both the person submitting the pull the request and the maintainer of the source repository that will review and accept/decline the pull request. I really recommend you read here if you think this is of interest!\nGood job completing the exercises! git and GitHub are big topics, but knowing a little gets you a long way and then you discover the rest when you need it!"
+  },
+  {
+    "objectID": "hands-on/git/index.html#session",
+    "href": "hands-on/git/index.html#session",
+    "title": "git and R",
+    "section": "Session",
+    "text": "Session\n\nClick here\n\nsessionInfo()\n\nR version 4.5.1 (2025-06-13)\nPlatform: x86_64-pc-linux-gnu\nRunning under: Ubuntu 24.04.2 LTS\n\nMatrix products: default\nBLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 \nLAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0\n\nlocale:\n [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       \n [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   \n [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          \n[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   \n\ntime zone: UTC\ntzcode source: system (glibc)\n\nattached base packages:\n[1] stats     graphics  grDevices datasets  utils     methods   base     \n\nother attached packages:\n[1] gitcreds_0.1.2 usethis_3.1.0 \n\nloaded via a namespace (and not attached):\n [1] digest_0.6.37     fastmap_1.2.0     xfun_0.52         magrittr_2.0.3   \n [5] glue_1.8.0        knitr_1.50        htmltools_0.5.8.1 rmarkdown_2.29   \n [9] lifecycle_1.0.4   cli_3.6.5         vctrs_0.6.5       renv_1.0.9       \n[13] compiler_4.5.1    purrr_1.0.4       tools_4.5.1       evaluate_1.0.3   \n[17] yaml_2.3.10       rlang_1.1.6       jsonlite_2.0.0    fs_1.6.6         \n[21] htmlwidgets_1.6.4"
   },
   {
     "objectID": "hands-on/HO2.html",
@@ -143,169 +178,239 @@
     ]
   },
   {
-    "objectID": "course-syllabus.html",
-    "href": "course-syllabus.html",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "objectID": "misc/cheatsheets.html",
+    "href": "misc/cheatsheets.html",
+    "title": "R cheatsheets",
     "section": "",
-    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
+    "text": "The following cheatsheets come from https://posit.co/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
     "crumbs": [
-      "Course information",
-      "Syllabus"
+      "Miscellaneous",
+      "Cheatsheets"
     ]
   },
   {
-    "objectID": "course-syllabus.html#course-information",
-    "href": "course-syllabus.html#course-information",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "objectID": "slides/reticulate.html#learning-outcomes",
+    "href": "slides/reticulate.html#learning-outcomes",
+    "title": "Reticulate",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nIn this session we will learn to:\n\nUnderstand the concepts needed for running Python in R\nUnderstand the different object classes in Python and their equivalent in R\nApply our knowledge to:\n\nImport Python functions into R\nUse R objects as input to Python functions\nTranslate between Python and R objects"
+  },
+  {
+    "objectID": "slides/reticulate.html#introduction",
+    "href": "slides/reticulate.html#introduction",
+    "title": "Reticulate",
+    "section": "Introduction",
+    "text": "Introduction\n R versus Python The ultimate fight!\n\n Not anymore!"
+  },
+  {
+    "objectID": "slides/reticulate.html#introducing-reticulate",
+    "href": "slides/reticulate.html#introducing-reticulate",
+    "title": "Reticulate",
+    "section": "Introducing reticulate",
+    "text": "Introducing reticulate\n\nCombine Python and R code\nUse R classes in Python functions and vice versa\nImport Python functions into R code and run from R\nAdd Python code chunks to markdown documents\n\n\nlibrary(reticulate)"
+  },
+  {
+    "objectID": "slides/reticulate.html#importing-python-modules",
+    "href": "slides/reticulate.html#importing-python-modules",
+    "title": "Reticulate",
+    "section": "Importing Python modules",
+    "text": "Importing Python modules\n\ndatetime &lt;- import(\"datetime\")\ntodays_r_date &lt;- datetime$datetime$now()\n\n\n\ntodays_r_date\n\n[1] \"2025-06-25 20:47:00 UTC\"\n\nclass(todays_r_date)\n\n[1] \"POSIXct\" \"POSIXt\" \n\n\n\n\nObjects are automatically converted to R types, unless otherwise specified"
+  },
+  {
+    "objectID": "slides/reticulate.html#importing-python-modules-1",
+    "href": "slides/reticulate.html#importing-python-modules-1",
+    "title": "Reticulate",
+    "section": "Importing Python modules",
+    "text": "Importing Python modules\n\ndatetime &lt;- import(\"datetime\", convert = FALSE)\ntodays_py_date &lt;- datetime$datetime$now()\n\n\n\ntodays_py_date\n\ndatetime.datetime(2025, 6, 25, 20, 47, 0, 670127)\n\nclass(todays_py_date)\n\n[1] \"datetime.datetime\"     \"datetime.date\"         \"python.builtin.object\""
+  },
+  {
+    "objectID": "slides/reticulate.html#importing-built-in-python-functions",
+    "href": "slides/reticulate.html#importing-built-in-python-functions",
+    "title": "Reticulate",
+    "section": "Importing built-in Python functions",
+    "text": "Importing built-in Python functions\nAccess Python’s built-in functions directly in R\n\nbuiltins &lt;- import_builtins()\nr_vec &lt;- c(1, 5, 3, 4, 2, 2, 3, 2)\nstr(r_vec)\n\n num [1:8] 1 5 3 4 2 2 3 2\n\n\nr_vec is an R object."
+  },
+  {
+    "objectID": "slides/reticulate.html#importing-built-in-python-functions-1",
+    "href": "slides/reticulate.html#importing-built-in-python-functions-1",
+    "title": "Reticulate",
+    "section": "Importing built-in Python functions",
+    "text": "Importing built-in Python functions\n\nbuiltins$len(r_vec); builtins$max(r_vec)\n\n[1] 8\n\n\n[1] 5\n\n\nPython built-in functions still working on R objects\n\n\nmax(r_vec)\n\n[1] 5\n\n\nNormal R way"
+  },
+  {
+    "objectID": "slides/reticulate.html#sourcing-scripts",
+    "href": "slides/reticulate.html#sourcing-scripts",
+    "title": "Reticulate",
+    "section": "Sourcing scripts",
+    "text": "Sourcing scripts\nImport your own python functions for use in R. File python_functions.py:\n\ndef add(x, y):\n  return x + y"
+  },
+  {
+    "objectID": "slides/reticulate.html#sourcing-scripts-1",
+    "href": "slides/reticulate.html#sourcing-scripts-1",
+    "title": "Reticulate",
+    "section": "Sourcing scripts",
+    "text": "Sourcing scripts\nImport your own python functions for use in R.\nR code:\n\nsource_python(\"python_functions.py\")\nclass(4)\n\n[1] \"numeric\"\n\nres &lt;- add(4,5)\nres\n\n[1] 9\n\nclass(res)\n\n[1] \"numeric\""
+  },
+  {
+    "objectID": "slides/reticulate.html#sourcing-scripts-2",
+    "href": "slides/reticulate.html#sourcing-scripts-2",
+    "title": "Reticulate",
+    "section": "Sourcing scripts",
+    "text": "Sourcing scripts\nImport your own python functions for use in R.\nR code:\n\nsource_python(\"python_functions.py\")\nclass(4)\nres &lt;- add(4,5)\nres\nclass(res)\n\nType numeric in and type numeric out. But what happens in between?"
+  },
+  {
+    "objectID": "slides/reticulate.html#sourcing-scripts-3",
+    "href": "slides/reticulate.html#sourcing-scripts-3",
+    "title": "Reticulate",
+    "section": "Sourcing scripts",
+    "text": "Sourcing scripts\nBut what happens in between?\nFile python_functions.py:\n\ndef add_with_print(x, y):\n  print(x, 'is of the python type ', type(x))\n  return x + y\n\n\nres2 &lt;- add_with_print(4,5)\n\n4.0 is of the python type  &lt;class 'float'&gt;\n\nstr(res2)\n\n num 9"
+  },
+  {
+    "objectID": "slides/reticulate.html#execute-python-code",
+    "href": "slides/reticulate.html#execute-python-code",
+    "title": "Reticulate",
+    "section": "Execute Python code",
+    "text": "Execute Python code\nRun python string:\n\npy_run_string(\"result = [1,2,3]*2\")\npy$result\n\n[1] 1 2 3 1 2 3\n\n\nAll objects created by python are accessible using the py object exported by reticulate"
+  },
+  {
+    "objectID": "slides/reticulate.html#execute-python-code-1",
+    "href": "slides/reticulate.html#execute-python-code-1",
+    "title": "Reticulate",
+    "section": "Execute Python code",
+    "text": "Execute Python code\nRun python script my_python_script.py:\n\ndef add(x, y):\n  return x + y\n\ndef multiply_by_3(x):\n  return x*3\n\ndef run_all():\n  x = 5\n  y = 8\n  added = add(x, y)\n  final = multiply_by_3(added)\n  return final\n\nfinal = run_all()"
+  },
+  {
+    "objectID": "slides/reticulate.html#section",
+    "href": "slides/reticulate.html#section",
+    "title": "Reticulate",
     "section": "",
-    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "text": "py_run_file(\"my_python_script.py\")\npy$final\n\n[1] 39"
   },
   {
-    "objectID": "course-syllabus.html#instructors-details",
-    "href": "course-syllabus.html#instructors-details",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Instructors Details",
-    "text": "Instructors Details\n\nName: Mehdi Maadooliat, Ph.D.\nName: Hossein Haghbin, Ph.D.\nOffice Hours: Tu & Th 12:15 - 1:30pm or by e-mail",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#python-in-r-markdown",
+    "href": "slides/reticulate.html#python-in-r-markdown",
+    "title": "Reticulate",
+    "section": "Python in R Markdown",
+    "text": "Python in R Markdown\nIn R Markdown, it is possible to mix in Python chunks:\n```{{python}}\nimport pandas as pd\n\nmovies = get_all_movies()\nprint(type(movies))\n```\n\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;"
   },
   {
-    "objectID": "course-syllabus.html#course-description",
-    "href": "course-syllabus.html#course-description",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Course Description",
-    "text": "Course Description\nA modern course in probability. Foundations of probability for modeling random processes with computational techniques. Topics include counting techniques, probability of events, random variables, distribution functions, probability functions, probability density functions, expectation, moments, moment generating functions, special discrete and continuous distributions, sampling distributions, transformation of variables, prior and posterior distributions, Law of Large Numbers, Central Limit Theorem, the Bayesian paradigm. Numerical and computational methods will be covered throughout topics.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#python-in-r-markdown-1",
+    "href": "slides/reticulate.html#python-in-r-markdown-1",
+    "title": "Reticulate",
+    "section": "Python in R Markdown",
+    "text": "Python in R Markdown\nAccess the movie object using the py object, which will convert movies to an R object:\n\nmovies_r &lt;- py$movies\nmovies_r &lt;- as_tibble(movies_r)\nsubset &lt;- movies_r %&gt;% select(5:6, 8:10)"
   },
   {
-    "objectID": "course-syllabus.html#learning-outcomes",
-    "href": "course-syllabus.html#learning-outcomes",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Learning Outcomes",
-    "text": "Learning Outcomes\nBy the end of the course, students will:\n\nUnderstand and Apply Fundamental Probability Concepts\nAnalyze and Model Random Processes\nPerform Variable Transformations\nImplement Computational Techniques\nInterpret Statistical Theorems\nCritically Evaluate Probabilistic Models\nCommunicate Probabilistic Findings",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#python-in-r-markdown-2",
+    "href": "slides/reticulate.html#python-in-r-markdown-2",
+    "title": "Reticulate",
+    "section": "Python in R Markdown",
+    "text": "Python in R Markdown\nAccess the movie object using the py object, which will convert movies to an R object:\n\nmovies_r &lt;- py$movies\nmovies_r &lt;- as_tibble(movies_r)\nsubset &lt;- movies_r %&gt;% select(5:6, 8:10)\nknitr::kable(subset[1:7,],'html')\n\n\n\n\n\noriginalTitle\nstartYear\nruntimeMinutes\ngenres\naverageRating\n\n\n\n\nKate & Leopold\n2001\n118\nComedy,Fantasy,Romance\n6.4\n\n\nThe Brain That Wouldn't Die\n1962\n82\nHorror,Sci-Fi\n4.4\n\n\nThe Fugitive Kind\n1960\n119\nDrama,Romance\n7.1\n\n\nLes yeux sans visage\n1960\n90\nDrama,Horror\n7.7\n\n\nÀ bout de souffle\n1960\n90\nCrime,Drama\n7.8\n\n\n13 Ghosts\n1960\n85\nHorror,Mystery\n6.1\n\n\nThe Alamo\n1960\n162\nAdventure,Drama,History\n6.8"
   },
   {
-    "objectID": "course-syllabus.html#prerequisites",
-    "href": "course-syllabus.html#prerequisites",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Prerequisites",
-    "text": "Prerequisites\n\nThree semesters of mathematics beyond calculus and MATH 4720 or equiv.\nPreferable knowledge is MSSC 5700 and MSSC 5710.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#python-in-r-markdown-3",
+    "href": "slides/reticulate.html#python-in-r-markdown-3",
+    "title": "Reticulate",
+    "section": "Python in R Markdown",
+    "text": "Python in R Markdown\nContinue working with the now converted R object in R\n\nggplot(movies_r, aes(x=startYear)) + geom_bar() + \n                                     theme(axis.text.x = element_text(angle = 90)) +\n                                     ggtitle('Number of movies per year')"
   },
   {
-    "objectID": "course-syllabus.html#textbooks",
-    "href": "course-syllabus.html#textbooks",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Textbooks",
-    "text": "Textbooks\n\nProbability and Statistics with R, 2nd edition by Maria Dolores Ugarte, Ana F. Militino, Alan T. Arnholt, 2016. ISBN: 9781466504394.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#python-in-r-markdown-4",
+    "href": "slides/reticulate.html#python-in-r-markdown-4",
+    "title": "Reticulate",
+    "section": "Python in R Markdown",
+    "text": "Python in R Markdown\nContinue working with the now converted R object in R\n\nggplot(movies_r, aes(x=startYear)) + geom_bar() + \n                                     theme(axis.text.x = element_text(angle = 90)) +\n                                     ggtitle('Number of movies per year')"
   },
   {
-    "objectID": "course-syllabus.html#grading-breakdown",
-    "href": "course-syllabus.html#grading-breakdown",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Grading Breakdown",
-    "text": "Grading Breakdown\n\nHomework: 30%\nProject: 10%\nMidterm Exam: 30%\nFinal Exam: 30%\n\n\nGrading Scale\n\n\n\nGrade\nRange\n\n\n\n\nA\n93.5 - 100%\n\n\nA-\n90- 93.49%\n\n\nB+\n86.5 - 89.99%\n\n\nB\n83.5 - 86.49%\n\n\nB-\n80 - 83.49%\n\n\nC+\n76.5 - 79.99%\n\n\nC\n73.5 - 76.49%\n\n\nC-\n70 - 73.49%\n\n\nD+\n66.5 - 69.99%\n\n\nD\n60 - 66.49%\n\n\nF\n&lt; 59.99%",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#type-conversions",
+    "href": "slides/reticulate.html#type-conversions",
+    "title": "Reticulate",
+    "section": "Type conversions",
+    "text": "Type conversions\nWhen calling python code from R, R data types are converted to Python types, and vice versa, when values are returned from Python to R they are converted back to R types."
   },
   {
-    "objectID": "course-syllabus.html#exams",
-    "href": "course-syllabus.html#exams",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Exams",
-    "text": "Exams\nTentatively, there will be a midterm (in class) on Oct. 23rd, plus the final (in class or take home): Dec. 8th from 10:30 - 12:30pm.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#conversion-table",
+    "href": "slides/reticulate.html#conversion-table",
+    "title": "Reticulate",
+    "section": "Conversion table",
+    "text": "Conversion table\n\n\n\n\n\n\nR\nPython\nExamples\n\n\n\n\nSingle-element vector\nScalar\n1 , 1L , TRUE, foo\n\n\nMulti-element vector\nList\nc(1.0, 2.0, 3.0), c(1L, 2L, 3L)\n\n\nList of multiple types\nTuple\nlist(1L, TRUE, \"foo\")\n\n\nNamed list\nDict\nlist(a = 1L, b = 2.0), dict(x = x_data)\n\n\nMatrix/Array\nNumPy ndarray\nmatrix(c(1,2,3,4), nrow=2, ncol=2)\n\n\nData Frame\nPandas DataFrame\ndata.frame(x = c(1,2,3), y = c(\"a\",\"b\",\"c\"))\n\n\nFunction\nPython function\nfunction(x) x +1\n\n\nRaw\nPython bytearray\nas.raw(c(1:10))\n\n\nNULL, TRUE, FALSE\nNone, True, False\nNULL, TRUE, FALSE"
   },
   {
-    "objectID": "course-syllabus.html#homework",
-    "href": "course-syllabus.html#homework",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Homework",
-    "text": "Homework\nHomework is required so that you get a better understanding of the material covered, plus it will help you to keep up. You will get a better understanding of the material if you discuss it with someone. However, you must submit YOUR OWN work to D2L website. Assignments are mostly due at 11:50pm (check for due dates in D2L).\nNO LATE HOMEWORK WILL BE ACCEPTED NOR WILL YOU BE ALLOWED TO MAKE UP MISSED HOMEWORK! Plan accordingly! It is better to submit something, even if it is incomplete. You need to type your homework (preferably using LaTeX, or Quarto) and submit it as a PDF file. Scanned homework will be graded out of 80. Low quality scanned homework will be considered as NO submission.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#type-conversions-1",
+    "href": "slides/reticulate.html#type-conversions-1",
+    "title": "Reticulate",
+    "section": "Type conversions",
+    "text": "Type conversions\npython_functions.py:\n\ndef check_python_type(x):\n  print(type(x))\n  return x"
   },
   {
-    "objectID": "course-syllabus.html#make-up-policy",
-    "href": "course-syllabus.html#make-up-policy",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Make-up Policy",
-    "text": "Make-up Policy\nThere will not be any make-up exam or homework unless there is an emergency.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#type-conversions-2",
+    "href": "slides/reticulate.html#type-conversions-2",
+    "title": "Reticulate",
+    "section": "Type conversions",
+    "text": "Type conversions\n\nsource_python(\"python_functions.py\")\n\nr_var &lt;- matrix(c(1,2,3,4),nrow=2, ncol=2)\nclass(r_var)\n\n[1] \"matrix\" \"array\" \n\nr_var2 &lt;- check_python_type(r_var)\n\n&lt;class 'numpy.ndarray'&gt;\n\nclass(r_var2)\n\n[1] \"matrix\" \"array\""
   },
   {
-    "objectID": "course-syllabus.html#attendance",
-    "href": "course-syllabus.html#attendance",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Attendance",
-    "text": "Attendance\nAttendance is required and subject to the College of Arts and Sciences policy.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#type-conversions-3",
+    "href": "slides/reticulate.html#type-conversions-3",
+    "title": "Reticulate",
+    "section": "Type conversions",
+    "text": "Type conversions\n\nsource_python(\"python_functions.py\", convert=FALSE)\n\nr_var &lt;- matrix(c(1,2,3,4),nrow=2, ncol=2)\nclass(r_var)\n\n[1] \"matrix\" \"array\" \n\nr_var2 &lt;- check_python_type(r_var)\n\n&lt;class 'numpy.ndarray'&gt;\n\nclass(r_var2)\n\n[1] \"numpy.ndarray\"         \"python.builtin.object\"\n\nr_var3 &lt;- py_to_r(r_var2)\nclass(r_var3)\n\n[1] \"matrix\" \"array\""
   },
   {
-    "objectID": "course-syllabus.html#academic-honesty",
-    "href": "course-syllabus.html#academic-honesty",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Academic Honesty",
-    "text": "Academic Honesty\nStudents are expected to follow the University’s policy on academic honesty as outlined in the Bulletin.\nTL;DR: Don’t cheat!\nPlease abide by the following as you work on assignments in this course:\n\nCollaboration: Only work that is clearly assigned as team work should be completed collaboratively.\n\nThe homework assignments must also be completed individually and you are welcomed to discuss the assignment with classmates at a high level (e.g., discuss what’s the best way for approaching a problem, what functions are useful for accomplishing a particular task, etc.). However you may not directly share answers to questions (including any code) with anyone other than myself.\nFor the projects, collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.\nOn individual assignments you may not directly share code with another student in this class, and on team assignments you may not directly share code with another team in this class.\n\nOnline resources: I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course’s policy is that you may make use of any online resources (e.g., StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.\nUse of generative artificial intelligence (AI): You should treat generative AI, such as ChatGPT, the same as other online resources. There are two guiding principles that govern how you can use AI in this course:1 (1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. We will practice using AI to facilitate—rather than hinder—learning. (2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n✅ AI tools for code: You may make use of the technology for coding examples on assignments; if you do so, you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. You may use these guidelines for citing AI-generated content.\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\nYou are ultimately responsible for the work you turn in; it should reflect your understanding of the course content.\n\nIf you are unsure if the use of a particular resource complies with the academic honesty policy, please ask the instructor.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#type-conversions-4",
+    "href": "slides/reticulate.html#type-conversions-4",
+    "title": "Reticulate",
+    "section": "Type conversions",
+    "text": "Type conversions\n\n42 in R is a floating point number. In Python it is an integer\n\n\nstr(42)\n\n num 42\n\ncheck_python_type(42)\n\n&lt;class 'float'&gt;\n\n\n42.0\n\n\n\n\nstr(42L)\n\n int 42\n\ncheck_python_type(42L)\n\n&lt;class 'int'&gt;\n\n\n42"
   },
   {
-    "objectID": "course-syllabus.html#important-dates",
-    "href": "course-syllabus.html#important-dates",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Important dates",
-    "text": "Important dates\n\nMonday, August 25: Classes begin\nTuesday, September 2: Drop/add ends\nThursday - Friday, October 16 - 17: Fall Break\nFriday, November 14: Last day to withdraw with W\nThursday - Monday, November 26 - 30: Thanksgiving Holiday\nSaturday, December 6: Classes end\nMonday, December 8, 10:30 am - 12:30 pm: Final Exam\n\nFor more important dates, see the full MU Academic Calendar.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#examples-in-bioinformatics",
+    "href": "slides/reticulate.html#examples-in-bioinformatics",
+    "title": "Reticulate",
+    "section": "Examples in bioinformatics",
+    "text": "Examples in bioinformatics\nRandom forest classifier\n\npy_require(c(\"scikit-learn\"))"
   },
   {
-    "objectID": "course-syllabus.html#important-note",
-    "href": "course-syllabus.html#important-note",
-    "title": "Syllabus - Short Course on R Tools (SCoRT)",
-    "section": "Important Note",
-    "text": "Important Note\nThe syllabus may be modified throughout the course. Any substantial modifications will result in a reissued syllabus.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/reticulate.html#section-1",
+    "href": "slides/reticulate.html#section-1",
+    "title": "Reticulate",
+    "section": "",
+    "text": "# Import scikit-learn's random forest classifier\nsklearn &lt;- import(\"sklearn.ensemble\")\nRandomForestClassifier &lt;- sklearn$RandomForestClassifier\n\n# Create a random forest classifier\nclf &lt;- RandomForestClassifier(n_estimators=100L)\n\n# Training data (example)\nX_train &lt;- matrix(runif(1000), ncol=10)\ny_train &lt;- sample(c(0, 1), 100, replace=TRUE)\n\n# Train the model\nclf$fit(X_train, y_train)\n\nRandomForestClassifier()\n\n# Predict on new data\nX_test &lt;- matrix(runif(200), ncol=10)\npredictions &lt;- clf$predict(X_test)\npredictions\n\n [1] 1 1 0 0 1 1 0 1 0 1 1 0 0 0 0 1 0 1 0 1"
+  },
+  {
+    "objectID": "slides/reticulate.html#examples-in-bioinformatics-1",
+    "href": "slides/reticulate.html#examples-in-bioinformatics-1",
+    "title": "Reticulate",
+    "section": "Examples in bioinformatics",
+    "text": "Examples in bioinformatics\nENSEMBL API\n\npy_require(c(\"ensembl-rest\"))"
+  },
+  {
+    "objectID": "slides/reticulate.html#section-2",
+    "href": "slides/reticulate.html#section-2",
+    "title": "Reticulate",
+    "section": "",
+    "text": "# Load the ensembl_rest library\nensembl_rest &lt;- import(\"ensembl_rest\")\n\n# Fetch gene information for a given gene ID\ngene_info &lt;- ensembl_rest$symbol_lookup(species='homo sapiens', symbol='BRCA2')\n\n# Print gene information\ngene_info$description\n\n[1] \"BRCA2 DNA repair associated [Source:HGNC Symbol;Acc:HGNC:1101]\""
+  },
+  {
+    "objectID": "slides/reticulate.html#examples-in-bioinformatics-2",
+    "href": "slides/reticulate.html#examples-in-bioinformatics-2",
+    "title": "Reticulate",
+    "section": "Examples in bioinformatics",
+    "text": "Examples in bioinformatics\nBiopython sequence analysis\n\npy_require(c(\"biopython\"))"
+  },
+  {
+    "objectID": "slides/reticulate.html#section-3",
+    "href": "slides/reticulate.html#section-3",
+    "title": "Reticulate",
+    "section": "",
+    "text": "# Import Biopython's SeqIO module\nSeqIO &lt;- import(\"Bio.SeqIO\")\n\n# Parse a FASTA file\nrecords &lt;- SeqIO$parse(\"example.fasta\", \"fasta\")\n\n# Translate each sequence to a protein\ntranslated_proteins &lt;- list()\nfor (record in reticulate::iterate(records)) {\n  translated_proteins[[record$id]] &lt;- record$seq$translate()\n}\n\ntranslated_proteins\n\n$GeneA\nSeq('MAIVMGR*KGAR*')\n\n$GeneB\nSeq('MRMT*LTSIVAS*')"
+  },
+  {
+    "objectID": "slides/reticulate.html#section-4",
+    "href": "slides/reticulate.html#section-4",
+    "title": "Reticulate",
+    "section": "",
+    "text": "Thank you!\nQuestions?\n?meta:current_year • SciLifeLab • NBIS • RaukR\n\n\n\n\n\n\n🔗 tinyurl.com/SCiRT"
   },
   {
     "objectID": "slides/Topic5.html#description",
@@ -330,147 +435,282 @@
     ]
   },
   {
-    "objectID": "slides/Topic3.html#outline",
-    "href": "slides/Topic3.html#outline",
+    "objectID": "slides/git.html#install-packages",
+    "href": "slides/git.html#install-packages",
+    "title": "git and R",
+    "section": "Install packages",
+    "text": "Install packages\nThe first thing we want to do is install the package required for the exercise.\n\ninstall.packages(\"usethis\")"
+  },
+  {
+    "objectID": "slides/git.html#working-with-git-and-github-starting-from-rstudio",
+    "href": "slides/git.html#working-with-git-and-github-starting-from-rstudio",
+    "title": "git and R",
+    "section": "Working with git and GitHub starting from RStudio",
+    "text": "Working with git and GitHub starting from RStudio\nLet’s go through the common situation of starting a new project and connecting it to git and GitHub. Let’s create a mental model for this: Hypothetically, you have just been asked to perform some data analysis, produce some plots, and now it is time to start!\n\nIn RStudio, create a new project in a new directory. You can initialize it as a git repository upon creation or you can do that after using usethis::use_git().\nConnect it to GitHub using usethis::use_github().\nCreate an R script in your project and write some code. You are free to do whatever you want here. Write a function, create a plot, use a public dataset. Go crazy!\nUse the RStudio git pane to commit your code including a commit message.\n\n\n\npush the changes to your GitHub repository. Then go to GitHub and check that you can see your changes there. In your mental model, this is you sharing your code with your collaborators or users.\nNow introduce some changes to your script from GitHub and commit them. At this point, your GitHub repository is one commit ahead of your local repository. In the mental model, this can be your collaborators making changes in their local repository and pushing it to your shared GitHub project, or a user suggesting a change, that you accept, in your publicly available R-package, used by millions. For now, lets ignore thinking about who has access to commit to your repository, but do not worry, there are ways to safeguard this. Your code can be open on GitHub without other people being able to ruin it so you have to constantly go back to a previous unruined commit!\nTo transfer the changes in the GitHub repository to your local repository, go back to RStudio and use the blue arrow in the git pane to pull the changes. In the mental model this is you updating your code with the code contributed by your collaborators. Notice here that if if you had in the meantime made some changes to the local repository in the same R script and position as you had on GitHub, there would be what is called a “merge conflict” when you tried to pull. We will get to those later.\nLet’s look at the diff operation. Make some changes in your local repository R script again, both removing and adding something, then press the diff button in the git pane. This should bring up a new window that is similar to the image below. As you can see it clearly shows you what has been added and what has been removed, what the difference is since your last commit.\n\n\n\nGo ahead and commit the changes you made. No need to push them to GitHub. Now lets go into our mental model and say that you did not like those changes. You have done something you regret, or broken something, and you want to go back. One of the main points of version control after all is the ability to go back. To revert to the last commit state you can use the Revert.. button in RStudios git pane, it is in a dropdown from the cogwheel. Go ahead and test it!\nIf you want to go further back to an older commit you will have to use the terminal pane in RStudio. In essence, you are using git from the terminal in your local repository. Here are the commands:\n\n\ngit reset HEAD~1\ngit restore &lt;our R script&gt;\n\ngit reset HEAD~n steps you back in your commit history n commits. In this case HEAD~1 means go one commit back. Look at your R script, are the changes you made still there? They should be. You have gone back one commit, not removed the changes you made during that commit. But now that we are on this commit you can git restore your R script file to take it back to the way it was at the start of current commit. Go ahead and try it out and make sure it works as you would expect it to!"
+  },
+  {
+    "objectID": "slides/git.html#additional-topics-and-exercises",
+    "href": "slides/git.html#additional-topics-and-exercises",
+    "title": "git and R",
+    "section": "Additional topics and exercises",
+    "text": "Additional topics and exercises\nBranches\nBranches in git are a way to create a separate version controlled instance of your repository. Think of your git changes as a tree trunk, growing as you add and commit, but always possible to reset and go back down to a lower point on the trunk. Then branching is the equivalent of a branch shooting out at a certain point on that trunk with the possibility to grow as you develop that branch. This permits you or someone else to work on a separate idea at the same time as you continue to develop the trunk. Say for example that you have a situation where there is a stable release of your R package and you do not want to push changes to this. So you create a branch called “development” and when you are happy with it you merge that branch back into the trunk!\n\nUseful commands for branches from terminal:\n\ngit branch &lt;name of branch&gt; : Create a new branch.\ngit branch : See list of branches. Current branch marked with *.\ngit checkout &lt;name of branch&gt; : Move to branch.\ngit merge &lt;name of branch&gt; : Merge the branch you are currently on with the branch named in command.\n\nHowever, you can work with branches from RStudio as well! To do this you can use the purpleish button in git pane that looks like two squares connected with a diamond. Once you have created a new branch you can switch branches to the right of the branch button in the git pane.\nExercise:\n\nEither create a new git version controlled R project in Rstudio, or continue from your last one.\nCreate a new branch using RStudio. Make sure you are on that branch afterwards.\nIntroduce some changes in your R script. commit them. In our mental model, this is you developing something experimental until you are satisfied with it.\nSwitch back to the main branch.\nTo merge the new branch with our main branch we will use the terminal again. In the RStudio terminal perform the merge. In the mental model this you being satisfied with the development branch and calling it a stable release, a part of the main body of code!\n\nCongratulations, you now know how to create a branch, switch between branches, and merge the branch back into main.\nMerge conflicts\nEarlier we thought about the issue of changes being introduces in the same file and position in your local copy of a repository and in the GitHub version of the repository at the same time. A so called “merge conflict”. This can also happen if you are working on two branches, introduce changes in the same places, and then try to merge! But you should try not to worry too much about merge conflicts, they can be solved if you know what you are doing.\n\nIntroduce changes in the same part of your code on your main and new branch. commit the changes.\nUse git merge &lt;name of branch&gt; from the main branch. This should result in the merge conflict.\n\nThe output you should get from the merge is similar to:\n\nAuto-merging file.R\nCONFLICT (content): Merge conflict in file.R\nAutomatic merge failed; fix conflicts and then commit the result.\n\nYou can also use git status from terminal to check which file is modified and why.\nOnce a merge conflict occurs the file affected is modified to reflect the conflicting areas. It can look something like this:\n\n#Hello world!\"\n\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\na &lt;- 2\n\nb &lt;- 2\n=======\na &lt;- 3\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; test\n\nIn this instance it is telling us that in branch named “test” a &lt;- 3but on our main branch a &lt;- 2 and b &lt;- 2 has also been added. To pick which one you want to go with simply delete the &gt;&gt;,&lt;&lt;,== notifiers and whichever rows of code that you do not want. Once you have done this, finalize the merge by commiting the changed files.\n\nFix your merge conflict and finalize the merge.\n\nGood job! You know know how to resolve merge conflicts!\nForks and pull requests\nForking a repository on GitHub means creating a copy of the repository on your GitHub user. This can be very useful if you want to make some changes to a repository that you do not have push access to, for example. It is also a great way collaborate because it adds more backups of the repository and because of “pull requests”, which are a way of implementing your local changes to the source repository where the owner of the repository has the power to review and choose whether to accept them or not.\nFor example, in this RaukR course we have a repository for all the teaching materials that all teachers have forked, made changes to and then submitted a pull request back to the source repository.\nTo fork a repository you can either use the GitHub website of the repository you want to fork, or you can use usethis. If you are using RStudio it will also automatically create a R project for the local repository.\n\nusethis::create_from_github(\n  \"https://github.com/&lt;user name of owner&gt;/&lt;repository name&gt;\",\n  destdir = \"~/path/to/place/repo/\",\n  fork = TRUE\n)\n\nThis command does a lot of things, from happygitwithr\n\nForks the source repo on GitHub.\nClones your fork to a new local repo (and RStudio Project). This configures your fork as the origin remote.\nConfigures the source repo as the upstream remote.\nSets the upstream tracking branch for main (or whatever the default branch is) to upstream/main.\nOpens a new RStudio instance in the new local repo (and RStudio Project).\n\nWe have not covered “upstream” and “remote” in our git vocabulary yet. Basically remotes are connections for your repository, and being upstream means being a repository closer to the source than your repository, which is downstream (as it is a fork). So the sentence “Configures the source repo as the upstream remote” translates to adding a connection specifying that the source repository is where your repository came from. This connection is used to update your fork with any future changes that occur in the source repository.\n\nFork the repository https://github.com/Sebastian-D/testgit using one of the methods described. Also clone a local copy of it. Make sure you can find your fork on GitHub.\n\nNow we are ready to make some changes to the code in our local repository. But before this we should create a new branch for the pull request. For this we can use usethis::pr_init(branch = \"branchName\"). This will also automatically switch to the branch.\n\nCreate a branch then make some changes to the repository. In the mental model you are implementing some feature or fixing some bug.\nadd and commit the changes with a commit message.\n\nTo submit a pull request you can use pr_push(). This should open a browser where you can submit the pull request. If the maintainer of the source repository wants to modify the pull request he can either do this himself or suggest some changes to you, whereupon you make the changes the run pr_push() again.\n\nSubmit the pull request! Go ahead and view it on GitHub.\n\nThere is a whole family of pr-* functions for both the person submitting the pull the request and the maintainer of the source repository that will review and accept/decline the pull request. I really recommend you read here if you think this is of interest!\nGood job completing the exercises! git and GitHub are big topics, but knowing a little gets you a long way and then you discover the rest when you need it!"
+  },
+  {
+    "objectID": "slides/git.html#session",
+    "href": "slides/git.html#session",
+    "title": "git and R",
+    "section": "Session",
+    "text": "Session\n\n\nClick here\n\n\nsessionInfo()\n\nR version 4.5.1 (2025-06-13)\nPlatform: x86_64-pc-linux-gnu\nRunning under: Ubuntu 24.04.2 LTS\n\nMatrix products: default\nBLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 \nLAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0\n\nlocale:\n [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       \n [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   \n [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          \n[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   \n\ntime zone: UTC\ntzcode source: system (glibc)\n\nattached base packages:\n[1] stats     graphics  grDevices datasets  utils     methods   base     \n\nother attached packages:\n[1] gitcreds_0.1.2 usethis_3.1.0 \n\nloaded via a namespace (and not attached):\n [1] digest_0.6.37     fastmap_1.2.0     xfun_0.52         magrittr_2.0.3   \n [5] glue_1.8.0        knitr_1.50        htmltools_0.5.8.1 rmarkdown_2.29   \n [9] lifecycle_1.0.4   cli_3.6.5         vctrs_0.6.5       renv_1.0.9       \n[13] compiler_4.5.1    purrr_1.0.4       tools_4.5.1       evaluate_1.0.3   \n[17] yaml_2.3.10       rlang_1.1.6       jsonlite_2.0.0    fs_1.6.6         \n\n\n\n\n\n\n\n🔗 tinyurl.com/SCiRT"
+  },
+  {
+    "objectID": "slides/Topic6.html#description-namespace",
+    "href": "slides/Topic6.html#description-namespace",
     "title": "Short Course on R Tools",
-    "section": "Outline",
-    "text": "Outline\n\n\nMotivation & Introduction\nGetting Started with evalCpp() & cppFunction()\nUsing sourceCpp()\nData Types & Conversions\nStandard Template Library (STL)\nUsing Rcpp in Packages\nAdvanced Topics & Resources",
+    "section": "DESCRIPTION & NAMESPACE",
+    "text": "DESCRIPTION & NAMESPACE\n\nEnsure fields: Version, URL, BugReports, License\nSemantic versioning: increment patch for minor fixes",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#basic-usage-evalcpp",
-    "href": "slides/Topic3.html#basic-usage-evalcpp",
+    "objectID": "slides/Topic6.html#documentation-vignettes",
+    "href": "slides/Topic6.html#documentation-vignettes",
     "title": "Short Course on R Tools",
-    "section": "Basic Usage: evalCpp()",
-    "text": "Basic Usage: evalCpp()\n\nevalCpp() evaluates a single C++ expression. Includes and dependencies can be declared.\nThis allows us to quickly check C++ constructs.\n\nlibrary(Rcpp)\n\nevalCpp(\"2 + 2\")  # simple test\n&gt;# [1] 4\n\nevalCpp(\"std::numeric_limits&lt;double&gt;::max()\")\n&gt;# [1] 1.79769e+308",
+    "section": "Documentation & Vignettes",
+    "text": "Documentation & Vignettes\n\nAll help files up to date\nVignettes build without errors",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#simple-example---using-cppfunction",
-    "href": "slides/Topic3.html#simple-example---using-cppfunction",
+    "objectID": "slides/Topic6.html#tests-coverage",
+    "href": "slides/Topic6.html#tests-coverage",
     "title": "Short Course on R Tools",
-    "section": "Simple Example - Using cppFunction()",
-    "text": "Simple Example - Using cppFunction()\n\nRcpp Version of ‘is this number odd or even’\n\nRcpp::cppFunction(\"\nbool isOdd_cpp(int num = 10) {\n  bool result = (num % 2 == 1);\n  return result;\n}\")\nc(isOdd_cpp(42L), isOdd_cpp(43L))\n&gt;# [1] FALSE TRUE\n\n\nUse cppFunction() in R console or script\nFast prototyping & testing\nGood for small functions",
+    "section": "Tests & Coverage",
+    "text": "Tests & Coverage\n\ndevtools::test() passes\nConsider covr::report()\n\n??? note Emphasize R CMD check --as-cran equivalence.",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#second-example-var1-1",
-    "href": "slides/Topic3.html#second-example-var1-1",
-    "title": "Short Course on R Tools",
-    "section": "Second Example: VAR(1)",
-    "text": "Second Example: VAR(1)\nIn R (C++) code, given both the coefficient and error matrices:\n\nrSim &lt;- function(B, E) {\n  X &lt;- matrix(0, nrow(E), ncol(E))\n  for (r in 2:nrow(E)) {\n    X[r, ] = X[r-1, ] %*% B + E[r, ]\n  }\n  return(X)\n}\n\n\nC++ Version:\n\narma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site!"
   },
   {
-    "objectID": "slides/Topic3.html#second-example-var1-2",
-    "href": "slides/Topic3.html#second-example-var1-2",
-    "title": "Short Course on R Tools",
-    "section": "Second Example: VAR(1)",
-    "text": "Second Example: VAR(1)\n\nRcpp::cppFunction('arma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}', depends=\"RcppArmadillo\")\n\na &lt;- matrix(c(0.5, 0.1, 0.1, 0.5), nrow = 2)\ne &lt;- matrix(rnorm(10000), ncol = 2)\nrbenchmark::benchmark(cppSim(a, e), rSim(a, e), order=\"relative\")[, 1:4]\n\n&gt;#    test           replications elapsed relative\n&gt;# 1  cppSim(a, e)  100         0.010   1.0\n&gt;# 2  rSim(a, e)    100         0.728  72.8",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
+    "objectID": "slides/packages.html#what-is-an-r-package",
+    "href": "slides/packages.html#what-is-an-r-package",
+    "title": "R packages",
+    "section": "What is an R package?",
+    "text": "What is an R package?\n\n\n\n\n\nA strict and connected folder and file structure\n\n\n\n\nYou can think of an R package under development as a folder and file structure with some predetermined names and connectivity. So really, a package is more about knowing how to organize code and other files than being a good R programmer. There are also some differences in how you write code that is intended to be used for a package than a script for analysis for example. But I will get back to this. The minimal required package has a DESCRIPTION, a NAMESPACE an R folder for code and here we also see a R project file created by Rstudio which is not required."
   },
   {
-    "objectID": "slides/Topic3.html#pagerank",
-    "href": "slides/Topic3.html#pagerank",
-    "title": "Short Course on R Tools",
-    "section": "Pagerank",
-    "text": "Pagerank\n#remotes::install_github(\"https://github.com/andrie/pagerank.git\")\nsuppressMessages(library(utils))\nlibrary(pagerank)\n\ncran &lt;- \"https://cloud.r-project.org\"\npr &lt;- compute_pagerank(cran)\nround(100 * pr[1:5], 3)\n\n&gt;#   Rcpp    ggplot2     dplyr      MASS   magrittr\n&gt;# 2.744     1.516       1.274    1.122    0.814",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
+    "objectID": "slides/packages.html#what-is-an-r-package-1",
+    "href": "slides/packages.html#what-is-an-r-package-1",
+    "title": "R packages",
+    "section": "What is an R package?",
+    "text": "What is an R package?\n\n\n \n\n\nA strict and connected folder and file structure\n\n\n\n\nThere are many additional components you can add to the package, more than are shown here, I will go through the major parts of these in this lecture. So what are R packages for?"
   },
   {
-    "objectID": "slides/Topic3.html#percentage-of-compiled-packages",
-    "href": "slides/Topic3.html#percentage-of-compiled-packages",
-    "title": "Short Course on R Tools",
-    "section": "Percentage of Compiled Packages",
-    "text": "Percentage of Compiled Packages\ndb &lt;- tools::CRAN_package_db()       # added in R 3.4.0\ndb &lt;- db[!duplicated(db[, 1]), ]     # rows: number of packages\n\nnTot &lt;- nrow(db)                     # columns: different attributes\nnRcpp &lt;- length(tools::dependsOnPkgs(\"Rcpp\", recursive = FALSE, installed = db))\nnCompiled &lt;- table(db[, \"NeedsCompilation\"])[[\"yes\"]]\n\npropRcpp &lt;- nRcpp / nCompiled * 100\ndata.frame(tot = nTot, totRcpp = nRcpp, totCompiled = nCompiled,\n           RcppPctOfCompiled = propRcpp)\n\n&gt;#   tot   totRcpp   totCompiled   RcppPctOfCompiled\n&gt;# 1 22501    3053        4981          61.29291",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
+    "objectID": "slides/packages.html#what-is-an-r-package-2",
+    "href": "slides/packages.html#what-is-an-r-package-2",
+    "title": "R packages",
+    "section": "What is an R package?",
+    "text": "What is an R package?\n\n\n \n\n\nA strict and connected folder and file structure\nSharing code\nImproved quality and rigor\n\nDocumentation\nTests\nExamples\n\nEfficiency\nImprovability\nReproducibility\n\n\n\n\nR packages are for sharing code in a way where others can use it. It also forces the author to include elements which can improve the quality of the code, such as documentation, examples and tests. This is a benefit no matter if the package is intended for other users or not. It really helps when coming back to your own code at a later date. Once you get better at writing packages it may even be more time efficient to write a package even if you are not going to share it.\n\n\nFinally; At the moment there is much talk about the reproducibility crisis and creating code in this way is definitely in line with good reproducibility."
   },
   {
-    "objectID": "slides/Topic3.html#using-sourcecpp",
-    "href": "slides/Topic3.html#using-sourcecpp",
-    "title": "Short Course on R Tools",
-    "section": "Using sourceCpp()",
-    "text": "Using sourceCpp()\n\n\nSo what just happened?\n\nWe defined a simple C++ function\n\nIt operates on a numeric vector argument\n\nWe ask Rcpp to ‘source it’ for us\n\nBehind the scenes Rcpp creates a wrapper\n\nRcpp then compiles, links, and loads the wrapper\n\nThe function is available in R under its C++ name\n\nBenefits:\n\nEditor support (syntax highlighting)\nEasier debugging & error tracking",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
+    "objectID": "slides/packages.html#package-naming",
+    "href": "slides/packages.html#package-naming",
+    "title": "R packages",
+    "section": "Package naming",
+    "text": "Package naming\n\nA name that describes your packages function\n\nLetters, numbers and periods\nMust start with letter\nCannot end with period\n\nMake it “googleable”\nCheck that it doesn’t already exist!\n\nCRAN\nGitHub\nBioconductor"
   },
   {
-    "objectID": "slides/Topic3.html#another-example-timing-r-implementation",
-    "href": "slides/Topic3.html#another-example-timing-r-implementation",
-    "title": "Short Course on R Tools",
-    "section": "Another Example: Timing R Implementation",
-    "text": "Another Example: Timing R Implementation\n\nThe R implementation:\n\n\nf &lt;- function(n) {\n  if (n &lt; 2) return(n)\n  return(f(n - 1) + f(n - 2))\n}\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(15), f(20), f(25))[, 1:4]\n\n&gt;# test         replications elapsed   relative\n&gt;# 1 f(15)       100          0.06      1.0\n&gt;# 2 f(20)       100          0.75     12.5\n&gt;# 3 f(25)       100          7.92    132.0",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
+    "objectID": "slides/packages.html#package-states",
+    "href": "slides/packages.html#package-states",
+    "title": "R packages",
+    "section": "Package states",
+    "text": "Package states\nThere are five states a package can exist in:\n\nSource\nBundled\nBinary\nInstalled\nIn-memory\n\n\nTo help understand what’s going on with a package it is useful to know the possible states a package can be in."
   },
   {
-    "objectID": "slides/Topic3.html#another-example-c-implementation",
-    "href": "slides/Topic3.html#another-example-c-implementation",
-    "title": "Short Course on R Tools",
-    "section": "Another Example: C++ Implementation",
-    "text": "Another Example: C++ Implementation\nint g(int n) {\n  if (n &lt; 2) return(n);\n  return(g(n - 1) + g(n - 2));\n}\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\nsapply(0:10, g)  # Using it on first 11 arguments\n\n&gt;# [1] 0 1 1 2 3 5 8 13 21 34 55",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
+    "objectID": "slides/packages.html#package-states-1",
+    "href": "slides/packages.html#package-states-1",
+    "title": "R packages",
+    "section": "Package states",
+    "text": "Package states\nSource\nThe development version of your package. The collection of files on your computer.\nBundled\n\nA compressed, tar.gz source package with vignettes built\n.Rbuildignore files are excluded\n\nUseful for data for example\n\n\n\nWe will get to what vignettes are.\n\nBinary\n\nA bundle that is built for a certain architecture\nParsed format, skipping the development tools needed to take the package between source and being interpretable by R\n\n\nLike the bundled package except that if you uncompressed it doesn’t look like the source package. This is because it is built for a certain architecture, or operating system."
   },
   {
-    "objectID": "slides/Topic3.html#another-example-comparing-timing",
-    "href": "slides/Topic3.html#another-example-comparing-timing",
-    "title": "Short Course on R Tools",
-    "section": "Another Example: Comparing Timing",
-    "text": "Another Example: Comparing Timing\n\nRcpp implementation:\n\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(25), g(25))[, 1:4]\n\n&gt;#   test      replications elapsed   relative\n&gt;# 1 f(25)      100          8.02     267.333\n&gt;# 2 g(25)      100          0.03       1.000\n\n\n\nA nice gain of a few orders of magnitude.",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
+    "objectID": "slides/packages.html#package-states-2",
+    "href": "slides/packages.html#package-states-2",
+    "title": "R packages",
+    "section": "Package states",
+    "text": "Package states\nInstalled\n\nA binary package decompressed into a package library for R\n\nThe package library is the directory or directories where library(packagename) searches\n\n.libPaths()\n\n\n\nIn-memory\nWhen you use a package, it is in memory. When developing, a package does not have to be installed to be in memory.\n\npackagename::function() loads packagename\nlibrary(packagename) loads and attaches packagename\n\n\nThere is a subtle difference between loading a package into memory to be able to use the functions and also attaching it to the search path so you can use the functions without writing packagename::function(). When you are developing a package it is good to avoid using library and attaching a package because it makes it clearer which package you want the method to come from and having your package attach another package to its search path can mess up your users scripts."
   },
   {
-    "objectID": "slides/Topic3.html#types",
-    "href": "slides/Topic3.html#types",
-    "title": "Short Course on R Tools",
-    "section": "Types",
-    "text": "Types\nR Type mapping:\n\nStandard R types (integer, numeric, list, function, … and compound objects) are mapped to corresponding C++ types:\n\nlibrary(Rcpp)\ncppFunction(\"NumericVector logabs(NumericVector x) {\n  return log(abs(x));\n}\")\nlogabs(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438\n\n\nVectorized C++! Here log(abs()) runs directly on vectors as R would.",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
+    "objectID": "slides/packages.html#package-states-3",
+    "href": "slides/packages.html#package-states-3",
+    "title": "R packages",
+    "section": "Package states",
+    "text": "Package states\n\nhttp://r-pkgs.had.co.nz/package.html\n\nThis image is from Hadleys great introduction to developing packages and I think it illustrates very well how when you run install.packages() from CRAN what is really happening is that it determining what operating system you are on, getting the correct binary version of the package and then, on your device, running R CMD install to put it in your R library. From there you can use the library() command, or not if you are developing, to take it into memory. Whereas if you use type = “source” it will not infer your architecture and grab the bundled source if you will instead. This process will demand that you have the tools on your computer to build the correct binary and install."
   },
   {
-    "objectID": "slides/Topic3.html#stl-type-mapping",
-    "href": "slides/Topic3.html#stl-type-mapping",
-    "title": "Short Course on R Tools",
-    "section": "STL Type Mapping",
-    "text": "STL Type Mapping\n\ncode/logabs2.cpp\n\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n\ninline double f(double x) { return ::log(::fabs(x)); }\n\n// [[Rcpp::export]]\nstd::vector&lt;double&gt; logabs2(std::vector&lt;double&gt; x) {\n  std::transform(x.begin(), x.end(), x.begin(), f);\n  return x;\n}\n\nNot vectorized but ‘sweeps’ f() along std::vector&lt;double&gt; via STL std::transform().\n\nlibrary(Rcpp)\nsourceCpp(\"code/logabs2.cpp\")\nlogabs2(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438",
-    "crumbs": [
-      "Slides",
-      "RCpp"
-    ]
+    "objectID": "slides/packages.html#r",
+    "href": "slides/packages.html#r",
+    "title": "R packages",
+    "section": "R/",
+    "text": "R/\n\n\n\n\n\n\nNow we will start to go through the folders and files in a package to see how they interact, what belongs where and what they do."
+  },
+  {
+    "objectID": "slides/packages.html#r-1",
+    "href": "slides/packages.html#r-1",
+    "title": "R packages",
+    "section": "R/",
+    "text": "R/\n\n\n \n\n\nCode\n\nLarge functions in their own R files\nUtility functions, that your package uses, in one R file\n\nBad code\n\nlibrary(), require(), source()\noptions(), par()\n\n\n\n\n\nThe first folder is the R/ folder. This is where your R code lives. You should try to keep it organized with functions that your user will be using grouped in some R files, and your utility functions in their own R file. Utility functions are functions that you don’t expect your user to run, rather they are used by your main functions. If a function doesn’t fit in a group or is very large, it can have its own R file, but each function should not have their own R file. You should avoid using functions in your code that modify the environment of your user. For example if you use library() it will attach the package functions of your user, perhaps getting in the way of other functions he was already using elsewhere. It is better to be explicit then and only load a package into memory. If you change options() or par() settings you should revert them before ending the function so your users environment isn’t changed."
+  },
+  {
+    "objectID": "slides/packages.html#description",
+    "href": "slides/packages.html#description",
+    "title": "R packages",
+    "section": "DESCRIPTION",
+    "text": "DESCRIPTION\n\n\nNow lets look at the DESCRIPTION file. This file handles the metadata of your package. You can change the name of your package in the title here but remember then to change the folder of your package as they should match.\n\n\n\n\n\nTitle\n\n65 characters, no punctuation\n\nVersion\n\nThe version of the package\n\nDescription\n\nOne paragraph\n\n\n\n\n\nAuthors@R\n\nRoles\n\ncre*: Creator or maintainer.\naut*: Author or authors, that have made significant contributions.\nctb: Contributors, have made smaller contributions.\ncph: Copyright holder. Used if copyright is held by someone other than author, typically company.\n\n\n\n\n\n\nNot all of the fields in DESCRIPTION are important unless you plan to distribute you package to other users.\nThe title of you package should be a short description, no more than 65 characters. I’ll talk more in a second about version number recommendations but for now it is enough to say that it is the version of your package and you decide what version your package is in. The author can be one or many people, with names, emails and roles. Every package must have a creator or maintainer and any number of authors, the rest is optional.\n\n\n\n*required"
+  },
+  {
+    "objectID": "slides/packages.html#description-1",
+    "href": "slides/packages.html#description-1",
+    "title": "R packages",
+    "section": "DESCRIPTION",
+    "text": "DESCRIPTION\n\n\n\n\nDepends & Imports\n\nPackages and versions that your package needs\nVersions are optional\nDepends: Attaches!\nImports: Loads!\n\nSuggests\n\nAdded functionality\n\n\n\n\nLazyData\n\nDatasets occupy no memory until loaded\n\nLicense\n\nCan be a file; LICENSE\nInfluences permissions of who can distribute and modify in what way\nMost common; MIT, GPL-3, CC0.\nhttps://tldrlegal.com/\nCRAN requires a license\n\n\n\n\n\nThe Depends and Imports fields of DESCRIPTION handles what packages, and optionally what versions of packages, your package needs to work. The big difference here is that depends attaches the functions, something that is generally frowned upon for packages, and imports loads them, making them available for use. So usually you will see Depends on R version and most other packages in Imports.\nSuggests isn’t packages that your package needs to function properly but with those packages there can be added functionality. For example a package can create a plot using base R plotting tools but you have built in that if ggplot2 is available create pretties plots instead.\nLazyData is a special function which should be true which states that any datasets included in your package should not take any memory until they are used. The license of your package should reflect who and how your package should be used or modified. If the license is longer than just a standard abbreviation it can be a file, called LICENSE."
+  },
+  {
+    "objectID": "slides/packages.html#versioning",
+    "href": "slides/packages.html#versioning",
+    "title": "R packages",
+    "section": "Versioning",
+    "text": "Versioning\n0.0.0.9000\n\nmajor.minor.patch.dev\n\nMajor\n\nLarge changes, not always backwards compatible\nUsually 1 upon first release out of dev\n\nMinor\n\nBug fixes & new features. Most common\n\nPatch\n\nSmall bugfixes, no new features.\n\nDev\n\nOnly used while under development\nAlways starts at 9000\n\n\n\nWether you are developing your package, or updating and adding to a released package, it is good to change the version numbers in your DESCRIPTION file to reflect the changes. The four numbers reflect the kind of change that you have made to the package. Dev should be removed from the package upon release."
+  },
+  {
+    "objectID": "slides/packages.html#man",
+    "href": "slides/packages.html#man",
+    "title": "R packages",
+    "section": "man/",
+    "text": "man/\n\n\n\n\ncall_me.R\n#' Output \"Call me \" followed by input.\n#'\n#' @param x A character or characters.\n#' @return The string \"Call me \" and \\code{x}. I'll write this\n#'    to display how to section with tags.\n#' @examples\n#' call_me(\"Maeby\")\ncall_me &lt;- function(x) {\n  paste(\"Call me \", x, sep=\"\")\n}\n\n\nDocumentation of your functions is important for helping users know how to use your package, and also for yourself when you come back to the package. The documentation is in the man/ directory in “R documentation”, or Rd files. They contain the information you see when you call ?function. While you can write these by hand it is easier and handsomer to have the package roxygen2 generate them for you.\n\n\nRoxygen2\n\n?function\nComment block, #', preceding a function\nTags, @tags, map values\nNo tag for introduction\n\ntitle*\ndescription\ndetails\n\nSpecial characters @\\%, escape with \\\n\n\n\n\n\nRoxygen2 works with special comment blocks in your code, directly before the function you are documenting, to create the Rd files. So you are actually writing your documentation in the same place as your code, the .R file, which is easier than going to another file and updating it. It also reminds you as you update your code to update the documentation in a natural way, and roxygen even deducts some information by itself so it is faster to write documentation. Here is an example function call_me.R with the roxygen2 documentation block preceding it. The first line will become the title and also the description if none is given. @param documents the parameter x, @return lets us know what the function returns, and notice the indentation here which I have added to signify how to add multiple rows of text and have them belong together. @examples shows one or many example executions of the code."
+  },
+  {
+    "objectID": "slides/packages.html#man-1",
+    "href": "slides/packages.html#man-1",
+    "title": "R packages",
+    "section": "man/",
+    "text": "man/\n\n\ncall_me.R\n#' Output \"Call me \" followed by input.\n#'\n#' @param x A character or characters.\n#' @return The string \"Call me \" and \\code{x}. I'll write this\n#'    to display how to section with tags.\n#' @examples\n#' call_me(\"Maeby\")\ncall_me &lt;- function(x) {\n  paste(\"Call me \", x, sep=\"\")\n}\ncall_me.Rd\n% Generated by roxygen2: do not edit by hand\n% Please edit documentation in R/call_me.R\n\\name{call_me}\n\\alias{call_me}\n\\title{Output \"Call me \" followed by input.}\n\\usage{\ncall_me(x)\n}\n\\arguments{\n\\item{x}{A character or characters.}\n}\n\\value{\nThe string \"Call me \" and \\code{x}. I'll write this\n   to display how to section with tags.\n}\n\\description{\nOutput \"Call me \" followed by input.\n}\n\\examples{\ncall_me(\"Maeby\")\n}\n]{.small}\n\nSo when your documentation is built, roxygen takes the block information and generates a Rd file that looks like this.\n\n &gt; ?call_me\n\n\n\n\nAnd when you do question mark the function name in R the Rd file is parsed and you get this helpful documentation that I am sure you are all familiar with. I know this is a busy slide but what I hope I have been able to convey to you is that you use the code block in the .R code file which roxygen2 parses to create the Rd file which in turn is what is read when you ask for the documentation of a function in R."
+  },
+  {
+    "objectID": "slides/packages.html#man-for-datasets",
+    "href": "slides/packages.html#man-for-datasets",
+    "title": "R packages",
+    "section": "man/ for datasets",
+    "text": "man/ for datasets\n\n\n\n\nWe will get to datasets later but while I am talking about documentation you should also document your datasets, if you have any. It is very similar to functional documentation, my dataset is the publicly available ToothGrowth dataset and I have created a R file called data.R where I will add documentation.\n\n\n\nhead(ToothGrowth)\n\n   len supp dose\n1  4.2   VC  0.5\n2 11.5   VC  0.5\n3  7.3   VC  0.5\n4  5.8   VC  0.5\n5  6.4   VC  0.5\n6 10.0   VC  0.5\n\n\n\n\nHere we see the head of the ToothGrowth dataset.\ndata.R:#' The Effect of Vitamin C on Tooth Growth in Guinea Pigs\n#'\n#' The response is the length of odontoblasts (cells responsible for tooth growth)\n#'   in 60 guinea pigs. Each animal received one of three dose levels of vitamin C\n#'   (0.5, 1, and 2 mg/day) by one of two delivery methods, orange juice or ascorbic\n#'   acid (a form of vitamin C and coded as VC).\n#'\n#' @usage ToothGrowth\n#'\n#' @format A data frame with 60 observations on 3 variables.\n#' \\describe{\n#'   \\item{len}{Tooth length}\n#'   \\item{supp}{Supplement type (VC or OJ).}\n#'   \\item{dose}{Dose in milligrams/day}\n#' }\n#' @source \\url{https://www.elsevier.com/books/the-statistics-of-bioassay/bliss/978-1-4832-5662-7}\n\"ToothGrowth\"\nAnd here we see the documentation, which I have put in data.R. Just like previously this is then parsed by roxygen2 when I give the command and ToothGrowth.Rd is created. First title, then description, the usage in this case is just the dataset, and the @format describes the data, not @params that described our functions parameters. At the very end we see just the name of the dataset, which lives in ToothGrowth.RData."
+  },
+  {
+    "objectID": "slides/packages.html#vignettes",
+    "href": "slides/packages.html#vignettes",
+    "title": "R packages",
+    "section": "vignettes/",
+    "text": "vignettes/\n\n\n\nA more complete guide to your package\n\nFor user/you\nExamples and use cases\n\nknitr & rmarkdown\n\nknitr: add r code to markdown\n\nvignettes/package-vignette.Rmd\n\nusethis::use_vignette(\"typicalr-vignette\")\n\nVignettes are a long-form guide, or manual, to the package that details what the functions in the package can do. It can also show and give examples of what the package is designed to do, using multiple functions in sequence. If functional documentation shows just a part, think of the vignette as a book chapter showing what your package can do. It can look very different if you intend it for your users or for yourself to read at a later date. You can use many things to create the vignette, but like with roxygen2 probably the easiest is to use knitr and rmarkdown.\n\n\ntypicalr-vignette.Rmd\n  ---\n  title: \"Vignette Title\"\n  author: \"Vignette Author\"\n  date: \"2025-06-25\"\n  output: rmarkdown::html_vignette\n  vignette: &gt;\n    %\\VignetteIndexEntry{Vignette Title}\n    %\\VignetteEngine{knitr::rmarkdown}\n    %\\VignetteEncoding{UTF-8}\n  ---\n\n\n\nWhat we are seeing here is the top metadata of a template for a vignette that I created using usethis::use_vignette(\"typicalr-vignette\") which created typicalr-vignette.Rmd and the vignettes/ directory. It also edits DESCRIPTION, adding knitr and rmarkdown to suggests, and adding VignetteBuilder: knitr. You are free to edit any part of the rmarkdown file but should not change the structure of the metadata. Only add the title in both places where it says “Vignette title” and your name as author. You can also change the output to pdf vignette for example. Luckily you have already gone through rmarkdown, so we dont need to talk about that, =)."
+  },
+  {
+    "objectID": "slides/packages.html#vignettes-1",
+    "href": "slides/packages.html#vignettes-1",
+    "title": "R packages",
+    "section": "vignettes/",
+    "text": "vignettes/\n\n\n\nA more complete guide to your package\n\nFor user/you\nExamples and use cases\n\nknitr & rmarkdown\n\nknitr: add r code to markdown\n\nvignettes/package-vignette.Rmd\n\nusethis::use_vignette(\"typicalr-vignette\")\n\ntypicalr-vignette.Rmd\n  ---\n  title: \"typicalr\"\n  author: \"Sebastian DiLorenzo\"\n  date: \"2025-06-25\"\n  output: rmarkdown::html_vignette\n  vignette: &gt;\n    %\\VignetteIndexEntry{typicalr}\n    %\\VignetteEngine{knitr::rmarkdown}\n    %\\VignetteEncoding{UTF-8}\n  ---"
+  },
+  {
+    "objectID": "slides/packages.html#namespace",
+    "href": "slides/packages.html#namespace",
+    "title": "R packages",
+    "section": "NAMESPACE",
+    "text": "NAMESPACE\npackage1 names         package2 names\n\n\nThe NAMESPACE makes sure your package works well with other packages, so it is mostly important for submitting to repository, CRAN. It makes sure your code and the code of other packages doesn’t interfere with each other. I like to think of it as a venn diagram, where each circle is a space filled with names. What the NAMESPACE does is remove the overlap, so if your function uses a function from package1, it wont accidentally use a function with the same name from package2. It does this by specifying which space a function should look for the name of a function it needs.\n\n\n\n@imports and @importsFrom\n\nDefines how/where a function in one package finds a function in another\n@imports pkg\n@importsFrom pkg function\n\n@export\n\nDefines which functions are available to user\nDo not export data\n\n\n\nIt does this using imports and exports. Like the other documentation, we can use roxygen2 to create our NAMESPACE. Using the imports tag, it doesn’t matter if our user has loaded a package with a function with the same name as one of our functions are using, because our function will know to use the one specified in imports. Exports helps by saying that only these functions of my package are available outside. If you export all your functions, it increases the risk of being incompatible with other packages, so good practice is to export as few as possible. If you are not going to share your package, just export every function."
+  },
+  {
+    "objectID": "slides/packages.html#namespace-1",
+    "href": "slides/packages.html#namespace-1",
+    "title": "R packages",
+    "section": "NAMESPACE",
+    "text": "NAMESPACE\ncall_me.R:\n#' Output \"Call me \" followed by input.\n#'\n#' @param x A character or characters.\n#' @return The string \"Call me \" and \\code{x}. I'll write this\n#'    to display how to section with tags.\n#' @examples\n#' call_me(\"Maeby\")\n#' @export\ncall_me &lt;- function(x) {\n  paste(\"Call me \",x,sep=\"\")\n}\nutility.R:\n#' @import knitr\nNULL\n\nRevisiting call_me.R, I have now added the @export tag, and in the utility.R I have @import knitr, just as an example, using the NULL object since there has to be something there.\n\n\nNAMESPACE:\n# Generated by roxygen2: do not edit by hand\n\nexport(call_me)\nimport(knitr)\n\nSo when I run devtools::document(), just like when we generated the other documentation, this will generate the NAMESPACE for us. Notice that this is a very minimal example and roxygen2 actually looks at what you are exporting so there are added benefits here where you are just writing @export but roxygen2 is correctly exporting it as a S3 or S4 class etc."
+  },
+  {
+    "objectID": "slides/packages.html#namespace-2",
+    "href": "slides/packages.html#namespace-2",
+    "title": "R packages",
+    "section": "NAMESPACE",
+    "text": "NAMESPACE\nImport in DESCRIPTION and in NAMESPACE!?\n\nA final note on the NAMESPACE is that at a glance we are now importing packages both in the DESCRIPTION and in the NAMESPACE. This is more an accident of naming as they are doing a bit different things.\n\n\n\nDESCRIPTION Imports:\n\n“My package needs this package to work”\n\nNAMESPACE @import\n\n“When my package uses this function, use the one from the package in the NAMESPACE”\n\nAdditional effects:\n\nNAMESPACE removes need for ::\n\npackage::function() or function()\n\n\n\n\nWhen you import a function in DESCRIPTION you are saying that “My package needs this package to work”, when you import a function in NAMESPACE you are saying “When my package uses this function, use the one from the package in the NAMESPACE” even if there exist functions with the same name. An added benefit is that if you just import a package in DESCRIPTION you need to specify in your code which package it is from as it is not attached but if you import it from NAMESPACE this need is removed. Finally: Realise that writing package::function() removes the need to import functions to NAMESPACE and is best, but it takes a while to write of course."
+  },
+  {
+    "objectID": "slides/packages.html#data",
+    "href": "slides/packages.html#data",
+    "title": "R packages",
+    "section": "data/",
+    "text": "data/\n\n\nPackage types:\n\nFunctional\n\nPerforms a or several functions\nContains no or small datasets, &lt;1 MB\n\nDataset\n\nContains an interesting dataset\nEasy to import\nFew or no functions\n\n\n\nIncluding data is good if there is some information intrinsic to some of your functions or to provide examples of usage. In some packages it can be the main reason for the package, for example a R package carrying some census data which is easy for people to load. Unless your package is such a data package you should strive to keep it less than 1 MB.\n\n\nData types:\n\nBinary data, .Rdata or .rda\n\ndata/ folder\nA single object with the same name as the data file\n\nFunction data\n\nR/sysdata.rda\nData that your functions need\n\nRaw data, .xlsx,.csv etc\n\ninst/extdatafolder\n\n\n\nYou can have three types of data in R, binary data is an R object saved to data/ directory with the same name as the object. These can be slightly larger files. Data that your functions need, for example in life sciences you might save the positions of the centromeres within a package that plots the genome, or for a plotting program you may want to save a list of colors, this is usually saved in R/sysdata.rda. The objects saved there will be available to your functions by name within the package. If you want to include raw data, usually you should try not to or convert it to binary data, you can save those in inst/extdata.\n\n\n\n# Create data in package automatically\nusethis::use_data(object, package)\n\n# Manually\nsave(object, file=\"path/to/package/data/object.Rdata\")\n\n# Access raw data\nsystem.file(\"extdata\",\"filename.csv\", package=\"packagename\")\n\nHere we see some code where we use usethis to save a object directly to data/ directory with the correct name. This is the same thing basically as using the save command and pointing to the correct location, with correct filename. If you want to access data belonging to a package you can use the system.file command in R."
+  },
+  {
+    "objectID": "slides/packages.html#tests",
+    "href": "slides/packages.html#tests",
+    "title": "R packages",
+    "section": "tests/",
+    "text": "tests/\n\n\n\nWhat to test?\nThat the return value is what is expected given a certain input\nWhy test?\nImproved development stability\nWorking in group/open source\nWorking on big package\n\n\n\nTests or unit tests formally checks that we get the correct result from a function given a specific input. This can be good when working on big and/or complex packages or together with other people as it directly tells you if a change has been made that has changed the expected behavior of the package.\n\n\n\nHow to test?\nUses testthat package for testing and usethis package for setup \nInitialize with use_testthat()\nCreate test for a function with use_test(\"call_me\")\nTestfile: tests/testthat/test-call_me.R\nRun test with devtools::test() or check()\n\ntests/testthat/test-call_me.R:\ntest_that(\"multiplication works\", {\n  expect_equal(2 * 2, 4)\n})\n\nThis is the standard template created when use_test() is called."
+  },
+  {
+    "objectID": "slides/packages.html#src",
+    "href": "slides/packages.html#src",
+    "title": "R packages",
+    "section": "src/",
+    "text": "src/\n\n\n\nCompiled code\n\nRcpp\nrJava\n\nScripts\n\ninst/\nDependencies\n\n\n\nI wont go deeply into this, but I want it to be something you are aware of. R isn’t the fastest language, so sometimes you may want to put for example C or C++ in your package for certain functions. There are two ways to go about this. Either you can integrate, using packages such as Rcpp, or rJava and others, or you just straight up put code such as .py files in inst/python. This should be avoided as it creates additional dependencies on the user. So lets look at an example of how to set up your package to use Rcpp, which is probably the easiest and most common.\n\n\nusethis::use_rcpp()\n\nEdit DESCRIPTION\n#' @useDynLib packagename\n#' @importFrom Rcpp sourceCpp\n\n.cpp file in src/\n\n\n\nsrc/filename.cpp:\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n\n// This is a simple example of exporting a C++ function to R. You can\n// source this function into an R session using the Rcpp::sourceCpp\n// function (or via the Source button on the editor toolbar). Learn\n// more about Rcpp at:\n//\n//   http://www.rcpp.org/\n//   http://adv-r.had.co.nz/Rcpp.html\n//   http://gallery.rcpp.org/\n//\n\n// [[Rcpp::export]]\nNumericVector timesTwo(NumericVector x) {\n  return x * 2;\n}\n\nFirst you can call usethis::use_rcpp() which automates the processes of adding information to your DESCRIPTION and telling you to add two tags for documentation somewhere in your packages code. Then we create a c++ file, from Rstudio preferable, in our src/ folder. It will look as shown here by default. The only important parts are the header and the rcpp::export located above the example function."
+  },
+  {
+    "objectID": "slides/packages.html#src-1",
+    "href": "slides/packages.html#src-1",
+    "title": "R packages",
+    "section": "src/",
+    "text": "src/\n\n\n\nCompiled code\n\nRcpp\nrJava\n\nScripts\n\ninst/\nDependencies\n\n\n\n\nusethis::use_rcpp()\n\nEdit DESCRIPTION\n#' @useDynLib packagename\n#' @importFrom Rcpp sourceCpp\n\n.cpp file in src/\npkgbuild::compile_dll()\ndevtools::document()\nBuild & Reload\nAdd documentation to .cpp\n\n\n\nR/RcppExports.R:\n# Generated by using Rcpp::compileAttributes() -&gt; do not edit by hand\n# Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393\n\ntimesTwo &lt;- function(x) {\n    .Call('_typicalr_timesTwo', PACKAGE = 'typicalr', x)\n}\n\nTo get this to R code we first build the documentation, which exports the function, and your tags for using rcpp, to NAMESPACE, and then Build & Reload in Rstudio, I am sure there are ways to do this with devtools as well. At this stage the cpp function is callable in R, through the RcppExports.R file that has been created in R/ directory, which looks like this. Just like with our normal functions we can add roxygen documentation for this in the cpp file."
+  },
+  {
+    "objectID": "slides/packages.html#cran-and-r-cmd-check",
+    "href": "slides/packages.html#cran-and-r-cmd-check",
+    "title": "R packages",
+    "section": "CRAN and R CMD check",
+    "text": "CRAN and R CMD check\n\n\n\nComprehensive R Archive Network\n\nR package repository\nSign of quality\n\nR CMD check\n\nMore than 50 individual checks\nThree messages:\n\nERROR: Always fix.\nWARNING: Should probably fix. Definitely for CRAN submit.\nNOTE: Try to solve to CRAN submit, else do not bother.\n\ndevtools::check()\n\n\n\n\n\n\n\nR CMD check is a command that checks your package for common problems. From filenames and permissions to information in DESCRIPTION and NAMESPACE and whether you can install it. Note that this can only check if it is installable in your current environment, not on other operating systems. It also checks that your package is compatible with CRAN, such as not having the same name as a package that already exists there and that the required information in DESCRIPTION is present. It also checks your actual code, making sure that there are no problems or dependencies that are not met. There are three types of messages that R CMD CHECK can complain about. Errors are always bad, and you should fix them no matter what. Warnings are pretty bad, but there may be some false positives. You should try to fix them especially if you are submitting the package to CRAN. Notes you can take or leave, but if you are a perfectionist you should aspire to fix even these. As with most other commands, devtools has a function for this called check() which performs R CMD check and some additional operations such as automatically updating the documentation and bundling the package before checking."
+  },
+  {
+    "objectID": "slides/packages.html#rstudio-and-github",
+    "href": "slides/packages.html#rstudio-and-github",
+    "title": "R packages",
+    "section": "Rstudio and Github",
+    "text": "Rstudio and Github\n\n\n\ngit\n\nVersion control\nWorking in groups\nRstudio integration\n\nGitHub\n\nUnoffical repository\ndevtools::install_github()\nR Package development environment\nIssues\n\n\n\n\n\n\n\nThat was all I was going to say about the different pieces of a package. There are more but I think those are the main parts and you can dive into the others if you are making an advanced package. Now let’s talk a little about hosting your package. Using version control, such as git, is a good way to work on your package, especially if you are working on it in a group. This is because it keeps track of changes and conflicts so that if multiple people are working on the same file no bugs appear. You can also setup Rstudio to work with git and GitHub. A package hosted on GitHub can be directly installed using devtools::install_github() and what you see more and more nowadays is that a stable release is on CRAN whereas development versions are on GitHub. It is also a great place for others to contribute to your code and to report issues they have with your package."
+  },
+  {
+    "objectID": "slides/packages.html#github-actions",
+    "href": "slides/packages.html#github-actions",
+    "title": "R packages",
+    "section": "Github Actions",
+    "text": "Github Actions\n\nWhat it can do\n\nIntegrated with your GitHub repository\nAutomates R CMD check\nTest on multiple operating systems\n\nHow it works\n\nAdd a file with instructions to .github/workflows/workflow-name.yaml\nTriggered by action, for example push\nMost common R related workflows available in github r-libs repository\n\n\n\n\nLets talk a bit more about setting up GitHub actions. There is an extra assignment in the lab where you set this up for your R package. To get it working you need to have enabled the permissions for your GitHub account to use workflow scopes. Once you have that you create a yaml file of instructions in a directory where GitHub knows to look for such things. Then when you push this to GitHub and your repository updates, it will additionally run whichever tests you have specified."
+  },
+  {
+    "objectID": "slides/packages.html#summary",
+    "href": "slides/packages.html#summary",
+    "title": "R packages",
+    "section": "Summary",
+    "text": "Summary\n\n\n\nWhat is an R package?\nPossible package states \nPackage structure:\n\nCode | r/\nMetadata | DESCRIPTION\nDocumentation | man/\nVignettes\nImport & Export | NAMESPACE\nData | data/\nTests | tests/\nCompiled code | src/ \n\n\nCRAN and R CMD check\nRstudio and Github \n\n\n http://r-pkgs.had.co.nz/"
+  },
+  {
+    "objectID": "slides/packages.html#section-1",
+    "href": "slides/packages.html#section-1",
+    "title": "R packages",
+    "section": "",
+    "text": "Thank you!\nQuestions?\n?meta:current_year • SciLifeLab • NBIS • RaukR\n\n\n\n\n\n\n🔗 tinyurl.com/SCiRT"
   },
   {
     "objectID": "slides/Topic7.html#classical-programming-vs-machine-learning",
@@ -792,43 +1032,146 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site!"
-  },
-  {
-    "objectID": "slides/Topic6.html#description-namespace",
-    "href": "slides/Topic6.html#description-namespace",
+    "objectID": "slides/Topic3.html#outline",
+    "href": "slides/Topic3.html#outline",
     "title": "Short Course on R Tools",
-    "section": "DESCRIPTION & NAMESPACE",
-    "text": "DESCRIPTION & NAMESPACE\n\nEnsure fields: Version, URL, BugReports, License\nSemantic versioning: increment patch for minor fixes",
+    "section": "Outline",
+    "text": "Outline\n\n\nMotivation & Introduction\nGetting Started with evalCpp() & cppFunction()\nUsing sourceCpp()\nData Types & Conversions\nStandard Template Library (STL)\nUsing Rcpp in Packages\nAdvanced Topics & Resources",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#documentation-vignettes",
-    "href": "slides/Topic6.html#documentation-vignettes",
+    "objectID": "slides/Topic3.html#basic-usage-evalcpp",
+    "href": "slides/Topic3.html#basic-usage-evalcpp",
     "title": "Short Course on R Tools",
-    "section": "Documentation & Vignettes",
-    "text": "Documentation & Vignettes\n\nAll help files up to date\nVignettes build without errors",
+    "section": "Basic Usage: evalCpp()",
+    "text": "Basic Usage: evalCpp()\n\nevalCpp() evaluates a single C++ expression. Includes and dependencies can be declared.\nThis allows us to quickly check C++ constructs.\n\nlibrary(Rcpp)\n\nevalCpp(\"2 + 2\")  # simple test\n&gt;# [1] 4\n\nevalCpp(\"std::numeric_limits&lt;double&gt;::max()\")\n&gt;# [1] 1.79769e+308",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "RCpp"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#tests-coverage",
-    "href": "slides/Topic6.html#tests-coverage",
+    "objectID": "slides/Topic3.html#simple-example---using-cppfunction",
+    "href": "slides/Topic3.html#simple-example---using-cppfunction",
     "title": "Short Course on R Tools",
-    "section": "Tests & Coverage",
-    "text": "Tests & Coverage\n\ndevtools::test() passes\nConsider covr::report()\n\n??? note Emphasize R CMD check --as-cran equivalence.",
+    "section": "Simple Example - Using cppFunction()",
+    "text": "Simple Example - Using cppFunction()\n\nRcpp Version of ‘is this number odd or even’\n\nRcpp::cppFunction(\"\nbool isOdd_cpp(int num = 10) {\n  bool result = (num % 2 == 1);\n  return result;\n}\")\nc(isOdd_cpp(42L), isOdd_cpp(43L))\n&gt;# [1] FALSE TRUE\n\n\nUse cppFunction() in R console or script\nFast prototyping & testing\nGood for small functions",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#second-example-var1-1",
+    "href": "slides/Topic3.html#second-example-var1-1",
+    "title": "Short Course on R Tools",
+    "section": "Second Example: VAR(1)",
+    "text": "Second Example: VAR(1)\nIn R (C++) code, given both the coefficient and error matrices:\n\nrSim &lt;- function(B, E) {\n  X &lt;- matrix(0, nrow(E), ncol(E))\n  for (r in 2:nrow(E)) {\n    X[r, ] = X[r-1, ] %*% B + E[r, ]\n  }\n  return(X)\n}\n\n\nC++ Version:\n\narma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#second-example-var1-2",
+    "href": "slides/Topic3.html#second-example-var1-2",
+    "title": "Short Course on R Tools",
+    "section": "Second Example: VAR(1)",
+    "text": "Second Example: VAR(1)\n\nRcpp::cppFunction('arma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}', depends=\"RcppArmadillo\")\n\na &lt;- matrix(c(0.5, 0.1, 0.1, 0.5), nrow = 2)\ne &lt;- matrix(rnorm(10000), ncol = 2)\nrbenchmark::benchmark(cppSim(a, e), rSim(a, e), order=\"relative\")[, 1:4]\n\n&gt;#    test           replications elapsed relative\n&gt;# 1  cppSim(a, e)  100         0.010   1.0\n&gt;# 2  rSim(a, e)    100         0.728  72.8",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#pagerank",
+    "href": "slides/Topic3.html#pagerank",
+    "title": "Short Course on R Tools",
+    "section": "Pagerank",
+    "text": "Pagerank\n#remotes::install_github(\"https://github.com/andrie/pagerank.git\")\nsuppressMessages(library(utils))\nlibrary(pagerank)\n\ncran &lt;- \"https://cloud.r-project.org\"\npr &lt;- compute_pagerank(cran)\nround(100 * pr[1:5], 3)\n\n&gt;#   Rcpp    ggplot2     dplyr      MASS   magrittr\n&gt;# 2.744     1.516       1.274    1.122    0.814",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#percentage-of-compiled-packages",
+    "href": "slides/Topic3.html#percentage-of-compiled-packages",
+    "title": "Short Course on R Tools",
+    "section": "Percentage of Compiled Packages",
+    "text": "Percentage of Compiled Packages\ndb &lt;- tools::CRAN_package_db()       # added in R 3.4.0\ndb &lt;- db[!duplicated(db[, 1]), ]     # rows: number of packages\n\nnTot &lt;- nrow(db)                     # columns: different attributes\nnRcpp &lt;- length(tools::dependsOnPkgs(\"Rcpp\", recursive = FALSE, installed = db))\nnCompiled &lt;- table(db[, \"NeedsCompilation\"])[[\"yes\"]]\n\npropRcpp &lt;- nRcpp / nCompiled * 100\ndata.frame(tot = nTot, totRcpp = nRcpp, totCompiled = nCompiled,\n           RcppPctOfCompiled = propRcpp)\n\n&gt;#   tot   totRcpp   totCompiled   RcppPctOfCompiled\n&gt;# 1 22501    3053        4981          61.29291",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#using-sourcecpp",
+    "href": "slides/Topic3.html#using-sourcecpp",
+    "title": "Short Course on R Tools",
+    "section": "Using sourceCpp()",
+    "text": "Using sourceCpp()\n\n\nSo what just happened?\n\nWe defined a simple C++ function\n\nIt operates on a numeric vector argument\n\nWe ask Rcpp to ‘source it’ for us\n\nBehind the scenes Rcpp creates a wrapper\n\nRcpp then compiles, links, and loads the wrapper\n\nThe function is available in R under its C++ name\n\nBenefits:\n\nEditor support (syntax highlighting)\nEasier debugging & error tracking",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#another-example-timing-r-implementation",
+    "href": "slides/Topic3.html#another-example-timing-r-implementation",
+    "title": "Short Course on R Tools",
+    "section": "Another Example: Timing R Implementation",
+    "text": "Another Example: Timing R Implementation\n\nThe R implementation:\n\n\nf &lt;- function(n) {\n  if (n &lt; 2) return(n)\n  return(f(n - 1) + f(n - 2))\n}\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(15), f(20), f(25))[, 1:4]\n\n&gt;# test         replications elapsed   relative\n&gt;# 1 f(15)       100          0.06      1.0\n&gt;# 2 f(20)       100          0.75     12.5\n&gt;# 3 f(25)       100          7.92    132.0",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#another-example-c-implementation",
+    "href": "slides/Topic3.html#another-example-c-implementation",
+    "title": "Short Course on R Tools",
+    "section": "Another Example: C++ Implementation",
+    "text": "Another Example: C++ Implementation\nint g(int n) {\n  if (n &lt; 2) return(n);\n  return(g(n - 1) + g(n - 2));\n}\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\nsapply(0:10, g)  # Using it on first 11 arguments\n\n&gt;# [1] 0 1 1 2 3 5 8 13 21 34 55",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#another-example-comparing-timing",
+    "href": "slides/Topic3.html#another-example-comparing-timing",
+    "title": "Short Course on R Tools",
+    "section": "Another Example: Comparing Timing",
+    "text": "Another Example: Comparing Timing\n\nRcpp implementation:\n\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(25), g(25))[, 1:4]\n\n&gt;#   test      replications elapsed   relative\n&gt;# 1 f(25)      100          8.02     267.333\n&gt;# 2 g(25)      100          0.03       1.000\n\n\n\nA nice gain of a few orders of magnitude.",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#types",
+    "href": "slides/Topic3.html#types",
+    "title": "Short Course on R Tools",
+    "section": "Types",
+    "text": "Types\nR Type mapping:\n\nStandard R types (integer, numeric, list, function, … and compound objects) are mapped to corresponding C++ types:\n\nlibrary(Rcpp)\ncppFunction(\"NumericVector logabs(NumericVector x) {\n  return log(abs(x));\n}\")\nlogabs(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438\n\n\nVectorized C++! Here log(abs()) runs directly on vectors as R would.",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "slides/Topic3.html#stl-type-mapping",
+    "href": "slides/Topic3.html#stl-type-mapping",
+    "title": "Short Course on R Tools",
+    "section": "STL Type Mapping",
+    "text": "STL Type Mapping\n\ncode/logabs2.cpp\n\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n\ninline double f(double x) { return ::log(::fabs(x)); }\n\n// [[Rcpp::export]]\nstd::vector&lt;double&gt; logabs2(std::vector&lt;double&gt; x) {\n  std::transform(x.begin(), x.end(), x.begin(), f);\n  return x;\n}\n\nNot vectorized but ‘sweeps’ f() along std::vector&lt;double&gt; via STL std::transform().\n\nlibrary(Rcpp)\nsourceCpp(\"code/logabs2.cpp\")\nlogabs2(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438",
+    "crumbs": [
+      "Slides",
+      "RCpp"
     ]
   },
   {
@@ -1096,15 +1439,253 @@
     ]
   },
   {
-    "objectID": "misc/cheatsheets.html",
-    "href": "misc/cheatsheets.html",
-    "title": "R cheatsheets",
+    "objectID": "course-syllabus.html",
+    "href": "course-syllabus.html",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "",
-    "text": "The following cheatsheets come from https://posit.co/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
+    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
     "crumbs": [
-      "Miscellaneous",
-      "Cheatsheets"
+      "Course information",
+      "Syllabus"
     ]
+  },
+  {
+    "objectID": "course-syllabus.html#course-information",
+    "href": "course-syllabus.html#course-information",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "",
+    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#instructors-details",
+    "href": "course-syllabus.html#instructors-details",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Instructors Details",
+    "text": "Instructors Details\n\nName: Mehdi Maadooliat, Ph.D.\nOffice Hours: Tu & Th 12:15 - 1:30pm or by e-mail",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#course-description",
+    "href": "course-syllabus.html#course-description",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Course Description",
+    "text": "Course Description\nA modern course in probability. Foundations of probability for modeling random processes with computational techniques. Topics include counting techniques, probability of events, random variables, distribution functions, probability functions, probability density functions, expectation, moments, moment generating functions, special discrete and continuous distributions, sampling distributions, transformation of variables, prior and posterior distributions, Law of Large Numbers, Central Limit Theorem, the Bayesian paradigm. Numerical and computational methods will be covered throughout topics.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#learning-outcomes",
+    "href": "course-syllabus.html#learning-outcomes",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nBy the end of the course, students will:\n\nUnderstand and Apply Fundamental Probability Concepts\nAnalyze and Model Random Processes\nPerform Variable Transformations\nImplement Computational Techniques\nInterpret Statistical Theorems\nCritically Evaluate Probabilistic Models\nCommunicate Probabilistic Findings",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#prerequisites",
+    "href": "course-syllabus.html#prerequisites",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nThree semesters of mathematics beyond calculus and MATH 4720 or equiv.\nPreferable knowledge is MSSC 5700 and MSSC 5710.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#textbooks",
+    "href": "course-syllabus.html#textbooks",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Textbooks",
+    "text": "Textbooks\n\nProbability and Statistics with R, 2nd edition by Maria Dolores Ugarte, Ana F. Militino, Alan T. Arnholt, 2016. ISBN: 9781466504394.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#grading-breakdown",
+    "href": "course-syllabus.html#grading-breakdown",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Grading Breakdown",
+    "text": "Grading Breakdown\n\nHomework: 30%\nProject: 10%\nMidterm Exam: 30%\nFinal Exam: 30%\n\n\nGrading Scale\n\n\n\nGrade\nRange\n\n\n\n\nA\n93.5 - 100%\n\n\nA-\n90- 93.49%\n\n\nB+\n86.5 - 89.99%\n\n\nB\n83.5 - 86.49%\n\n\nB-\n80 - 83.49%\n\n\nC+\n76.5 - 79.99%\n\n\nC\n73.5 - 76.49%\n\n\nC-\n70 - 73.49%\n\n\nD+\n66.5 - 69.99%\n\n\nD\n60 - 66.49%\n\n\nF\n&lt; 59.99%",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#exams",
+    "href": "course-syllabus.html#exams",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Exams",
+    "text": "Exams\nTentatively, there will be a midterm (in class) on Oct. 23rd, plus the final (in class or take home): Dec. 8th from 10:30 - 12:30pm.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#homework",
+    "href": "course-syllabus.html#homework",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Homework",
+    "text": "Homework\nHomework is required so that you get a better understanding of the material covered, plus it will help you to keep up. You will get a better understanding of the material if you discuss it with someone. However, you must submit YOUR OWN work to D2L website. Assignments are mostly due at 11:50pm (check for due dates in D2L).\nNO LATE HOMEWORK WILL BE ACCEPTED NOR WILL YOU BE ALLOWED TO MAKE UP MISSED HOMEWORK! Plan accordingly! It is better to submit something, even if it is incomplete. You need to type your homework (preferably using LaTeX, or Quarto) and submit it as a PDF file. Scanned homework will be graded out of 80. Low quality scanned homework will be considered as NO submission.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#make-up-policy",
+    "href": "course-syllabus.html#make-up-policy",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Make-up Policy",
+    "text": "Make-up Policy\nThere will not be any make-up exam or homework unless there is an emergency.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#attendance",
+    "href": "course-syllabus.html#attendance",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Attendance",
+    "text": "Attendance\nAttendance is required and subject to the College of Arts and Sciences policy.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#academic-honesty",
+    "href": "course-syllabus.html#academic-honesty",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Academic Honesty",
+    "text": "Academic Honesty\nStudents are expected to follow the University’s policy on academic honesty as outlined in the Bulletin.\nTL;DR: Don’t cheat!\nPlease abide by the following as you work on assignments in this course:\n\nCollaboration: Only work that is clearly assigned as team work should be completed collaboratively.\n\nThe homework assignments must also be completed individually and you are welcomed to discuss the assignment with classmates at a high level (e.g., discuss what’s the best way for approaching a problem, what functions are useful for accomplishing a particular task, etc.). However you may not directly share answers to questions (including any code) with anyone other than myself.\nFor the projects, collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.\nOn individual assignments you may not directly share code with another student in this class, and on team assignments you may not directly share code with another team in this class.\n\nOnline resources: I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course’s policy is that you may make use of any online resources (e.g., StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.\nUse of generative artificial intelligence (AI): You should treat generative AI, such as ChatGPT, the same as other online resources. There are two guiding principles that govern how you can use AI in this course:1 (1) Cognitive dimension: Working with AI should not reduce your ability to think clearly. We will practice using AI to facilitate—rather than hinder—learning. (2) Ethical dimension: Students using AI should be transparent about their use and make sure it aligns with academic integrity.\n\n✅ AI tools for code: You may make use of the technology for coding examples on assignments; if you do so, you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. You may use these guidelines for citing AI-generated content.\n❌ AI tools for narrative: Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.\n\nYou are ultimately responsible for the work you turn in; it should reflect your understanding of the course content.\n\nIf you are unsure if the use of a particular resource complies with the academic honesty policy, please ask the instructor.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#important-dates",
+    "href": "course-syllabus.html#important-dates",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Important dates",
+    "text": "Important dates\n\nMonday, August 25: Classes begin\nTuesday, September 2: Drop/add ends\nThursday - Friday, October 16 - 17: Fall Break\nFriday, November 14: Last day to withdraw with W\nThursday - Monday, November 26 - 30: Thanksgiving Holiday\nSaturday, December 6: Classes end\nMonday, December 8, 10:30 am - 12:30 pm: Final Exam\n\nFor more important dates, see the full MU Academic Calendar.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#important-note",
+    "href": "course-syllabus.html#important-note",
+    "title": "Syllabus - Short Course on R Tools (SCoRT)",
+    "section": "Important Note",
+    "text": "Important Note\nThe syllabus may be modified throughout the course. Any substantial modifications will result in a reissued syllabus.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "hands-on/packages/index.html",
+    "href": "hands-on/packages/index.html",
+    "title": "R packages",
+    "section": "",
+    "text": "Loading required package: usethis"
+  },
+  {
+    "objectID": "hands-on/packages/index.html#cheatsheet",
+    "href": "hands-on/packages/index.html#cheatsheet",
+    "title": "R packages",
+    "section": "Cheatsheet",
+    "text": "Cheatsheet\n\nCheatsheet. Note; not all commands are functionally equivalent to Rstudio commands.\n\n\n\n\n\n\n\ncommand\ndescription\nRstudio_windows\nRstudio_mac\n\n\n\nusethis::create_package()\nCreate a package backbone.\nFile &gt; New Project &gt; New Directory &gt; R package\nFile &gt; New Project &gt; New Directory &gt; R package\n\n\nusethis::use_r()\nCreate or open a file in R/ for editing.\nNA\nNA\n\n\ndevtools::load_all()\nSimulates building, installing and attaching a development package.\nCTRL+SHIFT+L\nCMD+SHIFT+L\n\n\nusethis::use_data()\nCreates a .rda file in data/ containing the object. The file has the same name as the object.\nNA\nNA\n\n\ndevtools::document()\nCreate .Rd files from roxygen2 function comments. Generate NAMESPACE.\nCTRL+SHIFT+D\nCMD+SHIFT+D\n\n\ndevtools::use_package()\nAdd package to Imports field of DESCRIPTION.\nNA\nNA\n\n\ndevtools::check()\nRun R CMD check on your development package from within R. Also performs bundling and other checks.\nNA\nNA"
+  },
+  {
+    "objectID": "hands-on/packages/index.html#installing-dependencies",
+    "href": "hands-on/packages/index.html#installing-dependencies",
+    "title": "R packages",
+    "section": "Installing dependencies",
+    "text": "Installing dependencies\nThe first thing we want to do is install the dependencies required for the exercise.\n\ninstall.packages(c(\"devtools\",\"usethis\",\"roxygen2\", \"knitr\", \"rmarkdown\", \"reshape2\", \"Rcpp\"))\n\nIf you haven’t already, install RStudio."
+  },
+  {
+    "objectID": "hands-on/packages/index.html#create-a-package-backbone",
+    "href": "hands-on/packages/index.html#create-a-package-backbone",
+    "title": "R packages",
+    "section": "Create a package backbone",
+    "text": "Create a package backbone\nFirst of all we will create the standard files that are required in an R package.\n\nusethis::create_package(\"path/to/your/package/packagename\")\nIf you execute this command from within Rstudio, it should open a new instance of Rstudio located within your newly created package. If you didn’t and want to work on your package in Rstudio, double click the .Rproj file or select it from Rstudio.\nTake a look at the “Files” pane of Rstudio to see what create_package() actually created for you."
+  },
+  {
+    "objectID": "hands-on/packages/index.html#insert-wondrous-things",
+    "href": "hands-on/packages/index.html#insert-wondrous-things",
+    "title": "R packages",
+    "section": "Insert wondrous things",
+    "text": "Insert wondrous things\nNow that we have a R package backbone lets fill it with stuff!\nR code\nLet’s create the first function of your package. We can use the handy helper-function usethis::use_r() to create or navigate between the R files in your R/ folder. You can also just create a .R file there if you wish.\nusethis::use_r(\"trianguletter\")\nThis should create and open the file R/trianguletter.R for editing.\nFeel free to rewrite the function to perform some simple task. From adding two numbers to creating a basic plot from some input. It’s up to you!\nHere is an example that I threw together:\n\ntrianguletter &lt;- function(x) {\n  for(i in 1:x){\n    cat(rep( letters[i], times = i),\"\\n\")\n  }\n}\n\nWhen you are happy with your function, save it. To access and test your newly created function we have to attach it to make it available. But rather than bundle, install and attach we can use the function devtools::load_all() while developing the package. load_all() simulates the behavior of bundling, installing and attaching the package, without actually having to do it.\nNow test your function in the console!\n\ntrianguletter(12)\n\na \nb b \nc c c \nd d d d \ne e e e e \nf f f f f f \ng g g g g g g \nh h h h h h h h \ni i i i i i i i i \nj j j j j j j j j j \nk k k k k k k k k k k \nl l l l l l l l l l l l \n\n\nCongratulations! You have just created an R package that fulfills a function!\nData\nLets add some data to our package, create an R object with whatever information you want. A string, a vector or a data.frame, as long as you recognize it, it doesn’t matter. First we will save it to our data/ folder using usethis::use_data().\n\n# A random object\nyour_object &lt;- c('red','green','blue')\n\n#Save to data\nusethis::use_data(your_object)\n\nThis created the data/ folder and your_object.rda inside it.\n\nNow when our package is loaded, your_object will be made available to the user. To test this, remove all objects from your working directory, and load all functions. Check that you can access the object, despite just removing it from your workspace.\n\n# Clear workspace\nrm(list=ls())\n\n# Load all functions and data from our package\ndevtools::load_all()\n\n# Check if we can access our saved object\nyour_object\n[1] \"red\"   \"green\" \"blue\"\n\nThe data in data/ folder is available to the user, needs to be documented, and is where you would store data if the purpose of your package is to distribute one or more datasets in an R friendly way. If there is some data that you don’t want to make easily accessible to the users, AKA not document, but that your functions use, you can put it in sysdata.rda. Lets create a second object. Like the last one it does not matter what it is. Use the same command as before to save the object, except this time specify that this data is intended for internal use.\n\n# Create a second object\nsecond_object &lt;- \"It works!\"\n\n# Save it to R/sysdata.rda\nusethis::use_data(second_object, internal = TRUE)\n\nTo check that this worked, clear your workspace and edit your packages function, the .R file, to include the object in some way. Load the package and see if it executes as expected.\n\n# Clear workspace\nrm(list=ls())\n\n\n# Example .R code edit\ntrianguletter &lt;- function(x) {\n  for(i in 1:x){\n    cat(rep( letters[i], times = i),\"\\n\")\n  }\n  # Check if second object can be called by our function\n  cat(second_object)\n}\n\n\n# Load all functions and data from our package\ndevtools::load_all()\n\n\n# Test the function\ntrianguletter(5)\n\na \nb b \nc c c \nd d d d \ne e e e e \nIt works!\n\n\nGreat work! You have created external and internal datasets and shown that they can be used when your package is loaded in the console and in your packages own functions!\nDocumentation\nNow that we have a function and a dataset, lets use roxygen2 to create some documentation for them.\nFunction documentation\nAs was discussed in the presentation, the roxygen2 documentation for a function is directly before it in so called “comment blocks”, or #'. Here is a brief refresher:\n\nComment block : #'\n\nTags : @tagname\n\n\n@param : parameter\n\n@example : examples\n\n@return : what does the function return. The value field in R documentation\n\n@section : create any section you want\n\n@export : export the function so it can be used externally\n\n\n\nGo ahead and create documentation for your function. Add at least a title, a description, multi-section details, the parameters, the expected return value or output, an example of how to use your function and the export tag.\n\n\n\n\n\n\nNote\n\n\n\nThe @export tag should always be last in documentation and grants the user access to the function. It is very important, if you want the user to be able to call the function. For internal functions, this may not be the case.\n\n\nAn example functional documentation:\n\n#' A right sided triangle of alphabetic letters\n#'\n#' A right sided triangle of alphabetic letters\n#'\n#' This function takes a number as input and outputs an increasing\n#'     number of alphabetic letters on top of each other, resembling\n#'     a right sided triangle.\n#' @section Warning:\n#' Not tested for numbers over 26!\n#'\n#' @param x A number.\n#' @return Outputs to console. NULL object returned.\n#' @examples\n#' trianguletter(10)\n#' @export\ntrianguletter &lt;- function(x) {\n  for(i in 1:x){\n    cat(rep( letters[i], times = i),\"\\n\")\n  }\n  # Check if second object can be called by our function\n  cat(second_object)\n}\n\nWhen you are satisfied with your documentation, build it using devtools::document(). This creates the .Rd file in man/ which is parsed by R when you request the functions documentation. Additionally, the first time you build documentation it will make some edits to your DESCRIPTION and check on your NAMESPACE.\n\n\n\n\n\n\nTip\n\n\n\nYou may have gotten a warning message that your NAMESPACE was not generated by roxygen2. This is good behavior by roxygen2, it doesn’t want to change something the user has created a certain way. In this case however, we want the NAMESPACE to be handled by roxygen2, so delete the NAMESPACE file and run devtools::document() again to have roxygen2 create it.\n\n\nGo ahead and preview your function as you would any method and make sure that it looks the way you were expecting.\n\n?trianguletter\n\n\nData documentation\nData documentation is a bit different from functional documentation. Remember that you do not need to document datasets not intended for users, so don’t worry about sysdata.rda. What we want to document in this case is the data you created in man/your_object.rda, or whichever name you have given it.\nThe principle is very similar to functional documentation, but not all tags that are applicable to functions are applicable to data, and should not be used. Similarly, there are some tags that are applicable to data, but not to functions. Usually this is the information you would give a dataset:\n\nData documentation\n\nTitle\nDescription\n\n@format : what rows and variables are in the data?\n\n@source : where is the data from?\n\n\n\nFirst of all, lets check what the output of requesting help for your dataset is currently.\n\n?your_object\n\nAs expected, it is undocumented. Since we cannot add this information to the dataset file, your_object.rda, like we did with the functions documentation, lets create an R file in R/ called data.R and add the documentation there. The name we document has to be the same name as the dataset object you created earlier. Go ahead and document your dataset now.\n\n#' A vector with three strings\n#'\n#' A dataset containing three strings usually linked to the\n#'    colors of pixels on a screen.\n#'\n#' @format A vector with three strings:\n#' \\describe{\n#'   \\item{red}{A string, it's red.}\n#'   \\item{green}{A string, it's green. Street talk for money.}\n#'   \\item{blue}{A string, really didn't see that coming. It's blue this time!}\n#' }\n#' @source \\url{http://www.themindofsebastian.com}\n\"your_object\"\n\nOnce you are happy with your documentation, save the file and run devtools::document(). Now check the help page for your dataset again.\n\n?your_object\n\n\nWell done! You have successfully created documentation for a function and a dataset and shown that it can be queried within R.\nDESCRIPTION\nNow lets take a look at our DESCRIPTION file, at this point it should look similar to this:\nPackage: newpkg\nTitle: What the Package Does (One Line, Title Case)\nVersion: 0.0.0.9000\nAuthors@R: \n    person(\"First\", \"Last\", , \"first.last@example.com\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"YOUR-ORCID-ID\"))\nDescription: What the package does (one paragraph).\nLicense: `use_mit_license()`, `use_gpl3_license()` or friends to pick a\n    license\nEncoding: UTF-8\nRoxygen: list(markdown = TRUE)\nRoxygenNote: 7.2.0\nDepends: \n    R (&gt;= 2.10)\nLazyData: true\n\n\n\n\n\n\nNote\n\n\n\nThe information can look slightly different depending on how the package was created.\n\n\nLooks pretty good but some information definitely needs to be updated if you are ever going to submit this to a repository.\nUpdate the Title, Author and Description fields.\nWhen it comes to the License field, Just in case you don’t want to consider which license to give your package, why not choose one of the most common ones that were mentioned during the lecture?\n\nMIT : Free, but your license must be included in any following work.\nGPL-3 : Even more free. If someone uses your code, whatever they are doing must also be GPL compatible.\nCC0 : Totally free.\n\nOne good way of adding the license is not to just update the DESCRIPTION, but to use a function such as use_mit_license(). It not only updates your DESCRIPTION, but also adds the file LICENSE and LICENSE.md to your package, with relevant license information.\nA good place to look at the meaning of licenses is https://tldrlegal.com.\nNow that your DESCRIPTION is up to shape, we can move on to the NAMESPACE.\nNAMESPACE\nRoxygen2 made our function available to the users in our NAMESPACE and made sure that our package works well with other packages. Basically, you should almost never be editing your NAMESPACE by hand.\nImport\nFirst, lets import a function from a package and add its functionality to the function we created. This is very handy for using functions from other packages in your package and for making sure your package uses only that function when it is called, no matter the users environment.\n\nCreate a new file called R/utility.R. We won’t actually put any internal utility functions there, but this is a typical place where you would import functions from other packages.\nNext add code to import the melt function from reshape2. This is in the form @importFrom pkg function. Since this kind of documentation has to precede a function or object, we will give it the NULL object, by convention.\n\n\n#' @importFrom reshape2 melt\nNULL\n\nTo update the NAMESPACE run devtools::document().\nNow your NAMESPACE should look like this:\n# Generated by roxygen2: do not edit by hand\n\nexport(trianguletter)\nimportFrom(reshape2,melt)\nGreat! If the melt command from reshape2 is ever used in your package, it will know which one to use. But for our package to use reshape2 we first have to import it in DESCRIPTION.\nTo add the Imports field and the reshape2 information to your DESCRIPTION you can use the usethis::use_package command.\n\nusethis::use_package(\"reshape2\")\n\nWhile Imports means that if someone installs your package it will automatically install reshape2 as well, regrettably it does not mean that if reshape2 is missing when we reinstall it locally it will be downloaded and installed. Luckily we installed it at the start of the exercise.\nTesting the imported function\nNow that we have added melt from reshape2 lets add it to our function. You can do this any way you like, or copy usage from the example function.\nIn this example the head of iris dataset before and after melt is viewed, to see that it had an effect.\n\n#' A right sided triangle of alphabetic letters\n#'\n#' A right sided triangle of alphabetic letters\n#'\n#' This function takes a number as input and outputs an increasing\n#'     number of alphabetic letters on top of eachother, resembling\n#'     a right sided triangle.\n#' @section Warning:\n#' Not tested for numbers over 26!\n#'\n#' @param x A number.\n#' @return Outputs to console. NULL object returned.\n#' @examples\n#' trianguletter(10)\n#' @export\ntrianguletter &lt;- function(x) {\n  for(i in 1:x){\n    cat(rep( letters[i], times = i),\"\\n\")\n  }\n  # Check if second object can be called by our function\n  #cat(second_object)\n  #what iris dataset looks like\n  cat(\"before melt:\\n\")\n  print(head(iris))\n  #Use melt and see what it looks like\n  cat(\"after melt:\\n\")\n  print(head(melt(iris)))\n}\n\nUse devtools::load_all() to reload your package and it’s imports. You can check that reshape2 was also loaded with sessionInfo().\nTest your function, does the output show that it can use melt?\nNow, lets check that the NAMESPACE is doing what we want it to do, making sure that the correct melt is being used by our package. Lets define a new function, also named melt, in our global environment. That is to say we just define it from the R console.\n\nmelt &lt;- function(x) {\n   cat(\"abc\",x)}\n\nNow try your function again. Is it using the correct melt?\nIt should be!\nTry using melt(iris) in your R console, as it is used in your packages function. It should not work. This is because it is using the melt function you just defined, and it is getting in the way of using the correct function!\n\n\n\n\n\n\nNote\n\n\n\nAn alternative way of achieving the behaviour of a correct NAMESPACE is writing your code with strict package references. In our case reshape2::melt(). This way you can circumvent using roxygen2 to add import tags to NAMESPACE if you want. I recommend doing both =)."
+  },
+  {
+    "objectID": "hands-on/packages/index.html#checking-your-package",
+    "href": "hands-on/packages/index.html#checking-your-package",
+    "title": "R packages",
+    "section": "Checking your package",
+    "text": "Checking your package\nNow that we have a pretty complete package, lets run some checks on it. You can use the standard R CMD check pkgname from your terminal, or you can use devtools::check(), which we recommend, as it performs some additional operations such as updating the documentation and bundling the package before checking.\n── R CMD check results ───────────────────────────────── newpkg 0.0.0.9000 ────\nDuration: 18.1s\n\n❯ checking R code for possible problems ... NOTE\n  trianguletter: no visible global function definition for ‘head’\n  trianguletter: no visible binding for global variable ‘iris’\n  Undefined global functions or variables:\n    head iris\n  Consider adding\n    importFrom(\"datasets\", \"iris\")\n    importFrom(\"utils\", \"head\")\n  to your NAMESPACE file.\n\n0 errors ✔ | 0 warnings ✔ | 1 note ✖\nDid you get any NOTEs, ERRORs or WARNINGs? I know I did! Among other things it didn’t like my usage of the iris dataset without specifying it in the NAMESPACE. This one is a bit tricky, but you can try to solve it if you want."
+  },
+  {
+    "objectID": "hands-on/packages/index.html#finish-line",
+    "href": "hands-on/packages/index.html#finish-line",
+    "title": "R packages",
+    "section": "Finish line",
+    "text": "Finish line\n\nWell done! You have built a functional package. Maybe it is even time to update the version number in DESCRIPTION and take it out of development?\nIf you want to know even more about this topic, I recommend Hadley Wickham and Jenny Bryan’s excellent online resource http://r-pkgs.had.co.nz/check.html.\nThe next sections are optional and cover vignettes, testing, including C++ code in your package using Rcpp and pushing your R package to github and setting up github actions for it."
+  },
+  {
+    "objectID": "hands-on/packages/index.html#vignette",
+    "href": "hands-on/packages/index.html#vignette",
+    "title": "R packages",
+    "section": "Vignette",
+    "text": "Vignette\nVignettes are long-form documentation for your package. Like a manual detailing what the purpose of your package and its functions are.\nTo initialize your vignette, you can use the command:\nusethis::use_vignette(\"packagename_vignette\")\nWhat this does:\n\nCreates the vignettes/ folder with packagename_vignette.Rmd inside\nEdits your DESCRIPTION, adding knitr to Suggests and as a VignetteBuilder.\n\nOpen the file vignettes/packagename_vignette.Rmd, unless it was already automatically opened when using the command. Edit the header data, change title and add an author, then create a minimal vignette for your function. Do run your function and show your dataset using knitr from the vignette. It can be as short as you want, however if you do this for a real package it should be a long form manual showing how your package can use its functions or data to perform the task it was designed for.\n\n\n\n\n\n\nNote\n\n\n\nTo be able to use the functions of your package in the vignette you will need to install your package, the easiest way is to execute devtools::install().\n\n\nTo preview your vignette while working on it, press the knit button in Rstudio.\nExample vignette.Rmd:\n---\ntitle: \"How to write more and more letters, in a triangle\"\nauthor: \"Sebastian DiLorenzo\"\ndate: \"2025-06-25\"\noutput: rmarkdown::html_vignette\nvignette: &gt;\n  %\\VignetteIndexEntry{How to write more and more letters, in a triangle}\n  %\\VignetteEngine{knitr::rmarkdown}\n  %\\VignetteEncoding{UTF-8}\n---\n\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(\n  collapse = TRUE,\n  comment = \"#&gt;\"\n)\n\n# replace this with your package name\nlibrary(newpkg)\n```\n\n# The greatest package for a very specific purpose\n\nIf you thought that it was impossible to write letters\nalphabetically from top to bottom with each number represented\nthe same number of times asits position in the alphabet\n  - think again!\n\nThis package and its sole function, trianguletter, solves just this problem!\n\nBut you do not have to take my word for it, see for yourself:\n\n```{r}\n# With just a simple number we specify how long into the alphabet we go.\ntrianguletter(10)\n\n# Also, this package has this random dataset:\nyour_object\n```\n\n# Future plans\n\nWe plan to add features so that you can give it\na letter, rather than a number, and output a\nbunch of numbers instead!\n\nAnd the beautiful rendered version:\n\nThe preview you get when knitting the vignette.Rmd does not mean that the vignette has been created. When you are happy with the vignette, use devtools::build_vignettes(). To view the vignette as an external user would view it is for some reason a bit of a hassle for the package you are developing, perhaps because the output is pretty much the same as when you knit. If you want to do this you can build your package source with devtools::build(), which also builds the vignette, and then devtools::load_all(). Then view the vignette with browseVignettes(\"packagename\").\nOnce again, good work! Now you have written a short guide to your package that will be included wherever it goes!"
+  },
+  {
+    "objectID": "hands-on/packages/index.html#testing",
+    "href": "hands-on/packages/index.html#testing",
+    "title": "R packages",
+    "section": "Testing",
+    "text": "Testing\nTesting is a powerful way to add tests to your package. They can for example make sure that the output from your functions are as you expect them to be. This can be very good when you have many people working on a package, such as open source. It is not hard to imagine a situation where someone makes a change that has unforseen consequences and even if the function doesn’t throw an error the output has changed leading to errors in the next function that are hard to track.\nTo add tests to your package you can use\n\nusethis::use_testthat()\n\nBe sure to check the output from the command as it describes what it does to your package very well. As it suggests we can now use usethis::use_test() to create a template test for a function.\nWe will create a new function to test, since trianguletter() uses cat() which is standard output, it is advanced to run tests on it. As always you are free and encouraged to create your own function. The example is for inspiration.\nCreate a new function in R/divider.R\n\nusethis::use_r(\"trivider\")\n\nAnd define the function.\ntrivider &lt;- function(x){\n  x / 3\n}\nNow lets create the test using:\nusethis::use_test(\"trivider\")\nThis creates the file tests/testthat/test-trivider.R, which is where we will write our tests for that function. Now we can for example write a test that makes sure the input 9 results in the output 3.\ntest_that(\"given a 9 the output is 3\", {\n  expect_equal(trivider(9), 3)\n})\nYou can run the test by using the command\ndevtools::test()\nTry adding another test in test-trivider.R, or whichever function you are using. Use expect_error() this time. Can you get a PASS on both your tests?\nImportantly, your tests are performed when you run devtools::check(), which means that you have just extended its functionality to keep a closer eye on your packages expected behaviour."
+  },
+  {
+    "objectID": "hands-on/packages/index.html#src-and-rcpp",
+    "href": "hands-on/packages/index.html#src-and-rcpp",
+    "title": "R packages",
+    "section": "src/ and Rcpp",
+    "text": "src/ and Rcpp\nR is not always the most efficient language, which is why it is great that we can integrate other code with our package. Either using ready made solutions, or by including a script file of another language in the package.\nHere we will integrate the well developed Rcpp package to be able to use C++ code in our package.\nSimilarly to how we created the package, the first thing we want to do is setup our package to accept Rcpp. We can do this with usethis::use_rcpp() which does four things:\n\nCreates src/ folder, unless it already exists.\nEdits DESCRIPTION, adding Rcpp to Imports and LinkingTo.\nCreate and modify .gitignore to not include compiled files (useful if you connect your package to git)\nLet’s you know two roxygen tags that need to be included, like our documentation, somewhere in package.\n\n\n\n\n\n\n\nTip\n\n\n\nSome users have reported receiving some warnings when executing usethis::use_rcpp() but it didn’t seem to break anything.\n\n\nusethis::use_rcpp()\nLets include the roxygen tags in our utility.R file.\n#' @useDynLib newpkg, .registration = TRUE\n#' @importFrom Rcpp sourceCpp\nNULL\nNow we are ready to create a C++ file. You can do this from Rstudio to generate a nice template, File &gt; New file &gt; C++ File. It should look something like this:\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n\n// This is a simple example of exporting a C++ function to R. You can\n// source this function into an R session using the Rcpp::sourceCpp\n// function (or via the Source button on the editor toolbar). Learn\n// more about Rcpp at:\n//\n//   http://www.rcpp.org/\n//   http://adv-r.had.co.nz/Rcpp.html\n//   http://gallery.rcpp.org/\n//\n\n// [[Rcpp::export]]\nNumericVector timesTwo(NumericVector x) {\n  return x * 2;\n}\n\n\n// You can include R code blocks in C++ files processed with sourceCpp\n// (useful for testing and development). The R code will be automatically\n// run after the compilation.\n//\n\n/*** R\ntimesTwo(42)\n*/\nYou should not mess with the header, unless you know what you are doing. Here you can write any C++ function you want, either do this or leave it as it is and we will use the included example function, timesTwo. The function is exported to R using // [[Rcpp::export]]. Importantly, this does not add the function to your NAMESPACE. Add documentation to your function in the same way as we have done previously, but with the C++ commenting style of //'.\n//' Multiply a number by two\n//'\n//' @param x A integer.\n//' @export\n// [[Rcpp::export]]\nNumericVector timesTwo(NumericVector x) {\n  return x * 2;\n}\nSave the file to your src/ directory and call pkgbuild::compile_dll(), which re-compiles the package, implementing our changes. Now run devtools::document() to update your NAMESPACE. Lets install and restart using Cmd/Ctrl + Shift + B in Rstudio. This will create the file RcppExports.R in R/, which is what R uses to call your C++ function.\nTest that your function works from console.\nYour R package can now run C++ code, marvelous! Now you just need to learn C++ ;).\nCheck again!\n\nAdded new components to the package have we? - Yoda\n\nPerform devtools::check() again and fix any new messages."
+  },
+  {
+    "objectID": "hands-on/packages/index.html#github-and-github-actions",
+    "href": "hands-on/packages/index.html#github-and-github-actions",
+    "title": "R packages",
+    "section": "Github and Github actions",
+    "text": "Github and Github actions\nThis section does require some previous git knowledge.\nGithub\nLet’s add our R package to github, so we can distribute it! To do this you will need a github account. Since git usage is covered later in the course, you can return to this. But if you want you are very welcome to follow this guide. It does require that you have git installed, accessible and configured on your local computer.\nTo initialize git for your R package, so it becomes a local repository, you first need to run the command:\nusethis::use_git()\nTo initialize a new github repository with the same name as your R package and push your files there, you can use this command:\nusethis::use_github()\nAt this point, you should have a new repository on your github that has your R package files inside it. This is fantastic! Not only does this mean you can now install your package from any other computer , but we can also setup github actions!\nCheck that you can install your package directly from the github repository using a command of the form devtools::install_github(\"Username/repository_name\").\nGithub actions\n\n\n\n\n\n\nTip\n\n\n\nGithub actions are only free for public repositories. Do not create a private repository, for example under your organisation, for this exercise!\n\n\nLet’s set up our R package so that it will test if it passes R CMD CHECK on three major operating systems.\nThe first thing you will need to do is make sure your github account can use actions/workflows. If you are using a personal access token go to (user, not repo) Settings&gt;Developer settings&gt;Personal access tokens on your github account and make sure you have selected a Scope called workflow.\nNow lets add an action to our R-package. It is possible to do this manually but luckily there are some example workflows you can use for the most common cases at https://github.com/r-lib/actions/tree/master/examples. To add the action, we will use the usethis package, similarly to how we used it to initiate vignettes earlier. Issue the command usethis::use_github_action(\"check-standard\") in your R package R session, which will select the standard CI workflow from the link.\nWhat this actually did is create the folders and file .github/workflows/check-standard.yaml which github will know to look for in a repository for instructions to run actions.\nNow commit and push these newly added files to your git repository the Actions tab on github will commence running an action, checking your R package for compatibility with several operating systems, as shown below.\n\nThat is it, now you know all the most important bits about creating an R package. Go make something useful!"
+  },
+  {
+    "objectID": "hands-on/packages/index.html#session",
+    "href": "hands-on/packages/index.html#session",
+    "title": "R packages",
+    "section": "Session",
+    "text": "Session\n\nClick here\n\nsessionInfo()\n\nR version 4.5.1 (2025-06-13)\nPlatform: x86_64-pc-linux-gnu\nRunning under: Ubuntu 24.04.2 LTS\n\nMatrix products: default\nBLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 \nLAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0\n\nlocale:\n [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       \n [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   \n [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          \n[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   \n\ntime zone: UTC\ntzcode source: system (glibc)\n\nattached base packages:\n[1] stats     graphics  grDevices datasets  utils     methods   base     \n\nother attached packages:\n[1] rmarkdown_2.29 knitr_1.50     roxygen2_7.3.2 devtools_2.4.5 usethis_3.1.0 \n\nloaded via a namespace (and not attached):\n [1] miniUI_0.1.2      jsonlite_2.0.0    compiler_4.5.1    renv_1.0.9       \n [5] promises_1.3.3    Rcpp_1.0.14       xml2_1.3.8        stringr_1.5.1    \n [9] later_1.4.2       yaml_2.3.10       fastmap_1.2.0     mime_0.13        \n[13] R6_2.6.1          htmlwidgets_1.6.4 profvis_0.4.0     shiny_1.11.0     \n[17] rlang_1.1.6       stringi_1.8.7     cachem_1.1.0      httpuv_1.6.16    \n[21] xfun_0.52         fs_1.6.6          pkgload_1.4.0     memoise_2.0.1    \n[25] cli_3.6.5         magrittr_2.0.3    digest_0.6.37     xtable_1.8-4     \n[29] remotes_2.5.0     lifecycle_1.0.4   vctrs_0.6.5       evaluate_1.0.3   \n[33] glue_1.8.0        urlchecker_1.0.1  sessioninfo_1.2.3 pkgbuild_1.4.8   \n[37] purrr_1.0.4       tools_4.5.1       ellipsis_0.3.2    htmltools_0.5.8.1"
   },
   {
     "objectID": "hands-on/HO3.html",
@@ -1248,6 +1829,41 @@
       "Hands-on / HW",
       "First Week HW"
     ]
+  },
+  {
+    "objectID": "hands-on/reticulate/index.html",
+    "href": "hands-on/reticulate/index.html",
+    "title": "reticulate",
+    "section": "",
+    "text": "Note\n\n\n\nThese are exercises for practicing to use the reticulate package in R. Try to do the exercises yourself before looking at the answers. Some sections have more pure Python code than others, if you feel that your Python skills are rusty, feel free to look at the answers and try your best to follow along. We will be writing some Python code chunks, so use R Markdown for this exercise.\nPlease download the following file and unzip the contents before the lab.\n raukr-reticulate.zip"
+  },
+  {
+    "objectID": "hands-on/reticulate/index.html#setup",
+    "href": "hands-on/reticulate/index.html#setup",
+    "title": "reticulate",
+    "section": "Setup",
+    "text": "Setup\nLoad the following libraries else install them from CRAN.\n\nlibrary(reticulate)\nlibrary(ggplot2)\nlibrary(purrr)\nlibrary(stringr)\n\nCreate a virtual environment and install Python libraries.\n\npy_require(c(\"pandas==2.2.1\",\"sqlalchemy==2.0.30\"))\n\nReticulate will automatically figure out which python version to use. If you want to manually specify the version you can use use_python(&lt;pythonpath&gt;)."
+  },
+  {
+    "objectID": "hands-on/reticulate/index.html#imdb",
+    "href": "hands-on/reticulate/index.html#imdb",
+    "title": "reticulate",
+    "section": "IMdB",
+    "text": "IMdB\nPreparations\nThe International Movie Database is a large database containing all information about movies, TV series, actors, producers, etc, and the ratings they received. If you are not aware of it, check out their website imdb.com for more information.\nYou will be working on a smaller subset of some of the data listed, which consists of movies, ratings, and the principal actors playing in the movies. You will receive a file with python functions used to query this small database from R, where you will further process the data to answer questions related to different movies and actors. The underlying Python code uses the sqlalchemy library for querying the sqlite database.\nIn preparation for using the Python code in R, make sure that the following files are all located in your working directory:\n\nimdb.db\nmodel.py\nimdb_functions.py\n\nStart by loading all the python functions into R.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\nsource_python(\"imdb_functions.py\")\n\n\n\n\nFirst, inspect which functions got imported when you sourced your python file. You can find them in the Environment table in RStudio. Some of the functions listed are part of the SQLAlchemy package used, but one example to look at is the function get_actors().\nAs you can see, R creates a wrapper function in R, for calling the underlying Python function. This specific function takes a movie title as input, and returns the principal actors of the movie. You can further study what the function does by looking at the code in the imdb_functions.py file. You can see that it queries the database for a specific movie, and returns the principal actors in it.\nGet to know the data\nLet’s try out the get_actors() function. Get the principal actors for the movie Gattaca, and inspect the output type.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\nactors &lt;- get_actors('Gattaca')\nstr(actors)\n\nList of 1\n $ Gattaca: chr [1:4] \"Ethan Hawke (Vincent,Jerome)\" \"Uma Thurman (Irene)\" \"Jude Law (Jerome,Eugene)\" \"Gore Vidal (Director Josef)\"\n\n\n\n\n\nNext let’s do the same with the function get_movies(). List movies that Brent Spiner has been in.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\nmovies &lt;- get_movies('Brent Spiner')\nstr(movies)\n\nList of 1\n $ Brent Spiner: chr [1:3] \"Star Trek: First Contact\" \"Star Trek: Insurrection\" \"Star Trek: Nemesis\"\n\n\n\n\n\nFor printing some basic information about a movie, without saving anything to an R object, use the print_movie_info function. Here, find out information about the Avengers movies.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\nprint_movie_info('Avengers')\n\nTitle:  The Avengers\nYear:  1998\nRuntime (min):  89\nGenres:  Action,Adventure,Sci-Fi\nAverage rating:  3.8\nNumber of votes:  41414 \n\nTitle:  The Avengers\nYear:  2012\nRuntime (min):  143\nGenres:  Action,Adventure,Sci-Fi\nAverage rating:  8.0\nNumber of votes:  1283281 \n\nTitle:  Avengers: Age of Ultron\nYear:  2015\nRuntime (min):  141\nGenres:  Action,Adventure,Sci-Fi\nAverage rating:  7.3\nNumber of votes:  769172 \n\nTitle:  Avengers: Infinity War\nYear:  2018\nRuntime (min):  149\nGenres:  Action,Adventure,Sci-Fi\nAverage rating:  8.4\nNumber of votes:  881191 \n\nTitle:  Avengers: Endgame\nYear:  2019\nRuntime (min):  181\nGenres:  Action,Adventure,Drama\nAverage rating:  8.4\nNumber of votes:  880234 \n\n\n\n\n\nCapture the output from the previous function and save it as a variable.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\noutput &lt;- py_capture_output(print_movie_info('Avengers'))\ncat(output)\n\nTitle:  The Avengers\nYear:  1998\nRuntime (min):  89\nGenres:  Action,Adventure,Sci-Fi\nAverage rating:  3.8\nNumber of votes:  41414 \n\nTitle:  The Avengers\nYear:  2012\nRuntime (min):  143\nGenres:  Action,Adventure,Sci-Fi\nAverage rating:  8.0\nNumber of votes:  1283281 \n\nTitle:  Avengers: Age of Ultron\nYear:  2015\nRuntime (min):  141\nGenres:  Action,Adventure,Sci-Fi\nAverage rating:  7.3\nNumber of votes:  769172 \n\nTitle:  Avengers: Infinity War\nYear:  2018\nRuntime (min):  149\nGenres:  Action,Adventure,Sci-Fi\nAverage rating:  8.4\nNumber of votes:  881191 \n\nTitle:  Avengers: Endgame\nYear:  2019\nRuntime (min):  181\nGenres:  Action,Adventure,Drama\nAverage rating:  8.4\nNumber of votes:  880234 \n\n\n\n\n\nInspect the types of the variables actors and movies. What type are they? What type where they converted from in Python?\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\nstr(actors)\n\nList of 1\n $ Gattaca: chr [1:4] \"Ethan Hawke (Vincent,Jerome)\" \"Uma Thurman (Irene)\" \"Jude Law (Jerome,Eugene)\" \"Gore Vidal (Director Josef)\"\n\nstr(movies)\n\nList of 1\n $ Brent Spiner: chr [1:3] \"Star Trek: First Contact\" \"Star Trek: Insurrection\" \"Star Trek: Nemesis\"\n\n# Both are of the R type `named list`, which is the type a Python `dictionary` gets converted to/from.\n\n\n\n\nSource the python file again, but set convert=FALSE. What are the types now?\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\nsource_python(\"imdb_functions.py\", convert = FALSE)\n\nactors &lt;- get_actors('Gattaca')\nclass(actors)\n\n[1] \"python.builtin.dict\"   \"python.builtin.object\"\n\nmovies &lt;- get_movies('Brent Spiner')\nclass(movies)\n\n[1] \"python.builtin.dict\"   \"python.builtin.object\"\n\n# Now actors and movies are both of the python type dictionary\n\n\n\n\nConvert the types manually back to R types.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\nactors.r &lt;- py_to_r(actors)\nstr(actors.r)\n\nList of 1\n $ Gattaca: chr [1:4] \"Ethan Hawke (Vincent,Jerome)\" \"Uma Thurman (Irene)\" \"Jude Law (Jerome,Eugene)\" \"Gore Vidal (Director Josef)\"\n\nmovies.r &lt;- py_to_r(movies)\nstr(movies.r)\n\nList of 1\n $ Brent Spiner: chr [1:3] \"Star Trek: First Contact\" \"Star Trek: Insurrection\" \"Star Trek: Nemesis\"\n\n\n\n\n\nWorking with Dataframes\nIn the following sections we will be working with pandas dataframes in R. The answers we show will mostly be using the Python pandas library from R, but there are of course pure R ways of doing the following exercises once we have converted the output from the python functions. You are free to choose how you solve the following exercises, either only python in R, a mix, or pure R. But we encourage you to mix, as you will then practice the type conversions and usages of the reticulate library, especially for those of you that are more fluent in Python.\nThe highest ranked movie\nThe function get_all_movies() from the file imdb_functions.py can be used to retrieve all movies, either within a specified time period, or all of the movies in the database. If the imported function has a docstring, you can view the help documentation with:\n\npy_help(get_all_movies)\n\nStart by importing all movies into a pandas dataframe, by sourcing the python functions into R. Do not convert the result into an R dataframe.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\nsource_python(\"imdb_functions.py\", convert = FALSE)\nmovies_py &lt;- get_all_movies()\nclass(movies_py)\n\n[1] \"pandas.core.frame.DataFrame\"        \"pandas.core.generic.NDFrame\"       \n[3] \"pandas.core.base.PandasObject\"      \"pandas.core.accessor.DirNamesMixin\"\n[5] \"pandas.core.indexing.IndexingMixin\" \"pandas.core.arraylike.OpsMixin\"    \n[7] \"python.builtin.object\"             \n\n\n\n\n\nInspecting the movies_py variable we can see that it is of the type pandas.dataframe.\nNow we are ready to answer our first question:\n\nWhich movie/movies are the highest ranked of all times?\n\nWe will try to answer this with a pandas method directly in a Python chunk. To do this we first have to make our movies_py variable visible to Python. Even though it is a Python object, since it was created within a R code chunk, Python code chunks cannot directly access them. To make R variables accessible in Python code chunks we use the r object. Remember that to access a Python variable from R, we used py$, to do the opposite we use r.. The $ and the . denotes the different ways in which Python and R represents methods.\nUse the method .max() from the pandas module to find and filter out the top movie/movies.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\n# the code below is python code written in a python code chunk\nmovies = r.movies_py\n\n# inspect what columns are present\nmovies.columns\n\nIndex(['id', 'tconst', 'titleType', 'primaryTitle', 'originalTitle',\n       'startYear', 'endYear', 'runtimeMinutes', 'genres', 'averageRating',\n       'numVotes'],\n      dtype='object')\n\n# find movies that has the highest averageRating\ntop_movies = movies[movies.averageRating == movies.averageRating.max()]\n\ntop_movies['primaryTitle']\n\n3822    The Shawshank Redemption\n5450             The Chaos Class\nName: primaryTitle, dtype: object\n\n\n\n\n\nAbove we are using pure pandas code directly in our RMarkdown document.\nAfter dipping our toes in Python territory, we now go back to using normal R chunks:\nSave top_movies as an R object, and find out from what years these movies are, and how many votes they got.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\nmovies_r &lt;- py$top_movies\ndf &lt;- data.frame(movies_r$primaryTitle, movies_r$startYear, movies_r$numVotes)\ndf\n\n     movies_r.primaryTitle movies_r.startYear movies_r.numVotes\n1 The Shawshank Redemption               1994           2399394\n2          The Chaos Class               1975             38290\n\n\nSo the answer to which are the highest ranked movies of all times is The Shawshank Redemption and The Chaos Class. Although, The Chaos Class did not get as many votes as The Shawshank Redemption.\n\n\n\nAverage ratings over time\nNext we want to explore how the average ratings for movies has changed over time. This one we will solve in normal R chunks, by importing the required python functions from the file imdb_functions.py, and also load pandas into R. As we will be using pandas in R, import the Python file without converting it.\nGet all movies and save into a pandas dataframe.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\nsource_python(\"imdb_functions.py\", convert = FALSE)\nmovies_py &lt;- get_all_movies()\nclass(movies_py)\n\n[1] \"pandas.core.frame.DataFrame\"        \"pandas.core.generic.NDFrame\"       \n[3] \"pandas.core.base.PandasObject\"      \"pandas.core.accessor.DirNamesMixin\"\n[5] \"pandas.core.indexing.IndexingMixin\" \"pandas.core.arraylike.OpsMixin\"    \n[7] \"python.builtin.object\"             \n\n\n\n\n\nImport pandas into R\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\npandas &lt;- import(\"pandas\")\n\n\n\n\nUse pandas to group the data by startYear, and calculate the average ratings. Next, convert the result back into an R dataframe.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\n# use pandas to group columns by startYear\nmovies_grouped &lt;- movies_py$groupby('startYear')['averageRating']$mean()\n\n# convert to r dataframe\nmovies_grouped_r &lt;- py_to_r(movies_grouped)\nmovies_grouped_r &lt;- as.data.frame(movies_grouped_r)\n\n\n\n\nIn this case the conversion seems to have done something to our columns. To fix this, add startYear column back into the dataframe, using R.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\n# add Year column back to dataframe, and rename columns\nmovies_grouped_r &lt;- cbind(rownames(movies_grouped_r), movies_grouped_r)\ncolnames(movies_grouped_r) &lt;- c(\"startYear\",\"averageRating\")\nmovies_grouped_r[1:4,]\n\n     startYear averageRating\n1915      1915         6.300\n1916      1916         7.700\n1919      1919         7.300\n1920      1920         7.425\n\n\n\n\n\nMake sure to inspect that the dataframe looks like it is supposed to, and that the values make sense. Once we are sure we have managed to transform the data, we can proceed.\nPlot the average ratings for each year.\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\nggplot(movies_grouped_r, aes(x=startYear, y=averageRating)) + \n                              geom_point() + \n                              theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +\n                              ggtitle('Average ratings over years')"
+  },
+  {
+    "objectID": "hands-on/reticulate/index.html#bonus-exercises",
+    "href": "hands-on/reticulate/index.html#bonus-exercises",
+    "title": "reticulate",
+    "section": "Bonus exercises",
+    "text": "Bonus exercises\nBelow is 2 bonus exercises if you have time left in the end of the exercise. Do either one or both if you have the time.\nFind overlapping actors\nWhich actors have played together with both Ian McKellen and Patrick Stewart, but when they were in separate movies? Or rephrased, which actor has played with Ian McKellen Lee in one movie, and Patrick Stewart in another movie?\nFor example:\n\nActor 1 has played with IM in movie a, and with PS in movie b. PS was not in movie a, and IM was not in movie b\nActor 2 has played with IM in movie c, and with PS in movie c.\n\nScenario 1 would count, while scenario 2 would not, as IM and PS was in this movie both together.\nTo solve this one you need to think in several steps. There are of course several solutions, and you are free to approach this exercise however you want. We will give you a suggestion to one approach that could be used below:\n\n\n\n\n\n\nTip\n\n\n\n\n\n\nGet a list of movies where Ian McKellen has played\nGet a list of movies where Patrick Stewart has played\nRemove intersections\nGet all actors for all movies that Ian McKellen was in\nGet all actors for all movies that Patrick Stewart was in\nRemove duplicates\nGet intersection of actors\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nRemember that this database only has the PRINCIPAL actor of movies, meaning you might have results where an actor has a minor role and is not listed here. If you are unsure if your results are correct, we provide you with a Python function to check your results.\n\n\nTo find out if your answer is correct, your can import and use the function check_results from the imdb_functions.py file. Replace 'Actor Name' with the name of the actor that you think is the answer to the question above.\n\nsource_python(\"imdb_functions.py\")\nres_actor &lt;- 'Actor Name'\ncheck_results(res_actor, 'Ian McKellen', 'Patrick Stewart')\n\n And if you want to see one suggested solution to this problem:\n\n\n\n\n\n\nShow code\n\n\n\n\n\n\nsource_python(\"imdb_functions.py\", convert = FALSE)\nact1 &lt;- 'Ian McKellen'\nact2 &lt;- 'Patrick Stewart'\n\n# get movies for Patrick Stewart\nact1_movies &lt;- get_movies(act1)\nact1_movies\n## {'Ian McKellen': ['The Keep', 'Six Degrees of Separation', 'Richard III', 'Apt Pupil', 'Gods and Monsters', 'The Lord of the Rings: The Fellowship of the Ring', 'X-Men', 'The Lord of the Rings: The Return of the King', 'The Lord of the Rings: The Two Towers', 'X2: X-Men United', 'The Da Vinci Code', 'Neverwas', 'Flushed Away', 'Stardust', 'The Hobbit: An Unexpected Journey', 'The Hobbit: The Desolation of Smaug', 'X-Men: Days of Future Past', 'The Hobbit: The Battle of the Five Armies', 'Mr. Holmes', 'The Good Liar']}\nmovies1_lst &lt;- py_to_r(act1_movies[act1])\n\n# get movies for Ian McKellen\nact2_movies &lt;- get_movies(act2)\nact2_movies\n## {'Patrick Stewart': ['Star Trek: Generations', 'Star Trek: First Contact', 'Conspiracy Theory', 'Star Trek: Insurrection', 'X-Men', 'Star Trek: Nemesis', 'X2: X-Men United', 'Steamboy', 'X-Men: The Last Stand', 'Earth', 'TMNT', 'African Cats', 'X-Men: Days of Future Past', 'Logan', 'Green Room']}\nmovies2_lst &lt;- py_to_r(act2_movies[act2])\n\n# get movies both has played in\noverlap &lt;- intersect(movies1_lst, movies2_lst)\n\n# remove overlap from each movielist\nnew_movies1_lst &lt;- setdiff(movies1_lst, overlap)\nnew_movies2_lst &lt;- setdiff(movies2_lst, overlap)\n\n# get all actors that has played in those movies\n# below we do things the functional way for the first \n# movie list\nactors_lst &lt;- purrr::map(new_movies1_lst, \n             ~ .x %&gt;% \n             get_actors() %&gt;% \n             py_to_r() %&gt;% \n             .[[.x]] %&gt;% \n             unlist() %&gt;% \n             str_remove(' \\\\(.*\\\\)')) %&gt;% \n  unlist() \n\n# remove all duplicates\nactors_lst_uniq &lt;- actors_lst %&gt;% unique()\n\n\n# and now, the same for the second movie list, but the \n# non-functional way, using Python-inspired syntax. \n\nactors_lst2 &lt;- character()\n\nfor (movie in new_movies2_lst) {\n  actors &lt;- get_actors(movie)\n  actors_r &lt;- py_to_r(actors[movie])\n  for (actor in actors_r) {\n    a &lt;- strsplit(as.character(actor), '\\\\s*[()]')[[1]]\n    actors_lst2 &lt;- append(actors_lst2, a[1])\n  }\n}\n\nactors_lst2_uniq &lt;- unique(actors_lst2)\n\n# finally, intersect the two lists with actors to\n# find the ones that played with both actors\nintersect(actors_lst_uniq, actors_lst2_uniq)\n## [1] \"Hugh Jackman\"\n\n\n\n\nTry some other actors and see what you find. For example, try actors that have played with Johnny Depp and Helena Bonham Carter.\nTry out examples from slides\nIn the slides we looked at a few examples of how we can use reticulate to use python libraries in R:\n\nRandom forest classification using Scikit-learn\nGetting gene information from ENSEMBL’s API\nDo Natural language processing using Hugging Face models\n\nGo back to the slides and try some of them out! Here you would have to read the documentation for the different libraries. Remember these are Python libraries that you import in R, so the syntax has to be updated as we have discussed previously."
+  },
+  {
+    "objectID": "hands-on/reticulate/index.html#session",
+    "href": "hands-on/reticulate/index.html#session",
+    "title": "reticulate",
+    "section": "Session",
+    "text": "Session\n\nClick here\n\nsessionInfo()\n\nR version 4.5.1 (2025-06-13)\nPlatform: x86_64-pc-linux-gnu\nRunning under: Ubuntu 24.04.2 LTS\n\nMatrix products: default\nBLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 \nLAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0\n\nlocale:\n [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       \n [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   \n [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          \n[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   \n\ntime zone: UTC\ntzcode source: system (glibc)\n\nattached base packages:\n[1] stats     graphics  grDevices datasets  utils     methods   base     \n\nother attached packages:\n[1] stringr_1.5.1     purrr_1.0.4       ggplot2_3.5.2     reticulate_1.42.0\n\nloaded via a namespace (and not attached):\n [1] Matrix_1.7-0       gtable_0.3.6       jsonlite_2.0.0     dplyr_1.1.4       \n [5] compiler_4.5.1     renv_1.0.9         tidyselect_1.2.1   Rcpp_1.0.14       \n [9] scales_1.4.0       png_0.1-8          yaml_2.3.10        fastmap_1.2.0     \n[13] lattice_0.22-6     here_1.0.1         R6_2.6.1           labeling_0.4.3    \n[17] generics_0.1.3     knitr_1.50         htmlwidgets_1.6.4  tibble_3.2.1      \n[21] rprojroot_2.0.4    pillar_1.10.2      RColorBrewer_1.1-3 rlang_1.1.6       \n[25] stringi_1.8.7      xfun_0.52          cli_3.6.5          withr_3.0.2       \n[29] magrittr_2.0.3     digest_0.6.37      grid_4.5.1         lifecycle_1.0.4   \n[33] vctrs_0.6.5        evaluate_1.0.3     glue_1.8.0         farver_2.1.2      \n[37] rmarkdown_2.29     tools_4.5.1        pkgconfig_2.0.3    htmltools_0.5.8.1"
   },
   {
     "objectID": "course-links.html",

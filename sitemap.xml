@@ -2,70 +2,94 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tinyurl.com/SCiRT/course-overview.html</loc>
-    <lastmod>2025-06-11T01:09:26.733Z</lastmod>
+    <lastmod>2025-06-25T20:42:49.270Z</lastmod>
   </url>
   <url>
     <loc>https://tinyurl.com/SCiRT/index.html</loc>
-    <lastmod>2025-06-11T01:09:26.742Z</lastmod>
+    <lastmod>2025-06-25T20:42:49.318Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/hands-on/git/index.html</loc>
+    <lastmod>2025-06-25T20:42:49.272Z</lastmod>
   </url>
   <url>
     <loc>https://tinyurl.com/SCiRT/hands-on/HO2.html</loc>
-    <lastmod>2025-06-11T01:09:26.733Z</lastmod>
+    <lastmod>2025-06-25T20:42:49.270Z</lastmod>
   </url>
   <url>
     <loc>https://tinyurl.com/SCiRT/hands-on/HO1.html</loc>
-    <lastmod>2025-06-11T01:09:26.733Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyurl.com/SCiRT/course-syllabus.html</loc>
-    <lastmod>2025-06-11T01:09:26.733Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyurl.com/SCiRT/slides/Topic5.html</loc>
-    <lastmod>2025-06-11T01:09:26.776Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyurl.com/SCiRT/slides/Topic3.html</loc>
-    <lastmod>2025-06-11T01:09:26.776Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyurl.com/SCiRT/slides/Topic7.html</loc>
-    <lastmod>2025-06-11T01:09:26.793Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyurl.com/SCiRT/about.html</loc>
-    <lastmod>2025-06-11T01:09:26.733Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyurl.com/SCiRT/slides/Topic4.html</loc>
-    <lastmod>2025-06-11T01:09:26.776Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyurl.com/SCiRT/slides/Topic6.html</loc>
-    <lastmod>2025-06-11T01:09:26.776Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyurl.com/SCiRT/slides/Topic2.html</loc>
-    <lastmod>2025-06-11T01:09:26.776Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tinyurl.com/SCiRT/slides/Topic1.html</loc>
-    <lastmod>2025-06-11T01:09:26.775Z</lastmod>
+    <lastmod>2025-06-25T20:42:49.270Z</lastmod>
   </url>
   <url>
     <loc>https://tinyurl.com/SCiRT/misc/cheatsheets.html</loc>
-    <lastmod>2025-06-11T01:09:26.742Z</lastmod>
+    <lastmod>2025-06-25T20:42:49.318Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/reticulate.html</loc>
+    <lastmod>2025-06-25T20:42:49.532Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/Topic5.html</loc>
+    <lastmod>2025-06-25T20:42:49.351Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/git.html</loc>
+    <lastmod>2025-06-25T20:42:49.374Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/Topic6.html</loc>
+    <lastmod>2025-06-25T20:42:49.351Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/Topic4.html</loc>
+    <lastmod>2025-06-25T20:42:49.351Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/about.html</loc>
+    <lastmod>2025-06-25T20:42:49.270Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/packages.html</loc>
+    <lastmod>2025-06-25T20:42:49.532Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/Topic7.html</loc>
+    <lastmod>2025-06-25T20:42:49.369Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/Topic3.html</loc>
+    <lastmod>2025-06-25T20:42:49.351Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/Topic2.html</loc>
+    <lastmod>2025-06-25T20:42:49.351Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/slides/Topic1.html</loc>
+    <lastmod>2025-06-25T20:42:49.351Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/course-syllabus.html</loc>
+    <lastmod>2025-06-25T20:42:49.270Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/hands-on/packages/index.html</loc>
+    <lastmod>2025-06-25T20:42:49.276Z</lastmod>
   </url>
   <url>
     <loc>https://tinyurl.com/SCiRT/hands-on/HO3.html</loc>
-    <lastmod>2025-06-11T01:09:26.733Z</lastmod>
+    <lastmod>2025-06-25T20:42:49.270Z</lastmod>
   </url>
   <url>
     <loc>https://tinyurl.com/SCiRT/hands-on/HW1.html</loc>
-    <lastmod>2025-06-11T01:09:26.733Z</lastmod>
+    <lastmod>2025-06-25T20:42:49.270Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tinyurl.com/SCiRT/hands-on/reticulate/index.html</loc>
+    <lastmod>2025-06-25T20:42:49.309Z</lastmod>
   </url>
   <url>
     <loc>https://tinyurl.com/SCiRT/course-links.html</loc>
-    <lastmod>2025-06-11T01:09:26.733Z</lastmod>
+    <lastmod>2025-06-25T20:42:49.270Z</lastmod>
   </url>
 </urlset>
