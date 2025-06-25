@@ -78,7 +78,7 @@ website:
 
   page-footer:
     right: "This page is built with [Quarto](https://quarto.org/)."
-    left: "&copy; Copyright 2025, Mehdi Maadooliat and Hossein Haghbin"
+    left: "&copy; Copyright 2025, Mehdi Maadooliat"
     background: "#FFCC00" # Arylide Yellow
     
 format:

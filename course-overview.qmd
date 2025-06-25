@@ -2,7 +2,7 @@
 title: "Course overview"
 ---
 
-This is the homepage for Short Course on R Tools (SCoRT) by [Dr. Mehdi Maadooliat](http://www.mssc.mu.edu/~mehdi) and Dr. Hossein Haghbin. All course materials will be posted on this site.
+This is the homepage for Short Course on R Tools (SCoRT) by [Dr. Mehdi Maadooliat](http://www.mssc.mu.edu/~mehdi). All course materials will be posted on this site.
 
 You can find the course syllabus [here](/course-syllabus.html) and the course schedule [here](/).
 
