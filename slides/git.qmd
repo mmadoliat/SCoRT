@@ -8,7 +8,10 @@ title-slide-attributes:
   data-background-image: "../mu-bg.png"
   data-background-size: stretch
   data-slide-number: none
-format: html
+format:
+  revealjs:
+    transition: fade
+    scrollable: true
 
 ---
 
