@@ -214,14 +214,14 @@
     "href": "slides/reticulate.html#importing-python-modules",
     "title": "Reticulate",
     "section": "Importing Python modules",
-    "text": "Importing Python modules\n\ndatetime &lt;- import(\"datetime\")\ntodays_r_date &lt;- datetime$datetime$now()\n\n\n\ntodays_r_date\n\n[1] \"2025-06-25 20:47:00 UTC\"\n\nclass(todays_r_date)\n\n[1] \"POSIXct\" \"POSIXt\" \n\n\n\n\nObjects are automatically converted to R types, unless otherwise specified"
+    "text": "Importing Python modules\n\ndatetime &lt;- import(\"datetime\")\ntodays_r_date &lt;- datetime$datetime$now()\n\n\n\ntodays_r_date\n\n[1] \"2025-06-25 21:07:49 UTC\"\n\nclass(todays_r_date)\n\n[1] \"POSIXct\" \"POSIXt\" \n\n\n\n\nObjects are automatically converted to R types, unless otherwise specified"
   },
   {
     "objectID": "slides/reticulate.html#importing-python-modules-1",
     "href": "slides/reticulate.html#importing-python-modules-1",
     "title": "Reticulate",
     "section": "Importing Python modules",
-    "text": "Importing Python modules\n\ndatetime &lt;- import(\"datetime\", convert = FALSE)\ntodays_py_date &lt;- datetime$datetime$now()\n\n\n\ntodays_py_date\n\ndatetime.datetime(2025, 6, 25, 20, 47, 0, 670127)\n\nclass(todays_py_date)\n\n[1] \"datetime.datetime\"     \"datetime.date\"         \"python.builtin.object\""
+    "text": "Importing Python modules\n\ndatetime &lt;- import(\"datetime\", convert = FALSE)\ntodays_py_date &lt;- datetime$datetime$now()\n\n\n\ntodays_py_date\n\ndatetime.datetime(2025, 6, 25, 21, 7, 49, 207730)\n\nclass(todays_py_date)\n\n[1] \"datetime.datetime\"     \"datetime.date\"         \"python.builtin.object\""
   },
   {
     "objectID": "slides/reticulate.html#importing-built-in-python-functions",
@@ -375,7 +375,7 @@
     "href": "slides/reticulate.html#section-1",
     "title": "Reticulate",
     "section": "",
-    "text": "# Import scikit-learn's random forest classifier\nsklearn &lt;- import(\"sklearn.ensemble\")\nRandomForestClassifier &lt;- sklearn$RandomForestClassifier\n\n# Create a random forest classifier\nclf &lt;- RandomForestClassifier(n_estimators=100L)\n\n# Training data (example)\nX_train &lt;- matrix(runif(1000), ncol=10)\ny_train &lt;- sample(c(0, 1), 100, replace=TRUE)\n\n# Train the model\nclf$fit(X_train, y_train)\n\nRandomForestClassifier()\n\n# Predict on new data\nX_test &lt;- matrix(runif(200), ncol=10)\npredictions &lt;- clf$predict(X_test)\npredictions\n\n [1] 1 1 0 0 1 1 0 1 0 1 1 0 0 0 0 1 0 1 0 1"
+    "text": "# Import scikit-learn's random forest classifier\nsklearn &lt;- import(\"sklearn.ensemble\")\nRandomForestClassifier &lt;- sklearn$RandomForestClassifier\n\n# Create a random forest classifier\nclf &lt;- RandomForestClassifier(n_estimators=100L)\n\n# Training data (example)\nX_train &lt;- matrix(runif(1000), ncol=10)\ny_train &lt;- sample(c(0, 1), 100, replace=TRUE)\n\n# Train the model\nclf$fit(X_train, y_train)\n\nRandomForestClassifier()\n\n# Predict on new data\nX_test &lt;- matrix(runif(200), ncol=10)\npredictions &lt;- clf$predict(X_test)\npredictions\n\n [1] 1 0 1 1 1 0 0 0 0 0 0 0 1 1 0 1 0 0 0 1"
   },
   {
     "objectID": "slides/reticulate.html#examples-in-bioinformatics-1",
