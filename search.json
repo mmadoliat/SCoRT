@@ -919,7 +919,7 @@
     "href": "course-syllabus.html",
     "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "",
-    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
+    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: https://bit.ly/SCoRT",
     "crumbs": [
       "Course information",
       "Syllabus"
@@ -930,7 +930,7 @@
     "href": "course-syllabus.html#course-information",
     "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "",
-    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: http://tinyurl.com/SCiRT",
+    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: https://bit.ly/SCoRT",
     "crumbs": [
       "Course information",
       "Syllabus"
@@ -1084,7 +1084,7 @@
     "href": "course-links.html",
     "title": "Useful links",
     "section": "",
-    "text": "Motivating Talk\nStat Calculator\nDistribution Calculator\nRStudio\n🔗 Rfssa: An R Package for Functional SSA\n🔗 StatCalc(JAMM)\n🔗 DistCalc\n🔗 on dna\n\n\nAdvanced Texbooks\n🔗 Advanced R by Hadley Wickham\n🔗 R Package\n🔗 Quarto\n🔗 R Markdown\n🔗 ggplot2: Elegant Graphics for Data Analysis\n🔗 Fundamentals of Data Visualization\n🔗 Data Visualization: A Practical Introduction\n🔗 R for Data Science\n\n\nSome Package documentation\n🔗 OOP-R6: r6.r-lib.org\n🔗 shiny: shiny.posit.co\n🔗 Rcpp: www.rcpp.org\n🔗 reticulate: rstudio.github.io/reticulate\n🔗 devtools: devtools.r-lib.org\n🔗 GitHub: happygitwithr.com\n🔗 CRAN: cran.r-project.org\n🔗 keras: keras3.posit.co",
+    "text": "Motivating Talk\nStat Calculator\nDistribution Calculator\nRStudio\n🔗 Rfssa: An R Package for Functional SSA\n🔗 StatCalc(JAMM)\n🔗 DistCalc\n🔗 on dna |\n\n\nAdvanced Texbooks\n🔗 Advanced R by Hadley Wickham\n🔗 R Package\n🔗 Quarto\n🔗 R Markdown\n🔗 ggplot2: Elegant Graphics for Data Analysis\n🔗 Fundamentals of Data Visualization\n🔗 Data Visualization: A Practical Introduction\n🔗 R for Data Science\n\n\nSome Package documentation\n🔗 OOP-R6: r6.r-lib.org\n🔗 shiny: shiny.posit.co\n🔗 Rcpp: www.rcpp.org\n🔗 reticulate: rstudio.github.io/reticulate\n🔗 devtools: devtools.r-lib.org\n🔗 GitHub: happygitwithr.com\n🔗 CRAN: cran.r-project.org\n🔗 keras: keras3.posit.co",
     "crumbs": [
       "Miscellaneous",
       "Useful links"
@@ -1116,7 +1116,7 @@
     "href": "slides/git.html#session",
     "title": "git and R",
     "section": "Session",
-    "text": "Session\n\n\nClick here\n\n\nsessionInfo()\n\nR version 4.5.1 (2025-06-13)\nPlatform: x86_64-pc-linux-gnu\nRunning under: Ubuntu 24.04.2 LTS\n\nMatrix products: default\nBLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 \nLAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0\n\nlocale:\n [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       \n [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   \n [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          \n[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   \n\ntime zone: UTC\ntzcode source: system (glibc)\n\nattached base packages:\n[1] stats     graphics  grDevices datasets  utils     methods   base     \n\nother attached packages:\n[1] gitcreds_0.1.2 usethis_3.1.0 \n\nloaded via a namespace (and not attached):\n [1] digest_0.6.37     fastmap_1.2.0     xfun_0.52         magrittr_2.0.3   \n [5] glue_1.8.0        knitr_1.50        htmltools_0.5.8.1 rmarkdown_2.29   \n [9] lifecycle_1.0.4   cli_3.6.5         vctrs_0.6.5       renv_1.0.9       \n[13] compiler_4.5.1    purrr_1.0.4       tools_4.5.1       evaluate_1.0.3   \n[17] yaml_2.3.10       rlang_1.1.6       jsonlite_2.0.0    fs_1.6.6         \n\n\n\n\n\n\n\n🔗 tinyurl.com/SCiRT"
+    "text": "Session\n\n\nClick here\n\n\nsessionInfo()\n\nR version 4.5.1 (2025-06-13)\nPlatform: x86_64-pc-linux-gnu\nRunning under: Ubuntu 24.04.2 LTS\n\nMatrix products: default\nBLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 \nLAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0\n\nlocale:\n [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       \n [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   \n [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          \n[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   \n\ntime zone: UTC\ntzcode source: system (glibc)\n\nattached base packages:\n[1] stats     graphics  grDevices datasets  utils     methods   base     \n\nother attached packages:\n[1] gitcreds_0.1.2 usethis_3.1.0 \n\nloaded via a namespace (and not attached):\n [1] digest_0.6.37     fastmap_1.2.0     xfun_0.52         magrittr_2.0.3   \n [5] glue_1.8.0        knitr_1.50        htmltools_0.5.8.1 rmarkdown_2.29   \n [9] lifecycle_1.0.4   cli_3.6.5         vctrs_0.6.5       renv_1.0.9       \n[13] compiler_4.5.1    purrr_1.0.4       tools_4.5.1       evaluate_1.0.3   \n[17] yaml_2.3.10       rlang_1.1.6       jsonlite_2.0.0    fs_1.6.6         \n\n\n\n\n\n\n\n🔗 https://bit.ly/SCoRT"
   },
   {
     "objectID": "slides/packages.html#what-is-an-r-package",
@@ -1326,7 +1326,7 @@
     "href": "slides/packages.html#section-1",
     "title": "R packages",
     "section": "",
-    "text": "Thank you!\nQuestions?\n?meta:current_year • SciLifeLab • NBIS • RaukR\n\n\n\n\n\n\n🔗 tinyurl.com/SCiRT"
+    "text": "Thank you!\nQuestions?\n?meta:current_year • SciLifeLab • NBIS • RaukR\n\n\n\n\n\n\n🔗 https://bit.ly/SCoRT"
   },
   {
     "objectID": "slides/Topic2.html#structure-of-a-shiny-app-1",
@@ -1475,14 +1475,14 @@
     "href": "slides/reticulate.html#importing-python-modules",
     "title": "Reticulate",
     "section": "Importing Python modules",
-    "text": "Importing Python modules\n\ndatetime &lt;- import(\"datetime\")\ntodays_r_date &lt;- datetime$datetime$now()\n\n\n\ntodays_r_date\n\n[1] \"2025-06-30 15:20:55 UTC\"\n\nclass(todays_r_date)\n\n[1] \"POSIXct\" \"POSIXt\" \n\n\n\n\nObjects are automatically converted to R types, unless otherwise specified"
+    "text": "Importing Python modules\n\ndatetime &lt;- import(\"datetime\")\ntodays_r_date &lt;- datetime$datetime$now()\n\n\n\ntodays_r_date\n\n[1] \"2025-06-30 22:40:25 UTC\"\n\nclass(todays_r_date)\n\n[1] \"POSIXct\" \"POSIXt\" \n\n\n\n\nObjects are automatically converted to R types, unless otherwise specified"
   },
   {
     "objectID": "slides/reticulate.html#importing-python-modules-1",
     "href": "slides/reticulate.html#importing-python-modules-1",
     "title": "Reticulate",
     "section": "Importing Python modules",
-    "text": "Importing Python modules\n\ndatetime &lt;- import(\"datetime\", convert = FALSE)\ntodays_py_date &lt;- datetime$datetime$now()\n\n\n\ntodays_py_date\n\ndatetime.datetime(2025, 6, 30, 15, 20, 55, 400487)\n\nclass(todays_py_date)\n\n[1] \"datetime.datetime\"     \"datetime.date\"         \"python.builtin.object\""
+    "text": "Importing Python modules\n\ndatetime &lt;- import(\"datetime\", convert = FALSE)\ntodays_py_date &lt;- datetime$datetime$now()\n\n\n\ntodays_py_date\n\ndatetime.datetime(2025, 6, 30, 22, 40, 25, 370752)\n\nclass(todays_py_date)\n\n[1] \"datetime.datetime\"     \"datetime.date\"         \"python.builtin.object\""
   },
   {
     "objectID": "slides/reticulate.html#importing-built-in-python-functions",
@@ -1636,7 +1636,7 @@
     "href": "slides/reticulate.html#section-1",
     "title": "Reticulate",
     "section": "",
-    "text": "# Import scikit-learn's random forest classifier\nsklearn &lt;- import(\"sklearn.ensemble\")\nRandomForestClassifier &lt;- sklearn$RandomForestClassifier\n\n# Create a random forest classifier\nclf &lt;- RandomForestClassifier(n_estimators=100L)\n\n# Training data (example)\nX_train &lt;- matrix(runif(1000), ncol=10)\ny_train &lt;- sample(c(0, 1), 100, replace=TRUE)\n\n# Train the model\nclf$fit(X_train, y_train)\n\nRandomForestClassifier()\n\n# Predict on new data\nX_test &lt;- matrix(runif(200), ncol=10)\npredictions &lt;- clf$predict(X_test)\npredictions\n\n [1] 1 1 1 1 0 0 0 1 0 1 0 1 0 0 0 1 0 0 1 0"
+    "text": "# Import scikit-learn's random forest classifier\nsklearn &lt;- import(\"sklearn.ensemble\")\nRandomForestClassifier &lt;- sklearn$RandomForestClassifier\n\n# Create a random forest classifier\nclf &lt;- RandomForestClassifier(n_estimators=100L)\n\n# Training data (example)\nX_train &lt;- matrix(runif(1000), ncol=10)\ny_train &lt;- sample(c(0, 1), 100, replace=TRUE)\n\n# Train the model\nclf$fit(X_train, y_train)\n\nRandomForestClassifier()\n\n# Predict on new data\nX_test &lt;- matrix(runif(200), ncol=10)\npredictions &lt;- clf$predict(X_test)\npredictions\n\n [1] 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1 1 1 0"
   },
   {
     "objectID": "slides/reticulate.html#examples-in-bioinformatics-1",
@@ -1671,7 +1671,7 @@
     "href": "slides/reticulate.html#section-4",
     "title": "Reticulate",
     "section": "",
-    "text": "Thank you!\nQuestions?\n?meta:current_year • SciLifeLab • NBIS • RaukR\n\n\n\n\n\n\n🔗 tinyurl.com/SCiRT"
+    "text": "Thank you!\nQuestions?\n?meta:current_year • SciLifeLab • NBIS • RaukR\n\n\n\n\n\n\n🔗 https://bit.ly/SCoRT"
   },
   {
     "objectID": "about.html",
