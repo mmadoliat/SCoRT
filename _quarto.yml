@@ -5,7 +5,7 @@ website:
   page-navigation: true
   title: "SCoRT"
   description: "Homepage for 'Short Course on R Tools', Summer 2025."
-  site-url: "https://tinyurl.com/SCiRT"
+  site-url: "https://bit.ly/SCoRT"
 
   repo-url: https://github.com/mmadoliat/SCoRT/
   repo-actions: [edit, issue]
@@ -25,11 +25,11 @@ website:
         href: https://github.com/mmadoliat/SCoRT/
         text: "GitHub organization"
       - icon: code-square
-        href: https://tinyurl.com/SCiRT
-        text: "TinyURL"
+        href: https://bit.ly/SCoRT
+        text: "Bitly"
       - icon: person-fill
-        href: https://tinyurl.com/RS-dna
-        text: "dna Rstudio"
+        href: https://bit.ly/RS-dna
+        text: "dna RStudio"
 
     style: docked
     search: true

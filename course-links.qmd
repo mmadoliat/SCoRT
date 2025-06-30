@@ -9,7 +9,7 @@ title: "Useful links"
 |                            |                                                                                      |
 | Distribution Calculator    | 🔗 [DistCalc](http://dna.mscsnet.mu.edu:3838/mlab/DistCalc/)                         |
 |                            |                                                                                      |
-| RStudio                    | 🔗 on [dna](https://tinyurl.com/RS-dna)                                              |
+| RStudio                    | 🔗 on [dna](https://bit.ly/RS-dna)                                              |
 +----------------------------+--------------------------------------------------------------------------------------+
 | Advanced Texbooks          | 🔗 [Advanced R by Hadley Wickham](https://adv-r.hadley.nz/)                          |
 |                            |                                                                                      |
