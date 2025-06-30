@@ -4,7 +4,7 @@ format:
   html: default
   pdf: default
 ---
-
+ 
 ## Course Information
 
 **Course Title:** MSSC 6010: Short Course on R Tools\
