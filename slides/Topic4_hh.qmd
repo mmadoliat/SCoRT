@@ -1,0 +1,433 @@
+---
+title: "Short Course on R Tools"
+subtitle: "Integrate Python in R using Reticulate"
+title-slide-attributes:
+  data-background-image: mu-bg.png
+  data-background-size: stretch
+  data-slide-number: none
+format: 
+  revealjs:
+    transition: fade
+    scrollable: true
+---
+
+# Outline {.scrollable}
+
+::: incremental
+-   Why integrate Python into R?
+-   What is `reticulate`?
+-   Installation & Setup
+-   Importing Python Modules into R
+-   Python Objects & Data Conversion
+-   Sourcing Python Scripts in R
+-   Data Conversion & Accessing R Objects in Python
+-   Working with Python Classes in R
+-   reticulate in R Markdown & Quarto
+-   Shiny & Python Integration
+-   Hands-on Exercises
+:::
+
+# 1. Why integrate Python into R? {.scrollable}
+
+::: incremental
+-   **Access powerful Python libraries** R has excellent packages, but some cutting-edge tools exist only in Python:
+    -   Deep Learning: `PyTorch`, `TensorFlow`, `Keras`
+    -   Machine Learning: `scikit-learn`, `XGBoost`, `LightGBM`
+    -   NLP: `spaCy`, `HuggingFace transformers`
+    -   Computer Vision: `OpenCV`
+-   **Combine the best of both worlds**
+    -   R: data manipulation, statistics, visualization (`ggplot2`, `dplyr`)
+    -   Python: ML/AI, scripting, general programming
+:::
+
+# 
+
+-   **Reuse existing Python code**
+    -   Avoid rewriting code or switching environments
+
+::: incremental
+-   **Create seamless interactive workflows**
+    -   Mix R and Python in R Markdown, Jupyter, or Quarto documents
+-   **Enhance productivity and reproducibility**
+    -   Use the right tool for each task in one unified workflow
+:::
+
+# 2. What is `reticulate`?
+
+::: incremental
+-   R package for interoperability with Python
+
+-   Maintains a shared Python session accessible from R
+
+-   Automatic conversion of many R types to Python and vice versa
+
+-   Supports inline Python code in R Markdown and R scripts
+:::
+
+# 3. Installation & Setup
+
+🧩 **Install the `reticulate` package in R**
+
+``` r
+install.packages("reticulate")
+```
+
+. . .
+
+🐍 **Ensure Python is installed**<br/> Use system Python, Anaconda, or a virtual environment. You can check the Python configuration in R:
+
+``` r
+library(reticulate)
+py_available() # Check python availability
+py_config() #Inspect current setup
+```
+
+. . .
+
+**🔗 Bind to a specific Python version**
+
+``` r
+use_python("/usr/bin/python3")
+# use_python(""C://Users//your_username/AppData/Local/Programs/Python/Python312"")
+```
+
+## Managing Python Environments
+
+-   **Virtualenv**:
+
+    ``` r
+    virtualenv_create("r-reticulate")
+    virtualenv_install("r-reticulate", "numpy", "pandas")
+    use_virtualenv("r-reticulate", required = TRUE)
+    ```
+
+-   **Conda**:
+
+    ``` r
+    conda_create("r-reticulate", packages = c("numpy", "pandas"))
+    use_condaenv("r-reticulate", required = TRUE)
+    ```
+
+??? note Emphasize isolating project dependencies.
+
+# 4. Importing Python Modules into R
+
+**📦 Use `import()` to bring Python modules into R**
+
+``` {.r code-line-numbers="1|2|3" height="200"}
+library(reticulate)
+np <- import("numpy")
+np$mean(c(1, 2, 3, 4))   # returns 2.5
+```
+
+. . .
+
+**📦 Use `import_builtins()` to import Python built-in functions**
+
+``` r
+py_builtins <- import_builtins()
+py_builtins$len(c(1, 2, 3))   # Returns 3
+```
+
+# 5. Sourcing Python Scripts in R {transition="slide"}
+
+- Use `source_python()` or `py_run_file()` to run `.py` scripts from R
+- Use `py_run_string()` to run inline Python code from R
+
+## 📥 Using `source_python()` {transition="convex"}
+
+Imports all Python functions and variables into R
+
+::: incremental
+-   Variables become **directly available in the R global environment**
+-   Ideal for reusable Python functions
+:::
+
+::: {.fragment .fade-up}
+**🔍 Example:**<br/> Consider "script.py" file, includes following Python script:
+
+``` python
+y = 2
+def square(x):
+    return x **2
+```
+:::
+
+::: {.fragment .fade-up}
+✅ Works directly in R :
+
+``` {.r code-line-numbers="1|2|3" height="200"}
+source_python("script.py")
+square(4)   # returns 16
+print(y) # print 2
+```
+:::
+
+## 📥 Using `py_run_file()` {transition="zoom"}
+
+Also runs the script, but...
+
+::: incremental
+-   ❌ Does not expose functions/variables directly in R
+-   Variables and functions are stored in `py$`
+:::
+
+. . .
+
+``` {.r code-line-numbers="1|2|3" height="200"}
+py_run_file("script.py")
+py$square(4)  # returns 16
+print(py$y) # print 2
+```
+
+## 🧩 Using `py_run_string()` {transition="slide"}
+
+::: incremental
+-   Executes the string in the shared Python session
+-   Variables created in Python are not added to R environment
+-   Access Python variables in R using `py$`
+:::
+
+. . .
+
+``` {.r code-line-numbers="1-5|7|8" height="200"}
+py_run_string("
+def square(x):
+    return x ** 2
+y = 5
+")
+
+py$y         # ✅  5
+py$square(4) # ✅ 16
+```
+
+# 6. Data Conversion & Accessing R Objects in Python {transition="zoom"}
+
+## 🔁 Automatic Data Conversion {transition="slide"}
+
+::: small
+| R Object Type | Python Equivalent | Notes |
+|-------------------------|------------------------------|------------------|
+| `numeric`, `integer` | `float`, `int` | Scalars or arrays |
+| `logical` | `bool` | TRUE → `True` |
+| `character` | `str` or `list[str]` | Vectorized strings → list |
+| `vector`, `matrix` | `numpy.ndarray` | Shape preserved |
+| `data.frame` | `pandas.DataFrame` | Column types preserved |
+| `list` (named) | `dict` | Keys from names |
+| `list` (unnamed) | `list` | Sequential list |
+| `NULL` | `None` |  |
+| `function` (closure) | Python callable | If inputs/outputs are convertible |
+| `function` (builtin) | ❌ PyCapsule | ⚠️ not callable in Python |
+| `S3/S4/R6` objects | ❌ PyCapsule | ⚠️ Not convertible |
+
+: {tbl-colwidths="\[30,30,40\]"}
+:::
+
+## Accessing R Objects from Python {transition="slide"}
+
+**🔍 Example:**<br/> Let two following objects have been defined in R global environment:
+
+``` r
+x <- c(10, 20, 30)
+f <- function(x) x^2
+```
+
+. . .
+
+In Python we can access to these objects trough `r` object:
+
+``` python
+print(r.x)      # ✅ [10, 20, 30]
+print(r.f(3))   # ✅ 9
+```
+ 
+## Exporting R Objects to Python {transition="slide"}
+
+Use `py$` assignment. In R:
+
+``` {.r code-line-numbers="1-3|5"}
+x <- c(1, 2, 3)
+py$x <- x        # Exports `x` to Python namespace
+f <- function(n) n^2
+py$f <- f        # Exports R function to Python
+```
+
+. . .
+
+Now usable from Python:
+
+``` python
+print(x)     # [1, 2, 3]
+print(f(5))  # 25
+```
+
+## Exporting R Closure Functions to Python {transition="slide"}
+
+A **closure** in R is simply a user-defined function created with the function() keyword. It's the most common type of function in R.
+
+✅ A **closure** fnction Works directly. In R:
+
+``` r
+typeof(mean) # return "closure"
+py$m <- mean
+```
+
+. . .
+
+In Python:
+
+``` python
+print(m([1, 2, 3, 4, 5]))     # Returns 3
+```
+
+## Exporting R `Builtin` Functions to Python {transition="slide"}
+
+**Built-in** functions in R are functions implemented in C (compiled) and embedded directly into the R interpreter.
+
+⚠️ Builtin function needs wrapping. For example:
+
+``` r
+typeof(exp) # return "builtin"
+py$e <- e
+```
+
+. . .
+
+In Python:
+
+``` python
+print(e(1))     
+# ❌ TypeError: 'PyCapsule' object is not callable
+```
+
+. . .
+
+✅ Solution: Wrap the builtin in a closure
+
+``` r
+e <- function(x) exp(x)
+py$e <- e
+```
+
+. . .
+
+In Python:
+
+``` python
+print(e(1))  # ✅ Returns 2.718
+```
+
+# 7. Working with Python Classes in R
+
+## 🧩 Create a Python class and use it in R
+
+You can define a Python class (e.g., a neural network in PyTorch) and interact with it from R using `reticulate`.
+
+. . .
+
+**🧪 Python File: `simple_net.py`**
+
+``` {.python code-line-numbers="1|3|4-6|8-9"}
+import torch.nn as nn
+
+class SimpleNet(nn.Module):
+    def __init__(self, n_input):
+        super().__init__()
+        self.fc = nn.Linear(n_input, 1)
+
+    def forward(self, x):
+        return self.fc(x)
+```
+
+## 
+
+**🖥️ R Code to Load and Use the Python Clas:**
+
+``` {.r code-line-numbers="2|5|8|11-12"}
+# Load the class from Python file
+source_python("simple_net.py")
+
+# Create model instance
+model <- SimpleNet(10)
+
+# Create input tensor (5 samples, 10 features)
+x <- torch$randn(c(5L, 10L))
+
+# Forward pass
+output <- model$forward(x)
+print(output)
+```
+
+# 8. reticulate in R Markdown & Quarto
+
+```` markdown
+```{.python}
+import numpy as np
+x = np.arange(10)
+```
+````
+
+-   **Chunk engines**: `{python}`, `{python3}`
+-   **Return to R**:
+
+``` r
+r_vec <- py$x
+```
+
+-   **Quarto YAML**:
+
+``` yaml
+execute:
+  echo: true
+```
+
+??? note Illustrate inline Python in a Quarto document.
+
+# 9. Shiny & Python Integration
+
+🧬 Run Python code dynamically inside a Shiny app using `reticulate`
+
+``` {.r code-line-numbers="1-2|3-6|7-13|14"}
+library(shiny)
+library(reticulate)
+ui <- fluidPage(
+  actionButton("btn", "Compute in Python"),
+  verbatimTextOutput("out")
+)
+server <- function(input, output) {
+  observeEvent(input$btn, {
+    # Run Python code when button is clicked
+    py_run_string("import math; res = math.factorial(10)")
+    output$out <- renderText(py$res)
+  })
+}
+shinyApp(ui, server)
+```
+
+??? note Live demo of Python-based analytics in Shiny.
+
+# 10. Hands-on Exercises (30 min)
+
+1.  **Create environment** and import a Python library (e.g., seaborn)
+2.  **Write Python function** in `.py` and call it from R
+3.  **Convert** a pandas DataFrame to R and back
+4.  **Embed** Python chunk in a Quarto doc and render
+
+??? note Pair programming; share code snippets.
+
+# Resources & Further Reading
+
+-   reticulate docs: <https://rstudio.github.io/reticulate/>
+-   Tutorials: RStudio blog posts
+-   Community: RStudio Community forums
+
+??? note Encourage exploring advanced use cases.
+
+# Q&A{transition="zoom"}
+
+-   Questions on environment management?
+-   Real-world integration scenarios?
+
+# Thank You
+
+-   Happy Python + R coding!
