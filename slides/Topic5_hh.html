@@ -388,13 +388,11 @@
       margin-right: 0; 
     }
   </style>
-  <link href="../site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
-  <script src="../site_libs/countdown-0.4.0/countdown.js"></script>
 <meta property="og:title" content="SCoRT - Short Course on R Tools">
-<meta property="og:description" content="Building Interactive Web Apps with Shiny">
+<meta property="og:description" content="Develop your own professional R package">
 <meta property="og:site_name" content="SCoRT">
 <meta name="twitter:title" content="SCoRT - Short Course on R Tools">
-<meta name="twitter:description" content="Building Interactive Web Apps with Shiny">
+<meta name="twitter:description" content="Develop your own professional R package">
 <meta name="twitter:image" content="https://bit.ly/SCoRT/slides/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
 <meta name="twitter:card" content="summary_large_image">
@@ -405,7 +403,7 @@
 
 <section id="title-slide" data-background-image="mu-bg.png" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
   <h1 class="title">Short Course on R Tools</h1>
-  <p class="subtitle">Building Interactive Web Apps with Shiny</p>
+  <p class="subtitle">Develop your own professional R package</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -419,319 +417,449 @@ Mehdi Maadooliat
 </div>
 
 </section>
-<section id="outline" class="title-slide slide level1 center">
+<section id="outline" class="title-slide slide level1 center" data-transition="slide">
 <h1>Outline</h1>
+<div>
+<ul>
+<li class="fragment">Why Build an R Package?</li>
+<li class="fragment">Package Structure &amp; Setup</li>
+<li class="fragment">Building, Installing, and Checking Your Package</li>
+<li class="fragment">Writing Functions and Documenting</li>
+<li class="fragment">DESCRIPTION and NAMESPACE Files</li>
+<li class="fragment">Testing with <code>testthat</code></li>
+<li class="fragment">Vignettes and Articles for Extended Documentation</li>
+<li class="fragment">Continuous Integration &amp; Quality Checks</li>
+<li class="fragment">Building, Checking &amp; Installing</li>
+<li class="fragment">CRAN Submission &amp; Maintenance</li>
+<li class="fragment">Interactive Hands-on: Build Your First Package</li>
+</ul>
+</div>
+</section>
+
+<section>
+<section id="why-build-an-r-package" class="title-slide slide level1 center">
+<h1>1. Why Build an R Package?</h1>
+<div>
+<ul>
+<li class="fragment">🧩 <strong>Reusability</strong>: Organize and reuse code across multiple projects<br>
+</li>
+<li class="fragment">📚 <strong>Documentation</strong>: Provide built-in help files and usage examples<br>
+</li>
+<li class="fragment">✅ <strong>Testing</strong>: Systematically check your code with unit tests<br>
+</li>
+<li class="fragment">🌍 <strong>Distribution</strong>: Share via CRAN, GitHub, or internal repositories<br>
+</li>
+<li class="fragment">🛠️ <strong>Best Practices</strong>: Improve maintainability and team collaboration</li>
+<li class="fragment">🤝 <strong>Open Source &amp; Workflows</strong>: Enable contributions, version control, and community engagement</li>
+</ul>
+</div>
+</section>
+<section id="system-setup" class="slide level2">
+<h2>⚙️ System Setup</h2>
+<p>Make sure you have:</p>
 <div class="fragment fade-up">
+<p><strong>✅ Latest R and RStudio</strong></p>
 <ul>
-<li>Introduction to Shiny</li>
-<li>App Structure: UI &amp; Server</li>
-<li>Inputs &amp; Outputs</li>
-<li>Shinyapps Gallery</li>
-<li>Reactivity, Isolate &amp; Observer</li>
-<li>Deployment &amp; Best Practices</li>
-<li>Hands-on Exercises</li>
+<li>🛠 Install the latest version of <strong>R</strong>.</li>
+<li>📥 ownload <strong>RStudio Desktop</strong>: <a href="https://posit.co/download/rstudio-desktop">(link)</a></li>
 </ul>
+</div>
+<div class="fragment fade-up">
+<p><strong>📦 Required Packages:</strong></p>
+<p>Install the essential development tools:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"devtools"</span>, <span class="st">"roxygen2"</span>, <span class="st">"testthat"</span>, <span class="st">"knitr"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-
-<section id="introduction-to-shiny" class="title-slide slide level1 center">
-<h1>Introduction to Shiny</h1>
+<section id="key-packages" class="slide level2">
+<h2>📦 Key Packages</h2>
+<div>
 <ul>
-<li><p><strong>What is Shiny?</strong></p>
-<ul>
-<li><p>R package for interactive web apps</p></li>
-<li><p>No web dev expertise needed</p></li>
-</ul></li>
-<li><p><strong>When to use</strong>: dashboards, interactive reports, teaching tools</p></li>
-<li><p><strong>Tutorial sources</strong>:</p>
-<ul>
-<li><p><a href="https://shiny.posit.co/r/getstarted">RStudio official tutorial</a></p></li>
-<li><p><a href="https://mastering-shiny.org/"><em>Mastering Shiny</em> by Hadley Wickham</a></p></li>
-</ul></li>
-<li><p><a href="http://tinyurl.com/dna-Rstudio" target="_blank">🔗 Launch R</a>: run <code>shiny::runExample("01_hello")</code>.</p></li>
+<li class="fragment"><p><strong><code>devtools</code></strong>: Simplifies package development by wrapping complex workflows into easy commands</p></li>
+<li class="fragment"><p><strong><code>roxygen2</code></strong>: Generates documentation from special comments in your function code</p></li>
+<li class="fragment"><p><strong><code>testthat</code></strong>: Provides a framework for unit testing and ensures your functions work correctly and safely over time</p></li>
+<li class="fragment"><p><strong><code>knitr</code></strong>: Powers dynamic report generation and vignette building that integrates code, results, and text using R Markdown</p></li>
 </ul>
-<div style="margin-top: -550px;">
-
 </div>
-
-<img src="images/shiny/shiny.png" width="500" style="opacity: 0.05;" align="right" class="r-stretch"></section>
-
+<div class="fragment fade-up">
+<blockquote>
+<p>💡 These tools help automate, test, document, and share your package like a pro.</p>
+</blockquote>
+</div>
+</section></section>
 <section>
-<section id="structure-of-a-shiny-app" class="title-slide slide level1 center" data-auto-animate="true">
-<h1 data-id="quarto-animate-title">Structure of a Shiny App</h1>
-<div class="shrink-code">
-<div class="sourceCode" id="cb1" height="200" data-code-line-numbers="1-2|3-5|7-9|11"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb1-1" class="hljs-ln-code"><a></a><span class="co"># app.R single-file app</span></span>
-<span id="cb1-2" class="hljs-ln-code"><a></a><span class="fu">library</span>(shiny)</span>
-<span id="cb1-3" class="hljs-ln-code"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb1-4" class="hljs-ln-code"><a></a>  ...</span>
-<span id="cb1-5" class="hljs-ln-code"><a></a>)</span>
-<span id="cb1-6" class="hljs-ln-code"><a></a></span>
-<span id="cb1-7" class="hljs-ln-code"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb1-8" class="hljs-ln-code"><a></a>  ...</span>
-<span id="cb1-9" class="hljs-ln-code"><a></a>}</span>
-<span id="cb1-10" class="hljs-ln-code"><a></a></span>
-<span id="cb1-11" class="hljs-ln-code"><a></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><p><code>ui</code> defines layout and inputs/outputs</p></li>
-<li><p><code>server</code> contains R code &amp; reactivity</p></li>
-</ul>
+<section id="package-structure" class="title-slide slide level1 center">
+<h1>2. Package Structure</h1>
+
 </section>
-<section id="structure-of-a-shiny-app-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Structure of a Shiny App</h2>
-<div class="shrink-code">
-<div class="sourceCode" id="cb2" height="200" data-code-line-numbers="1-2|3-9|11-15|17"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb2-1" class="hljs-ln-code"><a></a><span class="co"># app.R single-file app</span></span>
-<span id="cb2-2" class="hljs-ln-code"><a></a><span class="fu">library</span>(shiny)</span>
-<span id="cb2-3" class="hljs-ln-code"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb2-4" class="hljs-ln-code"><a></a>  <span class="fu">titlePanel</span>(<span class="st">"Hello Shiny"</span>),</span>
-<span id="cb2-5" class="hljs-ln-code"><a></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb2-6" class="hljs-ln-code"><a></a>    <span class="fu">sidebarPanel</span>(<span class="fu">sliderInput</span>(<span class="st">"obs"</span>, <span class="st">"Observations:"</span>, <span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">50</span>)),</span>
-<span id="cb2-7" class="hljs-ln-code"><a></a>    <span class="fu">mainPanel</span>(<span class="fu">plotOutput</span>(<span class="st">"distPlot"</span>))</span>
-<span id="cb2-8" class="hljs-ln-code"><a></a>  )</span>
-<span id="cb2-9" class="hljs-ln-code"><a></a>)</span>
-<span id="cb2-10" class="hljs-ln-code"><a></a></span>
-<span id="cb2-11" class="hljs-ln-code"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb2-12" class="hljs-ln-code"><a></a>  output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb2-13" class="hljs-ln-code"><a></a>    <span class="fu">hist</span>(<span class="fu">rnorm</span>(input<span class="sc">$</span>obs))</span>
-<span id="cb2-14" class="hljs-ln-code"><a></a>  })</span>
-<span id="cb2-15" class="hljs-ln-code"><a></a>}</span>
-<span id="cb2-16" class="hljs-ln-code"><a></a></span>
-<span id="cb2-17" class="hljs-ln-code"><a></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="directory-layout" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">🧩 Directory layout</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb2-1" class="hljs-ln-code"><a></a>  mypkg/</span>
+<span id="cb2-2" class="hljs-ln-code"><a></a>  ├── DESCRIPTION         # Package metadata</span>
+<span id="cb2-3" class="hljs-ln-code"><a></a>  ├── NAMESPACE           # Exported functions &amp; imports</span>
+<span id="cb2-4" class="hljs-ln-code"><a></a>  ├── R/                  # Your R functions</span>
+<span id="cb2-5" class="hljs-ln-code"><a></a>  └── man/                # Auto-generated documentation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment fade-up">
+<blockquote>
+<p>💡 <strong>Tip:</strong> Many folders in an R package are optional and included as needed.</p>
+</blockquote>
 </div>
-<ul>
-<li><p><code>ui</code> defines layout and inputs/outputs</p></li>
-<li><p><code>server</code> contains R code &amp; reactivity</p></li>
-</ul>
 </section>
-<section id="structure-of-a-shiny-app-2" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Structure of a Shiny App</h2>
-<p>Shiny apps come in two parts:</p>
-<div class="columns">
-<div class="column fragment">
+<section id="directory-layout-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">🧩 Directory layout</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb3-1" class="hljs-ln-code"><a></a>  mypkg/</span>
+<span id="cb3-2" class="hljs-ln-code"><a></a>  ├── DESCRIPTION         # Package metadata</span>
+<span id="cb3-3" class="hljs-ln-code"><a></a>  ├── NAMESPACE           # Exported functions &amp; imports</span>
+<span id="cb3-4" class="hljs-ln-code"><a></a>  ├── R/                  # Your R functions</span>
+<span id="cb3-5" class="hljs-ln-code"><a></a>  ├── man/                # Auto-generated documentation</span>
+<span id="cb3-6" class="hljs-ln-code"><a></a>  ├── tests/              # Unit tests with testthat</span>
+<span id="cb3-7" class="hljs-ln-code"><a></a>  ├── vignettes/          # Long-form documentation (Rmd)</span>
+<span id="cb3-8" class="hljs-ln-code"><a></a>  ├── data/               # Data sets (.rda files)</span>
+<span id="cb3-9" class="hljs-ln-code"><a></a>  └── inst/               # Installed files (e.g., app/, extdata/)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="package-states-in-r" class="title-slide slide level1 center" data-transition="zoom">
+<h1>3. Package States in R</h1>
+<p>R packages go through <strong>five states</strong> during development and usage:</p>
+<ul>
+<li>🗂️ <strong>Source</strong></li>
+<li>📦 <strong>Bundled</strong></li>
+<li>🧱 <strong>Binary</strong></li>
+<li>📚 <strong>Installed</strong></li>
+<li>🧠 <strong>In-Memory</strong></li>
+</ul>
+<div class="fragment fade-up">
+<blockquote>
+<p>Understanding these states helps you manage installation, sharing, and usage workflows.</p>
+</blockquote>
+</div>
+</section>
+<section id="source-package" class="slide level2" data-transition="zoom">
+<h2>🗂️ Source Package</h2>
+<p>A <strong>source package</strong> is just a folder with a specific structure:</p>
+<ul>
+<li><code>DESCRIPTION</code> file<br>
+</li>
+<li><code>R/</code> folder with <code>.R</code> files<br>
+</li>
+<li>Optional: <code>man/</code>, <code>tests/</code>, <code>vignettes/</code></li>
+</ul>
+<div class="fragment fade-up">
+<blockquote>
+<p>It’s editable and human-readable — your starting point for development.</p>
+</blockquote>
+</div>
+</section>
+<section id="bundled-package" class="slide level2">
+<h2>📦 Bundled Package</h2>
+<p>A <strong>bundled package</strong> is a compressed <code>.tar.gz</code> file created from a source package.</p>
+<ul>
+<li>Commonly called a <strong>source tarball</strong></li>
+<li>Created using <code>devtools::build()</code></li>
+<li>Platform-independent format for distribution</li>
+</ul>
+<div class="fragment fade-up">
+<blockquote>
+<p>It acts as a transportable unit — not directly usable until installed.</p>
+</blockquote>
+</div>
+</section>
+<section id="binary-package" class="slide level2" data-transition="zoom">
+<h2>🧱 Binary Package</h2>
+<p>A <strong>binary package</strong> is a platform-specific compiled package:</p>
+<ul>
+<li>Windows: <code>.zip</code></li>
+<li>macOS: <code>.tgz</code></li>
+<li>Created using <code>devtools::build(binary = TRUE)</code></li>
+</ul>
+<div class="fragment fade-up">
+<blockquote>
+<p>Ideal for users without development tools — typically distributed by CRAN.</p>
+</blockquote>
+</div>
+</section>
+<section id="installed-package" class="slide level2" data-transition="zoom">
+<h2>📚 Installed Package</h2>
+<p>An <strong>installed package</strong> is one that’s been unpacked and placed into a library folder.</p>
+<ul>
+<li>No longer a single file</li>
+<li>Ready to be loaded into memory</li>
+</ul>
+<div class="fragment fade-up">
+<blockquote>
+<p><code>install.packages()</code> or <code>devtools::install_*()</code> bring packages into this state.</p>
+</blockquote>
+</div>
+</section>
+<section id="in-memory-package" class="slide level2" data-transition="zoom">
+<h2>🧠 In-Memory Package</h2>
+<p>An <strong>in-memory</strong> package is an installed package that’s been loaded into the R session.</p>
+<ul>
+<li>Use <code>library(pkgname)</code> to load</li>
+<li>Makes all exported functions and objects available</li>
+</ul>
+<div class="fragment fade-up">
+<blockquote>
+<p>Use <code>library()</code> to see loaded packages.</p>
+</blockquote>
+</div>
+</section>
+<section id="transitioning-between-states" class="slide level2" data-transition="convex">
+<h2>🔁 Transitioning Between States</h2>
+
+<img data-src="images/package/install-load.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"></section></section>
+<section>
+<section id="create-a-package" class="title-slide slide level1 center">
+<h1>4. Create a Package</h1>
+<p>Before creating your R package, you need to choose a <strong>name</strong>.</p>
+<div class="fragment fade-up">
+<blockquote>
+<p>🧠 This can be the hardest part of the process!</p>
+</blockquote>
+</div>
+</section>
+<section id="formal-naming-rules" class="slide level2 scrollable">
+<h2>📛 Formal Naming Rules</h2>
+<p>A valid R package name must:</p>
+<div>
+<ol type="1">
+<li class="fragment">Contain only <strong>letters</strong>, <strong>numbers</strong>, and <strong>periods (<code>.</code>)</strong></li>
+<li class="fragment"><strong>Start with a letter</strong></li>
+<li class="fragment"><strong>Not end</strong> with a period</li>
+</ol>
+</div>
+<div class="fragment fade-up">
+<p>❌ You <strong>cannot</strong> use:</p>
+<ul>
+<li>Hyphens <code>-</code></li>
+<li>Underscores <code>_</code></li>
+</ul>
+</div>
+</section>
+<section id="naming-tips-for-shared-packages" class="slide level2">
+<h2>🔍 Naming Tips for Shared Packages</h2>
+<p>If you plan to share your package:</p>
+<div>
+<ul>
+<li class="fragment">✅ Choose a <strong>unique</strong> name that’s easy to Google<br>
+</li>
+<li class="fragment">🔎 Avoid names already on <strong>CRAN</strong> or <strong>Bioconductor</strong></li>
+<li class="fragment">⌨️ Stick to all <strong>lowercase</strong> — e.g., avoid <code>RGTK2</code> vs <code>RGtk2</code></li>
+<li class="fragment">🗣️ Prefer <strong>pronounceable</strong> names — easier to talk and think about</li>
+</ul>
+</div>
+</section>
+<section id="naming-patterns-and-examples" class="slide level2">
+<h2>🧠 Naming Patterns and Examples</h2>
+<p>Evocative Names:</p>
+<ul>
+<li><code>lubridate</code> → makes <strong>dates</strong> easier<br>
+</li>
+<li><code>rvest</code> → for <strong>web scraping</strong> (like “harvest”)<br>
+</li>
+<li><code>r2d3</code> → tools for <strong>D3 visualizations</strong><br>
+</li>
+<li><code>forcats</code> → anagram of <strong>factors</strong></li>
+</ul>
+<div class="fragment fade-up">
 <!-- -->
-<h3 id="ui">UI</h3>
+<h3 id="abbreviations">Abbreviations</h3>
 <ul>
-<li><p>Defines the layout and appearance.</p></li>
-<li><p>Contains elements such as:</p>
-<ul>
-<li>layout structures (sidebars)</li>
-<li>inputs (text boxes, sliders, buttons)</li>
-<li>outputs (plots, tables)</li>
-</ul></li>
-</ul>
-</div><div class="column fragment">
-<!-- -->
-<h3 id="server">Server</h3>
-<ul>
-<li><p>Performs calculations.</p></li>
-<li><p>Contains the logic to respond to user inputs, and update outputs.</p></li>
-<li><p>Communicates with the UI to dynamically render outputs.</p></li>
+<li><code>Rcpp</code> → <strong>R + C++</strong></li>
+<li><code>brms</code> → <strong>Bayesian Regression Models using Stan</strong></li>
 </ul>
 </div>
-</div>
-</section></section>
-<section>
-<section id="shinyapps-gallery" class="title-slide slide level1 center">
-<h1>Shinyapps Gallery</h1>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/001-hello/">
-</iframe>
-<div class="smallest">
-<p><a href="http://tinyurl.com/dna-Rstudio" target="_blank">🔗 Launch R</a>: File &gt; New File &gt; Shiny Web App…</p>
-</div>
 </section>
-<section id="exercise" class="slide level2">
-<h2>Exercise</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div class="countdown" id="timer_0d986495" data-update-every="1" tabindex="0" style="top:0;right:0;margin:0.5em;font-size:2em;">
-<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
-</div>
-</div>
-</div>
+<section id="creating-your-package" class="slide level2">
+<h2>🛠️ Creating Your Package</h2>
+<p>Once you have a name, create the package using either:</p>
+<div>
 <ul>
-<li><p>Open up your IDE of choice.</p></li>
-<li><p>Make sure you have the {shiny} package installed.</p></li>
-<li><p>Create an <code>app.R</code> file.</p></li>
-<li><p>Add <code>ui</code> and <code>server</code> elements, as well as <code>shiny::shinyApp(ui, server)</code>.</p></li>
-<li><p>Check it works.</p></li>
-</ul>
-</section>
-<section id="shinyapps-gallery-1" class="slide level2">
-<h2>Shinyapps Gallery</h2>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/050-kmeans-example/">
-</iframe>
-</section></section>
-<section>
-<section id="inputs-outputs" class="title-slide slide level1 center">
-<h1>Inputs &amp; Outputs</h1>
-<ul>
-<li><p><strong>Inputs</strong>: <code>textInput()</code>, <code>selectInput()</code>, <code>sliderInput()</code>, etc.</p></li>
-<li><p><strong>Outputs</strong>: <code>renderPlot()</code>, <code>renderTable()</code>, <code>renderUI()</code>, etc.</p></li>
-<li><p><strong>Binding</strong>: output objects referenced by <code>output$...</code></p></li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>input<span class="sc">$</span>slider  <span class="co"># numeric</span></span>
-<span id="cb3-2"><a></a>input<span class="sc">$</span>check   <span class="co"># logical</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="widgets---input" class="slide level2">
-<h2>Widgets - Input</h2>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/081-widgets-gallery/">
-</iframe>
-</section>
-<section id="widgets---output-table" class="slide level2">
-<h2>Widgets - Output Table</h2>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/109-render-table/">
-</iframe>
-<div class="smallest">
-<p><a href="https://github.com/rstudio/shiny-examples/tree/main/109-render-table/" target="_blank">🔗 &lt;/&gt; VIEW CODE</a></p>
-</div>
-</section></section>
-<section>
-<section id="reactivity-fundamentals" class="title-slide slide level1 center">
-<h1>Reactivity Fundamentals</h1>
-<ul>
-<li><p><strong>Reactive expressions</strong>: cache results</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>rv <span class="ot">&lt;-</span> <span class="fu">reactive</span>({ <span class="fu">rnorm</span>(input<span class="sc">$</span>obs) })</span>
-<span id="cb4-2"><a></a>output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>(<span class="fu">hist</span>(<span class="fu">rv</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>isolate()</strong>: break reactive chain</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>output<span class="sc">$</span>summary <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb5-2"><a></a>  <span class="fu">paste0</span>(<span class="st">'input$text is "'</span>, input<span class="sc">$</span>text,</span>
-<span id="cb5-3"><a></a>  <span class="st">'", and input$n is '</span>, <span class="fu">isolate</span>(input<span class="sc">$</span>n))</span>
-<span id="cb5-4"><a></a>})      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Observers</strong>: side-effect actions</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>go, { <span class="fu">showModal</span>(...) })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-</section>
-<section id="reactivity-demo" class="slide level2">
-<h2>Reactivity Demo</h2>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/003-reactivity/">
-</iframe>
-</section>
-<section id="isolate-demo" class="slide level2">
-<h2>Isolate Demo</h2>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/049-isolate-demo/">
-</iframe>
-</section>
-<section id="observers-demo" class="slide level2">
-<h2>Observers Demo</h2>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/055-observer-demo/">
-</iframe>
-</section></section>
-<section>
-<section id="deploying-a-shiny-app" class="title-slide slide level1 center">
-<h1>Deploying a Shiny app</h1>
-<ul>
-<li><p>What do we mean by deployment?</p>
-<ul>
-<li>Getting the Shiny app off your laptop and out into the world!</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<ul>
-<li><em>Traditional</em> deployment</li>
+<li class="fragment"><code>usethis::create_package("mypkg")</code><br>
+</li>
+<li class="fragment"><strong>RStudio UI</strong>:<br>
+<em>File → New Project → New Directory → R Package</em></li>
 </ul>
 </div>
-<div class="fragment">
+<div class="fragment fade-up">
+<p>👉 Both options run the same function under the hood.</p>
+</div>
+</section>
+<section id="what-gets-created" class="slide level2">
+<h2>📦 What Gets Created?</h2>
 <div class="columns">
-<div class="column">
-<div class="small">
+<div class="column" style="width:70%;">
+<div>
 <ul>
-<li>We need a server to run the R code:
-<ul>
-<li>shinyapps.io</li>
-<li>Posit Connect</li>
-<li>Private server (e.g.&nbsp;university)</li>
-</ul></li>
+<li class="fragment"><code>R/</code> folder → for your function code<br>
+</li>
+<li class="fragment"><code>DESCRIPTION</code> file → metadata<br>
+</li>
+<li class="fragment"><code>NAMESPACE</code> file → exports/imports<br>
+</li>
+<li class="fragment"><code>mypkg.Rproj</code> → RStudio project file<br>
+</li>
+<li class="fragment"><code>.Rbuildignore</code>, <code>.gitignore</code> → build and Git helpers</li>
 </ul>
 </div>
-</div><div class="column">
+</div><div class="column" style="width:30%;">
+<div class="fragment fade-up">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/shiny/deploy.png" class="quarto-figure quarto-figure-center" style="width:90.0%" alt="Screenshot of Rstudio"></p>
+<p><img data-src="images/package/create_pkg.png" class="quarto-figure quarto-figure-center" style="width:90.0%" alt="Screenshot of Pagerank"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="shinylive-deployment" class="slide level2">
-<h2>Shinylive deployment</h2>
-<div class="quarto-figure quarto-figure-left">
-<figure>
-<p><img data-src="images/shiny/traditional.png" class="quarto-figure quarto-figure-left" style="width:70.0%" alt="Traditional diagram"></p>
-</figure>
-</div>
-<div style="margin-top: -75px;">
-
-</div>
-<div class="fragment">
-<div class="quarto-figure quarto-figure-right">
-<figure>
-<p><img data-src="images/shiny/shinylive.png" class="quarto-figure quarto-figure-right" style="width:70.0%" alt="Shinylive diagram"></p>
-</figure>
-</div>
-</div>
-</section>
-<section id="shinylive-deployment-1" class="slide level2">
-<h2>Shinylive deployment</h2>
-<p>See <a href="https://posit-dev.github.io/r-shinylive/">posit-dev.github.io/r-shinylive</a>.</p>
-<div class="fragment">
-<p>The {shinylive} package converts a standard shiny app into a shinylive app:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">install.packages</span>(<span class="st">"shinylive"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Assuming your <code>app.R</code> file is in a folder called <code>app</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>shinylive<span class="sc">::</span><span class="fu">export</span>(<span class="st">"app"</span>, <span class="st">"site"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can then use the files in the <code>site</code> folder to deploy it as a normal website.</p>
-<p>*not all R packages are available for shinylive.</p>
-<p>**initial load time is still quite slow.</p>
-</div>
+<section id="quick-setup-with-usethis" class="slide level2">
+<h2>⚙️ Quick Setup with {usethis}</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>    usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="st">"mypkg"</span>)</span>
+<span id="cb4-2"><a></a>    usethis<span class="sc">::</span><span class="fu">use_git</span>()</span>
+<span id="cb4-3"><a></a>    usethis<span class="sc">::</span><span class="fu">use_build_ignore</span>(<span class="st">"devtools_history.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- # note Show live demo: `create_package()` workflow. -->
 </section></section>
-<section id="tips-for-building-shiny-apps" class="title-slide slide level1 center">
-<h1>Tips for building Shiny apps</h1>
+<section>
+<section id="description-namespace" class="title-slide slide level1 center">
+<h1>3. DESCRIPTION &amp; NAMESPACE</h1>
+
+</section>
+<section id="description" class="slide level2">
+<h2>DESCRIPTION</h2>
 <ul>
-<li><p>Build tests using <a href="https://rstudio.github.io/shinytest2/">shinytest2</a>.</p></li>
-<li><p>Building apps as packages helps with dependency management.</p></li>
-<li><p>Learn a little bit of HTML, CSS, and Javascript.</p></li>
-<li><p><a href="https://mastering-shiny.org/scaling-modules.html">Modules</a> are a good way to reuse bits of UI and server code across the application.</p></li>
-<li><p>Start with pen and paper… (think about user experience!)</p></li>
+<li>Fields: <code>Package</code>, <code>Version</code>, <code>Title</code>, <code>Description</code>, <code>Author</code>, <code>Depends</code>, <code>Imports</code>, <code>Suggests</code>, <code>License</code></li>
+<li>Semantic versioning: <code>major.minor.patch</code></li>
+</ul>
+</section>
+<section id="namespace" class="slide level2">
+<h2>NAMESPACE</h2>
+<ul>
+<li>Export functions: <code>export()</code></li>
+<li>Import from other packages: <code>importFrom(dplyr, select)</code></li>
+<li>Generate with roxygen2 or manually</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co">#' @export</span></span>
+<span id="cb5-2"><a></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>??? note Emphasize keeping <code>Imports</code> minimal.</p>
+</section></section>
+<section id="functions-documentation" class="title-slide slide level1 center">
+<h1>4. Functions &amp; Documentation</h1>
+<ul>
+<li><p><strong>Code placement</strong>: scripts in <code>R/</code></p></li>
+<li><p><strong>Roxygen comments</strong>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="co">#' Title</span></span>
+<span id="cb6-2"><a></a><span class="co">#'</span></span>
+<span id="cb6-3"><a></a><span class="co">#' @param x Numeric vector</span></span>
+<span id="cb6-4"><a></a><span class="co">#' @return Numeric</span></span>
+<span id="cb6-5"><a></a><span class="co">#' @examples</span></span>
+<span id="cb6-6"><a></a><span class="co">#' my_function(1:5)</span></span>
+<span id="cb6-7"><a></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Generate docs</strong>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>??? note Highlight best practices for examples and topics.</p>
+</section>
+
+<section id="testing-with-testthat" class="title-slide slide level1 center">
+<h1>5. Testing with <code>testthat</code></h1>
+<ul>
+<li><p><strong>Setup</strong>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_testthat</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Write tests</strong> in <code>tests/testthat/</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">test_that</span>(<span class="st">"sum works"</span>, {</span>
+<span id="cb9-2"><a></a>  <span class="fu">expect_equal</span>(<span class="fu">my_function</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dv">3</span>)</span>
+<span id="cb9-3"><a></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Run tests</strong>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>devtools<span class="sc">::</span><span class="fu">test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>??? note Stress importance of edge-case tests.</p>
+</section>
+
+<section id="continuous-integration-qa" class="title-slide slide level1 center">
+<h1>6. Continuous Integration &amp; QA</h1>
+<ul>
+<li><p><strong>CI services</strong>: GitHub Actions, Travis CI, GitLab CI</p></li>
+<li><p><strong>Setup with usethis</strong>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_github_action_check_standard</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Code coverage</strong>: <code>covr</code>, Codecov</p></li>
+<li><p><strong>Linting</strong>: <code>lintr</code>, <code>goodpractice</code></p></li>
+</ul>
+<p>??? note Show sample GitHub Actions YAML.</p>
+</section>
+
+<section id="vignettes-articles" class="title-slide slide level1 center">
+<h1>7. Vignettes &amp; Articles</h1>
+<ul>
+<li><p><strong>Long-form documentation</strong>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_vignette</span>(<span class="st">"intro"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>R Markdown</strong> in <code>vignettes/</code></p></li>
+<li><p><strong>Build &amp; preview</strong>:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>devtools<span class="sc">::</span><span class="fu">build_vignettes</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>??? note Encourage rich examples and narratives.</p>
+</section>
+
+<section id="building-checking-installing" class="title-slide slide level1 center">
+<h1>8. Building, Checking &amp; Installing</h1>
+<ul>
+<li><p><strong>Build package</strong>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>devtools<span class="sc">::</span><span class="fu">build</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Check package</strong>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Install locally</strong>:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Binary vs source</strong>: options for Windows/Mac</p></li>
+</ul>
+<p>??? note Explain common check errors and fixes.</p>
+</section>
+
+<section id="cran-submission-maintenance" class="title-slide slide level1 center">
+<h1>9. CRAN Submission &amp; Maintenance</h1>
+<ul>
+<li><p><strong>CRAN policies</strong>: style, dependencies, tests</p></li>
+<li><p><strong>Submit</strong>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>devtools<span class="sc">::</span><span class="fu">release</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>News/Changelog</strong>: <code>NEWS.md</code></p></li>
+<li><p><strong>Version control</strong>: tagging releases</p></li>
+<li><p><strong>Maintaining</strong>: issues, pull requests, documentation updates</p></li>
+</ul>
+<p>??? note Review CRAN incoming checks and email workflows.</p>
+</section>
+
+<section id="hands-on-exercises-30-min" class="title-slide slide level1 center scrollable">
+<h1>10. Hands-on Exercises (30 min)</h1>
+<ol type="1">
+<li>Create a new package skeleton and add a simple function</li>
+<li>Write roxygen docs and generate help files</li>
+<li>Add tests for edge cases and set up CI</li>
+<li>Draft a vignette showcasing function usage</li>
+</ol>
+<p>??? note Pair up and share GitHub repo links.</p>
+</section>
+
+<section id="resources-further-reading" class="title-slide slide level1 center">
+<h1>Resources &amp; Further Reading</h1>
+<ul>
+<li><strong>Books</strong>: <em>R Packages</em> by Hadley Wickham (<a href="https://r-pkgs.org" class="uri">https://r-pkgs.org</a>)</li>
+<li><strong>devtools</strong>: <a href="https://devtools.r-lib.org" class="uri">https://devtools.r-lib.org</a></li>
+<li><strong>usethis</strong>: helper functions</li>
+<li><strong>CRAN Repository Policy</strong>: CRAN manual</li>
+</ul>
+<p>??? note Provide cheat-sheet links.</p>
+</section>
+
+<section id="qa" class="title-slide slide level1 center">
+<h1>Q&amp;A</h1>
+<ul>
+<li>Questions on package workflows?</li>
+<li>Real-world package examples?</li>
 </ul>
 </section>
 
-<section id="hands-on-exercises-30-min" class="title-slide slide level1 center" data-auto-animate="true">
-<h1 data-id="quarto-animate-title">Hands-on Exercises (30 min)</h1>
-
-<img data-src="images/oop/knn2.png" width="1000" class="r-stretch"><div class="fragment">
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank You</h1>
 <ul>
-<li><a href="https://github.com/mmadoliat/WSoRT/blob/main/R/app.R" target="_blank">KNN Regression via shiny</a></li>
-</ul>
-</div>
-</section>
-
-<section id="resources-further-reading" class="title-slide slide level1 center" data-auto-animate="true">
-<h1 data-id="quarto-animate-title">Resources &amp; Further Reading</h1>
-<ul>
-<li><p>RStudio tutorial: <a href="https://shiny.rstudio.com/tutorial/">shiny.rstudio.com/tutorial</a></p></li>
-<li><p>Mastering Shiny: <a href="https://mastering-shiny.org/">mastering-shiny.org</a></p></li>
-<li><p>ShinyUiEditor: <a href="https://rstudio.github.io/shinyuieditor/">rstudio.github.io/shinyuieditor</a></p></li>
-<li><p>Shiny for Python: <a href="https://shiny.posit.co/py/">shiny.posit.co/py</a></p></li>
-<li><p>shinythemes: <a href="https://rstudio.github.io/shinythemes/">rstudio.github.io/shinythemes</a></p></li>
-<li><p>shinylive examples: <a href="https://shinylive.io/r/examples/">shinylive.io/r/examples/</a></p></li>
-<li><p>Examples: <a href="https://github.com/rstudio/shiny-examples/">github.com/rstudio/shiny-examples/</a></p></li>
-</ul>
-</section>
-
-<section id="qa" class="title-slide slide level1 center" data-auto-animate="true">
-<h1 data-id="quarto-animate-title">Q&amp;A</h1>
-<p><img src="images/shiny/shiny.png" width="500" style="opacity: 0.05;" align="right"></p>
-<div style="margin-top: 200px;">
-
-</div>
-<div style="text-align: center;">
-<div class="large">
-<p><strong>Thank You</strong></p>
-</div>
-</div>
-<ul>
-<li>Happy coding with Shiny!</li>
+<li>Happy packaging with R!</li>
 </ul>
 
 <div class="quarto-auto-generated-content">
@@ -953,44 +1081,6 @@ Mehdi Maadooliat
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

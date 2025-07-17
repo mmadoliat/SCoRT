@@ -388,13 +388,11 @@
       margin-right: 0; 
     }
   </style>
-  <link href="../site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
-  <script src="../site_libs/countdown-0.4.0/countdown.js"></script>
 <meta property="og:title" content="SCoRT - Short Course on R Tools">
-<meta property="og:description" content="Building Interactive Web Apps with Shiny">
+<meta property="og:description" content="Integrate Python in R using Reticulate">
 <meta property="og:site_name" content="SCoRT">
 <meta name="twitter:title" content="SCoRT - Short Course on R Tools">
-<meta name="twitter:description" content="Building Interactive Web Apps with Shiny">
+<meta name="twitter:description" content="Integrate Python in R using Reticulate">
 <meta name="twitter:image" content="https://bit.ly/SCoRT/slides/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
 <meta name="twitter:card" content="summary_large_image">
@@ -405,7 +403,7 @@
 
 <section id="title-slide" data-background-image="mu-bg.png" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
   <h1 class="title">Short Course on R Tools</h1>
-  <p class="subtitle">Building Interactive Web Apps with Shiny</p>
+  <p class="subtitle">Integrate Python in R using Reticulate</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -419,319 +417,433 @@ Mehdi Maadooliat
 </div>
 
 </section>
-<section id="outline" class="title-slide slide level1 center">
+<section id="outline" class="title-slide slide level1 scrollable center">
 <h1>Outline</h1>
+<div>
+<ul>
+<li class="fragment">Why integrate Python into R?</li>
+<li class="fragment">What is <code>reticulate</code>?</li>
+<li class="fragment">Installation &amp; Setup</li>
+<li class="fragment">Importing Python Modules into R</li>
+<li class="fragment">Python Objects &amp; Data Conversion</li>
+<li class="fragment">Sourcing Python Scripts in R</li>
+<li class="fragment">Data Conversion &amp; Accessing R Objects in Python</li>
+<li class="fragment">Working with Python Classes in R</li>
+<li class="fragment">reticulate in R Markdown &amp; Quarto</li>
+<li class="fragment">Shiny &amp; Python Integration</li>
+<li class="fragment">Hands-on Exercises</li>
+</ul>
+</div>
+</section>
+
+<section id="why-integrate-python-into-r" class="title-slide slide level1 scrollable center">
+<h1>1. Why integrate Python into R?</h1>
+<div>
+<ul>
+<li class="fragment"><strong>Access powerful Python libraries</strong> R has excellent packages, but some cutting-edge tools exist only in Python:
+<ul>
+<li class="fragment">Deep Learning: <code>PyTorch</code>, <code>TensorFlow</code>, <code>Keras</code></li>
+<li class="fragment">Machine Learning: <code>scikit-learn</code>, <code>XGBoost</code>, <code>LightGBM</code></li>
+<li class="fragment">NLP: <code>spaCy</code>, <code>HuggingFace transformers</code></li>
+<li class="fragment">Computer Vision: <code>OpenCV</code></li>
+</ul></li>
+<li class="fragment"><strong>Combine the best of both worlds</strong>
+<ul>
+<li class="fragment">R: data manipulation, statistics, visualization (<code>ggplot2</code>, <code>dplyr</code>)</li>
+<li class="fragment">Python: ML/AI, scripting, general programming</li>
+</ul></li>
+</ul>
+</div>
+</section>
+
+<section id="section" class="title-slide slide level1 center">
+<h1></h1>
+<ul>
+<li><strong>Reuse existing Python code</strong>
+<ul>
+<li>Avoid rewriting code or switching environments</li>
+</ul></li>
+</ul>
+<div>
+<ul>
+<li class="fragment"><strong>Create seamless interactive workflows</strong>
+<ul>
+<li class="fragment">Mix R and Python in R Markdown, Jupyter, or Quarto documents</li>
+</ul></li>
+<li class="fragment"><strong>Enhance productivity and reproducibility</strong>
+<ul>
+<li class="fragment">Use the right tool for each task in one unified workflow</li>
+</ul></li>
+</ul>
+</div>
+</section>
+
+<section id="what-is-reticulate" class="title-slide slide level1 center">
+<h1>2. What is <code>reticulate</code>?</h1>
+<div>
+<ul>
+<li class="fragment"><p>R package for interoperability with Python</p></li>
+<li class="fragment"><p>Maintains a shared Python session accessible from R</p></li>
+<li class="fragment"><p>Automatic conversion of many R types to Python and vice versa</p></li>
+<li class="fragment"><p>Supports inline Python code in R Markdown and R scripts</p></li>
+</ul>
+</div>
+</section>
+
+<section>
+<section id="installation-setup" class="title-slide slide level1 center">
+<h1>3. Installation &amp; Setup</h1>
+<p>🧩 <strong>Install the <code>reticulate</code> package in R</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">"reticulate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>🐍 <strong>Ensure Python is installed</strong><br> Use system Python, Anaconda, or a virtual environment. You can check the Python configuration in R:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb2-2"><a></a><span class="fu">py_available</span>() <span class="co"># Check python availability</span></span>
+<span id="cb2-3"><a></a><span class="fu">py_config</span>() <span class="co">#Inspect current setup</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p><strong>🔗 Bind to a specific Python version</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">use_python</span>(<span class="st">"/usr/bin/python3"</span>)</span>
+<span id="cb3-2"><a></a><span class="co"># use_python(""C://Users//your_username/AppData/Local/Programs/Python/Python312"")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="managing-python-environments" class="slide level2">
+<h2>Managing Python Environments</h2>
+<ul>
+<li><p><strong>Virtualenv</strong>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">virtualenv_create</span>(<span class="st">"r-reticulate"</span>)</span>
+<span id="cb4-2"><a></a><span class="fu">virtualenv_install</span>(<span class="st">"r-reticulate"</span>, <span class="st">"numpy"</span>, <span class="st">"pandas"</span>)</span>
+<span id="cb4-3"><a></a><span class="fu">use_virtualenv</span>(<span class="st">"r-reticulate"</span>, <span class="at">required =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Conda</strong>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">conda_create</span>(<span class="st">"r-reticulate"</span>, <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"numpy"</span>, <span class="st">"pandas"</span>))</span>
+<span id="cb5-2"><a></a><span class="fu">use_condaenv</span>(<span class="st">"r-reticulate"</span>, <span class="at">required =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>??? note Emphasize isolating project dependencies.</p>
+</section></section>
+<section id="importing-python-modules-into-r" class="title-slide slide level1 center">
+<h1>4. Importing Python Modules into R</h1>
+<p><strong>📦 Use <code>import()</code> to bring Python modules into R</strong></p>
+<div class="sourceCode" id="cb6" height="200" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb6-2"><a></a>np <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"numpy"</span>)</span>
+<span id="cb6-3"><a></a>np<span class="sc">$</span><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))   <span class="co"># returns 2.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p><strong>📦 Use <code>import_builtins()</code> to import Python built-in functions</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>py_builtins <span class="ot">&lt;-</span> <span class="fu">import_builtins</span>()</span>
+<span id="cb7-2"><a></a>py_builtins<span class="sc">$</span><span class="fu">len</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))   <span class="co"># Returns 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section>
+<section id="sourcing-python-scripts-in-r" class="title-slide slide level1 center" data-transition="slide">
+<h1>5. Sourcing Python Scripts in R</h1>
+<ul>
+<li>Use <code>source_python()</code> or <code>py_run_file()</code> to run <code>.py</code> scripts from R</li>
+<li>Use <code>py_run_string()</code> to run inline Python code from R</li>
+</ul>
+</section>
+<section id="using-source_python" class="slide level2" data-transition="convex">
+<h2>📥 Using <code>source_python()</code></h2>
+<p>Imports all Python functions and variables into R</p>
+<div>
+<ul>
+<li class="fragment">Variables become <strong>directly available in the R global environment</strong></li>
+<li class="fragment">Ideal for reusable Python functions</li>
+</ul>
+</div>
 <div class="fragment fade-up">
-<ul>
-<li>Introduction to Shiny</li>
-<li>App Structure: UI &amp; Server</li>
-<li>Inputs &amp; Outputs</li>
-<li>Shinyapps Gallery</li>
-<li>Reactivity, Isolate &amp; Observer</li>
-<li>Deployment &amp; Best Practices</li>
-<li>Hands-on Exercises</li>
-</ul>
+<p><strong>🔍 Example:</strong><br> Consider “script.py” file, includes following Python script:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>y <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb8-2"><a></a><span class="kw">def</span> square(x):</span>
+<span id="cb8-3"><a></a>    <span class="cf">return</span> x <span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment fade-up">
+<p>✅ Works directly in R :</p>
+<div class="sourceCode" id="cb9" height="200" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">source_python</span>(<span class="st">"script.py"</span>)</span>
+<span id="cb9-2"><a></a><span class="fu">square</span>(<span class="dv">4</span>)   <span class="co"># returns 16</span></span>
+<span id="cb9-3"><a></a><span class="fu">print</span>(y) <span class="co"># print 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-
-<section id="introduction-to-shiny" class="title-slide slide level1 center">
-<h1>Introduction to Shiny</h1>
+<section id="using-py_run_file" class="slide level2" data-transition="zoom">
+<h2>📥 Using <code>py_run_file()</code></h2>
+<p>Also runs the script, but…</p>
+<div>
 <ul>
-<li><p><strong>What is Shiny?</strong></p>
-<ul>
-<li><p>R package for interactive web apps</p></li>
-<li><p>No web dev expertise needed</p></li>
-</ul></li>
-<li><p><strong>When to use</strong>: dashboards, interactive reports, teaching tools</p></li>
-<li><p><strong>Tutorial sources</strong>:</p>
-<ul>
-<li><p><a href="https://shiny.posit.co/r/getstarted">RStudio official tutorial</a></p></li>
-<li><p><a href="https://mastering-shiny.org/"><em>Mastering Shiny</em> by Hadley Wickham</a></p></li>
-</ul></li>
-<li><p><a href="http://tinyurl.com/dna-Rstudio" target="_blank">🔗 Launch R</a>: run <code>shiny::runExample("01_hello")</code>.</p></li>
-</ul>
-<div style="margin-top: -550px;">
-
-</div>
-
-<img src="images/shiny/shiny.png" width="500" style="opacity: 0.05;" align="right" class="r-stretch"></section>
-
-<section>
-<section id="structure-of-a-shiny-app" class="title-slide slide level1 center" data-auto-animate="true">
-<h1 data-id="quarto-animate-title">Structure of a Shiny App</h1>
-<div class="shrink-code">
-<div class="sourceCode" id="cb1" height="200" data-code-line-numbers="1-2|3-5|7-9|11"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb1-1" class="hljs-ln-code"><a></a><span class="co"># app.R single-file app</span></span>
-<span id="cb1-2" class="hljs-ln-code"><a></a><span class="fu">library</span>(shiny)</span>
-<span id="cb1-3" class="hljs-ln-code"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb1-4" class="hljs-ln-code"><a></a>  ...</span>
-<span id="cb1-5" class="hljs-ln-code"><a></a>)</span>
-<span id="cb1-6" class="hljs-ln-code"><a></a></span>
-<span id="cb1-7" class="hljs-ln-code"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb1-8" class="hljs-ln-code"><a></a>  ...</span>
-<span id="cb1-9" class="hljs-ln-code"><a></a>}</span>
-<span id="cb1-10" class="hljs-ln-code"><a></a></span>
-<span id="cb1-11" class="hljs-ln-code"><a></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><p><code>ui</code> defines layout and inputs/outputs</p></li>
-<li><p><code>server</code> contains R code &amp; reactivity</p></li>
-</ul>
-</section>
-<section id="structure-of-a-shiny-app-1" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Structure of a Shiny App</h2>
-<div class="shrink-code">
-<div class="sourceCode" id="cb2" height="200" data-code-line-numbers="1-2|3-9|11-15|17"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb2-1" class="hljs-ln-code"><a></a><span class="co"># app.R single-file app</span></span>
-<span id="cb2-2" class="hljs-ln-code"><a></a><span class="fu">library</span>(shiny)</span>
-<span id="cb2-3" class="hljs-ln-code"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb2-4" class="hljs-ln-code"><a></a>  <span class="fu">titlePanel</span>(<span class="st">"Hello Shiny"</span>),</span>
-<span id="cb2-5" class="hljs-ln-code"><a></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb2-6" class="hljs-ln-code"><a></a>    <span class="fu">sidebarPanel</span>(<span class="fu">sliderInput</span>(<span class="st">"obs"</span>, <span class="st">"Observations:"</span>, <span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">50</span>)),</span>
-<span id="cb2-7" class="hljs-ln-code"><a></a>    <span class="fu">mainPanel</span>(<span class="fu">plotOutput</span>(<span class="st">"distPlot"</span>))</span>
-<span id="cb2-8" class="hljs-ln-code"><a></a>  )</span>
-<span id="cb2-9" class="hljs-ln-code"><a></a>)</span>
-<span id="cb2-10" class="hljs-ln-code"><a></a></span>
-<span id="cb2-11" class="hljs-ln-code"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb2-12" class="hljs-ln-code"><a></a>  output<span class="sc">$</span>distPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb2-13" class="hljs-ln-code"><a></a>    <span class="fu">hist</span>(<span class="fu">rnorm</span>(input<span class="sc">$</span>obs))</span>
-<span id="cb2-14" class="hljs-ln-code"><a></a>  })</span>
-<span id="cb2-15" class="hljs-ln-code"><a></a>}</span>
-<span id="cb2-16" class="hljs-ln-code"><a></a></span>
-<span id="cb2-17" class="hljs-ln-code"><a></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><p><code>ui</code> defines layout and inputs/outputs</p></li>
-<li><p><code>server</code> contains R code &amp; reactivity</p></li>
-</ul>
-</section>
-<section id="structure-of-a-shiny-app-2" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Structure of a Shiny App</h2>
-<p>Shiny apps come in two parts:</p>
-<div class="columns">
-<div class="column fragment">
-<!-- -->
-<h3 id="ui">UI</h3>
-<ul>
-<li><p>Defines the layout and appearance.</p></li>
-<li><p>Contains elements such as:</p>
-<ul>
-<li>layout structures (sidebars)</li>
-<li>inputs (text boxes, sliders, buttons)</li>
-<li>outputs (plots, tables)</li>
-</ul></li>
-</ul>
-</div><div class="column fragment">
-<!-- -->
-<h3 id="server">Server</h3>
-<ul>
-<li><p>Performs calculations.</p></li>
-<li><p>Contains the logic to respond to user inputs, and update outputs.</p></li>
-<li><p>Communicates with the UI to dynamically render outputs.</p></li>
-</ul>
-</div>
-</div>
-</section></section>
-<section>
-<section id="shinyapps-gallery" class="title-slide slide level1 center">
-<h1>Shinyapps Gallery</h1>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/001-hello/">
-</iframe>
-<div class="smallest">
-<p><a href="http://tinyurl.com/dna-Rstudio" target="_blank">🔗 Launch R</a>: File &gt; New File &gt; Shiny Web App…</p>
-</div>
-</section>
-<section id="exercise" class="slide level2">
-<h2>Exercise</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div class="countdown" id="timer_0d986495" data-update-every="1" tabindex="0" style="top:0;right:0;margin:0.5em;font-size:2em;">
-<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
-</div>
-</div>
-</div>
-<ul>
-<li><p>Open up your IDE of choice.</p></li>
-<li><p>Make sure you have the {shiny} package installed.</p></li>
-<li><p>Create an <code>app.R</code> file.</p></li>
-<li><p>Add <code>ui</code> and <code>server</code> elements, as well as <code>shiny::shinyApp(ui, server)</code>.</p></li>
-<li><p>Check it works.</p></li>
-</ul>
-</section>
-<section id="shinyapps-gallery-1" class="slide level2">
-<h2>Shinyapps Gallery</h2>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/050-kmeans-example/">
-</iframe>
-</section></section>
-<section>
-<section id="inputs-outputs" class="title-slide slide level1 center">
-<h1>Inputs &amp; Outputs</h1>
-<ul>
-<li><p><strong>Inputs</strong>: <code>textInput()</code>, <code>selectInput()</code>, <code>sliderInput()</code>, etc.</p></li>
-<li><p><strong>Outputs</strong>: <code>renderPlot()</code>, <code>renderTable()</code>, <code>renderUI()</code>, etc.</p></li>
-<li><p><strong>Binding</strong>: output objects referenced by <code>output$...</code></p></li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>input<span class="sc">$</span>slider  <span class="co"># numeric</span></span>
-<span id="cb3-2"><a></a>input<span class="sc">$</span>check   <span class="co"># logical</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="widgets---input" class="slide level2">
-<h2>Widgets - Input</h2>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/081-widgets-gallery/">
-</iframe>
-</section>
-<section id="widgets---output-table" class="slide level2">
-<h2>Widgets - Output Table</h2>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/109-render-table/">
-</iframe>
-<div class="smallest">
-<p><a href="https://github.com/rstudio/shiny-examples/tree/main/109-render-table/" target="_blank">🔗 &lt;/&gt; VIEW CODE</a></p>
-</div>
-</section></section>
-<section>
-<section id="reactivity-fundamentals" class="title-slide slide level1 center">
-<h1>Reactivity Fundamentals</h1>
-<ul>
-<li><p><strong>Reactive expressions</strong>: cache results</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>rv <span class="ot">&lt;-</span> <span class="fu">reactive</span>({ <span class="fu">rnorm</span>(input<span class="sc">$</span>obs) })</span>
-<span id="cb4-2"><a></a>output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>(<span class="fu">hist</span>(<span class="fu">rv</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>isolate()</strong>: break reactive chain</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>output<span class="sc">$</span>summary <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb5-2"><a></a>  <span class="fu">paste0</span>(<span class="st">'input$text is "'</span>, input<span class="sc">$</span>text,</span>
-<span id="cb5-3"><a></a>  <span class="st">'", and input$n is '</span>, <span class="fu">isolate</span>(input<span class="sc">$</span>n))</span>
-<span id="cb5-4"><a></a>})      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Observers</strong>: side-effect actions</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>go, { <span class="fu">showModal</span>(...) })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-</section>
-<section id="reactivity-demo" class="slide level2">
-<h2>Reactivity Demo</h2>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/003-reactivity/">
-</iframe>
-</section>
-<section id="isolate-demo" class="slide level2">
-<h2>Isolate Demo</h2>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/049-isolate-demo/">
-</iframe>
-</section>
-<section id="observers-demo" class="slide level2">
-<h2>Observers Demo</h2>
-<iframe class="stretch" data-src="https://gallery.shinyapps.io/055-observer-demo/">
-</iframe>
-</section></section>
-<section>
-<section id="deploying-a-shiny-app" class="title-slide slide level1 center">
-<h1>Deploying a Shiny app</h1>
-<ul>
-<li><p>What do we mean by deployment?</p>
-<ul>
-<li>Getting the Shiny app off your laptop and out into the world!</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<ul>
-<li><em>Traditional</em> deployment</li>
+<li class="fragment">❌ Does not expose functions/variables directly in R</li>
+<li class="fragment">Variables and functions are stored in <code>py$</code></li>
 </ul>
 </div>
 <div class="fragment">
-<div class="columns">
-<div class="column">
+<div class="sourceCode" id="cb10" height="200" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">py_run_file</span>(<span class="st">"script.py"</span>)</span>
+<span id="cb10-2"><a></a>py<span class="sc">$</span><span class="fu">square</span>(<span class="dv">4</span>)  <span class="co"># returns 16</span></span>
+<span id="cb10-3"><a></a><span class="fu">print</span>(py<span class="sc">$</span>y) <span class="co"># print 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="using-py_run_string" class="slide level2" data-transition="slide">
+<h2>🧩 Using <code>py_run_string()</code></h2>
+<div>
+<ul>
+<li class="fragment">Executes the string in the shared Python session</li>
+<li class="fragment">Variables created in Python are not added to R environment</li>
+<li class="fragment">Access Python variables in R using <code>py$</code></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="sourceCode" id="cb11" height="200" data-code-line-numbers="1-5|7|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">py_run_string</span>(<span class="st">"</span></span>
+<span id="cb11-2"><a></a><span class="st">def square(x):</span></span>
+<span id="cb11-3"><a></a><span class="st">    return x ** 2</span></span>
+<span id="cb11-4"><a></a><span class="st">y = 5</span></span>
+<span id="cb11-5"><a></a><span class="st">"</span>)</span>
+<span id="cb11-6"><a></a></span>
+<span id="cb11-7"><a></a>py<span class="sc">$</span>y         <span class="co"># ✅  5</span></span>
+<span id="cb11-8"><a></a>py<span class="sc">$</span><span class="fu">square</span>(<span class="dv">4</span>) <span class="co"># ✅ 16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="data-conversion-accessing-r-objects-in-python" class="title-slide slide level1 center" data-transition="zoom">
+<h1>6. Data Conversion &amp; Accessing R Objects in Python</h1>
+
+</section>
+<section id="automatic-data-conversion" class="slide level2" data-transition="slide">
+<h2>🔁 Automatic Data Conversion</h2>
 <div class="small">
-<ul>
-<li>We need a server to run the R code:
-<ul>
-<li>shinyapps.io</li>
-<li>Posit Connect</li>
-<li>Private server (e.g.&nbsp;university)</li>
-</ul></li>
-</ul>
-</div>
-</div><div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/shiny/deploy.png" class="quarto-figure quarto-figure-center" style="width:90.0%" alt="Screenshot of Rstudio"></p>
-</figure>
-</div>
-</div>
-</div>
+<table>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>R Object Type</th>
+<th>Python Equivalent</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>numeric</code>, <code>integer</code></td>
+<td><code>float</code>, <code>int</code></td>
+<td>Scalars or arrays</td>
+</tr>
+<tr class="even">
+<td><code>logical</code></td>
+<td><code>bool</code></td>
+<td>TRUE → <code>True</code></td>
+</tr>
+<tr class="odd">
+<td><code>character</code></td>
+<td><code>str</code> or <code>list[str]</code></td>
+<td>Vectorized strings → list</td>
+</tr>
+<tr class="even">
+<td><code>vector</code>, <code>matrix</code></td>
+<td><code>numpy.ndarray</code></td>
+<td>Shape preserved</td>
+</tr>
+<tr class="odd">
+<td><code>data.frame</code></td>
+<td><code>pandas.DataFrame</code></td>
+<td>Column types preserved</td>
+</tr>
+<tr class="even">
+<td><code>list</code> (named)</td>
+<td><code>dict</code></td>
+<td>Keys from names</td>
+</tr>
+<tr class="odd">
+<td><code>list</code> (unnamed)</td>
+<td><code>list</code></td>
+<td>Sequential list</td>
+</tr>
+<tr class="even">
+<td><code>NULL</code></td>
+<td><code>None</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>function</code> (closure)</td>
+<td>Python callable</td>
+<td>If inputs/outputs are convertible</td>
+</tr>
+<tr class="even">
+<td><code>function</code> (builtin)</td>
+<td>❌ PyCapsule</td>
+<td>⚠️ not callable in Python</td>
+</tr>
+<tr class="odd">
+<td><code>S3/S4/R6</code> objects</td>
+<td>❌ PyCapsule</td>
+<td>⚠️ Not convertible</td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
-<section id="shinylive-deployment" class="slide level2">
-<h2>Shinylive deployment</h2>
-<div class="quarto-figure quarto-figure-left">
-<figure>
-<p><img data-src="images/shiny/traditional.png" class="quarto-figure quarto-figure-left" style="width:70.0%" alt="Traditional diagram"></p>
-</figure>
-</div>
-<div style="margin-top: -75px;">
-
-</div>
+<section id="accessing-r-objects-from-python" class="slide level2" data-transition="slide">
+<h2>Accessing R Objects from Python</h2>
+<p><strong>🔍 Example:</strong><br> Let two following objects have been defined in R global environment:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
+<span id="cb12-2"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<div class="quarto-figure quarto-figure-right">
-<figure>
-<p><img data-src="images/shiny/shinylive.png" class="quarto-figure quarto-figure-right" style="width:70.0%" alt="Shinylive diagram"></p>
-</figure>
-</div>
+<p>In Python we can access to these objects trough <code>r</code> object:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="bu">print</span>(r.x)      <span class="co"># ✅ [10, 20, 30]</span></span>
+<span id="cb13-2"><a></a><span class="bu">print</span>(r.f(<span class="dv">3</span>))   <span class="co"># ✅ 9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="shinylive-deployment-1" class="slide level2">
-<h2>Shinylive deployment</h2>
-<p>See <a href="https://posit-dev.github.io/r-shinylive/">posit-dev.github.io/r-shinylive</a>.</p>
+<section id="exporting-r-objects-to-python" class="slide level2" data-transition="slide">
+<h2>Exporting R Objects to Python</h2>
+<p>Use <code>py$</code> assignment. In R:</p>
+<div class="sourceCode" id="cb14" data-code-line-numbers="1-3|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb14-2"><a></a>py<span class="sc">$</span>x <span class="ot">&lt;-</span> x        <span class="co"># Exports `x` to Python namespace</span></span>
+<span id="cb14-3"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(n) n<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb14-4"><a></a>py<span class="sc">$</span>f <span class="ot">&lt;-</span> f        <span class="co"># Exports R function to Python</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<p>The {shinylive} package converts a standard shiny app into a shinylive app:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">install.packages</span>(<span class="st">"shinylive"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Assuming your <code>app.R</code> file is in a folder called <code>app</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>shinylive<span class="sc">::</span><span class="fu">export</span>(<span class="st">"app"</span>, <span class="st">"site"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can then use the files in the <code>site</code> folder to deploy it as a normal website.</p>
-<p>*not all R packages are available for shinylive.</p>
-<p>**initial load time is still quite slow.</p>
+<p>Now usable from Python:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="bu">print</span>(x)     <span class="co"># [1, 2, 3]</span></span>
+<span id="cb15-2"><a></a><span class="bu">print</span>(f(<span class="dv">5</span>))  <span class="co"># 25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exporting-r-closure-functions-to-python" class="slide level2" data-transition="slide">
+<h2>Exporting R Closure Functions to Python</h2>
+<p>A <strong>closure</strong> in R is simply a user-defined function created with the function() keyword. It’s the most common type of function in R.</p>
+<p>✅ A <strong>closure</strong> fnction Works directly. In R:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">typeof</span>(mean) <span class="co"># return "closure"</span></span>
+<span id="cb16-2"><a></a>py<span class="sc">$</span>m <span class="ot">&lt;-</span> mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>In Python:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="bu">print</span>(m([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]))     <span class="co"># Returns 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exporting-r-builtin-functions-to-python" class="slide level2" data-transition="slide">
+<h2>Exporting R <code>Builtin</code> Functions to Python</h2>
+<p><strong>Built-in</strong> functions in R are functions implemented in C (compiled) and embedded directly into the R interpreter.</p>
+<p>⚠️ Builtin function needs wrapping. For example:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">typeof</span>(exp) <span class="co"># return "builtin"</span></span>
+<span id="cb18-2"><a></a>py<span class="sc">$</span>e <span class="ot">&lt;-</span> e</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>In Python:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="bu">print</span>(e(<span class="dv">1</span>))     </span>
+<span id="cb19-2"><a></a><span class="co"># ❌ TypeError: 'PyCapsule' object is not callable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>✅ Solution: Wrap the builtin in a closure</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>e <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">exp</span>(x)</span>
+<span id="cb20-2"><a></a>py<span class="sc">$</span>e <span class="ot">&lt;-</span> e</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>In Python:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a><span class="bu">print</span>(e(<span class="dv">1</span>))  <span class="co"># ✅ Returns 2.718</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
-<section id="tips-for-building-shiny-apps" class="title-slide slide level1 center">
-<h1>Tips for building Shiny apps</h1>
+<section>
+<section id="working-with-python-classes-in-r" class="title-slide slide level1 center">
+<h1>7. Working with Python Classes in R</h1>
+
+</section>
+<section id="create-a-python-class-and-use-it-in-r" class="slide level2">
+<h2>🧩 Create a Python class and use it in R</h2>
+<p>You can define a Python class (e.g., a neural network in PyTorch) and interact with it from R using <code>reticulate</code>.</p>
+<div class="fragment">
+<p><strong>🧪 Python File: <code>simple_net.py</code></strong></p>
+<div class="sourceCode" id="cb22" data-code-line-numbers="1|3|4-6|8-9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb22-2"><a></a></span>
+<span id="cb22-3"><a></a><span class="kw">class</span> SimpleNet(nn.Module):</span>
+<span id="cb22-4"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, n_input):</span>
+<span id="cb22-5"><a></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb22-6"><a></a>        <span class="va">self</span>.fc <span class="op">=</span> nn.Linear(n_input, <span class="dv">1</span>)</span>
+<span id="cb22-7"><a></a></span>
+<span id="cb22-8"><a></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb22-9"><a></a>        <span class="cf">return</span> <span class="va">self</span>.fc(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p><strong>🖥️ R Code to Load and Use the Python Clas:</strong></p>
+<div class="sourceCode" id="cb23" data-code-line-numbers="2|5|8|11-12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="co"># Load the class from Python file</span></span>
+<span id="cb23-2"><a></a><span class="fu">source_python</span>(<span class="st">"simple_net.py"</span>)</span>
+<span id="cb23-3"><a></a></span>
+<span id="cb23-4"><a></a><span class="co"># Create model instance</span></span>
+<span id="cb23-5"><a></a>model <span class="ot">&lt;-</span> <span class="fu">SimpleNet</span>(<span class="dv">10</span>)</span>
+<span id="cb23-6"><a></a></span>
+<span id="cb23-7"><a></a><span class="co"># Create input tensor (5 samples, 10 features)</span></span>
+<span id="cb23-8"><a></a>x <span class="ot">&lt;-</span> torch<span class="sc">$</span><span class="fu">randn</span>(<span class="fu">c</span>(<span class="dv">5</span>L, <span class="dv">10</span>L))</span>
+<span id="cb23-9"><a></a></span>
+<span id="cb23-10"><a></a><span class="co"># Forward pass</span></span>
+<span id="cb23-11"><a></a>output <span class="ot">&lt;-</span> model<span class="sc">$</span><span class="fu">forward</span>(x)</span>
+<span id="cb23-12"><a></a><span class="fu">print</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section id="reticulate-in-r-markdown-quarto" class="title-slide slide level1 center">
+<h1>8. reticulate in R Markdown &amp; Quarto</h1>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a></a><span class="in">```{.python}</span></span>
+<span id="cb24-2"><a></a><span class="in">import numpy as np</span></span>
+<span id="cb24-3"><a></a><span class="in">x = np.arange(10)</span></span>
+<span id="cb24-4"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p>Build tests using <a href="https://rstudio.github.io/shinytest2/">shinytest2</a>.</p></li>
-<li><p>Building apps as packages helps with dependency management.</p></li>
-<li><p>Learn a little bit of HTML, CSS, and Javascript.</p></li>
-<li><p><a href="https://mastering-shiny.org/scaling-modules.html">Modules</a> are a good way to reuse bits of UI and server code across the application.</p></li>
-<li><p>Start with pen and paper… (think about user experience!)</p></li>
+<li><strong>Chunk engines</strong>: <code>{python}</code>, <code>{python3}</code></li>
+<li><strong>Return to R</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>r_vec <span class="ot">&lt;-</span> py<span class="sc">$</span>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Quarto YAML</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb26-1"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb26-2"><a></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>??? note Illustrate inline Python in a Quarto document.</p>
+</section>
+
+<section id="shiny-python-integration" class="title-slide slide level1 center">
+<h1>9. Shiny &amp; Python Integration</h1>
+<p>🧬 Run Python code dynamically inside a Shiny app using <code>reticulate</code></p>
+<div class="sourceCode" id="cb27" data-code-line-numbers="1-2|3-6|7-13|14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(shiny)</span>
+<span id="cb27-2"><a></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb27-3"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb27-4"><a></a>  <span class="fu">actionButton</span>(<span class="st">"btn"</span>, <span class="st">"Compute in Python"</span>),</span>
+<span id="cb27-5"><a></a>  <span class="fu">verbatimTextOutput</span>(<span class="st">"out"</span>)</span>
+<span id="cb27-6"><a></a>)</span>
+<span id="cb27-7"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb27-8"><a></a>  <span class="fu">observeEvent</span>(input<span class="sc">$</span>btn, {</span>
+<span id="cb27-9"><a></a>    <span class="co"># Run Python code when button is clicked</span></span>
+<span id="cb27-10"><a></a>    <span class="fu">py_run_string</span>(<span class="st">"import math; res = math.factorial(10)"</span>)</span>
+<span id="cb27-11"><a></a>    output<span class="sc">$</span>out <span class="ot">&lt;-</span> <span class="fu">renderText</span>(py<span class="sc">$</span>res)</span>
+<span id="cb27-12"><a></a>  })</span>
+<span id="cb27-13"><a></a>}</span>
+<span id="cb27-14"><a></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>??? note Live demo of Python-based analytics in Shiny.</p>
+</section>
+
+<section id="hands-on-exercises-30-min" class="title-slide slide level1 center scrollable">
+<h1>10. Hands-on Exercises (30 min)</h1>
+<ol type="1">
+<li><strong>Create environment</strong> and import a Python library (e.g., seaborn)</li>
+<li><strong>Write Python function</strong> in <code>.py</code> and call it from R</li>
+<li><strong>Convert</strong> a pandas DataFrame to R and back</li>
+<li><strong>Embed</strong> Python chunk in a Quarto doc and render</li>
+</ol>
+<p>??? note Pair programming; share code snippets.</p>
+</section>
+
+<section id="resources-further-reading" class="title-slide slide level1 center">
+<h1>Resources &amp; Further Reading</h1>
+<ul>
+<li>reticulate docs: <a href="https://rstudio.github.io/reticulate/" class="uri">https://rstudio.github.io/reticulate/</a></li>
+<li>Tutorials: RStudio blog posts</li>
+<li>Community: RStudio Community forums</li>
+</ul>
+<p>??? note Encourage exploring advanced use cases.</p>
+</section>
+
+<section id="qa" class="title-slide slide level1 center" data-transition="zoom">
+<h1>Q&amp;A</h1>
+<ul>
+<li>Questions on environment management?</li>
+<li>Real-world integration scenarios?</li>
 </ul>
 </section>
 
-<section id="hands-on-exercises-30-min" class="title-slide slide level1 center" data-auto-animate="true">
-<h1 data-id="quarto-animate-title">Hands-on Exercises (30 min)</h1>
-
-<img data-src="images/oop/knn2.png" width="1000" class="r-stretch"><div class="fragment">
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank You</h1>
 <ul>
-<li><a href="https://github.com/mmadoliat/WSoRT/blob/main/R/app.R" target="_blank">KNN Regression via shiny</a></li>
-</ul>
-</div>
-</section>
-
-<section id="resources-further-reading" class="title-slide slide level1 center" data-auto-animate="true">
-<h1 data-id="quarto-animate-title">Resources &amp; Further Reading</h1>
-<ul>
-<li><p>RStudio tutorial: <a href="https://shiny.rstudio.com/tutorial/">shiny.rstudio.com/tutorial</a></p></li>
-<li><p>Mastering Shiny: <a href="https://mastering-shiny.org/">mastering-shiny.org</a></p></li>
-<li><p>ShinyUiEditor: <a href="https://rstudio.github.io/shinyuieditor/">rstudio.github.io/shinyuieditor</a></p></li>
-<li><p>Shiny for Python: <a href="https://shiny.posit.co/py/">shiny.posit.co/py</a></p></li>
-<li><p>shinythemes: <a href="https://rstudio.github.io/shinythemes/">rstudio.github.io/shinythemes</a></p></li>
-<li><p>shinylive examples: <a href="https://shinylive.io/r/examples/">shinylive.io/r/examples/</a></p></li>
-<li><p>Examples: <a href="https://github.com/rstudio/shiny-examples/">github.com/rstudio/shiny-examples/</a></p></li>
-</ul>
-</section>
-
-<section id="qa" class="title-slide slide level1 center" data-auto-animate="true">
-<h1 data-id="quarto-animate-title">Q&amp;A</h1>
-<p><img src="images/shiny/shiny.png" width="500" style="opacity: 0.05;" align="right"></p>
-<div style="margin-top: 200px;">
-
-</div>
-<div style="text-align: center;">
-<div class="large">
-<p><strong>Thank You</strong></p>
-</div>
-</div>
-<ul>
-<li>Happy coding with Shiny!</li>
+<li>Happy Python + R coding!</li>
 </ul>
 
 <div class="quarto-auto-generated-content">
@@ -953,44 +1065,6 @@ Mehdi Maadooliat
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
