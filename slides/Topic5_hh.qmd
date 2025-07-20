@@ -14,17 +14,15 @@ format:
 # Outline {transition="slide"}
 
 ::: incremental
--   Why Build an R Package?
--   Package Structure & Setup
--   Building, Installing, and Checking Your Package
--   Writing Functions and Documenting
--   DESCRIPTION and NAMESPACE Files
--   Testing with `testthat`
--   Vignettes and Articles for Extended Documentation
--   Continuous Integration & Quality Checks
--   Building, Checking & Installing
--   CRAN Submission & Maintenance
--   Interactive Hands-on: Build Your First Package
+-   1. Why Build an R Package?
+-   2. System Setup
+-   3. Package Structure 
+-   4. Package States in R
+-   5. Create a Package
+-   6. Functions & Documentation
+-   7. Writing Functions and Documenting
+-   8. CRAN Submission: Overview
+-   9. Build a Simple Package from Scratch
 :::
 
 # 1. Why Build an R Package?
@@ -38,7 +36,7 @@ format:
 -   🤝 **Open Source & Workflows**: Enable contributions, version control, and community engagement
 :::
 
-## ⚙️ System Setup
+# 2. System Setup
 
 Make sure you have:
 
@@ -75,7 +73,7 @@ install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
 > 💡 These tools help automate, test, document, and share your package like a pro.
 :::
 
-# 2. Package Structure
+# 3. Package Structure
 
 ## 🧩 Directory layout {auto-animate="true"}
 
@@ -105,7 +103,7 @@ install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
   └── inst/               # Installed files (e.g., app/, extdata/)
 ```
 
-# 3. Package States in R {transition="zoom"}
+# 4. Package States in R {transition="zoom"}
 
 R packages go through **five states** during development and usage:
 
@@ -181,7 +179,7 @@ An **in-memory** package is an installed package that’s been loaded into the R
 
 ![](images/package/install-load.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
 
-# 4. Create a Package
+# 5. Create a Package
 
 Before creating your R package, you need to choose a **name**.
 
@@ -267,168 +265,472 @@ Once you have a name, create the package using either:
 ::::
 :::::::
 
-## ⚙️ Quick Setup with {usethis}
+## DESCRIPTION & NAMESPACE
 
-``` r
-    usethis::create_package("mypkg")
-    usethis::use_git()
-    usethis::use_build_ignore("devtools_history.R")
+Two essential files in every R package:
+
+::: incremental
+- 📄 `DESCRIPTION`: Metadata about your package (who, what, dependencies)  
+- 📦 `NAMESPACE`: Controls what functions are exported and what is imported
+:::
+
+## 📄 DESCRIPTION File {auto-animate="true"}
+
+The `DESCRIPTION` file provides overall metadata about your package:
+
+::: incremental
+- Package name and version  
+- Author and maintainer info  
+- Dependencies (`Imports`, `Suggests`)  
+- Description and license  
+- Build-related metadata
+:::
+
+## 🧾 Sample DESCRIPTION File{auto-animate="true"}
+
+```text
+Package: Rfssa
+Title: Functional Singular Spectrum Analysis
+Version: 3.1.0
+Authors@R: c(
+  person("Hossein", "Haghbin", email = "haghbin@pgu.ac.ir", 
+         role = c("aut", "cre"), 
+         comment = c(ORCID = "0000-0001-8416-2354")),
+  person("Mehdi", "Maadooliat", email = "mehdi.maadooliat@mu.edu", 
+         role = "aut", 
+         comment = c(ORCID = "0000-0002-5408-2676"))
+)
+Description: Methods and tools for implementing functional 
+  singular spectrum analysis and related techniques.
+License: GPL-3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends: R (>= 4.0.0)
 ```
 
-<!-- # note Show live demo: `create_package()` workflow. -->
+## More Details DESCRIPTION {auto-animate="true"}
+```text
+Package: Rfssa
+Title: Functional Singular Spectrum Analysis
+Version: 3.1.0
+Authors@R: c(
+    person("Hossein", "Haghbin", email = "haghbin@pgu.ac.ir", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8416-2354")),
+    person("Mehdi", "Maadooliat", email = "mehdi.maadooliat@mu.edu", role = "aut", comment = c(ORCID = "0000-0002-5408-2676"))
+    )
+Maintainer: Hossein Haghbin <haghbin@pgu.ac.ir>
+URL: https://github.com/haghbinh/Rfssa
+Description: Methods and tools for implementing functional singular spectrum analysis and related techniques.
+License: GPL-3
+Encoding: UTF-8
+LazyLoad: true
+RoxygenNote: 7.2.3
+Imports: Rcpp,fda,lattice,plotly
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+LinkingTo: Rcpp, RcppArmadillo, RcppEigen,
+Suggests: 
+    knitr
+Depends: R (>= 4.0.0)
+```
 
-# 3. DESCRIPTION & NAMESPACE
+## 📝 Title vs. Description
 
-## DESCRIPTION
+**Title**
 
--   Fields: `Package`, `Version`, `Title`, `Description`, `Author`, `Depends`, `Imports`, `Suggests`, `License`
--   Semantic versioning: `major.minor.patch`
+::: incremental
+  - One line  
+  - No punctuation or markup  
+  - Capitalize like a title  
+  - Keep under ~65 characters
+:::
 
-## NAMESPACE
+. . .
 
--   Export functions: `export()`
--   Import from other packages: `importFrom(dplyr, select)`
--   Generate with roxygen2 or manually
+**Description** 
 
-``` r
+::: incremental
+  - One paragraph, plain text  
+  - Multiple sentences OK  
+  - Should describe what the package does
+:::
+
+
+## 🧪 Example from `ggplot2`:
+
+```text
+Title: Create Elegant Data Visualisations Using the Grammar of Graphics
+Description: A system for 'declaratively' creating graphics,
+  based on "The Grammar of Graphics". You provide the data,
+  tell 'ggplot2' how to map variables to aesthetics, what
+  graphical primitives to use, and it takes care of the details.
+```
+## 📦 Imports vs. Suggests
+
+**Imports**
+
+::: incremental
+- Packages required at runtime
+- Automatically installed with your package
+- Needed for core functionality
+:::
+
+. . .
+
+**Suggests**
+
+::: incremental
+- Optional or development-time dependencies
+- Used in examples, tests, or vignettes
+- Not required to run the core package
+:::
+
+::: {.fragment .fade-up}
+> Use `usethis::use_package("pkg", type = "Imports")` to manage these easily.
+:::
+
+## 📂 NAMESPACE File
+
+The `NAMESPACE` file defines the **interface** of your package.
+
+It controls:
+
+::: incremental
+- What functions your package **exports**
+- What functions it **imports** from other packages
+- S3/S4 method registrations (if needed)
+:::
+
+::: {.fragment .fade-up}
+> This file is auto-generated by **roxygen2**, so you typically don’t edit it by hand.
+:::
+
+## 🧾 Example: NAMESPACE File
+
+```text
+# Generated by roxygen2: do not edit by hand
+S3method("*", funts)
+export(as.funts)
+import(shiny)
+importFrom(ggplot2, ggplot)
+```
+. . .
+
+- `export()` — makes a function available to users
+
+- `import()` — brings in all exported objects from a package
+
+- `importFrom()` — imports specific functions
+
+- `S3method()` — registers an S3 method
+
+## ✍️ How to Populate NAMESPACE
+
+Use **roxygen2 tags** in your `.R` files:
+
+```r
+#' Convert object to funts class
+#'
 #' @export
-my_function <- function(x) x + 1
+as.funts <- function(x) { ... }
+
+#' @import shiny
+#' @importFrom ggplot2 ggplot
+my_app <- function() {
+  ...
+}
 ```
 
-??? note Emphasize keeping `Imports` minimal.
+# 6. Functions & Documentation
 
-# 4. Functions & Documentation
+To add functionality to your package, you’ll write:
 
--   **Code placement**: scripts in `R/`
+::: incremental
+- ✅ Functions — saved as `.R` scripts in the `R/` folder  
+- 📝 Documentation — using **roxygen2** comments above each function
+:::
 
--   **Roxygen comments**:
+::: {.fragment .fade-up}
+> Let’s walk through the process.
+:::
 
-    ``` r
-    #' Title
-    #'
-    #' @param x Numeric vector
-    #' @return Numeric
-    #' @examples
-    #' my_function(1:5)
-    my_function <- function(x) sum(x)
-    ```
+## 📂 Code Placement
 
--   **Generate docs**:
+All your functions go in the `R/` folder.
 
-    ``` r
-    devtools::document()
-    ```
+```text
+mypkg/
+├── R/
+│   ├── my_function.R
+│   └── helpers.R
+```
+Each `.R` file can contain one or more functions.
 
-??? note Highlight best practices for examples and topics.
+## 📝 Documenting Functions with Roxygen2
 
-# 5. Testing with `testthat`
+Use special comments starting with `#'` to write function documentation:
 
--   **Setup**:
+```r
+#' Sum a numeric vector
+#'
+#' @param x Numeric vector
+#' @return Numeric sum of x
+#' @examples
+#' my_function(1:5)
+my_function <- function(x) sum(x)
+```
+This will generate help files in the **man/** folder.
 
-    ``` r
-    usethis::use_testthat()
-    ```
+## ⚙️ Generate Documentation
 
--   **Write tests** in `tests/testthat/`:
+After writing your function and roxygen2 comments, run:
 
-    ``` r
-    test_that("sum works", {
-      expect_equal(my_function(1,2), 3)
-    })
-    ```
+```r
+devtools::document()
+```
 
--   **Run tests**:
+This will:
 
-    ``` r
-    devtools::test()
-    ```
+::: incremental
+- Update the NAMESPACE file
 
-??? note Stress importance of edge-case tests.
+- Create `.Rd` help files in the man/ folder
+:::
 
-# 6. Continuous Integration & QA
+::: {.fragment .fade-up}
+💡 You can also press `Ctrl+Shift+D` in RStudio.
+:::
 
--   **CI services**: GitHub Actions, Travis CI, GitLab CI
+# 8. CRAN Submission: Overview
 
--   **Setup with usethis**:
+CRAN is the **Comprehensive R Archive Network** — the main repository for R packages.
 
-    ``` r
-    usethis::use_github_action_check_standard()
-    ```
+Submitting to CRAN means:
 
--   **Code coverage**: `covr`, Codecov
+::: incremental
+- ✅ Your package is publicly available
+- 🧪 It passes strict quality checks
+- 🌍 It becomes accessible via `install.packages("yourpkg")`
+:::
 
--   **Linting**: `lintr`, `goodpractice`
+## ✅ Requirements Before Submission
 
-??? note Show sample GitHub Actions YAML.
+Make sure your package:
 
-# 7. Vignettes & Articles
+::: incremental
+- Passes `R CMD check` with **no ERRORs**, **no WARNINGs**, and **no (avoidable) NOTEs**
+- Has proper documentation for all exported functions
+- Has a valid `LICENSE`
+- Uses a CRAN-acceptable package name
+- Has examples that run in < 5 seconds
+::: 
 
--   **Long-form documentation**:
+. . .
 
-    ``` r
-    usethis::use_vignette("intro")
-    ```
+Run:
 
--   **R Markdown** in `vignettes/`
+```r
+devtools::check()
+```
 
--   **Build & preview**:
+## ⚠️ Handling NOTEs and WARNINGs
 
-    ``` r
-    devtools::build_vignettes()
-    ```
+Some NOTEs are common (e.g., missing author ORCID), but…
 
-??? note Encourage rich examples and narratives.
+::: {.fragment .fade-up}
+> ❗ Never submit to CRAN with unaddressed **ERRORs** or **WARNINGs**
+:::
 
-# 8. Building, Checking & Installing
+. . .
 
--   **Build package**:
+To reduce NOTEs:
 
-    ``` r
-    devtools::build()
-    ```
+::: incremental
+- Add your ORCID via `Authors@R`
+- Ensure `Title` and `Description` are plain text
+- Avoid using `cat()` or `print()` in package code unless essential
+:::
 
--   **Check package**:
+## 🧪 Simulate a CRAN Check
 
-    ``` r
-    devtools::check()
-    ```
+Use `rhub` to simulate CRAN checks on different platforms:
 
--   **Install locally**:
+```r
+rhub::check_for_cran()
+``` 
+Or test specific platforms:
 
-    ``` r
-    devtools::install()
-    ```
+. . .
 
--   **Binary vs source**: options for Windows/Mac
+```r
+rhub::check(platform = "windows-x86_64-release")
+```
 
-??? note Explain common check errors and fixes.
+. . .
 
-# 9. CRAN Submission & Maintenance
+✅ This helps catch issues that only appear on Windows or macOS.
 
--   **CRAN policies**: style, dependencies, tests
+## ✉️ Submit to CRAN
 
--   **Submit**:
+Use the `devtools` helper:
 
-    ``` r
-    devtools::release()
-    ```
+```r
+devtools::release()
+```
+This will:
 
--   **News/Changelog**: `NEWS.md`
+::: incremental
+- Check your package one final time
+- Ask you to confirm
+- Open the CRAN web form in your browser
+- Help generate an email to CRAN maintainers
+::: 
 
--   **Version control**: tagging releases
+## 📬 What Happens After Submission?
+- You’ll get an automated confirmation email
+- Within ~24–72 hours, a CRAN maintainer will review your package
+- They may:
+  - Accept it immediately ✅
+  - Request fixes or clarifications ✍️
+  - Reject with detailed reasons ❌
 
--   **Maintaining**: issues, pull requests, documentation updates
+## 🔄 Updating a CRAN Package
 
-??? note Review CRAN incoming checks and email workflows.
+To submit an update:
 
-# 10. Hands-on Exercises (30 min)
+::: incremental
+- Bump the version (e.g., from 1.0.0 → 1.0.1)
+- Add a clear `NEWS.md` entry
+- Ensure compatibility with current R version and dependencies
+- Follow the same submission process
+:::
 
+::: {.fragment .fade-up}
+📌 You can only submit **once every 1–2 weeks** (per package).
+:::
+
+
+# 9. Build a Simple Package from Scratch
+
+## 🧱 Step 1: Create Your Package
+
+Use `usethis` to create a new package directory:
+
+```r
+usethis::create_package("minipkg")
+```
+This creates:
+
+::: incremental
+- **R/, DESCRIPTION, NAMESPACE**
+
+- `.Rproj`, `.gitignore`, `.Rbuildignore`
+
+- Opens new RStudio project for your package
+:::
+
+## 2️⃣ Add a Dataset
+Let’s include a built-in dataset (mtcars) for simplicity:
+```r
+usethis::use_data(mtcars, overwrite = TRUE)
+```
+This creates a **data/mtcars.rda** file — accessible via `minipkg::mtcars`.
+
+
+## 3️⃣ Create a Function
+Create a new file: **R/summary_stats.R**
+
+```r
+#' Compute Summary Statistics
+#'
+#' Returns mean and standard deviation for each numeric column.
+#'
+#' @param data A data frame with numeric columns
+#' @return A data frame with `mean` and `sd` per column
+#' @examples
+#' summary_stats(mtcars)
+#' @export
+summary_stats <- function(data) {
+  numeric_data <- data[sapply(data, is.numeric)]
+  data.frame(
+    mean = sapply(numeric_data, mean),
+    sd = sapply(numeric_data, sd)
+  )
+}
+```
+
+## 4️⃣ Document the Function
+Run the following command to generate docs:
+
+```r
+devtools::document()
+```
+This will:
+
+::: incremental
+- Add `export(summary_stats)` to your **NAMESPACE**
+
+- Create **man/summary_stats.Rd**
+:::
+
+## 5️⃣ Load and Test the Package
+In the console:
+```r
+devtools::load_all()
+```
+::: {.fragment .fade-up}
+Then test the function:
+
+```r
+summary_stats(mtcars)
+```
+:::
+
+::: {.fragment .fade-up}
+You should see:
+
+```text
+                mean         sd
+mpg        20.090625  6.0269481
+cyl         6.187500  1.7859216
+disp      230.721875 123.9386938
+```
+:::
+
+## 6️⃣ Build and Install the Package
+Build the package locally:
+```r
+devtools::build()
+```
+
+::: {.fragment .fade-up}
+Install it:
+```r
+devtools::install()
+```
+:::
+
+::: {.fragment .fade-up}
+Now you can use it like any other package:
+
+```r
+library(minipkg)
+summary_stats(mtcars)
+```
+:::
+
+## 🚀 `help("summary_stats")`  {transition="convex"}
+
+![](images/package/help.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
+
+
+
+# Hands-on Exercises (30 min)
+
+::: incremental
 1.  Create a new package skeleton and add a simple function
 2.  Write roxygen docs and generate help files
-3.  Add tests for edge cases and set up CI
-4.  Draft a vignette showcasing function usage
-
-??? note Pair up and share GitHub repo links.
+:::
 
 # Resources & Further Reading
 
@@ -436,8 +738,6 @@ my_function <- function(x) x + 1
 -   **devtools**: <https://devtools.r-lib.org>
 -   **usethis**: helper functions
 -   **CRAN Repository Policy**: CRAN manual
-
-??? note Provide cheat-sheet links.
 
 # Q&A
 
