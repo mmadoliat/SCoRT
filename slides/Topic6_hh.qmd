@@ -1,0 +1,311 @@
+---
+title: "Short Course on R Tools"
+subtitle: "CRAN submission and Collaborate via GitHub"
+title-slide-attributes:
+  data-background-image: mu-bg.png
+  data-background-size: stretch
+  data-slide-number: none
+format: 
+  revealjs:
+    transition: fade
+    scrollable: true
+---
+
+# 1. CRAN Submission: Overview
+
+CRAN is the **Comprehensive R Archive Network** — the main repository for R packages.
+
+Submitting to CRAN means:
+
+::: incremental
+-   ✅ Your package is publicly available
+-   🧪 It passes strict quality checks
+-   🌍 It becomes accessible via `install.packages("yourpkg")`
+:::
+
+# 2. Requirements Before Submission
+
+Make sure your package:
+
+::: incremental
+-   Passes `R CMD check` with **no ERRORs**, **no WARNINGs**, and **no (avoidable) NOTEs**
+-   Has proper documentation for all exported functions
+-   Has a valid `LICENSE`
+-   Uses a CRAN-acceptable package name
+-   Has examples that run in \< 5 seconds
+:::
+
+. . .
+
+Run:
+
+``` r
+devtools::check()
+```
+
+## ⚠️ Handling NOTEs and WARNINGs
+
+Some NOTEs are common (e.g., missing author ORCID), but…
+
+::: {.fragment .fade-up}
+> ❗ Never submit to CRAN with unaddressed **ERRORs** or **WARNINGs**
+:::
+
+. . .
+
+To reduce NOTEs:
+
+::: incremental
+-   Add your ORCID via `Authors@R`
+-   Ensure `Title` and `Description` are plain text
+-   Avoid using `cat()` or `print()` in package code unless essential
+:::
+
+## 🧪 Simulate a CRAN Check
+
+Use `rhub` to simulate CRAN checks on different platforms:
+
+``` r
+rhub::check_for_cran()
+```
+
+Or test specific platforms:
+
+. . .
+
+``` r
+rhub::check(platform = "windows-x86_64-release")
+```
+
+. . .
+
+✅ This helps catch issues that only appear on Windows or macOS.
+
+## ✉️ Submit to CRAN
+
+Use the `devtools` helper:
+
+``` r
+devtools::release()
+```
+
+This will:
+
+::: incremental
+-   Check your package one final time
+-   Ask you to confirm
+-   Open the CRAN web form in your browser
+-   Help generate an email to CRAN maintainers
+:::
+
+## 📬 What Happens After Submission?
+
+-   You’ll get an automated confirmation email
+-   Within \~24–72 hours, a CRAN maintainer will review your package
+-   They may:
+    -   Accept it immediately ✅
+    -   Request fixes or clarifications ✍️
+    -   Reject with detailed reasons ❌
+
+## 🔄 Updating a CRAN Package
+
+To submit an update:
+
+::: incremental
+-   Bump the version (e.g., from 1.0.0 → 1.0.1)
+-   Add a clear `NEWS.md` entry
+-   Ensure compatibility with current R version and dependencies
+-   Follow the same submission process
+:::
+
+::: {.fragment .fade-up}
+📌 You can only submit **once every 1–2 weeks** (per package).
+:::
+
+
+# Outline - GitHub
+
+::: {.fragment .fade-up}
+-   Version Control Essentials
+-   Git & GitHub Basics
+-   Setting Up in RStudio
+-   Common Git Workflows
+-   Branching & Pull Requests
+-   Collaborating with Issues & Projects
+-   GitHub Actions for R Projects
+-   Managing Releases & Packages
+-   Best Practices & Tips
+-   Hands-on Exercises
+:::
+
+## 🔁 Version Control Essentials
+
+- Track and restore changes in code over time
+- Collaborate without overwriting others' work
+- Revert to earlier working versions if bugs appear
+
+🛠 Tools Used:
+
+- `git` (local)
+- `GitHub` (remote)
+- `RStudio` (IDE)
+
+📦 Example:
+
+> You change a function in `plot_utils.R`, commit it with message "Refactor histogram labels", and push to GitHub to share with team.
+
+## 🐙 Git & GitHub Basics
+
+🔹 **Git**: Version control system for your local project  
+🔹 **GitHub**: Cloud platform to share and collaborate
+
+📝 Key Terms:
+
+- **Commit** = Savepoint
+- **Push/Pull** = Send/Receive changes
+- **Repo** = Project folder
+
+📦 Example:
+
+> You push your R package to GitHub, allowing your coauthor to edit documentation and submit a pull request.
+
+## 📦 Installing Git
+
+🔹 Go to [git-scm.com](https://git-scm.com/downloads)
+
+Choose your operating system:
+
+- **Windows**: Download `.exe` and install with default options
+- **macOS**: Install via Homebrew `brew install git` or Git installer
+- **Linux**: Use package manager, e.g.:
+```bash
+  sudo apt install git
+```
+
+## 🧪 Verifying Git Installation
+
+🧪 Run this in your Terminal (or Command Prompt):
+
+```bash
+git --version
+```
+✅ You should see something like:
+
+```text
+git version 2.43.0
+```
+💡 If this works, Git is installed correctly!
+
+## 🔑 Configuring Git Identity
+
+🔧 Set your global Git identity:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
+✅  To check the name or email currently set in Git,  use these commands:
+
+```bash
+git config --global user.name 
+git config --global user.email 
+```
+
+## 🧭 Connect GitHub to R (Create PAT)
+
+1. In R:
+
+```r
+usethis::create_github_token()
+```
+2. GitHub will open — generate a Personal Access Token (PAT)
+
+3. Copy the token (only shown once!)
+
+4. Back in R:
+```r
+gitcreds::gitcreds_set()
+```
+Paste your token when prompted.
+
+✅ You’ve now authenticated GitHub from R!
+
+
+## 🧪 Check Setup
+
+Use this helpful diagnostic tool:
+
+```r
+usethis::git_sitrep()
+```
+
+💡 This tells you:
+
+- Whether Git is installed
+
+- Whether GitHub is connected
+
+- If PAT is stored
+
+## 📁 Creating a New Git-Enabled Project
+
+In RStudio:
+
+1. **File → New Project**
+2. Choose:
+   - “New Directory” → “R Package” (or “New Project”)
+3. Check the box:
+   - ✅ "Create a git repository"
+4. Finish project setup
+
+📁 A `.git` folder is created — this is a Git repo!
+
+## 🌐 Connect to GitHub
+
+Run this to create and link a GitHub repo:
+
+```r
+usethis::use_github()
+```
+This will:
+
+- Push your project to GitHub
+- Open the new repo in your browser
+
+> 💡 You can now push/pull changes from RStudio Git tab
+
+## 🔄 Common Git Workflows
+
+🎯 Daily workflow steps:
+
+1. Edit `R/stats_module.R`
+2. Stage → Commit → Push
+
+💻 In RStudio Git tab:
+
+- Stage: click checkbox
+- Commit: type a message
+- Push: upload to GitHub
+
+🔁 Example:
+
+> Commit message: "Add confidence interval to mean_plot()"
+
+
+# Resources & Further Reading
+
+-   **Happy Git & GitHub for the useR**: <https://happygitwithr.com/>
+-   **usethis**: <https://usethis.r-lib.org>
+-   **GitHub Docs**: workflows, Actions, projects
+
+??? note Encourage exploring book chapters and cheat sheets.
+
+# Q&A
+
+-   Questions on Git commands?
+-   Collaboration challenges?
+-   CI/CD integrations?
+
+# Thank You
+
+
