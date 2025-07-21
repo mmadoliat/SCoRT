@@ -601,149 +601,6 @@
     ]
   },
   {
-    "objectID": "slides/Topic1.html#basics",
-    "href": "slides/Topic1.html#basics",
-    "title": "Short Course on R Tools",
-    "section": "Basics",
-    "text": "Basics\n\nAn S3 object is a base type with at least a class attribute\n\n\nf &lt;- factor(c(\"a\", \"b\", \"b\"))\nf\n#&gt; [1] a b b\n#&gt; Levels: a b\nattributes(f)\n#&gt; $levels\n#&gt; [1] \"a\" \"b\"\n#&gt; \n#&gt; $class\n#&gt; [1] \"factor\"\nunclass(f)\n#&gt; [1] 1 2 2\n#&gt; attr(,\"levels\")\n#&gt; [1] \"a\" \"b\"\n\ntime &lt;- strptime(c(\"2017-01-01\", \"2020-05-04 03:21\"), \"%Y-%m-%d\")\nstr(time)\n#&gt;  POSIXlt[1:2], format: \"2017-01-01\" \"2020-05-04\"\n\nclass(time) &lt;- NULL\nstr(time)\n#&gt; List of 11\n#&gt;  $ sec   : num [1:2] 0 0\n#&gt;  $ min   : int [1:2] 0 0\n#&gt;  $ hour  : int [1:2] 0 0\n#&gt;  $ mday  : int [1:2] 1 4\n#&gt;  $ mon   : int [1:2] 0 4\n#&gt;  $ year  : int [1:2] 117 120\n#&gt;  $ wday  : int [1:2] 0 1\n#&gt;  $ yday  : int [1:2] 0 124\n#&gt;  $ isdst : int [1:2] 0 0\n#&gt;  $ zone  : chr [1:2] \"UTC\" \"UTC\"\n#&gt;  $ gmtoff: int [1:2] 0 0\n#&gt;  - attr(*, \"tzone\")= chr \"UTC\"\n#&gt;  - attr(*, \"balanced\")= logi TRUE",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#classes",
-    "href": "slides/Topic1.html#classes",
-    "title": "Short Course on R Tools",
-    "section": "Classes",
-    "text": "Classes\n# Create and assign class in one step\nx &lt;- structure(list(), class = \"my_class\")\n\n# Create, then set class\nx &lt;- list()\nclass(x) &lt;- \"my_class\"\n\nclass(x)\n#&gt; [1] \"my_class\"\ninherits(x, \"my_class\")\n#&gt; [1] TRUE\ninherits(x, \"your_class\")\n#&gt; [1] FALSE\n\n\nR doesn’t stop you from shooting yourself in the foot, but as long as you don’t aim the gun at your toes and pull the trigger, you won’t have a problem.",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#classes---common-practice",
-    "href": "slides/Topic1.html#classes---common-practice",
-    "title": "Short Course on R Tools",
-    "section": "Classes - Common Practice",
-    "text": "Classes - Common Practice\nTo avoid foot-bullet intersections when creating your own class, you may:\n\n\nA low-level constructor, new_myclass(), that efficiently creates new objects with the correct structure.\nA validator, validate_myclass(), that performs more computationally expensive checks to ensure that the object has correct values.\nA user-friendly helper, myclass(), that provides a convenient way for others to create objects of your class.",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#classes---example",
-    "href": "slides/Topic1.html#classes---example",
-    "title": "Short Course on R Tools",
-    "section": "Classes - Example",
-    "text": "Classes - Example\n\n## 1. Low‐level constructor: assume inputs are ok\nnew_myclass &lt;- function(values = numeric(), unit = character(1)) {\n  # no checks here beyond base‐R stopifnot\n  stopifnot(is.numeric(values), is.character(unit), length(unit) == 1)\n  structure(\n    list(values = values, unit = unit),\n    class = \"myclass\"\n  )\n}\n\n## 2. Validator: more thorough checks\nvalidate_myclass &lt;- function(x) {\n  if (!inherits(x, \"myclass\")) {\n    stop(\"`x` must be a 'myclass' object.\", call. = FALSE)\n  }\n  if (!is.numeric(x$values)) {\n    stop(\"`values` must be numeric.\", call. = FALSE)\n  }\n  if (any(is.na(x$values))) {\n    stop(\"`values` must not contain NA.\", call. = FALSE)\n  }\n  if (!is.character(x$unit) || length(x$unit) != 1) {\n    stop(\"`unit` must be a single character string.\", call. = FALSE)\n  }\n  TRUE\n}\n\n## (Optional) a simple print method\nprint.myclass &lt;- function(x, ...) {\n  cat(\"&lt;myclass&gt;  \", length(x$values), \"values [unit = \", x$unit, \"]\\n\", sep = \"\")\n  print(x$values)\n  invisible(x)\n}\n\n## 3. User‐facing helper: coerce/check inputs, then build + validate\nmyclass &lt;- function(values, unit = \"unitless\") {\n  # quick checks / coercions:\n  if (!is.numeric(values)) {\n    values &lt;- as.numeric(values)\n    if (any(is.na(values))) stop(\"`values` could not be coerced to numeric.\", call. = FALSE)\n  }\n  if (!is.character(unit) || length(unit) != 1) {\n    stop(\"`unit` must be a single character string.\", call. = FALSE)\n  }\n  # build & validate\n  obj &lt;- new_myclass(values = values, unit = unit)\n  validate_myclass(obj)\n  obj\n}\n\n## --- Example usage ---\nx &lt;- myclass(c(1.1, 2.2, 3.3), unit = \"kg\")\nprint(x)\n#&gt; &lt;myclass&gt; 3 values [unit = kg]\n#&gt; [1] 1.1 2.2 3.3\n\n# This will error because of an NA:\n# myclass(c(1, NA, 3))",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#generics-and-methods---method-dispatch",
-    "href": "slides/Topic1.html#generics-and-methods---method-dispatch",
-    "title": "Short Course on R Tools",
-    "section": "Generics and Methods - Method Dispatch",
-    "text": "Generics and Methods - Method Dispatch\nView(print)\n#&gt; function (x, ...) \n#&gt; UseMethod(\"print\")\n\nftype(print)\n#&gt; [1] \"S3\"      \"generic\"\nftype(print.factor)\n#&gt; [1] \"S3\"     \"method\"\n\ns3_dispatch(print(f))\n#&gt; =&gt; print.factor\n#&gt;  * print.default\ns3_dispatch(print(unclass(f)))\n#&gt;    print.integer\n#&gt;    print.numeric\n#&gt; =&gt; print.default",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#finding-methods",
-    "href": "slides/Topic1.html#finding-methods",
-    "title": "Short Course on R Tools",
-    "section": "Finding methods",
-    "text": "Finding methods\ns3_methods_generic(\"mean\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class      visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 mean    Date       TRUE    base               \n#&gt; 2 mean    default    TRUE    base               \n#&gt; 3 mean    difftime   TRUE    base               \n#&gt; 4 mean    POSIXct    TRUE    base               \n#&gt; 5 mean    POSIXlt    TRUE    base               \n#&gt; 6 mean    quosure    FALSE   registered S3method\n#&gt; 7 mean    vctrs_vctr FALSE   registered S3method\n\ns3_methods_class(\"funts\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 -       funts FALSE   registered S3method\n#&gt; 2 *       funts FALSE   registered S3method\n#&gt; 3 [       funts FALSE   registered S3method\n#&gt; 4 +       funts FALSE   registered S3method\n#&gt; 5 length  funts FALSE   registered S3method\n#&gt; 6 plot    funts FALSE   registered S3method\n#&gt; 7 print   funts FALSE   registered S3method",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#creating-methods",
-    "href": "slides/Topic1.html#creating-methods",
-    "title": "Short Course on R Tools",
-    "section": "Creating methods",
-    "text": "Creating methods\n\n\nmean.myclass &lt;- function(x, ...) {\n  print(\"custom mean\")\n}\n\nmean(x)\n\n[1] \"custom mean\"\n\n\n\n\n\n\nA method must have the same arguments as its generic. This is enforced in packages by R CMD check.\n\n\n\n\n\nThere is one exception to this rule: if the generic has ..., the method can contain a superset of the arguments. This allows methods to take arbitrary additional arguments.",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#inheritance",
-    "href": "slides/Topic1.html#inheritance",
-    "title": "Short Course on R Tools",
-    "section": "Inheritance",
-    "text": "Inheritance\nx &lt;- factor(\"a\",\"b\",\"b\")\nclass(x)\n#&gt; \"factor\"\n\nclass(ordered(x))\n#&gt; \"ordered\" \"factor\"\n\ns3_dispatch(print(ordered(x)))\n#&gt;    print.ordered\n#&gt; =&gt; print.factor\n#&gt;  * print.default\n\ns3_dispatch(ordered(x)[1])\n#&gt;    [.ordered\n#&gt; =&gt; [.factor\n#&gt;    [.default\n#&gt; -&gt; [ (internal)\n\n\nWe’ll say that ordered is a subclass of factor and factor is a superclass of ordered.",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#inheritance-cont.",
-    "href": "slides/Topic1.html#inheritance-cont.",
-    "title": "Short Course on R Tools",
-    "section": "Inheritance Cont.",
-    "text": "Inheritance Cont.\n\nnew_secret &lt;- function(x = double()) {\n  stopifnot(is.double(x))\n  structure(x, class = \"secret\")\n}\n\nprint.secret &lt;- function(x, ...) {\n  print(strrep(\"x\", nchar(x)))\n  invisible(x)\n}\n\nx &lt;- new_secret(c(15, 1, 456))\nx\n#&gt; [1] \"xx\"  \"x\"   \"xxx\"\n\ns3_dispatch(x[1])\n#&gt;    [.secret\n#&gt;    [.default\n#&gt; =&gt; [ (internal)\n\nx[1]\n#&gt; [1] 15\n\n\n\nTo fix this, we need to provide a [.secret method.",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#inheritance-cont.---nextmethod",
-    "href": "slides/Topic1.html#inheritance-cont.---nextmethod",
-    "title": "Short Course on R Tools",
-    "section": "Inheritance Cont. - NextMethod()",
-    "text": "Inheritance Cont. - NextMethod()\n\n`[.secret` &lt;- function(x, i) {\n  x &lt;- unclass(x)\n  new_secret(x[i])\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\n\n\nA better solution using NextMethod()\n\n\n`[.secret` &lt;- function(x, i) {\n  new_secret(NextMethod())\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\ns3_dispatch(x[1])\n#&gt; =&gt; [.secret\n#&gt;    [.default\n#&gt; -&gt; [ (internal)",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#generics-methods",
-    "href": "slides/Topic1.html#generics-methods",
-    "title": "Short Course on R Tools",
-    "section": "Generics & Methods",
-    "text": "Generics & Methods\n\n\nDefine generic:\nsetGeneric(\"greet\", function(x) standardGeneric(\"greet\"))\nDefine method:\nsetMethod(\"greet\", \"Person\", function(x) {\n  paste(\"Hello, my name is\", x@name)\n})\nExample:\ngreet(subj1)\n#&gt; [1] \"Hello, my name is Adam\"",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#inheritance-virtual-classes",
-    "href": "slides/Topic1.html#inheritance-virtual-classes",
-    "title": "Short Course on R Tools",
-    "section": "Inheritance & Virtual Classes",
-    "text": "Inheritance & Virtual Classes\n\n\nInheritance:\nsetClass(\"Employee\", contains = \"Person\",\n  slots = list(salary = \"numeric\"))\nExample:\nemp1 &lt;- new(\"Employee\", subj1, salary = 75000)\nemp1\n#&gt; An object of class \"Employee\"\n#&gt; Slot \"salary\":\n#&gt; [1] 75000\n#&gt; \n#&gt; Slot \"name\":\n#&gt; [1] \"Adam\"\n#&gt; \n#&gt; Slot \"age\":\n#&gt; [1] 30",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#advanced-features",
-    "href": "slides/Topic1.html#advanced-features",
-    "title": "Short Course on R Tools",
-    "section": "Advanced Features",
-    "text": "Advanced Features\n\nActive bindings\nInheritance & extension\nPrivate vs public\nUse cases: GUI, stateful objects, iterative algorithms",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
     "objectID": "slides/Topic7.html#classical-programming-vs-machine-learning",
     "href": "slides/Topic7.html#classical-programming-vs-machine-learning",
     "title": "Short Course on R Tools",
@@ -1061,6 +918,254 @@
       "Slides",
       "Deep Learning in R"
     ]
+  },
+  {
+    "objectID": "slides/Topic1.html#basics",
+    "href": "slides/Topic1.html#basics",
+    "title": "Short Course on R Tools",
+    "section": "Basics",
+    "text": "Basics\n\nAn S3 object is a base type with at least a class attribute\n\n\nf &lt;- factor(c(\"a\", \"b\", \"b\"))\nf\n#&gt; [1] a b b\n#&gt; Levels: a b\nattributes(f)\n#&gt; $levels\n#&gt; [1] \"a\" \"b\"\n#&gt; \n#&gt; $class\n#&gt; [1] \"factor\"\nunclass(f)\n#&gt; [1] 1 2 2\n#&gt; attr(,\"levels\")\n#&gt; [1] \"a\" \"b\"\n\ntime &lt;- strptime(c(\"2017-01-01\", \"2020-05-04 03:21\"), \"%Y-%m-%d\")\nstr(time)\n#&gt;  POSIXlt[1:2], format: \"2017-01-01\" \"2020-05-04\"\n\nclass(time) &lt;- NULL\nstr(time)\n#&gt; List of 11\n#&gt;  $ sec   : num [1:2] 0 0\n#&gt;  $ min   : int [1:2] 0 0\n#&gt;  $ hour  : int [1:2] 0 0\n#&gt;  $ mday  : int [1:2] 1 4\n#&gt;  $ mon   : int [1:2] 0 4\n#&gt;  $ year  : int [1:2] 117 120\n#&gt;  $ wday  : int [1:2] 0 1\n#&gt;  $ yday  : int [1:2] 0 124\n#&gt;  $ isdst : int [1:2] 0 0\n#&gt;  $ zone  : chr [1:2] \"UTC\" \"UTC\"\n#&gt;  $ gmtoff: int [1:2] 0 0\n#&gt;  - attr(*, \"tzone\")= chr \"UTC\"\n#&gt;  - attr(*, \"balanced\")= logi TRUE",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic1.html#classes",
+    "href": "slides/Topic1.html#classes",
+    "title": "Short Course on R Tools",
+    "section": "Classes",
+    "text": "Classes\n# Create and assign class in one step\nx &lt;- structure(list(), class = \"my_class\")\n\n# Create, then set class\nx &lt;- list()\nclass(x) &lt;- \"my_class\"\n\nclass(x)\n#&gt; [1] \"my_class\"\ninherits(x, \"my_class\")\n#&gt; [1] TRUE\ninherits(x, \"your_class\")\n#&gt; [1] FALSE\n\n\nR doesn’t stop you from shooting yourself in the foot, but as long as you don’t aim the gun at your toes and pull the trigger, you won’t have a problem.",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic1.html#classes---common-practice",
+    "href": "slides/Topic1.html#classes---common-practice",
+    "title": "Short Course on R Tools",
+    "section": "Classes - Common Practice",
+    "text": "Classes - Common Practice\nTo avoid foot-bullet intersections when creating your own class, you may:\n\n\nA low-level constructor, new_myclass(), that efficiently creates new objects with the correct structure.\nA validator, validate_myclass(), that performs more computationally expensive checks to ensure that the object has correct values.\nA user-friendly helper, myclass(), that provides a convenient way for others to create objects of your class.",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic1.html#classes---example",
+    "href": "slides/Topic1.html#classes---example",
+    "title": "Short Course on R Tools",
+    "section": "Classes - Example",
+    "text": "Classes - Example\n\n## 1. Low‐level constructor: assume inputs are ok\nnew_myclass &lt;- function(values = numeric(), unit = character(1)) {\n  # no checks here beyond base‐R stopifnot\n  stopifnot(is.numeric(values), is.character(unit), length(unit) == 1)\n  structure(\n    list(values = values, unit = unit),\n    class = \"myclass\"\n  )\n}\n\n## 2. Validator: more thorough checks\nvalidate_myclass &lt;- function(x) {\n  if (!inherits(x, \"myclass\")) {\n    stop(\"`x` must be a 'myclass' object.\", call. = FALSE)\n  }\n  if (!is.numeric(x$values)) {\n    stop(\"`values` must be numeric.\", call. = FALSE)\n  }\n  if (any(is.na(x$values))) {\n    stop(\"`values` must not contain NA.\", call. = FALSE)\n  }\n  if (!is.character(x$unit) || length(x$unit) != 1) {\n    stop(\"`unit` must be a single character string.\", call. = FALSE)\n  }\n  TRUE\n}\n\n## (Optional) a simple print method\nprint.myclass &lt;- function(x, ...) {\n  cat(\"&lt;myclass&gt;  \", length(x$values), \"values [unit = \", x$unit, \"]\\n\", sep = \"\")\n  print(x$values)\n  invisible(x)\n}\n\n## 3. User‐facing helper: coerce/check inputs, then build + validate\nmyclass &lt;- function(values, unit = \"unitless\") {\n  # quick checks / coercions:\n  if (!is.numeric(values)) {\n    values &lt;- as.numeric(values)\n    if (any(is.na(values))) stop(\"`values` could not be coerced to numeric.\", call. = FALSE)\n  }\n  if (!is.character(unit) || length(unit) != 1) {\n    stop(\"`unit` must be a single character string.\", call. = FALSE)\n  }\n  # build & validate\n  obj &lt;- new_myclass(values = values, unit = unit)\n  validate_myclass(obj)\n  obj\n}\n\n## --- Example usage ---\nx &lt;- myclass(c(1.1, 2.2, 3.3), unit = \"kg\")\nprint(x)\n#&gt; &lt;myclass&gt; 3 values [unit = kg]\n#&gt; [1] 1.1 2.2 3.3\n\n# This will error because of an NA:\n# myclass(c(1, NA, 3))",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic1.html#generics-and-methods---method-dispatch",
+    "href": "slides/Topic1.html#generics-and-methods---method-dispatch",
+    "title": "Short Course on R Tools",
+    "section": "Generics and Methods - Method Dispatch",
+    "text": "Generics and Methods - Method Dispatch\nView(print)\n#&gt; function (x, ...) \n#&gt; UseMethod(\"print\")\n\nftype(print)\n#&gt; [1] \"S3\"      \"generic\"\nftype(print.factor)\n#&gt; [1] \"S3\"     \"method\"\n\ns3_dispatch(print(f))\n#&gt; =&gt; print.factor\n#&gt;  * print.default\ns3_dispatch(print(unclass(f)))\n#&gt;    print.integer\n#&gt;    print.numeric\n#&gt; =&gt; print.default",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic1.html#finding-methods",
+    "href": "slides/Topic1.html#finding-methods",
+    "title": "Short Course on R Tools",
+    "section": "Finding methods",
+    "text": "Finding methods\ns3_methods_generic(\"mean\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class      visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 mean    Date       TRUE    base               \n#&gt; 2 mean    default    TRUE    base               \n#&gt; 3 mean    difftime   TRUE    base               \n#&gt; 4 mean    POSIXct    TRUE    base               \n#&gt; 5 mean    POSIXlt    TRUE    base               \n#&gt; 6 mean    quosure    FALSE   registered S3method\n#&gt; 7 mean    vctrs_vctr FALSE   registered S3method\n\ns3_methods_class(\"funts\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 -       funts FALSE   registered S3method\n#&gt; 2 *       funts FALSE   registered S3method\n#&gt; 3 [       funts FALSE   registered S3method\n#&gt; 4 +       funts FALSE   registered S3method\n#&gt; 5 length  funts FALSE   registered S3method\n#&gt; 6 plot    funts FALSE   registered S3method\n#&gt; 7 print   funts FALSE   registered S3method",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic1.html#creating-methods",
+    "href": "slides/Topic1.html#creating-methods",
+    "title": "Short Course on R Tools",
+    "section": "Creating methods",
+    "text": "Creating methods\n\n\nmean.myclass &lt;- function(x, ...) {\n  print(\"custom mean\")\n}\n\nmean(x)\n\n[1] \"custom mean\"\n\n\n\n\n\n\nA method must have the same arguments as its generic. This is enforced in packages by R CMD check.\n\n\n\n\n\nThere is one exception to this rule: if the generic has ..., the method can contain a superset of the arguments. This allows methods to take arbitrary additional arguments.",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic1.html#inheritance",
+    "href": "slides/Topic1.html#inheritance",
+    "title": "Short Course on R Tools",
+    "section": "Inheritance",
+    "text": "Inheritance\nx &lt;- factor(\"a\",\"b\",\"b\")\nclass(x)\n#&gt; \"factor\"\n\nclass(ordered(x))\n#&gt; \"ordered\" \"factor\"\n\ns3_dispatch(print(ordered(x)))\n#&gt;    print.ordered\n#&gt; =&gt; print.factor\n#&gt;  * print.default\n\ns3_dispatch(ordered(x)[1])\n#&gt;    [.ordered\n#&gt; =&gt; [.factor\n#&gt;    [.default\n#&gt; -&gt; [ (internal)\n\n\nWe’ll say that ordered is a subclass of factor and factor is a superclass of ordered.",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic1.html#inheritance-cont.",
+    "href": "slides/Topic1.html#inheritance-cont.",
+    "title": "Short Course on R Tools",
+    "section": "Inheritance Cont.",
+    "text": "Inheritance Cont.\n\nnew_secret &lt;- function(x = double()) {\n  stopifnot(is.double(x))\n  structure(x, class = \"secret\")\n}\n\nprint.secret &lt;- function(x, ...) {\n  print(strrep(\"x\", nchar(x)))\n  invisible(x)\n}\n\nx &lt;- new_secret(c(15, 1, 456))\nx\n#&gt; [1] \"xx\"  \"x\"   \"xxx\"\n\ns3_dispatch(x[1])\n#&gt;    [.secret\n#&gt;    [.default\n#&gt; =&gt; [ (internal)\n\nx[1]\n#&gt; [1] 15\n\n\n\nTo fix this, we need to provide a [.secret method.",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic1.html#inheritance-cont.---nextmethod",
+    "href": "slides/Topic1.html#inheritance-cont.---nextmethod",
+    "title": "Short Course on R Tools",
+    "section": "Inheritance Cont. - NextMethod()",
+    "text": "Inheritance Cont. - NextMethod()\n\n`[.secret` &lt;- function(x, i) {\n  x &lt;- unclass(x)\n  new_secret(x[i])\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\n\n\nA better solution using NextMethod()\n\n\n`[.secret` &lt;- function(x, i) {\n  new_secret(NextMethod())\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\ns3_dispatch(x[1])\n#&gt; =&gt; [.secret\n#&gt;    [.default\n#&gt; -&gt; [ (internal)",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic1.html#generics-methods",
+    "href": "slides/Topic1.html#generics-methods",
+    "title": "Short Course on R Tools",
+    "section": "Generics & Methods",
+    "text": "Generics & Methods\n\n\nDefine generic:\nsetGeneric(\"greet\", function(x) standardGeneric(\"greet\"))\nDefine method:\nsetMethod(\"greet\", \"Person\", function(x) {\n  paste(\"Hello, my name is\", x@name)\n})\nExample:\ngreet(subj1)\n#&gt; [1] \"Hello, my name is Adam\"",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic1.html#inheritance-virtual-classes",
+    "href": "slides/Topic1.html#inheritance-virtual-classes",
+    "title": "Short Course on R Tools",
+    "section": "Inheritance & Virtual Classes",
+    "text": "Inheritance & Virtual Classes\n\n\nInheritance:\nsetClass(\"Employee\", contains = \"Person\",\n  slots = list(salary = \"numeric\"))\nExample:\nemp1 &lt;- new(\"Employee\", subj1, salary = 75000)\nemp1\n#&gt; An object of class \"Employee\"\n#&gt; Slot \"salary\":\n#&gt; [1] 75000\n#&gt; \n#&gt; Slot \"name\":\n#&gt; [1] \"Adam\"\n#&gt; \n#&gt; Slot \"age\":\n#&gt; [1] 30",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic1.html#advanced-features",
+    "href": "slides/Topic1.html#advanced-features",
+    "title": "Short Course on R Tools",
+    "section": "Advanced Features",
+    "text": "Advanced Features\n\nActive bindings\nInheritance & extension\nPrivate vs public\nUse cases: GUI, stateful objects, iterative algorithms",
+    "crumbs": [
+      "Slides",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "slides/summary_mm.html#motivating-example---what-is-data-science",
+    "href": "slides/summary_mm.html#motivating-example---what-is-data-science",
+    "title": "Short Course on R Tools",
+    "section": "Motivating Example - What is Data Science",
+    "text": "Motivating Example - What is Data Science"
+  },
+  {
+    "objectID": "slides/summary_mm.html#motivating-example---oop",
+    "href": "slides/summary_mm.html#motivating-example---oop",
+    "title": "Short Course on R Tools",
+    "section": "Motivating Example - OOP",
+    "text": "Motivating Example - OOP"
+  },
+  {
+    "objectID": "slides/summary_mm.html#oop-in-practice",
+    "href": "slides/summary_mm.html#oop-in-practice",
+    "title": "Short Course on R Tools",
+    "section": "🛠️ OOP in Practice",
+    "text": "🛠️ OOP in Practice\n🔁 Comparison of Systems\n\n\n\n\n\n\n\n\n\n\nSystem\nStyle\nUsed In\n✅ Pros\n⚠️ Cons\n\n\n\n\nS3\nFunctional\nBase R\nSimple, extensible\nNo schema, fragile\n\n\nS4\nFormal\nBioconductor\nType-safe, robust\nVerbose, complex\n\n\nR6\nEncapsulated\nShiny, packages\nFast, mutable\nWeak type safety\n\n\nS7\nUnified OOP\nModern dev\nCombines S3 & S4 benefits\nStill evolving"
+  },
+  {
+    "objectID": "slides/summary_mm.html#example-s3-class-with-constructor",
+    "href": "slides/summary_mm.html#example-s3-class-with-constructor",
+    "title": "Short Course on R Tools",
+    "section": "💡 Example: S3 Class with Constructor",
+    "text": "💡 Example: S3 Class with Constructor\nmyclass &lt;- function(x) {\n  stopifnot(is.numeric(x))\n  structure(list(value = x), class = \"myclass\")\n}\n\n📌 Choose your OOP system based on team size, project complexity, and ecosystem."
+  },
+  {
+    "objectID": "slides/summary_mm.html#shiny-concepts-deployment",
+    "href": "slides/summary_mm.html#shiny-concepts-deployment",
+    "title": "Short Course on R Tools",
+    "section": "Shiny Concepts & Deployment",
+    "text": "Shiny Concepts & Deployment\n\n⚡Reactivity System:\n\nreactive(): memoized reactive expressions\nisolate(): break reactive chains\nobserveEvent(): trigger actions without outputs\n\n🚀 Deployment Options:\n\nshinyapps.io, Posit Connect, university servers\nshinylive: deploy as static site (experimental)\n\n✅ Best Practices:\n\nUse shinytest2 for testing\nModularize with modules for scalability\nSketch UI/UX before coding\n\n🧠 Hands-on:\n\nKNN Regression in Shiny\nExplore shinyapps gallery for inspiration: https://shiny.posit.co/gallery/"
+  },
+  {
+    "objectID": "slides/summary_mm.html#rcpp-in-action",
+    "href": "slides/summary_mm.html#rcpp-in-action",
+    "title": "Short Course on R Tools",
+    "section": "🔬 Rcpp in Action",
+    "text": "🔬 Rcpp in Action\n\n🧪 Examples:\n\nOdd/Even test (basic)\n\nbool is_even(int x) {\nreturn x % 2 == 0;\n}\n\nVAR(1) simulation with RcppArmadillo\nFibonacci benchmark: 200× speedup\n\nC++ Types: NumericVector, IntegerVector, STL containers\nData conversion: Seamless mapping between R and C++ objects\n📦 Packaging:\n\nUse LinkingTo: Rcpp in DESCRIPTION\nAutomate with usethis::use_rcpp()\nMaintainable, testable code with Rcpp::compileAttributes()"
+  },
+  {
+    "objectID": "slides/summary_mm.html#using-python-from-r",
+    "href": "slides/summary_mm.html#using-python-from-r",
+    "title": "Short Course on R Tools",
+    "section": "🛠 Using Python from R",
+    "text": "🛠 Using Python from R\n\nVirtualenv / Conda: manage environments cleanly\nCalling Python functions & classes from .py files\nUsing Python in Shiny apps\n\nExample: compute factorial via math.factorial\n\nlibrary(shiny)\nui &lt;- fluidPage(\nactionButton(\"btn\", \"Compute factorial\"),\nverbatimTextOutput(\"out\")\n)\nserver &lt;- function(input, output) {\nobserveEvent(input$btn, {\n  reticulate::py_run_string(\"import math; res = math.factorial(10)\")\n  output$out &lt;- renderText(py$res)\n})\n}\nshinyApp(ui, server)\nR Markdown / Quarto:\n\nInline Python code in {python} chunks\nShare variables between R and Python"
+  },
+  {
+    "objectID": "slides/summary_mm.html#takeaways",
+    "href": "slides/summary_mm.html#takeaways",
+    "title": "Short Course on R Tools",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nUse reticulate to blend Python’s ML power with R’s statistical strength\nMatch tools to tasks without leaving your R workflow\nIdeal for reproducible, collaborative data science"
+  },
+  {
+    "objectID": "slides/summary_mm.html#package-structure",
+    "href": "slides/summary_mm.html#package-structure",
+    "title": "Short Course on R Tools",
+    "section": "🏗 Package Structure",
+    "text": "🏗 Package Structure\n\nDESCRIPTION: metadata\nNAMESPACE: exports and imports\nR/: function definitions\nman/: auto-generated docs"
+  },
+  {
+    "objectID": "slides/summary_mm.html#development-lifecycle",
+    "href": "slides/summary_mm.html#development-lifecycle",
+    "title": "Short Course on R Tools",
+    "section": "🛠 Development Lifecycle",
+    "text": "🛠 Development Lifecycle\n\n5 Package States:\n\nSource → Bundled → Binary → Installed → In-Memory\n\nCreating a Package\n\nUse usethis::create_package()\nWrite functions in R/, document with roxygen2\n\nDocumentation & Export\n\nGenerate with devtools::document()\nExpose with @export and @import\n\nBuild & Install\n\nBuild with devtools::build()\nInstall with devtools::install()"
+  },
+  {
+    "objectID": "slides/summary_mm.html#takeaways-1",
+    "href": "slides/summary_mm.html#takeaways-1",
+    "title": "Short Course on R Tools",
+    "section": "📌 Takeaways",
+    "text": "📌 Takeaways\n\nR packages provide a professional structure to your work\nAutomate documentation, testing, and sharing\nEssential for reproducible, collaborative, and maintainable R code"
+  },
+  {
+    "objectID": "slides/summary_mm.html#cran-submission",
+    "href": "slides/summary_mm.html#cran-submission",
+    "title": "Short Course on R Tools",
+    "section": "🚀 CRAN Submission",
+    "text": "🚀 CRAN Submission\n\nCRAN = Comprehensive R Archive Network\nPackages must pass R CMD check with:\n\n❌ No ERRORs\n⚠️ No WARNINGs\n📝 Minimal NOTEs\n\nSimulate checks with rhub::check_for_cran()\nSubmit via devtools::release()\nResponse from CRAN in ~1–3 days"
+  },
+  {
+    "objectID": "slides/summary_mm.html#before-you-submit",
+    "href": "slides/summary_mm.html#before-you-submit",
+    "title": "Short Course on R Tools",
+    "section": "🛠 Before You Submit",
+    "text": "🛠 Before You Submit\n\nUse devtools::check() for local testing\nInclude:\n\nValid license\nORCID info\nClean examples and documentation\n\nUpdate via version bump and NEWS.md"
+  },
+  {
+    "objectID": "slides/summary_mm.html#collaborate-via-github",
+    "href": "slides/summary_mm.html#collaborate-via-github",
+    "title": "Short Course on R Tools",
+    "section": "🤝 Collaborate via GitHub",
+    "text": "🤝 Collaborate via GitHub\n\nGit = local version control\nGitHub = cloud hosting and collaboration\nRStudio integrates Git workflows\nUse usethis::use_github() to link project\n\n✅ Auth via Personal Access Token (PAT) using gitcreds"
+  },
+  {
+    "objectID": "slides/summary_mm.html#daily-git-workflow",
+    "href": "slides/summary_mm.html#daily-git-workflow",
+    "title": "Short Course on R Tools",
+    "section": "🧪 Daily Git Workflow",
+    "text": "🧪 Daily Git Workflow\n\nEdit → Stage → Commit → Push\nShare changes, open pull requests\nCheck status with usethis::git_sitrep()\n\n📦 Ideal for collaborative R package development!\n\n\n\n\n🔗 https://bit.ly/SCoRT"
   },
   {
     "objectID": "slides/summary_hh.html#oop-in-practice",
