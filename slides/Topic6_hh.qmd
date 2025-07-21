@@ -10,6 +10,13 @@ format:
     transition: fade
     scrollable: true
 ---
+# Outlines
+1. CRAN Submission: Overview
+2. Requirements Before Submission
+3. Handling NOTEs and WARNINGs
+4. Simulate a CRAN Check
+5. Submit to CRAN
+6. Collaborate via GitHub
 
 # 1. CRAN Submission: Overview
 
@@ -43,7 +50,7 @@ Run:
 devtools::check()
 ```
 
-## ⚠️ Handling NOTEs and WARNINGs
+# 3. Handling NOTEs and WARNINGs 
 
 Some NOTEs are common (e.g., missing author ORCID), but…
 
@@ -61,7 +68,7 @@ To reduce NOTEs:
 -   Avoid using `cat()` or `print()` in package code unless essential
 :::
 
-## 🧪 Simulate a CRAN Check
+#  4. Simulate a CRAN Check 🧪
 
 Use `rhub` to simulate CRAN checks on different platforms:
 
@@ -81,7 +88,7 @@ rhub::check(platform = "windows-x86_64-release")
 
 ✅ This helps catch issues that only appear on Windows or macOS.
 
-## ✉️ Submit to CRAN
+# 5. Submit to CRAN
 
 Use the `devtools` helper:
 
@@ -122,23 +129,9 @@ To submit an update:
 📌 You can only submit **once every 1–2 weeks** (per package).
 :::
 
+# 6. Collaborate via GitHub
 
-# Outline - GitHub
-
-::: {.fragment .fade-up}
--   Version Control Essentials
--   Git & GitHub Basics
--   Setting Up in RStudio
--   Common Git Workflows
--   Branching & Pull Requests
--   Collaborating with Issues & Projects
--   GitHub Actions for R Projects
--   Managing Releases & Packages
--   Best Practices & Tips
--   Hands-on Exercises
-:::
-
-## 🔁 Version Control Essentials
+# 🔁 Version Control Essentials
 
 - Track and restore changes in code over time
 - Collaborate without overwriting others' work

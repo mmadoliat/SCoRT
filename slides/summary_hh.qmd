@@ -1,0 +1,269 @@
+---
+title: "Short Course on R Tools"
+title-slide-attributes:
+  data-background-image: mu-bg.png
+  data-background-size: stretch
+  data-slide-number: none
+format: 
+  revealjs:
+    transition: fade
+    scrollable: true
+---
+
+# 🧠 Session 1: OOP in R 
+
+- **🧩 OOP Paradigms in R**:
+  - Functional OOP: `plot(lm(...))`
+  - Encapsulated OOP: `learner$train()`
+  - Modern tools: `mlr3`, `R6`, `S7`
+
+- **🏗 OOP Systems**:
+  - **S3**: Lightweight & informal — uses `UseMethod()`
+  - **S4**: Formal and type-safe — uses `setClass()` and `@`
+  - **R6**: Mutable, used in apps like `shiny`
+  - **S7**: Newest and unified — multiple dispatch
+
+- **🔍 Key Concepts**:
+  - Use `otype()`, `is.object()`, `structure()`, `class()` for diagnostics
+  - Understand inheritance and `NextMethod()`
+  - Follow best practices: custom constructor + validator + clean API
+
+---
+
+## 🛠️ OOP in Practice
+
+### 🔁 Comparison of Systems
+
+| System | Style         | Used In        | ✅ Pros                  | ⚠️ Cons              |
+|--------|---------------|----------------|--------------------------|----------------------|
+| S3     | Functional    | Base R         | Simple, extensible       | No schema, fragile   |
+| S4     | Formal        | Bioconductor   | Type-safe, robust        | Verbose, complex     |
+| R6     | Encapsulated  | Shiny, packages| Fast, mutable            | Weak type safety     |
+| S7     | Unified OOP   | Modern dev     | Combines S3 & S4 benefits| Still evolving       |
+
+## 💡 Example: S3 Class with Constructor
+```r
+myclass <- function(x) {
+  stopifnot(is.numeric(x))
+  structure(list(value = x), class = "myclass")
+}
+```
+> 📌 Choose your OOP system based on team size, project complexity, and ecosystem.
+
+
+
+# Session 2:🌐 Web Apps with Shiny 
+
+- ✨ Shiny = Interactive web apps in pure R (no HTML/JS!)
+
+- 📦 Components:
+
+  - ui: Layout, inputs/outputs
+
+  -  server: Logic, reactivity
+
+- 🧪 Use Cases:
+
+  - Dashboards, simulations, teaching tools
+
+- 🔌 Inputs & Outputs:
+
+  - Inputs: sliderInput(), textInput()
+
+  - Outputs: renderPlot(), renderText(), renderTable()
+
+## Shiny Concepts & Deployment
+
+- ⚡**Reactivity System**:
+  - `reactive()`: memoized reactive expressions
+  - `isolate()`: break reactive chains
+  - `observeEvent()`: trigger actions without outputs
+
+- 🚀 **Deployment Options**:
+  - `shinyapps.io`, Posit Connect, university servers
+  - **shinylive**: deploy as static site (experimental)
+
+- ✅ **Best Practices**:
+  - Use `shinytest2` for testing
+  - Modularize with `modules` for scalability
+  - Sketch UI/UX before coding
+
+- 🧠 **Hands-on**:
+  - KNN Regression in Shiny
+  - Explore shinyapps gallery for inspiration: https://shiny.posit.co/gallery/
+
+
+
+# ⚡ Session 3: Rcpp – High Performance with C++ in R
+
+- 🚀 **Rcpp** bridges R and C++ for high-performance computing.
+- 🏁 Use cases:
+  - Speed up loops, recursion, and matrix operations
+  - Access C++ libraries and STL
+  - Integrate C++ in R packages
+
+- 🧰 **Workflows**:
+  - `evalCpp()`: quick one-liners
+  - `cppFunction()`: inline prototypes
+  - `sourceCpp()`: external C++ files with R wrappers
+
+## 🔬 Rcpp in Action
+
+- 🧪 **Examples**:
+  - Odd/Even test (basic)
+```r
+bool is_even(int x) {
+  return x % 2 == 0;
+}
+```
+  - VAR(1) simulation with `RcppArmadillo`
+  - Fibonacci benchmark: 200× speedup
+- **C++ Types**: `NumericVector`, `IntegerVector`, STL containers
+- **Data conversion**: Seamless mapping between R and C++ objects
+
+- 📦 **Packaging**:
+  - Use `LinkingTo: Rcpp` in DESCRIPTION
+  - Automate with `usethis::use_rcpp()`
+  - Maintainable, testable code with `Rcpp::compileAttributes()`
+
+
+# 🐍 Session 4: Python in R – Interoperability with `reticulate`
+
+- **Why integrate?**
+  - Leverage Python libraries (ML, CV, NLP)
+  - Avoid rewriting code across environments
+  - Enable seamless workflows via R Markdown & Quarto
+
+- **Key Features of `reticulate`**:
+  - Import Python modules via `import()`
+  - Run scripts with `source_python()` or `py_run_file()`
+  - Shared Python session across R and Python chunks
+
+- **Data Exchange**:
+  - Auto-conversion: vectors ↔ arrays, data frames ↔ pandas
+  - R objects available in Python via `r$`, and vice versa with `py$`
+
+## 🛠 Using Python from R
+
+- **Virtualenv / Conda**: manage environments cleanly
+- **Calling Python functions & classes** from `.py` files
+- **Using Python in Shiny apps**
+  - Example: compute factorial via `math.factorial`
+```r
+library(shiny)
+ui <- fluidPage(
+  actionButton("btn", "Compute factorial"),
+  verbatimTextOutput("out")
+)
+server <- function(input, output) {
+  observeEvent(input$btn, {
+    reticulate::py_run_string("import math; res = math.factorial(10)")
+    output$out <- renderText(py$res)
+  })
+}
+shinyApp(ui, server)
+```
+
+- **R Markdown / Quarto**:
+  - Inline Python code in `{python}` chunks
+  - Share variables between R and Python
+
+
+## Takeaways
+
+- Use `reticulate` to blend Python's ML power with R's statistical strength
+- Match tools to tasks without leaving your R workflow
+- Ideal for reproducible, collaborative data science
+
+
+# 🎯 Session 5: Build Your Own R Package
+
+- **Why create a package?**
+  - Reuse and organize code
+  - Provide documentation and tests
+  - Distribute via CRAN, GitHub, or internally
+
+- **Setup Requirements**
+  - Install `devtools`, `roxygen2`, `testthat`, `knitr`
+  - Ensure R and RStudio are updated
+
+## 🏗 Package Structure
+
+- `DESCRIPTION`: metadata
+- `NAMESPACE`: exports and imports
+- `R/`: function definitions
+- `man/`: auto-generated docs
+
+
+
+## 🛠 Development Lifecycle
+
+- **5 Package States**:
+  - Source → Bundled → Binary → Installed → In-Memory
+
+- **Creating a Package**
+  - Use `usethis::create_package()`
+  - Write functions in `R/`, document with `roxygen2`
+
+- **Documentation & Export**
+  - Generate with `devtools::document()`
+  - Expose with `@export` and `@import`
+
+- **Build & Install**
+  - Build with `devtools::build()`
+  - Install with `devtools::install()`
+
+
+## 📌 Takeaways
+
+- R packages provide a **professional structure** to your work
+- Automate documentation, testing, and sharing
+- Essential for reproducible, collaborative, and maintainable R code
+
+
+
+# Session 6: CRAN & GitHub Essentials
+
+## 🚀 CRAN Submission
+
+- CRAN = Comprehensive R Archive Network
+- Packages must pass `R CMD check` with:
+  - ❌ No **ERRORs**
+  - ⚠️ No **WARNINGs**
+  - 📝 Minimal **NOTEs**
+- Simulate checks with `rhub::check_for_cran()`
+- Submit via `devtools::release()`
+- Response from CRAN in ~1–3 days
+
+
+
+## 🛠 Before You Submit
+
+- Use `devtools::check()` for local testing
+- Include:
+  - Valid license
+  - ORCID info
+  - Clean examples and documentation
+- Update via version bump and `NEWS.md`
+
+
+## 🤝 Collaborate via GitHub
+
+- Git = local version control
+- GitHub = cloud hosting and collaboration
+- RStudio integrates Git workflows
+- Use `usethis::use_github()` to link project
+
+✅ Auth via Personal Access Token (PAT) using `gitcreds`
+
+
+## 🧪 Daily Git Workflow
+
+1. Edit → Stage → Commit → Push
+2. Share changes, open pull requests
+3. Check status with `usethis::git_sitrep()`
+
+📦 Ideal for collaborative R package development!
+
+
+
