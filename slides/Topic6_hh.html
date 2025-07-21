@@ -10,8 +10,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.9">
 
-  <meta name="author" content="Sebastian DiLorenzo">
-  <title>SCoRT – git and R</title>
+  <meta name="author" content="Mehdi Maadooliat">
+  <title>SCoRT – Short Course on R Tools</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -388,13 +388,12 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="SCoRT - git and R">
-<meta property="og:description" content="Work reproducibly and together">
-<meta property="og:image" content="https://bit.ly/SCoRT/slides/assets/featured.webp">
+<meta property="og:title" content="SCoRT - Short Course on R Tools">
+<meta property="og:description" content="CRAN submission and Collaborate via GitHub">
 <meta property="og:site_name" content="SCoRT">
-<meta name="twitter:title" content="SCoRT - git and R">
-<meta name="twitter:description" content="Work reproducibly and together">
-<meta name="twitter:image" content="https://bit.ly/SCoRT/slides/assets/featured.webp">
+<meta name="twitter:title" content="SCoRT - Short Course on R Tools">
+<meta name="twitter:description" content="CRAN submission and Collaborate via GitHub">
+<meta name="twitter:image" content="https://bit.ly/SCoRT/slides/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -403,232 +402,302 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="mu-bg.png" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
-  <h1 class="title">git and R</h1>
+  <h1 class="title">Short Course on R Tools</h1>
+  <p class="subtitle">CRAN submission and Collaborate via GitHub</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Sebastian DiLorenzo 
+Mehdi Maadooliat 
 </div>
-</div>
+        <p class="quarto-title-affiliation">
+            Marquette University <br> SCoRT - Summer 2025
+          </p>
+    </div>
 </div>
 
 </section>
-<section class="slide level2">
-
-<!--
-Lab outline
-
-Main lab:
-From RStudio, create a new R project with git version control.
-Connect to github.
-Create some R file.
-Insert some code.
-Commit.
-Push.
-Go to repository on github.
-Introduce some changes.
-pull to local.
-Insert some more code.
-Check out the diff.
-reset to previous commit.
-
-Create a repository on github.
-Clone that repository into Rstudio.
-
-End of main lab:
-Delete created repositories on github.
-
-
-Lab extras:
-Branches
-Merge conflicts
-Forks
-pull requests
-github actions
--->
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>This is the lab on using git and GitHub with R. It will take you through some basic steps to start using git with your R code and how to work with others on the same code. When you are comfortable there are some more exercises showing good to know functionalities of git and GitHub.</p>
-<p>This lab assumes that you have a GitHub account, commandline git and correct git configurations. If you do not and need help, please contact a TA.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="install-packages" class="slide level2">
-<h2>Install packages</h2>
-<p>The first thing we want to do is install the package required for the exercise.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">"usethis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="working-with-git-and-github-starting-from-rstudio" class="slide level2 scrollable">
-<h2>Working with git and GitHub starting from RStudio</h2>
-<p>Let’s go through the common situation of starting a new project and connecting it to git and GitHub. Let’s create a mental model for this: Hypothetically, you have just been asked to perform some data analysis, produce some plots, and now it is time to start!</p>
+<section id="outlines" class="title-slide slide level1 center scrollable">
+<h1>Outlines</h1>
 <ol type="1">
-<li><p>In RStudio, create a new project in a new directory. You can initialize it as a git repository upon creation or you can do that after using <code>usethis::use_git()</code>.</p></li>
-<li><p>Connect it to GitHub using <code>usethis::use_github()</code>.</p></li>
-<li><p>Create an R script in your project and write some code. You are free to do whatever you want here. Write a function, create a plot, use a public dataset. Go crazy!</p></li>
-<li><p>Use the RStudio <em>git pane</em> to <code>commit</code> your code including a commit message.</p></li>
+<li>CRAN Submission: Overview</li>
+<li>Requirements Before Submission</li>
+<li>Handling NOTEs and WARNINGs</li>
+<li>Simulate a CRAN Check</li>
+<li>Submit to CRAN</li>
+<li>Collaborate via GitHub</li>
 </ol>
-<p><img data-src="assets/git_pane.png"></p>
-<ol start="5" type="1">
-<li><p><code>push</code> the changes to your GitHub repository. Then go to GitHub and check that you can see your changes there. In your mental model, this is you sharing your code with your collaborators or users.</p></li>
-<li><p>Now introduce some changes to your script from GitHub and <code>commit</code> them. At this point, your GitHub repository is one <code>commit</code> ahead of your local repository. In the mental model, this can be your collaborators making changes in their local repository and <code>push</code>ing it to your shared GitHub project, or a user suggesting a change, that you accept, in your publicly available R-package, used by millions. For now, lets ignore thinking about who has access to <code>commit</code> to your repository, but do not worry, there are ways to safeguard this. Your code can be open on GitHub without other people being able to ruin it so you have to constantly go back to a previous unruined <code>commit</code>!</p></li>
-<li><p>To transfer the changes in the GitHub repository to your local repository, go back to RStudio and use the blue arrow in the <em>git pane</em> to <code>pull</code> the changes. In the mental model this is you updating your code with the code contributed by your collaborators. Notice here that if if you had in the meantime made some changes to the local repository in the same R script and position as you had on GitHub, there would be what is called a “merge conflict” when you tried to <code>pull</code>. We will get to those later.</p></li>
-<li><p>Let’s look at the <code>diff</code> operation. Make some changes in your local repository R script again, both removing and adding something, then press the <code>diff</code> button in the <em>git pane</em>. This should bring up a new window that is similar to the image below. As you can see it clearly shows you what has been added and what has been removed, what the <code>diff</code>erence is since your last <code>commit</code>.</p></li>
-</ol>
-<p><img data-src="assets/diff.png"></p>
-<ol start="9" type="1">
-<li>Go ahead and <code>commit</code> the changes you made. No need to <code>push</code> them to GitHub. Now lets go into our mental model and say that you did not like those changes. You have done something you regret, or broken something, and you want to go back. One of the main points of version control after all is the ability to go back. To <code>revert</code> to the last commit state you can use the <em>Revert..</em> button in RStudios <em>git pane</em>, it is in a dropdown from the cogwheel. Go ahead and test it!<br>
-If you want to go further back to an older commit you will have to use the <em>terminal pane</em> in RStudio. In essence, you are using git from the terminal in your local repository. Here are the commands:</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="fu">git</span> reset HEAD~1</span>
-<span id="cb2-2"><a></a><span class="fu">git</span> restore <span class="op">&lt;</span>our R script<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>git reset HEAD~n</code> steps you back in your <code>commit</code> history <code>n</code> <code>commit</code>s. In this case <code>HEAD~1</code> means <em>go one <code>commit</code> back</em>. Look at your R script, are the changes you made still there? They should be. You have gone back one <code>commit</code>, not removed the changes you made during that <code>commit</code>. But now that we are on this <code>commit</code> you can <code>git restore</code> your R script file to take it back to the way it was at the start of current <code>commit</code>. Go ahead and try it out and make sure it works as you would expect it to!</p>
 </section>
-<section class="slide level2">
 
-<p>Now you should have all the tools you need to work with git in a basic capacity, starting from a new project on your device. Notice that you do not need to start from a new project, you can also take a folder with lots of work you have already performed and make it an R project and initialize git in it. It will of course only track changes from that point, not what you have done previously, but it is still a good idea!</p>
-<p>The point here being that starting from scratch or starting from a bunch of work that you have already done, or starting by creating a GitHub repository and pulling that into RStudio using <em>File &gt; New Project &gt; Version Control &gt; Git</em> , there are tools for any situation and it is not too late to start working reproducibly, collaboratively and with backups using git!</p>
-</section>
-<section id="additional-topics-and-exercises" class="slide level2 scrollable">
-<h2>Additional topics and exercises</h2>
-<h3 id="branches">Branches</h3>
-<p>Branches in git are a way to create a separate version controlled instance of your repository. Think of your git changes as a tree trunk, growing as you <code>add</code> and <code>commit</code>, but always possible to <code>reset</code> and go back down to a lower point on the trunk. Then <code>branch</code>ing is the equivalent of a <code>branch</code> shooting out at a certain point on that trunk with the possibility to grow as you develop that <code>branch</code>. This permits you or someone else to work on a separate idea at the same time as you continue to develop the trunk. Say for example that you have a situation where there is a stable release of your R package and you do not want to <code>push</code> changes to this. So you create a <code>branch</code> called “development” and when you are happy with it you merge that <code>branch</code> back into the trunk!</p>
-
-<img data-src="assets/git_branch.png" class="r-stretch"><p>Useful commands for branches from terminal:</p>
+<section id="cran-submission-overview" class="title-slide slide level1 center">
+<h1>1. CRAN Submission: Overview</h1>
+<p>CRAN is the <strong>Comprehensive R Archive Network</strong> — the main repository for R packages.</p>
+<p>Submitting to CRAN means:</p>
+<div>
 <ul>
-<li><code>git branch &lt;name of branch&gt;</code> : Create a new branch.</li>
-<li><code>git branch</code> : See list of branches. Current branch marked with *.</li>
-<li><code>git checkout &lt;name of branch&gt;</code> : Move to branch.</li>
-<li><code>git merge &lt;name of branch&gt;</code> : Merge the branch you are currently on with the branch named in command.</li>
+<li class="fragment">✅ Your package is publicly available</li>
+<li class="fragment">🧪 It passes strict quality checks</li>
+<li class="fragment">🌍 It becomes accessible via <code>install.packages("yourpkg")</code></li>
 </ul>
-<p>However, you can work with branches from RStudio as well! To do this you can use the purpleish button in <em>git pane</em> that looks like two squares connected with a diamond. Once you have created a new branch you can switch branches to the right of the branch button in the <em>git pane</em>.</p>
-<p>Exercise:</p>
-<ol type="1">
-<li>Either create a new git version controlled R project in Rstudio, or continue from your last one.</li>
-<li>Create a new branch using RStudio. Make sure you are on that branch afterwards.</li>
-<li>Introduce some changes in your R script. <code>commit</code> them. In our mental model, this is you developing something experimental until you are satisfied with it.</li>
-<li>Switch back to the main branch.</li>
-<li>To <code>merge</code> the new branch with our main branch we will use the terminal again. In the RStudio terminal perform the <code>merge</code>. In the mental model this you being satisfied with the development branch and calling it a stable release, a part of the main body of code!</li>
-</ol>
-<p>Congratulations, you now know how to create a branch, switch between branches, and merge the branch back into main.</p>
-<h3 id="merge-conflicts">Merge conflicts</h3>
-<p>Earlier we thought about the issue of changes being introduces in the same file and position in your local copy of a repository and in the GitHub version of the repository at the same time. A so called “merge conflict”. This can also happen if you are working on two branches, introduce changes in the same places, and then try to merge! But you should try not to worry too much about merge conflicts, they can be solved if you know what you are doing.</p>
-<ol type="1">
-<li><p>Introduce changes in the same part of your code on your main and new branch. <code>commit</code> the changes.</p></li>
-<li><p>Use <code>git merge &lt;name of branch&gt;</code> from the main branch. This should result in the merge conflict.</p></li>
-</ol>
-<p>The output you should get from the <code>merge</code> is similar to:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="ex">Auto-merging</span> file.R</span>
-<span id="cb3-2"><a></a><span class="ex">CONFLICT</span> <span class="er">(</span><span class="ex">content</span><span class="kw">)</span><span class="bu">:</span> Merge conflict in file.R</span>
-<span id="cb3-3"><a></a><span class="ex">Automatic</span> merge failed<span class="kw">;</span> <span class="ex">fix</span> conflicts and then commit the result.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>You can also use <code>git status</code> from terminal to check which file is modified and why.</p>
-<p>Once a merge conflict occurs the file affected is modified to reflect the conflicting areas. It can look something like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="co">#Hello world!"</span></span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a><span class="op">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> HEAD</span>
-<span id="cb4-4"><a></a><span class="ex">a</span> <span class="op">&lt;</span>- 2</span>
-<span id="cb4-5"><a></a></span>
-<span id="cb4-6"><a></a><span class="ex">b</span> <span class="op">&lt;</span>- 2</span>
-<span id="cb4-7"><a></a><span class="ex">=======</span></span>
-<span id="cb4-8"><a></a><span class="ex">a</span> <span class="op">&lt;</span>- 3</span>
-<span id="cb4-9"><a></a><span class="op">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>In this instance it is telling us that in branch named “test” <code>a &lt;- 3</code>but on our main branch <code>a &lt;- 2</code> and <code>b &lt;- 2</code> has also been added. To pick which one you want to go with simply delete the <code>&gt;&gt;,&lt;&lt;,==</code> notifiers and whichever rows of code that you do not want. Once you have done this, finalize the merge by <code>commit</code>ing the changed files.</p>
-<ol start="3" type="1">
-<li>Fix your merge conflict and finalize the merge.</li>
-</ol>
-<p>Good job! You know know how to resolve merge conflicts!</p>
-<h3 id="forks-and-pull-requests">Forks and pull requests</h3>
-<p>Forking a repository on GitHub means creating a copy of the repository on your GitHub user. This can be very useful if you want to make some changes to a repository that you do not have <code>push</code> access to, for example. It is also a great way collaborate because it adds more backups of the repository and because of “pull requests”, which are a way of implementing your local changes to the source repository where the owner of the repository has the power to review and choose whether to accept them or not.</p>
-<p>For example, in this RaukR course we have a repository for all the teaching materials that all teachers have forked, made changes to and then submitted a pull request back to the source repository.</p>
-<p>To fork a repository you can either use the GitHub website of the repository you want to fork, or you can use <code>usethis</code>. If you are using RStudio it will also automatically create a R project for the local repository.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_from_github</span>(</span>
-<span id="cb5-2"><a></a>  <span class="st">"https://github.com/&lt;user name of owner&gt;/&lt;repository name&gt;"</span>,</span>
-<span id="cb5-3"><a></a>  <span class="at">destdir =</span> <span class="st">"~/path/to/place/repo/"</span>,</span>
-<span id="cb5-4"><a></a>  <span class="at">fork =</span> <span class="cn">TRUE</span></span>
-<span id="cb5-5"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This command does a lot of things, from <a href="https://happygitwithr.com/fork-and-clone.html">happygitwithr</a></p>
+</section>
+
+<section id="requirements-before-submission" class="title-slide slide level1 center">
+<h1>2. Requirements Before Submission</h1>
+<p>Make sure your package:</p>
+<div>
 <ul>
-<li class="fragment">Forks the source repo on GitHub.</li>
-<li class="fragment">Clones your fork to a new local repo (and RStudio Project). This configures your fork as the origin remote.</li>
-<li class="fragment">Configures the source repo as the upstream remote.</li>
-<li class="fragment">Sets the upstream tracking branch for main (or whatever the default branch is) to upstream/main.</li>
-<li class="fragment">Opens a new RStudio instance in the new local repo (and RStudio Project).</li>
+<li class="fragment">Passes <code>R CMD check</code> with <strong>no ERRORs</strong>, <strong>no WARNINGs</strong>, and <strong>no (avoidable) NOTEs</strong></li>
+<li class="fragment">Has proper documentation for all exported functions</li>
+<li class="fragment">Has a valid <code>LICENSE</code></li>
+<li class="fragment">Uses a CRAN-acceptable package name</li>
+<li class="fragment">Has examples that run in &lt; 5 seconds</li>
 </ul>
-<p>We have not covered “upstream” and “remote” in our git vocabulary yet. Basically remotes are connections for your repository, and being upstream means being a repository closer to the source than your repository, which is downstream (as it is a fork). So the sentence “Configures the source repo as the upstream remote” translates to adding a connection specifying that the source repository is where your repository came from. This connection is used to update your fork with any future changes that occur in the source repository.</p>
+</div>
+<div class="fragment">
+<p>Run:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="handling-notes-and-warnings" class="title-slide slide level1 center">
+<h1>3. Handling NOTEs and WARNINGs</h1>
+<p>Some NOTEs are common (e.g., missing author ORCID), but…</p>
+<div class="fragment fade-up">
+<blockquote>
+<p>❗ Never submit to CRAN with unaddressed <strong>ERRORs</strong> or <strong>WARNINGs</strong></p>
+</blockquote>
+</div>
+<div class="fragment">
+<p>To reduce NOTEs:</p>
+<div>
+<ul>
+<li class="fragment">Add your ORCID via <code>Authors@R</code></li>
+<li class="fragment">Ensure <code>Title</code> and <code>Description</code> are plain text</li>
+<li class="fragment">Avoid using <code>cat()</code> or <code>print()</code> in package code unless essential</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="simulate-a-cran-check" class="title-slide slide level1 center">
+<h1>4. Simulate a CRAN Check 🧪</h1>
+<p>Use <code>rhub</code> to simulate CRAN checks on different platforms:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>rhub<span class="sc">::</span><span class="fu">check_for_cran</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Or test specific platforms:</p>
+<div class="fragment">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>rhub<span class="sc">::</span><span class="fu">check</span>(<span class="at">platform =</span> <span class="st">"windows-x86_64-release"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>✅ This helps catch issues that only appear on Windows or macOS.</p>
+</div>
+</section>
+
+<section>
+<section id="submit-to-cran" class="title-slide slide level1 center">
+<h1>5. Submit to CRAN</h1>
+<p>Use the <code>devtools</code> helper:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>devtools<span class="sc">::</span><span class="fu">release</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will:</p>
+<div>
+<ul>
+<li class="fragment">Check your package one final time</li>
+<li class="fragment">Ask you to confirm</li>
+<li class="fragment">Open the CRAN web form in your browser</li>
+<li class="fragment">Help generate an email to CRAN maintainers</li>
+</ul>
+</div>
+</section>
+<section id="what-happens-after-submission" class="slide level2">
+<h2>📬 What Happens After Submission?</h2>
+<ul>
+<li>You’ll get an automated confirmation email</li>
+<li>Within ~24–72 hours, a CRAN maintainer will review your package</li>
+<li>They may:
+<ul>
+<li>Accept it immediately ✅</li>
+<li>Request fixes or clarifications ✍️</li>
+<li>Reject with detailed reasons ❌</li>
+</ul></li>
+</ul>
+</section>
+<section id="updating-a-cran-package" class="slide level2">
+<h2>🔄 Updating a CRAN Package</h2>
+<p>To submit an update:</p>
+<div>
+<ul>
+<li class="fragment">Bump the version (e.g., from 1.0.0 → 1.0.1)</li>
+<li class="fragment">Add a clear <code>NEWS.md</code> entry</li>
+<li class="fragment">Ensure compatibility with current R version and dependencies</li>
+<li class="fragment">Follow the same submission process</li>
+</ul>
+</div>
+<div class="fragment fade-up">
+<p>📌 You can only submit <strong>once every 1–2 weeks</strong> (per package).</p>
+</div>
+</section></section>
+<section id="collaborate-via-github" class="title-slide slide level1 center">
+<h1>6. Collaborate via GitHub</h1>
+
+</section>
+
+<section>
+<section id="version-control-essentials" class="title-slide slide level1 center">
+<h1>🔁 Version Control Essentials</h1>
+<ul>
+<li>Track and restore changes in code over time</li>
+<li>Collaborate without overwriting others’ work</li>
+<li>Revert to earlier working versions if bugs appear</li>
+</ul>
+<p>🛠 Tools Used:</p>
+<ul>
+<li><code>git</code> (local)</li>
+<li><code>GitHub</code> (remote)</li>
+<li><code>RStudio</code> (IDE)</li>
+</ul>
+<p>📦 Example:</p>
+<blockquote>
+<p>You change a function in <code>plot_utils.R</code>, commit it with message “Refactor histogram labels”, and push to GitHub to share with team.</p>
+</blockquote>
+</section>
+<section id="git-github-basics" class="slide level2">
+<h2>🐙 Git &amp; GitHub Basics</h2>
+<p>🔹 <strong>Git</strong>: Version control system for your local project<br>
+🔹 <strong>GitHub</strong>: Cloud platform to share and collaborate</p>
+<p>📝 Key Terms:</p>
+<ul>
+<li><strong>Commit</strong> = Savepoint</li>
+<li><strong>Push/Pull</strong> = Send/Receive changes</li>
+<li><strong>Repo</strong> = Project folder</li>
+</ul>
+<p>📦 Example:</p>
+<blockquote>
+<p>You push your R package to GitHub, allowing your coauthor to edit documentation and submit a pull request.</p>
+</blockquote>
+</section>
+<section id="installing-git" class="slide level2">
+<h2>📦 Installing Git</h2>
+<p>🔹 Go to <a href="https://git-scm.com/downloads">git-scm.com</a></p>
+<p>Choose your operating system:</p>
+<ul>
+<li><strong>Windows</strong>: Download <code>.exe</code> and install with default options</li>
+<li><strong>macOS</strong>: Install via Homebrew <code>brew install git</code> or Git installer</li>
+<li><strong>Linux</strong>: Use package manager, e.g.:</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a>  <span class="fu">sudo</span> apt install git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="verifying-git-installation" class="slide level2">
+<h2>🧪 Verifying Git Installation</h2>
+<p>🧪 Run this in your Terminal (or Command Prompt):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ You should see something like:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a></a>git version 2.43.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>💡 If this works, Git is installed correctly!</p>
+</section>
+<section id="configuring-git-identity" class="slide level2">
+<h2>🔑 Configuring Git Identity</h2>
+<p>🔧 Set your global Git identity:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
+<span id="cb8-2"><a></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"you@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ To check the name or email currently set in Git, use these commands:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="fu">git</span> config <span class="at">--global</span> user.name </span>
+<span id="cb9-2"><a></a><span class="fu">git</span> config <span class="at">--global</span> user.email </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="connect-github-to-r-create-pat" class="slide level2 scrollable">
+<h2>🧭 Connect GitHub to R (Create PAT)</h2>
 <ol type="1">
-<li>Fork the repository <a href="https://github.com/Sebastian-D/testgit">https://github.com/Sebastian-D/testgit</a> using one of the methods described. Also clone a local copy of it. Make sure you can find your fork on GitHub.</li>
+<li>In R:</li>
 </ol>
-<p>Now we are ready to make some changes to the code in our local repository. But before this we should create a new branch for the pull request. For this we can use <code>usethis::pr_init(branch = "branchName")</code>. This will also automatically switch to the branch.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
-<li><p>Create a branch then make some changes to the repository. In the mental model you are implementing some feature or fixing some bug.</p></li>
-<li><p><code>add</code> and <code>commit</code> the changes with a commit message.</p></li>
+<li><p>GitHub will open — generate a Personal Access Token (PAT)</p></li>
+<li><p>Copy the token (only shown once!)</p></li>
+<li><p>Back in R:</p></li>
 </ol>
-<p>To submit a pull request you can use <code>pr_push()</code>. This should open a browser where you can submit the pull request. If the maintainer of the source repository wants to modify the pull request he can either do this himself or suggest some changes to you, whereupon you make the changes the run <code>pr_push()</code> again.</p>
-<ol start="4" type="1">
-<li>Submit the <code>pull</code> request! Go ahead and view it on GitHub.</li>
-</ol>
-<p>There is a whole family of pr-* functions for both the person submitting the pull the request and the maintainer of the source repository that will review and accept/decline the pull request. I really recommend you read <a href="https://usethis.r-lib.org/articles/pr-functions.html">here</a> if you think this is of interest!</p>
-<p>Good job completing the exercises! git and GitHub are big topics, but knowing a little gets you a long way and then you discover the rest when you need it!</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Paste your token when prompted.</p>
+<p>✅ You’ve now authenticated GitHub from R!</p>
 </section>
-<section id="session" class="slide level2">
-<h2>Session</h2>
-<details>
-<summary>
-Click here
-</summary>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>R version 4.5.1 (2025-06-13)
-Platform: x86_64-pc-linux-gnu
-Running under: Ubuntu 24.04.2 LTS
+<section id="check-setup" class="slide level2">
+<h2>🧪 Check Setup</h2>
+<p>Use this helpful diagnostic tool:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>usethis<span class="sc">::</span><span class="fu">git_sitrep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>💡 This tells you:</p>
+<ul>
+<li><p>Whether Git is installed</p></li>
+<li><p>Whether GitHub is connected</p></li>
+<li><p>If PAT is stored</p></li>
+</ul>
+</section>
+<section id="creating-a-new-git-enabled-project" class="slide level2 scrollable">
+<h2>📁 Creating a New Git-Enabled Project</h2>
+<p>In RStudio:</p>
+<ol type="1">
+<li><strong>File → New Project</strong></li>
+<li>Choose:
+<ul>
+<li>“New Directory” → “R Package” (or “New Project”)</li>
+</ul></li>
+<li>Check the box:
+<ul>
+<li>✅ “Create a git repository”</li>
+</ul></li>
+<li>Finish project setup</li>
+</ol>
+<p>📁 A <code>.git</code> folder is created — this is a Git repo!</p>
+</section>
+<section id="connect-to-github" class="slide level2">
+<h2>🌐 Connect to GitHub</h2>
+<p>Run this to create and link a GitHub repo:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_github</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will:</p>
+<ul>
+<li>Push your project to GitHub</li>
+<li>Open the new repo in your browser</li>
+</ul>
+<blockquote>
+<p>💡 You can now push/pull changes from RStudio Git tab</p>
+</blockquote>
+</section>
+<section id="common-git-workflows" class="slide level2 scrollable">
+<h2>🔄 Common Git Workflows</h2>
+<p>🎯 Daily workflow steps:</p>
+<ol type="1">
+<li>Edit <code>R/stats_module.R</code></li>
+<li>Stage → Commit → Push</li>
+</ol>
+<p>💻 In RStudio Git tab:</p>
+<ul>
+<li>Stage: click checkbox</li>
+<li>Commit: type a message</li>
+<li>Push: upload to GitHub</li>
+</ul>
+<p>🔁 Example:</p>
+<blockquote>
+<p>Commit message: “Add confidence interval to mean_plot()”</p>
+</blockquote>
+</section></section>
+<section id="resources-further-reading" class="title-slide slide level1 center">
+<h1>Resources &amp; Further Reading</h1>
+<ul>
+<li><strong>Happy Git &amp; GitHub for the useR</strong>: <a href="https://happygitwithr.com/" class="uri">https://happygitwithr.com/</a></li>
+<li><strong>usethis</strong>: <a href="https://usethis.r-lib.org" class="uri">https://usethis.r-lib.org</a></li>
+<li><strong>GitHub Docs</strong>: workflows, Actions, projects</li>
+</ul>
+<p>??? note Encourage exploring book chapters and cheat sheets.</p>
+</section>
 
-Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+<section id="qa" class="title-slide slide level1 center">
+<h1>Q&amp;A</h1>
+<ul>
+<li>Questions on Git commands?</li>
+<li>Collaboration challenges?</li>
+<li>CI/CD integrations?</li>
+</ul>
+</section>
 
-locale:
- [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
- [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
- [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
-[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
-
-time zone: UTC
-tzcode source: system (glibc)
-
-attached base packages:
-[1] stats     graphics  grDevices datasets  utils     methods   base     
-
-other attached packages:
-[1] gitcreds_0.1.2 usethis_3.1.0 
-
-loaded via a namespace (and not attached):
- [1] digest_0.6.37     fastmap_1.2.0     xfun_0.52         magrittr_2.0.3   
- [5] glue_1.8.0        knitr_1.50        htmltools_0.5.8.1 rmarkdown_2.29   
- [9] lifecycle_1.0.4   cli_3.6.5         vctrs_0.6.5       renv_1.0.9       
-[13] compiler_4.5.1    purrr_1.0.4       tools_4.5.1       evaluate_1.0.3   
-[17] yaml_2.3.10       rlang_1.1.6       jsonlite_2.0.0    fs_1.6.6         </code></pre>
-</div>
-</div>
-</details>
+<section id="thank-you" class="title-slide slide level1 center">
+<h1>Thank You</h1>
 
 <div class="quarto-auto-generated-content">
 <p><img src="logo.png" class="slide-logo"></p>
@@ -849,44 +918,6 @@ loaded via a namespace (and not attached):
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
