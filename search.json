@@ -1063,13 +1063,6 @@
     ]
   },
   {
-    "objectID": "slides/summary_mm.html#motivating-example---what-is-data-science",
-    "href": "slides/summary_mm.html#motivating-example---what-is-data-science",
-    "title": "Short Course on R Tools",
-    "section": "Motivating Example - What is Data Science?",
-    "text": "Motivating Example - What is Data Science?"
-  },
-  {
     "objectID": "slides/summary_mm.html#motivating-example---functional-singular-spectrum-analysis",
     "href": "slides/summary_mm.html#motivating-example---functional-singular-spectrum-analysis",
     "title": "Short Course on R Tools",
@@ -1095,14 +1088,14 @@
     "href": "slides/summary_mm.html#oop-in-practice",
     "title": "Short Course on R Tools",
     "section": "🛠️ OOP in Practice",
-    "text": "🛠️ OOP in Practice\n🔁 Comparison of Systems\n\n\n\n\n\n\n\n\n\n\nSystem\nStyle\nUsed In\n✅ Pros\n⚠️ Cons\n\n\n\n\nS3\nFunctional\nBase R\nSimple, extensible\nNo schema, fragile\n\n\nS4\nFormal\nBioconductor\nType-safe, robust\nVerbose, complex\n\n\nR6\nEncapsulated\nShiny, packages\nFast, mutable\nWeak type safety\n\n\nS7\nUnified OOP\nModern dev\nCombines S3 & S4 benefits\nStill evolving"
+    "text": "🛠️ OOP in Practice\n🔁 Comparison of Systems\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream | System | Style | Used In | ✅ Pros | ⚠️ Cons | |—————|—————|—————|—————|—————| | S3 | Functional | Base R | Simple, extensible | No schema, fragile | | S4 | Formal | Bioconductor | Type-safe, robust | Verbose, complex | | R6 | Encapsulated | Shiny, packages | Fast, mutable | Weak type safety | | S7 | Unified OOP | Modern dev | Combines S3 & S4 benefits | Still evolving |"
   },
   {
     "objectID": "slides/summary_mm.html#example-s3-class-with-constructor",
     "href": "slides/summary_mm.html#example-s3-class-with-constructor",
     "title": "Short Course on R Tools",
     "section": "💡 Example: S3 Class with Constructor",
-    "text": "💡 Example: S3 Class with Constructor\nmyclass &lt;- function(x) {\n  stopifnot(is.numeric(x))\n  structure(list(value = x), class = \"myclass\")\n}\n\n📌 Choose your OOP system based on team size, project complexity, and ecosystem."
+    "text": "💡 Example: S3 Class with Constructor\n=======\n| System | Style         | Used In        | ✅ Pros                  | ⚠️ Cons              |\n|--------|---------------|----------------|--------------------------|----------------------|\n| S3     | Functional    | Base R         | Simple, extensible       | No schema, fragile   |\n| S4     | Formal        | Bioconductor   | Type-safe, robust        | Verbose, complex     |\n| R6     | Encapsulated  | Shiny, packages| Fast, mutable            | Weak type safety     |\n| S7     | Unified OOP   | Modern dev     | Combines S3 & S4 benefits| Still evolving       |\n\n## 💡 Example: S3 Class with Constructor\n```r\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes\nmyclass &lt;- function(x) {\n  stopifnot(is.numeric(x))\n  structure(list(value = x), class = \"myclass\")\n}\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream\n\n📌 Choose your OOP system based on team size, project complexity, and ecosystem."
   },
   {
     "objectID": "slides/summary_mm.html#shiny-concepts-deployment",
@@ -1179,7 +1172,21 @@
     "href": "slides/summary_mm.html#daily-git-workflow",
     "title": "Short Course on R Tools",
     "section": "🧪 Daily Git Workflow",
-    "text": "🧪 Daily Git Workflow\n\nEdit → Stage → Commit → Push\nShare changes, open pull requests\nCheck status with usethis::git_sitrep()\n\n📦 Ideal for collaborative R package development!\n\n\n\n\n🔗 http://bit.ly/SCoRT"
+    "text": "🧪 Daily Git Workflow\n\nEdit → Stage → Commit → Push\nShare changes, open pull requests\nCheck status with usethis::git_sitrep()"
+  },
+  {
+    "objectID": "slides/summary_mm.html#shiny-concepts-deployment-1",
+    "href": "slides/summary_mm.html#shiny-concepts-deployment-1",
+    "title": "Short Course on R Tools",
+    "section": "Shiny Concepts & Deployment",
+    "text": "Shiny Concepts & Deployment\n\n⚡Reactivity System:\n\nreactive(): memoized reactive expressions\nisolate(): break reactive chains\nobserveEvent(): trigger actions without outputs\n\n🚀 Deployment Options:\n\nshinyapps.io, Posit Connect, university servers\nshinylive: deploy as static site (experimental)\n\n✅ Best Practices:\n\nUse shinytest2 for testing\nModularize with modules for scalability\nSketch UI/UX before coding\n\n🧠 Hands-on:\n\nKNN Regression in Shiny\nExplore shinyapps gallery for inspiration: https://shiny.posit.co/gallery/"
+  },
+  {
+    "objectID": "slides/summary_mm.html#rcpp-in-action-1",
+    "href": "slides/summary_mm.html#rcpp-in-action-1",
+    "title": "Short Course on R Tools",
+    "section": "🔬 Rcpp in Action",
+    "text": "🔬 Rcpp in Action\n\n🧪 Examples:\n\nOdd/Even test (basic)\n\nbool is_even(int x) {\nreturn x % 2 == 0;\n}\n\nVAR(1) simulation with RcppArmadillo\nFibonacci benchmark: 200× speedup\n\nC++ Types: NumericVector, IntegerVector, STL containers\nData conversion: Seamless mapping between R and C++ objects\n📦 Packaging:\n\nUse LinkingTo: Rcpp in DESCRIPTION\nAutomate with usethis::use_rcpp()\nMaintainable, testable code with Rcpp::compileAttributes()"
   },
   {
     "objectID": "slides/summary_hh.html#oop-in-practice",
@@ -1208,6 +1215,13 @@
     "title": "Short Course on R Tools",
     "section": "🔬 Rcpp in Action",
     "text": "🔬 Rcpp in Action\n\n🧪 Examples:\n\nOdd/Even test (basic)\n\nbool is_even(int x) {\nreturn x % 2 == 0;\n}\n\nVAR(1) simulation with RcppArmadillo\nFibonacci benchmark: 200× speedup\n\nC++ Types: NumericVector, IntegerVector, STL containers\nData conversion: Seamless mapping between R and C++ objects\n📦 Packaging:\n\nUse LinkingTo: Rcpp in DESCRIPTION\nAutomate with usethis::use_rcpp()\nMaintainable, testable code with Rcpp::compileAttributes()"
+  },
+  {
+    "objectID": "slides/summary_hh.html#interoperability-with-reticulate",
+    "href": "slides/summary_hh.html#interoperability-with-reticulate",
+    "title": "Short Course on R Tools",
+    "section": "Interoperability with reticulate",
+    "text": "Interoperability with reticulate\n\nWhy integrate?\n\nLeverage Python libraries (ML, CV, NLP)\nAvoid rewriting code across environments\nEnable seamless workflows via R Markdown & Quarto\n\nKey Features of reticulate:\n\nImport Python modules via import()\nRun scripts with source_python() or py_run_file()\nShared Python session across R and Python chunks\n\nData Exchange:\n\nAuto-conversion: vectors ↔︎ arrays, data frames ↔︎ pandas\nR objects available in Python via r$, and vice versa with py$"
   },
   {
     "objectID": "slides/summary_hh.html#using-python-from-r",
@@ -1270,7 +1284,7 @@
     "href": "slides/summary_hh.html#daily-git-workflow",
     "title": "Short Course on R Tools",
     "section": "🧪 Daily Git Workflow",
-    "text": "🧪 Daily Git Workflow\n\nEdit → Stage → Commit → Push\nShare changes, open pull requests\nCheck status with usethis::git_sitrep()\n\n📦 Ideal for collaborative R package development!\n\n\n\n\n🔗 http://bit.ly/SCoRT"
+    "text": "🧪 Daily Git Workflow\n\nEdit → Stage → Commit → Push\nShare changes, open pull requests\nCheck status with usethis::git_sitrep()\n\n📦 Ideal for collaborative R package development!"
   },
   {
     "objectID": "slides/Topic5_hh.html#key-packages",
