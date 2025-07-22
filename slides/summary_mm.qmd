@@ -10,6 +10,7 @@ format:
     scrollable: true
 ---
 
+<<<<<<< Updated upstream
 ## Motivating Example - What is Data Science?
 
 ![](images/webinar/dtsc/what-is-DS-1.png){.absolute left="200" height="600"}
@@ -148,11 +149,33 @@ format:
     -   Follow best practices: custom constructor + validator + clean API
 
 ------------------------------------------------------------------------
+=======
+# 🧠 Object Oriented Programming in R 
+
+- **🧩 OOP Paradigms in R**:
+  - Functional OOP: `plot(lm(...))`
+  - Encapsulated OOP: `learner$train()`
+  - Modern tools: `mlr3`, `R6`, `S7`
+
+- **🏗 OOP Systems**:
+  - **S3**: Lightweight & informal — uses `UseMethod()`
+  - **S4**: Formal and type-safe — uses `setClass()` and `@`
+  - **R6**: Mutable, used in apps like `shiny`
+  - **S7**: Newest and unified — multiple dispatch
+
+- **🔍 Key Concepts**:
+  - Use `otype()`, `is.object()`, `structure()`, `class()` for diagnostics
+  - Understand inheritance and `NextMethod()`
+  - Follow best practices: custom constructor + validator + clean API
+
+---
+>>>>>>> Stashed changes
 
 ## 🛠️ OOP in Practice
 
 ### 🔁 Comparison of Systems
 
+<<<<<<< Updated upstream
 | System | Style | Used In | ✅ Pros | ⚠️ Cons |
 |---------------|---------------|---------------|---------------|---------------|
 | S3 | Functional | Base R | Simple, extensible | No schema, fragile |
@@ -163,11 +186,23 @@ format:
 ## 💡 Example: S3 Class with Constructor
 
 ``` r
+=======
+| System | Style         | Used In        | ✅ Pros                  | ⚠️ Cons              |
+|--------|---------------|----------------|--------------------------|----------------------|
+| S3     | Functional    | Base R         | Simple, extensible       | No schema, fragile   |
+| S4     | Formal        | Bioconductor   | Type-safe, robust        | Verbose, complex     |
+| R6     | Encapsulated  | Shiny, packages| Fast, mutable            | Weak type safety     |
+| S7     | Unified OOP   | Modern dev     | Combines S3 & S4 benefits| Still evolving       |
+
+## 💡 Example: S3 Class with Constructor
+```r
+>>>>>>> Stashed changes
 myclass <- function(x) {
   stopifnot(is.numeric(x))
   structure(list(value = x), class = "myclass")
 }
 ```
+<<<<<<< Updated upstream
 
 > 📌 Choose your OOP system based on team size, project complexity, and ecosystem.
 
@@ -370,3 +405,86 @@ myclass <- function(x) {
 3.  Check status with `usethis::git_sitrep()`
 
 📦 Ideal for collaborative R package development!
+=======
+> 📌 Choose your OOP system based on team size, project complexity, and ecosystem.
+
+
+
+# 🌐 Web Apps with Shiny 
+
+- ✨ Shiny = Interactive web apps in pure R (no HTML/JS!)
+
+- 📦 Components:
+
+  - ui: Layout, inputs/outputs
+
+  -  server: Logic, reactivity
+
+- 🧪 Use Cases:
+
+  - Dashboards, simulations, teaching tools
+
+- 🔌 Inputs & Outputs:
+
+  - Inputs: sliderInput(), textInput()
+
+  - Outputs: renderPlot(), renderText(), renderTable()
+
+## Shiny Concepts & Deployment
+
+- ⚡**Reactivity System**:
+  - `reactive()`: memoized reactive expressions
+  - `isolate()`: break reactive chains
+  - `observeEvent()`: trigger actions without outputs
+
+- 🚀 **Deployment Options**:
+  - `shinyapps.io`, Posit Connect, university servers
+  - **shinylive**: deploy as static site (experimental)
+
+- ✅ **Best Practices**:
+  - Use `shinytest2` for testing
+  - Modularize with `modules` for scalability
+  - Sketch UI/UX before coding
+
+- 🧠 **Hands-on**:
+  - KNN Regression in Shiny
+  - Explore shinyapps gallery for inspiration: https://shiny.posit.co/gallery/
+
+
+
+# ⚡ Rcpp – High Performance with C++ in R
+
+- 🚀 **Rcpp** bridges R and C++ for high-performance computing.
+- 🏁 Use cases:
+  - Speed up loops, recursion, and matrix operations
+  - Access C++ libraries and STL
+  - Integrate C++ in R packages
+
+- 🧰 **Workflows**:
+  - `evalCpp()`: quick one-liners
+  - `cppFunction()`: inline prototypes
+  - `sourceCpp()`: external C++ files with R wrappers
+
+## 🔬 Rcpp in Action
+
+- 🧪 **Examples**:
+  - Odd/Even test (basic)
+```r
+bool is_even(int x) {
+  return x % 2 == 0;
+}
+```
+  - VAR(1) simulation with `RcppArmadillo`
+  - Fibonacci benchmark: 200× speedup
+- **C++ Types**: `NumericVector`, `IntegerVector`, STL containers
+- **Data conversion**: Seamless mapping between R and C++ objects
+
+- 📦 **Packaging**:
+  - Use `LinkingTo: Rcpp` in DESCRIPTION
+  - Automate with `usethis::use_rcpp()`
+  - Maintainable, testable code with `Rcpp::compileAttributes()`
+
+
+# 🙏 Thank you!
+Questions & Discussion
+>>>>>>> Stashed changes

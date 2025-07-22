@@ -10,7 +10,7 @@ format:
     scrollable: true
 ---
 
-# 🧠 Session 1: OOP in R 
+# 🧠 Object Oriented Programming in R 
 
 - **🧩 OOP Paradigms in R**:
   - Functional OOP: `plot(lm(...))`
@@ -52,7 +52,7 @@ myclass <- function(x) {
 
 
 
-# Session 2:🌐 Web Apps with Shiny 
+# 🌐 Web Apps with Shiny 
 
 - ✨ Shiny = Interactive web apps in pure R (no HTML/JS!)
 
@@ -94,7 +94,7 @@ myclass <- function(x) {
 
 
 
-# ⚡ Session 3: Rcpp – High Performance with C++ in R
+# ⚡ Rcpp – High Performance with C++ in R
 
 - 🚀 **Rcpp** bridges R and C++ for high-performance computing.
 - 🏁 Use cases:
@@ -127,7 +127,9 @@ bool is_even(int x) {
   - Maintainable, testable code with `Rcpp::compileAttributes()`
 
 
-# 🐍 Session 4: Python in R – Interoperability with `reticulate`
+# 🐍 Python in R
+
+## Interoperability with `reticulate`
 
 - **Why integrate?**
   - Leverage Python libraries (ML, CV, NLP)
@@ -176,7 +178,7 @@ shinyApp(ui, server)
 - Ideal for reproducible, collaborative data science
 
 
-# 🎯 Session 5: Build Your Own R Package
+# 📦 Build Your Own R Package
 
 - **Why create a package?**
   - Reuse and organize code
@@ -222,7 +224,7 @@ shinyApp(ui, server)
 
 
 
-# Session 6: CRAN & GitHub Essentials
+# CRAN & GitHub Essentials
 
 ## 🚀 CRAN Submission
 
@@ -266,4 +268,5 @@ shinyApp(ui, server)
 📦 Ideal for collaborative R package development!
 
 
-
+# 🙏 Thank you!
+Questions & Discussion
