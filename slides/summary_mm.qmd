@@ -10,102 +10,125 @@ format:
     scrollable: true
 ---
 
-## Motivating Example - What is Data Science
+## Motivating Example - What is Data Science?
 
-![](images/webinar/fssa/SSA-FSSA-01.png){.absolute left="200" height="600"}
-
-. . . 
-
-![](images/webinar/fssa/SSA-FSSA-11.png){.absolute left="200" height="600"}
+![](images/webinar/dtsc/what-is-DS-1.png){.absolute left="200" height="600"}
 
 . . .
 
-![](images/webinar/fssa/SSA-FSSA-12.png){.absolute left="200" height="600"}
+![](images/webinar/dtsc/what-is-DS-2.png){.absolute left="200" height="600"}
 
 . . .
 
-![](images/webinar/fssa/SSA-FSSA-13.png){.absolute left="200" height="600"}
+![](images/webinar/dtsc/what-is-DS-3.png){.absolute left="200" height="600"}
 
 . . .
 
-![](images/webinar/fssa/SSA-FSSA-02.png){.absolute left="200" height="600"}
+![](images/webinar/dtsc/what-is-DS-4.png){.absolute left="200" height="600"}
 
 . . .
 
-![](images/webinar/fssa/SSA-FSSA-03.png){.absolute left="200" height="600"}
+![](images/webinar/dtsc/what-is-DS-5.png){.absolute left="200" height="600"}
+
+## Motivating Example - Functional Singular Spectrum Analysis {.title style="font-size: 27px;"}
+
+![](images/webinar/fssa/what-is-FSSA.png){.absolute top="72" left="200" height="600"}
 
 . . .
 
-![](images/webinar/fssa/SSA-FSSA-04.png){.absolute left="200" height="600"}
+![](images/webinar/fssa/SSA-FSSA-01.png){.absolute left="220" height="620"}
 
 . . .
 
-![](images/webinar/fssa/SSA-FSSA-05.png){.absolute left="200" height="600"}
+![](images/webinar/fssa/SSA-FSSA-11.png){.absolute left="220" height="620"}
 
 . . .
 
-![](images/webinar/fssa/SSA-FSSA-06.png){.absolute left="200" height="600"}
+![](images/webinar/fssa/SSA-FSSA-12.png){.absolute left="220" height="620"}
 
 . . .
 
-![](images/webinar/fssa/SSA-FSSA-07.png){.absolute left="200" height="600"}
+![](images/webinar/fssa/SSA-FSSA-13.png){.absolute left="220" height="620"}
 
 . . .
 
-![](images/webinar/fssa/SSA-FSSA-08.png){.absolute left="200" height="600"}
+![](images/webinar/fssa/SSA-FSSA-02.png){.absolute left="220" height="620"}
 
 . . .
 
-![](images/webinar/fssa/SSA-FSSA-09.png){.absolute left="200" height="600"}
+![](images/webinar/fssa/SSA-FSSA-03.png){.absolute left="220" height="620"}
 
 . . .
 
-![](images/webinar/fssa/SSA-FSSA-10.png){.absolute left="200" height="600"}
+![](images/webinar/fssa/SSA-FSSA-04.png){.absolute left="220" height="620"}
+
+. . .
+
+![](images/webinar/fssa/SSA-FSSA-05.png){.absolute left="220" height="620"}
+
+. . .
+
+![](images/webinar/fssa/SSA-FSSA-06.png){.absolute left="220" height="620"}
+
+. . .
+
+![](images/webinar/fssa/SSA-FSSA-07.png){.absolute left="220" height="620"}
+
+. . .
+
+![](images/webinar/fssa/SSA-FSSA-08.png){.absolute left="220" height="620"}
+
+. . .
+
+![](images/webinar/fssa/SSA-FSSA-09.png){.absolute left="220" height="620"}
+
+. . .
+
+![](images/webinar/fssa/SSA-FSSA-10.png){.absolute left="220" height="620"}
 
 ## Motivating Example - OOP
 
-
-![](images/webinar/oop/FTS-FSSA-Objects-01.png){.absolute width="1000"}
-
-. . . 
-
-![](images/webinar/oop/FTS-FSSA-Objects-02.png){.absolute width="1000"}
+![](images/webinar/oop/FTS-FSSA-Objects-01.png){.absolute width="450"}
 
 . . .
 
-![](images/webinar/oop/FTS-FSSA-Objects-03.png){.absolute width="1000"}
+![](images/webinar/oop/FTS-FSSA-Objects-02.png){.absolute left="50" top="300" width="900"}
 
 . . .
 
-![](images/webinar/oop/FTS-FSSA-Objects-04.png){.absolute width="1000"}
+![](images/webinar/oop/FTS-FSSA-Objects-03.png){.absolute left="50" top="300" width="900"}
 
 . . .
 
-![](images/webinar/oop/FTS-FSSA-Objects-05.png){.absolute width="1000"}
+![](images/webinar/oop/FTS-FSSA-Objects-04.png){.absolute left="50" top="300" width="900"}
 
 . . .
 
-![](images/webinar/oop/FTS-FSSA-Objects-06.png){.absolute width="1000"}
+![](images/webinar/oop/FTS-FSSA-Objects-05.png){.absolute left="50" top="300" width="900"}
+
+## Motivating Example - OOP (Cont.)
+
+![](images/webinar/oop/FTS-FSSA-Objects-06.png){.absolute width="450"}
 
 . . .
 
-![](images/webinar/oop/FTS-FSSA-Objects-07.png){.absolute width="1000"}
+![](images/webinar/oop/FTS-FSSA-Objects-07.png){.absolute left="250" top="290" width="600"}
 
 . . .
 
-![](images/webinar/oop/FTS-FSSA-Objects-08.png){.absolute width="1000"}
+![](images/webinar/oop/FTS-FSSA-Objects-08.png){.absolute left="250" top="290" width="600"}
 
 . . .
 
-![](images/webinar/oop/FTS-FSSA-Objects-09.png){.absolute width="1000"}
+![](images/webinar/oop/FTS-FSSA-Objects-09.png){.absolute left="250" top="290" width="600"}
 
 . . .
 
-![](images/webinar/oop/FTS-FSSA-Objects-10.png){.absolute width="1000"}
+![](images/webinar/oop/FTS-FSSA-Objects-10.png){.absolute left="250" top="290" width="600"}
 
 . . .
 
-![](images/webinar/oop/FTS-FSSA-Objects-15.png){.absolute width="1000"}
+![](images/webinar/oop/FTS-FSSA-Objects-15.png){.absolute  left="0" top="75" height="400"}
 
 # 🧠 Session 1: OOP in R
 
@@ -130,7 +153,7 @@ format:
 ### 🔁 Comparison of Systems
 
 | System | Style | Used In | ✅ Pros | ⚠️ Cons |
-|--------------|--------------|--------------|-----------------|--------------|
+|---------------|---------------|---------------|---------------|---------------|
 | S3 | Functional | Base R | Simple, extensible | No schema, fragile |
 | S4 | Formal | Bioconductor | Type-safe, robust | Verbose, complex |
 | R6 | Encapsulated | Shiny, packages | Fast, mutable | Weak type safety |
