@@ -4,7 +4,7 @@
     "href": "course-syllabus.html",
     "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "",
-    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: https://bit.ly/SCoRT",
+    "text": "Course Title: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: https://bit.ly/SCoRT",
     "crumbs": [
       "Course information",
       "Syllabus"
@@ -15,7 +15,7 @@
     "href": "course-syllabus.html#course-information",
     "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "",
-    "text": "Course Title: MSSC 6010: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: https://bit.ly/SCoRT",
+    "text": "Course Title: Short Course on R Tools\nMeeting Time: TuTh 2:00pm - 3:15pm\nLocation: Microsoft Teams\nWebsite: https://bit.ly/SCoRT",
     "crumbs": [
       "Course information",
       "Syllabus"
@@ -26,7 +26,7 @@
     "href": "course-syllabus.html#instructors-details",
     "title": "Syllabus - Short Course on R Tools (SCoRT)",
     "section": "Instructors Details",
-    "text": "Instructors Details\n\nName: Mehdi Maadooliat, Ph.D.\nOffice Hours: Tu & Th 12:15 - 1:30pm or by e-mail",
+    "text": "Instructors Details\n\nName: Mehdi Maadooliat, and Hossein Haghbin\nOffice Hours: Tu & Th 12:15 - 1:30pm or by e-mail",
     "crumbs": [
       "Course information",
       "Syllabus"
@@ -1066,8 +1066,15 @@
     "objectID": "slides/summary_mm.html#motivating-example---what-is-data-science",
     "href": "slides/summary_mm.html#motivating-example---what-is-data-science",
     "title": "Short Course on R Tools",
-    "section": "Motivating Example - What is Data Science",
-    "text": "Motivating Example - What is Data Science"
+    "section": "Motivating Example - What is Data Science?",
+    "text": "Motivating Example - What is Data Science?"
+  },
+  {
+    "objectID": "slides/summary_mm.html#motivating-example---functional-singular-spectrum-analysis",
+    "href": "slides/summary_mm.html#motivating-example---functional-singular-spectrum-analysis",
+    "title": "Short Course on R Tools",
+    "section": "Motivating Example - Functional Singular Spectrum Analysis",
+    "text": "Motivating Example - Functional Singular Spectrum Analysis"
   },
   {
     "objectID": "slides/summary_mm.html#motivating-example---oop",
@@ -1075,6 +1082,13 @@
     "title": "Short Course on R Tools",
     "section": "Motivating Example - OOP",
     "text": "Motivating Example - OOP"
+  },
+  {
+    "objectID": "slides/summary_mm.html#motivating-example---oop-cont.",
+    "href": "slides/summary_mm.html#motivating-example---oop-cont.",
+    "title": "Short Course on R Tools",
+    "section": "Motivating Example - OOP (Cont.)",
+    "text": "Motivating Example - OOP (Cont.)"
   },
   {
     "objectID": "slides/summary_mm.html#oop-in-practice",
@@ -1721,7 +1735,7 @@
     "href": "course-overview.html",
     "title": "Course overview",
     "section": "",
-    "text": "This is the homepage for Short Course on R Tools (SCoRT) by Dr. Mehdi Maadooliat. All course materials will be posted on this site.\nYou can find the course syllabus here and the course schedule here.",
+    "text": "This is the homepage for Short Course on R Tools (SCoRT) by Dr. Mehdi Maadooliat and Dr. Hossein Haghbin. All course materials will be posted on this site.\nYou can find the course syllabus here and the course schedule here.",
     "crumbs": [
       "Course information",
       "Overview"
