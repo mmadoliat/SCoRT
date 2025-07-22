@@ -1179,7 +1179,7 @@
     "href": "slides/summary_mm.html#daily-git-workflow",
     "title": "Short Course on R Tools",
     "section": "🧪 Daily Git Workflow",
-    "text": "🧪 Daily Git Workflow\n\nEdit → Stage → Commit → Push\nShare changes, open pull requests\nCheck status with usethis::git_sitrep()\n\n📦 Ideal for collaborative R package development!\n\n\n\n\n🔗 https://bit.ly/SCoRT"
+    "text": "🧪 Daily Git Workflow\n\nEdit → Stage → Commit → Push\nShare changes, open pull requests\nCheck status with usethis::git_sitrep()\n\n📦 Ideal for collaborative R package development!\n\n\n\n\n🔗 http://bit.ly/SCoRT"
   },
   {
     "objectID": "slides/summary_hh.html#oop-in-practice",
@@ -1270,7 +1270,7 @@
     "href": "slides/summary_hh.html#daily-git-workflow",
     "title": "Short Course on R Tools",
     "section": "🧪 Daily Git Workflow",
-    "text": "🧪 Daily Git Workflow\n\nEdit → Stage → Commit → Push\nShare changes, open pull requests\nCheck status with usethis::git_sitrep()\n\n📦 Ideal for collaborative R package development!\n\n\n\n\n🔗 https://bit.ly/SCoRT"
+    "text": "🧪 Daily Git Workflow\n\nEdit → Stage → Commit → Push\nShare changes, open pull requests\nCheck status with usethis::git_sitrep()\n\n📦 Ideal for collaborative R package development!\n\n\n\n\n🔗 http://bit.ly/SCoRT"
   },
   {
     "objectID": "slides/Topic5_hh.html#key-packages",

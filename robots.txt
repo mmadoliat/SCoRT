@@ -1,1 +1,1 @@
-Sitemap: https://bit.ly/SCoRT/sitemap.xml
+Sitemap: http://bit.ly/SCoRT/sitemap.xml
