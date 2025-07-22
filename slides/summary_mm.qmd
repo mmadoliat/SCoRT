@@ -128,7 +128,8 @@ format:
 
 . . .
 
-![](images/webinar/oop/FTS-FSSA-Objects-15.png){.absolute  left="0" top="75" height="400"}
+![](images/webinar/oop/FTS-FSSA-Objects-15.png){.absolute  right="0" top="160" width="560"}
+![](images/webinar/oop/FTS-FSSA-Objects-10.png){.absolute left="250" top="290" width="600"}
 
 # 🧠 Session 1: OOP in R
 

@@ -5,9 +5,9 @@ website:
   page-navigation: true
   title: "SCoRT"
   description: "Homepage for 'Short Course on R Tools', Summer 2025."
-  site-url: "https://bit.ly/SCoRT"
+  site-url: "http://bit.ly/SCoRT"
 
-  repo-url: https://github.com/mmadoliat/SCoRT/
+  repo-url: http://github.com/mmadoliat/SCoRT/
   repo-actions: [edit, issue]
 
   open-graph: true
@@ -22,13 +22,13 @@ website:
     align: center
     tools:
       - icon: github
-        href: https://github.com/mmadoliat/SCoRT/
+        href: http://github.com/mmadoliat/SCoRT/
         text: "GitHub organization"
       - icon: code-square
-        href: https://bit.ly/SCoRT
+        href: http://bit.ly/SCoRT
         text: "Bitly"
       - icon: person-fill
-        href: https://bit.ly/RS-dna
+        href: http://bit.ly/RS-dna
         text: "dna RStudio"
 
     style: docked
@@ -83,8 +83,8 @@ website:
             text: Cheatsheets
 
   page-footer:
-    right: "This page is built with [Quarto](https://quarto.org/)."
-    left: "&copy; Copyright 2025, Mehdi Maadooliat"
+    right: "This page is built with [Quarto](http://quarto.org/)."
+    left: "&copy; Copyright 2025, Mehdi Maadooliat and Hossein Haghbin"
     background: "#FFCC00" # Arylide Yellow
     
 format:
