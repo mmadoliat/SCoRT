@@ -86,6 +86,8 @@ format:
 
 ![](images/webinar/fssa/SSA-FSSA-10.png){.absolute left="220" height="620"}
 
+# 🧠 Session 1: OOP in R
+
 ## Motivating Example - OOP
 
 ![](images/webinar/oop/FTS-FSSA-Objects-01.png){.absolute width="450"}
@@ -131,47 +133,81 @@ format:
 ![](images/webinar/oop/FTS-FSSA-Objects-15.png){.absolute  right="0" top="160" width="560"}
 ![](images/webinar/oop/FTS-FSSA-Objects-10.png){.absolute left="250" top="290" width="600"}
 
-# 🧠 Session 1: OOP in R
+## OOP in R
 
 -   **🧩 OOP Paradigms in R**:
     -   Functional OOP: `plot(lm(...))`
     -   Encapsulated OOP: `learner$train()`
     -   Modern tools: `mlr3`, `R6`, `S7`
+
+. . .
+
 -   **🏗 OOP Systems**:
     -   **S3**: Lightweight & informal — uses `UseMethod()`
     -   **S4**: Formal and type-safe — uses `setClass()` and `@`
     -   **R6**: Mutable, used in apps like `shiny`
     -   **S7**: Newest and unified — multiple dispatch
--   **🔍 Key Concepts**:
-    -   Use `otype()`, `is.object()`, `structure()`, `class()` for diagnostics
-    -   Understand inheritance and `NextMethod()`
-    -   Follow best practices: custom constructor + validator + clean API
 
 ------------------------------------------------------------------------
 
-## 🛠️ OOP in Practice
+## 🛠️ OOP in Practice 
 
 ### 🔁 Comparison of Systems
-
-| System | Style | Used In | ✅ Pros | ⚠️ Cons |
-|--------------|--------------|--------------|-----------------|--------------|
-| S3 | Functional | Base R | Simple, extensible | No schema, fragile |
-| S4 | Formal | Bioconductor | Type-safe, robust | Verbose, complex |
-| R6 | Encapsulated | Shiny, packages | Fast, mutable | Weak type safety |
-| S7 | Unified OOP | Modern dev | Combines S3 & S4 benefits | Still evolving |
-
-## 💡 Example: S3 Class with Constructor
-
-``` r
-myclass <- function(x) {
-  stopifnot(is.numeric(x))
-  structure(list(value = x), class = "myclass")
-}
-```
-
-> 📌 Choose your OOP system based on team size, project complexity, and ecosystem.
+<table>
+  <thead>
+    <tr>
+      <th>Sys.</th>
+      <th>Style</th>
+      <th>Used In</th>
+      <th>✅ Pros</th>
+      <th>⚠️ Cons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="fragment">
+      <td>S3</td>
+      <td>Functional</td>
+      <td>Base R</td>
+      <td>Simple, extensible</td>
+      <td>No schema, fragile</td>
+    </tr>
+    <tr class="fragment">
+      <td>S4</td>
+      <td>Formal</td>
+      <td>Bioconductor</td>
+      <td>Type-safe, robust</td>
+      <td>Verbose, complex</td>
+    </tr>
+    <tr class="fragment">
+      <td>R6</td>
+      <td>Encapsulated</td>
+      <td>Shiny, Keras</td>
+      <td>Fast, mutable</td>
+      <td>Weak type safety</td>
+    </tr>
+    <tr class="fragment">
+      <td>S7</td>
+      <td>Unified OOP</td>
+      <td>Modern dev</td>
+      <td>Combines S3 & S4 benefits</td>
+      <td>Still evolving</td>
+    </tr>
+  </tbody>
+</table>
 
 # Session 2:🌐 Web Apps with Shiny
+
+## FSSA - Shiny {.title style="font-size: 12px;"}
+
+<iframe class="stretch" data-src="https://fssa.shinyapps.io/FSSA/">
+
+</iframe>
+
+:::{.smallest}
+[🔗 Open in a browser](https://fssa.shinyapps.io/FSSA/){target="_blank"}
+:::
+
+## Web Apps with Shiny
 
 -   ✨ Shiny = Interactive web apps in pure R (no HTML/JS!)
 
