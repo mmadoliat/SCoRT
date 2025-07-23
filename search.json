@@ -1315,25 +1315,18 @@
     "text": "🌍 Why Use Git & GitHub?\n\n\n🔁 Version Control: Track and manage changes in code\n🤝 Collaboration: Work with others without overwriting files\n🧪 Reproducibility: Restore older versions when bugs occur\n🔄 Open Source: Share your package with the world\n\n\n\n\n🧰 Git = Local tracking tool\n☁️ GitHub = Online hosting and teamwork platform"
   },
   {
+    "objectID": "slides/summary_hh.html#example-rfssa-package-github",
+    "href": "slides/summary_hh.html#example-rfssa-package-github",
+    "title": "Short Course on R Tools",
+    "section": "📬 Example: Rfssa Package Github",
+    "text": "📬 Example: Rfssa Package Github"
+  },
+  {
     "objectID": "slides/summary_hh.html#git-github-from-rstudio",
     "href": "slides/summary_hh.html#git-github-from-rstudio",
     "title": "Short Course on R Tools",
     "section": "🧰 Git & GitHub from RStudio",
     "text": "🧰 Git & GitHub from RStudio\n✅ RStudio has built-in Git integration:\n\n\nGit tab for staging, committing, and pushing\n\n\n\n\nVisual diff and commit history\n\n\n\n\nPush to GitHub without leaving RStudio"
-  },
-  {
-    "objectID": "slides/summary_hh.html#set-up-github-in-r",
-    "href": "slides/summary_hh.html#set-up-github-in-r",
-    "title": "Short Course on R Tools",
-    "section": "🔧 Set Up GitHub in R",
-    "text": "🔧 Set Up GitHub in R\n\n\n✅ Install Git (git-scm.com)\n\n\n\n\n🔑 Create Personal Access Token (PAT):\n\nusethis::create_github_token()\ngitcreds::gitcreds_set()\n\n\n\n🔗 Link your project to GitHub:\n\nusethis::use_github()\n\n🎉 Your RStudio project is now connected to GitHub!"
-  },
-  {
-    "objectID": "slides/summary_hh.html#create-a-git-enabled-r-package-project",
-    "href": "slides/summary_hh.html#create-a-git-enabled-r-package-project",
-    "title": "Short Course on R Tools",
-    "section": "📦 Create a Git-Enabled R Package Project",
-    "text": "📦 Create a Git-Enabled R Package Project\n\nFile → New Project → New Directory → R Package\n\n\n\n✅ Check “Create a git repository”\n\n\n\n\nInside the project:\n\nusethis::use_git()\nusethis::use_github()\n\n\n\n📁 You now have a .git repo and a linked GitHub project!"
   },
   {
     "objectID": "slides/summary_hh.html#daily-git-workflow-in-rstudio",
@@ -1343,25 +1336,18 @@
     "text": "🔁 Daily Git Workflow in RStudio\n\n🎯 A typical work cycle for package developers:\n\n\n\n\n\nStep\nDescription\n\n\n\n\n✏️ Edit\nMake changes to .R or .Rmd files\n\n\n✅ Stage\nSelect files to track in Git tab\n\n\n💬 Commit\nSave with a message (e.g., “Fix bug”)\n\n\n🚀 Push\nSend to GitHub"
   },
   {
-    "objectID": "slides/summary_hh.html#example-collaborative-workflow",
-    "href": "slides/summary_hh.html#example-collaborative-workflow",
-    "title": "Short Course on R Tools",
-    "section": "🧪 Example: Collaborative Workflow",
-    "text": "🧪 Example: Collaborative Workflow\n\n\nYou write a new function: plot_confidence()\n\n\n\n\nCommit message: \"Add CI plot to visual module\"\n\n\n\n\nPush to GitHub → colleague reviews & suggests changes"
-  },
-  {
     "objectID": "slides/summary_hh.html#github-for-package-development",
     "href": "slides/summary_hh.html#github-for-package-development",
     "title": "Short Course on R Tools",
     "section": "✅ GitHub for Package Development",
-    "text": "✅ GitHub for Package Development\n\n\n📦 Host your package openly\n🧪 Enable collaborative testing & documentation\n📤 Submit to CRAN from a clean version-controlled repo\n🔁 Great for long-term maintenance and open-source visibility\n\n\n\n\n🎯 If you publish your package, link the GitHub repo in DESCRIPTION"
+    "text": "✅ GitHub for Package Development\n\n\n📦 Host your package openly\n🧪 Enable collaborative testing & documentation\n📤 Submit to CRAN from a clean version-controlled repo\n🔁 Great for long-term maintenance and open-source visibility"
   },
   {
-    "objectID": "slides/summary_hh.html#resources",
-    "href": "slides/summary_hh.html#resources",
+    "objectID": "slides/summary_hh.html#demo-rfssa-github-package",
+    "href": "slides/summary_hh.html#demo-rfssa-github-package",
     "title": "Short Course on R Tools",
-    "section": "📚 Resources",
-    "text": "📚 Resources\n\n📘 Happy Git with R: https://happygitwithr.com\n🔧 usethis: https://usethis.r-lib.org\n🧪 gitcreds: https://github.com/r-lib/gitcreds\n📂 GitHub Docs: https://docs.github.com/"
+    "section": "🎥 Demo: Rfssa Github Package",
+    "text": "🎥 Demo: Rfssa Github Package"
   },
   {
     "objectID": "slides/Topic5_hh.html#key-packages",

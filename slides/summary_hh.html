@@ -630,6 +630,10 @@ Mehdi Maadooliat and Hossein Haghbin
 </blockquote>
 </div>
 </section>
+<section id="example-rfssa-package-github" class="slide level2" data-transition="zoom">
+<h2>📬 Example: Rfssa Package Github</h2>
+
+<img data-src="images/package/Github_Rfssa.png" class="quarto-figure quarto-figure-left r-stretch" style="width:95.0%" alt="Screenshot of Pagerank"></section>
 <section id="git-github-from-rstudio" class="slide level2" data-transition="convex">
 <h2>🧰 Git &amp; GitHub from RStudio</h2>
 <p>✅ RStudio has built-in Git integration:</p>
@@ -647,53 +651,6 @@ Mehdi Maadooliat and Hossein Haghbin
 <ul>
 <li>Push to GitHub without leaving RStudio</li>
 </ul>
-</div>
-</section>
-<section id="set-up-github-in-r" class="slide level2 scrollable" data-transition="concave">
-<h2>🔧 Set Up GitHub in R</h2>
-<div class="fragment">
-<ol type="1">
-<li>✅ <strong>Install Git</strong> (<a href="https://git-scm.com">git-scm.com</a>)</li>
-</ol>
-</div>
-<div class="fragment">
-<ol start="2" type="1">
-<li>🔑 <strong>Create Personal Access Token (PAT)</strong>:</li>
-</ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span>
-<span id="cb5-2"><a></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
-<ol start="3" type="1">
-<li>🔗 <strong>Link your project to GitHub</strong>:</li>
-</ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_github</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<blockquote>
-<p>🎉 Your RStudio project is now connected to GitHub!</p>
-</blockquote>
-</div>
-</section>
-<section id="create-a-git-enabled-r-package-project" class="slide level2 scrollable">
-<h2>📦 Create a Git-Enabled R Package Project</h2>
-<ol type="1">
-<li><code>File</code> → <code>New Project</code> → <code>New Directory</code> → <code>R Package</code></li>
-</ol>
-<div class="fragment">
-<ol start="2" type="1">
-<li>✅ Check <strong>“Create a git repository”</strong></li>
-</ol>
-</div>
-<div class="fragment">
-<ol start="3" type="1">
-<li>Inside the project:</li>
-</ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span>
-<span id="cb7-2"><a></a>usethis<span class="sc">::</span><span class="fu">use_github</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
-<blockquote>
-<p>📁 You now have a <code>.git</code> repo and a linked GitHub project!</p>
-</blockquote>
 </div>
 </section>
 <section id="daily-git-workflow-in-rstudio" class="slide level2">
@@ -730,24 +687,6 @@ Mehdi Maadooliat and Hossein Haghbin
 </table>
 </div>
 </section>
-<section id="example-collaborative-workflow" class="slide level2 scrollable">
-<h2>🧪 Example: Collaborative Workflow</h2>
-<div class="fragment custom blur">
-<ol type="1">
-<li>You write a new function: <code>plot_confidence()</code></li>
-</ol>
-</div>
-<div class="fragment custom blur">
-<ol start="2" type="1">
-<li>Commit message: <code>"Add CI plot to visual module"</code></li>
-</ol>
-</div>
-<div class="fragment custom blur">
-<ol start="3" type="1">
-<li>Push to GitHub → colleague reviews &amp; suggests changes</li>
-</ol>
-</div>
-</section>
 <section id="github-for-package-development" class="slide level2">
 <h2>✅ GitHub for Package Development</h2>
 <div>
@@ -758,20 +697,10 @@ Mehdi Maadooliat and Hossein Haghbin
 <li class="fragment">🔁 Great for long-term maintenance and open-source visibility</li>
 </ul>
 </div>
-<div class="fragment fade-right">
-<blockquote>
-<p>🎯 If you publish your package, link the GitHub repo in <code>DESCRIPTION</code></p>
-</blockquote>
-</div>
 </section>
-<section id="resources" class="slide level2">
-<h2>📚 Resources</h2>
-<ul>
-<li>📘 Happy Git with R: <a href="https://happygitwithr.com" class="uri">https://happygitwithr.com</a></li>
-<li>🔧 usethis: <a href="https://usethis.r-lib.org" class="uri">https://usethis.r-lib.org</a></li>
-<li>🧪 gitcreds: <a href="https://github.com/r-lib/gitcreds" class="uri">https://github.com/r-lib/gitcreds</a></li>
-<li>📂 GitHub Docs: <a href="https://docs.github.com/" class="uri">https://docs.github.com/</a></li>
-</ul>
+<section id="demo-rfssa-github-package" class="slide level2">
+<h2>🎥 Demo: Rfssa Github Package</h2>
+<video id="video_shortcode_videojs_video3" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="images/package/Github.mp4"></video>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center">
 <h1>🙏 Thank you!</h1>
@@ -1152,6 +1081,7 @@ Mehdi Maadooliat and Hossein Haghbin
     </script>
     <script>videojs(video_shortcode_videojs_video1);</script>
     <script>videojs(video_shortcode_videojs_video2);</script>
+    <script>videojs(video_shortcode_videojs_video3);</script>
     
 
 </body></html>
