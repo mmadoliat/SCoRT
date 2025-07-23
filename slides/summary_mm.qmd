@@ -10,7 +10,6 @@ format:
     scrollable: true
 ---
 
-<<<<<<< Updated upstream
 ## Motivating Example - What is Data Science?
 
 ![](images/webinar/dtsc/what-is-DS-1.png){.absolute left="200" height="600"}
@@ -149,35 +148,13 @@ format:
     -   Follow best practices: custom constructor + validator + clean API
 
 ------------------------------------------------------------------------
-=======
-# 🧠 Object Oriented Programming in R 
-
-- **🧩 OOP Paradigms in R**:
-  - Functional OOP: `plot(lm(...))`
-  - Encapsulated OOP: `learner$train()`
-  - Modern tools: `mlr3`, `R6`, `S7`
-
-- **🏗 OOP Systems**:
-  - **S3**: Lightweight & informal — uses `UseMethod()`
-  - **S4**: Formal and type-safe — uses `setClass()` and `@`
-  - **R6**: Mutable, used in apps like `shiny`
-  - **S7**: Newest and unified — multiple dispatch
-
-- **🔍 Key Concepts**:
-  - Use `otype()`, `is.object()`, `structure()`, `class()` for diagnostics
-  - Understand inheritance and `NextMethod()`
-  - Follow best practices: custom constructor + validator + clean API
-
----
->>>>>>> Stashed changes
 
 ## 🛠️ OOP in Practice
 
 ### 🔁 Comparison of Systems
 
-<<<<<<< Updated upstream
 | System | Style | Used In | ✅ Pros | ⚠️ Cons |
-|---------------|---------------|---------------|---------------|---------------|
+|--------------|--------------|--------------|-----------------|--------------|
 | S3 | Functional | Base R | Simple, extensible | No schema, fragile |
 | S4 | Formal | Bioconductor | Type-safe, robust | Verbose, complex |
 | R6 | Encapsulated | Shiny, packages | Fast, mutable | Weak type safety |
@@ -186,23 +163,11 @@ format:
 ## 💡 Example: S3 Class with Constructor
 
 ``` r
-=======
-| System | Style         | Used In        | ✅ Pros                  | ⚠️ Cons              |
-|--------|---------------|----------------|--------------------------|----------------------|
-| S3     | Functional    | Base R         | Simple, extensible       | No schema, fragile   |
-| S4     | Formal        | Bioconductor   | Type-safe, robust        | Verbose, complex     |
-| R6     | Encapsulated  | Shiny, packages| Fast, mutable            | Weak type safety     |
-| S7     | Unified OOP   | Modern dev     | Combines S3 & S4 benefits| Still evolving       |
-
-## 💡 Example: S3 Class with Constructor
-```r
->>>>>>> Stashed changes
 myclass <- function(x) {
   stopifnot(is.numeric(x))
   structure(list(value = x), class = "myclass")
 }
 ```
-<<<<<<< Updated upstream
 
 > 📌 Choose your OOP system based on team size, project complexity, and ecosystem.
 
