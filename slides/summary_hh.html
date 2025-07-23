@@ -415,355 +415,615 @@ Mehdi Maadooliat and Hossein Haghbin
 
 </section>
 <section>
-<section id="object-oriented-programming-in-r" class="title-slide slide level1 center">
-<h1>🧠 Object Oriented Programming in R</h1>
+<section id="python-in-r" class="title-slide slide level1 center">
+<h1>🐍 4. Python in R</h1>
+
+</section>
+<section id="why-call-python-from-r" class="slide level2">
+<h2>🤖 Why Call Python from R?</h2>
+<p>Sometimes, R alone isn’t enough. Calling Python lets you:</p>
+<div>
 <ul>
-<li><strong>🧩 OOP Paradigms in R</strong>:
+<li class="fragment">💡 Use cutting-edge <strong>machine learning</strong> (e.g., <code>scikit-learn</code>)</li>
+<li class="fragment">🧠 Access <strong>deep learning</strong> frameworks (<code>PyTorch</code>,<code>TensorFlow</code>)</li>
+<li class="fragment">🔎 Run powerful <strong>text and image processing</strong> with <code>spaCy</code>, <code>OpenCV</code></li>
+<li class="fragment">📊 Leverage fast data engines like <code>polars</code> or <code>pandas</code></li>
+<li class="fragment">🌐 Scrape complex websites using <code>Selenium</code> or <code>BeautifulSoup</code></li>
+</ul>
+</div>
+<div class="fragment">
+<blockquote>
+<p>💡 Language interoperability enables modular, high-performance, and collaborative software development.</p>
+</blockquote>
+</div>
+</section>
+<section id="collaboration-across-languages" class="slide level2">
+<h2>👥 Collaboration Across Languages</h2>
+<p>In real-world projects, R and Python users often work together:</p>
+<div>
 <ul>
-<li>Functional OOP: <code>plot(lm(...))</code></li>
-<li>Encapsulated OOP: <code>learner$train()</code></li>
-<li>Modern tools: <code>mlr3</code>, <code>R6</code>, <code>S7</code></li>
-</ul></li>
-<li><strong>🏗 OOP Systems</strong>:
+<li class="fragment">👨‍🔬 Data scientists build statistical models in R</li>
+<li class="fragment">🤖 ML engineers prototype in Python</li>
+<li class="fragment">📊 Analysts report results using R Markdown</li>
+</ul>
+</div>
+<div class="fragment">
+<h3 id="why-use-reticulate-in-a-team">💡 Why use <code>reticulate</code> in a team?</h3>
+<div>
 <ul>
-<li><strong>S3</strong>: Lightweight &amp; informal — uses <code>UseMethod()</code></li>
-<li><strong>S4</strong>: Formal and type-safe — uses <code>setClass()</code> and <code>@</code></li>
-<li><strong>R6</strong>: Mutable, used in apps like <code>shiny</code></li>
-<li><strong>S7</strong>: Newest and unified — multiple dispatch</li>
-</ul></li>
-<li><strong>🔍 Key Concepts</strong>:
+<li class="fragment">🔄 <strong>Avoid rewriting code</strong> from one language to another</li>
+<li class="fragment">🔁 <strong>Call shared models</strong> or preprocessing functions written in Python</li>
+<li class="fragment">📦 <strong>Reuse Python packages</strong> or APIs within your R workflow</li>
+<li class="fragment">📤 <strong>Publish reproducible reports</strong> that include both R and Python code</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="motivated-example" class="slide level2">
+<h2>Motivated Example</h2>
+<p>🎯 Leverage a <strong>pretrained PyTorch CNN</strong> in R to:</p>
+<div class="fragment custom blur">
 <ul>
-<li>Use <code>otype()</code>, <code>is.object()</code>, <code>structure()</code>, <code>class()</code> for diagnostics</li>
-<li>Understand inheritance and <code>NextMethod()</code></li>
-<li>Follow best practices: custom constructor + validator + clean API</li>
+<li>Classify handwritten digit images (<code>.png</code>)</li>
+</ul>
+</div>
+<div class="fragment custom blur">
+<ul>
+<li>Run predictions directly in R</li>
+</ul>
+</div>
+<div class="fragment custom blur">
+<ul>
+<li>Visualize outputs using Python’s <code>matplotlib</code></li>
+</ul>
+</div>
+</section>
+<section id="step-1-define-the-cnn-model-in-python" class="slide level2">
+<h2>Step 1: Define the CNN Model in Python</h2>
+<p>🧠 File: <code>model.py</code></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb1-2"><a></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a><span class="kw">class</span> SimpleCNN(nn.Module):</span>
+<span id="cb1-5"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-6"><a></a>        <span class="bu">super</span>(SimpleCNN, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb1-7"><a></a>        <span class="va">self</span>.conv1_layer <span class="op">=</span> nn.Conv2d(<span class="dv">1</span>, <span class="dv">16</span>, kernel_size<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-8"><a></a>        <span class="va">self</span>.conv2_layer <span class="op">=</span> nn.Conv2d(<span class="dv">16</span>, <span class="dv">32</span>, kernel_size<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-9"><a></a>        <span class="va">self</span>.fc1_layer <span class="op">=</span> nn.Linear(<span class="dv">32</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">*</span> <span class="dv">7</span>, <span class="dv">128</span>)</span>
+<span id="cb1-10"><a></a>        <span class="va">self</span>.fc2_layer <span class="op">=</span> nn.Linear(<span class="dv">128</span>, <span class="dv">10</span>)</span>
+<span id="cb1-11"><a></a></span>
+<span id="cb1-12"><a></a>    <span class="kw">def</span> forward(<span class="va">self</span>, inputs):</span>
+<span id="cb1-13"><a></a>        x <span class="op">=</span> F.relu(<span class="va">self</span>.conv1_layer(inputs))</span>
+<span id="cb1-14"><a></a>        x <span class="op">=</span> F.max_pool2d(x, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb1-15"><a></a>        x <span class="op">=</span> F.relu(<span class="va">self</span>.conv2_layer(x))</span>
+<span id="cb1-16"><a></a>        x <span class="op">=</span> F.max_pool2d(x, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb1-17"><a></a>        x <span class="op">=</span> x.view(<span class="op">-</span><span class="dv">1</span>, <span class="dv">32</span> <span class="op">*</span> <span class="dv">7</span> <span class="op">*</span> <span class="dv">7</span>)</span>
+<span id="cb1-18"><a></a>        x <span class="op">=</span> F.relu(<span class="va">self</span>.fc1_layer(x))</span>
+<span id="cb1-19"><a></a>        <span class="cf">return</span> <span class="va">self</span>.fc2_layer(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-2-dataset" class="slide level2">
+<h2>🖼️ Step 2: Dataset</h2>
+<p>We use the MNIST dataset of handwritten digits.</p>
+
+<img data-src="images/python/minist.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%" alt="Screenshot of Pagerank"></section>
+<section id="step-3-train-the-model-on-a-gpu-machine" class="slide level2">
+<h2>🚀 Step 3: Train the Model on a GPU Machine</h2>
+<p>⚙️ Run following <code>train.py</code> on a GPU-enabled desktop.</p>
+<p>✅ Output: cnn_model.pth (trained weights)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> torch</span>
+<span id="cb2-2"><a></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb2-3"><a></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb2-4"><a></a><span class="im">import</span> torchvision</span>
+<span id="cb2-5"><a></a><span class="im">import</span> torchvision.transforms <span class="im">as</span> transforms</span>
+<span id="cb2-6"><a></a><span class="im">from</span> torch.utils.data <span class="im">import</span> DataLoader</span>
+<span id="cb2-7"><a></a><span class="im">from</span> model <span class="im">import</span> SimpleCNN</span>
+<span id="cb2-8"><a></a></span>
+<span id="cb2-9"><a></a><span class="co"># Use GPU if available</span></span>
+<span id="cb2-10"><a></a>device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
+<span id="cb2-11"><a></a><span class="bu">print</span>(<span class="ss">f"Using device: </span><span class="sc">{</span>device<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-12"><a></a></span>
+<span id="cb2-13"><a></a><span class="co"># Define transformation to apply to the data</span></span>
+<span id="cb2-14"><a></a>data_transform <span class="op">=</span> transforms.Compose([</span>
+<span id="cb2-15"><a></a>    transforms.ToTensor(),  <span class="co"># Convert images to PyTorch tensors</span></span>
+<span id="cb2-16"><a></a>    transforms.Normalize((<span class="fl">0.5</span>,), (<span class="fl">0.5</span>,))  <span class="co"># Normalize the pixel values to range [-1, 1]</span></span>
+<span id="cb2-17"><a></a>])</span>
+<span id="cb2-18"><a></a></span>
+<span id="cb2-19"><a></a><span class="co"># Download MNIST dataset and apply the transformation</span></span>
+<span id="cb2-20"><a></a>train_dataset <span class="op">=</span> torchvision.datasets.MNIST(root<span class="op">=</span><span class="st">'./data'</span>, train<span class="op">=</span><span class="va">True</span>, transform<span class="op">=</span>data_transform, download<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-21"><a></a>test_dataset <span class="op">=</span> torchvision.datasets.MNIST(root<span class="op">=</span><span class="st">'./data'</span>, train<span class="op">=</span><span class="va">False</span>, transform<span class="op">=</span>data_transform, download<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-22"><a></a></span>
+<span id="cb2-23"><a></a><span class="co"># Define data loaders to load the data in batches during training and testing</span></span>
+<span id="cb2-24"><a></a>train_loader <span class="op">=</span> DataLoader(train_dataset, batch_size<span class="op">=</span><span class="dv">64</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-25"><a></a>test_loader <span class="op">=</span> DataLoader(test_dataset, batch_size<span class="op">=</span><span class="dv">64</span>, shuffle<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-26"><a></a></span>
+<span id="cb2-27"><a></a><span class="co"># Instantiate model and move to device</span></span>
+<span id="cb2-28"><a></a>cnn_model <span class="op">=</span> SimpleCNN().to(device)</span>
+<span id="cb2-29"><a></a></span>
+<span id="cb2-30"><a></a><span class="co"># Define loss function and optimizer</span></span>
+<span id="cb2-31"><a></a>loss_func <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb2-32"><a></a>optimizer <span class="op">=</span> optim.Adam(cnn_model.parameters(), lr<span class="op">=</span><span class="fl">0.001</span>)</span>
+<span id="cb2-33"><a></a></span>
+<span id="cb2-34"><a></a><span class="co"># Train model</span></span>
+<span id="cb2-35"><a></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb2-36"><a></a>    cnn_model.train()</span>
+<span id="cb2-37"><a></a>    running_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb2-38"><a></a>    <span class="cf">for</span> inputs, labels <span class="kw">in</span> train_loader:</span>
+<span id="cb2-39"><a></a>        inputs, labels <span class="op">=</span> inputs.to(device), labels.to(device)</span>
+<span id="cb2-40"><a></a></span>
+<span id="cb2-41"><a></a>        optimizer.zero_grad()</span>
+<span id="cb2-42"><a></a>        outputs <span class="op">=</span> cnn_model(inputs)</span>
+<span id="cb2-43"><a></a>        loss <span class="op">=</span> loss_func(outputs, labels)</span>
+<span id="cb2-44"><a></a>        loss.backward()</span>
+<span id="cb2-45"><a></a>        optimizer.step()</span>
+<span id="cb2-46"><a></a></span>
+<span id="cb2-47"><a></a>        running_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb2-48"><a></a>    <span class="bu">print</span>(<span class="ss">f"Epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">, Loss: </span><span class="sc">{</span>running_loss <span class="op">/</span> <span class="bu">len</span>(train_loader)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb2-49"><a></a></span>
+<span id="cb2-50"><a></a><span class="co"># Evaluate on test data</span></span>
+<span id="cb2-51"><a></a>cnn_model.<span class="bu">eval</span>()</span>
+<span id="cb2-52"><a></a>correct_predictions <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-53"><a></a>total_samples <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-54"><a></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb2-55"><a></a>    <span class="cf">for</span> inputs, labels <span class="kw">in</span> test_loader:</span>
+<span id="cb2-56"><a></a>        inputs, labels <span class="op">=</span> inputs.to(device), labels.to(device)</span>
+<span id="cb2-57"><a></a>        outputs <span class="op">=</span> cnn_model(inputs)</span>
+<span id="cb2-58"><a></a>        _, predicted_labels <span class="op">=</span> torch.<span class="bu">max</span>(outputs, <span class="dv">1</span>)</span>
+<span id="cb2-59"><a></a>        total_samples <span class="op">+=</span> labels.size(<span class="dv">0</span>)</span>
+<span id="cb2-60"><a></a>        correct_predictions <span class="op">+=</span> (predicted_labels <span class="op">==</span> labels).<span class="bu">sum</span>().item()</span>
+<span id="cb2-61"><a></a></span>
+<span id="cb2-62"><a></a>accuracy <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> correct_predictions <span class="op">/</span> total_samples</span>
+<span id="cb2-63"><a></a><span class="bu">print</span>(<span class="ss">f"Accuracy of test set: </span><span class="sc">{</span>accuracy<span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb2-64"><a></a></span>
+<span id="cb2-65"><a></a><span class="co"># Save the model</span></span>
+<span id="cb2-66"><a></a>torch.save(cnn_model.state_dict(), <span class="st">'cnn_model.pth'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-4-load-the-model-in-r-with-reticulate" class="slide level2">
+<h2>🧬 Step 4: Load the Model in R with reticulate</h2>
+<p>📦 Place both model.py and cnn_model.pth in your R project</p>
+<div class="sourceCode" id="cb3" data-code-line-numbers="1-6|8-9|11-12|14-16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb3-2"><a></a>torch <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"torch"</span>)</span>
+<span id="cb3-3"><a></a>transforms <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"torchvision.transforms"</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-4"><a></a>Image <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"PIL.Image"</span>, <span class="at">convert =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-5"><a></a>plt <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"matplotlib.pyplot"</span>)</span>
+<span id="cb3-6"><a></a>os <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"os"</span>)</span>
+<span id="cb3-7"><a></a></span>
+<span id="cb3-8"><a></a><span class="co"># Source your model class</span></span>
+<span id="cb3-9"><a></a><span class="fu">source_python</span>(<span class="st">"python/model.py"</span>)</span>
+<span id="cb3-10"><a></a></span>
+<span id="cb3-11"><a></a>device <span class="ot">&lt;-</span> torch<span class="sc">$</span><span class="fu">device</span>(<span class="st">"cpu"</span>)</span>
+<span id="cb3-12"><a></a><span class="co"># device &lt;- torch$device("cuda")</span></span>
+<span id="cb3-13"><a></a></span>
+<span id="cb3-14"><a></a>model <span class="ot">&lt;-</span> <span class="fu">SimpleCNN</span>()<span class="sc">$</span><span class="fu">to</span>(device)</span>
+<span id="cb3-15"><a></a>model<span class="sc">$</span><span class="fu">load_state_dict</span>(torch<span class="sc">$</span><span class="fu">load</span>(<span class="st">"python/cnn_model.pth"</span>, <span class="at">map_location =</span> device))</span>
+<span id="cb3-16"><a></a>model<span class="sc">$</span><span class="fu">eval</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="step-5-predict-and-visualize-in-r" class="slide level2">
+<h2>🖼️ Step 5: Predict and Visualize in R</h2>
+<div class="sourceCode" id="cb4" data-code-line-numbers="1-7|9-10|14,27|15-26|29-30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># Preprocessing pipeline</span></span>
+<span id="cb4-2"><a></a>transform <span class="ot">&lt;-</span> transforms<span class="sc">$</span><span class="fu">Compose</span>(<span class="fu">list</span>(</span>
+<span id="cb4-3"><a></a>  transforms<span class="sc">$</span><span class="fu">Grayscale</span>(),</span>
+<span id="cb4-4"><a></a>  transforms<span class="sc">$</span><span class="fu">Resize</span>(<span class="fu">tuple</span>(<span class="dv">28</span>L, <span class="dv">28</span>L)),</span>
+<span id="cb4-5"><a></a>  transforms<span class="sc">$</span><span class="fu">ToTensor</span>(),</span>
+<span id="cb4-6"><a></a>  transforms<span class="sc">$</span><span class="fu">Normalize</span>(<span class="fu">tuple</span>(<span class="fl">0.5</span>), <span class="fu">tuple</span>(<span class="fl">0.5</span>))</span>
+<span id="cb4-7"><a></a>))</span>
+<span id="cb4-8"><a></a></span>
+<span id="cb4-9"><a></a>image_dir <span class="ot">&lt;-</span> <span class="st">"python/test_images"</span></span>
+<span id="cb4-10"><a></a>image_files <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">Filter</span>(<span class="cf">function</span>(f) <span class="fu">endsWith</span>(f, <span class="st">".png"</span>), os<span class="sc">$</span><span class="fu">listdir</span>(image_dir)))</span>
+<span id="cb4-11"><a></a></span>
+<span id="cb4-12"><a></a>plt<span class="sc">$</span><span class="fu">figure</span>(<span class="at">figsize =</span> <span class="fu">tuple</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb4-13"><a></a></span>
+<span id="cb4-14"><a></a><span class="fu">with</span>(torch<span class="sc">$</span><span class="fu">no_grad</span>(), {</span>
+<span id="cb4-15"><a></a>  <span class="cf">for</span> (idx <span class="cf">in</span> <span class="fu">seq_along</span>(image_files)) {</span>
+<span id="cb4-16"><a></a>    img_file <span class="ot">&lt;-</span> image_files[[idx]]</span>
+<span id="cb4-17"><a></a>    img_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(image_dir, img_file)</span>
+<span id="cb4-18"><a></a>    image <span class="ot">&lt;-</span> Image<span class="sc">$</span><span class="fu">open</span>(img_path)</span>
+<span id="cb4-19"><a></a>    input_tensor <span class="ot">&lt;-</span> <span class="fu">transform</span>(image)<span class="sc">$</span><span class="fu">unsqueeze</span>(<span class="dv">0</span>L)<span class="sc">$</span><span class="fu">to</span>(device)</span>
+<span id="cb4-20"><a></a>    output <span class="ot">&lt;-</span> <span class="fu">model</span>(input_tensor)</span>
+<span id="cb4-21"><a></a>    predicted_label <span class="ot">&lt;-</span> torch<span class="sc">$</span><span class="fu">argmax</span>(output, <span class="at">dim =</span> <span class="dv">1</span>L)<span class="sc">$</span><span class="fu">item</span>()</span>
+<span id="cb4-22"><a></a>    plt<span class="sc">$</span><span class="fu">subplot</span>(<span class="dv">1</span>L, <span class="fu">length</span>(image_files), idx)</span>
+<span id="cb4-23"><a></a>    plt<span class="sc">$</span><span class="fu">imshow</span>(image<span class="sc">$</span><span class="fu">convert</span>(<span class="st">"L"</span>), <span class="at">cmap =</span> <span class="st">"gray"</span>)</span>
+<span id="cb4-24"><a></a>    plt<span class="sc">$</span><span class="fu">title</span>(<span class="fu">sprintf</span>(<span class="st">"Predicted: %s"</span>, predicted_label))</span>
+<span id="cb4-25"><a></a>    plt<span class="sc">$</span><span class="fu">axis</span>(<span class="st">"off"</span>)</span>
+<span id="cb4-26"><a></a>  }</span>
+<span id="cb4-27"><a></a>})</span>
+<span id="cb4-28"><a></a></span>
+<span id="cb4-29"><a></a>plt<span class="sc">$</span><span class="fu">tight_layout</span>()</span>
+<span id="cb4-30"><a></a>plt<span class="sc">$</span><span class="fu">show</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="final-result" class="slide level2">
+<h2>✅ Final Result</h2>
+
+<img data-src="images/python/pred_minist.png" class="quarto-figure quarto-figure-center r-stretch" style="width:90.0%" alt="Screenshot of Pagerank"></section></section>
+<section>
+<section id="build-your-own-r-package" class="title-slide slide level1 center">
+<h1>📦 5. Build Your Own R Package</h1>
+
+</section>
+<section id="motivations-to-package-your-code" class="slide level2">
+<h2>💡 Motivations to Package Your Code</h2>
+<p>🧰 <strong>Why build a package?</strong></p>
+<div>
+<ul>
+<li class="fragment">♻️ Reuse and organize reusable code chunks</li>
+<li class="fragment">📖 Provide <strong>documentation</strong> and <strong>examples</strong></li>
+<li class="fragment">🧪 Add <strong>unit tests</strong> to ensure reliability</li>
+<li class="fragment">🌐 Distribute:
+<ul>
+<li class="fragment">via <strong>CRAN</strong> for wide access</li>
+<li class="fragment">via <strong>GitHub</strong> for collaborative development</li>
+<li class="fragment">or keep it <strong>private</strong> for internal use</li>
 </ul></li>
 </ul>
+</div>
 </section>
-<section id="oop-in-practice" class="slide level2">
-<h2>🛠️ OOP in Practice</h2>
-<h3 id="comparison-of-systems">🔁 Comparison of Systems</h3>
+<section id="setup-requirements" class="slide level2">
+<h2>🛠 Setup Requirements</h2>
+<p>Install development tools:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"devtools"</span>, <span class="st">"roxygen2"</span>, <span class="st">"testthat"</span>, <span class="st">"knitr"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>Check system:</p>
+<p>✅ Ensure R and RStudio are updated</p>
+<p>✅ Use <code>usethis</code> package for automation</p>
+</div>
+<div class="fragment">
+<p>Example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="st">"mypkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="package-structure-overview" class="slide level2">
+<h2>🏗 Package Structure Overview</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a></a>mypkg/</span>
+<span id="cb7-2"><a></a>├── DESCRIPTION         # 📋 Package metadata</span>
+<span id="cb7-3"><a></a>├── NAMESPACE           # 🔁 Exported functions &amp; imports</span>
+<span id="cb7-4"><a></a>├── R/                  # 📂 Your R functions</span>
+<span id="cb7-5"><a></a>└── man/                # 📚 Auto-generated documentation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>💡 Other folders you may add:</p>
+<div>
+<ul>
+<li class="fragment">📂 <strong>tests/</strong> → Unit tests (testthat)</li>
+<li class="fragment">📂 <strong>vignettes/</strong> → Long-form docs</li>
+<li class="fragment">📂 <strong>data/</strong> → Internal or example datasets</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="anatomy-of-a-description-file" class="slide level2">
+<h2>🧩 Anatomy of a DESCRIPTION File</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a></a>Package: mypkg</span>
+<span id="cb8-2"><a></a>Title: Tools for Cool Analysis</span>
+<span id="cb8-3"><a></a>Version: 0.1.0</span>
+<span id="cb8-4"><a></a>Authors@R: person("Your", "Name", email = "you@mail.com", role = c("aut", "cre"))</span>
+<span id="cb8-5"><a></a>Description: A simple demo R package with functions and examples.</span>
+<span id="cb8-6"><a></a>License: MIT + file LICENSE</span>
+<span id="cb8-7"><a></a>Imports: dplyr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="package-states-in-r" class="slide level2" data-transition="zoom">
+<h2>🛠 Package States in R</h2>
+<p>R packages transition through five development states:</p>
+<div>
+<ul>
+<li class="fragment">🗂️ <strong>Source</strong>: your raw package folder</li>
+<li class="fragment">📦 <strong>Bundled</strong>: compressed .tar.gz for sharing</li>
+<li class="fragment">🧱 <strong>Binary</strong>: platform-specific precompiled version</li>
+<li class="fragment">📚 <strong>Installed</strong>: available in your R library</li>
+<li class="fragment">🧠 <strong>In-Memory</strong>: actively loaded via library()</li>
+</ul>
+</div>
+<div class="fragment fade-up">
+<blockquote>
+<p>Understanding these states helps you manage installation, sharing, and usage workflows.</p>
+</blockquote>
+</div>
+</section>
+<section id="transitioning-between-states" class="slide level2" data-transition="convex">
+<h2>🔁 Transitioning Between States</h2>
+
+<img data-src="images/package/install-load.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"></section>
+<section id="package-development-flow" class="slide level2 scrollable">
+<h2>📦 Package Development Flow</h2>
+<ol type="1">
+<li>Create a package</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="st">"mypkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<ol start="2" type="1">
+<li>Write functions inside <strong>R/</strong></li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li>Document them with <code>roxygen2</code> tags:</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co">#' Say Hello</span></span>
+<span id="cb10-2"><a></a><span class="co">#' @export</span></span>
+<span id="cb10-3"><a></a>hello <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb10-4"><a></a>  <span class="fu">print</span>(<span class="st">"Hello, world!"</span>)</span>
+<span id="cb10-5"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<ol start="4" type="1">
+<li>Generate docs and namespace</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="install-and-share" class="slide level2">
+<h2>🚀 Install, and Share</h2>
+<ul>
+<li>Build package:</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>devtools<span class="sc">::</span><span class="fu">build</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<ul>
+<li>Install locally:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<ul>
+<li>Share via GitHub:</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_github</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<ul>
+<li>Install from GitHub (for others):</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"yourname/mypkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="further-resources" class="slide level2">
+<h2>📚 Further Resources</h2>
+<ul>
+<li>📖 R Packages (book): https://r-pkgs.org</li>
+<li>🧪 testthat: https://testthat.r-lib.org</li>
+<li>📦 devtools: https://devtools.r-lib.org</li>
+<li>🔧 usethis: https://usethis.r-lib.org</li>
+</ul>
+</section></section>
+<section>
+<section id="cran-submitting" class="title-slide slide level1 center" data-transition="zoom">
+<h1>6. 📤 CRAN Submitting</h1>
+
+</section>
+<section id="submitting-to-cran" class="slide level2">
+<h2>🚀 Submitting to CRAN</h2>
+<div>
+<ul>
+<li class="fragment">📦 <strong>CRAN</strong> = Comprehensive R Archive Network<br>
+</li>
+<li class="fragment">🎯 Goal: Make your R package <strong>public, discoverable, and installable</strong></li>
+<li class="fragment">✔ Must pass <code>R CMD check</code> with:
+<ul>
+<li class="fragment">❌ No <strong>ERRORs</strong></li>
+<li class="fragment">⚠️ No <strong>WARNINGs</strong></li>
+<li class="fragment">📝 Minimal and justifiable <strong>NOTEs</strong></li>
+</ul></li>
+<li class="fragment">🧪 Simulate checks: <code>rhub::check_for_cran()</code></li>
+<li class="fragment">📤 Submit with: <code>devtools::release()</code></li>
+<li class="fragment">⏱️ Response in approx <strong>1–3 days</strong></li>
+</ul>
+</div>
+</section>
+<section id="before-you-hit-release" class="slide level2" data-transition="slide">
+<h2>🛠 Before You Hit “Release”</h2>
+<div>
+<ul>
+<li class="fragment">Run: <code>devtools::check()</code></li>
+<li class="fragment">✅ Double-check:
+<ul>
+<li class="fragment">📜 A valid <strong>LICENSE</strong></li>
+<li class="fragment">🆔 <strong>ORCID</strong> info in <code>Authors@R</code></li>
+<li class="fragment">🧪 Examples run &lt; 5 seconds</li>
+<li class="fragment">📚 Clear <strong>documentation</strong> and <strong>vignettes</strong></li>
+<li class="fragment">📈 Version bump and a <code>NEWS.md</code></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="confirmation-email" class="slide level2" data-transition="zoom">
+<h2>📩 Confirmation Email</h2>
+
+<img data-src="images/package/submission_confirm.png" class="quarto-figure quarto-figure-left r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"></section>
+<section id="submission-confirmed-email" class="slide level2" data-transition="zoom">
+<h2>📬 Submission Confirmed Email</h2>
+
+<img data-src="images/package/submission_confirm2.png" class="quarto-figure quarto-figure-left r-stretch" style="width:95.0%" alt="Screenshot of Pagerank"></section>
+<section id="pending-manual-inspection-email" class="slide level2" data-transition="zoom">
+<h2>⏳ Pending Manual Inspection Email</h2>
+
+<img data-src="images/package/auto-pros.png" class="quarto-figure quarto-figure-left r-stretch" style="width:95.0%" alt="Screenshot of Pagerank"></section>
+<section id="package-initially-accepted-email" class="slide level2" data-transition="zoom">
+<h2>✅ Package Initially Accepted Email</h2>
+
+<img data-src="images/package/accepted.png" class="quarto-figure quarto-figure-left r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"><div class="fragment">
+<blockquote>
+<p>🎉 Good news!</p>
+</blockquote>
+</div>
+</section>
+<section id="package-built-on-cran-email" class="slide level2" data-transition="zoom">
+<h2>📦 Package Built on CRAN Email</h2>
+
+<img data-src="images/package/accept2.png" class="quarto-figure quarto-figure-left r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"><div class="fragment">
+<blockquote>
+<p>🧱 CRAN has built binaries for major platforms (Windows, …).</p>
+</blockquote>
+</div>
+</section>
+<section id="cran-page-created" class="slide level2" data-transition="zoom">
+<h2>🌐 CRAN Page Created</h2>
+
+<img data-src="images/package/Cran_Rfssa.png" class="quarto-figure quarto-figure-left r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"><blockquote>
+<p>🌍 Your package is now live! Searchable and installable via:</p>
+</blockquote>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="fu">install.packages</span>(<span class="st">"Rfssa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="github-essentials" class="title-slide slide level1 center" data-transition="convex">
+<h1>7. 📤 GitHub Essentials</h1>
+
+</section>
+<section id="why-use-git-github" class="slide level2">
+<h2>🌍 Why Use Git &amp; GitHub?</h2>
+<div>
+<ul>
+<li class="fragment">🔁 <strong>Version Control</strong>: Track and manage changes in code</li>
+<li class="fragment">🤝 <strong>Collaboration</strong>: Work with others without overwriting files</li>
+<li class="fragment">🧪 <strong>Reproducibility</strong>: Restore older versions when bugs occur</li>
+<li class="fragment">🔄 <strong>Open Source</strong>: Share your package with the world</li>
+</ul>
+</div>
+<div class="fragment">
+<blockquote>
+<p>🧰 Git = Local tracking tool<br>
+☁️ GitHub = Online hosting and teamwork platform</p>
+</blockquote>
+</div>
+</section>
+<section id="git-github-from-rstudio" class="slide level2" data-transition="convex">
+<h2>🧰 Git &amp; GitHub from RStudio</h2>
+<p>✅ RStudio has built-in Git integration:</p>
+<div class="fragment custom blur">
+<ul>
+<li>Git tab for <strong>staging, committing, and pushing</strong></li>
+</ul>
+</div>
+<div class="fragment custom blur">
+<ul>
+<li>Visual diff and commit history</li>
+</ul>
+</div>
+<div class="fragment custom blur">
+<ul>
+<li>Push to GitHub without leaving RStudio</li>
+</ul>
+</div>
+</section>
+<section id="set-up-github-in-r" class="slide level2 scrollable" data-transition="concave">
+<h2>🔧 Set Up GitHub in R</h2>
+<div class="fragment">
+<ol type="1">
+<li>✅ <strong>Install Git</strong> (<a href="https://git-scm.com">git-scm.com</a>)</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="2" type="1">
+<li>🔑 <strong>Create Personal Access Token (PAT)</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span>
+<span id="cb17-2"><a></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li>🔗 <strong>Link your project to GitHub</strong>:</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_github</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote>
+<p>🎉 Your RStudio project is now connected to GitHub!</p>
+</blockquote>
+</div>
+</section>
+<section id="create-a-git-enabled-r-package-project" class="slide level2 scrollable">
+<h2>📦 Create a Git-Enabled R Package Project</h2>
+<ol type="1">
+<li><code>File</code> → <code>New Project</code> → <code>New Directory</code> → <code>R Package</code></li>
+</ol>
+<div class="fragment">
+<ol start="2" type="1">
+<li>✅ Check <strong>“Create a git repository”</strong></li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li>Inside the project:</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span>
+<span id="cb19-2"><a></a>usethis<span class="sc">::</span><span class="fu">use_github</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<blockquote>
+<p>📁 You now have a <code>.git</code> repo and a linked GitHub project!</p>
+</blockquote>
+</div>
+</section>
+<section id="daily-git-workflow-in-rstudio" class="slide level2">
+<h2>🔁 Daily Git Workflow in RStudio</h2>
+<blockquote>
+<p>🎯 A typical work cycle for package developers:</p>
+</blockquote>
+<div class="fragment fade-right">
 <table>
-<colgroup>
-<col style="width: 9%">
-<col style="width: 17%">
-<col style="width: 18%">
-<col style="width: 29%">
-<col style="width: 25%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>System</th>
-<th>Style</th>
-<th>Used In</th>
-<th>✅ Pros</th>
-<th>⚠️ Cons</th>
+<th>Step</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>S3</td>
-<td>Functional</td>
-<td>Base R</td>
-<td>Simple, extensible</td>
-<td>No schema, fragile</td>
+<td>✏️ Edit</td>
+<td>Make changes to <code>.R</code> or <code>.Rmd</code> files</td>
 </tr>
 <tr class="even">
-<td>S4</td>
-<td>Formal</td>
-<td>Bioconductor</td>
-<td>Type-safe, robust</td>
-<td>Verbose, complex</td>
+<td>✅ Stage</td>
+<td>Select files to track in Git tab</td>
 </tr>
 <tr class="odd">
-<td>R6</td>
-<td>Encapsulated</td>
-<td>Shiny, packages</td>
-<td>Fast, mutable</td>
-<td>Weak type safety</td>
+<td>💬 Commit</td>
+<td>Save with a message (e.g., “Fix bug”)</td>
 </tr>
 <tr class="even">
-<td>S7</td>
-<td>Unified OOP</td>
-<td>Modern dev</td>
-<td>Combines S3 &amp; S4 benefits</td>
-<td>Still evolving</td>
+<td>🚀 Push</td>
+<td>Send to GitHub</td>
 </tr>
 </tbody>
 </table>
+</div>
 </section>
-<section id="example-s3-class-with-constructor" class="slide level2">
-<h2>💡 Example: S3 Class with Constructor</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>myclass <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb1-2"><a></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(x))</span>
-<span id="cb1-3"><a></a>  <span class="fu">structure</span>(<span class="fu">list</span>(<span class="at">value =</span> x), <span class="at">class =</span> <span class="st">"myclass"</span>)</span>
-<span id="cb1-4"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<blockquote>
-<p>📌 Choose your OOP system based on team size, project complexity, and ecosystem.</p>
-</blockquote>
-</section></section>
-<section>
-<section id="web-apps-with-shiny" class="title-slide slide level1 center">
-<h1>🌐 Web Apps with Shiny</h1>
-<ul>
-<li><p>✨ Shiny = Interactive web apps in pure R (no HTML/JS!)</p></li>
-<li><p>📦 Components:</p>
-<ul>
-<li><p>ui: Layout, inputs/outputs</p></li>
-<li><p>server: Logic, reactivity</p></li>
-</ul></li>
-<li><p>🧪 Use Cases:</p>
-<ul>
-<li>Dashboards, simulations, teaching tools</li>
-</ul></li>
-<li><p>🔌 Inputs &amp; Outputs:</p>
-<ul>
-<li><p>Inputs: sliderInput(), textInput()</p></li>
-<li><p>Outputs: renderPlot(), renderText(), renderTable()</p></li>
-</ul></li>
-</ul>
-</section>
-<section id="shiny-concepts-deployment" class="slide level2">
-<h2>Shiny Concepts &amp; Deployment</h2>
-<ul>
-<li>⚡<strong>Reactivity System</strong>:
-<ul>
-<li><code>reactive()</code>: memoized reactive expressions</li>
-<li><code>isolate()</code>: break reactive chains</li>
-<li><code>observeEvent()</code>: trigger actions without outputs</li>
-</ul></li>
-<li>🚀 <strong>Deployment Options</strong>:
-<ul>
-<li><code>shinyapps.io</code>, Posit Connect, university servers</li>
-<li><strong>shinylive</strong>: deploy as static site (experimental)</li>
-</ul></li>
-<li>✅ <strong>Best Practices</strong>:
-<ul>
-<li>Use <code>shinytest2</code> for testing</li>
-<li>Modularize with <code>modules</code> for scalability</li>
-<li>Sketch UI/UX before coding</li>
-</ul></li>
-<li>🧠 <strong>Hands-on</strong>:
-<ul>
-<li>KNN Regression in Shiny</li>
-<li>Explore shinyapps gallery for inspiration: https://shiny.posit.co/gallery/</li>
-</ul></li>
-</ul>
-</section></section>
-<section>
-<section id="rcpp-high-performance-with-c-in-r" class="title-slide slide level1 center">
-<h1>⚡ Rcpp – High Performance with C++ in R</h1>
-<ul>
-<li>🚀 <strong>Rcpp</strong> bridges R and C++ for high-performance computing.</li>
-<li>🏁 Use cases:
-<ul>
-<li>Speed up loops, recursion, and matrix operations</li>
-<li>Access C++ libraries and STL</li>
-<li>Integrate C++ in R packages</li>
-</ul></li>
-<li>🧰 <strong>Workflows</strong>:
-<ul>
-<li><code>evalCpp()</code>: quick one-liners</li>
-<li><code>cppFunction()</code>: inline prototypes</li>
-<li><code>sourceCpp()</code>: external C++ files with R wrappers</li>
-</ul></li>
-</ul>
-</section>
-<section id="rcpp-in-action" class="slide level2">
-<h2>🔬 Rcpp in Action</h2>
-<ul>
-<li><p>🧪 <strong>Examples</strong>:</p>
-<ul>
-<li>Odd/Even test (basic)</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>bool <span class="fu">is_even</span>(int x) {</span>
-<span id="cb2-2"><a></a>return x % <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>;</span>
-<span id="cb2-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>VAR(1) simulation with <code>RcppArmadillo</code></li>
-<li>Fibonacci benchmark: 200× speedup</li>
-</ul></li>
-<li><p><strong>C++ Types</strong>: <code>NumericVector</code>, <code>IntegerVector</code>, STL containers</p></li>
-<li><p><strong>Data conversion</strong>: Seamless mapping between R and C++ objects</p></li>
-<li><p>📦 <strong>Packaging</strong>:</p>
-<ul>
-<li>Use <code>LinkingTo: Rcpp</code> in DESCRIPTION</li>
-<li>Automate with <code>usethis::use_rcpp()</code></li>
-<li>Maintainable, testable code with <code>Rcpp::compileAttributes()</code></li>
-</ul></li>
-</ul>
-</section></section>
-<section>
-<section id="python-in-r" class="title-slide slide level1 center">
-<h1>🐍 Python in R</h1>
-
-</section>
-<section id="interoperability-with-reticulate" class="slide level2">
-<h2>Interoperability with <code>reticulate</code></h2>
-<ul>
-<li><strong>Why integrate?</strong>
-<ul>
-<li>Leverage Python libraries (ML, CV, NLP)</li>
-<li>Avoid rewriting code across environments</li>
-<li>Enable seamless workflows via R Markdown &amp; Quarto</li>
-</ul></li>
-<li><strong>Key Features of <code>reticulate</code></strong>:
-<ul>
-<li>Import Python modules via <code>import()</code></li>
-<li>Run scripts with <code>source_python()</code> or <code>py_run_file()</code></li>
-<li>Shared Python session across R and Python chunks</li>
-</ul></li>
-<li><strong>Data Exchange</strong>:
-<ul>
-<li>Auto-conversion: vectors ↔︎ arrays, data frames ↔︎ pandas</li>
-<li>R objects available in Python via <code>r$</code>, and vice versa with <code>py$</code></li>
-</ul></li>
-</ul>
-</section>
-<section id="using-python-from-r" class="slide level2">
-<h2>🛠 Using Python from R</h2>
-<ul>
-<li><strong>Virtualenv / Conda</strong>: manage environments cleanly</li>
-<li><strong>Calling Python functions &amp; classes</strong> from <code>.py</code> files</li>
-<li><strong>Using Python in Shiny apps</strong>
-<ul>
-<li>Example: compute factorial via <code>math.factorial</code></li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(shiny)</span>
-<span id="cb3-2"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb3-3"><a></a><span class="fu">actionButton</span>(<span class="st">"btn"</span>, <span class="st">"Compute factorial"</span>),</span>
-<span id="cb3-4"><a></a><span class="fu">verbatimTextOutput</span>(<span class="st">"out"</span>)</span>
-<span id="cb3-5"><a></a>)</span>
-<span id="cb3-6"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb3-7"><a></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>btn, {</span>
-<span id="cb3-8"><a></a>  reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">"import math; res = math.factorial(10)"</span>)</span>
-<span id="cb3-9"><a></a>  output<span class="sc">$</span>out <span class="ot">&lt;-</span> <span class="fu">renderText</span>(py<span class="sc">$</span>res)</span>
-<span id="cb3-10"><a></a>})</span>
-<span id="cb3-11"><a></a>}</span>
-<span id="cb3-12"><a></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><strong>R Markdown / Quarto</strong>:
-<ul>
-<li>Inline Python code in <code>{python}</code> chunks</li>
-<li>Share variables between R and Python</li>
-</ul></li>
-</ul>
-</section>
-<section id="takeaways" class="slide level2">
-<h2>Takeaways</h2>
-<ul>
-<li>Use <code>reticulate</code> to blend Python’s ML power with R’s statistical strength</li>
-<li>Match tools to tasks without leaving your R workflow</li>
-<li>Ideal for reproducible, collaborative data science</li>
-</ul>
-</section></section>
-<section>
-<section id="build-your-own-r-package" class="title-slide slide level1 center">
-<h1>📦 Build Your Own R Package</h1>
-<ul>
-<li><strong>Why create a package?</strong>
-<ul>
-<li>Reuse and organize code</li>
-<li>Provide documentation and tests</li>
-<li>Distribute via CRAN, GitHub, or internally</li>
-</ul></li>
-<li><strong>Setup Requirements</strong>
-<ul>
-<li>Install <code>devtools</code>, <code>roxygen2</code>, <code>testthat</code>, <code>knitr</code></li>
-<li>Ensure R and RStudio are updated</li>
-</ul></li>
-</ul>
-</section>
-<section id="package-structure" class="slide level2">
-<h2>🏗 Package Structure</h2>
-<ul>
-<li><code>DESCRIPTION</code>: metadata</li>
-<li><code>NAMESPACE</code>: exports and imports</li>
-<li><code>R/</code>: function definitions</li>
-<li><code>man/</code>: auto-generated docs</li>
-</ul>
-</section>
-<section id="development-lifecycle" class="slide level2">
-<h2>🛠 Development Lifecycle</h2>
-<ul>
-<li><strong>5 Package States</strong>:
-<ul>
-<li>Source → Bundled → Binary → Installed → In-Memory</li>
-</ul></li>
-<li><strong>Creating a Package</strong>
-<ul>
-<li>Use <code>usethis::create_package()</code></li>
-<li>Write functions in <code>R/</code>, document with <code>roxygen2</code></li>
-</ul></li>
-<li><strong>Documentation &amp; Export</strong>
-<ul>
-<li>Generate with <code>devtools::document()</code></li>
-<li>Expose with <code>@export</code> and <code>@import</code></li>
-</ul></li>
-<li><strong>Build &amp; Install</strong>
-<ul>
-<li>Build with <code>devtools::build()</code></li>
-<li>Install with <code>devtools::install()</code></li>
-</ul></li>
-</ul>
-</section>
-<section id="takeaways-1" class="slide level2">
-<h2>📌 Takeaways</h2>
-<ul>
-<li>R packages provide a <strong>professional structure</strong> to your work</li>
-<li>Automate documentation, testing, and sharing</li>
-<li>Essential for reproducible, collaborative, and maintainable R code</li>
-</ul>
-</section></section>
-<section>
-<section id="cran-github-essentials" class="title-slide slide level1 center">
-<h1>CRAN &amp; GitHub Essentials</h1>
-
-</section>
-<section id="cran-submission" class="slide level2">
-<h2>🚀 CRAN Submission</h2>
-<ul>
-<li>CRAN = Comprehensive R Archive Network</li>
-<li>Packages must pass <code>R CMD check</code> with:
-<ul>
-<li>❌ No <strong>ERRORs</strong></li>
-<li>⚠️ No <strong>WARNINGs</strong></li>
-<li>📝 Minimal <strong>NOTEs</strong></li>
-</ul></li>
-<li>Simulate checks with <code>rhub::check_for_cran()</code></li>
-<li>Submit via <code>devtools::release()</code></li>
-<li>Response from CRAN in ~1–3 days</li>
-</ul>
-</section>
-<section id="before-you-submit" class="slide level2">
-<h2>🛠 Before You Submit</h2>
-<ul>
-<li>Use <code>devtools::check()</code> for local testing</li>
-<li>Include:
-<ul>
-<li>Valid license</li>
-<li>ORCID info</li>
-<li>Clean examples and documentation</li>
-</ul></li>
-<li>Update via version bump and <code>NEWS.md</code></li>
-</ul>
-</section>
-<section id="collaborate-via-github" class="slide level2">
-<h2>🤝 Collaborate via GitHub</h2>
-<ul>
-<li>Git = local version control</li>
-<li>GitHub = cloud hosting and collaboration</li>
-<li>RStudio integrates Git workflows</li>
-<li>Use <code>usethis::use_github()</code> to link project</li>
-</ul>
-<p>✅ Auth via Personal Access Token (PAT) using <code>gitcreds</code></p>
-</section>
-<section id="daily-git-workflow" class="slide level2 scrollable">
-<h2>🧪 Daily Git Workflow</h2>
+<section id="example-collaborative-workflow" class="slide level2 scrollable">
+<h2>🧪 Example: Collaborative Workflow</h2>
+<div class="fragment custom blur">
 <ol type="1">
-<li>Edit → Stage → Commit → Push</li>
-<li>Share changes, open pull requests</li>
-<li>Check status with <code>usethis::git_sitrep()</code></li>
+<li>You write a new function: <code>plot_confidence()</code></li>
 </ol>
-<p>📦 Ideal for collaborative R package development!</p>
+</div>
+<div class="fragment custom blur">
+<ol start="2" type="1">
+<li>Commit message: <code>"Add CI plot to visual module"</code></li>
+</ol>
+</div>
+<div class="fragment custom blur">
+<ol start="3" type="1">
+<li>Push to GitHub → colleague reviews &amp; suggests changes</li>
+</ol>
+</div>
+</section>
+<section id="github-for-package-development" class="slide level2">
+<h2>✅ GitHub for Package Development</h2>
+<div>
+<ul>
+<li class="fragment">📦 Host your package openly</li>
+<li class="fragment">🧪 Enable collaborative testing &amp; documentation</li>
+<li class="fragment">📤 Submit to CRAN from a clean version-controlled repo</li>
+<li class="fragment">🔁 Great for long-term maintenance and open-source visibility</li>
+</ul>
+</div>
+<div class="fragment fade-right">
+<blockquote>
+<p>🎯 If you publish your package, link the GitHub repo in <code>DESCRIPTION</code></p>
+</blockquote>
+</div>
+</section>
+<section id="resources" class="slide level2">
+<h2>📚 Resources</h2>
+<ul>
+<li>📘 Happy Git with R: <a href="https://happygitwithr.com" class="uri">https://happygitwithr.com</a></li>
+<li>🔧 usethis: <a href="https://usethis.r-lib.org" class="uri">https://usethis.r-lib.org</a></li>
+<li>🧪 gitcreds: <a href="https://github.com/r-lib/gitcreds" class="uri">https://github.com/r-lib/gitcreds</a></li>
+<li>📂 GitHub Docs: <a href="https://docs.github.com/" class="uri">https://docs.github.com/</a></li>
+</ul>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center">
 <h1>🙏 Thank you!</h1>

@@ -1189,102 +1189,242 @@
     "text": "🔬 Rcpp in Action\n\n🧪 Examples:\n\nOdd/Even test (basic)\n\nbool is_even(int x) {\nreturn x % 2 == 0;\n}\n\nVAR(1) simulation with RcppArmadillo\nFibonacci benchmark: 200× speedup\n\nC++ Types: NumericVector, IntegerVector, STL containers\nData conversion: Seamless mapping between R and C++ objects\n📦 Packaging:\n\nUse LinkingTo: Rcpp in DESCRIPTION\nAutomate with usethis::use_rcpp()\nMaintainable, testable code with Rcpp::compileAttributes()"
   },
   {
-    "objectID": "slides/summary_hh.html#oop-in-practice",
-    "href": "slides/summary_hh.html#oop-in-practice",
+    "objectID": "slides/summary_hh.html#why-call-python-from-r",
+    "href": "slides/summary_hh.html#why-call-python-from-r",
     "title": "Short Course on R Tools",
-    "section": "🛠️ OOP in Practice",
-    "text": "🛠️ OOP in Practice\n🔁 Comparison of Systems\n\n\n\n\n\n\n\n\n\n\nSystem\nStyle\nUsed In\n✅ Pros\n⚠️ Cons\n\n\n\n\nS3\nFunctional\nBase R\nSimple, extensible\nNo schema, fragile\n\n\nS4\nFormal\nBioconductor\nType-safe, robust\nVerbose, complex\n\n\nR6\nEncapsulated\nShiny, packages\nFast, mutable\nWeak type safety\n\n\nS7\nUnified OOP\nModern dev\nCombines S3 & S4 benefits\nStill evolving"
+    "section": "🤖 Why Call Python from R?",
+    "text": "🤖 Why Call Python from R?\nSometimes, R alone isn’t enough. Calling Python lets you:\n\n\n💡 Use cutting-edge machine learning (e.g., scikit-learn)\n🧠 Access deep learning frameworks (PyTorch,TensorFlow)\n🔎 Run powerful text and image processing with spaCy, OpenCV\n📊 Leverage fast data engines like polars or pandas\n🌐 Scrape complex websites using Selenium or BeautifulSoup\n\n\n\n\n💡 Language interoperability enables modular, high-performance, and collaborative software development."
   },
   {
-    "objectID": "slides/summary_hh.html#example-s3-class-with-constructor",
-    "href": "slides/summary_hh.html#example-s3-class-with-constructor",
+    "objectID": "slides/summary_hh.html#collaboration-across-languages",
+    "href": "slides/summary_hh.html#collaboration-across-languages",
     "title": "Short Course on R Tools",
-    "section": "💡 Example: S3 Class with Constructor",
-    "text": "💡 Example: S3 Class with Constructor\nmyclass &lt;- function(x) {\n  stopifnot(is.numeric(x))\n  structure(list(value = x), class = \"myclass\")\n}\n\n📌 Choose your OOP system based on team size, project complexity, and ecosystem."
+    "section": "👥 Collaboration Across Languages",
+    "text": "👥 Collaboration Across Languages\nIn real-world projects, R and Python users often work together:\n\n\n👨‍🔬 Data scientists build statistical models in R\n🤖 ML engineers prototype in Python\n📊 Analysts report results using R Markdown\n\n\n\n💡 Why use reticulate in a team?\n\n\n🔄 Avoid rewriting code from one language to another\n🔁 Call shared models or preprocessing functions written in Python\n📦 Reuse Python packages or APIs within your R workflow\n📤 Publish reproducible reports that include both R and Python code"
   },
   {
-    "objectID": "slides/summary_hh.html#shiny-concepts-deployment",
-    "href": "slides/summary_hh.html#shiny-concepts-deployment",
+    "objectID": "slides/summary_hh.html#motivated-example",
+    "href": "slides/summary_hh.html#motivated-example",
     "title": "Short Course on R Tools",
-    "section": "Shiny Concepts & Deployment",
-    "text": "Shiny Concepts & Deployment\n\n⚡Reactivity System:\n\nreactive(): memoized reactive expressions\nisolate(): break reactive chains\nobserveEvent(): trigger actions without outputs\n\n🚀 Deployment Options:\n\nshinyapps.io, Posit Connect, university servers\nshinylive: deploy as static site (experimental)\n\n✅ Best Practices:\n\nUse shinytest2 for testing\nModularize with modules for scalability\nSketch UI/UX before coding\n\n🧠 Hands-on:\n\nKNN Regression in Shiny\nExplore shinyapps gallery for inspiration: https://shiny.posit.co/gallery/"
+    "section": "Motivated Example",
+    "text": "Motivated Example\n🎯 Leverage a pretrained PyTorch CNN in R to:\n\n\nClassify handwritten digit images (.png)\n\n\n\n\nRun predictions directly in R\n\n\n\n\nVisualize outputs using Python’s matplotlib"
   },
   {
-    "objectID": "slides/summary_hh.html#rcpp-in-action",
-    "href": "slides/summary_hh.html#rcpp-in-action",
+    "objectID": "slides/summary_hh.html#step-1-define-the-cnn-model-in-python",
+    "href": "slides/summary_hh.html#step-1-define-the-cnn-model-in-python",
     "title": "Short Course on R Tools",
-    "section": "🔬 Rcpp in Action",
-    "text": "🔬 Rcpp in Action\n\n🧪 Examples:\n\nOdd/Even test (basic)\n\nbool is_even(int x) {\nreturn x % 2 == 0;\n}\n\nVAR(1) simulation with RcppArmadillo\nFibonacci benchmark: 200× speedup\n\nC++ Types: NumericVector, IntegerVector, STL containers\nData conversion: Seamless mapping between R and C++ objects\n📦 Packaging:\n\nUse LinkingTo: Rcpp in DESCRIPTION\nAutomate with usethis::use_rcpp()\nMaintainable, testable code with Rcpp::compileAttributes()"
+    "section": "Step 1: Define the CNN Model in Python",
+    "text": "Step 1: Define the CNN Model in Python\n🧠 File: model.py\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass SimpleCNN(nn.Module):\n    def __init__(self):\n        super(SimpleCNN, self).__init__()\n        self.conv1_layer = nn.Conv2d(1, 16, kernel_size=3, padding=1)\n        self.conv2_layer = nn.Conv2d(16, 32, kernel_size=3, padding=1)\n        self.fc1_layer = nn.Linear(32 * 7 * 7, 128)\n        self.fc2_layer = nn.Linear(128, 10)\n\n    def forward(self, inputs):\n        x = F.relu(self.conv1_layer(inputs))\n        x = F.max_pool2d(x, 2, 2)\n        x = F.relu(self.conv2_layer(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = x.view(-1, 32 * 7 * 7)\n        x = F.relu(self.fc1_layer(x))\n        return self.fc2_layer(x)"
   },
   {
-    "objectID": "slides/summary_hh.html#interoperability-with-reticulate",
-    "href": "slides/summary_hh.html#interoperability-with-reticulate",
+    "objectID": "slides/summary_hh.html#step-2-dataset",
+    "href": "slides/summary_hh.html#step-2-dataset",
     "title": "Short Course on R Tools",
-    "section": "Interoperability with reticulate",
-    "text": "Interoperability with reticulate\n\nWhy integrate?\n\nLeverage Python libraries (ML, CV, NLP)\nAvoid rewriting code across environments\nEnable seamless workflows via R Markdown & Quarto\n\nKey Features of reticulate:\n\nImport Python modules via import()\nRun scripts with source_python() or py_run_file()\nShared Python session across R and Python chunks\n\nData Exchange:\n\nAuto-conversion: vectors ↔︎ arrays, data frames ↔︎ pandas\nR objects available in Python via r$, and vice versa with py$"
+    "section": "🖼️ Step 2: Dataset",
+    "text": "🖼️ Step 2: Dataset\nWe use the MNIST dataset of handwritten digits."
   },
   {
-    "objectID": "slides/summary_hh.html#using-python-from-r",
-    "href": "slides/summary_hh.html#using-python-from-r",
+    "objectID": "slides/summary_hh.html#step-3-train-the-model-on-a-gpu-machine",
+    "href": "slides/summary_hh.html#step-3-train-the-model-on-a-gpu-machine",
     "title": "Short Course on R Tools",
-    "section": "🛠 Using Python from R",
-    "text": "🛠 Using Python from R\n\nVirtualenv / Conda: manage environments cleanly\nCalling Python functions & classes from .py files\nUsing Python in Shiny apps\n\nExample: compute factorial via math.factorial\n\nlibrary(shiny)\nui &lt;- fluidPage(\nactionButton(\"btn\", \"Compute factorial\"),\nverbatimTextOutput(\"out\")\n)\nserver &lt;- function(input, output) {\nobserveEvent(input$btn, {\n  reticulate::py_run_string(\"import math; res = math.factorial(10)\")\n  output$out &lt;- renderText(py$res)\n})\n}\nshinyApp(ui, server)\nR Markdown / Quarto:\n\nInline Python code in {python} chunks\nShare variables between R and Python"
+    "section": "🚀 Step 3: Train the Model on a GPU Machine",
+    "text": "🚀 Step 3: Train the Model on a GPU Machine\n⚙️ Run following train.py on a GPU-enabled desktop.\n✅ Output: cnn_model.pth (trained weights)\nimport torch\nimport torch.nn as nn\nimport torch.optim as optim\nimport torchvision\nimport torchvision.transforms as transforms\nfrom torch.utils.data import DataLoader\nfrom model import SimpleCNN\n\n# Use GPU if available\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\nprint(f\"Using device: {device}\")\n\n# Define transformation to apply to the data\ndata_transform = transforms.Compose([\n    transforms.ToTensor(),  # Convert images to PyTorch tensors\n    transforms.Normalize((0.5,), (0.5,))  # Normalize the pixel values to range [-1, 1]\n])\n\n# Download MNIST dataset and apply the transformation\ntrain_dataset = torchvision.datasets.MNIST(root='./data', train=True, transform=data_transform, download=False)\ntest_dataset = torchvision.datasets.MNIST(root='./data', train=False, transform=data_transform, download=False)\n\n# Define data loaders to load the data in batches during training and testing\ntrain_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)\ntest_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)\n\n# Instantiate model and move to device\ncnn_model = SimpleCNN().to(device)\n\n# Define loss function and optimizer\nloss_func = nn.CrossEntropyLoss()\noptimizer = optim.Adam(cnn_model.parameters(), lr=0.001)\n\n# Train model\nfor epoch in range(5):\n    cnn_model.train()\n    running_loss = 0.0\n    for inputs, labels in train_loader:\n        inputs, labels = inputs.to(device), labels.to(device)\n\n        optimizer.zero_grad()\n        outputs = cnn_model(inputs)\n        loss = loss_func(outputs, labels)\n        loss.backward()\n        optimizer.step()\n\n        running_loss += loss.item()\n    print(f\"Epoch {epoch+1}, Loss: {running_loss / len(train_loader):.4f}\")\n\n# Evaluate on test data\ncnn_model.eval()\ncorrect_predictions = 0\ntotal_samples = 0\nwith torch.no_grad():\n    for inputs, labels in test_loader:\n        inputs, labels = inputs.to(device), labels.to(device)\n        outputs = cnn_model(inputs)\n        _, predicted_labels = torch.max(outputs, 1)\n        total_samples += labels.size(0)\n        correct_predictions += (predicted_labels == labels).sum().item()\n\naccuracy = 100 * correct_predictions / total_samples\nprint(f\"Accuracy of test set: {accuracy:.2f}%\")\n\n# Save the model\ntorch.save(cnn_model.state_dict(), 'cnn_model.pth')"
   },
   {
-    "objectID": "slides/summary_hh.html#takeaways",
-    "href": "slides/summary_hh.html#takeaways",
+    "objectID": "slides/summary_hh.html#step-4-load-the-model-in-r-with-reticulate",
+    "href": "slides/summary_hh.html#step-4-load-the-model-in-r-with-reticulate",
     "title": "Short Course on R Tools",
-    "section": "Takeaways",
-    "text": "Takeaways\n\nUse reticulate to blend Python’s ML power with R’s statistical strength\nMatch tools to tasks without leaving your R workflow\nIdeal for reproducible, collaborative data science"
+    "section": "🧬 Step 4: Load the Model in R with reticulate",
+    "text": "🧬 Step 4: Load the Model in R with reticulate\n📦 Place both model.py and cnn_model.pth in your R project\nlibrary(reticulate)\ntorch &lt;- import(\"torch\")\ntransforms &lt;- import(\"torchvision.transforms\", convert = TRUE)\nImage &lt;- import(\"PIL.Image\", convert = FALSE)\nplt &lt;- import(\"matplotlib.pyplot\")\nos &lt;- import(\"os\")\n\n# Source your model class\nsource_python(\"python/model.py\")\n\ndevice &lt;- torch$device(\"cpu\")\n# device &lt;- torch$device(\"cuda\")\n\nmodel &lt;- SimpleCNN()$to(device)\nmodel$load_state_dict(torch$load(\"python/cnn_model.pth\", map_location = device))\nmodel$eval()"
   },
   {
-    "objectID": "slides/summary_hh.html#package-structure",
-    "href": "slides/summary_hh.html#package-structure",
+    "objectID": "slides/summary_hh.html#step-5-predict-and-visualize-in-r",
+    "href": "slides/summary_hh.html#step-5-predict-and-visualize-in-r",
     "title": "Short Course on R Tools",
-    "section": "🏗 Package Structure",
-    "text": "🏗 Package Structure\n\nDESCRIPTION: metadata\nNAMESPACE: exports and imports\nR/: function definitions\nman/: auto-generated docs"
+    "section": "🖼️ Step 5: Predict and Visualize in R",
+    "text": "🖼️ Step 5: Predict and Visualize in R\n# Preprocessing pipeline\ntransform &lt;- transforms$Compose(list(\n  transforms$Grayscale(),\n  transforms$Resize(tuple(28L, 28L)),\n  transforms$ToTensor(),\n  transforms$Normalize(tuple(0.5), tuple(0.5))\n))\n\nimage_dir &lt;- \"python/test_images\"\nimage_files &lt;- sort(Filter(function(f) endsWith(f, \".png\"), os$listdir(image_dir)))\n\nplt$figure(figsize = tuple(10, 3))\n\nwith(torch$no_grad(), {\n  for (idx in seq_along(image_files)) {\n    img_file &lt;- image_files[[idx]]\n    img_path &lt;- file.path(image_dir, img_file)\n    image &lt;- Image$open(img_path)\n    input_tensor &lt;- transform(image)$unsqueeze(0L)$to(device)\n    output &lt;- model(input_tensor)\n    predicted_label &lt;- torch$argmax(output, dim = 1L)$item()\n    plt$subplot(1L, length(image_files), idx)\n    plt$imshow(image$convert(\"L\"), cmap = \"gray\")\n    plt$title(sprintf(\"Predicted: %s\", predicted_label))\n    plt$axis(\"off\")\n  }\n})\n\nplt$tight_layout()\nplt$show()"
   },
   {
-    "objectID": "slides/summary_hh.html#development-lifecycle",
-    "href": "slides/summary_hh.html#development-lifecycle",
+    "objectID": "slides/summary_hh.html#final-result",
+    "href": "slides/summary_hh.html#final-result",
     "title": "Short Course on R Tools",
-    "section": "🛠 Development Lifecycle",
-    "text": "🛠 Development Lifecycle\n\n5 Package States:\n\nSource → Bundled → Binary → Installed → In-Memory\n\nCreating a Package\n\nUse usethis::create_package()\nWrite functions in R/, document with roxygen2\n\nDocumentation & Export\n\nGenerate with devtools::document()\nExpose with @export and @import\n\nBuild & Install\n\nBuild with devtools::build()\nInstall with devtools::install()"
+    "section": "✅ Final Result",
+    "text": "✅ Final Result"
   },
   {
-    "objectID": "slides/summary_hh.html#takeaways-1",
-    "href": "slides/summary_hh.html#takeaways-1",
+    "objectID": "slides/summary_hh.html#motivations-to-package-your-code",
+    "href": "slides/summary_hh.html#motivations-to-package-your-code",
     "title": "Short Course on R Tools",
-    "section": "📌 Takeaways",
-    "text": "📌 Takeaways\n\nR packages provide a professional structure to your work\nAutomate documentation, testing, and sharing\nEssential for reproducible, collaborative, and maintainable R code"
+    "section": "💡 Motivations to Package Your Code",
+    "text": "💡 Motivations to Package Your Code\n🧰 Why build a package?\n\n\n♻️ Reuse and organize reusable code chunks\n📖 Provide documentation and examples\n🧪 Add unit tests to ensure reliability\n🌐 Distribute:\n\nvia CRAN for wide access\nvia GitHub for collaborative development\nor keep it private for internal use"
   },
   {
-    "objectID": "slides/summary_hh.html#cran-submission",
-    "href": "slides/summary_hh.html#cran-submission",
+    "objectID": "slides/summary_hh.html#setup-requirements",
+    "href": "slides/summary_hh.html#setup-requirements",
     "title": "Short Course on R Tools",
-    "section": "🚀 CRAN Submission",
-    "text": "🚀 CRAN Submission\n\nCRAN = Comprehensive R Archive Network\nPackages must pass R CMD check with:\n\n❌ No ERRORs\n⚠️ No WARNINGs\n📝 Minimal NOTEs\n\nSimulate checks with rhub::check_for_cran()\nSubmit via devtools::release()\nResponse from CRAN in ~1–3 days"
+    "section": "🛠 Setup Requirements",
+    "text": "🛠 Setup Requirements\nInstall development tools:\ninstall.packages(c(\"devtools\", \"roxygen2\", \"testthat\", \"knitr\"))\n\nCheck system:\n✅ Ensure R and RStudio are updated\n✅ Use usethis package for automation\n\n\nExample:\nusethis::create_package(\"mypkg\")"
   },
   {
-    "objectID": "slides/summary_hh.html#before-you-submit",
-    "href": "slides/summary_hh.html#before-you-submit",
+    "objectID": "slides/summary_hh.html#package-structure-overview",
+    "href": "slides/summary_hh.html#package-structure-overview",
     "title": "Short Course on R Tools",
-    "section": "🛠 Before You Submit",
-    "text": "🛠 Before You Submit\n\nUse devtools::check() for local testing\nInclude:\n\nValid license\nORCID info\nClean examples and documentation\n\nUpdate via version bump and NEWS.md"
+    "section": "🏗 Package Structure Overview",
+    "text": "🏗 Package Structure Overview\nmypkg/\n├── DESCRIPTION         # 📋 Package metadata\n├── NAMESPACE           # 🔁 Exported functions & imports\n├── R/                  # 📂 Your R functions\n└── man/                # 📚 Auto-generated documentation\n\n💡 Other folders you may add:\n\n\n📂 tests/ → Unit tests (testthat)\n📂 vignettes/ → Long-form docs\n📂 data/ → Internal or example datasets"
   },
   {
-    "objectID": "slides/summary_hh.html#collaborate-via-github",
-    "href": "slides/summary_hh.html#collaborate-via-github",
+    "objectID": "slides/summary_hh.html#anatomy-of-a-description-file",
+    "href": "slides/summary_hh.html#anatomy-of-a-description-file",
     "title": "Short Course on R Tools",
-    "section": "🤝 Collaborate via GitHub",
-    "text": "🤝 Collaborate via GitHub\n\nGit = local version control\nGitHub = cloud hosting and collaboration\nRStudio integrates Git workflows\nUse usethis::use_github() to link project\n\n✅ Auth via Personal Access Token (PAT) using gitcreds"
+    "section": "🧩 Anatomy of a DESCRIPTION File",
+    "text": "🧩 Anatomy of a DESCRIPTION File\nPackage: mypkg\nTitle: Tools for Cool Analysis\nVersion: 0.1.0\nAuthors@R: person(\"Your\", \"Name\", email = \"you@mail.com\", role = c(\"aut\", \"cre\"))\nDescription: A simple demo R package with functions and examples.\nLicense: MIT + file LICENSE\nImports: dplyr"
   },
   {
-    "objectID": "slides/summary_hh.html#daily-git-workflow",
-    "href": "slides/summary_hh.html#daily-git-workflow",
+    "objectID": "slides/summary_hh.html#package-states-in-r",
+    "href": "slides/summary_hh.html#package-states-in-r",
     "title": "Short Course on R Tools",
-    "section": "🧪 Daily Git Workflow",
-    "text": "🧪 Daily Git Workflow\n\nEdit → Stage → Commit → Push\nShare changes, open pull requests\nCheck status with usethis::git_sitrep()\n\n📦 Ideal for collaborative R package development!"
+    "section": "🛠 Package States in R",
+    "text": "🛠 Package States in R\nR packages transition through five development states:\n\n\n🗂️ Source: your raw package folder\n📦 Bundled: compressed .tar.gz for sharing\n🧱 Binary: platform-specific precompiled version\n📚 Installed: available in your R library\n🧠 In-Memory: actively loaded via library()\n\n\n\n\nUnderstanding these states helps you manage installation, sharing, and usage workflows."
+  },
+  {
+    "objectID": "slides/summary_hh.html#transitioning-between-states",
+    "href": "slides/summary_hh.html#transitioning-between-states",
+    "title": "Short Course on R Tools",
+    "section": "🔁 Transitioning Between States",
+    "text": "🔁 Transitioning Between States"
+  },
+  {
+    "objectID": "slides/summary_hh.html#package-development-flow",
+    "href": "slides/summary_hh.html#package-development-flow",
+    "title": "Short Course on R Tools",
+    "section": "📦 Package Development Flow",
+    "text": "📦 Package Development Flow\n\nCreate a package\n\nusethis::create_package(\"mypkg\")\n\n\nWrite functions inside R/\n\n\n\n\nDocument them with roxygen2 tags:\n\n#' Say Hello\n#' @export\nhello &lt;- function() {\n  print(\"Hello, world!\")\n}\n\n\n\nGenerate docs and namespace\n\ndevtools::document()"
+  },
+  {
+    "objectID": "slides/summary_hh.html#install-and-share",
+    "href": "slides/summary_hh.html#install-and-share",
+    "title": "Short Course on R Tools",
+    "section": "🚀 Install, and Share",
+    "text": "🚀 Install, and Share\n\nBuild package:\n\ndevtools::build()\n\n\nInstall locally:\n\ndevtools::install()\n\n\n\nShare via GitHub:\n\nusethis::use_github()\n\n\n\nInstall from GitHub (for others):\n\nremotes::install_github(\"yourname/mypkg\")"
+  },
+  {
+    "objectID": "slides/summary_hh.html#further-resources",
+    "href": "slides/summary_hh.html#further-resources",
+    "title": "Short Course on R Tools",
+    "section": "📚 Further Resources",
+    "text": "📚 Further Resources\n\n📖 R Packages (book): https://r-pkgs.org\n🧪 testthat: https://testthat.r-lib.org\n📦 devtools: https://devtools.r-lib.org\n🔧 usethis: https://usethis.r-lib.org"
+  },
+  {
+    "objectID": "slides/summary_hh.html#submitting-to-cran",
+    "href": "slides/summary_hh.html#submitting-to-cran",
+    "title": "Short Course on R Tools",
+    "section": "🚀 Submitting to CRAN",
+    "text": "🚀 Submitting to CRAN\n\n\n📦 CRAN = Comprehensive R Archive Network\n\n🎯 Goal: Make your R package public, discoverable, and installable\n✔ Must pass R CMD check with:\n\n❌ No ERRORs\n⚠️ No WARNINGs\n📝 Minimal and justifiable NOTEs\n\n🧪 Simulate checks: rhub::check_for_cran()\n📤 Submit with: devtools::release()\n⏱️ Response in approx 1–3 days"
+  },
+  {
+    "objectID": "slides/summary_hh.html#before-you-hit-release",
+    "href": "slides/summary_hh.html#before-you-hit-release",
+    "title": "Short Course on R Tools",
+    "section": "🛠 Before You Hit “Release”",
+    "text": "🛠 Before You Hit “Release”\n\n\nRun: devtools::check()\n✅ Double-check:\n\n📜 A valid LICENSE\n🆔 ORCID info in Authors@R\n🧪 Examples run &lt; 5 seconds\n📚 Clear documentation and vignettes\n📈 Version bump and a NEWS.md"
+  },
+  {
+    "objectID": "slides/summary_hh.html#confirmation-email",
+    "href": "slides/summary_hh.html#confirmation-email",
+    "title": "Short Course on R Tools",
+    "section": "📩 Confirmation Email",
+    "text": "📩 Confirmation Email"
+  },
+  {
+    "objectID": "slides/summary_hh.html#submission-confirmed-email",
+    "href": "slides/summary_hh.html#submission-confirmed-email",
+    "title": "Short Course on R Tools",
+    "section": "📬 Submission Confirmed Email",
+    "text": "📬 Submission Confirmed Email"
+  },
+  {
+    "objectID": "slides/summary_hh.html#pending-manual-inspection-email",
+    "href": "slides/summary_hh.html#pending-manual-inspection-email",
+    "title": "Short Course on R Tools",
+    "section": "⏳ Pending Manual Inspection Email",
+    "text": "⏳ Pending Manual Inspection Email"
+  },
+  {
+    "objectID": "slides/summary_hh.html#package-initially-accepted-email",
+    "href": "slides/summary_hh.html#package-initially-accepted-email",
+    "title": "Short Course on R Tools",
+    "section": "✅ Package Initially Accepted Email",
+    "text": "✅ Package Initially Accepted Email\n\n\n\n🎉 Good news!"
+  },
+  {
+    "objectID": "slides/summary_hh.html#package-built-on-cran-email",
+    "href": "slides/summary_hh.html#package-built-on-cran-email",
+    "title": "Short Course on R Tools",
+    "section": "📦 Package Built on CRAN Email",
+    "text": "📦 Package Built on CRAN Email\n\n\n\n🧱 CRAN has built binaries for major platforms (Windows, …)."
+  },
+  {
+    "objectID": "slides/summary_hh.html#cran-page-created",
+    "href": "slides/summary_hh.html#cran-page-created",
+    "title": "Short Course on R Tools",
+    "section": "🌐 CRAN Page Created",
+    "text": "🌐 CRAN Page Created\n\n\n🌍 Your package is now live! Searchable and installable via:\n\ninstall.packages(\"Rfssa\")"
+  },
+  {
+    "objectID": "slides/summary_hh.html#why-use-git-github",
+    "href": "slides/summary_hh.html#why-use-git-github",
+    "title": "Short Course on R Tools",
+    "section": "🌍 Why Use Git & GitHub?",
+    "text": "🌍 Why Use Git & GitHub?\n\n\n🔁 Version Control: Track and manage changes in code\n🤝 Collaboration: Work with others without overwriting files\n🧪 Reproducibility: Restore older versions when bugs occur\n🔄 Open Source: Share your package with the world\n\n\n\n\n🧰 Git = Local tracking tool\n☁️ GitHub = Online hosting and teamwork platform"
+  },
+  {
+    "objectID": "slides/summary_hh.html#git-github-from-rstudio",
+    "href": "slides/summary_hh.html#git-github-from-rstudio",
+    "title": "Short Course on R Tools",
+    "section": "🧰 Git & GitHub from RStudio",
+    "text": "🧰 Git & GitHub from RStudio\n✅ RStudio has built-in Git integration:\n\n\nGit tab for staging, committing, and pushing\n\n\n\n\nVisual diff and commit history\n\n\n\n\nPush to GitHub without leaving RStudio"
+  },
+  {
+    "objectID": "slides/summary_hh.html#set-up-github-in-r",
+    "href": "slides/summary_hh.html#set-up-github-in-r",
+    "title": "Short Course on R Tools",
+    "section": "🔧 Set Up GitHub in R",
+    "text": "🔧 Set Up GitHub in R\n\n\n✅ Install Git (git-scm.com)\n\n\n\n\n🔑 Create Personal Access Token (PAT):\n\nusethis::create_github_token()\ngitcreds::gitcreds_set()\n\n\n\n🔗 Link your project to GitHub:\n\nusethis::use_github()\n\n🎉 Your RStudio project is now connected to GitHub!"
+  },
+  {
+    "objectID": "slides/summary_hh.html#create-a-git-enabled-r-package-project",
+    "href": "slides/summary_hh.html#create-a-git-enabled-r-package-project",
+    "title": "Short Course on R Tools",
+    "section": "📦 Create a Git-Enabled R Package Project",
+    "text": "📦 Create a Git-Enabled R Package Project\n\nFile → New Project → New Directory → R Package\n\n\n\n✅ Check “Create a git repository”\n\n\n\n\nInside the project:\n\nusethis::use_git()\nusethis::use_github()\n\n\n\n📁 You now have a .git repo and a linked GitHub project!"
+  },
+  {
+    "objectID": "slides/summary_hh.html#daily-git-workflow-in-rstudio",
+    "href": "slides/summary_hh.html#daily-git-workflow-in-rstudio",
+    "title": "Short Course on R Tools",
+    "section": "🔁 Daily Git Workflow in RStudio",
+    "text": "🔁 Daily Git Workflow in RStudio\n\n🎯 A typical work cycle for package developers:\n\n\n\n\n\nStep\nDescription\n\n\n\n\n✏️ Edit\nMake changes to .R or .Rmd files\n\n\n✅ Stage\nSelect files to track in Git tab\n\n\n💬 Commit\nSave with a message (e.g., “Fix bug”)\n\n\n🚀 Push\nSend to GitHub"
+  },
+  {
+    "objectID": "slides/summary_hh.html#example-collaborative-workflow",
+    "href": "slides/summary_hh.html#example-collaborative-workflow",
+    "title": "Short Course on R Tools",
+    "section": "🧪 Example: Collaborative Workflow",
+    "text": "🧪 Example: Collaborative Workflow\n\n\nYou write a new function: plot_confidence()\n\n\n\n\nCommit message: \"Add CI plot to visual module\"\n\n\n\n\nPush to GitHub → colleague reviews & suggests changes"
+  },
+  {
+    "objectID": "slides/summary_hh.html#github-for-package-development",
+    "href": "slides/summary_hh.html#github-for-package-development",
+    "title": "Short Course on R Tools",
+    "section": "✅ GitHub for Package Development",
+    "text": "✅ GitHub for Package Development\n\n\n📦 Host your package openly\n🧪 Enable collaborative testing & documentation\n📤 Submit to CRAN from a clean version-controlled repo\n🔁 Great for long-term maintenance and open-source visibility\n\n\n\n\n🎯 If you publish your package, link the GitHub repo in DESCRIPTION"
+  },
+  {
+    "objectID": "slides/summary_hh.html#resources",
+    "href": "slides/summary_hh.html#resources",
+    "title": "Short Course on R Tools",
+    "section": "📚 Resources",
+    "text": "📚 Resources\n\n📘 Happy Git with R: https://happygitwithr.com\n🔧 usethis: https://usethis.r-lib.org\n🧪 gitcreds: https://github.com/r-lib/gitcreds\n📂 GitHub Docs: https://docs.github.com/"
   },
   {
     "objectID": "slides/Topic5_hh.html#key-packages",
