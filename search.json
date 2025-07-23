@@ -1196,67 +1196,32 @@
     "text": "🔬 Rcpp in Action\n\n🧪 Examples:\n\nOdd/Even test (basic)\n\nbool is_even(int x) {\nreturn x % 2 == 0;\n}\n\nVAR(1) simulation with RcppArmadillo\nFibonacci benchmark: 200× speedup\n\nC++ Types: NumericVector, IntegerVector, STL containers\nData conversion: Seamless mapping between R and C++ objects\n📦 Packaging:\n\nUse LinkingTo: Rcpp in DESCRIPTION\nAutomate with usethis::use_rcpp()\nMaintainable, testable code with Rcpp::compileAttributes()"
   },
   {
-    "objectID": "slides/summary_hh.html#why-call-python-from-r",
-    "href": "slides/summary_hh.html#why-call-python-from-r",
+    "objectID": "slides/summary_hh.html#why-call-python-in-r",
+    "href": "slides/summary_hh.html#why-call-python-in-r",
     "title": "Short Course on R Tools",
-    "section": "🤖 Why Call Python from R?",
-    "text": "🤖 Why Call Python from R?\nSometimes, R alone isn’t enough. Calling Python lets you:\n\n\n💡 Use cutting-edge machine learning (e.g., scikit-learn)\n🧠 Access deep learning frameworks (PyTorch,TensorFlow)\n🔎 Run powerful text and image processing with spaCy, OpenCV\n📊 Leverage fast data engines like polars or pandas\n🌐 Scrape complex websites using Selenium or BeautifulSoup\n\n\n\n\n💡 Language interoperability enables modular, high-performance, and collaborative software development."
+    "section": "💡 Why Call Python in R?",
+    "text": "💡 Why Call Python in R?\n\n\n🔄 Avoid rewriting code from one language to another\n🔁 Call shared models or preprocessing functions written in Python\n📦 Reuse Python packages or APIs within your R workflow\n📤 Publish reproducible reports that include both R and Python code"
   },
   {
-    "objectID": "slides/summary_hh.html#collaboration-across-languages",
-    "href": "slides/summary_hh.html#collaboration-across-languages",
+    "objectID": "slides/summary_hh.html#what-is-reticulate",
+    "href": "slides/summary_hh.html#what-is-reticulate",
     "title": "Short Course on R Tools",
-    "section": "👥 Collaboration Across Languages",
-    "text": "👥 Collaboration Across Languages\nIn real-world projects, R and Python users often work together:\n\n\n👨‍🔬 Data scientists build statistical models in R\n🤖 ML engineers prototype in Python\n📊 Analysts report results using R Markdown\n\n\n\n💡 Why use reticulate in a team?\n\n\n🔄 Avoid rewriting code from one language to another\n🔁 Call shared models or preprocessing functions written in Python\n📦 Reuse Python packages or APIs within your R workflow\n📤 Publish reproducible reports that include both R and Python code"
+    "section": "What is reticulate?",
+    "text": "What is reticulate?\n\n\nR package for interoperability with Python\nMaintains a shared Python session accessible from R\nAutomatic conversion of many R types to Python and vice versa\nSupports inline Python code in R Markdown and R scripts"
   },
   {
-    "objectID": "slides/summary_hh.html#motivated-example",
-    "href": "slides/summary_hh.html#motivated-example",
+    "objectID": "slides/summary_hh.html#demo-python-from-r-in-rstudio",
+    "href": "slides/summary_hh.html#demo-python-from-r-in-rstudio",
     "title": "Short Course on R Tools",
-    "section": "Motivated Example",
-    "text": "Motivated Example\n🎯 Leverage a pretrained PyTorch CNN in R to:\n\n\nClassify handwritten digit images (.png)\n\n\n\n\nRun predictions directly in R\n\n\n\n\nVisualize outputs using Python’s matplotlib"
+    "section": "🎥 Demo: Python from R in RStudio",
+    "text": "🎥 Demo: Python from R in RStudio"
   },
   {
-    "objectID": "slides/summary_hh.html#step-1-define-the-cnn-model-in-python",
-    "href": "slides/summary_hh.html#step-1-define-the-cnn-model-in-python",
+    "objectID": "slides/summary_hh.html#example-use-python-from-r",
+    "href": "slides/summary_hh.html#example-use-python-from-r",
     "title": "Short Course on R Tools",
-    "section": "Step 1: Define the CNN Model in Python",
-    "text": "Step 1: Define the CNN Model in Python\n🧠 File: model.py\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass SimpleCNN(nn.Module):\n    def __init__(self):\n        super(SimpleCNN, self).__init__()\n        self.conv1_layer = nn.Conv2d(1, 16, kernel_size=3, padding=1)\n        self.conv2_layer = nn.Conv2d(16, 32, kernel_size=3, padding=1)\n        self.fc1_layer = nn.Linear(32 * 7 * 7, 128)\n        self.fc2_layer = nn.Linear(128, 10)\n\n    def forward(self, inputs):\n        x = F.relu(self.conv1_layer(inputs))\n        x = F.max_pool2d(x, 2, 2)\n        x = F.relu(self.conv2_layer(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = x.view(-1, 32 * 7 * 7)\n        x = F.relu(self.fc1_layer(x))\n        return self.fc2_layer(x)"
-  },
-  {
-    "objectID": "slides/summary_hh.html#step-2-dataset",
-    "href": "slides/summary_hh.html#step-2-dataset",
-    "title": "Short Course on R Tools",
-    "section": "🖼️ Step 2: Dataset",
-    "text": "🖼️ Step 2: Dataset\nWe use the MNIST dataset of handwritten digits."
-  },
-  {
-    "objectID": "slides/summary_hh.html#step-3-train-the-model-on-a-gpu-machine",
-    "href": "slides/summary_hh.html#step-3-train-the-model-on-a-gpu-machine",
-    "title": "Short Course on R Tools",
-    "section": "🚀 Step 3: Train the Model on a GPU Machine",
-    "text": "🚀 Step 3: Train the Model on a GPU Machine\n⚙️ Run following train.py on a GPU-enabled desktop.\n✅ Output: cnn_model.pth (trained weights)\nimport torch\nimport torch.nn as nn\nimport torch.optim as optim\nimport torchvision\nimport torchvision.transforms as transforms\nfrom torch.utils.data import DataLoader\nfrom model import SimpleCNN\n\n# Use GPU if available\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\nprint(f\"Using device: {device}\")\n\n# Define transformation to apply to the data\ndata_transform = transforms.Compose([\n    transforms.ToTensor(),  # Convert images to PyTorch tensors\n    transforms.Normalize((0.5,), (0.5,))  # Normalize the pixel values to range [-1, 1]\n])\n\n# Download MNIST dataset and apply the transformation\ntrain_dataset = torchvision.datasets.MNIST(root='./data', train=True, transform=data_transform, download=False)\ntest_dataset = torchvision.datasets.MNIST(root='./data', train=False, transform=data_transform, download=False)\n\n# Define data loaders to load the data in batches during training and testing\ntrain_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)\ntest_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)\n\n# Instantiate model and move to device\ncnn_model = SimpleCNN().to(device)\n\n# Define loss function and optimizer\nloss_func = nn.CrossEntropyLoss()\noptimizer = optim.Adam(cnn_model.parameters(), lr=0.001)\n\n# Train model\nfor epoch in range(5):\n    cnn_model.train()\n    running_loss = 0.0\n    for inputs, labels in train_loader:\n        inputs, labels = inputs.to(device), labels.to(device)\n\n        optimizer.zero_grad()\n        outputs = cnn_model(inputs)\n        loss = loss_func(outputs, labels)\n        loss.backward()\n        optimizer.step()\n\n        running_loss += loss.item()\n    print(f\"Epoch {epoch+1}, Loss: {running_loss / len(train_loader):.4f}\")\n\n# Evaluate on test data\ncnn_model.eval()\ncorrect_predictions = 0\ntotal_samples = 0\nwith torch.no_grad():\n    for inputs, labels in test_loader:\n        inputs, labels = inputs.to(device), labels.to(device)\n        outputs = cnn_model(inputs)\n        _, predicted_labels = torch.max(outputs, 1)\n        total_samples += labels.size(0)\n        correct_predictions += (predicted_labels == labels).sum().item()\n\naccuracy = 100 * correct_predictions / total_samples\nprint(f\"Accuracy of test set: {accuracy:.2f}%\")\n\n# Save the model\ntorch.save(cnn_model.state_dict(), 'cnn_model.pth')"
-  },
-  {
-    "objectID": "slides/summary_hh.html#step-4-load-the-model-in-r-with-reticulate",
-    "href": "slides/summary_hh.html#step-4-load-the-model-in-r-with-reticulate",
-    "title": "Short Course on R Tools",
-    "section": "🧬 Step 4: Load the Model in R with reticulate",
-    "text": "🧬 Step 4: Load the Model in R with reticulate\n📦 Place both model.py and cnn_model.pth in your R project\nlibrary(reticulate)\ntorch &lt;- import(\"torch\")\ntransforms &lt;- import(\"torchvision.transforms\", convert = TRUE)\nImage &lt;- import(\"PIL.Image\", convert = FALSE)\nplt &lt;- import(\"matplotlib.pyplot\")\nos &lt;- import(\"os\")\n\n# Source your model class\nsource_python(\"python/model.py\")\n\ndevice &lt;- torch$device(\"cpu\")\n# device &lt;- torch$device(\"cuda\")\n\nmodel &lt;- SimpleCNN()$to(device)\nmodel$load_state_dict(torch$load(\"python/cnn_model.pth\", map_location = device))\nmodel$eval()"
-  },
-  {
-    "objectID": "slides/summary_hh.html#step-5-predict-and-visualize-in-r",
-    "href": "slides/summary_hh.html#step-5-predict-and-visualize-in-r",
-    "title": "Short Course on R Tools",
-    "section": "🖼️ Step 5: Predict and Visualize in R",
-    "text": "🖼️ Step 5: Predict and Visualize in R\n# Preprocessing pipeline\ntransform &lt;- transforms$Compose(list(\n  transforms$Grayscale(),\n  transforms$Resize(tuple(28L, 28L)),\n  transforms$ToTensor(),\n  transforms$Normalize(tuple(0.5), tuple(0.5))\n))\n\nimage_dir &lt;- \"python/test_images\"\nimage_files &lt;- sort(Filter(function(f) endsWith(f, \".png\"), os$listdir(image_dir)))\n\nplt$figure(figsize = tuple(10, 3))\n\nwith(torch$no_grad(), {\n  for (idx in seq_along(image_files)) {\n    img_file &lt;- image_files[[idx]]\n    img_path &lt;- file.path(image_dir, img_file)\n    image &lt;- Image$open(img_path)\n    input_tensor &lt;- transform(image)$unsqueeze(0L)$to(device)\n    output &lt;- model(input_tensor)\n    predicted_label &lt;- torch$argmax(output, dim = 1L)$item()\n    plt$subplot(1L, length(image_files), idx)\n    plt$imshow(image$convert(\"L\"), cmap = \"gray\")\n    plt$title(sprintf(\"Predicted: %s\", predicted_label))\n    plt$axis(\"off\")\n  }\n})\n\nplt$tight_layout()\nplt$show()"
-  },
-  {
-    "objectID": "slides/summary_hh.html#final-result",
-    "href": "slides/summary_hh.html#final-result",
-    "title": "Short Course on R Tools",
-    "section": "✅ Final Result",
-    "text": "✅ Final Result"
+    "section": "🔁 Example: Use Python from R",
+    "text": "🔁 Example: Use Python from R\n\n\n📦 R with reticulate\nlibrary(reticulate)\nsklearn &lt;- import(\"sklearn\")\nmodel_selection &lt;- sklearn$model_selection\nneural_network &lt;- sklearn$neural_network\nX &lt;- as.matrix(iris[, 1:4])         \ny &lt;- as.integer(iris$Species) - 1     \ntrain_test &lt;- model_selection$train_test_split(X, y, test_size = 0.2, random_state = 42)\nX_train &lt;- train_test[[1]]\nX_test &lt;- train_test[[2]]\ny_train &lt;- train_test[[3]]\ny_test &lt;- train_test[[4]]\nmlp &lt;- neural_network$MLPClassifier(hidden_layer_sizes = tuple(10L))\nmlp$fit(X_train, y_train)\ny_pred &lt;- mlp$predict(X_test)\n\n🐍 Native Python\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\niris = load_iris()\nX, y = iris.data, iris.target\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\nmlp = MLPClassifier(hidden_layer_sizes=(10,))\nmlp.fit(X_train, y_train)\ny_pred = mlp.predict(X_test)"
   },
   {
     "objectID": "slides/summary_hh.html#motivations-to-package-your-code",
@@ -1266,25 +1231,11 @@
     "text": "💡 Motivations to Package Your Code\n🧰 Why build a package?\n\n\n♻️ Reuse and organize reusable code chunks\n📖 Provide documentation and examples\n🧪 Add unit tests to ensure reliability\n🌐 Distribute:\n\nvia CRAN for wide access\nvia GitHub for collaborative development\nor keep it private for internal use"
   },
   {
-    "objectID": "slides/summary_hh.html#setup-requirements",
-    "href": "slides/summary_hh.html#setup-requirements",
-    "title": "Short Course on R Tools",
-    "section": "🛠 Setup Requirements",
-    "text": "🛠 Setup Requirements\nInstall development tools:\ninstall.packages(c(\"devtools\", \"roxygen2\", \"testthat\", \"knitr\"))\n\nCheck system:\n✅ Ensure R and RStudio are updated\n✅ Use usethis package for automation\n\n\nExample:\nusethis::create_package(\"mypkg\")"
-  },
-  {
     "objectID": "slides/summary_hh.html#package-structure-overview",
     "href": "slides/summary_hh.html#package-structure-overview",
     "title": "Short Course on R Tools",
     "section": "🏗 Package Structure Overview",
     "text": "🏗 Package Structure Overview\nmypkg/\n├── DESCRIPTION         # 📋 Package metadata\n├── NAMESPACE           # 🔁 Exported functions & imports\n├── R/                  # 📂 Your R functions\n└── man/                # 📚 Auto-generated documentation\n\n💡 Other folders you may add:\n\n\n📂 tests/ → Unit tests (testthat)\n📂 vignettes/ → Long-form docs\n📂 data/ → Internal or example datasets"
-  },
-  {
-    "objectID": "slides/summary_hh.html#anatomy-of-a-description-file",
-    "href": "slides/summary_hh.html#anatomy-of-a-description-file",
-    "title": "Short Course on R Tools",
-    "section": "🧩 Anatomy of a DESCRIPTION File",
-    "text": "🧩 Anatomy of a DESCRIPTION File\nPackage: mypkg\nTitle: Tools for Cool Analysis\nVersion: 0.1.0\nAuthors@R: person(\"Your\", \"Name\", email = \"you@mail.com\", role = c(\"aut\", \"cre\"))\nDescription: A simple demo R package with functions and examples.\nLicense: MIT + file LICENSE\nImports: dplyr"
   },
   {
     "objectID": "slides/summary_hh.html#package-states-in-r",
@@ -1301,25 +1252,11 @@
     "text": "🔁 Transitioning Between States"
   },
   {
-    "objectID": "slides/summary_hh.html#package-development-flow",
-    "href": "slides/summary_hh.html#package-development-flow",
+    "objectID": "slides/summary_hh.html#demo-rfssa-package",
+    "href": "slides/summary_hh.html#demo-rfssa-package",
     "title": "Short Course on R Tools",
-    "section": "📦 Package Development Flow",
-    "text": "📦 Package Development Flow\n\nCreate a package\n\nusethis::create_package(\"mypkg\")\n\n\nWrite functions inside R/\n\n\n\n\nDocument them with roxygen2 tags:\n\n#' Say Hello\n#' @export\nhello &lt;- function() {\n  print(\"Hello, world!\")\n}\n\n\n\nGenerate docs and namespace\n\ndevtools::document()"
-  },
-  {
-    "objectID": "slides/summary_hh.html#install-and-share",
-    "href": "slides/summary_hh.html#install-and-share",
-    "title": "Short Course on R Tools",
-    "section": "🚀 Install, and Share",
-    "text": "🚀 Install, and Share\n\nBuild package:\n\ndevtools::build()\n\n\nInstall locally:\n\ndevtools::install()\n\n\n\nShare via GitHub:\n\nusethis::use_github()\n\n\n\nInstall from GitHub (for others):\n\nremotes::install_github(\"yourname/mypkg\")"
-  },
-  {
-    "objectID": "slides/summary_hh.html#further-resources",
-    "href": "slides/summary_hh.html#further-resources",
-    "title": "Short Course on R Tools",
-    "section": "📚 Further Resources",
-    "text": "📚 Further Resources\n\n📖 R Packages (book): https://r-pkgs.org\n🧪 testthat: https://testthat.r-lib.org\n📦 devtools: https://devtools.r-lib.org\n🔧 usethis: https://usethis.r-lib.org"
+    "section": "🎥 Demo: Rfssa Package",
+    "text": "🎥 Demo: Rfssa Package"
   },
   {
     "objectID": "slides/summary_hh.html#submitting-to-cran",
@@ -1329,18 +1266,11 @@
     "text": "🚀 Submitting to CRAN\n\n\n📦 CRAN = Comprehensive R Archive Network\n\n🎯 Goal: Make your R package public, discoverable, and installable\n✔ Must pass R CMD check with:\n\n❌ No ERRORs\n⚠️ No WARNINGs\n📝 Minimal and justifiable NOTEs\n\n🧪 Simulate checks: rhub::check_for_cran()\n📤 Submit with: devtools::release()\n⏱️ Response in approx 1–3 days"
   },
   {
-    "objectID": "slides/summary_hh.html#before-you-hit-release",
-    "href": "slides/summary_hh.html#before-you-hit-release",
+    "objectID": "slides/summary_hh.html#confirmation-email-after-submission",
+    "href": "slides/summary_hh.html#confirmation-email-after-submission",
     "title": "Short Course on R Tools",
-    "section": "🛠 Before You Hit “Release”",
-    "text": "🛠 Before You Hit “Release”\n\n\nRun: devtools::check()\n✅ Double-check:\n\n📜 A valid LICENSE\n🆔 ORCID info in Authors@R\n🧪 Examples run &lt; 5 seconds\n📚 Clear documentation and vignettes\n📈 Version bump and a NEWS.md"
-  },
-  {
-    "objectID": "slides/summary_hh.html#confirmation-email",
-    "href": "slides/summary_hh.html#confirmation-email",
-    "title": "Short Course on R Tools",
-    "section": "📩 Confirmation Email",
-    "text": "📩 Confirmation Email"
+    "section": "📩 Confirmation Email (After Submission)",
+    "text": "📩 Confirmation Email (After Submission)"
   },
   {
     "objectID": "slides/summary_hh.html#submission-confirmed-email",
