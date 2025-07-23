@@ -10,263 +10,592 @@ format:
     scrollable: true
 ---
 
-# 🧠 Object Oriented Programming in R 
+# 🐍 4. Python in R
 
-- **🧩 OOP Paradigms in R**:
-  - Functional OOP: `plot(lm(...))`
-  - Encapsulated OOP: `learner$train()`
-  - Modern tools: `mlr3`, `R6`, `S7`
 
-- **🏗 OOP Systems**:
-  - **S3**: Lightweight & informal — uses `UseMethod()`
-  - **S4**: Formal and type-safe — uses `setClass()` and `@`
-  - **R6**: Mutable, used in apps like `shiny`
-  - **S7**: Newest and unified — multiple dispatch
+## 🤖 Why Call Python from R?
 
-- **🔍 Key Concepts**:
-  - Use `otype()`, `is.object()`, `structure()`, `class()` for diagnostics
-  - Understand inheritance and `NextMethod()`
-  - Follow best practices: custom constructor + validator + clean API
+Sometimes, R alone isn't enough. Calling Python lets you:
+
+::: incremental
+-   💡 Use cutting-edge **machine learning** (e.g., `scikit-learn`)
+-   🧠 Access **deep learning** frameworks (`PyTorch`,`TensorFlow`)
+-   🔎 Run powerful **text and image processing** with `spaCy`, `OpenCV`
+-   📊 Leverage fast data engines like `polars` or `pandas`
+-   🌐 Scrape complex websites using `Selenium` or `BeautifulSoup`
+:::
+
+. . .
+
+> 💡 Language interoperability enables modular, high-performance, and collaborative software development.
+
+## 👥 Collaboration Across Languages
+
+In real-world projects, R and Python users often work together:
+
+::: incremental
+-   👨‍🔬 Data scientists build statistical models in R
+-   🤖 ML engineers prototype in Python
+-   📊 Analysts report results using R Markdown
+:::
+
+. . .
+
+### 💡 Why use `reticulate` in a team?
+
+::: incremental
+-   🔄 **Avoid rewriting code** from one language to another
+-   🔁 **Call shared models** or preprocessing functions written in Python
+-   📦 **Reuse Python packages** or APIs within your R workflow
+-   📤 **Publish reproducible reports** that include both R and Python code
+:::
+
+## Motivated Example
+
+🎯 Leverage a **pretrained PyTorch CNN** in R to:
+
+::: {.fragment .custom .blur}
+-   Classify handwritten digit images (`.png`)
+:::
+::: {.fragment .custom .blur}
+-   Run predictions directly in R
+:::
+::: {.fragment .custom .blur}
+-   Visualize outputs using Python’s `matplotlib`
+:::
+
+## Step 1: Define the CNN Model in Python
+
+🧠 File: `model.py`
+
+``` python
+import torch.nn as nn
+import torch.nn.functional as F
+
+class SimpleCNN(nn.Module):
+    def __init__(self):
+        super(SimpleCNN, self).__init__()
+        self.conv1_layer = nn.Conv2d(1, 16, kernel_size=3, padding=1)
+        self.conv2_layer = nn.Conv2d(16, 32, kernel_size=3, padding=1)
+        self.fc1_layer = nn.Linear(32 * 7 * 7, 128)
+        self.fc2_layer = nn.Linear(128, 10)
+
+    def forward(self, inputs):
+        x = F.relu(self.conv1_layer(inputs))
+        x = F.max_pool2d(x, 2, 2)
+        x = F.relu(self.conv2_layer(x))
+        x = F.max_pool2d(x, 2, 2)
+        x = x.view(-1, 32 * 7 * 7)
+        x = F.relu(self.fc1_layer(x))
+        return self.fc2_layer(x)
+```
+
+## 🖼️ Step 2: Dataset
+
+We use the MNIST dataset of handwritten digits.
+
+![](images/python/minist.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="90%"}
+
+## 🚀 Step 3: Train the Model on a GPU Machine
+
+⚙️ Run following `train.py` on a GPU-enabled desktop.
+
+✅ Output: cnn_model.pth (trained weights)
+
+``` python
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision
+import torchvision.transforms as transforms
+from torch.utils.data import DataLoader
+from model import SimpleCNN
+
+# Use GPU if available
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"Using device: {device}")
+
+# Define transformation to apply to the data
+data_transform = transforms.Compose([
+    transforms.ToTensor(),  # Convert images to PyTorch tensors
+    transforms.Normalize((0.5,), (0.5,))  # Normalize the pixel values to range [-1, 1]
+])
+
+# Download MNIST dataset and apply the transformation
+train_dataset = torchvision.datasets.MNIST(root='./data', train=True, transform=data_transform, download=False)
+test_dataset = torchvision.datasets.MNIST(root='./data', train=False, transform=data_transform, download=False)
+
+# Define data loaders to load the data in batches during training and testing
+train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
+
+# Instantiate model and move to device
+cnn_model = SimpleCNN().to(device)
+
+# Define loss function and optimizer
+loss_func = nn.CrossEntropyLoss()
+optimizer = optim.Adam(cnn_model.parameters(), lr=0.001)
+
+# Train model
+for epoch in range(5):
+    cnn_model.train()
+    running_loss = 0.0
+    for inputs, labels in train_loader:
+        inputs, labels = inputs.to(device), labels.to(device)
+
+        optimizer.zero_grad()
+        outputs = cnn_model(inputs)
+        loss = loss_func(outputs, labels)
+        loss.backward()
+        optimizer.step()
+
+        running_loss += loss.item()
+    print(f"Epoch {epoch+1}, Loss: {running_loss / len(train_loader):.4f}")
+
+# Evaluate on test data
+cnn_model.eval()
+correct_predictions = 0
+total_samples = 0
+with torch.no_grad():
+    for inputs, labels in test_loader:
+        inputs, labels = inputs.to(device), labels.to(device)
+        outputs = cnn_model(inputs)
+        _, predicted_labels = torch.max(outputs, 1)
+        total_samples += labels.size(0)
+        correct_predictions += (predicted_labels == labels).sum().item()
+
+accuracy = 100 * correct_predictions / total_samples
+print(f"Accuracy of test set: {accuracy:.2f}%")
+
+# Save the model
+torch.save(cnn_model.state_dict(), 'cnn_model.pth')
+```
+
+## 🧬 Step 4: Load the Model in R with reticulate
+
+📦 Place both model.py and cnn_model.pth in your R project
+
+``` {.r code-line-numbers="1-6|8-9|11-12|14-16"}
+library(reticulate)
+torch <- import("torch")
+transforms <- import("torchvision.transforms", convert = TRUE)
+Image <- import("PIL.Image", convert = FALSE)
+plt <- import("matplotlib.pyplot")
+os <- import("os")
+
+# Source your model class
+source_python("python/model.py")
+
+device <- torch$device("cpu")
+# device <- torch$device("cuda")
+
+model <- SimpleCNN()$to(device)
+model$load_state_dict(torch$load("python/cnn_model.pth", map_location = device))
+model$eval()
+```
+
+## 🖼️ Step 5: Predict and Visualize in R
+
+``` {.r code-line-numbers="1-7|9-10|14,27|15-26|29-30"}
+# Preprocessing pipeline
+transform <- transforms$Compose(list(
+  transforms$Grayscale(),
+  transforms$Resize(tuple(28L, 28L)),
+  transforms$ToTensor(),
+  transforms$Normalize(tuple(0.5), tuple(0.5))
+))
+
+image_dir <- "python/test_images"
+image_files <- sort(Filter(function(f) endsWith(f, ".png"), os$listdir(image_dir)))
+
+plt$figure(figsize = tuple(10, 3))
+
+with(torch$no_grad(), {
+  for (idx in seq_along(image_files)) {
+    img_file <- image_files[[idx]]
+    img_path <- file.path(image_dir, img_file)
+    image <- Image$open(img_path)
+    input_tensor <- transform(image)$unsqueeze(0L)$to(device)
+    output <- model(input_tensor)
+    predicted_label <- torch$argmax(output, dim = 1L)$item()
+    plt$subplot(1L, length(image_files), idx)
+    plt$imshow(image$convert("L"), cmap = "gray")
+    plt$title(sprintf("Predicted: %s", predicted_label))
+    plt$axis("off")
+  }
+})
+
+plt$tight_layout()
+plt$show()
+```
+
+## ✅ Final Result
+
+![](images/python/pred_minist.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="90%"}
+
+# 📦 5. Build Your Own R Package
+
+## 💡 Motivations to Package Your Code
+
+🧰 **Why build a package?**
+
+::: incremental
+-   ♻️ Reuse and organize reusable code chunks
+-   📖 Provide **documentation** and **examples**
+-   🧪 Add **unit tests** to ensure reliability
+-   🌐 Distribute:
+    -   via **CRAN** for wide access
+    -   via **GitHub** for collaborative development
+    -   or keep it **private** for internal use
+:::
+
+## 🛠 Setup Requirements
+
+Install development tools:
+
+``` r
+install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
+```
+
+. . .
+
+Check system:
+
+✅ Ensure R and RStudio are updated
+
+✅ Use `usethis` package for automation
+
+. . .
+
+Example:
+
+``` r
+usethis::create_package("mypkg")
+```
+
+## 🏗 Package Structure Overview
+
+``` text
+mypkg/
+├── DESCRIPTION         # 📋 Package metadata
+├── NAMESPACE           # 🔁 Exported functions & imports
+├── R/                  # 📂 Your R functions
+└── man/                # 📚 Auto-generated documentation
+```
+
+. . .
+
+💡 Other folders you may add:
+
+::: incremental
+-   📂 **tests/** → Unit tests (testthat)
+-   📂 **vignettes/** → Long-form docs
+-   📂 **data/** → Internal or example datasets
+:::
+
+## 🧩 Anatomy of a DESCRIPTION File
+
+``` text
+Package: mypkg
+Title: Tools for Cool Analysis
+Version: 0.1.0
+Authors@R: person("Your", "Name", email = "you@mail.com", role = c("aut", "cre"))
+Description: A simple demo R package with functions and examples.
+License: MIT + file LICENSE
+Imports: dplyr
+```
+
+## 🛠 Package States in R {transition="zoom"}
+
+R packages transition through five development states:
+
+::: incremental
+-   🗂️ **Source**: your raw package folder
+-   📦 **Bundled**: compressed .tar.gz for sharing
+-   🧱 **Binary**: platform-specific precompiled version
+-   📚 **Installed**: available in your R library
+-   🧠 **In-Memory**: actively loaded via library()
+:::
+
+::: {.fragment .fade-up}
+> Understanding these states helps you manage installation, sharing, and usage workflows.
+:::
+
+## 🔁 Transitioning Between States {transition="convex"}
+
+![](images/package/install-load.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
+
+## 📦 Package Development Flow
+
+1.  Create a package
+
+``` r
+usethis::create_package("mypkg")
+```
+
+. . .
+
+2.  Write functions inside **R/**
+
+. . .
+
+3.  Document them with `roxygen2` tags:
+
+``` r
+#' Say Hello
+#' @export
+hello <- function() {
+  print("Hello, world!")
+}
+```
+
+. . .
+
+4.  Generate docs and namespace
+
+``` r
+devtools::document()
+```
+
+## 🚀 Install, and Share
+
+-   Build package:
+
+``` r
+devtools::build()
+```
+
+. . .
+
+-   Install locally:
+
+``` r
+devtools::install()
+```
+
+. . .
+
+-   Share via GitHub:
+
+``` r
+usethis::use_github()
+```
+
+. . .
+
+-   Install from GitHub (for others):
+
+``` r
+remotes::install_github("yourname/mypkg")
+```
+
+## 📚 Further Resources 
+
+-   📖 R Packages (book): https://r-pkgs.org
+-   🧪 testthat: https://testthat.r-lib.org
+-   📦 devtools: https://devtools.r-lib.org
+-   🔧 usethis: https://usethis.r-lib.org
+
+# 6. 📤 CRAN Submitting {transition="zoom"}
+
+## 🚀 Submitting to CRAN
+
+::: incremental
+- 📦 **CRAN** = Comprehensive R Archive Network  
+- 🎯 Goal: Make your R package **public, discoverable, and installable**
+- ✔ Must pass `R CMD check` with:
+    - ❌ No **ERRORs**
+    - ⚠️ No **WARNINGs**
+    - 📝 Minimal and justifiable **NOTEs**
+- 🧪 Simulate checks: `rhub::check_for_cran()`
+- 📤 Submit with: `devtools::release()`
+- ⏱️ Response in approx **1–3 days**
+:::
+
+## 🛠 Before You Hit "Release" {transition="slide"}
+
+:::incremental
+- Run: `devtools::check()`
+- ✅ Double-check:
+    - 📜 A valid **LICENSE**
+    - 🆔 **ORCID** info in `Authors@R`
+    - 🧪 Examples run < 5 seconds
+    - 📚 Clear **documentation** and **vignettes**
+    - 📈 Version bump and a `NEWS.md`
+:::
+
+## 📩 Confirmation Email{transition="zoom"}
+
+![](images/package/submission_confirm.png){fig-align="left" fig-alt="Screenshot of Pagerank" width="55%"}
 
 ---
 
-## 🛠️ OOP in Practice
+## 📬 Submission Confirmed Email{transition="zoom"}
 
-### 🔁 Comparison of Systems
+![](images/package/submission_confirm2.png){fig-align="left" fig-alt="Screenshot of Pagerank" width="95%"}
 
-| System | Style         | Used In        | ✅ Pros                  | ⚠️ Cons              |
-|--------|---------------|----------------|--------------------------|----------------------|
-| S3     | Functional    | Base R         | Simple, extensible       | No schema, fragile   |
-| S4     | Formal        | Bioconductor   | Type-safe, robust        | Verbose, complex     |
-| R6     | Encapsulated  | Shiny, packages| Fast, mutable            | Weak type safety     |
-| S7     | Unified OOP   | Modern dev     | Combines S3 & S4 benefits| Still evolving       |
+## ⏳  Pending Manual Inspection Email{transition="zoom"}
 
-## 💡 Example: S3 Class with Constructor
+![](images/package/auto-pros.png){fig-align="left" fig-alt="Screenshot of Pagerank" width="95%"}
+
+
+## ✅  Package Initially Accepted Email{transition="zoom"}
+
+![](images/package/accepted.png){fig-align="left" fig-alt="Screenshot of Pagerank" width="55%"}
+
+::: {.fragment}
+> 🎉 Good news!  
+:::
+
+## 📦 Package Built on CRAN Email{transition="zoom"}
+
+![](images/package/accept2.png){fig-align="left" fig-alt="Screenshot of Pagerank" width="55%"}
+
+::: {.fragment}
+> 🧱 CRAN has built binaries for major platforms (Windows, ...).
+:::
+
+## 🌐 CRAN Page Created{transition="zoom"}
+
+![](images/package/Cran_Rfssa.png){fig-align="left" fig-alt="Screenshot of Pagerank" width="55%"}
+
+> 🌍 Your package is now live! Searchable and installable via:
+
 ```r
-myclass <- function(x) {
-  stopifnot(is.numeric(x))
-  structure(list(value = x), class = "myclass")
-}
-```
-> 📌 Choose your OOP system based on team size, project complexity, and ecosystem.
-
-
-
-# 🌐 Web Apps with Shiny 
-
-- ✨ Shiny = Interactive web apps in pure R (no HTML/JS!)
-
-- 📦 Components:
-
-  - ui: Layout, inputs/outputs
-
-  -  server: Logic, reactivity
-
-- 🧪 Use Cases:
-
-  - Dashboards, simulations, teaching tools
-
-- 🔌 Inputs & Outputs:
-
-  - Inputs: sliderInput(), textInput()
-
-  - Outputs: renderPlot(), renderText(), renderTable()
-
-## Shiny Concepts & Deployment
-
-- ⚡**Reactivity System**:
-  - `reactive()`: memoized reactive expressions
-  - `isolate()`: break reactive chains
-  - `observeEvent()`: trigger actions without outputs
-
-- 🚀 **Deployment Options**:
-  - `shinyapps.io`, Posit Connect, university servers
-  - **shinylive**: deploy as static site (experimental)
-
-- ✅ **Best Practices**:
-  - Use `shinytest2` for testing
-  - Modularize with `modules` for scalability
-  - Sketch UI/UX before coding
-
-- 🧠 **Hands-on**:
-  - KNN Regression in Shiny
-  - Explore shinyapps gallery for inspiration: https://shiny.posit.co/gallery/
-
-
-
-# ⚡ Rcpp – High Performance with C++ in R
-
-- 🚀 **Rcpp** bridges R and C++ for high-performance computing.
-- 🏁 Use cases:
-  - Speed up loops, recursion, and matrix operations
-  - Access C++ libraries and STL
-  - Integrate C++ in R packages
-
-- 🧰 **Workflows**:
-  - `evalCpp()`: quick one-liners
-  - `cppFunction()`: inline prototypes
-  - `sourceCpp()`: external C++ files with R wrappers
-
-## 🔬 Rcpp in Action
-
-- 🧪 **Examples**:
-  - Odd/Even test (basic)
-```r
-bool is_even(int x) {
-  return x % 2 == 0;
-}
-```
-  - VAR(1) simulation with `RcppArmadillo`
-  - Fibonacci benchmark: 200× speedup
-- **C++ Types**: `NumericVector`, `IntegerVector`, STL containers
-- **Data conversion**: Seamless mapping between R and C++ objects
-
-- 📦 **Packaging**:
-  - Use `LinkingTo: Rcpp` in DESCRIPTION
-  - Automate with `usethis::use_rcpp()`
-  - Maintainable, testable code with `Rcpp::compileAttributes()`
-
-
-# 🐍 Python in R
-
-## Interoperability with `reticulate`
-
-- **Why integrate?**
-  - Leverage Python libraries (ML, CV, NLP)
-  - Avoid rewriting code across environments
-  - Enable seamless workflows via R Markdown & Quarto
-
-- **Key Features of `reticulate`**:
-  - Import Python modules via `import()`
-  - Run scripts with `source_python()` or `py_run_file()`
-  - Shared Python session across R and Python chunks
-
-- **Data Exchange**:
-  - Auto-conversion: vectors ↔ arrays, data frames ↔ pandas
-  - R objects available in Python via `r$`, and vice versa with `py$`
-
-## 🛠 Using Python from R
-
-- **Virtualenv / Conda**: manage environments cleanly
-- **Calling Python functions & classes** from `.py` files
-- **Using Python in Shiny apps**
-  - Example: compute factorial via `math.factorial`
-```r
-library(shiny)
-ui <- fluidPage(
-  actionButton("btn", "Compute factorial"),
-  verbatimTextOutput("out")
-)
-server <- function(input, output) {
-  observeEvent(input$btn, {
-    reticulate::py_run_string("import math; res = math.factorial(10)")
-    output$out <- renderText(py$res)
-  })
-}
-shinyApp(ui, server)
+install.packages("Rfssa")
 ```
 
-- **R Markdown / Quarto**:
-  - Inline Python code in `{python}` chunks
-  - Share variables between R and Python
 
 
-## Takeaways
+# 7. 📤 GitHub Essentials {transition="convex"}
 
-- Use `reticulate` to blend Python's ML power with R's statistical strength
-- Match tools to tasks without leaving your R workflow
-- Ideal for reproducible, collaborative data science
+---
 
+## 🌍 Why Use Git & GitHub?
 
-# 📦 Build Your Own R Package
+:::incremental
+- 🔁 **Version Control**: Track and manage changes in code
+- 🤝 **Collaboration**: Work with others without overwriting files
+- 🧪 **Reproducibility**: Restore older versions when bugs occur
+- 🔄 **Open Source**: Share your package with the world
+:::
 
-- **Why create a package?**
-  - Reuse and organize code
-  - Provide documentation and tests
-  - Distribute via CRAN, GitHub, or internally
-
-- **Setup Requirements**
-  - Install `devtools`, `roxygen2`, `testthat`, `knitr`
-  - Ensure R and RStudio are updated
-
-## 🏗 Package Structure
-
-- `DESCRIPTION`: metadata
-- `NAMESPACE`: exports and imports
-- `R/`: function definitions
-- `man/`: auto-generated docs
+::: {.fragment}
+> 🧰 Git = Local tracking tool  
+> ☁️ GitHub = Online hosting and teamwork platform
+:::
 
 
-
-## 🛠 Development Lifecycle
-
-- **5 Package States**:
-  - Source → Bundled → Binary → Installed → In-Memory
-
-- **Creating a Package**
-  - Use `usethis::create_package()`
-  - Write functions in `R/`, document with `roxygen2`
-
-- **Documentation & Export**
-  - Generate with `devtools::document()`
-  - Expose with `@export` and `@import`
-
-- **Build & Install**
-  - Build with `devtools::build()`
-  - Install with `devtools::install()`
+## 🧰 Git & GitHub from RStudio{transition="convex"}
 
 
-## 📌 Takeaways
+✅ RStudio has built-in Git integration:
 
-- R packages provide a **professional structure** to your work
-- Automate documentation, testing, and sharing
-- Essential for reproducible, collaborative, and maintainable R code
+::: {.fragment .custom .blur}
+- Git tab for **staging, committing, and pushing**
+:::
+::: {.fragment .custom .blur}
+- Visual diff and commit history
+:::
+::: {.fragment .custom .blur}
+- Push to GitHub without leaving RStudio
+:::
 
 
+## 🔧 Set Up GitHub in R{transition="concave"}
 
-# CRAN & GitHub Essentials
+. . .
 
-## 🚀 CRAN Submission
+1. ✅ **Install Git** ([git-scm.com](https://git-scm.com))
 
-- CRAN = Comprehensive R Archive Network
-- Packages must pass `R CMD check` with:
-  - ❌ No **ERRORs**
-  - ⚠️ No **WARNINGs**
-  - 📝 Minimal **NOTEs**
-- Simulate checks with `rhub::check_for_cran()`
-- Submit via `devtools::release()`
-- Response from CRAN in ~1–3 days
+. . .
+
+2. 🔑 **Create Personal Access Token (PAT)**:
+```r
+usethis::create_github_token()
+gitcreds::gitcreds_set()
+```
+. . .
+
+3. 🔗 **Link your project to GitHub**:
+```r
+usethis::use_github()
+```
+
+> 🎉 Your RStudio project is now connected to GitHub!
 
 
 
-## 🛠 Before You Submit
+## 📦 Create a Git-Enabled R Package Project
 
-- Use `devtools::check()` for local testing
-- Include:
-  - Valid license
-  - ORCID info
-  - Clean examples and documentation
-- Update via version bump and `NEWS.md`
+1. `File` → `New Project` → `New Directory` → `R Package`
+
+. . .
+
+2. ✅ Check **"Create a git repository"**
+
+. . .
+
+3. Inside the project:
+```r
+usethis::use_git()
+usethis::use_github()
+```
+. . .
+
+> 📁 You now have a `.git` repo and a linked GitHub project!
+
+---
+
+## 🔁 Daily Git Workflow in RStudio
+
+> 🎯 A typical work cycle for package developers:
+
+::: {.fragment .fade-right}
+| Step      | Description                            |
+|-----------|----------------------------------------|
+| ✏️ Edit   | Make changes to `.R` or `.Rmd` files   |
+| ✅ Stage  | Select files to track in Git tab       |
+| 💬 Commit | Save with a message (e.g., "Fix bug")  |
+| 🚀 Push   | Send to GitHub                         |
+:::
+
+. . .
 
 
-## 🤝 Collaborate via GitHub
+## 🧪 Example: Collaborative Workflow
 
-- Git = local version control
-- GitHub = cloud hosting and collaboration
-- RStudio integrates Git workflows
-- Use `usethis::use_github()` to link project
+::: {.fragment .custom .blur}
+1. You write a new function: `plot_confidence()`
+:::
+::: {.fragment .custom .blur}
+2. Commit message: `"Add CI plot to visual module"`
+:::
+::: {.fragment .custom .blur}
+3. Push to GitHub → colleague reviews & suggests changes
+:::
 
-✅ Auth via Personal Access Token (PAT) using `gitcreds`
+## ✅ GitHub for Package Development
 
+:::incremental
+- 📦 Host your package openly
+- 🧪 Enable collaborative testing & documentation
+- 📤 Submit to CRAN from a clean version-controlled repo
+- 🔁 Great for long-term maintenance and open-source visibility
+:::
 
-## 🧪 Daily Git Workflow
+::: {.fragment .fade-right}
+> 🎯 If you publish your package, link the GitHub repo in `DESCRIPTION`
+:::
 
-1. Edit → Stage → Commit → Push
-2. Share changes, open pull requests
-3. Check status with `usethis::git_sitrep()`
+## 📚 Resources
 
-📦 Ideal for collaborative R package development!
+- 📘 Happy Git with R: <https://happygitwithr.com>
+- 🔧 usethis: <https://usethis.r-lib.org>
+- 🧪 gitcreds: <https://github.com/r-lib/gitcreds>
+- 📂 GitHub Docs: <https://docs.github.com/>
 
 
 # 🙏 Thank you!
+
 Questions & Discussion
