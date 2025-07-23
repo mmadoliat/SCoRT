@@ -414,9 +414,8 @@ Mehdi Maadooliat and Hossein Haghbin
 </div>
 
 </section>
-<section class="slide level2">
-
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream ## Motivating Example - What is Data Science?</p>
+<section id="motivating-example---what-is-data-science" class="slide level2">
+<h2>Motivating Example - What is Data Science?</h2>
 <p><img data-src="images/webinar/dtsc/what-is-DS-1.png" class="absolute" style="left: 200px; height: 600px; "></p>
 <div class="fragment">
 <p><img data-src="images/webinar/dtsc/what-is-DS-2.png" class="absolute" style="left: 200px; height: 600px; "></p>
@@ -509,6 +508,7 @@ Mehdi Maadooliat and Hossein Haghbin
 <p><img data-src="images/webinar/oop/FTS-FSSA-Objects-15.png" class="absolute" style="top: 160px; right: 0px; width: 560px; "> <img data-src="images/webinar/oop/FTS-FSSA-Objects-10.png" class="absolute" style="top: 290px; left: 250px; width: 600px; "></p>
 </div>
 </section>
+<section>
 <section id="session-1-oop-in-r" class="title-slide slide level1 center">
 <h1>🧠 Session 1: OOP in R</h1>
 <ul>
@@ -533,78 +533,64 @@ Mehdi Maadooliat and Hossein Haghbin
 </ul></li>
 </ul>
 </section>
-
-<section id="section" class="title-slide slide level1 center">
-<h1>————————————————————————</h1>
-
-</section>
-
-<section>
-<section id="object-oriented-programming-in-r" class="title-slide slide level1 center">
-<h1>🧠 Object Oriented Programming in R</h1>
-<ul>
-<li><strong>🧩 OOP Paradigms in R</strong>:
-<ul>
-<li>Functional OOP: <code>plot(lm(...))</code></li>
-<li>Encapsulated OOP: <code>learner$train()</code></li>
-<li>Modern tools: <code>mlr3</code>, <code>R6</code>, <code>S7</code></li>
-</ul></li>
-<li><strong>🏗 OOP Systems</strong>:
-<ul>
-<li><strong>S3</strong>: Lightweight &amp; informal — uses <code>UseMethod()</code></li>
-<li><strong>S4</strong>: Formal and type-safe — uses <code>setClass()</code> and <code>@</code></li>
-<li><strong>R6</strong>: Mutable, used in apps like <code>shiny</code></li>
-<li><strong>S7</strong>: Newest and unified — multiple dispatch</li>
-</ul></li>
-<li><strong>🔍 Key Concepts</strong>:
-<ul>
-<li>Use <code>otype()</code>, <code>is.object()</code>, <code>structure()</code>, <code>class()</code> for diagnostics</li>
-<li>Understand inheritance and <code>NextMethod()</code></li>
-<li>Follow best practices: custom constructor + validator + clean API</li>
-</ul></li>
-</ul>
-</section>
-<section class="slide level2">
-
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>Stashed changes</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</section>
 <section id="oop-in-practice" class="slide level2">
 <h2>🛠️ OOP in Practice</h2>
 <h3 id="comparison-of-systems">🔁 Comparison of Systems</h3>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream | System | Style | Used In | ✅ Pros | ⚠️ Cons | |—————|—————|—————|—————|—————| | S3 | Functional | Base R | Simple, extensible | No schema, fragile | | S4 | Formal | Bioconductor | Type-safe, robust | Verbose, complex | | R6 | Encapsulated | Shiny, packages | Fast, mutable | Weak type safety | | S7 | Unified OOP | Modern dev | Combines S3 &amp; S4 benefits | Still evolving |</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 23%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>System</th>
+<th>Style</th>
+<th>Used In</th>
+<th>✅ Pros</th>
+<th>⚠️ Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S3</td>
+<td>Functional</td>
+<td>Base R</td>
+<td>Simple, extensible</td>
+<td>No schema, fragile</td>
+</tr>
+<tr class="even">
+<td>S4</td>
+<td>Formal</td>
+<td>Bioconductor</td>
+<td>Type-safe, robust</td>
+<td>Verbose, complex</td>
+</tr>
+<tr class="odd">
+<td>R6</td>
+<td>Encapsulated</td>
+<td>Shiny, packages</td>
+<td>Fast, mutable</td>
+<td>Weak type safety</td>
+</tr>
+<tr class="even">
+<td>S7</td>
+<td>Unified OOP</td>
+<td>Modern dev</td>
+<td>Combines S3 &amp; S4 benefits</td>
+<td>Still evolving</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="example-s3-class-with-constructor" class="slide level2">
 <h2>💡 Example: S3 Class with Constructor</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="sc">==</span><span class="er">=====</span></span>
-<span id="cb1-2"><a></a><span class="er">|</span> System <span class="sc">|</span> Style         <span class="sc">|</span> Used In        <span class="sc">|</span> ✅ Pros                  <span class="sc">|</span> ⚠️ Cons              <span class="sc">|</span></span>
-<span id="cb1-3"><a></a><span class="er">|</span><span class="sc">--------</span><span class="er">|</span><span class="sc">---------------</span><span class="er">|</span><span class="sc">----------------</span><span class="er">|</span><span class="sc">--------------------------</span><span class="er">|</span><span class="sc">----------------------</span><span class="er">|</span></span>
-<span id="cb1-4"><a></a><span class="er">|</span> S3     <span class="sc">|</span> Functional    <span class="sc">|</span> Base R         <span class="sc">|</span> Simple, extensible       <span class="sc">|</span> No schema, fragile   <span class="sc">|</span></span>
-<span id="cb1-5"><a></a><span class="er">|</span> S4     <span class="sc">|</span> Formal        <span class="sc">|</span> Bioconductor   <span class="sc">|</span> Type<span class="sc">-</span>safe, robust        <span class="sc">|</span> Verbose, complex     <span class="sc">|</span></span>
-<span id="cb1-6"><a></a><span class="er">|</span> R6     <span class="sc">|</span> Encapsulated  <span class="sc">|</span> Shiny, packages<span class="sc">|</span> Fast, mutable            <span class="sc">|</span> Weak type safety     <span class="sc">|</span></span>
-<span id="cb1-7"><a></a><span class="er">|</span> S7     <span class="sc">|</span> Unified OOP   <span class="sc">|</span> Modern dev     <span class="sc">|</span> Combines S3 <span class="sc">&amp;</span> S4 benefits<span class="sc">|</span> Still evolving       <span class="sc">|</span></span>
-<span id="cb1-8"><a></a></span>
-<span id="cb1-9"><a></a><span class="do">## 💡 Example: S3 Class with Constructor</span></span>
-<span id="cb1-10"><a></a><span class="st">```</span><span class="at">r</span></span>
-<span id="cb1-11"><a></a><span class="at">&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes</span></span>
-<span id="cb1-12"><a></a><span class="at">myclass &lt;- function(x) {</span></span>
-<span id="cb1-13"><a></a><span class="at">  stopifnot(is.numeric(x))</span></span>
-<span id="cb1-14"><a></a><span class="at">  structure(list(value = x), class = "myclass")</span></span>
-<span id="cb1-15"><a></a><span class="at">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>myclass <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1-2"><a></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(x))</span>
+<span id="cb1-3"><a></a>  <span class="fu">structure</span>(<span class="fu">list</span>(<span class="at">value =</span> x), <span class="at">class =</span> <span class="st">"myclass"</span>)</span>
+<span id="cb1-4"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote>
 <p>📌 Choose your OOP system based on team size, project complexity, and ecosystem.</p>
 </blockquote>

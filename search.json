@@ -1063,6 +1063,13 @@
     ]
   },
   {
+    "objectID": "slides/summary_mm.html#motivating-example---what-is-data-science",
+    "href": "slides/summary_mm.html#motivating-example---what-is-data-science",
+    "title": "Short Course on R Tools",
+    "section": "Motivating Example - What is Data Science?",
+    "text": "Motivating Example - What is Data Science?"
+  },
+  {
     "objectID": "slides/summary_mm.html#motivating-example---functional-singular-spectrum-analysis",
     "href": "slides/summary_mm.html#motivating-example---functional-singular-spectrum-analysis",
     "title": "Short Course on R Tools",
@@ -1088,14 +1095,14 @@
     "href": "slides/summary_mm.html#oop-in-practice",
     "title": "Short Course on R Tools",
     "section": "🛠️ OOP in Practice",
-    "text": "🛠️ OOP in Practice\n🔁 Comparison of Systems\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream | System | Style | Used In | ✅ Pros | ⚠️ Cons | |—————|—————|—————|—————|—————| | S3 | Functional | Base R | Simple, extensible | No schema, fragile | | S4 | Formal | Bioconductor | Type-safe, robust | Verbose, complex | | R6 | Encapsulated | Shiny, packages | Fast, mutable | Weak type safety | | S7 | Unified OOP | Modern dev | Combines S3 & S4 benefits | Still evolving |"
+    "text": "🛠️ OOP in Practice\n🔁 Comparison of Systems\n\n\n\n\n\n\n\n\n\n\nSystem\nStyle\nUsed In\n✅ Pros\n⚠️ Cons\n\n\n\n\nS3\nFunctional\nBase R\nSimple, extensible\nNo schema, fragile\n\n\nS4\nFormal\nBioconductor\nType-safe, robust\nVerbose, complex\n\n\nR6\nEncapsulated\nShiny, packages\nFast, mutable\nWeak type safety\n\n\nS7\nUnified OOP\nModern dev\nCombines S3 & S4 benefits\nStill evolving"
   },
   {
     "objectID": "slides/summary_mm.html#example-s3-class-with-constructor",
     "href": "slides/summary_mm.html#example-s3-class-with-constructor",
     "title": "Short Course on R Tools",
     "section": "💡 Example: S3 Class with Constructor",
-    "text": "💡 Example: S3 Class with Constructor\n=======\n| System | Style         | Used In        | ✅ Pros                  | ⚠️ Cons              |\n|--------|---------------|----------------|--------------------------|----------------------|\n| S3     | Functional    | Base R         | Simple, extensible       | No schema, fragile   |\n| S4     | Formal        | Bioconductor   | Type-safe, robust        | Verbose, complex     |\n| R6     | Encapsulated  | Shiny, packages| Fast, mutable            | Weak type safety     |\n| S7     | Unified OOP   | Modern dev     | Combines S3 & S4 benefits| Still evolving       |\n\n## 💡 Example: S3 Class with Constructor\n```r\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes\nmyclass &lt;- function(x) {\n  stopifnot(is.numeric(x))\n  structure(list(value = x), class = \"myclass\")\n}\n&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream\n\n📌 Choose your OOP system based on team size, project complexity, and ecosystem."
+    "text": "💡 Example: S3 Class with Constructor\nmyclass &lt;- function(x) {\n  stopifnot(is.numeric(x))\n  structure(list(value = x), class = \"myclass\")\n}\n\n📌 Choose your OOP system based on team size, project complexity, and ecosystem."
   },
   {
     "objectID": "slides/summary_mm.html#shiny-concepts-deployment",
