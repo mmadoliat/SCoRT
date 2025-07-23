@@ -473,6 +473,11 @@ Mehdi Maadooliat and Hossein Haghbin
 <p><img data-src="images/webinar/fssa/SSA-FSSA-10.png" class="absolute" style="left: 220px; height: 620px; "></p>
 </div>
 </section>
+<section>
+<section id="session-1-oop-in-r" class="title-slide slide level1 center">
+<h1>🧠 Session 1: OOP in R</h1>
+
+</section>
 <section id="motivating-example---oop" class="slide level2">
 <h2>Motivating Example - OOP</h2>
 <p><img data-src="images/webinar/oop/FTS-FSSA-Objects-01.png" class="absolute" style="width: 450px; "></p>
@@ -508,9 +513,8 @@ Mehdi Maadooliat and Hossein Haghbin
 <p><img data-src="images/webinar/oop/FTS-FSSA-Objects-15.png" class="absolute" style="top: 160px; right: 0px; width: 560px; "> <img data-src="images/webinar/oop/FTS-FSSA-Objects-10.png" class="absolute" style="top: 290px; left: 250px; width: 600px; "></p>
 </div>
 </section>
-<section>
-<section id="session-1-oop-in-r" class="title-slide slide level1 center">
-<h1>🧠 Session 1: OOP in R</h1>
+<section id="oop-in-r" class="slide level2">
+<h2>OOP in R</h2>
 <ul>
 <li><strong>🧩 OOP Paradigms in R</strong>:
 <ul>
@@ -518,6 +522,9 @@ Mehdi Maadooliat and Hossein Haghbin
 <li>Encapsulated OOP: <code>learner$train()</code></li>
 <li>Modern tools: <code>mlr3</code>, <code>R6</code>, <code>S7</code></li>
 </ul></li>
+</ul>
+<div class="fragment">
+<ul>
 <li><strong>🏗 OOP Systems</strong>:
 <ul>
 <li><strong>S3</strong>: Lightweight &amp; informal — uses <code>UseMethod()</code></li>
@@ -525,79 +532,119 @@ Mehdi Maadooliat and Hossein Haghbin
 <li><strong>R6</strong>: Mutable, used in apps like <code>shiny</code></li>
 <li><strong>S7</strong>: Newest and unified — multiple dispatch</li>
 </ul></li>
-<li><strong>🔍 Key Concepts</strong>:
-<ul>
-<li>Use <code>otype()</code>, <code>is.object()</code>, <code>structure()</code>, <code>class()</code> for diagnostics</li>
-<li>Understand inheritance and <code>NextMethod()</code></li>
-<li>Follow best practices: custom constructor + validator + clean API</li>
-</ul></li>
 </ul>
+</div>
 </section>
 <section id="oop-in-practice" class="slide level2">
 <h2>🛠️ OOP in Practice</h2>
 <h3 id="comparison-of-systems">🔁 Comparison of Systems</h3>
-<table style="width:100%;">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 23%">
-<col style="width: 19%">
-</colgroup>
+<table>
 <thead>
-<tr class="header">
-<th>System</th>
-<th>Style</th>
-<th>Used In</th>
-<th>✅ Pros</th>
-<th>⚠️ Cons</th>
+<tr>
+<th>
+Sys.
+</th>
+<th>
+Style
+</th>
+<th>
+Used In
+</th>
+<th>
+✅ Pros
+</th>
+<th>
+⚠️ Cons
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>S3</td>
-<td>Functional</td>
-<td>Base R</td>
-<td>Simple, extensible</td>
-<td>No schema, fragile</td>
+<tr class="fragment">
+<td>
+S3
+</td>
+<td>
+Functional
+</td>
+<td>
+Base R
+</td>
+<td>
+Simple, extensible
+</td>
+<td>
+No schema, fragile
+</td>
 </tr>
-<tr class="even">
-<td>S4</td>
-<td>Formal</td>
-<td>Bioconductor</td>
-<td>Type-safe, robust</td>
-<td>Verbose, complex</td>
+<tr class="fragment">
+<td>
+S4
+</td>
+<td>
+Formal
+</td>
+<td>
+Bioconductor
+</td>
+<td>
+Type-safe, robust
+</td>
+<td>
+Verbose, complex
+</td>
 </tr>
-<tr class="odd">
-<td>R6</td>
-<td>Encapsulated</td>
-<td>Shiny, packages</td>
-<td>Fast, mutable</td>
-<td>Weak type safety</td>
+<tr class="fragment">
+<td>
+R6
+</td>
+<td>
+Encapsulated
+</td>
+<td>
+Shiny, Keras
+</td>
+<td>
+Fast, mutable
+</td>
+<td>
+Weak type safety
+</td>
 </tr>
-<tr class="even">
-<td>S7</td>
-<td>Unified OOP</td>
-<td>Modern dev</td>
-<td>Combines S3 &amp; S4 benefits</td>
-<td>Still evolving</td>
+<tr class="fragment">
+<td>
+S7
+</td>
+<td>
+Unified OOP
+</td>
+<td>
+Modern dev
+</td>
+<td>
+Combines S3 &amp; S4 benefits
+</td>
+<td>
+Still evolving
+</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="example-s3-class-with-constructor" class="slide level2">
-<h2>💡 Example: S3 Class with Constructor</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>myclass <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb1-2"><a></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(x))</span>
-<span id="cb1-3"><a></a>  <span class="fu">structure</span>(<span class="fu">list</span>(<span class="at">value =</span> x), <span class="at">class =</span> <span class="st">"myclass"</span>)</span>
-<span id="cb1-4"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<blockquote>
-<p>📌 Choose your OOP system based on team size, project complexity, and ecosystem.</p>
-</blockquote>
 </section></section>
 <section>
 <section id="session-2-web-apps-with-shiny" class="title-slide slide level1 center">
 <h1>Session 2:🌐 Web Apps with Shiny</h1>
+
+</section>
+<section id="fssa---shiny" class="slide level2 title" style="font-size: 12px;">
+<h2>FSSA - Shiny</h2>
+<iframe class="stretch" data-src="https://fssa.shinyapps.io/FSSA/">
+</iframe>
+<div class="smallest">
+<p><a href="https://fssa.shinyapps.io/FSSA/" target="_blank">🔗 Open in a browser</a></p>
+</div>
+</section>
+<section id="web-apps-with-shiny" class="slide level2">
+<h2>Web Apps with Shiny</h2>
 <ul>
 <li><p>✨ Shiny = Interactive web apps in pure R (no HTML/JS!)</p></li>
 <li><p>📦 Components:</p>
@@ -669,9 +716,9 @@ Mehdi Maadooliat and Hossein Haghbin
 <ul>
 <li>Odd/Even test (basic)</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>bool <span class="fu">is_even</span>(int x) {</span>
-<span id="cb2-2"><a></a>return x % <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>;</span>
-<span id="cb2-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>bool <span class="fu">is_even</span>(int x) {</span>
+<span id="cb1-2"><a></a>return x % <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>;</span>
+<span id="cb1-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>VAR(1) simulation with <code>RcppArmadillo</code></li>
 <li>Fibonacci benchmark: 200× speedup</li>
@@ -718,18 +765,18 @@ Mehdi Maadooliat and Hossein Haghbin
 <ul>
 <li>Example: compute factorial via <code>math.factorial</code></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(shiny)</span>
-<span id="cb3-2"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb3-3"><a></a><span class="fu">actionButton</span>(<span class="st">"btn"</span>, <span class="st">"Compute factorial"</span>),</span>
-<span id="cb3-4"><a></a><span class="fu">verbatimTextOutput</span>(<span class="st">"out"</span>)</span>
-<span id="cb3-5"><a></a>)</span>
-<span id="cb3-6"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb3-7"><a></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>btn, {</span>
-<span id="cb3-8"><a></a>  reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">"import math; res = math.factorial(10)"</span>)</span>
-<span id="cb3-9"><a></a>  output<span class="sc">$</span>out <span class="ot">&lt;-</span> <span class="fu">renderText</span>(py<span class="sc">$</span>res)</span>
-<span id="cb3-10"><a></a>})</span>
-<span id="cb3-11"><a></a>}</span>
-<span id="cb3-12"><a></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(shiny)</span>
+<span id="cb2-2"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb2-3"><a></a><span class="fu">actionButton</span>(<span class="st">"btn"</span>, <span class="st">"Compute factorial"</span>),</span>
+<span id="cb2-4"><a></a><span class="fu">verbatimTextOutput</span>(<span class="st">"out"</span>)</span>
+<span id="cb2-5"><a></a>)</span>
+<span id="cb2-6"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb2-7"><a></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>btn, {</span>
+<span id="cb2-8"><a></a>  reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">"import math; res = math.factorial(10)"</span>)</span>
+<span id="cb2-9"><a></a>  output<span class="sc">$</span>out <span class="ot">&lt;-</span> <span class="fu">renderText</span>(py<span class="sc">$</span>res)</span>
+<span id="cb2-10"><a></a>})</span>
+<span id="cb2-11"><a></a>}</span>
+<span id="cb2-12"><a></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p><strong>R Markdown / Quarto</strong>:</p>
 <ul>
 <li>Inline Python code in <code>{python}</code> chunks</li>
@@ -862,7 +909,7 @@ Mehdi Maadooliat and Hossein Haghbin
 </section>
 
 <section>
-<section id="web-apps-with-shiny" class="title-slide slide level1 center">
+<section id="web-apps-with-shiny-1" class="title-slide slide level1 center">
 <h1>🌐 Web Apps with Shiny</h1>
 <ul>
 <li><p>✨ Shiny = Interactive web apps in pure R (no HTML/JS!)</p></li>
@@ -935,9 +982,9 @@ Mehdi Maadooliat and Hossein Haghbin
 <ul>
 <li>Odd/Even test (basic)</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>bool <span class="fu">is_even</span>(int x) {</span>
-<span id="cb4-2"><a></a>return x % <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>;</span>
-<span id="cb4-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>bool <span class="fu">is_even</span>(int x) {</span>
+<span id="cb3-2"><a></a>return x % <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>;</span>
+<span id="cb3-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>VAR(1) simulation with <code>RcppArmadillo</code></li>
 <li>Fibonacci benchmark: 200× speedup</li>
