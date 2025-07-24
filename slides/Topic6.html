@@ -389,10 +389,10 @@
     }
   </style>
 <meta property="og:title" content="SCoRT - Short Course on R Tools">
-<meta property="og:description" content="Collaborate via GitHub / CRAN submission process">
+<meta property="og:description" content="CRAN submission and Collaborate via GitHub">
 <meta property="og:site_name" content="SCoRT">
 <meta name="twitter:title" content="SCoRT - Short Course on R Tools">
-<meta name="twitter:description" content="Collaborate via GitHub / CRAN submission process">
+<meta name="twitter:description" content="CRAN submission and Collaborate via GitHub">
 <meta name="twitter:image" content="http://bit.ly/SCoRT/slides/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
 <meta name="twitter:card" content="summary_large_image">
@@ -403,7 +403,7 @@
 
 <section id="title-slide" data-background-image="mu-bg.png" data-background-size="stretch" data-slide-number="none" class="quarto-title-block center">
   <h1 class="title">Short Course on R Tools</h1>
-  <p class="subtitle">Collaborate via GitHub / CRAN submission process</p>
+  <p class="subtitle">CRAN submission and Collaborate via GitHub</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -417,182 +417,266 @@ Mehdi Maadooliat and Hossein Haghbin
 </div>
 
 </section>
-<section id="outline---github" class="title-slide slide level1 center">
-<h1>Outline - GitHub</h1>
-<div class="fragment fade-up">
+<section id="outlines" class="title-slide slide level1 center scrollable">
+<h1>Outlines</h1>
+<ol type="1">
+<li>CRAN Submission: Overview</li>
+<li>Requirements Before Submission</li>
+<li>Handling NOTEs and WARNINGs</li>
+<li>Simulate a CRAN Check</li>
+<li>Submit to CRAN</li>
+<li>Collaborate via GitHub</li>
+</ol>
+</section>
+
+<section id="cran-submission-overview" class="title-slide slide level1 center">
+<h1>1. CRAN Submission: Overview</h1>
+<p>CRAN is the <strong>Comprehensive R Archive Network</strong> — the main repository for R packages.</p>
+<p>Submitting to CRAN means:</p>
+<div>
 <ul>
-<li>Version Control Essentials</li>
-<li>Git &amp; GitHub Basics</li>
-<li>Setting Up in RStudio</li>
-<li>Common Git Workflows</li>
-<li>Branching &amp; Pull Requests</li>
-<li>Collaborating with Issues &amp; Projects</li>
-<li>GitHub Actions for R Projects</li>
-<li>Managing Releases &amp; Packages</li>
-<li>Best Practices &amp; Tips</li>
-<li>Hands-on Exercises</li>
+<li class="fragment">✅ Your package is publicly available</li>
+<li class="fragment">🧪 It passes strict quality checks</li>
+<li class="fragment">🌍 It becomes accessible via <code>install.packages("yourpkg")</code></li>
 </ul>
 </div>
 </section>
 
+<section id="requirements-before-submission" class="title-slide slide level1 center">
+<h1>2. Requirements Before Submission</h1>
+<p>Make sure your package:</p>
+<div>
+<ul>
+<li class="fragment">Passes <code>R CMD check</code> with <strong>no ERRORs</strong>, <strong>no WARNINGs</strong>, and <strong>no (avoidable) NOTEs</strong></li>
+<li class="fragment">Has proper documentation for all exported functions</li>
+<li class="fragment">Has a valid <code>LICENSE</code></li>
+<li class="fragment">Uses a CRAN-acceptable package name</li>
+<li class="fragment">Has examples that run in &lt; 5 seconds</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Run:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="handling-notes-and-warnings" class="title-slide slide level1 center">
+<h1>3. Handling NOTEs and WARNINGs</h1>
+<p>Some NOTEs are common (e.g., missing author ORCID), but…</p>
+<div class="fragment fade-up">
+<blockquote>
+<p>❗ Never submit to CRAN with unaddressed <strong>ERRORs</strong> or <strong>WARNINGs</strong></p>
+</blockquote>
+</div>
+<div class="fragment">
+<p>To reduce NOTEs:</p>
+<div>
+<ul>
+<li class="fragment">Add your ORCID via <code>Authors@R</code></li>
+<li class="fragment">Ensure <code>Title</code> and <code>Description</code> are plain text</li>
+<li class="fragment">Avoid using <code>cat()</code> or <code>print()</code> in package code unless essential</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="simulate-a-cran-check" class="title-slide slide level1 center">
+<h1>4. Simulate a CRAN Check 🧪</h1>
+<p>Use <code>rhub</code> to simulate CRAN checks on different platforms:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>rhub<span class="sc">::</span><span class="fu">check_for_cran</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Or test specific platforms:</p>
+<div class="fragment">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>rhub<span class="sc">::</span><span class="fu">check</span>(<span class="at">platform =</span> <span class="st">"windows-x86_64-release"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p>✅ This helps catch issues that only appear on Windows or macOS.</p>
+</div>
+</section>
+
+<section>
+<section id="submit-to-cran" class="title-slide slide level1 center">
+<h1>5. Submit to CRAN</h1>
+<p>Use the <code>devtools</code> helper:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>devtools<span class="sc">::</span><span class="fu">release</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will:</p>
+<div>
+<ul>
+<li class="fragment">Check your package one final time</li>
+<li class="fragment">Ask you to confirm</li>
+<li class="fragment">Open the CRAN web form in your browser</li>
+<li class="fragment">Help generate an email to CRAN maintainers</li>
+</ul>
+</div>
+</section>
+<section id="what-happens-after-submission" class="slide level2">
+<h2>📬 What Happens After Submission?</h2>
+<ul>
+<li>You’ll get an automated confirmation email</li>
+<li>Within ~24–72 hours, a CRAN maintainer will review your package</li>
+<li>They may:
+<ul>
+<li>Accept it immediately ✅</li>
+<li>Request fixes or clarifications ✍️</li>
+<li>Reject with detailed reasons ❌</li>
+</ul></li>
+</ul>
+</section>
+<section id="updating-a-cran-package" class="slide level2">
+<h2>🔄 Updating a CRAN Package</h2>
+<p>To submit an update:</p>
+<div>
+<ul>
+<li class="fragment">Bump the version (e.g., from 1.0.0 → 1.0.1)</li>
+<li class="fragment">Add a clear <code>NEWS.md</code> entry</li>
+<li class="fragment">Ensure compatibility with current R version and dependencies</li>
+<li class="fragment">Follow the same submission process</li>
+</ul>
+</div>
+<div class="fragment fade-up">
+<p>📌 You can only submit <strong>once every 1–2 weeks</strong> (per package).</p>
+</div>
+</section></section>
+<section id="collaborate-via-github" class="title-slide slide level1 center">
+<h1>6. Collaborate via GitHub</h1>
+
+</section>
+
+<section>
 <section id="version-control-essentials" class="title-slide slide level1 center">
-<h1>1. Version Control Essentials</h1>
+<h1>🔁 Version Control Essentials</h1>
 <ul>
-<li><strong>Why version control?</strong> track changes, revert mistakes, collaborate</li>
-<li><strong>Key concepts</strong>: repository, commit, history, diff, staging</li>
-<li><strong>Git vs GitHub</strong>: local tool vs remote hosting service</li>
+<li>Track and restore changes in code over time</li>
+<li>Collaborate without overwriting others’ work</li>
+<li>Revert to earlier working versions if bugs appear</li>
 </ul>
-<p>??? note Emphasize reproducibility and collaborative benefits.</p>
+<p>🛠 Tools Used:</p>
+<ul>
+<li><code>git</code> (local)</li>
+<li><code>GitHub</code> (remote)</li>
+<li><code>RStudio</code> (IDE)</li>
+</ul>
+<p>📦 Example:</p>
+<blockquote>
+<p>You change a function in <code>plot_utils.R</code>, commit it with message “Refactor histogram labels”, and push to GitHub to share with team.</p>
+</blockquote>
 </section>
-
-<section id="git-github-basics" class="title-slide slide level1 center">
-<h1>2. Git &amp; GitHub Basics</h1>
+<section id="git-github-basics" class="slide level2">
+<h2>🐙 Git &amp; GitHub Basics</h2>
+<p>🔹 <strong>Git</strong>: Version control system for your local project<br>
+🔹 <strong>GitHub</strong>: Cloud platform to share and collaborate</p>
+<p>📝 Key Terms:</p>
 <ul>
-<li><strong>Install Git</strong>: download &amp; configure <code>user.name</code>, <code>user.email</code></li>
-<li><strong>GitHub account</strong>: create, generate SSH key, add to GitHub</li>
-<li><strong>First repo</strong>:</li>
+<li><strong>Commit</strong> = Savepoint</li>
+<li><strong>Push/Pull</strong> = Send/Receive changes</li>
+<li><strong>Repo</strong> = Project folder</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="fu">git</span> init myproject</span>
-<span id="cb1-2"><a></a><span class="bu">cd</span> myproject</span>
-<span id="cb1-3"><a></a><span class="fu">git</span> remote add origin <span class="pp">[</span><span class="ss">git@github.com</span><span class="pp">]</span><span class="er">(</span><span class="ex">mailto:git@github.com</span><span class="kw">)</span><span class="ex">\:username/myproject.git</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>??? note Show GitHub SSH key setup screen.</p>
+<p>📦 Example:</p>
+<blockquote>
+<p>You push your R package to GitHub, allowing your coauthor to edit documentation and submit a pull request.</p>
+</blockquote>
 </section>
-
-<section id="setting-up-in-rstudio" class="title-slide slide level1 center">
-<h1>3. Setting Up in RStudio</h1>
+<section id="installing-git" class="slide level2">
+<h2>📦 Installing Git</h2>
+<p>🔹 Go to <a href="https://git-scm.com/downloads">git-scm.com</a></p>
+<p>Choose your operating system:</p>
 <ul>
-<li><strong>usethis helpers</strong>:</li>
+<li><strong>Windows</strong>: Download <code>.exe</code> and install with default options</li>
+<li><strong>macOS</strong>: Install via Homebrew <code>brew install git</code> or Git installer</li>
+<li><strong>Linux</strong>: Use package manager, e.g.:</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_project</span>(<span class="st">"myproject"</span>, <span class="at">rstudio =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-2"><a></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span>
-<span id="cb2-3"><a></a>usethis<span class="sc">::</span><span class="fu">use_github</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><strong>RStudio Git pane</strong>: commit, diff, push, pull</li>
-<li><strong>.gitignore</strong>: generated by <code>use_git_ignore()</code></li>
-</ul>
-<p>??? note Demonstrate one-click setup in RStudio IDE.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a>  <span class="fu">sudo</span> apt install git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-
-<section id="common-git-workflows" class="title-slide slide level1 center">
-<h1>4. Common Git Workflows</h1>
-<table>
-<thead>
-<tr class="header">
-<th>Workflow</th>
-<th>Use Case</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Centralized</td>
-<td>solo projects, simple collaboration</td>
-</tr>
-<tr class="even">
-<td>Fork &amp; PR</td>
-<td>open-source contributions</td>
-</tr>
-<tr class="odd">
-<td>Feature Branch</td>
-<td>team feature development, isolation</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><strong>Syncing forks</strong> with upstream</li>
-<li><strong>Rebasing</strong> vs merging</li>
-</ul>
-<p>??? note Recommend feature-branch workflow for teams.</p>
+<section id="verifying-git-installation" class="slide level2">
+<h2>🧪 Verifying Git Installation</h2>
+<p>🧪 Run this in your Terminal (or Command Prompt):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ You should see something like:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a></a>git version 2.43.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>💡 If this works, Git is installed correctly!</p>
 </section>
-
-<section id="branching-pull-requests" class="title-slide slide level1 center">
-<h1>5. Branching &amp; Pull Requests</h1>
-<ul>
-<li><strong>Create branch</strong>:</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="fu">git</span> checkout <span class="at">-b</span> feature-x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><strong>Work &amp; commit</strong>, then push:</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="fu">git</span> push <span class="at">-u</span> origin feature-x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><strong>Open PR</strong> on GitHub: describe changes, assign reviewers</li>
-<li><strong>Review &amp; merge</strong>: code review, address comments</li>
-</ul>
-<p>??? note Show pull request UI with examples.</p>
+<section id="configuring-git-identity" class="slide level2">
+<h2>🔑 Configuring Git Identity</h2>
+<p>🔧 Set your global Git identity:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
+<span id="cb8-2"><a></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"you@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>✅ To check the name or email currently set in Git, use these commands:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="fu">git</span> config <span class="at">--global</span> user.name </span>
+<span id="cb9-2"><a></a><span class="fu">git</span> config <span class="at">--global</span> user.email </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-
-<section id="collaborating-with-issues-projects" class="title-slide slide level1 center">
-<h1>6. Collaborating with Issues &amp; Projects</h1>
-<ul>
-<li><strong>Issues</strong>: bug reports, feature requests</li>
-<li><strong>Labels &amp; milestones</strong>: categorize and plan work</li>
-<li><strong>Projects</strong>: Kanban boards in GitHub</li>
-<li><strong>Link commits &amp; PRs</strong>: <code>Fixes #123</code></li>
-</ul>
-<p>??? note Create a sample issue and link a PR to it.</p>
-</section>
-
-<section id="github-actions-for-r-projects" class="title-slide slide level1 center">
-<h1>7. GitHub Actions for R Projects</h1>
-<ul>
-<li><strong>CI/CD</strong>: automate checks, tests, pkg build</li>
-<li><strong>Standard workflow</strong>: <code>check-standard</code> via usethis</li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a></a><span class="co"># .github/workflows/R-CMD-check.yaml</span></span>
-<span id="cb5-2"><a></a><span class="fu">name</span><span class="kw">:</span><span class="at"> R-CMD-check</span></span>
-<span id="cb5-3"><a></a><span class="fu">on</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">push</span><span class="kw">,</span><span class="at"> pull_request</span><span class="kw">]</span></span>
-<span id="cb5-4"><a></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb5-5"><a></a><span class="at">  </span><span class="fu">R-CMD-check</span><span class="kw">:</span></span>
-<span id="cb5-6"><a></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb5-7"><a></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb5-8"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
-<span id="cb5-9"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r@v2</span></span>
-<span id="cb5-10"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-pandoc@v2</span></span>
-<span id="cb5-11"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> Rscript -e 'devtools::install(); devtools::check()'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><strong>Badges</strong>: display build status in README</li>
-</ul>
-<p>??? note Demonstrate adding a CI badge via <code>use_github_action_badge()</code>.</p>
-</section>
-
-<section id="managing-releases-packages" class="title-slide slide level1 center">
-<h1>8. Managing Releases &amp; Packages</h1>
-<ul>
-<li><strong>Release branches</strong> or tags:</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="fu">git</span> tag <span class="at">-a</span> v1.0.0 <span class="at">-m</span> <span class="st">"Initial release"</span></span>
-<span id="cb6-2"><a></a><span class="fu">git</span> push <span class="at">--tags</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><strong>GitHub Releases</strong>: draft release notes, attach artifacts</li>
-<li><strong>pkgdown</strong>: build website, auto-deploy via Actions</li>
-<li><strong>CRAN submissions</strong>: trigger release workflow</li>
-</ul>
-<p>??? note Show sample pkgdown YAML and GitHub Pages setup.</p>
-</section>
-
-<section id="best-practices-tips" class="title-slide slide level1 center">
-<h1>9. Best Practices &amp; Tips</h1>
-<ul>
-<li><strong>Commit messages</strong>: short summary + body</li>
-<li><strong>Code review</strong>: consistent style, meaningful feedback</li>
-<li><strong>Rebase vs merge</strong>: keep history clean</li>
-<li><strong>Large files</strong>: use Git LFS, avoid binary data</li>
-<li><strong>Security</strong>: secret management, PAT scopes</li>
-</ul>
-<p>??? note Provide link to GitHub security best practices.</p>
-</section>
-
-<section id="hands-on-exercises-30-min" class="title-slide slide level1 center scrollable">
-<h1>10. Hands-on Exercises (30 min)</h1>
+<section id="connect-github-to-r-create-pat" class="slide level2 scrollable">
+<h2>🧭 Connect GitHub to R (Create PAT)</h2>
 <ol type="1">
-<li><strong>Initialize</strong> a new RStudio project with Git &amp; GitHub</li>
-<li><strong>Create branch</strong>, add function, push, open PR</li>
-<li><strong>Set up</strong> GitHub Actions for R-CMD-check</li>
-<li><strong>Draft</strong> a GitHub issue and link to PR</li>
+<li>In R:</li>
 </ol>
-<p>??? note Split into groups; review each other’s repos.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li><p>GitHub will open — generate a Personal Access Token (PAT)</p></li>
+<li><p>Copy the token (only shown once!)</p></li>
+<li><p>Back in R:</p></li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Paste your token when prompted.</p>
+<p>✅ You’ve now authenticated GitHub from R!</p>
 </section>
-
+<section id="check-setup" class="slide level2">
+<h2>🧪 Check Setup</h2>
+<p>Use this helpful diagnostic tool:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>usethis<span class="sc">::</span><span class="fu">git_sitrep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>💡 This tells you:</p>
+<ul>
+<li><p>Whether Git is installed</p></li>
+<li><p>Whether GitHub is connected</p></li>
+<li><p>If PAT is stored</p></li>
+</ul>
+</section>
+<section id="creating-a-new-git-enabled-project" class="slide level2 scrollable">
+<h2>📁 Creating a New Git-Enabled Project</h2>
+<p>In RStudio:</p>
+<ol type="1">
+<li><strong>File → New Project</strong></li>
+<li>Choose:
+<ul>
+<li>“New Directory” → “R Package” (or “New Project”)</li>
+</ul></li>
+<li>Check the box:
+<ul>
+<li>✅ “Create a git repository”</li>
+</ul></li>
+<li>Finish project setup</li>
+</ol>
+<p>📁 A <code>.git</code> folder is created — this is a Git repo!</p>
+</section>
+<section id="connect-to-github" class="slide level2">
+<h2>🌐 Connect to GitHub</h2>
+<p>Run this to create and link a GitHub repo:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_github</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will:</p>
+<ul>
+<li>Push your project to GitHub</li>
+<li>Open the new repo in your browser</li>
+</ul>
+<blockquote>
+<p>💡 You can now push/pull changes from RStudio Git tab</p>
+</blockquote>
+</section>
+<section id="common-git-workflows" class="slide level2 scrollable">
+<h2>🔄 Common Git Workflows</h2>
+<p>🎯 Daily workflow steps:</p>
+<ol type="1">
+<li>Edit <code>R/stats_module.R</code></li>
+<li>Stage → Commit → Push</li>
+</ol>
+<p>💻 In RStudio Git tab:</p>
+<ul>
+<li>Stage: click checkbox</li>
+<li>Commit: type a message</li>
+<li>Push: upload to GitHub</li>
+</ul>
+<p>🔁 Example:</p>
+<blockquote>
+<p>Commit message: “Add confidence interval to mean_plot()”</p>
+</blockquote>
+</section></section>
 <section id="resources-further-reading" class="title-slide slide level1 center">
 <h1>Resources &amp; Further Reading</h1>
 <ul>
@@ -614,198 +698,6 @@ Mehdi Maadooliat and Hossein Haghbin
 
 <section id="thank-you" class="title-slide slide level1 center">
 <h1>Thank You</h1>
-<ul>
-<li>Happy collaborating on GitHub with R!</li>
-</ul>
-</section>
-
-<section id="outline---cran-submission" class="title-slide slide level1 center">
-<h1>Outline - CRAN submission</h1>
-<div class="fragment fade-up">
-<ul>
-<li>Introduction &amp; CRAN Overview</li>
-<li>Pre-Submission Preparation</li>
-<li>Automated Checks with devtools</li>
-<li>usethis Helpers for Release</li>
-<li>Releasing with <code>devtools::release()</code></li>
-<li>Common Pitfalls &amp; Debugging</li>
-<li>CRAN Policies &amp; Guidelines</li>
-<li>Post-Submission Workflow</li>
-<li>Hands-On Exercises</li>
-</ul>
-</div>
-</section>
-
-<section id="introduction-cran-overview" class="title-slide slide level1 center scrollable">
-<h1>1. Introduction &amp; CRAN Overview</h1>
-<ul>
-<li><p><strong>What is CRAN?</strong> central repository for R packages</p></li>
-<li><p><strong>Roles</strong>: authors, CRAN maintainers, users</p></li>
-<li><p><strong>Submission flow</strong>:</p>
-<ol type="1">
-<li>Local checks → 2. devtools release → 3. CRAN review → 4. Publication</li>
-</ol></li>
-</ul>
-<p>??? note High-level diagram of submission pipeline.</p>
-</section>
-
-<section>
-<section id="pre-submission-preparation" class="title-slide slide level1 center">
-<h1>2. Pre-Submission Preparation</h1>
-
-</section>
-<section id="description-namespace" class="slide level2">
-<h2>DESCRIPTION &amp; NAMESPACE</h2>
-<ul>
-<li>Ensure fields: Version, URL, BugReports, License</li>
-<li>Semantic versioning: increment patch for minor fixes</li>
-</ul>
-</section>
-<section id="documentation-vignettes" class="slide level2">
-<h2>Documentation &amp; Vignettes</h2>
-<ul>
-<li>All help files up to date</li>
-<li>Vignettes build without errors</li>
-</ul>
-</section>
-<section id="tests-coverage" class="slide level2">
-<h2>Tests &amp; Coverage</h2>
-<ul>
-<li><code>devtools::test()</code> passes</li>
-<li>Consider <code>covr::report()</code></li>
-</ul>
-<p>??? note Emphasize <code>R CMD check --as-cran</code> equivalence.</p>
-</section></section>
-<section id="automated-checks-with-devtools" class="title-slide slide level1 center">
-<h1>3. Automated Checks with devtools</h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># Run full checks</span></span>
-<span id="cb7-2"><a></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span>
-<span id="cb7-3"><a></a><span class="co"># Simulate CRAN environment</span></span>
-<span id="cb7-4"><a></a>devtools<span class="sc">::</span><span class="fu">check</span>(<span class="at">platform =</span> <span class="st">"windows-x86_64"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Check outputs: warnings, errors, notes</li>
-<li>Use <code>r-pkgs</code> recommendations for note-level fixes</li>
-</ul>
-<p>??? note Show sample check log and resolution.</p>
-</section>
-
-<section id="usethis-helpers-for-release" class="title-slide slide level1 center">
-<h1>4. usethis Helpers for Release</h1>
-<ul>
-<li><code>usethis::use_cran_badge()</code> adds status badge</li>
-<li><code>usethis::use_release_issue()</code> creates GitHub issue template</li>
-<li><code>usethis::use_news_md()</code> manages NEWS.md</li>
-</ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_version</span>(<span class="st">"patch"</span>)</span>
-<span id="cb8-2"><a></a>usethis<span class="sc">::</span><span class="fu">use_news_md</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>??? note Demo bumping version and drafting NEWS.</p>
-</section>
-
-<section id="releasing-with-devtoolsrelease" class="title-slide slide level1 center">
-<h1>5. Releasing with <code>devtools::release()</code></h1>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>devtools<span class="sc">::</span><span class="fu">release</span>()</span>
-<span id="cb9-2"><a></a><span class="co"># prompts:</span></span>
-<span id="cb9-3"><a></a><span class="co"># Are you ready to submit to CRAN? Yes</span></span>
-<span id="cb9-4"><a></a><span class="co"># Confirm: bump version, commit, tag</span></span>
-<span id="cb9-5"><a></a><span class="co"># Checks run automatically</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Interactive confirmations</li>
-<li>Automatic Git push &amp; tag</li>
-</ul>
-<p>??? note Highlight <code>--no-build-vignettes</code> option if needed.</p>
-</section>
-
-<section id="common-pitfalls-debugging" class="title-slide slide level1 center">
-<h1>6. Common Pitfalls &amp; Debugging</h1>
-<table>
-<colgroup>
-<col style="width: 41%">
-<col style="width: 58%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Issue</th>
-<th>Solution</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>CMD check ERRORs</td>
-<td>Fix code, missing imports, syntax</td>
-</tr>
-<tr class="even">
-<td>NOTE: global binding issues</td>
-<td>Use <code>utils::globalVariables()</code></td>
-</tr>
-<tr class="odd">
-<td>Mac OS / Windows specific</td>
-<td>Test on all major platforms; try Docker</td>
-</tr>
-<tr class="even">
-<td>Vignette build failures</td>
-<td>Check missing packages, long file names</td>
-</tr>
-</tbody>
-</table>
-<p>??? note Live fix of a note about argument mismatches.</p>
-</section>
-
-<section id="cran-policies-guidelines" class="title-slide slide level1 center">
-<h1>7. CRAN Policies &amp; Guidelines</h1>
-<ul>
-<li><strong>Repository policy</strong>: no heavy data, compiled code only with license</li>
-<li><strong>Package size &amp; dependencies</strong>: keep minimal</li>
-<li><strong>Code of conduct</strong></li>
-<li><strong>Binary vs source</strong>: platform builds</li>
-</ul>
-<p>??? note Refer to <a href="https://cran.r-project.org/web/packages/policies.html" class="uri">https://cran.r-project.org/web/packages/policies.html</a>.</p>
-</section>
-
-<section id="post-submission-workflow" class="title-slide slide level1 center">
-<h1>8. Post-Submission Workflow</h1>
-<ul>
-<li><strong>CRAN response</strong>: review submitted log, email communication</li>
-<li><strong>Patch release</strong>: if maintainers request changes</li>
-<li><strong>Version tags</strong>: GitHub releases page</li>
-<li><strong>Announcement</strong>: update project website, social media</li>
-</ul>
-<p>??? note Show sample CRAN acceptance email and next steps.</p>
-</section>
-
-<section id="hands-on-exercises-30-min-1" class="title-slide slide level1 center scrollable">
-<h1>9. Hands-On Exercises (30 min)</h1>
-<ol type="1">
-<li><strong>Simulate release</strong>: run <code>devtools::release()</code> in demo package</li>
-<li><strong>Fix check notes</strong>: resolve two common notes</li>
-<li><strong>Draft NEWS.md</strong> for a hypothetical minor release</li>
-<li><strong>Use usethis</strong> to add CRAN badge and release issue</li>
-</ol>
-<p>??? note Break into pairs, review each other’s work.</p>
-</section>
-
-<section id="resources-references" class="title-slide slide level1 center">
-<h1>Resources &amp; References</h1>
-<ul>
-<li><strong>CRAN Release Guide</strong>: <a href="https://r-pkgs.org/release.html" class="uri">https://r-pkgs.org/release.html</a></li>
-<li><strong>devtools docs</strong>: <a href="https://devtools.r-lib.org" class="uri">https://devtools.r-lib.org</a></li>
-<li><strong>usethis reference</strong>: <a href="https://usethis.r-lib.org" class="uri">https://usethis.r-lib.org</a></li>
-</ul>
-<p>??? note Provide cheat-sheet of key functions.</p>
-</section>
-
-<section id="qa-1" class="title-slide slide level1 center">
-<h1>Q&amp;A</h1>
-<ul>
-<li>Specific submission questions?</li>
-<li>Handling platform-specific checks?</li>
-</ul>
-</section>
-
-<section id="thank-you-1" class="title-slide slide level1 center">
-<h1>Thank You</h1>
-<ul>
-<li>Good luck with your CRAN submissions!</li>
-</ul>
 
 <div class="quarto-auto-generated-content">
 <p><img src="logo.png" class="slide-logo"></p>

@@ -417,173 +417,647 @@ Mehdi Maadooliat and Hossein Haghbin
 </div>
 
 </section>
-<section id="outline" class="title-slide slide level1 center">
+<section id="outline" class="title-slide slide level1 center scrollable" data-transition="slide">
 <h1>Outline</h1>
-<div class="fragment fade-up">
+<div>
 <ul>
-<li>Why Package Development?</li>
-<li>Package Structure &amp; Setup</li>
-<li>DESCRIPTION &amp; NAMESPACE Files</li>
-<li>Writing Functions &amp; Documentation</li>
-<li>Testing with <code>testthat</code></li>
-<li>Continuous Integration &amp; QA</li>
-<li>Vignettes &amp; Articles</li>
-<li>Building, Checking &amp; Installing</li>
-<li>CRAN Submission &amp; Maintenance</li>
-<li>Hands-on Exercises</li>
+<li class="fragment"><ol type="1">
+<li class="fragment">Why Build an R Package?</li>
+</ol></li>
+<li class="fragment"><ol start="2" type="1">
+<li class="fragment">System Setup</li>
+</ol></li>
+<li class="fragment"><ol start="3" type="1">
+<li class="fragment">Package Structure</li>
+</ol></li>
+<li class="fragment"><ol start="4" type="1">
+<li class="fragment">Package States in R</li>
+</ol></li>
+<li class="fragment"><ol start="5" type="1">
+<li class="fragment">Create a Package</li>
+</ol></li>
+<li class="fragment"><ol start="6" type="1">
+<li class="fragment">Functions &amp; Documentation</li>
+</ol></li>
+<li class="fragment"><ol start="7" type="1">
+<li class="fragment">Writing Functions and Documenting</li>
+</ol></li>
+<li class="fragment"><ol start="8" type="1">
+<li class="fragment">Build a Simple Package from Scratch</li>
+</ol></li>
 </ul>
 </div>
 </section>
 
-<section id="why-develop-packages" class="title-slide slide level1 center">
-<h1>1. Why Develop Packages?</h1>
+<section id="why-build-an-r-package" class="title-slide slide level1 center">
+<h1>1. Why Build an R Package?</h1>
+<div>
 <ul>
-<li><strong>Reusability</strong>: share code across projects</li>
-<li><strong>Documentation</strong>: built-in help pages</li>
-<li><strong>Testing</strong>: ensure code quality</li>
-<li><strong>Distribution</strong>: CRAN, GitHub, internal repos</li>
-<li><strong>Best Practices</strong>: maintainability &amp; collaboration</li>
+<li class="fragment">🧩 <strong>Reusability</strong>: Organize and reuse code across multiple projects<br>
+</li>
+<li class="fragment">📚 <strong>Documentation</strong>: Provide built-in help files and usage examples<br>
+</li>
+<li class="fragment">✅ <strong>Testing</strong>: Systematically check your code with unit tests<br>
+</li>
+<li class="fragment">🌍 <strong>Distribution</strong>: Share via CRAN, GitHub, or internal repositories<br>
+</li>
+<li class="fragment">🛠️ <strong>Best Practices</strong>: Improve maintainability and team collaboration</li>
+<li class="fragment">🤝 <strong>Open Source &amp; Workflows</strong>: Enable contributions, version control, and community engagement</li>
 </ul>
-<p>??? note Discuss team workflows and open-source benefits.</p>
-</section>
-
-<section id="package-structure-setup" class="title-slide slide level1 center">
-<h1>2. Package Structure &amp; Setup</h1>
-<ul>
-<li><p><strong>Directory layout</strong>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>mypkg/</span>
-<span id="cb1-2"><a></a>  DESCRIPTION</span>
-<span id="cb1-3"><a></a>  NAMESPACE</span>
-<span id="cb1-4"><a></a>  R/</span>
-<span id="cb1-5"><a></a>  man/</span>
-<span id="cb1-6"><a></a>  tests/</span>
-<span id="cb1-7"><a></a>  vignettes/</span>
-<span id="cb1-8"><a></a>  data/</span>
-<span id="cb1-9"><a></a>  inst/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Setup using devtools</strong>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="st">"mypkg"</span>)</span>
-<span id="cb2-2"><a></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span>
-<span id="cb2-3"><a></a>usethis<span class="sc">::</span><span class="fu">use_build_ignore</span>(<span class="st">"devtools_history.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-<p>??? note Show live demo: <code>create_package()</code> workflow.</p>
+</div>
 </section>
 
 <section>
-<section id="description-namespace" class="title-slide slide level1 center">
-<h1>3. DESCRIPTION &amp; NAMESPACE</h1>
-
-</section>
-<section id="description" class="slide level2">
-<h2>DESCRIPTION</h2>
+<section id="system-setup" class="title-slide slide level1 center">
+<h1>2. System Setup</h1>
+<p>Make sure you have:</p>
+<div class="fragment fade-up">
+<p><strong>✅ Latest R and RStudio</strong></p>
 <ul>
-<li>Fields: <code>Package</code>, <code>Version</code>, <code>Title</code>, <code>Description</code>, <code>Author</code>, <code>Depends</code>, <code>Imports</code>, <code>Suggests</code>, <code>License</code></li>
-<li>Semantic versioning: <code>major.minor.patch</code></li>
+<li>🛠 Install the latest version of <strong>R</strong>.</li>
+<li>📥 ownload <strong>RStudio Desktop</strong>: <a href="https://posit.co/download/rstudio-desktop">(link)</a></li>
 </ul>
+</div>
+<div class="fragment fade-up">
+<p><strong>📦 Required Packages:</strong></p>
+<p>Install the essential development tools:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"devtools"</span>, <span class="st">"roxygen2"</span>, <span class="st">"testthat"</span>, <span class="st">"knitr"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="namespace" class="slide level2">
-<h2>NAMESPACE</h2>
+<section id="key-packages" class="slide level2">
+<h2>📦 Key Packages</h2>
+<div>
 <ul>
-<li>Export functions: <code>export()</code></li>
-<li>Import from other packages: <code>importFrom(dplyr, select)</code></li>
-<li>Generate with roxygen2 or manually</li>
+<li class="fragment"><p><strong><code>devtools</code></strong>: Simplifies package development by wrapping complex workflows into easy commands</p></li>
+<li class="fragment"><p><strong><code>roxygen2</code></strong>: Generates documentation from special comments in your function code</p></li>
+<li class="fragment"><p><strong><code>testthat</code></strong>: Provides a framework for unit testing and ensures your functions work correctly and safely over time</p></li>
+<li class="fragment"><p><strong><code>knitr</code></strong>: Powers dynamic report generation and vignette building that integrates code, results, and text using R Markdown</p></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co">#' @export</span></span>
-<span id="cb3-2"><a></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>??? note Emphasize keeping <code>Imports</code> minimal.</p>
+</div>
+<div class="fragment fade-up">
+<blockquote>
+<p>💡 These tools help automate, test, document, and share your package like a pro.</p>
+</blockquote>
+</div>
 </section></section>
-<section id="functions-documentation" class="title-slide slide level1 center">
-<h1>4. Functions &amp; Documentation</h1>
-<ul>
-<li><p><strong>Code placement</strong>: scripts in <code>R/</code></p></li>
-<li><p><strong>Roxygen comments</strong>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co">#' Title</span></span>
-<span id="cb4-2"><a></a><span class="co">#'</span></span>
-<span id="cb4-3"><a></a><span class="co">#' @param x Numeric vector</span></span>
-<span id="cb4-4"><a></a><span class="co">#' @return Numeric</span></span>
-<span id="cb4-5"><a></a><span class="co">#' @examples</span></span>
-<span id="cb4-6"><a></a><span class="co">#' my_function(1:5)</span></span>
-<span id="cb4-7"><a></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Generate docs</strong>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-<p>??? note Highlight best practices for examples and topics.</p>
-</section>
+<section>
+<section id="package-structure" class="title-slide slide level1 center">
+<h1>3. Package Structure</h1>
 
-<section id="testing-with-testthat" class="title-slide slide level1 center">
-<h1>5. Testing with <code>testthat</code></h1>
-<ul>
-<li><p><strong>Setup</strong>:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_testthat</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Write tests</strong> in <code>tests/testthat/</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">test_that</span>(<span class="st">"sum works"</span>, {</span>
-<span id="cb7-2"><a></a>  <span class="fu">expect_equal</span>(<span class="fu">my_function</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dv">3</span>)</span>
-<span id="cb7-3"><a></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Run tests</strong>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>devtools<span class="sc">::</span><span class="fu">test</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-<p>??? note Stress importance of edge-case tests.</p>
 </section>
-
-<section id="continuous-integration-qa" class="title-slide slide level1 center">
-<h1>6. Continuous Integration &amp; QA</h1>
-<ul>
-<li><p><strong>CI services</strong>: GitHub Actions, Travis CI, GitLab CI</p></li>
-<li><p><strong>Setup with usethis</strong>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_github_action_check_standard</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Code coverage</strong>: <code>covr</code>, Codecov</p></li>
-<li><p><strong>Linting</strong>: <code>lintr</code>, <code>goodpractice</code></p></li>
-</ul>
-<p>??? note Show sample GitHub Actions YAML.</p>
+<section id="directory-layout" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">🧩 Directory layout</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb2-1" class="hljs-ln-code"><a></a>  mypkg/</span>
+<span id="cb2-2" class="hljs-ln-code"><a></a>  ├── DESCRIPTION         # Package metadata</span>
+<span id="cb2-3" class="hljs-ln-code"><a></a>  ├── NAMESPACE           # Exported functions &amp; imports</span>
+<span id="cb2-4" class="hljs-ln-code"><a></a>  ├── R/                  # Your R functions</span>
+<span id="cb2-5" class="hljs-ln-code"><a></a>  └── man/                # Auto-generated documentation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment fade-up">
+<blockquote>
+<p>💡 <strong>Tip:</strong> Many folders in an R package are optional and included as needed.</p>
+</blockquote>
+</div>
 </section>
-
-<section id="vignettes-articles" class="title-slide slide level1 center">
-<h1>7. Vignettes &amp; Articles</h1>
+<section id="directory-layout-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">🧩 Directory layout</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb3-1" class="hljs-ln-code"><a></a>  mypkg/</span>
+<span id="cb3-2" class="hljs-ln-code"><a></a>  ├── DESCRIPTION         # Package metadata</span>
+<span id="cb3-3" class="hljs-ln-code"><a></a>  ├── NAMESPACE           # Exported functions &amp; imports</span>
+<span id="cb3-4" class="hljs-ln-code"><a></a>  ├── R/                  # Your R functions</span>
+<span id="cb3-5" class="hljs-ln-code"><a></a>  ├── man/                # Auto-generated documentation</span>
+<span id="cb3-6" class="hljs-ln-code"><a></a>  ├── tests/              # Unit tests with testthat</span>
+<span id="cb3-7" class="hljs-ln-code"><a></a>  ├── vignettes/          # Long-form documentation (Rmd)</span>
+<span id="cb3-8" class="hljs-ln-code"><a></a>  ├── data/               # Data sets (.rda files)</span>
+<span id="cb3-9" class="hljs-ln-code"><a></a>  └── inst/               # Installed files (e.g., app/, extdata/)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="package-states-in-r" class="title-slide slide level1 center" data-transition="zoom">
+<h1>4. Package States in R</h1>
+<p>R packages go through <strong>five states</strong> during development and usage:</p>
 <ul>
-<li><p><strong>Long-form documentation</strong>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_vignette</span>(<span class="st">"intro"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>R Markdown</strong> in <code>vignettes/</code></p></li>
-<li><p><strong>Build &amp; preview</strong>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>devtools<span class="sc">::</span><span class="fu">build_vignettes</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li>🗂️ <strong>Source</strong></li>
+<li>📦 <strong>Bundled</strong></li>
+<li>🧱 <strong>Binary</strong></li>
+<li>📚 <strong>Installed</strong></li>
+<li>🧠 <strong>In-Memory</strong></li>
 </ul>
-<p>??? note Encourage rich examples and narratives.</p>
+<div class="fragment fade-up">
+<blockquote>
+<p>Understanding these states helps you manage installation, sharing, and usage workflows.</p>
+</blockquote>
+</div>
 </section>
-
-<section id="building-checking-installing" class="title-slide slide level1 center">
-<h1>8. Building, Checking &amp; Installing</h1>
+<section id="source-package" class="slide level2" data-transition="zoom">
+<h2>🗂️ Source Package</h2>
+<p>A <strong>source package</strong> is just a folder with a specific structure:</p>
 <ul>
-<li><p><strong>Build package</strong>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>devtools<span class="sc">::</span><span class="fu">build</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Check package</strong>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>devtools<span class="sc">::</span><span class="fu">check</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Install locally</strong>:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>Binary vs source</strong>: options for Windows/Mac</p></li>
+<li><code>DESCRIPTION</code> file<br>
+</li>
+<li><code>R/</code> folder with <code>.R</code> files<br>
+</li>
+<li>Optional: <code>man/</code>, <code>tests/</code>, <code>vignettes/</code></li>
 </ul>
-<p>??? note Explain common check errors and fixes.</p>
+<div class="fragment fade-up">
+<blockquote>
+<p>It’s editable and human-readable — your starting point for development.</p>
+</blockquote>
+</div>
 </section>
-
-<section id="cran-submission-maintenance" class="title-slide slide level1 center">
-<h1>9. CRAN Submission &amp; Maintenance</h1>
+<section id="bundled-package" class="slide level2">
+<h2>📦 Bundled Package</h2>
+<p>A <strong>bundled package</strong> is a compressed <code>.tar.gz</code> file created from a source package.</p>
 <ul>
-<li><p><strong>CRAN policies</strong>: style, dependencies, tests</p></li>
-<li><p><strong>Submit</strong>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>devtools<span class="sc">::</span><span class="fu">release</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>News/Changelog</strong>: <code>NEWS.md</code></p></li>
-<li><p><strong>Version control</strong>: tagging releases</p></li>
-<li><p><strong>Maintaining</strong>: issues, pull requests, documentation updates</p></li>
+<li>Commonly called a <strong>source tarball</strong></li>
+<li>Created using <code>devtools::build()</code></li>
+<li>Platform-independent format for distribution</li>
 </ul>
-<p>??? note Review CRAN incoming checks and email workflows.</p>
+<div class="fragment fade-up">
+<blockquote>
+<p>It acts as a transportable unit — not directly usable until installed.</p>
+</blockquote>
+</div>
 </section>
+<section id="binary-package" class="slide level2" data-transition="zoom">
+<h2>🧱 Binary Package</h2>
+<p>A <strong>binary package</strong> is a platform-specific compiled package:</p>
+<ul>
+<li>Windows: <code>.zip</code></li>
+<li>macOS: <code>.tgz</code></li>
+<li>Created using <code>devtools::build(binary = TRUE)</code></li>
+</ul>
+<div class="fragment fade-up">
+<blockquote>
+<p>Ideal for users without development tools — typically distributed by CRAN.</p>
+</blockquote>
+</div>
+</section>
+<section id="installed-package" class="slide level2" data-transition="zoom">
+<h2>📚 Installed Package</h2>
+<p>An <strong>installed package</strong> is one that’s been unpacked and placed into a library folder.</p>
+<ul>
+<li>No longer a single file</li>
+<li>Ready to be loaded into memory</li>
+</ul>
+<div class="fragment fade-up">
+<blockquote>
+<p><code>install.packages()</code> or <code>devtools::install_*()</code> bring packages into this state.</p>
+</blockquote>
+</div>
+</section>
+<section id="in-memory-package" class="slide level2" data-transition="zoom">
+<h2>🧠 In-Memory Package</h2>
+<p>An <strong>in-memory</strong> package is an installed package that’s been loaded into the R session.</p>
+<ul>
+<li>Use <code>library(pkgname)</code> to load</li>
+<li>Makes all exported functions and objects available</li>
+</ul>
+<div class="fragment fade-up">
+<blockquote>
+<p>Use <code>library()</code> to see loaded packages.</p>
+</blockquote>
+</div>
+</section>
+<section id="transitioning-between-states" class="slide level2" data-transition="convex">
+<h2>🔁 Transitioning Between States</h2>
 
-<section id="hands-on-exercises-30-min" class="title-slide slide level1 center scrollable">
-<h1>10. Hands-on Exercises (30 min)</h1>
+<img data-src="images/package/install-load.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"></section></section>
+<section>
+<section id="create-a-package" class="title-slide slide level1 center">
+<h1>5. Create a Package</h1>
+<p>Before creating your R package, you need to choose a <strong>name</strong>.</p>
+<div class="fragment fade-up">
+<blockquote>
+<p>🧠 This can be the hardest part of the process!</p>
+</blockquote>
+</div>
+</section>
+<section id="formal-naming-rules" class="slide level2 scrollable">
+<h2>📛 Formal Naming Rules</h2>
+<p>A valid R package name must:</p>
+<div>
 <ol type="1">
-<li>Create a new package skeleton and add a simple function</li>
-<li>Write roxygen docs and generate help files</li>
-<li>Add tests for edge cases and set up CI</li>
-<li>Draft a vignette showcasing function usage</li>
+<li class="fragment">Contain only <strong>letters</strong>, <strong>numbers</strong>, and <strong>periods (<code>.</code>)</strong></li>
+<li class="fragment"><strong>Start with a letter</strong></li>
+<li class="fragment"><strong>Not end</strong> with a period</li>
 </ol>
-<p>??? note Pair up and share GitHub repo links.</p>
+</div>
+<div class="fragment fade-up">
+<p>❌ You <strong>cannot</strong> use:</p>
+<ul>
+<li>Hyphens <code>-</code></li>
+<li>Underscores <code>_</code></li>
+</ul>
+</div>
+</section>
+<section id="naming-tips-for-shared-packages" class="slide level2">
+<h2>🔍 Naming Tips for Shared Packages</h2>
+<p>If you plan to share your package:</p>
+<div>
+<ul>
+<li class="fragment">✅ Choose a <strong>unique</strong> name that’s easy to Google<br>
+</li>
+<li class="fragment">🔎 Avoid names already on <strong>CRAN</strong> or <strong>Bioconductor</strong></li>
+<li class="fragment">⌨️ Stick to all <strong>lowercase</strong> — e.g., avoid <code>RGTK2</code> vs <code>RGtk2</code></li>
+<li class="fragment">🗣️ Prefer <strong>pronounceable</strong> names — easier to talk and think about</li>
+</ul>
+</div>
+</section>
+<section id="naming-patterns-and-examples" class="slide level2">
+<h2>🧠 Naming Patterns and Examples</h2>
+<p>Evocative Names:</p>
+<ul>
+<li><code>lubridate</code> → makes <strong>dates</strong> easier<br>
+</li>
+<li><code>rvest</code> → for <strong>web scraping</strong> (like “harvest”)<br>
+</li>
+<li><code>r2d3</code> → tools for <strong>D3 visualizations</strong><br>
+</li>
+<li><code>forcats</code> → anagram of <strong>factors</strong></li>
+</ul>
+<div class="fragment fade-up">
+<!-- -->
+<h3 id="abbreviations">Abbreviations</h3>
+<ul>
+<li><code>Rcpp</code> → <strong>R + C++</strong></li>
+<li><code>brms</code> → <strong>Bayesian Regression Models using Stan</strong></li>
+</ul>
+</div>
+</section>
+<section id="creating-your-package" class="slide level2">
+<h2>🛠️ Creating Your Package</h2>
+<p>Once you have a name, create the package using either:</p>
+<div>
+<ul>
+<li class="fragment"><code>usethis::create_package("mypkg")</code><br>
+</li>
+<li class="fragment"><strong>RStudio UI</strong>:<br>
+<em>File → New Project → New Directory → R Package</em></li>
+</ul>
+</div>
+<div class="fragment fade-up">
+<p>👉 Both options run the same function under the hood.</p>
+</div>
+</section>
+<section id="what-gets-created" class="slide level2">
+<h2>📦 What Gets Created?</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div>
+<ul>
+<li class="fragment"><code>R/</code> folder → for your function code<br>
+</li>
+<li class="fragment"><code>DESCRIPTION</code> file → metadata<br>
+</li>
+<li class="fragment"><code>NAMESPACE</code> file → exports/imports<br>
+</li>
+<li class="fragment"><code>mypkg.Rproj</code> → RStudio project file<br>
+</li>
+<li class="fragment"><code>.Rbuildignore</code>, <code>.gitignore</code> → build and Git helpers</li>
+</ul>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="fragment fade-up">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/package/create_pkg.png" class="quarto-figure quarto-figure-center" style="width:90.0%" alt="Screenshot of Pagerank"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="description-namespace" class="slide level2">
+<h2>DESCRIPTION &amp; NAMESPACE</h2>
+<p>Two essential files in every R package:</p>
+<div>
+<ul>
+<li class="fragment">📄 <code>DESCRIPTION</code>: Metadata about your package (who, what, dependencies)<br>
+</li>
+<li class="fragment">📦 <code>NAMESPACE</code>: Controls what functions are exported and what is imported</li>
+</ul>
+</div>
+</section>
+<section id="description-file" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">📄 DESCRIPTION File</h2>
+<p>The <code>DESCRIPTION</code> file provides overall metadata about your package:</p>
+<div>
+<ul>
+<li class="fragment">Package name and version<br>
+</li>
+<li class="fragment">Author and maintainer info<br>
+</li>
+<li class="fragment">Dependencies (<code>Imports</code>, <code>Suggests</code>)<br>
+</li>
+<li class="fragment">Description and license<br>
+</li>
+<li class="fragment">Build-related metadata</li>
+</ul>
+</div>
+</section>
+<section id="sample-description-file" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">🧾 Sample DESCRIPTION File</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb4-1" class="hljs-ln-code"><a></a>Package: Rfssa</span>
+<span id="cb4-2" class="hljs-ln-code"><a></a>Title: Functional Singular Spectrum Analysis</span>
+<span id="cb4-3" class="hljs-ln-code"><a></a>Version: 3.1.0</span>
+<span id="cb4-4" class="hljs-ln-code"><a></a>Authors@R: c(</span>
+<span id="cb4-5" class="hljs-ln-code"><a></a>  person("Hossein", "Haghbin", email = "haghbin@pgu.ac.ir", </span>
+<span id="cb4-6" class="hljs-ln-code"><a></a>         role = c("aut", "cre"), </span>
+<span id="cb4-7" class="hljs-ln-code"><a></a>         comment = c(ORCID = "0000-0001-8416-2354")),</span>
+<span id="cb4-8" class="hljs-ln-code"><a></a>  person("Mehdi", "Maadooliat", email = "mehdi.maadooliat@mu.edu", </span>
+<span id="cb4-9" class="hljs-ln-code"><a></a>         role = "aut", </span>
+<span id="cb4-10" class="hljs-ln-code"><a></a>         comment = c(ORCID = "0000-0002-5408-2676"))</span>
+<span id="cb4-11" class="hljs-ln-code"><a></a>)</span>
+<span id="cb4-12" class="hljs-ln-code"><a></a>Description: Methods and tools for implementing functional </span>
+<span id="cb4-13" class="hljs-ln-code"><a></a>  singular spectrum analysis and related techniques.</span>
+<span id="cb4-14" class="hljs-ln-code"><a></a>License: GPL-3</span>
+<span id="cb4-15" class="hljs-ln-code"><a></a>Encoding: UTF-8</span>
+<span id="cb4-16" class="hljs-ln-code"><a></a>Roxygen: list(markdown = TRUE)</span>
+<span id="cb4-17" class="hljs-ln-code"><a></a>RoxygenNote: 7.3.2</span>
+<span id="cb4-18" class="hljs-ln-code"><a></a>Depends: R (&gt;= 4.0.0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="more-details-description" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">More Details DESCRIPTION</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb5-1" class="hljs-ln-code"><a></a>Package: Rfssa</span>
+<span id="cb5-2" class="hljs-ln-code"><a></a>Title: Functional Singular Spectrum Analysis</span>
+<span id="cb5-3" class="hljs-ln-code"><a></a>Version: 3.1.0</span>
+<span id="cb5-4" class="hljs-ln-code"><a></a>Authors@R: c(</span>
+<span id="cb5-5" class="hljs-ln-code"><a></a>    person("Hossein", "Haghbin", email = "haghbin@pgu.ac.ir", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8416-2354")),</span>
+<span id="cb5-6" class="hljs-ln-code"><a></a>    person("Mehdi", "Maadooliat", email = "mehdi.maadooliat@mu.edu", role = "aut", comment = c(ORCID = "0000-0002-5408-2676"))</span>
+<span id="cb5-7" class="hljs-ln-code"><a></a>    )</span>
+<span id="cb5-8" class="hljs-ln-code"><a></a>Maintainer: Hossein Haghbin &lt;haghbin@pgu.ac.ir&gt;</span>
+<span id="cb5-9" class="hljs-ln-code"><a></a>URL: https://github.com/haghbinh/Rfssa</span>
+<span id="cb5-10" class="hljs-ln-code"><a></a>Description: Methods and tools for implementing functional singular spectrum analysis and related techniques.</span>
+<span id="cb5-11" class="hljs-ln-code"><a></a>License: GPL-3</span>
+<span id="cb5-12" class="hljs-ln-code"><a></a>Encoding: UTF-8</span>
+<span id="cb5-13" class="hljs-ln-code"><a></a>LazyLoad: true</span>
+<span id="cb5-14" class="hljs-ln-code"><a></a>RoxygenNote: 7.2.3</span>
+<span id="cb5-15" class="hljs-ln-code"><a></a>Imports: Rcpp,fda,lattice,plotly</span>
+<span id="cb5-16" class="hljs-ln-code"><a></a>Roxygen: list(markdown = TRUE)</span>
+<span id="cb5-17" class="hljs-ln-code"><a></a>RoxygenNote: 7.3.2</span>
+<span id="cb5-18" class="hljs-ln-code"><a></a>LinkingTo: Rcpp, RcppArmadillo, RcppEigen,</span>
+<span id="cb5-19" class="hljs-ln-code"><a></a>Suggests: </span>
+<span id="cb5-20" class="hljs-ln-code"><a></a>    knitr</span>
+<span id="cb5-21" class="hljs-ln-code"><a></a>Depends: R (&gt;= 4.0.0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="title-vs.-description" class="slide level2">
+<h2>📝 Title vs.&nbsp;Description</h2>
+<p><strong>Title</strong></p>
+<div>
+<ul>
+<li class="fragment">One line<br>
+</li>
+<li class="fragment">No punctuation or markup<br>
+</li>
+<li class="fragment">Capitalize like a title<br>
+</li>
+<li class="fragment">Keep under ~65 characters</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Description</strong></p>
+<div>
+<ul>
+<li class="fragment">One paragraph, plain text<br>
+</li>
+<li class="fragment">Multiple sentences OK<br>
+</li>
+<li class="fragment">Should describe what the package does</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="example-from-ggplot2" class="slide level2">
+<h2>🧪 Example from <code>ggplot2</code>:</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a></a>Title: Create Elegant Data Visualisations Using the Grammar of Graphics</span>
+<span id="cb6-2"><a></a>Description: A system for 'declaratively' creating graphics,</span>
+<span id="cb6-3"><a></a>  based on "The Grammar of Graphics". You provide the data,</span>
+<span id="cb6-4"><a></a>  tell 'ggplot2' how to map variables to aesthetics, what</span>
+<span id="cb6-5"><a></a>  graphical primitives to use, and it takes care of the details.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="imports-vs.-suggests" class="slide level2">
+<h2>📦 Imports vs.&nbsp;Suggests</h2>
+<p><strong>Imports</strong></p>
+<div>
+<ul>
+<li class="fragment">Packages required at runtime</li>
+<li class="fragment">Automatically installed with your package</li>
+<li class="fragment">Needed for core functionality</li>
+</ul>
+</div>
+<div class="fragment">
+<p><strong>Suggests</strong></p>
+<div>
+<ul>
+<li class="fragment">Optional or development-time dependencies</li>
+<li class="fragment">Used in examples, tests, or vignettes</li>
+<li class="fragment">Not required to run the core package</li>
+</ul>
+</div>
+<div class="fragment fade-up">
+<blockquote>
+<p>Use <code>usethis::use_package("pkg", type = "Imports")</code> to manage these easily.</p>
+</blockquote>
+</div>
+</div>
+</section>
+<section id="namespace-file" class="slide level2">
+<h2>📂 NAMESPACE File</h2>
+<p>The <code>NAMESPACE</code> file defines the <strong>interface</strong> of your package.</p>
+<p>It controls:</p>
+<div>
+<ul>
+<li class="fragment">What functions your package <strong>exports</strong></li>
+<li class="fragment">What functions it <strong>imports</strong> from other packages</li>
+<li class="fragment">S3/S4 method registrations (if needed)</li>
+</ul>
+</div>
+<div class="fragment fade-up">
+<blockquote>
+<p>This file is auto-generated by <strong>roxygen2</strong>, so you typically don’t edit it by hand.</p>
+</blockquote>
+</div>
+</section>
+<section id="example-namespace-file" class="slide level2">
+<h2>🧾 Example: NAMESPACE File</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a></a># Generated by roxygen2: do not edit by hand</span>
+<span id="cb7-2"><a></a>S3method("*", funts)</span>
+<span id="cb7-3"><a></a>export(as.funts)</span>
+<span id="cb7-4"><a></a>import(shiny)</span>
+<span id="cb7-5"><a></a>importFrom(ggplot2, ggplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<ul>
+<li><p><code>export()</code> — makes a function available to users</p></li>
+<li><p><code>import()</code> — brings in all exported objects from a package</p></li>
+<li><p><code>importFrom()</code> — imports specific functions</p></li>
+<li><p><code>S3method()</code> — registers an S3 method</p></li>
+</ul>
+</div>
+</section>
+<section id="how-to-populate-namespace" class="slide level2">
+<h2>✍️ How to Populate NAMESPACE</h2>
+<p>Use <strong>roxygen2 tags</strong> in your <code>.R</code> files:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co">#' Convert object to funts class</span></span>
+<span id="cb8-2"><a></a><span class="co">#'</span></span>
+<span id="cb8-3"><a></a><span class="co">#' @export</span></span>
+<span id="cb8-4"><a></a>as.funts <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { ... }</span>
+<span id="cb8-5"><a></a></span>
+<span id="cb8-6"><a></a><span class="co">#' @import shiny</span></span>
+<span id="cb8-7"><a></a><span class="co">#' @importFrom ggplot2 ggplot</span></span>
+<span id="cb8-8"><a></a>my_app <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb8-9"><a></a>  ...</span>
+<span id="cb8-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="functions-documentation" class="title-slide slide level1 center">
+<h1>6. Functions &amp; Documentation</h1>
+<p>To add functionality to your package, you’ll write:</p>
+<div>
+<ul>
+<li class="fragment">✅ Functions — saved as <code>.R</code> scripts in the <code>R/</code> folder<br>
+</li>
+<li class="fragment">📝 Documentation — using <strong>roxygen2</strong> comments above each function</li>
+</ul>
+</div>
+<div class="fragment fade-up">
+<blockquote>
+<p>Let’s walk through the process.</p>
+</blockquote>
+</div>
+</section>
+<section id="code-placement" class="slide level2">
+<h2>📂 Code Placement</h2>
+<p>All your functions go in the <code>R/</code> folder.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a></a>mypkg/</span>
+<span id="cb9-2"><a></a>├── R/</span>
+<span id="cb9-3"><a></a>│   ├── my_function.R</span>
+<span id="cb9-4"><a></a>│   └── helpers.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Each <code>.R</code> file can contain one or more functions.</p>
+</section>
+<section id="documenting-functions-with-roxygen2" class="slide level2">
+<h2>📝 Documenting Functions with Roxygen2</h2>
+<p>Use special comments starting with <code>#'</code> to write function documentation:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="co">#' Sum a numeric vector</span></span>
+<span id="cb10-2"><a></a><span class="co">#'</span></span>
+<span id="cb10-3"><a></a><span class="co">#' @param x Numeric vector</span></span>
+<span id="cb10-4"><a></a><span class="co">#' @return Numeric sum of x</span></span>
+<span id="cb10-5"><a></a><span class="co">#' @examples</span></span>
+<span id="cb10-6"><a></a><span class="co">#' my_function(1:5)</span></span>
+<span id="cb10-7"><a></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will generate help files in the <strong>man/</strong> folder.</p>
+</section>
+<section id="generate-documentation" class="slide level2">
+<h2>⚙️ Generate Documentation</h2>
+<p>After writing your function and roxygen2 comments, run:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will:</p>
+<div>
+<ul>
+<li class="fragment"><p>Update the NAMESPACE file</p></li>
+<li class="fragment"><p>Create <code>.Rd</code> help files in the man/ folder</p></li>
+</ul>
+</div>
+<div class="fragment fade-up">
+<p>💡 You can also press <code>Ctrl+Shift+D</code> in RStudio.</p>
+</div>
+</section></section>
+<section>
+<section id="build-a-simple-package-from-scratch" class="title-slide slide level1 center">
+<h1>8. Build a Simple Package from Scratch</h1>
+
+</section>
+<section id="step-1-create-your-package" class="slide level2">
+<h2>🧱 Step 1: Create Your Package</h2>
+<p>Use <code>usethis</code> to create a new package directory:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="st">"minipkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This creates:</p>
+<div>
+<ul>
+<li class="fragment"><p><strong>R/, DESCRIPTION, NAMESPACE</strong></p></li>
+<li class="fragment"><p><code>.Rproj</code>, <code>.gitignore</code>, <code>.Rbuildignore</code></p></li>
+<li class="fragment"><p>Opens new RStudio project for your package</p></li>
+</ul>
+</div>
+</section>
+<section id="add-a-dataset" class="slide level2">
+<h2>2️⃣ Add a Dataset</h2>
+<p>Let’s include a built-in dataset (mtcars) for simplicity:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(mtcars, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This creates a <strong>data/mtcars.rda</strong> file — accessible via <code>minipkg::mtcars</code>.</p>
+</section>
+<section id="create-a-function" class="slide level2">
+<h2>3️⃣ Create a Function</h2>
+<p>Create a new file: <strong>R/summary_stats.R</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co">#' Compute Summary Statistics</span></span>
+<span id="cb14-2"><a></a><span class="co">#'</span></span>
+<span id="cb14-3"><a></a><span class="co">#' Returns mean and standard deviation for each numeric column.</span></span>
+<span id="cb14-4"><a></a><span class="co">#'</span></span>
+<span id="cb14-5"><a></a><span class="co">#' @param data A data frame with numeric columns</span></span>
+<span id="cb14-6"><a></a><span class="co">#' @return A data frame with `mean` and `sd` per column</span></span>
+<span id="cb14-7"><a></a><span class="co">#' @examples</span></span>
+<span id="cb14-8"><a></a><span class="co">#' summary_stats(mtcars)</span></span>
+<span id="cb14-9"><a></a><span class="co">#' @export</span></span>
+<span id="cb14-10"><a></a>summary_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb14-11"><a></a>  numeric_data <span class="ot">&lt;-</span> data[<span class="fu">sapply</span>(data, is.numeric)]</span>
+<span id="cb14-12"><a></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb14-13"><a></a>    <span class="at">mean =</span> <span class="fu">sapply</span>(numeric_data, mean),</span>
+<span id="cb14-14"><a></a>    <span class="at">sd =</span> <span class="fu">sapply</span>(numeric_data, sd)</span>
+<span id="cb14-15"><a></a>  )</span>
+<span id="cb14-16"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="document-the-function" class="slide level2">
+<h2>4️⃣ Document the Function</h2>
+<p>Run the following command to generate docs:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will:</p>
+<div>
+<ul>
+<li class="fragment"><p>Add <code>export(summary_stats)</code> to your <strong>NAMESPACE</strong></p></li>
+<li class="fragment"><p>Create <strong>man/summary_stats.Rd</strong></p></li>
+</ul>
+</div>
+</section>
+<section id="load-and-test-the-package" class="slide level2">
+<h2>5️⃣ Load and Test the Package</h2>
+<p>In the console:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment fade-up">
+<p>Then test the function:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">summary_stats</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment fade-up">
+<p>You should see:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb18-1"><a></a>                mean         sd</span>
+<span id="cb18-2"><a></a>mpg        20.090625  6.0269481</span>
+<span id="cb18-3"><a></a>cyl         6.187500  1.7859216</span>
+<span id="cb18-4"><a></a>disp      230.721875 123.9386938</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="build-and-install-the-package" class="slide level2">
+<h2>6️⃣ Build and Install the Package</h2>
+<p>Build the package locally:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>devtools<span class="sc">::</span><span class="fu">build</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment fade-up">
+<p>Install it:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment fade-up">
+<p>Now you can use it like any other package:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">library</span>(minipkg)</span>
+<span id="cb21-2"><a></a><span class="fu">summary_stats</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="helpsummary_stats" class="slide level2" data-transition="convex">
+<h2>🚀 <code>help("summary_stats")</code></h2>
+
+<img data-src="images/package/help.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"></section></section>
+<section id="hands-on-exercises-30-min" class="title-slide slide level1 center scrollable">
+<h1>Hands-on Exercises (30 min)</h1>
+<div>
+<ol type="1">
+<li class="fragment">Create a new package skeleton and add a simple function</li>
+<li class="fragment">Write roxygen docs and generate help files</li>
+</ol>
+</div>
 </section>
 
 <section id="resources-further-reading" class="title-slide slide level1 center">
@@ -594,7 +1068,6 @@ Mehdi Maadooliat and Hossein Haghbin
 <li><strong>usethis</strong>: helper functions</li>
 <li><strong>CRAN Repository Policy</strong>: CRAN manual</li>
 </ul>
-<p>??? note Provide cheat-sheet links.</p>
 </section>
 
 <section id="qa" class="title-slide slide level1 center">
