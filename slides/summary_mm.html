@@ -646,25 +646,46 @@ Still evolving
 <section id="web-apps-with-shiny" class="slide level2">
 <h2>Web Apps with Shiny</h2>
 <ul>
-<li><p>✨ Shiny = Interactive web apps in pure R (no HTML/JS!)</p></li>
-<li><p>📦 Components:</p>
+<li>✨ Shiny = Interactive web apps in pure R (no HTML/JS!)</li>
+</ul>
+<div class="fragment">
 <ul>
-<li><p>ui: Layout, inputs/outputs</p></li>
-<li><p>server: Logic, reactivity</p></li>
+<li>📦 Components:
+<ul>
+<li>ui: Layout, inputs/outputs</li>
+<li>server: Logic, reactivity</li>
 </ul></li>
-<li><p>🧪 Use Cases:</p>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>🔌 Inputs &amp; Outputs:
+<ul>
+<li>Inputs: sliderInput(), textInput()</li>
+<li>Outputs: renderPlot(), renderText(), renderTable()</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>🧪 Use Cases:
 <ul>
 <li>Dashboards, simulations, teaching tools</li>
 </ul></li>
-<li><p>🔌 Inputs &amp; Outputs:</p>
+</ul>
+</div>
+</section>
+<section id="shiny-concepts-deployment-in-workshop" class="slide level2">
+<h2>Shiny Concepts &amp; Deployment in Workshop</h2>
 <ul>
-<li><p>Inputs: sliderInput(), textInput()</p></li>
-<li><p>Outputs: renderPlot(), renderText(), renderTable()</p></li>
+<li>🚀 <strong>Deployment Options</strong>:
+<ul>
+<li><code>shinyapps.io</code>, Posit Connect, university servers</li>
+<li><strong>shinylive</strong>: deploy as static site (experimental)</li>
 </ul></li>
 </ul>
-</section>
-<section id="shiny-concepts-deployment" class="slide level2">
-<h2>Shiny Concepts &amp; Deployment</h2>
+<div class="fragment">
+<div style="margin-top: -5px;">
 <ul>
 <li>⚡<strong>Reactivity System</strong>:
 <ul>
@@ -672,294 +693,129 @@ Still evolving
 <li><code>isolate()</code>: break reactive chains</li>
 <li><code>observeEvent()</code>: trigger actions without outputs</li>
 </ul></li>
-<li>🚀 <strong>Deployment Options</strong>:
+</ul>
+</div>
+</div>
+<div class="fragment">
+<div style="margin-top: -5px;">
 <ul>
-<li><code>shinyapps.io</code>, Posit Connect, university servers</li>
-<li><strong>shinylive</strong>: deploy as static site (experimental)</li>
-</ul></li>
-<li>✅ <strong>Best Practices</strong>:
-<ul>
-<li>Use <code>shinytest2</code> for testing</li>
-<li>Modularize with <code>modules</code> for scalability</li>
-<li>Sketch UI/UX before coding</li>
-</ul></li>
 <li>🧠 <strong>Hands-on</strong>:
 <ul>
-<li>KNN Regression in Shiny</li>
-<li>Explore shinyapps gallery for inspiration: https://shiny.posit.co/gallery/</li>
+<li><a href="https://shiny.posit.co/gallery/">Explore shinyapps gallery for inspiration</a></li>
 </ul></li>
 </ul>
+</div>
+</div>
+</section>
+<section id="irstat-workshop" class="slide level2 title" style="font-size: 18px;">
+<h2>IrStat Workshop</h2>
+<iframe class="stretch" data-src="https://mmadoliat.github.io/SCoRT/">
+</iframe>
+<div class="smallest">
+<p><a href="https://mmadoliat.github.io/SCoRT/" target="_blank">🔗 Open in a browser</a></p>
+</div>
 </section></section>
 <section>
 <section id="session-3-rcpp-high-performance-with-c-in-r" class="title-slide slide level1 center">
-<h1>⚡ Session 3: Rcpp – High Performance with C++ in R</h1>
+<h1>⚡ Session 3: Rcpp – <br> High Performance with C++ in R</h1>
+
+</section>
+<section id="context-motivation" class="slide level2">
+<h2>Context &amp; Motivation</h2>
+<div style="margin-top: -18px;">
 <ul>
-<li>🚀 <strong>Rcpp</strong> bridges R and C++ for high-performance computing.</li>
-<li>🏁 Use cases:
-<ul>
-<li>Speed up loops, recursion, and matrix operations</li>
-<li>Access C++ libraries and STL</li>
-<li>Integrate C++ in R packages</li>
-</ul></li>
-<li>🧰 <strong>Workflows</strong>:
-<ul>
-<li><code>evalCpp()</code>: quick one-liners</li>
-<li><code>cppFunction()</code>: inline prototypes</li>
-<li><code>sourceCpp()</code>: external C++ files with R wrappers</li>
-</ul></li>
+<li class="fragment"><strong>Diagonal averaging</strong> is key in many algorithms (e.g.&nbsp;SSA reconstruction).<br>
+<img data-src="images/webinar/fssa/SSA-FSSA-hankel.png" width="800"></li>
+<li class="fragment">Given <em>any</em> matrix <span class="math inline">\(G \in \mathbb{R}^{L\times K}\)</span>, we want <span class="math display">\[
+  \scriptsize{y_t = \frac{1}{\#\{(i,j):\,i+j-1 = t\}}
+        \sum_{i+j-1 = t} G_{i,j},
+  \quad t = 1,\dots, L+K-1.}
+\]</span></li>
+<li class="fragment">Pure‑R implementation uses two nested loops over <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</li>
 </ul>
+</div>
+</section>
+<section id="pure-r-code" class="slide level2">
+<h2>Pure R Code</h2>
+<div class="shrink-code">
+<div class="sourceCode" id="cb1" data-code-line-numbers="1,16|2-6|8-13|15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>hankelize_R <span class="ot">&lt;-</span> <span class="cf">function</span>(X){</span>
+<span id="cb1-2"><a></a>  L <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X)</span>
+<span id="cb1-3"><a></a>  K <span class="ot">&lt;-</span> <span class="fu">ncol</span>(X)</span>
+<span id="cb1-4"><a></a>  N <span class="ot">&lt;-</span> L <span class="sc">+</span> K <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb1-5"><a></a>  result <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
+<span id="cb1-6"><a></a>  count <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N)</span>
+<span id="cb1-7"><a></a> </span>
+<span id="cb1-8"><a></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>L){</span>
+<span id="cb1-9"><a></a>    <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>K){</span>
+<span id="cb1-10"><a></a>      result[i <span class="sc">+</span> j <span class="sc">-</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> result[i <span class="sc">+</span> j <span class="sc">-</span> <span class="dv">1</span>] <span class="sc">+</span> X[i,j]</span>
+<span id="cb1-11"><a></a>      count[i <span class="sc">+</span> j <span class="sc">-</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> count[i <span class="sc">+</span> j <span class="sc">-</span> <span class="dv">1</span>] <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb1-12"><a></a>    }</span>
+<span id="cb1-13"><a></a>  }</span>
+<span id="cb1-14"><a></a> </span>
+<span id="cb1-15"><a></a>  <span class="fu">return</span>(result <span class="sc">/</span> count)</span>
+<span id="cb1-16"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="rcpp-code" class="slide level2">
+<h2>Rcpp Code</h2>
+<div class="shrink-code">
+<div class="sourceCode" id="cb2" data-code-line-numbers="1|3,4,24|5-10|12-17|19-21|23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(Rcpp)</span>
+<span id="cb2-2"><a></a></span>
+<span id="cb2-3"><a></a><span class="fu">cppFunction</span>(<span class="st">'</span></span>
+<span id="cb2-4"><a></a><span class="st">NumericVector hankelize_rcpp(NumericMatrix X) {</span></span>
+<span id="cb2-5"><a></a><span class="st">  int L = X.nrow();</span></span>
+<span id="cb2-6"><a></a><span class="st">  int K = X.ncol();</span></span>
+<span id="cb2-7"><a></a><span class="st">  int N = L + K - 1;</span></span>
+<span id="cb2-8"><a></a><span class="st"> </span></span>
+<span id="cb2-9"><a></a><span class="st">  NumericVector result(N);</span></span>
+<span id="cb2-10"><a></a><span class="st">  NumericVector count(N);</span></span>
+<span id="cb2-11"><a></a><span class="st"> </span></span>
+<span id="cb2-12"><a></a><span class="st">  for(int i = 0; i &lt; L; i++){</span></span>
+<span id="cb2-13"><a></a><span class="st">    for(int j = 0; j &lt; K; j++){</span></span>
+<span id="cb2-14"><a></a><span class="st">      result[i + j] += X(i,j);</span></span>
+<span id="cb2-15"><a></a><span class="st">      count[i + j] += 1;</span></span>
+<span id="cb2-16"><a></a><span class="st">    }</span></span>
+<span id="cb2-17"><a></a><span class="st">  }</span></span>
+<span id="cb2-18"><a></a><span class="st"> </span></span>
+<span id="cb2-19"><a></a><span class="st">  for(int i = 0; i &lt; N; i++){</span></span>
+<span id="cb2-20"><a></a><span class="st">    result[i] /= count[i];</span></span>
+<span id="cb2-21"><a></a><span class="st">  }</span></span>
+<span id="cb2-22"><a></a><span class="st"> </span></span>
+<span id="cb2-23"><a></a><span class="st">  return result;</span></span>
+<span id="cb2-24"><a></a><span class="st">}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="benchmark" class="slide level2">
+<h2>Benchmark</h2>
+<div class="shrink-code">
+<div class="sourceCode" id="cb3" data-code-line-numbers="1|3-5|7-11|13-17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a><span class="co"># Large random matrix (e.g., 100 x 1000)</span></span>
+<span id="cb3-4"><a></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-5"><a></a>X_large <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="fl">1e5</span>), <span class="at">nrow =</span> <span class="dv">100</span>, <span class="at">ncol =</span> <span class="dv">1000</span>)</span>
+<span id="cb3-6"><a></a></span>
+<span id="cb3-7"><a></a>bench <span class="ot">&lt;-</span> <span class="fu">microbenchmark</span>(</span>
+<span id="cb3-8"><a></a>  <span class="at">R_version =</span> <span class="fu">hankelize_R</span>(X_large),</span>
+<span id="cb3-9"><a></a>  <span class="at">Rcpp_version =</span> <span class="fu">hankelize_rcpp</span>(X_large),</span>
+<span id="cb3-10"><a></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb3-11"><a></a>)</span>
+<span id="cb3-12"><a></a></span>
+<span id="cb3-13"><a></a><span class="fu">print</span>(bench)</span>
+<span id="cb3-14"><a></a><span class="sc">&gt;</span><span class="co"># Unit: microseconds</span></span>
+<span id="cb3-15"><a></a><span class="er">&gt;</span><span class="co">#          expr     min      lq     mean   median      uq     max neval</span></span>
+<span id="cb3-16"><a></a><span class="er">&gt;</span><span class="co">#     R_version 21225.1 21550.8 26604.53 25180.35 30969.3 34455.1    10</span></span>
+<span id="cb3-17"><a></a><span class="er">&gt;</span><span class="co">#  Rcpp_version   176.9   177.8   299.87   194.50   253.7  1161.3    10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="small">
+<ul>
+<li class="fragment">Dramatic speedup: <strong>~89×</strong> faster.</li>
+<li class="fragment">Pattern can be applied to many <span class="math inline">\(O(n^2)\)</span> tasks in time series, spatial stats, and beyond.</li>
+</ul>
+</div>
 </section>
 <section id="rcpp-in-action" class="slide level2">
 <h2>🔬 Rcpp in Action</h2>
 <ul>
-<li><p>🧪 <strong>Examples</strong>:</p>
-<ul>
-<li>Odd/Even test (basic)</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>bool <span class="fu">is_even</span>(int x) {</span>
-<span id="cb1-2"><a></a>return x % <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>;</span>
-<span id="cb1-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>VAR(1) simulation with <code>RcppArmadillo</code></li>
-<li>Fibonacci benchmark: 200× speedup</li>
-</ul></li>
-<li><p><strong>C++ Types</strong>: <code>NumericVector</code>, <code>IntegerVector</code>, STL containers</p></li>
-<li><p><strong>Data conversion</strong>: Seamless mapping between R and C++ objects</p></li>
-<li><p>📦 <strong>Packaging</strong>:</p>
-<ul>
-<li>Use <code>LinkingTo: Rcpp</code> in DESCRIPTION</li>
-<li>Automate with <code>usethis::use_rcpp()</code></li>
-<li>Maintainable, testable code with <code>Rcpp::compileAttributes()</code></li>
-</ul></li>
-</ul>
-</section></section>
-<section>
-<section id="session-4-python-in-r-interoperability-with-reticulate" class="title-slide slide level1 center">
-<h1>🐍 Session 4: Python in R – Interoperability with <code>reticulate</code></h1>
-<ul>
-<li><strong>Why integrate?</strong>
-<ul>
-<li>Leverage Python libraries (ML, CV, NLP)</li>
-<li>Avoid rewriting code across environments</li>
-<li>Enable seamless workflows via R Markdown &amp; Quarto</li>
-</ul></li>
-<li><strong>Key Features of <code>reticulate</code></strong>:
-<ul>
-<li>Import Python modules via <code>import()</code></li>
-<li>Run scripts with <code>source_python()</code> or <code>py_run_file()</code></li>
-<li>Shared Python session across R and Python chunks</li>
-</ul></li>
-<li><strong>Data Exchange</strong>:
-<ul>
-<li>Auto-conversion: vectors ↔︎ arrays, data frames ↔︎ pandas</li>
-<li>R objects available in Python via <code>r$</code>, and vice versa with <code>py$</code></li>
-</ul></li>
-</ul>
-</section>
-<section id="using-python-from-r" class="slide level2">
-<h2>🛠 Using Python from R</h2>
-<ul>
-<li><p><strong>Virtualenv / Conda</strong>: manage environments cleanly</p></li>
-<li><p><strong>Calling Python functions &amp; classes</strong> from <code>.py</code> files</p></li>
-<li><p><strong>Using Python in Shiny apps</strong></p>
-<ul>
-<li>Example: compute factorial via <code>math.factorial</code></li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(shiny)</span>
-<span id="cb2-2"><a></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb2-3"><a></a><span class="fu">actionButton</span>(<span class="st">"btn"</span>, <span class="st">"Compute factorial"</span>),</span>
-<span id="cb2-4"><a></a><span class="fu">verbatimTextOutput</span>(<span class="st">"out"</span>)</span>
-<span id="cb2-5"><a></a>)</span>
-<span id="cb2-6"><a></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb2-7"><a></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>btn, {</span>
-<span id="cb2-8"><a></a>  reticulate<span class="sc">::</span><span class="fu">py_run_string</span>(<span class="st">"import math; res = math.factorial(10)"</span>)</span>
-<span id="cb2-9"><a></a>  output<span class="sc">$</span>out <span class="ot">&lt;-</span> <span class="fu">renderText</span>(py<span class="sc">$</span>res)</span>
-<span id="cb2-10"><a></a>})</span>
-<span id="cb2-11"><a></a>}</span>
-<span id="cb2-12"><a></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p><strong>R Markdown / Quarto</strong>:</p>
-<ul>
-<li>Inline Python code in <code>{python}</code> chunks</li>
-<li>Share variables between R and Python</li>
-</ul></li>
-</ul>
-</section>
-<section id="takeaways" class="slide level2">
-<h2>Takeaways</h2>
-<ul>
-<li>Use <code>reticulate</code> to blend Python’s ML power with R’s statistical strength</li>
-<li>Match tools to tasks without leaving your R workflow</li>
-<li>Ideal for reproducible, collaborative data science</li>
-</ul>
-</section></section>
-<section>
-<section id="session-5-build-your-own-r-package" class="title-slide slide level1 center">
-<h1>🎯 Session 5: Build Your Own R Package</h1>
-<ul>
-<li><strong>Why create a package?</strong>
-<ul>
-<li>Reuse and organize code</li>
-<li>Provide documentation and tests</li>
-<li>Distribute via CRAN, GitHub, or internally</li>
-</ul></li>
-<li><strong>Setup Requirements</strong>
-<ul>
-<li>Install <code>devtools</code>, <code>roxygen2</code>, <code>testthat</code>, <code>knitr</code></li>
-<li>Ensure R and RStudio are updated</li>
-</ul></li>
-</ul>
-</section>
-<section id="package-structure" class="slide level2">
-<h2>🏗 Package Structure</h2>
-<ul>
-<li><code>DESCRIPTION</code>: metadata</li>
-<li><code>NAMESPACE</code>: exports and imports</li>
-<li><code>R/</code>: function definitions</li>
-<li><code>man/</code>: auto-generated docs</li>
-</ul>
-</section>
-<section id="development-lifecycle" class="slide level2">
-<h2>🛠 Development Lifecycle</h2>
-<ul>
-<li><strong>5 Package States</strong>:
-<ul>
-<li>Source → Bundled → Binary → Installed → In-Memory</li>
-</ul></li>
-<li><strong>Creating a Package</strong>
-<ul>
-<li>Use <code>usethis::create_package()</code></li>
-<li>Write functions in <code>R/</code>, document with <code>roxygen2</code></li>
-</ul></li>
-<li><strong>Documentation &amp; Export</strong>
-<ul>
-<li>Generate with <code>devtools::document()</code></li>
-<li>Expose with <code>@export</code> and <code>@import</code></li>
-</ul></li>
-<li><strong>Build &amp; Install</strong>
-<ul>
-<li>Build with <code>devtools::build()</code></li>
-<li>Install with <code>devtools::install()</code></li>
-</ul></li>
-</ul>
-</section>
-<section id="takeaways-1" class="slide level2">
-<h2>📌 Takeaways</h2>
-<ul>
-<li>R packages provide a <strong>professional structure</strong> to your work</li>
-<li>Automate documentation, testing, and sharing</li>
-<li>Essential for reproducible, collaborative, and maintainable R code</li>
-</ul>
-</section></section>
-<section>
-<section id="session-6-cran-github-essentials" class="title-slide slide level1 center">
-<h1>Session 6: CRAN &amp; GitHub Essentials</h1>
-
-</section>
-<section id="cran-submission" class="slide level2">
-<h2>🚀 CRAN Submission</h2>
-<ul>
-<li>CRAN = Comprehensive R Archive Network</li>
-<li>Packages must pass <code>R CMD check</code> with:
-<ul>
-<li>❌ No <strong>ERRORs</strong></li>
-<li>⚠️ No <strong>WARNINGs</strong></li>
-<li>📝 Minimal <strong>NOTEs</strong></li>
-</ul></li>
-<li>Simulate checks with <code>rhub::check_for_cran()</code></li>
-<li>Submit via <code>devtools::release()</code></li>
-<li>Response from CRAN in ~1–3 days</li>
-</ul>
-</section>
-<section id="before-you-submit" class="slide level2">
-<h2>🛠 Before You Submit</h2>
-<ul>
-<li>Use <code>devtools::check()</code> for local testing</li>
-<li>Include:
-<ul>
-<li>Valid license</li>
-<li>ORCID info</li>
-<li>Clean examples and documentation</li>
-</ul></li>
-<li>Update via version bump and <code>NEWS.md</code></li>
-</ul>
-</section>
-<section id="collaborate-via-github" class="slide level2">
-<h2>🤝 Collaborate via GitHub</h2>
-<ul>
-<li>Git = local version control</li>
-<li>GitHub = cloud hosting and collaboration</li>
-<li>RStudio integrates Git workflows</li>
-<li>Use <code>usethis::use_github()</code> to link project</li>
-</ul>
-<p>✅ Auth via Personal Access Token (PAT) using <code>gitcreds</code></p>
-</section>
-<section id="daily-git-workflow" class="slide level2 scrollable">
-<h2>🧪 Daily Git Workflow</h2>
-<ol type="1">
-<li>Edit → Stage → Commit → Push</li>
-<li>Share changes, open pull requests</li>
-<li>Check status with <code>usethis::git_sitrep()</code></li>
-</ol>
-</section></section>
-<section id="ideal-for-collaborative-r-package-development" class="title-slide slide level1 center">
-<h1>📦 Ideal for collaborative R package development!</h1>
-<blockquote>
-<p>📌 Choose your OOP system based on team size, project complexity, and ecosystem.</p>
-</blockquote>
-</section>
-
-<section>
-<section id="web-apps-with-shiny-1" class="title-slide slide level1 center">
-<h1>🌐 Web Apps with Shiny</h1>
-<ul>
-<li><p>✨ Shiny = Interactive web apps in pure R (no HTML/JS!)</p></li>
-<li><p>📦 Components:</p>
-<ul>
-<li><p>ui: Layout, inputs/outputs</p></li>
-<li><p>server: Logic, reactivity</p></li>
-</ul></li>
-<li><p>🧪 Use Cases:</p>
-<ul>
-<li>Dashboards, simulations, teaching tools</li>
-</ul></li>
-<li><p>🔌 Inputs &amp; Outputs:</p>
-<ul>
-<li><p>Inputs: sliderInput(), textInput()</p></li>
-<li><p>Outputs: renderPlot(), renderText(), renderTable()</p></li>
-</ul></li>
-</ul>
-</section>
-<section id="shiny-concepts-deployment-1" class="slide level2">
-<h2>Shiny Concepts &amp; Deployment</h2>
-<ul>
-<li>⚡<strong>Reactivity System</strong>:
-<ul>
-<li><code>reactive()</code>: memoized reactive expressions</li>
-<li><code>isolate()</code>: break reactive chains</li>
-<li><code>observeEvent()</code>: trigger actions without outputs</li>
-</ul></li>
-<li>🚀 <strong>Deployment Options</strong>:
-<ul>
-<li><code>shinyapps.io</code>, Posit Connect, university servers</li>
-<li><strong>shinylive</strong>: deploy as static site (experimental)</li>
-</ul></li>
-<li>✅ <strong>Best Practices</strong>:
-<ul>
-<li>Use <code>shinytest2</code> for testing</li>
-<li>Modularize with <code>modules</code> for scalability</li>
-<li>Sketch UI/UX before coding</li>
-</ul></li>
-<li>🧠 <strong>Hands-on</strong>:
-<ul>
-<li>KNN Regression in Shiny</li>
-<li>Explore shinyapps gallery for inspiration: https://shiny.posit.co/gallery/</li>
-</ul></li>
-</ul>
-</section></section>
-<section>
-<section id="rcpp-high-performance-with-c-in-r" class="title-slide slide level1 center">
-<h1>⚡ Rcpp – High Performance with C++ in R</h1>
-<ul>
 <li>🚀 <strong>Rcpp</strong> bridges R and C++ for high-performance computing.</li>
 <li>🏁 Use cases:
 <ul>
@@ -972,36 +828,12 @@ Still evolving
 <li><code>evalCpp()</code>: quick one-liners</li>
 <li><code>cppFunction()</code>: inline prototypes</li>
 <li><code>sourceCpp()</code>: external C++ files with R wrappers</li>
-</ul></li>
-</ul>
-</section>
-<section id="rcpp-in-action-1" class="slide level2">
-<h2>🔬 Rcpp in Action</h2>
-<ul>
-<li><p>🧪 <strong>Examples</strong>:</p>
-<ul>
-<li>Odd/Even test (basic)</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>bool <span class="fu">is_even</span>(int x) {</span>
-<span id="cb3-2"><a></a>return x % <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>;</span>
-<span id="cb3-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>VAR(1) simulation with <code>RcppArmadillo</code></li>
-<li>Fibonacci benchmark: 200× speedup</li>
-</ul></li>
-<li><p><strong>C++ Types</strong>: <code>NumericVector</code>, <code>IntegerVector</code>, STL containers</p></li>
-<li><p><strong>Data conversion</strong>: Seamless mapping between R and C++ objects</p></li>
-<li><p>📦 <strong>Packaging</strong>:</p>
-<ul>
-<li>Use <code>LinkingTo: Rcpp</code> in DESCRIPTION</li>
-<li>Automate with <code>usethis::use_rcpp()</code></li>
-<li>Maintainable, testable code with <code>Rcpp::compileAttributes()</code></li>
 </ul></li>
 </ul>
 </section></section>
 <section id="thank-you" class="title-slide slide level1 center">
 <h1>🙏 Thank you!</h1>
-<p>Questions &amp; Discussion &gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes</p>
+<p>Questions &amp; Discussion</p>
 
 <div class="quarto-auto-generated-content">
 <p><img src="logo.png" class="slide-logo"></p>

@@ -1116,98 +1116,56 @@
     "href": "slides/summary_mm.html#web-apps-with-shiny",
     "title": "Short Course on R Tools",
     "section": "Web Apps with Shiny",
-    "text": "Web Apps with Shiny\n\n✨ Shiny = Interactive web apps in pure R (no HTML/JS!)\n📦 Components:\n\nui: Layout, inputs/outputs\nserver: Logic, reactivity\n\n🧪 Use Cases:\n\nDashboards, simulations, teaching tools\n\n🔌 Inputs & Outputs:\n\nInputs: sliderInput(), textInput()\nOutputs: renderPlot(), renderText(), renderTable()"
+    "text": "Web Apps with Shiny\n\n✨ Shiny = Interactive web apps in pure R (no HTML/JS!)\n\n\n\n📦 Components:\n\nui: Layout, inputs/outputs\nserver: Logic, reactivity\n\n\n\n\n\n🔌 Inputs & Outputs:\n\nInputs: sliderInput(), textInput()\nOutputs: renderPlot(), renderText(), renderTable()\n\n\n\n\n\n🧪 Use Cases:\n\nDashboards, simulations, teaching tools"
   },
   {
-    "objectID": "slides/summary_mm.html#shiny-concepts-deployment",
-    "href": "slides/summary_mm.html#shiny-concepts-deployment",
+    "objectID": "slides/summary_mm.html#shiny-concepts-deployment-in-workshop",
+    "href": "slides/summary_mm.html#shiny-concepts-deployment-in-workshop",
     "title": "Short Course on R Tools",
-    "section": "Shiny Concepts & Deployment",
-    "text": "Shiny Concepts & Deployment\n\n⚡Reactivity System:\n\nreactive(): memoized reactive expressions\nisolate(): break reactive chains\nobserveEvent(): trigger actions without outputs\n\n🚀 Deployment Options:\n\nshinyapps.io, Posit Connect, university servers\nshinylive: deploy as static site (experimental)\n\n✅ Best Practices:\n\nUse shinytest2 for testing\nModularize with modules for scalability\nSketch UI/UX before coding\n\n🧠 Hands-on:\n\nKNN Regression in Shiny\nExplore shinyapps gallery for inspiration: https://shiny.posit.co/gallery/"
+    "section": "Shiny Concepts & Deployment in Workshop",
+    "text": "Shiny Concepts & Deployment in Workshop\n\n🚀 Deployment Options:\n\nshinyapps.io, Posit Connect, university servers\nshinylive: deploy as static site (experimental)\n\n\n\n\n\n⚡Reactivity System:\n\nreactive(): memoized reactive expressions\nisolate(): break reactive chains\nobserveEvent(): trigger actions without outputs\n\n\n\n\n\n\n\n🧠 Hands-on:\n\nExplore shinyapps gallery for inspiration"
+  },
+  {
+    "objectID": "slides/summary_mm.html#irstat-workshop",
+    "href": "slides/summary_mm.html#irstat-workshop",
+    "title": "Short Course on R Tools",
+    "section": "IrStat Workshop",
+    "text": "IrStat Workshop\n\n\n\n🔗 Open in a browser"
+  },
+  {
+    "objectID": "slides/summary_mm.html#context-motivation",
+    "href": "slides/summary_mm.html#context-motivation",
+    "title": "Short Course on R Tools",
+    "section": "Context & Motivation",
+    "text": "Context & Motivation\n\n\nDiagonal averaging is key in many algorithms (e.g. SSA reconstruction).\n\nGiven any matrix \\(G \\in \\mathbb{R}^{L\\times K}\\), we want \\[\n  \\scriptsize{y_t = \\frac{1}{\\#\\{(i,j):\\,i+j-1 = t\\}}\n        \\sum_{i+j-1 = t} G_{i,j},\n  \\quad t = 1,\\dots, L+K-1.}\n\\]\nPure‑R implementation uses two nested loops over \\(i\\) and \\(j\\)."
+  },
+  {
+    "objectID": "slides/summary_mm.html#pure-r-code",
+    "href": "slides/summary_mm.html#pure-r-code",
+    "title": "Short Course on R Tools",
+    "section": "Pure R Code",
+    "text": "Pure R Code\n\nhankelize_R &lt;- function(X){\n  L &lt;- nrow(X)\n  K &lt;- ncol(X)\n  N &lt;- L + K - 1\n  result &lt;- numeric(N)\n  count &lt;- numeric(N)\n \n  for(i in 1:L){\n    for(j in 1:K){\n      result[i + j - 1] &lt;- result[i + j - 1] + X[i,j]\n      count[i + j - 1] &lt;- count[i + j - 1] + 1\n    }\n  }\n \n  return(result / count)\n}"
+  },
+  {
+    "objectID": "slides/summary_mm.html#rcpp-code",
+    "href": "slides/summary_mm.html#rcpp-code",
+    "title": "Short Course on R Tools",
+    "section": "Rcpp Code",
+    "text": "Rcpp Code\n\nlibrary(Rcpp)\n\ncppFunction('\nNumericVector hankelize_rcpp(NumericMatrix X) {\n  int L = X.nrow();\n  int K = X.ncol();\n  int N = L + K - 1;\n \n  NumericVector result(N);\n  NumericVector count(N);\n \n  for(int i = 0; i &lt; L; i++){\n    for(int j = 0; j &lt; K; j++){\n      result[i + j] += X(i,j);\n      count[i + j] += 1;\n    }\n  }\n \n  for(int i = 0; i &lt; N; i++){\n    result[i] /= count[i];\n  }\n \n  return result;\n}')"
+  },
+  {
+    "objectID": "slides/summary_mm.html#benchmark",
+    "href": "slides/summary_mm.html#benchmark",
+    "title": "Short Course on R Tools",
+    "section": "Benchmark",
+    "text": "Benchmark\n\nlibrary(microbenchmark)\n\n# Large random matrix (e.g., 100 x 1000)\nset.seed(123)\nX_large &lt;- matrix(runif(1e5), nrow = 100, ncol = 1000)\n\nbench &lt;- microbenchmark(\n  R_version = hankelize_R(X_large),\n  Rcpp_version = hankelize_rcpp(X_large),\n  times = 10\n)\n\nprint(bench)\n&gt;# Unit: microseconds\n&gt;#          expr     min      lq     mean   median      uq     max neval\n&gt;#     R_version 21225.1 21550.8 26604.53 25180.35 30969.3 34455.1    10\n&gt;#  Rcpp_version   176.9   177.8   299.87   194.50   253.7  1161.3    10\n\n\n\nDramatic speedup: ~89× faster.\nPattern can be applied to many \\(O(n^2)\\) tasks in time series, spatial stats, and beyond."
   },
   {
     "objectID": "slides/summary_mm.html#rcpp-in-action",
     "href": "slides/summary_mm.html#rcpp-in-action",
     "title": "Short Course on R Tools",
     "section": "🔬 Rcpp in Action",
-    "text": "🔬 Rcpp in Action\n\n🧪 Examples:\n\nOdd/Even test (basic)\n\nbool is_even(int x) {\nreturn x % 2 == 0;\n}\n\nVAR(1) simulation with RcppArmadillo\nFibonacci benchmark: 200× speedup\n\nC++ Types: NumericVector, IntegerVector, STL containers\nData conversion: Seamless mapping between R and C++ objects\n📦 Packaging:\n\nUse LinkingTo: Rcpp in DESCRIPTION\nAutomate with usethis::use_rcpp()\nMaintainable, testable code with Rcpp::compileAttributes()"
-  },
-  {
-    "objectID": "slides/summary_mm.html#using-python-from-r",
-    "href": "slides/summary_mm.html#using-python-from-r",
-    "title": "Short Course on R Tools",
-    "section": "🛠 Using Python from R",
-    "text": "🛠 Using Python from R\n\nVirtualenv / Conda: manage environments cleanly\nCalling Python functions & classes from .py files\nUsing Python in Shiny apps\n\nExample: compute factorial via math.factorial\n\nlibrary(shiny)\nui &lt;- fluidPage(\nactionButton(\"btn\", \"Compute factorial\"),\nverbatimTextOutput(\"out\")\n)\nserver &lt;- function(input, output) {\nobserveEvent(input$btn, {\n  reticulate::py_run_string(\"import math; res = math.factorial(10)\")\n  output$out &lt;- renderText(py$res)\n})\n}\nshinyApp(ui, server)\nR Markdown / Quarto:\n\nInline Python code in {python} chunks\nShare variables between R and Python"
-  },
-  {
-    "objectID": "slides/summary_mm.html#takeaways",
-    "href": "slides/summary_mm.html#takeaways",
-    "title": "Short Course on R Tools",
-    "section": "Takeaways",
-    "text": "Takeaways\n\nUse reticulate to blend Python’s ML power with R’s statistical strength\nMatch tools to tasks without leaving your R workflow\nIdeal for reproducible, collaborative data science"
-  },
-  {
-    "objectID": "slides/summary_mm.html#package-structure",
-    "href": "slides/summary_mm.html#package-structure",
-    "title": "Short Course on R Tools",
-    "section": "🏗 Package Structure",
-    "text": "🏗 Package Structure\n\nDESCRIPTION: metadata\nNAMESPACE: exports and imports\nR/: function definitions\nman/: auto-generated docs"
-  },
-  {
-    "objectID": "slides/summary_mm.html#development-lifecycle",
-    "href": "slides/summary_mm.html#development-lifecycle",
-    "title": "Short Course on R Tools",
-    "section": "🛠 Development Lifecycle",
-    "text": "🛠 Development Lifecycle\n\n5 Package States:\n\nSource → Bundled → Binary → Installed → In-Memory\n\nCreating a Package\n\nUse usethis::create_package()\nWrite functions in R/, document with roxygen2\n\nDocumentation & Export\n\nGenerate with devtools::document()\nExpose with @export and @import\n\nBuild & Install\n\nBuild with devtools::build()\nInstall with devtools::install()"
-  },
-  {
-    "objectID": "slides/summary_mm.html#takeaways-1",
-    "href": "slides/summary_mm.html#takeaways-1",
-    "title": "Short Course on R Tools",
-    "section": "📌 Takeaways",
-    "text": "📌 Takeaways\n\nR packages provide a professional structure to your work\nAutomate documentation, testing, and sharing\nEssential for reproducible, collaborative, and maintainable R code"
-  },
-  {
-    "objectID": "slides/summary_mm.html#cran-submission",
-    "href": "slides/summary_mm.html#cran-submission",
-    "title": "Short Course on R Tools",
-    "section": "🚀 CRAN Submission",
-    "text": "🚀 CRAN Submission\n\nCRAN = Comprehensive R Archive Network\nPackages must pass R CMD check with:\n\n❌ No ERRORs\n⚠️ No WARNINGs\n📝 Minimal NOTEs\n\nSimulate checks with rhub::check_for_cran()\nSubmit via devtools::release()\nResponse from CRAN in ~1–3 days"
-  },
-  {
-    "objectID": "slides/summary_mm.html#before-you-submit",
-    "href": "slides/summary_mm.html#before-you-submit",
-    "title": "Short Course on R Tools",
-    "section": "🛠 Before You Submit",
-    "text": "🛠 Before You Submit\n\nUse devtools::check() for local testing\nInclude:\n\nValid license\nORCID info\nClean examples and documentation\n\nUpdate via version bump and NEWS.md"
-  },
-  {
-    "objectID": "slides/summary_mm.html#collaborate-via-github",
-    "href": "slides/summary_mm.html#collaborate-via-github",
-    "title": "Short Course on R Tools",
-    "section": "🤝 Collaborate via GitHub",
-    "text": "🤝 Collaborate via GitHub\n\nGit = local version control\nGitHub = cloud hosting and collaboration\nRStudio integrates Git workflows\nUse usethis::use_github() to link project\n\n✅ Auth via Personal Access Token (PAT) using gitcreds"
-  },
-  {
-    "objectID": "slides/summary_mm.html#daily-git-workflow",
-    "href": "slides/summary_mm.html#daily-git-workflow",
-    "title": "Short Course on R Tools",
-    "section": "🧪 Daily Git Workflow",
-    "text": "🧪 Daily Git Workflow\n\nEdit → Stage → Commit → Push\nShare changes, open pull requests\nCheck status with usethis::git_sitrep()"
-  },
-  {
-    "objectID": "slides/summary_mm.html#shiny-concepts-deployment-1",
-    "href": "slides/summary_mm.html#shiny-concepts-deployment-1",
-    "title": "Short Course on R Tools",
-    "section": "Shiny Concepts & Deployment",
-    "text": "Shiny Concepts & Deployment\n\n⚡Reactivity System:\n\nreactive(): memoized reactive expressions\nisolate(): break reactive chains\nobserveEvent(): trigger actions without outputs\n\n🚀 Deployment Options:\n\nshinyapps.io, Posit Connect, university servers\nshinylive: deploy as static site (experimental)\n\n✅ Best Practices:\n\nUse shinytest2 for testing\nModularize with modules for scalability\nSketch UI/UX before coding\n\n🧠 Hands-on:\n\nKNN Regression in Shiny\nExplore shinyapps gallery for inspiration: https://shiny.posit.co/gallery/"
-  },
-  {
-    "objectID": "slides/summary_mm.html#rcpp-in-action-1",
-    "href": "slides/summary_mm.html#rcpp-in-action-1",
-    "title": "Short Course on R Tools",
-    "section": "🔬 Rcpp in Action",
-    "text": "🔬 Rcpp in Action\n\n🧪 Examples:\n\nOdd/Even test (basic)\n\nbool is_even(int x) {\nreturn x % 2 == 0;\n}\n\nVAR(1) simulation with RcppArmadillo\nFibonacci benchmark: 200× speedup\n\nC++ Types: NumericVector, IntegerVector, STL containers\nData conversion: Seamless mapping between R and C++ objects\n📦 Packaging:\n\nUse LinkingTo: Rcpp in DESCRIPTION\nAutomate with usethis::use_rcpp()\nMaintainable, testable code with Rcpp::compileAttributes()"
+    "text": "🔬 Rcpp in Action\n\n🚀 Rcpp bridges R and C++ for high-performance computing.\n🏁 Use cases:\n\nSpeed up loops, recursion, and matrix operations\nAccess C++ libraries and STL\nIntegrate C++ in R packages\n\n🧰 Workflows:\n\nevalCpp(): quick one-liners\ncppFunction(): inline prototypes\nsourceCpp(): external C++ files with R wrappers"
   },
   {
     "objectID": "slides/summary_hh.html#why-call-python-in-r",
