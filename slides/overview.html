@@ -540,94 +540,51 @@ Mehdi Maadooliat and Hossein Haghbin
 <section id="oop-in-practice" class="slide level2">
 <h2>🛠️ OOP in Practice</h2>
 <h3 id="comparison-of-systems">🔁 Comparison of Systems</h3>
-<table>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 31%">
+<col style="width: 23%">
+</colgroup>
 <thead>
-<tr>
-<th>
-Sys.
-</th>
-<th>
-Style
-</th>
-<th>
-Used In
-</th>
-<th>
-✅ Pros
-</th>
-<th>
-⚠️ Cons
-</th>
+<tr class="header">
+<th>Sys.</th>
+<th>Style</th>
+<th>Used In</th>
+<th>✅ Pros</th>
+<th>⚠️ Cons |</th>
 </tr>
 </thead>
 <tbody>
-<tr class="fragment">
-<td>
-S3
-</td>
-<td>
-Functional
-</td>
-<td>
-Base R
-</td>
-<td>
-Simple, extensible
-</td>
-<td>
-No schema, fragile
-</td>
+<tr class="odd">
+<td>S3</td>
+<td>Functional</td>
+<td>Base R</td>
+<td>Simple, extensible</td>
+<td>No schema, fragile</td>
 </tr>
-<tr class="fragment">
-<td>
-S4
-</td>
-<td>
-Formal
-</td>
-<td>
-Bioconductor
-</td>
-<td>
-Type-safe, robust
-</td>
-<td>
-Verbose, complex
-</td>
+<tr class="even">
+<td>S4</td>
+<td>Formal</td>
+<td>Bioconductor</td>
+<td>Type-safe, robust</td>
+<td>Verbose, complex</td>
 </tr>
-<tr class="fragment">
-<td>
-R6
-</td>
-<td>
-Encapsulated
-</td>
-<td>
-Shiny, Keras
-</td>
-<td>
-Fast, mutable
-</td>
-<td>
-Weak type safety
-</td>
+<tr class="odd">
+<td>R6</td>
+<td>Encapsulated</td>
+<td>Shiny, Keras</td>
+<td>Fast, mutable</td>
+<td>Weak type safety</td>
 </tr>
-<tr class="fragment">
-<td>
-S7
-</td>
-<td>
-Unified OOP
-</td>
-<td>
-Modern dev
-</td>
-<td>
-Combines S3 &amp; S4 benefits
-</td>
-<td>
-Still evolving
-</td>
+<tr class="even">
+<td>S7</td>
+<td>Unified OOP</td>
+<td>Modern dev</td>
+<td>Combines S3 &amp; S4 benefits</td>
+<td>Still evolving</td>
 </tr>
 </tbody>
 </table>
@@ -824,6 +781,41 @@ Still evolving
 <h1>🐍 4. Python in R</h1>
 
 </section>
+<section id="example-use-python-from-r" class="slide level2 smaller">
+<h2>🔁 Example: Use Python from R</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>🐍 Native Python</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb4-2"><a></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb4-3"><a></a><span class="im">from</span> sklearn.neural_network <span class="im">import</span> MLPClassifier</span>
+<span id="cb4-4"><a></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb4-5"><a></a>X, y <span class="op">=</span> iris.data, iris.target</span>
+<span id="cb4-6"><a></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb4-7"><a></a>mlp <span class="op">=</span> MLPClassifier(hidden_layer_sizes<span class="op">=</span>(<span class="dv">10</span>,))</span>
+<span id="cb4-8"><a></a>mlp.fit(X_train, y_train)</span>
+<span id="cb4-9"><a></a>y_pred <span class="op">=</span> mlp.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<div class="fragment fade-up">
+<p><strong>📦 R with reticulate</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb5-2"><a></a>sklearn <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"sklearn"</span>)</span>
+<span id="cb5-3"><a></a>model_selection <span class="ot">&lt;-</span> sklearn<span class="sc">$</span>model_selection</span>
+<span id="cb5-4"><a></a>neural_network <span class="ot">&lt;-</span> sklearn<span class="sc">$</span>neural_network</span>
+<span id="cb5-5"><a></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])         </span>
+<span id="cb5-6"><a></a>y <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(iris<span class="sc">$</span>Species) <span class="sc">-</span> <span class="dv">1</span>     </span>
+<span id="cb5-7"><a></a>train_test <span class="ot">&lt;-</span> model_selection<span class="sc">$</span><span class="fu">train_test_split</span>(X, y, <span class="at">test_size =</span> <span class="fl">0.2</span>, <span class="at">random_state =</span> <span class="dv">42</span>)</span>
+<span id="cb5-8"><a></a>X_train <span class="ot">&lt;-</span> train_test[[<span class="dv">1</span>]]</span>
+<span id="cb5-9"><a></a>X_test <span class="ot">&lt;-</span> train_test[[<span class="dv">2</span>]]</span>
+<span id="cb5-10"><a></a>y_train <span class="ot">&lt;-</span> train_test[[<span class="dv">3</span>]]</span>
+<span id="cb5-11"><a></a>y_test <span class="ot">&lt;-</span> train_test[[<span class="dv">4</span>]]</span>
+<span id="cb5-12"><a></a>mlp <span class="ot">&lt;-</span> neural_network<span class="sc">$</span><span class="fu">MLPClassifier</span>(<span class="at">hidden_layer_sizes =</span> <span class="fu">tuple</span>(<span class="dv">10</span>L))</span>
+<span id="cb5-13"><a></a>mlp<span class="sc">$</span><span class="fu">fit</span>(X_train, y_train)</span>
+<span id="cb5-14"><a></a>y_pred <span class="ot">&lt;-</span> mlp<span class="sc">$</span><span class="fu">predict</span>(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="why-call-python-in-r" class="slide level2" data-transition="convex">
 <h2>💡 Why Call Python in R?</h2>
 <div>
@@ -849,39 +841,6 @@ Still evolving
 <section id="demo-python-from-r-in-rstudio" class="slide level2">
 <h2>🎥 Demo: Python from R in RStudio</h2>
 <video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="images/python/reticulate.mp4"></video>
-</section>
-<section id="example-use-python-from-r" class="slide level2 smaller">
-<h2>🔁 Example: Use Python from R</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>📦 R with reticulate</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb4-2"><a></a>sklearn <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"sklearn"</span>)</span>
-<span id="cb4-3"><a></a>model_selection <span class="ot">&lt;-</span> sklearn<span class="sc">$</span>model_selection</span>
-<span id="cb4-4"><a></a>neural_network <span class="ot">&lt;-</span> sklearn<span class="sc">$</span>neural_network</span>
-<span id="cb4-5"><a></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])         </span>
-<span id="cb4-6"><a></a>y <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(iris<span class="sc">$</span>Species) <span class="sc">-</span> <span class="dv">1</span>     </span>
-<span id="cb4-7"><a></a>train_test <span class="ot">&lt;-</span> model_selection<span class="sc">$</span><span class="fu">train_test_split</span>(X, y, <span class="at">test_size =</span> <span class="fl">0.2</span>, <span class="at">random_state =</span> <span class="dv">42</span>)</span>
-<span id="cb4-8"><a></a>X_train <span class="ot">&lt;-</span> train_test[[<span class="dv">1</span>]]</span>
-<span id="cb4-9"><a></a>X_test <span class="ot">&lt;-</span> train_test[[<span class="dv">2</span>]]</span>
-<span id="cb4-10"><a></a>y_train <span class="ot">&lt;-</span> train_test[[<span class="dv">3</span>]]</span>
-<span id="cb4-11"><a></a>y_test <span class="ot">&lt;-</span> train_test[[<span class="dv">4</span>]]</span>
-<span id="cb4-12"><a></a>mlp <span class="ot">&lt;-</span> neural_network<span class="sc">$</span><span class="fu">MLPClassifier</span>(<span class="at">hidden_layer_sizes =</span> <span class="fu">tuple</span>(<span class="dv">10</span>L))</span>
-<span id="cb4-13"><a></a>mlp<span class="sc">$</span><span class="fu">fit</span>(X_train, y_train)</span>
-<span id="cb4-14"><a></a>y_pred <span class="ot">&lt;-</span> mlp<span class="sc">$</span><span class="fu">predict</span>(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:50%;">
-<p><strong>🐍 Native Python</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
-<span id="cb5-2"><a></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb5-3"><a></a><span class="im">from</span> sklearn.neural_network <span class="im">import</span> MLPClassifier</span>
-<span id="cb5-4"><a></a>iris <span class="op">=</span> load_iris()</span>
-<span id="cb5-5"><a></a>X, y <span class="op">=</span> iris.data, iris.target</span>
-<span id="cb5-6"><a></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb5-7"><a></a>mlp <span class="op">=</span> MLPClassifier(hidden_layer_sizes<span class="op">=</span>(<span class="dv">10</span>,))</span>
-<span id="cb5-8"><a></a>mlp.fit(X_train, y_train)</span>
-<span id="cb5-9"><a></a>y_pred <span class="op">=</span> mlp.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
 </section></section>
 <section>
 <section id="build-your-own-r-package" class="title-slide slide level1 center">
@@ -923,6 +882,10 @@ Still evolving
 </div>
 </div>
 </section>
+<section id="demo-rfssa-package" class="slide level2">
+<h2>🎥 Demo: Rfssa Package</h2>
+<video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="images/package/rfssa_pack.mp4"></video>
+</section>
 <section id="package-states-in-r" class="slide level2" data-transition="zoom">
 <h2>🛠 Package States in R</h2>
 <p>R packages transition through five development states:</p>
@@ -935,20 +898,11 @@ Still evolving
 <li class="fragment">🧠 <strong>In-Memory</strong>: actively loaded via library()</li>
 </ul>
 </div>
-<div class="fragment fade-up">
-<blockquote>
-<p>Understanding these states helps you manage installation, sharing, and usage workflows.</p>
-</blockquote>
-</div>
 </section>
-<section id="transitioning-between-states" class="slide level2" data-transition="convex">
+<section id="transitioning-between-states" class="slide level2">
 <h2>🔁 Transitioning Between States</h2>
 
-<img data-src="images/package/install-load.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"></section>
-<section id="demo-rfssa-package" class="slide level2">
-<h2>🎥 Demo: Rfssa Package</h2>
-<video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="images/package/rfssa_pack.mp4"></video>
-</section></section>
+<img data-src="images/package/install-load.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"></section></section>
 <section>
 <section id="cran-submitting" class="title-slide slide level1 center" data-transition="zoom">
 <h1>6. 📤 CRAN Submitting</h1>
@@ -967,9 +921,7 @@ Still evolving
 <li class="fragment">⚠️ No <strong>WARNINGs</strong></li>
 <li class="fragment">📝 Minimal and justifiable <strong>NOTEs</strong></li>
 </ul></li>
-<li class="fragment">🧪 Simulate checks: <code>rhub::check_for_cran()</code></li>
 <li class="fragment">📤 Submit with: <code>devtools::release()</code></li>
-<li class="fragment">⏱️ Response in approx <strong>1–3 days</strong></li>
 </ul>
 </div>
 </section>
@@ -1016,6 +968,10 @@ Still evolving
 <h1>7. 📤 GitHub Essentials</h1>
 
 </section>
+<section id="example-rfssa-package-github" class="slide level2" data-transition="zoom">
+<h2>📬 Example: Rfssa Package Github</h2>
+
+<img data-src="images/package/Github_Rfssa.png" class="quarto-figure quarto-figure-left r-stretch" style="width:95.0%" alt="Screenshot of Pagerank"></section>
 <section id="why-use-git-github" class="slide level2">
 <h2>🌍 Why Use Git &amp; GitHub?</h2>
 <div>
@@ -1031,29 +987,6 @@ Still evolving
 <p>🧰 Git = Local tracking tool<br>
 ☁️ GitHub = Online hosting and teamwork platform</p>
 </blockquote>
-</div>
-</section>
-<section id="example-rfssa-package-github" class="slide level2" data-transition="zoom">
-<h2>📬 Example: Rfssa Package Github</h2>
-
-<img data-src="images/package/Github_Rfssa.png" class="quarto-figure quarto-figure-left r-stretch" style="width:95.0%" alt="Screenshot of Pagerank"></section>
-<section id="git-github-from-rstudio" class="slide level2" data-transition="convex">
-<h2>🧰 Git &amp; GitHub from RStudio</h2>
-<p>✅ RStudio has built-in Git integration:</p>
-<div class="fragment custom blur">
-<ul>
-<li>Git tab for <strong>staging, committing, and pushing</strong></li>
-</ul>
-</div>
-<div class="fragment custom blur">
-<ul>
-<li>Visual diff and commit history</li>
-</ul>
-</div>
-<div class="fragment custom blur">
-<ul>
-<li>Push to GitHub without leaving RStudio</li>
-</ul>
 </div>
 </section>
 <section id="daily-git-workflow-in-rstudio" class="slide level2">
@@ -1088,17 +1021,6 @@ Still evolving
 </tr>
 </tbody>
 </table>
-</div>
-</section>
-<section id="github-for-package-development" class="slide level2">
-<h2>✅ GitHub for Package Development</h2>
-<div>
-<ul>
-<li class="fragment">📦 Host your package openly</li>
-<li class="fragment">🧪 Enable collaborative testing &amp; documentation</li>
-<li class="fragment">📤 Submit to CRAN from a clean version-controlled repo</li>
-<li class="fragment">🔁 Great for long-term maintenance and open-source visibility</li>
-</ul>
 </div>
 </section>
 <section id="demo-rfssa-github-package" class="slide level2">

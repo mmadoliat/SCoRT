@@ -607,7 +607,7 @@
     "href": "slides/overview.html#oop-in-practice",
     "title": "Short Course on R Tools",
     "section": "🛠️ OOP in Practice",
-    "text": "🛠️ OOP in Practice\n🔁 Comparison of Systems\n\n\n\n\nSys.\n\n\nStyle\n\n\nUsed In\n\n\n✅ Pros\n\n\n⚠️ Cons\n\n\n\n\n\n\nS3\n\n\nFunctional\n\n\nBase R\n\n\nSimple, extensible\n\n\nNo schema, fragile\n\n\n\n\nS4\n\n\nFormal\n\n\nBioconductor\n\n\nType-safe, robust\n\n\nVerbose, complex\n\n\n\n\nR6\n\n\nEncapsulated\n\n\nShiny, Keras\n\n\nFast, mutable\n\n\nWeak type safety\n\n\n\n\nS7\n\n\nUnified OOP\n\n\nModern dev\n\n\nCombines S3 & S4 benefits\n\n\nStill evolving"
+    "text": "🛠️ OOP in Practice\n🔁 Comparison of Systems\n\n\n\n\n\n\n\n\n\n\nSys.\nStyle\nUsed In\n✅ Pros\n⚠️ Cons |\n\n\n\n\nS3\nFunctional\nBase R\nSimple, extensible\nNo schema, fragile\n\n\nS4\nFormal\nBioconductor\nType-safe, robust\nVerbose, complex\n\n\nR6\nEncapsulated\nShiny, Keras\nFast, mutable\nWeak type safety\n\n\nS7\nUnified OOP\nModern dev\nCombines S3 & S4 benefits\nStill evolving"
   },
   {
     "objectID": "slides/overview.html#fssa---shiny",
@@ -666,6 +666,13 @@
     "text": "🔬 Rcpp in Action\n\n🚀 Rcpp bridges R and C++ for high-performance computing.\n🏁 Use cases:\n\nSpeed up loops, recursion, and matrix operations\nAccess C++ libraries and STL\nIntegrate C++ in R packages"
   },
   {
+    "objectID": "slides/overview.html#example-use-python-from-r",
+    "href": "slides/overview.html#example-use-python-from-r",
+    "title": "Short Course on R Tools",
+    "section": "🔁 Example: Use Python from R",
+    "text": "🔁 Example: Use Python from R\n\n\n🐍 Native Python\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\niris = load_iris()\nX, y = iris.data, iris.target\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\nmlp = MLPClassifier(hidden_layer_sizes=(10,))\nmlp.fit(X_train, y_train)\ny_pred = mlp.predict(X_test)\n\n\n📦 R with reticulate\nlibrary(reticulate)\nsklearn &lt;- import(\"sklearn\")\nmodel_selection &lt;- sklearn$model_selection\nneural_network &lt;- sklearn$neural_network\nX &lt;- as.matrix(iris[, 1:4])         \ny &lt;- as.integer(iris$Species) - 1     \ntrain_test &lt;- model_selection$train_test_split(X, y, test_size = 0.2, random_state = 42)\nX_train &lt;- train_test[[1]]\nX_test &lt;- train_test[[2]]\ny_train &lt;- train_test[[3]]\ny_test &lt;- train_test[[4]]\nmlp &lt;- neural_network$MLPClassifier(hidden_layer_sizes = tuple(10L))\nmlp$fit(X_train, y_train)\ny_pred &lt;- mlp$predict(X_test)"
+  },
+  {
     "objectID": "slides/overview.html#why-call-python-in-r",
     "href": "slides/overview.html#why-call-python-in-r",
     "title": "Short Course on R Tools",
@@ -687,13 +694,6 @@
     "text": "🎥 Demo: Python from R in RStudio"
   },
   {
-    "objectID": "slides/overview.html#example-use-python-from-r",
-    "href": "slides/overview.html#example-use-python-from-r",
-    "title": "Short Course on R Tools",
-    "section": "🔁 Example: Use Python from R",
-    "text": "🔁 Example: Use Python from R\n\n\n📦 R with reticulate\nlibrary(reticulate)\nsklearn &lt;- import(\"sklearn\")\nmodel_selection &lt;- sklearn$model_selection\nneural_network &lt;- sklearn$neural_network\nX &lt;- as.matrix(iris[, 1:4])         \ny &lt;- as.integer(iris$Species) - 1     \ntrain_test &lt;- model_selection$train_test_split(X, y, test_size = 0.2, random_state = 42)\nX_train &lt;- train_test[[1]]\nX_test &lt;- train_test[[2]]\ny_train &lt;- train_test[[3]]\ny_test &lt;- train_test[[4]]\nmlp &lt;- neural_network$MLPClassifier(hidden_layer_sizes = tuple(10L))\nmlp$fit(X_train, y_train)\ny_pred &lt;- mlp$predict(X_test)\n\n🐍 Native Python\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\niris = load_iris()\nX, y = iris.data, iris.target\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\nmlp = MLPClassifier(hidden_layer_sizes=(10,))\nmlp.fit(X_train, y_train)\ny_pred = mlp.predict(X_test)"
-  },
-  {
     "objectID": "slides/overview.html#motivations-to-package-your-code",
     "href": "slides/overview.html#motivations-to-package-your-code",
     "title": "Short Course on R Tools",
@@ -708,11 +708,18 @@
     "text": "🏗 Package Structure Overview\nmypkg/\n├── DESCRIPTION         # 📋 Package metadata\n├── NAMESPACE           # 🔁 Exported functions & imports\n├── R/                  # 📂 Your R functions\n└── man/                # 📚 Auto-generated documentation\n\n💡 Other folders you may add:\n\n\n📂 tests/ → Unit tests (testthat)\n📂 vignettes/ → Long-form docs\n📂 data/ → Internal or example datasets"
   },
   {
+    "objectID": "slides/overview.html#demo-rfssa-package",
+    "href": "slides/overview.html#demo-rfssa-package",
+    "title": "Short Course on R Tools",
+    "section": "🎥 Demo: Rfssa Package",
+    "text": "🎥 Demo: Rfssa Package"
+  },
+  {
     "objectID": "slides/overview.html#package-states-in-r",
     "href": "slides/overview.html#package-states-in-r",
     "title": "Short Course on R Tools",
     "section": "🛠 Package States in R",
-    "text": "🛠 Package States in R\nR packages transition through five development states:\n\n\n🗂️ Source: your raw package folder\n📦 Bundled: compressed .tar.gz for sharing\n🧱 Binary: platform-specific precompiled version\n📚 Installed: available in your R library\n🧠 In-Memory: actively loaded via library()\n\n\n\n\nUnderstanding these states helps you manage installation, sharing, and usage workflows."
+    "text": "🛠 Package States in R\nR packages transition through five development states:\n\n\n🗂️ Source: your raw package folder\n📦 Bundled: compressed .tar.gz for sharing\n🧱 Binary: platform-specific precompiled version\n📚 Installed: available in your R library\n🧠 In-Memory: actively loaded via library()"
   },
   {
     "objectID": "slides/overview.html#transitioning-between-states",
@@ -722,18 +729,11 @@
     "text": "🔁 Transitioning Between States"
   },
   {
-    "objectID": "slides/overview.html#demo-rfssa-package",
-    "href": "slides/overview.html#demo-rfssa-package",
-    "title": "Short Course on R Tools",
-    "section": "🎥 Demo: Rfssa Package",
-    "text": "🎥 Demo: Rfssa Package"
-  },
-  {
     "objectID": "slides/overview.html#submitting-to-cran",
     "href": "slides/overview.html#submitting-to-cran",
     "title": "Short Course on R Tools",
     "section": "🚀 Submitting to CRAN",
-    "text": "🚀 Submitting to CRAN\n\n\n📦 CRAN = Comprehensive R Archive Network\n\n🎯 Goal: Make your R package public, discoverable, and installable\n✔ Must pass R CMD check with:\n\n❌ No ERRORs\n⚠️ No WARNINGs\n📝 Minimal and justifiable NOTEs\n\n🧪 Simulate checks: rhub::check_for_cran()\n📤 Submit with: devtools::release()\n⏱️ Response in approx 1–3 days"
+    "text": "🚀 Submitting to CRAN\n\n\n📦 CRAN = Comprehensive R Archive Network\n\n🎯 Goal: Make your R package public, discoverable, and installable\n✔ Must pass R CMD check with:\n\n❌ No ERRORs\n⚠️ No WARNINGs\n📝 Minimal and justifiable NOTEs\n\n📤 Submit with: devtools::release()"
   },
   {
     "objectID": "slides/overview.html#confirmation-email-after-submission",
@@ -778,13 +778,6 @@
     "text": "🌐 CRAN Page Created\n\n\n🌍 Your package is now live! Searchable and installable via:\n\ninstall.packages(\"Rfssa\")"
   },
   {
-    "objectID": "slides/overview.html#why-use-git-github",
-    "href": "slides/overview.html#why-use-git-github",
-    "title": "Short Course on R Tools",
-    "section": "🌍 Why Use Git & GitHub?",
-    "text": "🌍 Why Use Git & GitHub?\n\n\n🔁 Version Control: Track and manage changes in code\n🤝 Collaboration: Work with others without overwriting files\n🧪 Reproducibility: Restore older versions when bugs occur\n🔄 Open Source: Share your package with the world\n\n\n\n\n🧰 Git = Local tracking tool\n☁️ GitHub = Online hosting and teamwork platform"
-  },
-  {
     "objectID": "slides/overview.html#example-rfssa-package-github",
     "href": "slides/overview.html#example-rfssa-package-github",
     "title": "Short Course on R Tools",
@@ -792,11 +785,11 @@
     "text": "📬 Example: Rfssa Package Github"
   },
   {
-    "objectID": "slides/overview.html#git-github-from-rstudio",
-    "href": "slides/overview.html#git-github-from-rstudio",
+    "objectID": "slides/overview.html#why-use-git-github",
+    "href": "slides/overview.html#why-use-git-github",
     "title": "Short Course on R Tools",
-    "section": "🧰 Git & GitHub from RStudio",
-    "text": "🧰 Git & GitHub from RStudio\n✅ RStudio has built-in Git integration:\n\n\nGit tab for staging, committing, and pushing\n\n\n\n\nVisual diff and commit history\n\n\n\n\nPush to GitHub without leaving RStudio"
+    "section": "🌍 Why Use Git & GitHub?",
+    "text": "🌍 Why Use Git & GitHub?\n\n\n🔁 Version Control: Track and manage changes in code\n🤝 Collaboration: Work with others without overwriting files\n🧪 Reproducibility: Restore older versions when bugs occur\n🔄 Open Source: Share your package with the world\n\n\n\n\n🧰 Git = Local tracking tool\n☁️ GitHub = Online hosting and teamwork platform"
   },
   {
     "objectID": "slides/overview.html#daily-git-workflow-in-rstudio",
@@ -804,13 +797,6 @@
     "title": "Short Course on R Tools",
     "section": "🔁 Daily Git Workflow in RStudio",
     "text": "🔁 Daily Git Workflow in RStudio\n\n🎯 A typical work cycle for package developers:\n\n\n\n\n\nStep\nDescription\n\n\n\n\n✏️ Edit\nMake changes to .R or .Rmd files\n\n\n✅ Stage\nSelect files to track in Git tab\n\n\n💬 Commit\nSave with a message (e.g., “Fix bug”)\n\n\n🚀 Push\nSend to GitHub"
-  },
-  {
-    "objectID": "slides/overview.html#github-for-package-development",
-    "href": "slides/overview.html#github-for-package-development",
-    "title": "Short Course on R Tools",
-    "section": "✅ GitHub for Package Development",
-    "text": "✅ GitHub for Package Development\n\n\n📦 Host your package openly\n🧪 Enable collaborative testing & documentation\n📤 Submit to CRAN from a clean version-controlled repo\n🔁 Great for long-term maintenance and open-source visibility"
   },
   {
     "objectID": "slides/overview.html#demo-rfssa-github-package",
