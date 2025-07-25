@@ -130,8 +130,7 @@ format:
 
 . . .
 
-![](images/webinar/oop/FTS-FSSA-Objects-15.png){.absolute  right="0" top="160" width="560"}
-![](images/webinar/oop/FTS-FSSA-Objects-10.png){.absolute left="250" top="290" width="600"}
+![](images/webinar/oop/FTS-FSSA-Objects-15.png){.absolute right="0" top="160" width="560"} ![](images/webinar/oop/FTS-FSSA-Objects-10.png){.absolute left="250" top="290" width="600"}
 
 ## OOP in R
 
@@ -150,50 +149,21 @@ format:
 
 ------------------------------------------------------------------------
 
-## 🛠️ OOP in Practice 
+## 🛠️ OOP in Practice
 
 ### 🔁 Comparison of Systems
-<table>
-  <thead>
-    <tr>
-      <th>Sys.</th>
-      <th>Style</th>
-      <th>Used In</th>
-      <th>✅ Pros</th>
-      <th>⚠️ Cons</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="fragment">
-      <td>S3</td>
-      <td>Functional</td>
-      <td>Base R</td>
-      <td>Simple, extensible</td>
-      <td>No schema, fragile</td>
-    </tr>
-    <tr class="fragment">
-      <td>S4</td>
-      <td>Formal</td>
-      <td>Bioconductor</td>
-      <td>Type-safe, robust</td>
-      <td>Verbose, complex</td>
-    </tr>
-    <tr class="fragment">
-      <td>R6</td>
-      <td>Encapsulated</td>
-      <td>Shiny, Keras</td>
-      <td>Fast, mutable</td>
-      <td>Weak type safety</td>
-    </tr>
-    <tr class="fragment">
-      <td>S7</td>
-      <td>Unified OOP</td>
-      <td>Modern dev</td>
-      <td>Combines S3 & S4 benefits</td>
-      <td>Still evolving</td>
-    </tr>
-  </tbody>
-</table>
+
++------+--------------+--------------+---------------------------+--------------------+
+| Sys. | Style        | Used In      | ✅ Pros                   | ⚠️ Cons            |
++======+==============+==============+===========================+====================+
+| S3   | Functional   | Base R       | Simple, extensible        | No schema, fragile |
++------+--------------+--------------+---------------------------+--------------------+
+| S4   | Formal       | Bioconductor | Type-safe, robust         | Verbose, complex   |
++------+--------------+--------------+---------------------------+--------------------+
+| R6   | Encapsulated | Shiny, Keras | Fast, mutable             | Weak type safety   |
++------+--------------+--------------+---------------------------+--------------------+
+| S7   | Unified OOP  | Modern dev   | Combines S3 & S4 benefits | Still evolving     |
++------+--------------+--------------+---------------------------+--------------------+
 
 # Session 2:🌐 Web Apps with Shiny
 
@@ -203,7 +173,7 @@ format:
 
 </iframe>
 
-:::{.smallest}
+::: smallest
 [🔗 Open in a browser](https://fssa.shinyapps.io/FSSA/){target="_blank"}
 :::
 
@@ -217,7 +187,7 @@ format:
     -   ui: Layout, inputs/outputs
     -   server: Logic, reactivity
 
-. . . 
+. . .
 
 -   🔌 Inputs & Outputs:
     -   Inputs: sliderInput(), textInput()
@@ -241,7 +211,6 @@ format:
     -   `reactive()`: memoized reactive expressions
     -   `isolate()`: break reactive chains
     -   `observeEvent()`: trigger actions without outputs
-    
 :::
 
 . . .
@@ -249,28 +218,27 @@ format:
 ::: {style="margin-top: -5px;"}
 -   🧠 **Hands-on**:
     -   [Explore shinyapps gallery for inspiration](https://shiny.posit.co/gallery/)
-
 :::
 
 # ⚡ Session 3: Rcpp – <br> High Performance with C++ in R
 
 ## Context & Motivation
+
 ::: {.incremental style="margin-top: -18px;"}
-- **Diagonal averaging** is key in many algorithms (e.g. SSA reconstruction).  
-![](images/webinar/fssa/SSA-FSSA-hankel.png){width="800"}
-- Given *any* matrix $G \in \mathbb{R}^{L\times K}$, we want
-  $$
-    \scriptsize{y_t = \frac{1}{\#\{(i,j):\,i+j-1 = t\}}
-          \sum_{i+j-1 = t} G_{i,j},
-    \quad t = 1,\dots, L+K-1.}
-  $$
-- Pure‑R implementation uses two nested loops over $i$ and $j$.
+-   **Diagonal averaging** is key in many algorithms (e.g. SSA reconstruction).\
+    ![](images/webinar/fssa/SSA-FSSA-hankel.png){width="800"}
+-   Given *any* matrix $G \in \mathbb{R}^{L\times K}$, we want $$
+      \scriptsize{y_t = \frac{1}{\#\{(i,j):\,i+j-1 = t\}}
+            \sum_{i+j-1 = t} G_{i,j},
+      \quad t = 1,\dots, L+K-1.}
+    $$
+-   Pure‑R implementation uses two nested loops over $i$ and $j$.
 :::
 
 ## Pure R Code
 
 ::: shrink-code
-```{.r code-line-numbers="1,16|2-6|8-13|15"}
+``` {.r code-line-numbers="1,16|2-6|8-13|15"}
 hankelize_R <- function(X){
   L <- nrow(X)
   K <- ncol(X)
@@ -293,7 +261,7 @@ hankelize_R <- function(X){
 ## Rcpp Code
 
 ::: shrink-code
-```{.r code-line-numbers="1|3,4,24|5-10|12-17|19-21|23"}
+``` {.r code-line-numbers="1|3,4,24|5-10|12-17|19-21|23"}
 library(Rcpp)
 
 cppFunction('
@@ -324,7 +292,7 @@ NumericVector hankelize_rcpp(NumericMatrix X) {
 ## Benchmark
 
 ::: shrink-code
-```{.r code-line-numbers="1|3-5|7-11|13-17"}
+``` {.r code-line-numbers="1|3-5|7-11|13-17"}
 library(microbenchmark)
 
 # Large random matrix (e.g., 100 x 1000)
@@ -346,7 +314,7 @@ print(bench)
 :::
 
 ::: {.incremental .small}
--   Dramatic speedup: **~89×** faster.
+-   Dramatic speedup: **\~89×** faster.
 -   Pattern can be applied to many $O(n^2)$ tasks in time series, spatial stats, and beyond.
 :::
 
@@ -359,6 +327,49 @@ print(bench)
     -   Integrate C++ in R packages
 
 # 🐍 4. Python in R {transition="slide"}
+
+## 🔁 Example: Use Python from R {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+**🐍 Native Python**
+
+``` python
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
+iris = load_iris()
+X, y = iris.data, iris.target
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+mlp = MLPClassifier(hidden_layer_sizes=(10,))
+mlp.fit(X_train, y_train)
+y_pred = mlp.predict(X_test)
+```
+:::
+::: {.column width="50%"}
+::: {.fragment .fade-up}
+**📦 R with reticulate**
+``` r
+library(reticulate)
+sklearn <- import("sklearn")
+model_selection <- sklearn$model_selection
+neural_network <- sklearn$neural_network
+X <- as.matrix(iris[, 1:4])         
+y <- as.integer(iris$Species) - 1     
+train_test <- model_selection$train_test_split(X, y, test_size = 0.2, random_state = 42)
+X_train <- train_test[[1]]
+X_test <- train_test[[2]]
+y_train <- train_test[[3]]
+y_test <- train_test[[4]]
+mlp <- neural_network$MLPClassifier(hidden_layer_sizes = tuple(10L))
+mlp$fit(X_train, y_train)
+y_pred <- mlp$predict(X_test)
+```
+:::
+:::
+
+
+:::::
 
 ## 💡 Why Call Python in R? {transition="convex"}
 
@@ -382,46 +393,7 @@ print(bench)
 
 {{< video images/python/reticulate.mp4 >}}
 
-## 🔁 Example: Use Python from R {.smaller}
 
-::::: columns
-::: {.column width="50%"}
-**📦 R with reticulate**
-
-``` r
-library(reticulate)
-sklearn <- import("sklearn")
-model_selection <- sklearn$model_selection
-neural_network <- sklearn$neural_network
-X <- as.matrix(iris[, 1:4])         
-y <- as.integer(iris$Species) - 1     
-train_test <- model_selection$train_test_split(X, y, test_size = 0.2, random_state = 42)
-X_train <- train_test[[1]]
-X_test <- train_test[[2]]
-y_train <- train_test[[3]]
-y_test <- train_test[[4]]
-mlp <- neural_network$MLPClassifier(hidden_layer_sizes = tuple(10L))
-mlp$fit(X_train, y_train)
-y_pred <- mlp$predict(X_test)
-```
-:::
-
-::: {.column width="50%"}
-**🐍 Native Python**
-
-``` python
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.neural_network import MLPClassifier
-iris = load_iris()
-X, y = iris.data, iris.target
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-mlp = MLPClassifier(hidden_layer_sizes=(10,))
-mlp.fit(X_train, y_train)
-y_pred = mlp.predict(X_test)
-```
-:::
-:::::
 
 # 📦 5. Build Your Own R Package
 
@@ -459,6 +431,10 @@ mypkg/
 -   📂 **data/** → Internal or example datasets
 :::
 
+## 🎥 Demo: Rfssa Package
+
+{{< video images/package/rfssa_pack.mp4 >}}
+
 ## 🛠 Package States in R {transition="zoom"}
 
 R packages transition through five development states:
@@ -471,17 +447,11 @@ R packages transition through five development states:
 -   🧠 **In-Memory**: actively loaded via library()
 :::
 
-::: {.fragment .fade-up}
-> Understanding these states helps you manage installation, sharing, and usage workflows.
-:::
-
-## 🔁 Transitioning Between States {transition="convex"}
+## 🔁 Transitioning Between States 
 
 ![](images/package/install-load.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
 
-## 🎥 Demo: Rfssa Package
 
-{{< video images/package/rfssa_pack.mp4 >}}
 
 # 6. 📤 CRAN Submitting {transition="zoom"}
 
@@ -494,9 +464,7 @@ R packages transition through five development states:
     -   ❌ No **ERRORs**
     -   ⚠️ No **WARNINGs**
     -   📝 Minimal and justifiable **NOTEs**
--   🧪 Simulate checks: `rhub::check_for_cran()`
 -   📤 Submit with: `devtools::release()`
--   ⏱️ Response in approx **1–3 days**
 :::
 
 ## 📩 Confirmation Email (After Submission) {transition="zoom"}
@@ -541,6 +509,11 @@ install.packages("Rfssa")
 
 # 7. 📤 GitHub Essentials {transition="convex"}
 
+## 📬 Example: Rfssa Package Github {transition="zoom"}
+
+![](images/package/Github_Rfssa.png){fig-align="left" fig-alt="Screenshot of Pagerank" width="95%"}
+
+
 ## 🌍 Why Use Git & GitHub?
 
 ::: incremental
@@ -553,26 +526,6 @@ install.packages("Rfssa")
 ::: fragment
 > 🧰 Git = Local tracking tool\
 > ☁️ GitHub = Online hosting and teamwork platform
-:::
-
-## 📬 Example: Rfssa Package Github {transition="zoom"}
-
-![](images/package/Github_Rfssa.png){fig-align="left" fig-alt="Screenshot of Pagerank" width="95%"}
-
-## 🧰 Git & GitHub from RStudio {transition="convex"}
-
-✅ RStudio has built-in Git integration:
-
-::: {.fragment .custom .blur}
--   Git tab for **staging, committing, and pushing**
-:::
-
-::: {.fragment .custom .blur}
--   Visual diff and commit history
-:::
-
-::: {.fragment .custom .blur}
--   Push to GitHub without leaving RStudio
 :::
 
 ## 🔁 Daily Git Workflow in RStudio
@@ -588,14 +541,6 @@ install.packages("Rfssa")
 | 🚀 Push   | Send to GitHub                        |
 :::
 
-## ✅ GitHub for Package Development
-
-::: incremental
--   📦 Host your package openly
--   🧪 Enable collaborative testing & documentation
--   📤 Submit to CRAN from a clean version-controlled repo
--   🔁 Great for long-term maintenance and open-source visibility
-:::
 
 ## 🎥 Demo: Rfssa Github Package
 
