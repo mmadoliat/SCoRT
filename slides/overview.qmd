@@ -30,7 +30,35 @@ format:
 
 ![](images/webinar/dtsc/what-is-DS-5.png){.absolute left="200" height="600"}
 
+## R vs Python
+
+![](images/webinar/RvsP/RvsP-1.png){.absolute left="200" height="600"}
+
+. . .
+
+![](images/webinar/RvsP/RvsP-2.png){.absolute left="50" height="600"}
+
+. . . 
+
+![](images/webinar/RvsP/RvsP-3.png){.absolute left="150" height="600"}
+
+. . . 
+
+![](images/webinar/RvsP/RvsP-4.png){.absolute left="200" height="600"}
+
+. . . 
+
+![](images/webinar/RvsP/RvsP-5.png){.absolute left="50" height="600"}
+
+. . . 
+
+![](images/webinar/RvsP/RvsP-6.png){.absolute left="150" height="600"}
+
 ## Motivating Example - Functional Singular Spectrum Analysis {.title style="font-size: 27px;"}
+
+![](images/webinar/dtsc/what-is-DS-5.png){.absolute top="72" left="200" height="600"}
+
+. . .
 
 ![](images/webinar/fssa/what-is-FSSA.png){.absolute top="72" left="200" height="600"}
 
@@ -85,6 +113,18 @@ format:
 . . .
 
 ![](images/webinar/fssa/SSA-FSSA-10.png){.absolute left="220" height="620"}
+
+# Outline
+
+::: {.fragment .fade-up}
+-   Session 1. OOP in R
+-   Session 2. Web Apps with Shiny
+-   Session 3. Rcpp – High Performance with C++ in R
+-   Session 4. Python in R
+-   Session 5. Build Your Own R Package
+-   Session 6. CRAN Submission
+-   Session 7. GitHub Essentials
+:::
 
 # 🧠 Session 1: OOP in R
 
@@ -152,18 +192,47 @@ format:
 ## 🛠️ OOP in Practice
 
 ### 🔁 Comparison of Systems
-
-+------+--------------+--------------+---------------------------+--------------------+
-| Sys. | Style        | Used In      | ✅ Pros                   | ⚠️ Cons            |
-+======+==============+==============+===========================+====================+
-| S3   | Functional   | Base R       | Simple, extensible        | No schema, fragile |
-+------+--------------+--------------+---------------------------+--------------------+
-| S4   | Formal       | Bioconductor | Type-safe, robust         | Verbose, complex   |
-+------+--------------+--------------+---------------------------+--------------------+
-| R6   | Encapsulated | Shiny, Keras | Fast, mutable             | Weak type safety   |
-+------+--------------+--------------+---------------------------+--------------------+
-| S7   | Unified OOP  | Modern dev   | Combines S3 & S4 benefits | Still evolving     |
-+------+--------------+--------------+---------------------------+--------------------+
+<table>
+  <thead>
+    <tr>
+      <th>Sys.</th>
+      <th>Style</th>
+      <th>Used In</th>
+      <th>✅ Pros</th>
+      <th>⚠️ Cons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="fragment">
+      <td>S3</td>
+      <td>Functional</td>
+      <td>Base R</td>
+      <td>Simple, extensible</td>
+      <td>No schema, fragile</td>
+    </tr>
+    <tr class="fragment">
+      <td>S4</td>
+      <td>Formal</td>
+      <td>Bioconductor</td>
+      <td>Type-safe, robust</td>
+      <td>Verbose, complex</td>
+    </tr>
+    <tr class="fragment">
+      <td>R6</td>
+      <td>Encapsulated</td>
+      <td>Shiny, Keras</td>
+      <td>Fast, mutable</td>
+      <td>Weak type safety</td>
+    </tr>
+    <tr class="fragment">
+      <td>S7</td>
+      <td>Unified OOP</td>
+      <td>Modern dev</td>
+      <td>Combines S3 & S4 benefits</td>
+      <td>Still evolving</td>
+    </tr>
+  </tbody>
+</table>
 
 # Session 2:🌐 Web Apps with Shiny
 
