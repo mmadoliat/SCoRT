@@ -575,6 +575,13 @@
     "text": "Motivating Example - What is Data Science?"
   },
   {
+    "objectID": "slides/overview.html#r-vs-python",
+    "href": "slides/overview.html#r-vs-python",
+    "title": "Short Course on R Tools",
+    "section": "R vs Python",
+    "text": "R vs Python"
+  },
+  {
     "objectID": "slides/overview.html#motivating-example---functional-singular-spectrum-analysis",
     "href": "slides/overview.html#motivating-example---functional-singular-spectrum-analysis",
     "title": "Short Course on R Tools",
@@ -607,7 +614,7 @@
     "href": "slides/overview.html#oop-in-practice",
     "title": "Short Course on R Tools",
     "section": "🛠️ OOP in Practice",
-    "text": "🛠️ OOP in Practice\n🔁 Comparison of Systems\n\n\n\n\n\n\n\n\n\n\nSys.\nStyle\nUsed In\n✅ Pros\n⚠️ Cons |\n\n\n\n\nS3\nFunctional\nBase R\nSimple, extensible\nNo schema, fragile\n\n\nS4\nFormal\nBioconductor\nType-safe, robust\nVerbose, complex\n\n\nR6\nEncapsulated\nShiny, Keras\nFast, mutable\nWeak type safety\n\n\nS7\nUnified OOP\nModern dev\nCombines S3 & S4 benefits\nStill evolving"
+    "text": "🛠️ OOP in Practice\n🔁 Comparison of Systems\n\n\n\n\nSys.\n\n\nStyle\n\n\nUsed In\n\n\n✅ Pros\n\n\n⚠️ Cons\n\n\n\n\n\n\nS3\n\n\nFunctional\n\n\nBase R\n\n\nSimple, extensible\n\n\nNo schema, fragile\n\n\n\n\nS4\n\n\nFormal\n\n\nBioconductor\n\n\nType-safe, robust\n\n\nVerbose, complex\n\n\n\n\nR6\n\n\nEncapsulated\n\n\nShiny, Keras\n\n\nFast, mutable\n\n\nWeak type safety\n\n\n\n\nS7\n\n\nUnified OOP\n\n\nModern dev\n\n\nCombines S3 & S4 benefits\n\n\nStill evolving"
   },
   {
     "objectID": "slides/overview.html#fssa---shiny",

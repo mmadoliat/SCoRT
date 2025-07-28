@@ -432,9 +432,31 @@ Mehdi Maadooliat and Hossein Haghbin
 <p><img data-src="images/webinar/dtsc/what-is-DS-5.png" class="absolute" style="left: 200px; height: 600px; "></p>
 </div>
 </section>
+<section id="r-vs-python" class="slide level2">
+<h2>R vs Python</h2>
+<p><img data-src="images/webinar/RvsP/RvsP-1.png" class="absolute" style="left: 200px; height: 600px; "></p>
+<div class="fragment">
+<p><img data-src="images/webinar/RvsP/RvsP-2.png" class="absolute" style="left: 50px; height: 600px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/webinar/RvsP/RvsP-3.png" class="absolute" style="left: 150px; height: 600px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/webinar/RvsP/RvsP-4.png" class="absolute" style="left: 200px; height: 600px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/webinar/RvsP/RvsP-5.png" class="absolute" style="left: 50px; height: 600px; "></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/webinar/RvsP/RvsP-6.png" class="absolute" style="left: 150px; height: 600px; "></p>
+</div>
+</section>
 <section id="motivating-example---functional-singular-spectrum-analysis" class="slide level2 title" style="font-size: 27px;">
 <h2>Motivating Example - Functional Singular Spectrum Analysis</h2>
+<p><img data-src="images/webinar/dtsc/what-is-DS-5.png" class="absolute" style="top: 72px; left: 200px; height: 600px; "></p>
+<div class="fragment">
 <p><img data-src="images/webinar/fssa/what-is-FSSA.png" class="absolute" style="top: 72px; left: 200px; height: 600px; "></p>
+</div>
 <div class="fragment">
 <p><img data-src="images/webinar/fssa/SSA-FSSA-01.png" class="absolute" style="left: 220px; height: 620px; "></p>
 </div>
@@ -475,6 +497,21 @@ Mehdi Maadooliat and Hossein Haghbin
 <p><img data-src="images/webinar/fssa/SSA-FSSA-10.png" class="absolute" style="left: 220px; height: 620px; "></p>
 </div>
 </section>
+<section id="outline" class="title-slide slide level1 center">
+<h1>Outline</h1>
+<div class="fragment fade-up">
+<ul>
+<li>Session 1. OOP in R</li>
+<li>Session 2. Web Apps with Shiny</li>
+<li>Session 3. Rcpp – High Performance with C++ in R</li>
+<li>Session 4. Python in R</li>
+<li>Session 5. Build Your Own R Package</li>
+<li>Session 6. CRAN Submission</li>
+<li>Session 7. GitHub Essentials</li>
+</ul>
+</div>
+</section>
+
 <section>
 <section id="session-1-oop-in-r" class="title-slide slide level1 center">
 <h1>🧠 Session 1: OOP in R</h1>
@@ -540,51 +577,94 @@ Mehdi Maadooliat and Hossein Haghbin
 <section id="oop-in-practice" class="slide level2">
 <h2>🛠️ OOP in Practice</h2>
 <h3 id="comparison-of-systems">🔁 Comparison of Systems</h3>
-<table style="width:97%;">
-<colgroup>
-<col style="width: 7%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 31%">
-<col style="width: 23%">
-</colgroup>
+<table>
 <thead>
-<tr class="header">
-<th>Sys.</th>
-<th>Style</th>
-<th>Used In</th>
-<th>✅ Pros</th>
-<th>⚠️ Cons |</th>
+<tr>
+<th>
+Sys.
+</th>
+<th>
+Style
+</th>
+<th>
+Used In
+</th>
+<th>
+✅ Pros
+</th>
+<th>
+⚠️ Cons
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>S3</td>
-<td>Functional</td>
-<td>Base R</td>
-<td>Simple, extensible</td>
-<td>No schema, fragile</td>
+<tr class="fragment">
+<td>
+S3
+</td>
+<td>
+Functional
+</td>
+<td>
+Base R
+</td>
+<td>
+Simple, extensible
+</td>
+<td>
+No schema, fragile
+</td>
 </tr>
-<tr class="even">
-<td>S4</td>
-<td>Formal</td>
-<td>Bioconductor</td>
-<td>Type-safe, robust</td>
-<td>Verbose, complex</td>
+<tr class="fragment">
+<td>
+S4
+</td>
+<td>
+Formal
+</td>
+<td>
+Bioconductor
+</td>
+<td>
+Type-safe, robust
+</td>
+<td>
+Verbose, complex
+</td>
 </tr>
-<tr class="odd">
-<td>R6</td>
-<td>Encapsulated</td>
-<td>Shiny, Keras</td>
-<td>Fast, mutable</td>
-<td>Weak type safety</td>
+<tr class="fragment">
+<td>
+R6
+</td>
+<td>
+Encapsulated
+</td>
+<td>
+Shiny, Keras
+</td>
+<td>
+Fast, mutable
+</td>
+<td>
+Weak type safety
+</td>
 </tr>
-<tr class="even">
-<td>S7</td>
-<td>Unified OOP</td>
-<td>Modern dev</td>
-<td>Combines S3 &amp; S4 benefits</td>
-<td>Still evolving</td>
+<tr class="fragment">
+<td>
+S7
+</td>
+<td>
+Unified OOP
+</td>
+<td>
+Modern dev
+</td>
+<td>
+Combines S3 &amp; S4 benefits
+</td>
+<td>
+Still evolving
+</td>
 </tr>
 </tbody>
 </table>
