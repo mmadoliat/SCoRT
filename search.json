@@ -1451,6 +1451,17 @@
     ]
   },
   {
+    "objectID": "slides/Topic5.html#package-states-in-r",
+    "href": "slides/Topic5.html#package-states-in-r",
+    "title": "Short Course on R Tools",
+    "section": "🛠 Package States in R",
+    "text": "🛠 Package States in R\nR packages transition through five development states:\n\n\n🗂️ Source: your raw package folder\n📦 Bundled: compressed .tar.gz for sharing\n🧱 Binary: platform-specific precompiled version\n📚 Installed: available in your R library\n🧠 In-Memory: actively loaded via library()\n\n\n\n\nUnderstanding these states helps you manage installation, sharing, and usage workflows.",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
     "objectID": "slides/Topic5.html#source-package",
     "href": "slides/Topic5.html#source-package",
     "title": "Short Course on R Tools",
@@ -1807,18 +1818,7 @@
     "href": "slides/Topic4.html#using-source_python",
     "title": "Short Course on R Tools",
     "section": "📥 Using source_python()",
-    "text": "📥 Using source_python()\nImports all Python functions and variables into R\n\n\nVariables become directly available in the R global environment\nIdeal for reusable Python functions",
-    "crumbs": [
-      "Slides",
-      "Python in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic4.html#example",
-    "href": "slides/Topic4.html#example",
-    "title": "Short Course on R Tools",
-    "section": "🔍 Example:",
-    "text": "🔍 Example:\nConsider “script.py” file, includes following Python script:\ny = 2\ndef square(x):\n    return x **2\n\n✅ Works directly in R :\nsource_python(\"script.py\")\nsquare(4)\n[1] 16\nprint(y) \n2",
+    "text": "📥 Using source_python()\nVariables become directly available in the R global environment\n\n🔍 Example:\nConsider “script.py” file, includes following Python script:\ny = 2\ndef square(x):\n    return x **2\n\n\n✅ Works directly in R :\nlibrary(reticulate)\nsource_python(\"script.py\")\nsquare(4)\n\n\n[1] 16\n\n\nprint(y) \n\n\n2",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -1829,7 +1829,7 @@
     "href": "slides/Topic4.html#using-py_run_file",
     "title": "Short Course on R Tools",
     "section": "📥 Using py_run_file()",
-    "text": "📥 Using py_run_file()\nAlso runs the script, but…\n\n\n❌ Does not expose functions/variables directly in R\nVariables and functions are stored in py$\n\n\n\npy_run_file(\"script.py\")\npy$square(4)\n[1] 16\nprint(py$y)\n2",
+    "text": "📥 Using py_run_file()\nAlso runs the script, but…\n\n\n❌ Does not expose functions/variables directly in R\nVariables and functions are stored in py$\n\n\n\npy_run_file(\"script.py\")\npy$square(4)\n\n\n[1] 16\n\n\nprint(py$y)\n\n\n2",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -1840,7 +1840,7 @@
     "href": "slides/Topic4.html#using-py_run_string",
     "title": "Short Course on R Tools",
     "section": "🧩 Using py_run_string()",
-    "text": "🧩 Using py_run_string()\n\n\nExecutes the string in the shared Python session\nVariables created in Python are not added to R environment\nAccess Python variables in R using py$\n\n\n\npy_run_string(\"\ndef square(x):\n    return x ** 2\ny = 5\n\")\npy$y\n[1] 5\npy$square(4)\n[1] 16",
+    "text": "🧩 Using py_run_string()\n\n\nExecutes the string in the shared Python session\nVariables created in Python are not added to R environment\nAccess Python variables in R using py$\n\n\n\npy_run_string(\"\ndef square(x):\n    return x ** 2\ny = 5\n\")\npy$y\n\n\n[1] 5\n\n\npy$square(4)\n\n\n[1] 16",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -1862,7 +1862,7 @@
     "href": "slides/Topic4.html#accessing-r-objects-from-python",
     "title": "Short Course on R Tools",
     "section": "Accessing R Objects from Python",
-    "text": "Accessing R Objects from Python\n🔍 Example: Let two following objects have been defined in R global environment:\nx &lt;- c(10, 20, 30)\nf &lt;- function(x) x^2\n\nIn Python we can access to these objects trough r object:\nprint(r.x)      \n[10, 20, 30]\nprint(r.f(3))  \n9",
+    "text": "Accessing R Objects from Python\n🔍 Example: Let two following objects have been defined in R global environment:\nlibrary(reticulate)\nx &lt;- c(10, 20, 30)\nf &lt;- function(x) x^2\n\nIn Python we can access to these objects trough r object:\nprint(r.x)      \n[10, 20, 30]\nprint(r.f(3))  \n\n\n9",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -1873,7 +1873,7 @@
     "href": "slides/Topic4.html#exporting-r-objects-to-python",
     "title": "Short Course on R Tools",
     "section": "Exporting R Objects to Python",
-    "text": "Exporting R Objects to Python\nUse py$ assignment. In R:\nx &lt;- c(1, 2, 3)\npy$x &lt;- x        # Exports `x` to Python namespace\nf &lt;- function(n) n^2\npy$f &lt;- f        # Exports R function to Python\n\nNow usable from Python:\nprint(x) \n[1, 2, 3]\nprint(f(5))\n25",
+    "text": "Exporting R Objects to Python\nUse py$ assignment. In R:\nlibrary(reticulate)\nx &lt;- c(1, 2, 3)\npy$x &lt;- x        # Exports `x` to Python namespace\nf &lt;- function(n) n^2\npy$f &lt;- f        # Exports R function to Python\n\nNow usable from Python:\nprint(x) \n\n\n[1, 2, 3]\n\n\nprint(f(5))\n\n\n[1] 25",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -1884,7 +1884,7 @@
     "href": "slides/Topic4.html#exporting-r-closure-functions-to-python",
     "title": "Short Course on R Tools",
     "section": "Exporting R Closure Functions to Python",
-    "text": "Exporting R Closure Functions to Python\nA closure in R is simply a user-defined function created with the function() keyword. It’s the most common type of function in R.\n✅ A closure fnction Works directly. In R:\ntypeof(mean) # return \"closure\"\npy$m &lt;- mean\n\nIn Python:\nprint(m([1, 2, 3, 4, 5]))     # Returns 3",
+    "text": "Exporting R Closure Functions to Python\nA closure in R is simply a user-defined function created with the function() keyword. It’s the most common type of function in R.\n✅ A closure fnction Works directly. In R:\npy$m &lt;- mean\ntypeof(mean) \n\n[1] \"closure\"\n\n\nIn Python:\nprint(m([1, 2, 3, 4, 5]))     \n\n\n3",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -1895,7 +1895,7 @@
     "href": "slides/Topic4.html#exporting-r-builtin-functions-to-python",
     "title": "Short Course on R Tools",
     "section": "Exporting R Builtin Functions to Python",
-    "text": "Exporting R Builtin Functions to Python\nBuilt-in functions in R are functions implemented in C (compiled) and embedded directly into the R interpreter.\n⚠️ Builtin function needs wrapping. For example:\ntypeof(exp) # return \"builtin\"\npy$e &lt;- e\n\nIn Python:\nprint(e(1))     \n# ❌ TypeError: 'PyCapsule' object is not callable\n\n\n✅ Solution: Wrap the builtin in a closure\ne &lt;- function(x) exp(x)\npy$e &lt;- e\n\n\nIn Python:\nprint(e(1))  # ✅ Returns 2.718",
+    "text": "Exporting R Builtin Functions to Python\nBuilt-in functions in R are functions implemented in C (compiled) and embedded directly into the R interpreter.\n⚠️ Builtin function needs wrapping. For example:\ntypeof(exp) # return \"builtin\"\npy$e &lt;- e\n\nIn Python:\nprint(e(1))     \n\n\nTypeError: 'PyCapsule' object is not callable\n\n\n✅ Solution: Wrap the builtin in a closure\ne &lt;- function(x) exp(x)\npy$e &lt;- e\n\n\nIn Python:\nprint(e(1))  # ✅ Returns 2.718",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -1928,7 +1928,7 @@
     "href": "slides/Topic4.html#section-1",
     "title": "Short Course on R Tools",
     "section": "",
-    "text": "🖥️ R Code to Load and Use the Python Clas:\n# Load the class from Python file\nsource_python(\"simple_net.py\")\n\n# Create model instance\nmodel &lt;- SimpleNet(10)\n\n# Create input tensor (5 samples, 10 features)\nx &lt;- torch$randn(c(5L, 10L))\n\n# Forward pass\noutput &lt;- model$forward(x)\nprint(output)",
+    "text": "🖥️ R Code to Load and Use the Python Clas:\nlibrary(reticulate)\nsource_python(\"simple_net.py\")\n\n# Create model instance\nmodel &lt;- SimpleNet(10)\n\n# Create input tensor (5 samples, 10 features)\nx &lt;- torch$randn(c(5L, 10L))\n\n# Forward pass\noutput &lt;- model$forward(x)\nprint(output)",
     "crumbs": [
       "Slides",
       "Python in R"

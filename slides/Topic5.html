@@ -417,34 +417,18 @@ Mehdi Maadooliat and Hossein Haghbin
 </div>
 
 </section>
-<section id="outline" class="title-slide slide level1 center scrollable" data-transition="slide">
+<section id="outline" class="title-slide slide level1 center" data-transition="slide">
 <h1>Outline</h1>
 <div>
 <ul>
-<li class="fragment"><ol type="1">
 <li class="fragment">Why Build an R Package?</li>
-</ol></li>
-<li class="fragment"><ol start="2" type="1">
 <li class="fragment">System Setup</li>
-</ol></li>
-<li class="fragment"><ol start="3" type="1">
 <li class="fragment">Package Structure</li>
-</ol></li>
-<li class="fragment"><ol start="4" type="1">
 <li class="fragment">Package States in R</li>
-</ol></li>
-<li class="fragment"><ol start="5" type="1">
 <li class="fragment">Create a Package</li>
-</ol></li>
-<li class="fragment"><ol start="6" type="1">
 <li class="fragment">Functions &amp; Documentation</li>
-</ol></li>
-<li class="fragment"><ol start="7" type="1">
 <li class="fragment">Writing Functions and Documenting</li>
-</ol></li>
-<li class="fragment"><ol start="8" type="1">
 <li class="fragment">Build a Simple Package from Scratch</li>
-</ol></li>
 </ul>
 </div>
 </section>
@@ -529,18 +513,19 @@ Mehdi Maadooliat and Hossein Haghbin
 <span id="cb3-7" class="hljs-ln-code"><a></a>  ├── vignettes/          # Long-form documentation (Rmd)</span>
 <span id="cb3-8" class="hljs-ln-code"><a></a>  ├── data/               # Data sets (.rda files)</span>
 <span id="cb3-9" class="hljs-ln-code"><a></a>  └── inst/               # Installed files (e.g., app/, extdata/)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section>
-<section id="package-states-in-r" class="title-slide slide level1 center" data-transition="zoom">
-<h1>4. Package States in R</h1>
-<p>R packages go through <strong>five states</strong> during development and usage:</p>
+</section>
+<section id="package-states-in-r" class="slide level2" data-transition="zoom">
+<h2>🛠 Package States in R</h2>
+<p>R packages transition through five development states:</p>
+<div>
 <ul>
-<li>🗂️ <strong>Source</strong></li>
-<li>📦 <strong>Bundled</strong></li>
-<li>🧱 <strong>Binary</strong></li>
-<li>📚 <strong>Installed</strong></li>
-<li>🧠 <strong>In-Memory</strong></li>
+<li class="fragment">🗂️ <strong>Source</strong>: your raw package folder</li>
+<li class="fragment">📦 <strong>Bundled</strong>: compressed .tar.gz for sharing</li>
+<li class="fragment">🧱 <strong>Binary</strong>: platform-specific precompiled version</li>
+<li class="fragment">📚 <strong>Installed</strong>: available in your R library</li>
+<li class="fragment">🧠 <strong>In-Memory</strong>: actively loaded via library()</li>
 </ul>
+</div>
 <div class="fragment fade-up">
 <blockquote>
 <p>Understanding these states helps you manage installation, sharing, and usage workflows.</p>
@@ -1070,19 +1055,9 @@ Mehdi Maadooliat and Hossein Haghbin
 </ul>
 </section>
 
-<section id="qa" class="title-slide slide level1 center">
-<h1>Q&amp;A</h1>
-<ul>
-<li>Questions on package workflows?</li>
-<li>Real-world package examples?</li>
-</ul>
-</section>
-
 <section id="thank-you" class="title-slide slide level1 center">
-<h1>Thank You</h1>
-<ul>
-<li>Happy packaging with R!</li>
-</ul>
+<h1>🙏 Thank you!</h1>
+<p>Questions &amp; Discussion</p>
 
 <div class="quarto-auto-generated-content">
 <p><img src="logo.png" class="slide-logo"></p>
