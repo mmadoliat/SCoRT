@@ -10,13 +10,15 @@ format:
     transition: fade
     scrollable: true
 ---
+
 # Outlines
-1. CRAN Submission: Overview
-2. Requirements Before Submission
-3. Handling NOTEs and WARNINGs
-4. Simulate a CRAN Check
-5. Submit to CRAN
-6. Collaborate via GitHub
+
+1.  CRAN Submission: Overview
+2.  Requirements Before Submission
+3.  Handling NOTEs and WARNINGs
+4.  Simulate a CRAN Check
+5.  Submit to CRAN
+6.  Collaborate via GitHub
 
 # 1. CRAN Submission: Overview
 
@@ -50,7 +52,7 @@ Run:
 devtools::check()
 ```
 
-# 3. Handling NOTEs and WARNINGs 
+# 3. Handling NOTEs and WARNINGs
 
 Some NOTEs are common (e.g., missing author ORCID), but…
 
@@ -68,7 +70,7 @@ To reduce NOTEs:
 -   Avoid using `cat()` or `print()` in package code unless essential
 :::
 
-#  4. Simulate a CRAN Check 🧪
+# 4. Simulate a CRAN Check 🧪
 
 Use `rhub` to simulate CRAN checks on different platforms:
 
@@ -133,30 +135,35 @@ To submit an update:
 
 # 🔁 Version Control Essentials
 
-- Track and restore changes in code over time
-- Collaborate without overwriting others' work
-- Revert to earlier working versions if bugs appear
+-   Track and restore changes in code over time
+-   Collaborate without overwriting others' work
+-   Revert to earlier working versions if bugs appear
 
 🛠 Tools Used:
 
-- `git` (local)
-- `GitHub` (remote)
-- `RStudio` (IDE)
+-   `git` (local)
+-   `GitHub` (remote)
+-   `RStudio` (IDE)
 
 📦 Example:
 
 > You change a function in `plot_utils.R`, commit it with message "Refactor histogram labels", and push to GitHub to share with team.
 
+# 📬 Example: Rfssa Package Github {transition="zoom"}
+
+![](images/package/Github_Rfssa.png){fig-align="left" fig-alt="Screenshot of Pagerank" width="95%"}
+
+
 ## 🐙 Git & GitHub Basics
 
-🔹 **Git**: Version control system for your local project  
+🔹 **Git**: Version control system for your local project\
 🔹 **GitHub**: Cloud platform to share and collaborate
 
 📝 Key Terms:
 
-- **Commit** = Savepoint
-- **Push/Pull** = Send/Receive changes
-- **Repo** = Project folder
+-   **Commit** = Savepoint
+-   **Push/Pull** = Send/Receive changes
+-   **Repo** = Project folder
 
 📦 Example:
 
@@ -168,10 +175,11 @@ To submit an update:
 
 Choose your operating system:
 
-- **Windows**: Download `.exe` and install with default options
-- **macOS**: Install via Homebrew `brew install git` or Git installer
-- **Linux**: Use package manager, e.g.:
-```bash
+-   **Windows**: Download `.exe` and install with default options
+-   **macOS**: Install via Homebrew `brew install git` or Git installer
+-   **Linux**: Use package manager, e.g.:
+
+``` bash
   sudo apt install git
 ```
 
@@ -179,77 +187,82 @@ Choose your operating system:
 
 🧪 Run this in your Terminal (or Command Prompt):
 
-```bash
+``` bash
 git --version
 ```
+
 ✅ You should see something like:
 
-```text
+``` text
 git version 2.43.0
 ```
+
 💡 If this works, Git is installed correctly!
 
 ## 🔑 Configuring Git Identity
 
 🔧 Set your global Git identity:
 
-```bash
+``` bash
 git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
-✅  To check the name or email currently set in Git,  use these commands:
 
-```bash
+✅ To check the name or email currently set in Git, use these commands:
+
+``` bash
 git config --global user.name 
 git config --global user.email 
 ```
 
 ## 🧭 Connect GitHub to R (Create PAT)
 
-1. In R:
+1.  In R:
 
-```r
+``` r
 usethis::create_github_token()
 ```
-2. GitHub will open — generate a Personal Access Token (PAT)
 
-3. Copy the token (only shown once!)
+2.  GitHub will open — generate a Personal Access Token (PAT)
 
-4. Back in R:
-```r
+3.  Copy the token (only shown once!)
+
+4.  Back in R:
+
+``` r
 gitcreds::gitcreds_set()
 ```
+
 Paste your token when prompted.
 
 ✅ You’ve now authenticated GitHub from R!
-
 
 ## 🧪 Check Setup
 
 Use this helpful diagnostic tool:
 
-```r
+``` r
 usethis::git_sitrep()
 ```
 
 💡 This tells you:
 
-- Whether Git is installed
+-   Whether Git is installed
 
-- Whether GitHub is connected
+-   Whether GitHub is connected
 
-- If PAT is stored
+-   If PAT is stored
 
 ## 📁 Creating a New Git-Enabled Project
 
 In RStudio:
 
-1. **File → New Project**
-2. Choose:
-   - “New Directory” → “R Package” (or “New Project”)
-3. Check the box:
-   - ✅ "Create a git repository"
-4. Finish project setup
+1.  **File → New Project**
+2.  Choose:
+    -   “New Directory” → “R Package” (or “New Project”)
+3.  Check the box:
+    -   ✅ "Create a git repository"
+4.  Finish project setup
 
 📁 A `.git` folder is created — this is a Git repo!
 
@@ -257,13 +270,14 @@ In RStudio:
 
 Run this to create and link a GitHub repo:
 
-```r
+``` r
 usethis::use_github()
 ```
+
 This will:
 
-- Push your project to GitHub
-- Open the new repo in your browser
+-   Push your project to GitHub
+-   Open the new repo in your browser
 
 > 💡 You can now push/pull changes from RStudio Git tab
 
@@ -271,19 +285,22 @@ This will:
 
 🎯 Daily workflow steps:
 
-1. Edit `R/stats_module.R`
-2. Stage → Commit → Push
+1.  Edit `R/stats_module.R`
+2.  Stage → Commit → Push
 
 💻 In RStudio Git tab:
 
-- Stage: click checkbox
-- Commit: type a message
-- Push: upload to GitHub
+-   Stage: click checkbox
+-   Commit: type a message
+-   Push: upload to GitHub
 
 🔁 Example:
 
 > Commit message: "Add confidence interval to mean_plot()"
 
+# 🎥 Demo: Rfssa Github Package
+
+{{< video images/package/Github.mp4 >}}
 
 # Resources & Further Reading
 
@@ -291,14 +308,6 @@ This will:
 -   **usethis**: <https://usethis.r-lib.org>
 -   **GitHub Docs**: workflows, Actions, projects
 
-??? note Encourage exploring book chapters and cheat sheets.
+# 🙏 Thank you!
 
-# Q&A
-
--   Questions on Git commands?
--   Collaboration challenges?
--   CI/CD integrations?
-
-# Thank You
-
-
+Questions & Discussion

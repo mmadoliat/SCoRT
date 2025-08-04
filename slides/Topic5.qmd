@@ -14,37 +14,14 @@ format:
 # Outline {transition="slide"}
 
 ::: incremental
--   
-
-    1.  Why Build an R Package?
-
--   
-
-    2.  System Setup
-
--   
-
-    3.  Package Structure
-
--   
-
-    4.  Package States in R
-
--   
-
-    5.  Create a Package
-
--   
-
-    6.  Functions & Documentation
-
--   
-
-    7.  Writing Functions and Documenting
-
--   
-
-    8.  Build a Simple Package from Scratch
+-   Why Build an R Package?
+-   System Setup
+-   Package Structure
+-   Package States in R
+-   Create a Package
+-   Functions & Documentation
+-   Writing Functions and Documenting
+-   Build a Simple Package from Scratch
 :::
 
 # 1. Why Build an R Package?
@@ -125,15 +102,17 @@ install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
   └── inst/               # Installed files (e.g., app/, extdata/)
 ```
 
-# 4. Package States in R {transition="zoom"}
+## 🛠 Package States in R {transition="zoom"}
 
-R packages go through **five states** during development and usage:
+R packages transition through five development states:
 
--   🗂️ **Source**
--   📦 **Bundled**
--   🧱 **Binary**
--   📚 **Installed**
--   🧠 **In-Memory**
+::: incremental
+-   🗂️ **Source**: your raw package folder
+-   📦 **Bundled**: compressed .tar.gz for sharing
+-   🧱 **Binary**: platform-specific precompiled version
+-   📚 **Installed**: available in your R library
+-   🧠 **In-Memory**: actively loaded via library()
+:::
 
 ::: {.fragment .fade-up}
 > Understanding these states helps you manage installation, sharing, and usage workflows.
@@ -666,11 +645,6 @@ summary_stats(mtcars)
 -   **usethis**: helper functions
 -   **CRAN Repository Policy**: CRAN manual
 
-# Q&A
+# 🙏 Thank you!
 
--   Questions on package workflows?
--   Real-world package examples?
-
-# Thank You
-
--   Happy packaging with R!
+Questions & Discussion

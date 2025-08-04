@@ -106,7 +106,6 @@ use_python("/usr/bin/python3")
     use_condaenv("r-reticulate", required = TRUE)
     ```
 
-
 # 4. Importing Python Modules into R
 
 **📦 Use `import()` to bring Python modules into R**
@@ -116,11 +115,13 @@ library(reticulate)
 np <- import("numpy")
 np$mean(c(1, 2, 3, 4))  
 ```
+
 . . .
 
-```text
+``` text
 [1] 2.5
 ```
+
 . . .
 
 **📦 Use `import_builtins()` to import Python built-in functions**
@@ -129,11 +130,13 @@ np$mean(c(1, 2, 3, 4))
 py_builtins <- import_builtins()
 py_builtins$len(c(1, 2, 3))   
 ```
+
 . . .
 
-```text
+``` text
 [1] 3
 ```
+
 # 5. Sourcing Python Scripts in R {transition="slide"}
 
 -   Use `source_python()` or `py_run_file()` to run `.py` scripts from R
@@ -141,18 +144,15 @@ py_builtins$len(c(1, 2, 3))
 
 ## 📥 Using `source_python()` {transition="convex"}
 
-Imports all Python functions and variables into R
+Variables become **directly available in the R global environment**
 
-::: incremental
--   Variables become **directly available in the R global environment**
--   Ideal for reusable Python functions
-:::
+. . .
 
-## 🔍 Example:
+**🔍 Example:**
 
 Consider "script.py" file, includes following Python script:
 
-```{.python}
+``` python
 y = 2
 def square(x):
     return x **2
@@ -161,14 +161,26 @@ def square(x):
 
 ✅ Works directly in R :
 
-```r
+``` r
+library(reticulate)
 source_python("script.py")
 square(4)
+```
+. . .
+
+``` text
 [1] 16
+```
+. . .
+
+```r
 print(y) 
+```
+. . .
+
+``` text
 2
 ```
-
 
 ## 📥 Using `py_run_file()` {transition="zoom"}
 
@@ -181,11 +193,26 @@ Also runs the script, but...
 
 . . .
 
-``` {.r code-line-numbers="1|2-3|4-5" height="200"}
+``` {.r code-line-numbers="1|2" height="200"}
 py_run_file("script.py")
 py$square(4)
+```
+
+. . .
+
+``` text
 [1] 16
+```
+
+. . .
+
+``` r
 print(py$y)
+```
+
+. . .
+
+``` text
 2
 ```
 
@@ -199,15 +226,30 @@ print(py$y)
 
 . . .
 
-``` {.r code-line-numbers="1-5|6-7|8-9" height="200"}
+``` {.r code-line-numbers="1-5|6" height="200"}
 py_run_string("
 def square(x):
     return x ** 2
 y = 5
 ")
 py$y
+```
+
+. . .
+
+``` text
 [1] 5
+```
+
+. . .
+
+``` r
 py$square(4)
+```
+
+. . .
+
+``` text
 [1] 16
 ```
 
@@ -238,6 +280,7 @@ py$square(4)
 **🔍 Example:**<br/> Let two following objects have been defined in R global environment:
 
 ``` r
+library(reticulate)
 x <- c(10, 20, 30)
 f <- function(x) x^2
 ```
@@ -250,6 +293,11 @@ In Python we can access to these objects trough `r` object:
 print(r.x)      
 [10, 20, 30]
 print(r.f(3))  
+```
+
+. . .
+
+``` text
 9
 ```
 
@@ -258,6 +306,7 @@ print(r.f(3))
 Use `py$` assignment. In R:
 
 ``` {.r code-line-numbers="1-3|5"}
+library(reticulate)
 x <- c(1, 2, 3)
 py$x <- x        # Exports `x` to Python namespace
 f <- function(n) n^2
@@ -270,9 +319,24 @@ Now usable from Python:
 
 ``` python
 print(x) 
+```
+
+. . .
+
+``` text
 [1, 2, 3]
+```
+
+. . .
+
+``` r
 print(f(5))
-25
+```
+
+. . .
+
+``` text
+[1] 25
 ```
 
 ## Exporting R Closure Functions to Python {transition="slide"}
@@ -282,8 +346,14 @@ A **closure** in R is simply a user-defined function created with the function()
 ✅ A **closure** fnction Works directly. In R:
 
 ``` r
-typeof(mean) # return "closure"
 py$m <- mean
+typeof(mean) 
+```
+
+. . .
+
+``` text
+[1] "closure"
 ```
 
 . . .
@@ -291,7 +361,13 @@ py$m <- mean
 In Python:
 
 ``` python
-print(m([1, 2, 3, 4, 5]))     # Returns 3
+print(m([1, 2, 3, 4, 5]))     
+```
+
+. . .
+
+``` text
+3
 ```
 
 ## Exporting R `Builtin` Functions to Python {transition="slide"}
@@ -311,7 +387,12 @@ In Python:
 
 ``` python
 print(e(1))     
-# ❌ TypeError: 'PyCapsule' object is not callable
+```
+
+. . .
+
+``` text
+TypeError: 'PyCapsule' object is not callable
 ```
 
 . . .
@@ -330,6 +411,7 @@ In Python:
 ``` python
 print(e(1))  # ✅ Returns 2.718
 ```
+
 ## 🎥 Demo: Python from R in RStudio
 
 {{< video images/python/reticulate.mp4 >}}
@@ -361,7 +443,7 @@ class SimpleNet(nn.Module):
 **🖥️ R Code to Load and Use the Python Clas:**
 
 ``` {.r code-line-numbers="2|5|8|11-12"}
-# Load the class from Python file
+library(reticulate)
 source_python("simple_net.py")
 
 # Create model instance
@@ -419,7 +501,6 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-
 # 10. Hands-on Exercises (30 min)
 
 1.  **Create environment** and import a Python library (e.g., seaborn)
@@ -427,21 +508,12 @@ shinyApp(ui, server)
 3.  **Convert** a pandas DataFrame to R and back
 4.  **Embed** Python chunk in a Quarto doc and render
 
-??? note Pair programming; share code snippets.
-
 # Resources & Further Reading
 
 -   reticulate docs: <https://rstudio.github.io/reticulate/>
 -   Tutorials: RStudio blog posts
 -   Community: RStudio Community forums
 
-??? note Encourage exploring advanced use cases.
+# 🙏 Thank you!
 
-# Q&A {transition="zoom"}
-
--   Questions on environment management?
--   Real-world integration scenarios?
-
-# Thank You
-
--   Happy Python + R coding!
+Questions & Discussion
