@@ -8,14 +8,14 @@ format:
 ## Course Information
 
 **Course Title:** Short Course on R Tools (SCoRT)\
-**Meeting Time:** Mon–Wed, Aug 11–13 & Aug 18–20, 5:00–7:15 pm IRT\
+**Meeting Time:** Mon–Wed, Aug 11–13 & Aug 18–20, 5:00–7:00 pm IRT\
 **Location:** [PGU BigBlueButton](https://meet.pgu.ac.ir/b/dat-ifq-ect-fjg)\
 **Website:** <https://bit.ly/SCoRT>
 
 ## Instructor Details
 
-- **Instructors:** Mehdi Maadooliat & Hossein Haghbin  
-- **Office Hours:** Right after class
+-   **Instructors:** Mehdi Maadooliat & Hossein Haghbin\
+-   **Office Hours:** Right after class
 
 ## Course Description
 
@@ -25,42 +25,29 @@ This short, intensive course equips participants with practical, modern **R** sk
 
 By the end of the course, participants will be able to:
 
-- Apply R’s OOP systems (S3/S4/R6) to structure code.
-- Build interactive Shiny web applications.
-- Improve performance by interfacing with C++ via **Rcpp**.
-- Integrate Python into R workflows using **reticulate**.
-- Develop, document, test, and share professional R packages.
-- Use Git/GitHub for version control, releases, and prepare for CRAN submission.
+-   Apply R’s OOP systems (S3/S4/R6) to structure code.
+-   Build interactive Shiny web applications.
+-   Improve performance by interfacing with C++ via **Rcpp**.
+-   Integrate Python into R workflows using **reticulate**.
+-   Develop, document, test, and share professional R packages.
+-   Use Git/GitHub for version control, releases, and prepare for CRAN submission.
 
 ## Prerequisites
 
-- Working knowledge of R and basic data analysis concepts.  
-- Some familiarity with the command line and version control is helpful (not required).
+-   Working knowledge of R and basic data analysis concepts.\
+-   Some familiarity with the command line and version control is helpful (not required).
 
 ## Materials
 
-- **Primary Resource:** Course website — <https://bit.ly/SCoRT>  
-- Supplemental tutorials, templates, and datasets will be provided in class.
-
-## Course Schedule (Tentative)
-
-| # | Date        | Topic |
-|---|-------------|-------|
-| 1 | Mon, Aug 11 | **Object-Oriented Programming (OOP) in R** — S3, S4, R6 classes |
-| 2 | Tue, Aug 12 | **Dynamic Shiny Web Applications** — UI/server, reactivity, modules |
-| 3 | Wed, Aug 13 | **Enhancing Performance with Rcpp (C++)** — calling C++ from R |
-|   | Fri, Aug 15 | **HW 1 due** at 11:50 pm IRT |
-| 4 | Mon, Aug 18 | **Integrate Python with reticulate** — virtual envs/conda, passing data |
-| 5 | Tue, Aug 19 | **Develop a Professional R Package** — structure, roxygen2, testing (testthat) |
-| 6 | Wed, Aug 20 | **GitHub Collaboration & CRAN Submission** — workflows, releases, checks |
-|   | Fri, Aug 22 | **HW 2 due** at 11:50 pm IRT |
+-   **Primary Resource:** Course website — <https://bit.ly/SCoRT>\
+-   Supplemental tutorials, templates, and datasets will be provided in class.
 
 ## Assignments & Assessment
 
-- **Homework (2):** Short, hands-on tasks reinforcing each block (due Aug 15 & Aug 22).  
-- **Optional Mini-Project:** Create a small R package or Shiny app integrating course concepts.
+-   **Homework (2):** Short, hands-on tasks reinforcing each block (due Aug 15 & Aug 22).\
+-   **Optional Mini-Project:** Create a small R package or Shiny app integrating course concepts.
 
-_No exams. Due to the short format, late submissions are not accepted except for documented emergencies._
+*No exams. Due to the short format, late submissions are not accepted except for documented emergencies.*
 
 ## Attendance
 
@@ -68,7 +55,7 @@ Active participation is expected; sessions build on each other.
 
 ## Academic Honesty
 
-Discuss concepts with peers but submit your own work.  
+Discuss concepts with peers but submit your own work.\
 Use of AI coding tools (e.g., ChatGPT, Copilot) is allowed **for code** if you cite usage; do not submit AI-generated narrative as your own. You are responsible for understanding any code you turn in.
 
 ## Important Note
