@@ -4,7 +4,7 @@
     "href": "course-syllabus.html",
     "title": "Syllabus – Short Course on R Tools (SCoRT)",
     "section": "",
-    "text": "Course Title: Short Course on R Tools (SCoRT)\nMeeting Time: Mon–Wed, Aug 11–13 & Aug 18–20, 5:00–7:15 pm IRT\nLocation: PGU BigBlueButton\nWebsite: https://bit.ly/SCoRT",
+    "text": "Course Title: Short Course on R Tools (SCoRT)\nMeeting Time: Mon–Wed, Aug 11–13 & Aug 18–20, 5:00–7:00 pm IRT\nLocation: PGU BigBlueButton\nWebsite: https://bit.ly/SCoRT",
     "crumbs": [
       "Course information",
       "Syllabus"
@@ -15,7 +15,7 @@
     "href": "course-syllabus.html#course-information",
     "title": "Syllabus – Short Course on R Tools (SCoRT)",
     "section": "",
-    "text": "Course Title: Short Course on R Tools (SCoRT)\nMeeting Time: Mon–Wed, Aug 11–13 & Aug 18–20, 5:00–7:15 pm IRT\nLocation: PGU BigBlueButton\nWebsite: https://bit.ly/SCoRT",
+    "text": "Course Title: Short Course on R Tools (SCoRT)\nMeeting Time: Mon–Wed, Aug 11–13 & Aug 18–20, 5:00–7:00 pm IRT\nLocation: PGU BigBlueButton\nWebsite: https://bit.ly/SCoRT",
     "crumbs": [
       "Course information",
       "Syllabus"
@@ -71,17 +71,6 @@
     "title": "Syllabus – Short Course on R Tools (SCoRT)",
     "section": "Materials",
     "text": "Materials\n\nPrimary Resource: Course website — https://bit.ly/SCoRT\n\nSupplemental tutorials, templates, and datasets will be provided in class.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "course-syllabus.html#course-schedule-tentative",
-    "href": "course-syllabus.html#course-schedule-tentative",
-    "title": "Syllabus – Short Course on R Tools (SCoRT)",
-    "section": "Course Schedule (Tentative)",
-    "text": "Course Schedule (Tentative)\n\n\n\n\n\n\n\n\n#\nDate\nTopic\n\n\n\n\n1\nMon, Aug 11\nObject-Oriented Programming (OOP) in R — S3, S4, R6 classes\n\n\n2\nTue, Aug 12\nDynamic Shiny Web Applications — UI/server, reactivity, modules\n\n\n3\nWed, Aug 13\nEnhancing Performance with Rcpp (C++) — calling C++ from R\n\n\n\nFri, Aug 15\nHW 1 due at 11:50 pm IRT\n\n\n4\nMon, Aug 18\nIntegrate Python with reticulate — virtual envs/conda, passing data\n\n\n5\nTue, Aug 19\nDevelop a Professional R Package — structure, roxygen2, testing (testthat)\n\n\n6\nWed, Aug 20\nGitHub Collaboration & CRAN Submission — workflows, releases, checks\n\n\n\nFri, Aug 22\nHW 2 due at 11:50 pm IRT",
     "crumbs": [
       "Course information",
       "Syllabus"
