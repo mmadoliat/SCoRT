@@ -1,134 +1,76 @@
 ---
-title: "Syllabus - Short Course on R Tools (SCoRT)"
-format: 
+title: "Syllabus – Short Course on R Tools (SCoRT)"
+format:
   html: default
   pdf: default
 ---
 
 ## Course Information
 
-**Course Title:** Short Course on R Tools\
-**Meeting Time:** TuTh 2:00pm - 3:15pm\
-**Location:** [Microsoft Teams](https://teams.microsoft.com/l/meetup-join/19%3awd6Q_CvflXuF_yLLWv5LC6iaIgbXcr62t2pVZE4Q1Jw1%40thread.tacv2/1736282508938?context=%7b%22Tid%22%3a%22abe32f68-c72d-420d-b5bd-750c63a268e4%22%2c%22Oid%22%3a%22b0161be8-acaa-4999-ba8b-8ed780d0b7bf%22%7d)\
+**Course Title:** Short Course on R Tools (SCoRT)\
+**Meeting Time:** Mon–Wed, Aug 11–13 & Aug 18–20, 5:00–7:15 pm IRT\
+**Location:** [PGU BigBlueButton](https://meet.pgu.ac.ir/b/dat-ifq-ect-fjg)\
 **Website:** <https://bit.ly/SCoRT>
 
-## Instructors Details
+## Instructor Details
 
--   **Name:** Mehdi Maadooliat, and Hossein Haghbin
--   **Office Hours:** Tu & Th 12:15 - 1:30pm or by e-mail
+- **Instructors:** Mehdi Maadooliat & Hossein Haghbin  
+- **Office Hours:** Right after class
 
 ## Course Description
 
-A modern course in probability. Foundations of probability for modeling random processes with computational techniques. Topics include counting techniques, probability of events, random variables, distribution functions, probability functions, probability density functions, expectation, moments, moment generating functions, special discrete and continuous distributions, sampling distributions, transformation of variables, prior and posterior distributions, Law of Large Numbers, Central Limit Theorem, the Bayesian paradigm. Numerical and computational methods will be covered throughout topics.
+This short, intensive course equips participants with practical, modern **R** skills to extend, optimize, and share their work. Over six sessions you’ll learn OOP in R, build Shiny apps, speed up code with Rcpp, call Python from R with `reticulate`, build professional R packages, and collaborate on GitHub—including an overview of the CRAN release process.
 
 ## Learning Outcomes
 
-By the end of the course, students will:
+By the end of the course, participants will be able to:
 
--   Understand and Apply Fundamental Probability Concepts
-
--   Analyze and Model Random Processes
-
--   Perform Variable Transformations
-
--   Implement Computational Techniques
-
--   Interpret Statistical Theorems
-
--   Critically Evaluate Probabilistic Models
-
--   Communicate Probabilistic Findings
+- Apply R’s OOP systems (S3/S4/R6) to structure code.
+- Build interactive Shiny web applications.
+- Improve performance by interfacing with C++ via **Rcpp**.
+- Integrate Python into R workflows using **reticulate**.
+- Develop, document, test, and share professional R packages.
+- Use Git/GitHub for version control, releases, and prepare for CRAN submission.
 
 ## Prerequisites
 
--   Three semesters of mathematics beyond calculus and MATH 4720 or equiv.
--   Preferable knowledge is MSSC 5700 and MSSC 5710.
+- Working knowledge of R and basic data analysis concepts.  
+- Some familiarity with the command line and version control is helpful (not required).
 
-## Textbooks
+## Materials
 
--   *Probability and Statistics with R*, 2nd edition by Maria Dolores Ugarte, Ana F. Militino, Alan T. Arnholt, 2016. ISBN: 9781466504394.
+- **Primary Resource:** Course website — <https://bit.ly/SCoRT>  
+- Supplemental tutorials, templates, and datasets will be provided in class.
 
-## Grading Breakdown
+## Course Schedule (Tentative)
 
--   **Homework:** 30%
--   **Project:** 10%
--   **Midterm Exam:** 30%
--   **Final Exam:** 30%
+| # | Date        | Topic |
+|---|-------------|-------|
+| 1 | Mon, Aug 11 | **Object-Oriented Programming (OOP) in R** — S3, S4, R6 classes |
+| 2 | Tue, Aug 12 | **Dynamic Shiny Web Applications** — UI/server, reactivity, modules |
+| 3 | Wed, Aug 13 | **Enhancing Performance with Rcpp (C++)** — calling C++ from R |
+|   | Fri, Aug 15 | **HW 1 due** at 11:50 pm IRT |
+| 4 | Mon, Aug 18 | **Integrate Python with reticulate** — virtual envs/conda, passing data |
+| 5 | Tue, Aug 19 | **Develop a Professional R Package** — structure, roxygen2, testing (testthat) |
+| 6 | Wed, Aug 20 | **GitHub Collaboration & CRAN Submission** — workflows, releases, checks |
+|   | Fri, Aug 22 | **HW 2 due** at 11:50 pm IRT |
 
-### Grading Scale
+## Assignments & Assessment
 
-| Grade | Range         |
-|-------|---------------|
-| A     | 93.5 - 100%   |
-| A-    | 90- 93.49%    |
-| B+    | 86.5 - 89.99% |
-| B     | 83.5 - 86.49% |
-| B-    | 80 - 83.49%   |
-| C+    | 76.5 - 79.99% |
-| C     | 73.5 - 76.49% |
-| C-    | 70 - 73.49%   |
-| D+    | 66.5 - 69.99% |
-| D     | 60 - 66.49%   |
-| F     | \< 59.99%     |
+- **Homework (2):** Short, hands-on tasks reinforcing each block (due Aug 15 & Aug 22).  
+- **Optional Mini-Project:** Create a small R package or Shiny app integrating course concepts.
 
-## Exams
-
-Tentatively, there will be a midterm (in class) on Oct. 23rd, plus the final (in class or take home): Dec. 8th from 10:30 - 12:30pm.
-
-## Homework
-
-Homework is required so that you get a better understanding of the material covered, plus it will help you to keep up. You will get a better understanding of the material if you discuss it with someone. However, you must submit **YOUR OWN** work to D2L website. Assignments are **mostly** due at 11:50pm (check for due dates in D2L).
-
-NO LATE HOMEWORK WILL BE ACCEPTED NOR WILL YOU BE ALLOWED TO MAKE UP MISSED HOMEWORK! Plan accordingly! It is better to submit something, even if it is incomplete. You need to type your homework (preferably using LaTeX, or Quarto) and submit it as a PDF file. Scanned homework will be graded out of 80. Low quality scanned homework will be considered as NO submission.
-
-## Make-up Policy
-
-There will not be any make-up exam or homework unless there is an emergency.
+_No exams. Due to the short format, late submissions are not accepted except for documented emergencies._
 
 ## Attendance
 
-Attendance is required and subject to the [College of Arts and Sciences policy](https://bulletin.marquette.edu/policies/attendance/undergraduate/).
+Active participation is expected; sessions build on each other.
 
 ## Academic Honesty
 
-Students are expected to follow the University's policy on academic honesty as outlined in the Bulletin.
-
-**TL;DR: Don't cheat!**
-
-Please abide by the following as you work on assignments in this course:
-
--   **Collaboration:** Only work that is clearly assigned as team work should be completed collaboratively.
-
-    -   The homework assignments must also be completed individually and you are welcomed to discuss the assignment with classmates at a high level (e.g., discuss what's the best way for approaching a problem, what functions are useful for accomplishing a particular task, etc.). However you may not directly share answers to questions (including any code) with anyone other than myself.
-
-    -   For the projects, collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.
-
-    -   On individual assignments you may not directly share code with another student in this class, and on team assignments you may not directly share code with another team in this class.
-
--   **Online resources:** I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course's policy is that you may make use of any online resources (e.g., StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism.
-
--   **Use of generative artificial intelligence (AI)**: You should treat generative AI, such as ChatGPT, the same as other online resources. There are two guiding principles that govern how you can use AI in this course:^[1](https://sta101-f23.github.io/course-syllabus.html#fn1)^ (1) *Cognitive dimension:* Working with AI should not reduce your ability to think clearly. We will practice using AI to facilitate---rather than hinder---learning. (2) *Ethical dimension***:** Students using AI should be transparent about their use and make sure it aligns with academic integrity.
-
-    -   **✅ AI tools for code:** You may make use of the technology for coding examples on assignments; if you do so, you must explicitly cite where you obtained the code. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. You may use [these guidelines](https://guides.lib.monash.edu/c.php?g=219786&p=6972087) for citing AI-generated content.
-
-    -   **❌ AI tools for narrative:** Unless instructed otherwise, you may not use generative AI to write narrative on assignments. In general, you may use generative AI as a resource as you complete assignments but not to answer the exercises for you.
-
-    You are ultimately responsible for the work you turn in; it should reflect *your* understanding of the course content.
-
-If you are unsure if the use of a particular resource complies with the academic honesty policy, please ask the instructor.
-
-## Important dates
-
--   **Monday, August 25:** Classes begin
--   **Tuesday, September 2:** Drop/add ends
--   **Thursday - Friday, October 16 - 17**: Fall Break
--   **Friday, November 14:** Last day to withdraw with W
--   **Thursday - Monday, November 26 - 30**: Thanksgiving Holiday
--   **Saturday, December 6**: Classes end
--   **Monday, December 8, 10:30 am - 12:30 pm**: Final Exam
-
-For more important dates, see the full [MU Academic Calendar](https://www.marquette.edu/central/registrar/2025-fall-academic-calendar.php).
+Discuss concepts with peers but submit your own work.  
+Use of AI coding tools (e.g., ChatGPT, Copilot) is allowed **for code** if you cite usage; do not submit AI-generated narrative as your own. You are responsible for understanding any code you turn in.
 
 ## Important Note
 
-The syllabus may be modified throughout the course. Any substantial modifications will result in a reissued syllabus.
+This syllabus may be updated; any changes will be announced in class and on the course website.

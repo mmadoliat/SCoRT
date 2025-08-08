@@ -8,9 +8,8 @@ You can find the course syllabus [here](/course-syllabus.html) and the course sc
 
 ## Class meetings
 
-| Meeting      | Location  | Time                           |
-|--------------|-----------|--------------------------------|
-| Lecture      | MS. Teams | Tue & Thur 11:00 am - 12:15 pm |
-| Office Hours | MS. Teams | Tue & Thur 12:15 - 1:30 pm     |
+| Meeting | Location/Address | Time |
+|--|--|---|
+| Online Lecture | [PGU BigBlueButton](https://meet.pgu.ac.ir/b/dat-ifq-ect-fjg) | Mon & Tue & Wed 5:00 pm - 7:00 pm IRT. |
 
 ![](images/twitter-card.png)

@@ -3,13 +3,13 @@ title: "Useful links"
 ---
 
 +----------------------------+--------------------------------------------------------------------------------------+
-| Motivating Talk            | 🔗 [Rfssa: An R Package for Functional SSA](http://www.mssc.mu.edu/~mehdi/Rfssa.pdf) |
+| Motivating Talk            | 🔗 [IrStat Webinar](slides/overview.html)                                            |
 |                            |                                                                                      |
 | Stat Calculator            | 🔗 [StatCalc(JAMM)](http://dna.mscsnet.mu.edu:3838/mlab/JAMM/)                       |
 |                            |                                                                                      |
 | Distribution Calculator    | 🔗 [DistCalc](http://dna.mscsnet.mu.edu:3838/mlab/DistCalc/)                         |
 |                            |                                                                                      |
-| RStudio                    | 🔗 on [dna](https://bit.ly/RS-dna)                                              |
+| RStudio                    | 🔗 on [dna](https://bit.ly/RS-dna)                                                   |
 +----------------------------+--------------------------------------------------------------------------------------+
 | Advanced Texbooks          | 🔗 [Advanced R by Hadley Wickham](https://adv-r.hadley.nz/)                          |
 |                            |                                                                                      |

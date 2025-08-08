@@ -69,11 +69,11 @@ website:
             text: RCpp
           - href: hands-on/HW1.qmd
             text: First Week HW
-          - href: hands-on/reticulate/
+          - href: 
             text: Python in R
-          - href: hands-on/packages/
+          - href: 
             text: R Package
-          - href: hands-on/git/
+          - href: 
             text: GitHub
       - section: "Miscellaneous"
         contents:
