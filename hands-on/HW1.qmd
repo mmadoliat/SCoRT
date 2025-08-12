@@ -1,44 +1,33 @@
----
-title: 'Workshop Homework: OOP, Shiny & Rcpp'
-format: 
-  html: default
-  pdf: default
----
-
 # Homework Assignment
 
-Please complete the following tasks within one week and submit as a GitHub repository named **knn\_workshop\_hw**.
+Please complete the following tasks within **one week** and submit your work as a **GitHub repository**.
 
 ---
 
-## 1. Extend the k‑NN S3 Class (30 pts)
+## 1. Extend the k-NN S3 Class (30 pts)
 
-* **Inverse‑Distance Weights**: Modify your `knn_s3` implementation to support a `weight = c("uniform", "inverse")` argument. When `inverse`, use weights proportional to 1/distance, normalized to sum to 1.
-* **Unit Tests**: Write **testthat** tests verifying both weighting schemes, and that uniform results match when distances are equal.
-* **Documentation**: Add roxygen comments for the new argument and regenerate help files with `devtools::document()`.
+- **Different Distances**: Update your `knn_s3` implementation to support a `dist = c("sse", "sad")` argument for L1 and L2 distances.
+- **Documentation**: Add **roxygen2** comments for the new argument and regenerate the help files using `devtools::document()`.
 
 ---
 
 ## 2. Shiny App Enhancement (30 pts)
 
-* **Dynamic Predictors**: In the k‑NN app, add a multi‑select input to choose predictor variables at runtime.
-* **Nearest‑Neighbor Table**: Display the indices and distances of the k nearest neighbors for the first test observation in a table.
-* **Download Button**: Enable downloading the test‑set predictions as a CSV file.
-* **Input Validation**: Disable or warn if no predictors are selected.
+- **Dynamic Predictors**: In the k-NN app, add a multi-select input that allows users to choose predictor variables at runtime.
+- **Download Button**: Implement functionality to download the test-set predictions as a CSV file.
 
 ---
 
 ## 3. Rcpp Performance Study (30 pts)
 
-* **Benchmark Script**: Create `benchmark_knn_dims.R` to measure runtimes for pure‑R vs Rcpp across combinations of sample size $n\in\{500,1000,2000\}$ and feature count $p\in\{3,5,10\}$. Plot a heatmap of speed‑up ratios.
-* **C++ Optimization**: Modify `knn_pred.cpp` to use `std::partial_sort` instead of `std::nth_element`, re‑benchmark, and report any differences.
-* **Summary Report**: Produce a one‑page PDF summarizing your benchmarks, code changes, and recommendations.
+- **Benchmark Script**: Create `benchmark_knn_dims.R` to compare runtimes for pure R vs Rcpp implementations across combinations of sample size $n \in \{500, 1000, 2000\}$ and feature count $p \in \{3, 5, 10\}$.
+- **Summary Report**: Produce a one-page PDF summarizing your benchmarks, key code changes, and performance recommendations.
 
 ---
 
 ## Deliverables
 
-Your GitHub repository **knn\_workshop\_hw** should include:
+Your GitHub repository should be organized as follows:
 
 ```
 knn_workshop_hw/
@@ -50,8 +39,10 @@ knn_workshop_hw/
 └── README.md    # overview and instructions
 ```
 
-Include a **README** with setup instructions and a sample run of each component.
+The **README** must include:
+- Setup instructions for all components
+- A sample run demonstrating each part of the assignment
 
 ---
 
-Good luck, and feel free to reach out with questions!
+**Good luck, and feel free to reach out with any questions!**
