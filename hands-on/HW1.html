@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>SCoRT – Workshop Homework: OOP, Shiny &amp; Rcpp</title>
+<title>SCoRT – hw1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,10 +100,10 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="SCoRT - Workshop Homework: OOP, Shiny &amp; Rcpp">
+<meta property="og:title" content="SCoRT">
 <meta property="og:description" content="Homepage for ‘Short Course on R Tools’, Summer 2025.">
 <meta property="og:site_name" content="SCoRT">
-<meta name="twitter:title" content="SCoRT - Workshop Homework: OOP, Shiny &amp; Rcpp">
+<meta name="twitter:title" content="SCoRT">
 <meta name="twitter:description" content="Homepage for ‘Short Course on R Tools’, Summer 2025.">
 <meta name="twitter:image" content="http://bit.ly/SCoRT/hands-on/images/twitter-card.png">
 <meta name="twitter:creator" content="@mmadoliat">
@@ -311,71 +311,51 @@ window.Quarto = {
   <ul>
   <li><a href="#homework-assignment" id="toc-homework-assignment" class="nav-link active" data-scroll-target="#homework-assignment">Homework Assignment</a>
   <ul class="collapse">
-  <li><a href="#extend-the-knn-s3-class-30-pts" id="toc-extend-the-knn-s3-class-30-pts" class="nav-link" data-scroll-target="#extend-the-knn-s3-class-30-pts">1. Extend the k‑NN S3 Class (30 pts)</a></li>
+  <li><a href="#extend-the-k-nn-s3-class-30-pts" id="toc-extend-the-k-nn-s3-class-30-pts" class="nav-link" data-scroll-target="#extend-the-k-nn-s3-class-30-pts">1. Extend the k-NN S3 Class (30 pts)</a></li>
   <li><a href="#shiny-app-enhancement-30-pts" id="toc-shiny-app-enhancement-30-pts" class="nav-link" data-scroll-target="#shiny-app-enhancement-30-pts">2. Shiny App Enhancement (30 pts)</a></li>
   <li><a href="#rcpp-performance-study-30-pts" id="toc-rcpp-performance-study-30-pts" class="nav-link" data-scroll-target="#rcpp-performance-study-30-pts">3. Rcpp Performance Study (30 pts)</a></li>
   <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="http://github.com/mmadoliat/SCoRT/edit/main/hands-on/HW1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="http://github.com/mmadoliat/SCoRT/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="HW1.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="http://github.com/mmadoliat/SCoRT/edit/main/hands-on/HW1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="http://github.com/mmadoliat/SCoRT/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../hands-on/HO1.html">Hands-on / HW</a></li><li class="breadcrumb-item"><a href="../hands-on/HW1.html">First Week HW</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Workshop Homework: OOP, Shiny &amp; Rcpp</h1>
-</div>
 
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <section id="homework-assignment" class="level1">
 <h1>Homework Assignment</h1>
-<p>Please complete the following tasks within one week and submit as a GitHub repository named <strong>knn_workshop_hw</strong>.</p>
+<p>Please complete the following tasks within <strong>one week</strong> and submit your work as a <strong>GitHub repository</strong>.</p>
 <hr>
-<section id="extend-the-knn-s3-class-30-pts" class="level2">
-<h2 class="anchored" data-anchor-id="extend-the-knn-s3-class-30-pts">1. Extend the k‑NN S3 Class (30 pts)</h2>
+<section id="extend-the-k-nn-s3-class-30-pts" class="level2">
+<h2 class="anchored" data-anchor-id="extend-the-k-nn-s3-class-30-pts">1. Extend the k-NN S3 Class (30 pts)</h2>
 <ul>
-<li><strong>Inverse‑Distance Weights</strong>: Modify your <code>knn_s3</code> implementation to support a <code>weight = c("uniform", "inverse")</code> argument. When <code>inverse</code>, use weights proportional to 1/distance, normalized to sum to 1.</li>
-<li><strong>Unit Tests</strong>: Write <strong>testthat</strong> tests verifying both weighting schemes, and that uniform results match when distances are equal.</li>
-<li><strong>Documentation</strong>: Add roxygen comments for the new argument and regenerate help files with <code>devtools::document()</code>.</li>
+<li><strong>Different Distances</strong>: Update your <code>knn_s3</code> implementation to support a <code>dist = c("sse", "sad")</code> argument for L1 and L2 distances.</li>
+<li><strong>Documentation</strong>: Add <strong>roxygen2</strong> comments for the new argument and regenerate the help files using <code>devtools::document()</code>.</li>
 </ul>
 <hr>
 </section>
 <section id="shiny-app-enhancement-30-pts" class="level2">
 <h2 class="anchored" data-anchor-id="shiny-app-enhancement-30-pts">2. Shiny App Enhancement (30 pts)</h2>
 <ul>
-<li><strong>Dynamic Predictors</strong>: In the k‑NN app, add a multi‑select input to choose predictor variables at runtime.</li>
-<li><strong>Nearest‑Neighbor Table</strong>: Display the indices and distances of the k nearest neighbors for the first test observation in a table.</li>
-<li><strong>Download Button</strong>: Enable downloading the test‑set predictions as a CSV file.</li>
-<li><strong>Input Validation</strong>: Disable or warn if no predictors are selected.</li>
+<li><strong>Dynamic Predictors</strong>: In the k-NN app, add a multi-select input that allows users to choose predictor variables at runtime.</li>
+<li><strong>Download Button</strong>: Implement functionality to download the test-set predictions as a CSV file.</li>
 </ul>
 <hr>
 </section>
 <section id="rcpp-performance-study-30-pts" class="level2">
 <h2 class="anchored" data-anchor-id="rcpp-performance-study-30-pts">3. Rcpp Performance Study (30 pts)</h2>
 <ul>
-<li><strong>Benchmark Script</strong>: Create <code>benchmark_knn_dims.R</code> to measure runtimes for pure‑R vs Rcpp across combinations of sample size <span class="math inline">\(n\in\{500,1000,2000\}\)</span> and feature count <span class="math inline">\(p\in\{3,5,10\}\)</span>. Plot a heatmap of speed‑up ratios.</li>
-<li><strong>C++ Optimization</strong>: Modify <code>knn_pred.cpp</code> to use <code>std::partial_sort</code> instead of <code>std::nth_element</code>, re‑benchmark, and report any differences.</li>
-<li><strong>Summary Report</strong>: Produce a one‑page PDF summarizing your benchmarks, code changes, and recommendations.</li>
+<li><strong>Benchmark Script</strong>: Create <code>benchmark_knn_dims.R</code> to compare runtimes for pure R vs Rcpp implementations across combinations of sample size <span class="math inline">\(n \in \{500, 1000, 2000\}\)</span> and feature count <span class="math inline">\(p \in \{3, 5, 10\}\)</span>.</li>
+<li><strong>Summary Report</strong>: Produce a one-page PDF summarizing your benchmarks, key code changes, and performance recommendations.</li>
 </ul>
 <hr>
 </section>
 <section id="deliverables" class="level2">
 <h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
-<p>Your GitHub repository <strong>knn_workshop_hw</strong> should include:</p>
+<p>Your GitHub repository should be organized as follows:</p>
 <pre><code>knn_workshop_hw/
 ├── R/           # R scripts and tests
 ├── app/         # Shiny app files
@@ -383,9 +363,9 @@ window.Quarto = {
 ├── benchmark_knn_dims.R
 ├── report.pdf   # summary of benchmarks and findings
 └── README.md    # overview and instructions</code></pre>
-<p>Include a <strong>README</strong> with setup instructions and a sample run of each component.</p>
+<p>The <strong>README</strong> must include: - Setup instructions for all components - A sample run demonstrating each part of the assignment</p>
 <hr>
-<p>Good luck, and feel free to reach out with questions!</p>
+<p><strong>Good luck, and feel free to reach out with any questions!</strong></p>
 
 
 </section>
