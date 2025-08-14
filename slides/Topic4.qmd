@@ -77,6 +77,17 @@ install.packages("reticulate")
 ``` r
 library(reticulate)
 py_available() # Check python availability
+```
+
+. . .
+
+``` text
+[1] FALSE
+```
+
+. . .
+
+``` r
 py_config() #Inspect current setup
 ```
 
@@ -85,26 +96,8 @@ py_config() #Inspect current setup
 **🔗 Bind to a specific Python version**
 
 ``` r
-use_python("/usr/bin/python3")
-# use_python(""C://Users//your_username/AppData/Local/Programs/Python/Python312"")
+# use_python("C://Users//your_username/AppData/Local/Programs/Python/Python312")
 ```
-
-## Managing Python Environments
-
--   **Virtualenv**:
-
-    ``` r
-    virtualenv_create("r-reticulate")
-    virtualenv_install("r-reticulate", "numpy", "pandas")
-    use_virtualenv("r-reticulate", required = TRUE)
-    ```
-
--   **Conda**:
-
-    ``` r
-    conda_create("r-reticulate", packages = c("numpy", "pandas"))
-    use_condaenv("r-reticulate", required = TRUE)
-    ```
 
 # 4. Importing Python Modules into R
 
@@ -112,7 +105,6 @@ use_python("/usr/bin/python3")
 
 ``` {.r code-line-numbers="1|2|3" height="200"}
 library(reticulate)
-np <- import("numpy")
 np$mean(c(1, 2, 3, 4))  
 ```
 
@@ -157,6 +149,7 @@ y = 2
 def square(x):
     return x **2
 ```
+
 . . .
 
 ✅ Works directly in R :
@@ -166,16 +159,19 @@ library(reticulate)
 source_python("script.py")
 square(4)
 ```
+
 . . .
 
 ``` text
 [1] 16
 ```
+
 . . .
 
-```r
+``` r
 print(y) 
 ```
+
 . . .
 
 ``` text
@@ -440,22 +436,195 @@ class SimpleNet(nn.Module):
 
 ## 
 
-**🖥️ R Code to Load and Use the Python Clas:**
+**🖥️ R Code to Load and Use the Python Class:**
 
-``` {.r code-line-numbers="2|5|8|11-12"}
+``` {.r code-line-numbers="1-2|4-5|7-9|11-13"}
 library(reticulate)
 source_python("simple_net.py")
 
 # Create model instance
-model <- SimpleNet(10)
+model <- SimpleNet(5L)
 
-# Create input tensor (5 samples, 10 features)
-x <- torch$randn(c(5L, 10L))
+# Create input tensor (2 samples, 5 features)
+torch$manual_seed(42L)
+x <- torch$randn(c(2L, 5L))
 
 # Forward pass
-output <- model$forward(x)
+output <- model(x)
 print(output)
 ```
+
+. . .
+
+``` text
+tensor([[-0.0285],
+        [-0.4532]], grad_fn=<AddmmBackward0>)
+```
+
+# 💡 Deep Learning Example
+
+**Goal**:\
+Use a **pretrained Python CNN** (PyTorch) in **R** to predict digits from MNIST test images.
+
+. . .
+
+**Workflow**:\
+
+1. Train CNN in Python → Save model weights. 
+
+2. Load model & preprocess in R using `reticulate`. 
+
+3. Predict & visualize results in R.
+
+## 📂 Project Structure
+
+```text
+project/
+├── model.py # Python torch model  
+├── train.py # Python training code 
+├── cnn_model.pth # Saved PyTorch weights 
+└── test_images/ # A few PNGs from MNIST test set
+```
+
+## 🐍 Python: model.py
+
+```{python}
+import torch.nn as nn
+import torch.nn.functional as F
+
+class SimpleCNN(nn.Module):
+    def __init__(self):
+        super(SimpleCNN, self).__init__()
+        self.conv1_layer = nn.Conv2d(1, 16, kernel_size=3, padding=1)
+        self.conv2_layer = nn.Conv2d(16, 32, kernel_size=3, padding=1)
+        self.fc1_layer = nn.Linear(32 * 7 * 7, 128)
+        self.fc2_layer = nn.Linear(128, 10)
+
+    def forward(self, inputs):
+        x = F.relu(self.conv1_layer(inputs))
+        x = F.max_pool2d(x, kernel_size=2, stride=2)
+        x = F.relu(self.conv2_layer(x))
+        x = F.max_pool2d(x, kernel_size=2, stride=2)
+        x = x.view(-1, 32 * 7 * 7)
+        x = F.relu(self.fc1_layer(x))
+        x = self.fc2_layer(x)
+        return x
+```
+
+## MINIST Dataset
+![](images/python/minist.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
+
+## 🐍 Python: Training & Saving
+
+``` python
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision
+import torchvision.transforms as transforms
+from torch.utils.data import DataLoader
+from model import SimpleCNN
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"Using device: {device}")
+
+data_transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,), (0.5,))
+])
+
+train_dataset = torchvision.datasets.MNIST(root='./data', train=True, transform=data_transform, download=False)
+test_dataset = torchvision.datasets.MNIST(root='./data', train=False, transform=data_transform, download=False)
+
+train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
+
+cnn_model = SimpleCNN().to(device)
+loss_func = nn.CrossEntropyLoss()
+optimizer = optim.Adam(cnn_model.parameters(), lr=0.001)
+
+for epoch in range(5):
+    cnn_model.train()
+    running_loss = 0.0
+    for inputs, labels in train_loader:
+        inputs, labels = inputs.to(device), labels.to(device)
+        optimizer.zero_grad()
+        outputs = cnn_model(inputs)
+        loss = loss_func(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        running_loss += loss.item()
+    print(f"Epoch {epoch+1}, Loss: {running_loss / len(train_loader):.4f}")
+
+cnn_model.eval()
+correct_predictions = 0
+total_samples = 0
+with torch.no_grad():
+    for inputs, labels in test_loader:
+        inputs, labels = inputs.to(device), labels.to(device)
+        outputs = cnn_model(inputs)
+        _, predicted_labels = torch.max(outputs, 1)
+        total_samples += labels.size(0)
+        correct_predictions += (predicted_labels == labels).sum().item()
+
+accuracy = 100 * correct_predictions / total_samples
+print(f"Accuracy of test set: {accuracy:.2f}%")
+
+torch.save(cnn_model.state_dict(), 'cnn_model.pth')
+```
+
+## 🔗 R: Load the Python Model
+
+``` r
+library(reticulate)
+
+torch <- import("torch")
+Image <- import("PIL.Image", convert = FALSE)
+plt <- import("matplotlib.pyplot")
+transforms <- import("torchvision.transforms", convert = TRUE)
+source_python("model.py") # Loads SimpleCNN
+os <- import("os")
+
+device <- torch$device("cpu")
+model <- SimpleCNN()$to(device)
+model$load_state_dict(torch$load("cnn_model.pth", map_location = device))
+model$eval()
+```
+
+## 🖼 Preprocess & Predict in R
+
+``` r
+transform <- transforms$Compose(list(
+  transforms$Grayscale(),
+  transforms$Resize(tuple(28L, 28L)),
+  transforms$ToTensor(),
+  transforms$Normalize(tuple(0.5), tuple(0.5))
+))
+
+image_dir <- "test_images"
+image_files <- sort(Filter(function(f) endsWith(f, ".png"), os$listdir(image_dir)))
+
+plt$figure(figsize = tuple(10, 3))
+
+with(torch$no_grad(), {
+  for (idx in seq_along(image_files)) {
+    image <- Image$open(file.path(image_dir, image_files[[idx]]))
+    input_tensor <- transform(image)$unsqueeze(0L)$to(device)
+    output <- model(input_tensor)
+    predicted_label <- torch$argmax(output, dim = 1L)$item()
+    
+    plt$subplot(1L, length(image_files), idx)
+    plt$imshow(image$convert("L"), cmap = "gray")
+    plt$title(sprintf("Predicted: %s", predicted_label))
+    plt$axis("off")
+  }
+})
+plt$tight_layout()
+plt$show()
+```
+
+## Prediction plot
+![](images/python/pred_minist.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
 
 # 8. reticulate in R Markdown & Quarto
 
