@@ -1,0 +1,64 @@
+# Homework Assignment 2
+
+Please complete the following tasks within **one week** and submit your work as a **GitHub repository**.\
+Include your **GitHub repository link** in your submission so the instructor can review your code, package, and collaboration history.
+
+------------------------------------------------------------------------
+
+## 1. Python Integration with R using Reticulate (30 pts)
+
+-   **Python Script**: Create a Python script `model.py` that defines at least one function (e.g., `square_numbers(x)`) and a small PyTorch or NumPy model.
+-   **Reticulate in R**: From R, use `reticulate` to:
+    -   Import and call your Python function(s)
+    -   Pass data from R to Python and back
+    -   Generate a plot in Python (e.g., matplotlib) but called from R, and save it under `images/`
+-   **Documentation**: Use **roxygen2** comments in your R script to document the functions that interact with Python, and regenerate help files.
+
+------------------------------------------------------------------------
+
+## 2. Develop Your Own Professional R Package (40 pts)
+
+-   **Package Setup**: Create a new R package (e.g., `myutils`) in RStudio.
+-   **Functionality**: Add at least two R functions of your choice.
+-   **Dataset**: Include at least one dataset in your package and document it.
+-   **Documentation**: Document all functions and datasets with **roxygen2**.
+-   **Testing**: Write at least two unit tests for each function using `testthat`.
+-   **Build**: Install and load your package locally to verify functionality.
+
+------------------------------------------------------------------------
+
+## 3. Collaborate via GitHub (20 pts)
+
+-   **Repository Setup**: Push your package and Python–R integration work to a GitHub repository.
+-   **Collaboration**:
+    -   Invite a classmate as a collaborator
+    -   They must create a new branch, add or improve a function, commit, and push
+    -   They must create a Pull Request (PR) for you to review
+    -   Merge the PR into your main branch
+-   **Evidence**: Include screenshots of:
+    -   The PR discussion
+    -   The commit history showing contributions
+    -   The merge confirmation
+
+------------------------------------------------------------------------
+
+## Deliverables
+
+Your GitHub repository should be organized as follows:
+
+``` text
+hw2_reticulate_package/
+├── R/ # R functions and roxygen2 docs
+├── data/ # datasets for your package
+├── tests/ # testthat tests
+├── python/ # Python scripts (model.py, etc.)
+├── images/ # generated plots
+├── README.md # overview and instructions
+└── DESCRIPTION # package metadata
+```
+
+The **README** must include: - Setup instructions for R and Python dependencies - Instructions to reproduce all results and plots - Your collaborator’s name and their contribution - The GitHub repository link
+
+------------------------------------------------------------------------
+
+**Good luck, and remember to commit and push often!**

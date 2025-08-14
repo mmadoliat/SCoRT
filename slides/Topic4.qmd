@@ -476,7 +476,7 @@ Use a **pretrained Python CNN** (PyTorch) in **R** to predict digits from MNIST 
 
 3.  Predict & visualize results in R.
 
-## 📂 Project Structure{transition="slide"}
+## 📂 Project Structure {transition="slide"}
 
 ``` text
 project/
@@ -488,7 +488,7 @@ project/
 
 ## 🐍 Python: model.py
 
-```{.python code-line-numbers="1-2|4-10|4,12-20"}
+``` {.python code-line-numbers="1-2|4-10|4,12-20"}
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -511,13 +511,13 @@ class SimpleCNN(nn.Module):
         return x
 ```
 
-## MINIST Dataset{transition="zoom"}
+## MINIST Dataset {transition="zoom"}
 
 ![](images/python/minist.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
 
 ## 🐍 Python: Training & Saving
 
-```{.python code-line-numbers="1-7|9|11-14|16-17|19-20|22-24|26-28,37|29-36|39-48|50-52"}
+``` {.python code-line-numbers="1-7|9|11-14|16-17|19-20|22-24|26-28,37|29-36|39-48|50-52"}
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -590,9 +590,9 @@ model$load_state_dict(torch$load("cnn_model.pth", map_location = device))
 model$eval()
 ```
 
-## 🖼 Preprocess & Predict in R{transition="slide"}
+## 🖼 Preprocess & Predict in R {transition="slide"}
 
-```{.r code-line-numbers="1-7|8-9|11-23|24-25"}
+``` {.r code-line-numbers="1-7|8-9|11-23|24-25"}
 transform <- transforms$Compose(list(
   transforms$Grayscale(),
   transforms$Resize(tuple(28L, 28L)),
@@ -668,8 +668,7 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-
-# Resources & Further Reading{transition="zoom"}
+# Resources & Further Reading {transition="zoom"}
 
 -   reticulate docs: <https://rstudio.github.io/reticulate/>
 -   Tutorials: RStudio blog posts
