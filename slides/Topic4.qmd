@@ -25,7 +25,7 @@ format:
 -   reticulate in R Markdown & Quarto
 :::
 
-# 1. Why integrate Python into R? {.scrollable}
+# Why integrate Python into R? {.scrollable}
 
 ::: incremental
 -   **Access powerful Python libraries:** R has excellent packages, but some cutting-edge tools exist only in Python:
@@ -50,7 +50,7 @@ format:
     -   Use the right tool for each task in one unified workflow
 :::
 
-# 2. What is `reticulate`?
+# What is `reticulate`?
 
 ::: incremental
 -   R package for interoperability with Python
@@ -62,7 +62,7 @@ format:
 -   Supports inline Python code in R Markdown and R scripts
 :::
 
-# 3. Installation & Setup
+# Installation & Setup
 
 🧩 **Install the `reticulate` package in R**
 
@@ -99,7 +99,7 @@ py_config() #Inspect current setup
 # use_python("C://Users//your_username/AppData/Local/Programs/Python/Python312")
 ```
 
-# 4. Importing Python Modules into R
+# Importing Python Modules into R
 
 **📦 Use `import()` to bring Python modules into R**
 
@@ -249,7 +249,7 @@ py$square(4)
 [1] 16
 ```
 
-# 6. Data Conversion & Accessing R Objects in Python {transition="zoom"}
+# Data Conversion & Accessing R Objects in Python {transition="zoom"}
 
 ## 🔁 Automatic Data Conversion {transition="slide"}
 
@@ -412,7 +412,7 @@ print(e(1))  # ✅ Returns 2.718
 
 {{< video images/python/reticulate.mp4 >}}
 
-# 7. Working with Python Classes in R
+# Working with Python Classes in R
 
 ## 🧩 Create a Python class and use it in R
 
@@ -461,7 +461,7 @@ tensor([[-0.0285],
         [-0.4532]], grad_fn=<AddmmBackward0>)
 ```
 
-# 💡 Deep Learning Example
+# 💡 Example (Deep Learning)
 
 **Goal**:\
 Use a **pretrained Python CNN** (PyTorch) in **R** to predict digits from MNIST test images.
@@ -470,15 +470,15 @@ Use a **pretrained Python CNN** (PyTorch) in **R** to predict digits from MNIST 
 
 **Workflow**:\
 
-1. Train CNN in Python → Save model weights. 
+1.  Train CNN in Python → Save model weights.
 
-2. Load model & preprocess in R using `reticulate`. 
+2.  Load model & preprocess in R using `reticulate`.
 
-3. Predict & visualize results in R.
+3.  Predict & visualize results in R.
 
-## 📂 Project Structure
+## 📂 Project Structure{transition="slide"}
 
-```text
+``` text
 project/
 ├── model.py # Python torch model  
 ├── train.py # Python training code 
@@ -488,7 +488,7 @@ project/
 
 ## 🐍 Python: model.py
 
-```{python}
+```{.python code-line-numbers="1-2|4-10|4,12-20"}
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -511,12 +511,13 @@ class SimpleCNN(nn.Module):
         return x
 ```
 
-## MINIST Dataset
+## MINIST Dataset{transition="zoom"}
+
 ![](images/python/minist.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
 
 ## 🐍 Python: Training & Saving
 
-``` python
+```{.python code-line-numbers="1-7|9|11-14|16-17|19-20|22-24|26-28,37|29-36|39-48|50-52"}
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -526,7 +527,6 @@ from torch.utils.data import DataLoader
 from model import SimpleCNN
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"Using device: {device}")
 
 data_transform = transforms.Compose([
     transforms.ToTensor(),
@@ -569,21 +569,20 @@ with torch.no_grad():
 
 accuracy = 100 * correct_predictions / total_samples
 print(f"Accuracy of test set: {accuracy:.2f}%")
-
 torch.save(cnn_model.state_dict(), 'cnn_model.pth')
 ```
 
 ## 🔗 R: Load the Python Model
 
-``` r
+``` {.r code-line-numbers="1-7|8|10-13"}
 library(reticulate)
-
 torch <- import("torch")
 Image <- import("PIL.Image", convert = FALSE)
 plt <- import("matplotlib.pyplot")
 transforms <- import("torchvision.transforms", convert = TRUE)
-source_python("model.py") # Loads SimpleCNN
 os <- import("os")
+
+source_python("model.py") # Loads SimpleCNN
 
 device <- torch$device("cpu")
 model <- SimpleCNN()$to(device)
@@ -591,9 +590,9 @@ model$load_state_dict(torch$load("cnn_model.pth", map_location = device))
 model$eval()
 ```
 
-## 🖼 Preprocess & Predict in R
+## 🖼 Preprocess & Predict in R{transition="slide"}
 
-``` r
+```{.r code-line-numbers="1-7|8-9|11-23|24-25"}
 transform <- transforms$Compose(list(
   transforms$Grayscale(),
   transforms$Resize(tuple(28L, 28L)),
@@ -605,14 +604,12 @@ image_dir <- "test_images"
 image_files <- sort(Filter(function(f) endsWith(f, ".png"), os$listdir(image_dir)))
 
 plt$figure(figsize = tuple(10, 3))
-
 with(torch$no_grad(), {
   for (idx in seq_along(image_files)) {
     image <- Image$open(file.path(image_dir, image_files[[idx]]))
     input_tensor <- transform(image)$unsqueeze(0L)$to(device)
     output <- model(input_tensor)
     predicted_label <- torch$argmax(output, dim = 1L)$item()
-    
     plt$subplot(1L, length(image_files), idx)
     plt$imshow(image$convert("L"), cmap = "gray")
     plt$title(sprintf("Predicted: %s", predicted_label))
@@ -624,9 +621,10 @@ plt$show()
 ```
 
 ## Prediction plot
+
 ![](images/python/pred_minist.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
 
-# 8. reticulate in R Markdown & Quarto
+# reticulate in R Markdown & Quarto
 
 ```` markdown
 ```{.python}
@@ -649,7 +647,7 @@ execute:
   echo: true
 ```
 
-# 9. Shiny & Python Integration
+# Shiny & Python Integration
 
 🧬 Run Python code dynamically inside a Shiny app using `reticulate`
 
@@ -670,14 +668,8 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-# 10. Hands-on Exercises (30 min)
 
-1.  **Create environment** and import a Python library (e.g., seaborn)
-2.  **Write Python function** in `.py` and call it from R
-3.  **Convert** a pandas DataFrame to R and back
-4.  **Embed** Python chunk in a Quarto doc and render
-
-# Resources & Further Reading
+# Resources & Further Reading{transition="zoom"}
 
 -   reticulate docs: <https://rstudio.github.io/reticulate/>
 -   Tutorials: RStudio blog posts

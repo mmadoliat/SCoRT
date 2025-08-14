@@ -24,7 +24,7 @@ format:
 -   Build a Simple Package from Scratch
 :::
 
-# 1. Why Build an R Package?
+# Why Build an R Package?
 
 ::: incremental
 -   🧩 **Reusability**: Organize and reuse code across multiple projects\
@@ -35,7 +35,7 @@ format:
 -   🤝 **Open Source & Workflows**: Enable contributions, version control, and community engagement
 :::
 
-# 2. System Setup
+# System Setup
 
 Make sure you have:
 
@@ -72,7 +72,7 @@ install.packages(c("devtools", "roxygen2", "testthat", "knitr"))
 > 💡 These tools help automate, test, document, and share your package like a pro.
 :::
 
-# 3. Package Structure
+# Package Structure
 
 ## 🧩 Directory layout {auto-animate="true"}
 
@@ -180,7 +180,7 @@ An **in-memory** package is an installed package that’s been loaded into the R
 
 ![](images/package/install-load.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
 
-# 5. Create a Package
+# Create a Package
 
 Before creating your R package, you need to choose a **name**.
 
@@ -294,19 +294,15 @@ Package: Rfssa
 Title: Functional Singular Spectrum Analysis
 Version: 3.1.0
 Authors@R: c(
-  person("Hossein", "Haghbin", email = "haghbin@pgu.ac.ir", 
-         role = c("aut", "cre"), 
-         comment = c(ORCID = "0000-0001-8416-2354")),
-  person("Mehdi", "Maadooliat", email = "mehdi.maadooliat@mu.edu", 
-         role = "aut", 
-         comment = c(ORCID = "0000-0002-5408-2676"))
-)
-Description: Methods and tools for implementing functional 
-  singular spectrum analysis and related techniques.
+    person("Hossein", "Haghbin", email = "haghbin@pgu.ac.ir", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8416-2354")),
+    person("Mehdi", "Maadooliat", email = "mehdi.maadooliat@mu.edu", role = "aut", comment = c(ORCID = "0000-0002-5408-2676"))
+    )
+Maintainer: Hossein Haghbin <haghbin@pgu.ac.ir>
+Description: Methods and tools for implementing functional singular spectrum analysis and related techniques.
 License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.2.3
 Depends: R (>= 4.0.0)
 ```
 
@@ -321,15 +317,14 @@ Authors@R: c(
     person("Mehdi", "Maadooliat", email = "mehdi.maadooliat@mu.edu", role = "aut", comment = c(ORCID = "0000-0002-5408-2676"))
     )
 Maintainer: Hossein Haghbin <haghbin@pgu.ac.ir>
-URL: https://github.com/haghbinh/Rfssa
 Description: Methods and tools for implementing functional singular spectrum analysis and related techniques.
 License: GPL-3
 Encoding: UTF-8
-LazyLoad: true
-RoxygenNote: 7.2.3
-Imports: Rcpp,fda,lattice,plotly
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.2.3
+URL: https://github.com/haghbinh/Rfssa
+LazyLoad: true
+Imports: Rcpp,fda,lattice,plotly
 LinkingTo: Rcpp, RcppArmadillo, RcppEigen,
 Suggests: 
     knitr
@@ -427,24 +422,24 @@ importFrom(ggplot2, ggplot)
 
 -   `S3method()` — registers an S3 method
 
-## ✍️ How to Populate NAMESPACE
+## ✍️ How to Generate NAMESPACE 
 
-Use **roxygen2 tags** in your `.R` files:
+In `.R` files:
 
-``` r
-#' Convert object to funts class
-#'
+```r
 #' @export
-as.funts <- function(x) { ... }
+r_func <- function(x) { ... }
+```
+. . .
 
-#' @import shiny
-#' @importFrom ggplot2 ggplot
-my_app <- function() {
-  ...
-}
+In `.cpp` files:
+
+```cpp
+// [[Rcpp::export]]
+double myRcpp-func(int x, double y) { ... }
 ```
 
-# 6. Functions & Documentation
+# Functions & Documentation
 
 To add functionality to your package, you’ll write:
 
@@ -475,13 +470,19 @@ Each `.R` file can contain one or more functions.
 Use special comments starting with `#'` to write function documentation:
 
 ``` r
-#' Sum a numeric vector
+#' Sum of Square Function
 #'
+#' This function computes the Sum of Squares of a numeric vector
+#' 
 #' @param x Numeric vector
 #' @return Numeric sum of x
+#'
 #' @examples
-#' my_function(1:5)
-my_function <- function(x) sum(x)
+#' x <- 1:5
+#' y <- my_function(x)
+#' print(y)
+#'
+my_function <- function(x) sum(x^2)
 ```
 
 This will generate help files in the **man/** folder.
@@ -506,7 +507,7 @@ This will:
 💡 You can also press `Ctrl+Shift+D` in RStudio.
 :::
 
-# 8. Build a Simple Package from Scratch
+# Build a Simple Package from Scratch
 
 ## 🧱 Step 1: Create Your Package
 
@@ -533,22 +534,29 @@ Let’s include a built-in dataset (mtcars) for simplicity:
 ``` r
 usethis::use_data(mtcars, overwrite = TRUE)
 ```
+. . .
 
-This creates a **data/mtcars.rda** file — accessible via `minipkg::mtcars`.
+This creates a **data/mtcars.rda** file — accessible via
+
+```r
+minipkg::mtcars
+```
 
 ## 3️⃣ Create a Function
 
 Create a new file: **R/summary_stats.R**
 
-``` r
+```{.r code-line-numbers="1-11|12-18" height="200"}
 #' Compute Summary Statistics
 #'
 #' Returns mean and standard deviation for each numeric column.
 #'
 #' @param data A data frame with numeric columns
 #' @return A data frame with `mean` and `sd` per column
+#'
 #' @examples
 #' summary_stats(mtcars)
+#'
 #' @export
 summary_stats <- function(data) {
   numeric_data <- data[sapply(data, is.numeric)]
