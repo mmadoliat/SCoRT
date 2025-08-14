@@ -1382,7 +1382,7 @@
     "href": "slides/Topic5.html#sample-description-file",
     "title": "Short Course on R Tools",
     "section": "🧾 Sample DESCRIPTION File",
-    "text": "🧾 Sample DESCRIPTION File\nPackage: Rfssa\nTitle: Functional Singular Spectrum Analysis\nVersion: 3.1.0\nAuthors@R: c(\n  person(\"Hossein\", \"Haghbin\", email = \"haghbin@pgu.ac.ir\", \n         role = c(\"aut\", \"cre\"), \n         comment = c(ORCID = \"0000-0001-8416-2354\")),\n  person(\"Mehdi\", \"Maadooliat\", email = \"mehdi.maadooliat@mu.edu\", \n         role = \"aut\", \n         comment = c(ORCID = \"0000-0002-5408-2676\"))\n)\nDescription: Methods and tools for implementing functional \n  singular spectrum analysis and related techniques.\nLicense: GPL-3\nEncoding: UTF-8\nRoxygen: list(markdown = TRUE)\nRoxygenNote: 7.3.2\nDepends: R (&gt;= 4.0.0)",
+    "text": "🧾 Sample DESCRIPTION File\nPackage: Rfssa\nTitle: Functional Singular Spectrum Analysis\nVersion: 3.1.0\nAuthors@R: c(\n    person(\"Hossein\", \"Haghbin\", email = \"haghbin@pgu.ac.ir\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0001-8416-2354\")),\n    person(\"Mehdi\", \"Maadooliat\", email = \"mehdi.maadooliat@mu.edu\", role = \"aut\", comment = c(ORCID = \"0000-0002-5408-2676\"))\n    )\nMaintainer: Hossein Haghbin &lt;haghbin@pgu.ac.ir&gt;\nDescription: Methods and tools for implementing functional singular spectrum analysis and related techniques.\nLicense: GPL-3\nEncoding: UTF-8\nRoxygen: list(markdown = TRUE)\nRoxygenNote: 7.2.3\nDepends: R (&gt;= 4.0.0)",
     "crumbs": [
       "Slides",
       "R package"
@@ -1393,7 +1393,7 @@
     "href": "slides/Topic5.html#more-details-description",
     "title": "Short Course on R Tools",
     "section": "More Details DESCRIPTION",
-    "text": "More Details DESCRIPTION\nPackage: Rfssa\nTitle: Functional Singular Spectrum Analysis\nVersion: 3.1.0\nAuthors@R: c(\n    person(\"Hossein\", \"Haghbin\", email = \"haghbin@pgu.ac.ir\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0001-8416-2354\")),\n    person(\"Mehdi\", \"Maadooliat\", email = \"mehdi.maadooliat@mu.edu\", role = \"aut\", comment = c(ORCID = \"0000-0002-5408-2676\"))\n    )\nMaintainer: Hossein Haghbin &lt;haghbin@pgu.ac.ir&gt;\nURL: https://github.com/haghbinh/Rfssa\nDescription: Methods and tools for implementing functional singular spectrum analysis and related techniques.\nLicense: GPL-3\nEncoding: UTF-8\nLazyLoad: true\nRoxygenNote: 7.2.3\nImports: Rcpp,fda,lattice,plotly\nRoxygen: list(markdown = TRUE)\nRoxygenNote: 7.3.2\nLinkingTo: Rcpp, RcppArmadillo, RcppEigen,\nSuggests: \n    knitr\nDepends: R (&gt;= 4.0.0)",
+    "text": "More Details DESCRIPTION\nPackage: Rfssa\nTitle: Functional Singular Spectrum Analysis\nVersion: 3.1.0\nAuthors@R: c(\n    person(\"Hossein\", \"Haghbin\", email = \"haghbin@pgu.ac.ir\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0001-8416-2354\")),\n    person(\"Mehdi\", \"Maadooliat\", email = \"mehdi.maadooliat@mu.edu\", role = \"aut\", comment = c(ORCID = \"0000-0002-5408-2676\"))\n    )\nMaintainer: Hossein Haghbin &lt;haghbin@pgu.ac.ir&gt;\nDescription: Methods and tools for implementing functional singular spectrum analysis and related techniques.\nLicense: GPL-3\nEncoding: UTF-8\nRoxygen: list(markdown = TRUE)\nRoxygenNote: 7.2.3\nURL: https://github.com/haghbinh/Rfssa\nLazyLoad: true\nImports: Rcpp,fda,lattice,plotly\nLinkingTo: Rcpp, RcppArmadillo, RcppEigen,\nSuggests: \n    knitr\nDepends: R (&gt;= 4.0.0)",
     "crumbs": [
       "Slides",
       "R package"
@@ -1455,11 +1455,11 @@
     ]
   },
   {
-    "objectID": "slides/Topic5.html#how-to-populate-namespace",
-    "href": "slides/Topic5.html#how-to-populate-namespace",
+    "objectID": "slides/Topic5.html#how-to-generate-namespace",
+    "href": "slides/Topic5.html#how-to-generate-namespace",
     "title": "Short Course on R Tools",
-    "section": "✍️ How to Populate NAMESPACE",
-    "text": "✍️ How to Populate NAMESPACE\nUse roxygen2 tags in your .R files:\n#' Convert object to funts class\n#'\n#' @export\nas.funts &lt;- function(x) { ... }\n\n#' @import shiny\n#' @importFrom ggplot2 ggplot\nmy_app &lt;- function() {\n  ...\n}",
+    "section": "✍️ How to Generate NAMESPACE",
+    "text": "✍️ How to Generate NAMESPACE\nIn .R files:\n#' @export\nr_func &lt;- function(x) { ... }\n\nIn .cpp files:\n// [[Rcpp::export]]\ndouble myRcpp-func(int x, double y) { ... }",
     "crumbs": [
       "Slides",
       "R package"
@@ -1481,7 +1481,7 @@
     "href": "slides/Topic5.html#documenting-functions-with-roxygen2",
     "title": "Short Course on R Tools",
     "section": "📝 Documenting Functions with Roxygen2",
-    "text": "📝 Documenting Functions with Roxygen2\nUse special comments starting with #' to write function documentation:\n#' Sum a numeric vector\n#'\n#' @param x Numeric vector\n#' @return Numeric sum of x\n#' @examples\n#' my_function(1:5)\nmy_function &lt;- function(x) sum(x)\nThis will generate help files in the man/ folder.",
+    "text": "📝 Documenting Functions with Roxygen2\nUse special comments starting with #' to write function documentation:\n#' Sum of Square Function\n#'\n#' This function computes the Sum of Squares of a numeric vector\n#' \n#' @param x Numeric vector\n#' @return Numeric sum of x\n#'\n#' @examples\n#' x &lt;- 1:5\n#' y &lt;- my_function(x)\n#' print(y)\n#'\nmy_function &lt;- function(x) sum(x^2)\nThis will generate help files in the man/ folder.",
     "crumbs": [
       "Slides",
       "R package"
@@ -1514,7 +1514,7 @@
     "href": "slides/Topic5.html#add-a-dataset",
     "title": "Short Course on R Tools",
     "section": "2️⃣ Add a Dataset",
-    "text": "2️⃣ Add a Dataset\nLet’s include a built-in dataset (mtcars) for simplicity:\nusethis::use_data(mtcars, overwrite = TRUE)\nThis creates a data/mtcars.rda file — accessible via minipkg::mtcars.",
+    "text": "2️⃣ Add a Dataset\nLet’s include a built-in dataset (mtcars) for simplicity:\nusethis::use_data(mtcars, overwrite = TRUE)\n\nThis creates a data/mtcars.rda file — accessible via\nminipkg::mtcars",
     "crumbs": [
       "Slides",
       "R package"
@@ -1525,7 +1525,7 @@
     "href": "slides/Topic5.html#create-a-function",
     "title": "Short Course on R Tools",
     "section": "3️⃣ Create a Function",
-    "text": "3️⃣ Create a Function\nCreate a new file: R/summary_stats.R\n#' Compute Summary Statistics\n#'\n#' Returns mean and standard deviation for each numeric column.\n#'\n#' @param data A data frame with numeric columns\n#' @return A data frame with `mean` and `sd` per column\n#' @examples\n#' summary_stats(mtcars)\n#' @export\nsummary_stats &lt;- function(data) {\n  numeric_data &lt;- data[sapply(data, is.numeric)]\n  data.frame(\n    mean = sapply(numeric_data, mean),\n    sd = sapply(numeric_data, sd)\n  )\n}",
+    "text": "3️⃣ Create a Function\nCreate a new file: R/summary_stats.R\n#' Compute Summary Statistics\n#'\n#' Returns mean and standard deviation for each numeric column.\n#'\n#' @param data A data frame with numeric columns\n#' @return A data frame with `mean` and `sd` per column\n#'\n#' @examples\n#' summary_stats(mtcars)\n#'\n#' @export\nsummary_stats &lt;- function(data) {\n  numeric_data &lt;- data[sapply(data, is.numeric)]\n  data.frame(\n    mean = sapply(numeric_data, mean),\n    sd = sapply(numeric_data, sd)\n  )\n}",
     "crumbs": [
       "Slides",
       "R package"
@@ -1719,17 +1719,6 @@
     ]
   },
   {
-    "objectID": "slides/Topic4.html#managing-python-environments",
-    "href": "slides/Topic4.html#managing-python-environments",
-    "title": "Short Course on R Tools",
-    "section": "Managing Python Environments",
-    "text": "Managing Python Environments\n\nVirtualenv:\nvirtualenv_create(\"r-reticulate\")\nvirtualenv_install(\"r-reticulate\", \"numpy\", \"pandas\")\nuse_virtualenv(\"r-reticulate\", required = TRUE)\nConda:\nconda_create(\"r-reticulate\", packages = c(\"numpy\", \"pandas\"))\nuse_condaenv(\"r-reticulate\", required = TRUE)",
-    "crumbs": [
-      "Slides",
-      "Python in R"
-    ]
-  },
-  {
     "objectID": "slides/Topic4.html#using-source_python",
     "href": "slides/Topic4.html#using-source_python",
     "title": "Short Course on R Tools",
@@ -1844,7 +1833,84 @@
     "href": "slides/Topic4.html#section-1",
     "title": "Short Course on R Tools",
     "section": "",
-    "text": "🖥️ R Code to Load and Use the Python Clas:\nlibrary(reticulate)\nsource_python(\"simple_net.py\")\n\n# Create model instance\nmodel &lt;- SimpleNet(10)\n\n# Create input tensor (5 samples, 10 features)\nx &lt;- torch$randn(c(5L, 10L))\n\n# Forward pass\noutput &lt;- model$forward(x)\nprint(output)",
+    "text": "🖥️ R Code to Load and Use the Python Class:\nlibrary(reticulate)\nsource_python(\"simple_net.py\")\n\n# Create model instance\nmodel &lt;- SimpleNet(5L)\n\n# Create input tensor (2 samples, 5 features)\ntorch$manual_seed(42L)\nx &lt;- torch$randn(c(2L, 5L))\n\n# Forward pass\noutput &lt;- model(x)\nprint(output)\n\ntensor([[-0.0285],\n        [-0.4532]], grad_fn=&lt;AddmmBackward0&gt;)",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic4.html#project-structure",
+    "href": "slides/Topic4.html#project-structure",
+    "title": "Short Course on R Tools",
+    "section": "📂 Project Structure",
+    "text": "📂 Project Structure\nproject/\n├── model.py # Python torch model  \n├── train.py # Python training code \n├── cnn_model.pth # Saved PyTorch weights \n└── test_images/ # A few PNGs from MNIST test set",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic4.html#python-model.py",
+    "href": "slides/Topic4.html#python-model.py",
+    "title": "Short Course on R Tools",
+    "section": "🐍 Python: model.py",
+    "text": "🐍 Python: model.py\nimport torch.nn as nn\nimport torch.nn.functional as F\n\nclass SimpleCNN(nn.Module):\n    def __init__(self):\n        super(SimpleCNN, self).__init__()\n        self.conv1_layer = nn.Conv2d(1, 16, kernel_size=3, padding=1)\n        self.conv2_layer = nn.Conv2d(16, 32, kernel_size=3, padding=1)\n        self.fc1_layer = nn.Linear(32 * 7 * 7, 128)\n        self.fc2_layer = nn.Linear(128, 10)\n\n    def forward(self, inputs):\n        x = F.relu(self.conv1_layer(inputs))\n        x = F.max_pool2d(x, kernel_size=2, stride=2)\n        x = F.relu(self.conv2_layer(x))\n        x = F.max_pool2d(x, kernel_size=2, stride=2)\n        x = x.view(-1, 32 * 7 * 7)\n        x = F.relu(self.fc1_layer(x))\n        x = self.fc2_layer(x)\n        return x",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic4.html#minist-dataset",
+    "href": "slides/Topic4.html#minist-dataset",
+    "title": "Short Course on R Tools",
+    "section": "MINIST Dataset",
+    "text": "MINIST Dataset",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic4.html#python-training-saving",
+    "href": "slides/Topic4.html#python-training-saving",
+    "title": "Short Course on R Tools",
+    "section": "🐍 Python: Training & Saving",
+    "text": "🐍 Python: Training & Saving\nimport torch\nimport torch.nn as nn\nimport torch.optim as optim\nimport torchvision\nimport torchvision.transforms as transforms\nfrom torch.utils.data import DataLoader\nfrom model import SimpleCNN\n\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n\ndata_transform = transforms.Compose([\n    transforms.ToTensor(),\n    transforms.Normalize((0.5,), (0.5,))\n])\n\ntrain_dataset = torchvision.datasets.MNIST(root='./data', train=True, transform=data_transform, download=False)\ntest_dataset = torchvision.datasets.MNIST(root='./data', train=False, transform=data_transform, download=False)\n\ntrain_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)\ntest_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)\n\ncnn_model = SimpleCNN().to(device)\nloss_func = nn.CrossEntropyLoss()\noptimizer = optim.Adam(cnn_model.parameters(), lr=0.001)\n\nfor epoch in range(5):\n    cnn_model.train()\n    running_loss = 0.0\n    for inputs, labels in train_loader:\n        inputs, labels = inputs.to(device), labels.to(device)\n        optimizer.zero_grad()\n        outputs = cnn_model(inputs)\n        loss = loss_func(outputs, labels)\n        loss.backward()\n        optimizer.step()\n        running_loss += loss.item()\n    print(f\"Epoch {epoch+1}, Loss: {running_loss / len(train_loader):.4f}\")\n\ncnn_model.eval()\ncorrect_predictions = 0\ntotal_samples = 0\nwith torch.no_grad():\n    for inputs, labels in test_loader:\n        inputs, labels = inputs.to(device), labels.to(device)\n        outputs = cnn_model(inputs)\n        _, predicted_labels = torch.max(outputs, 1)\n        total_samples += labels.size(0)\n        correct_predictions += (predicted_labels == labels).sum().item()\n\naccuracy = 100 * correct_predictions / total_samples\nprint(f\"Accuracy of test set: {accuracy:.2f}%\")\ntorch.save(cnn_model.state_dict(), 'cnn_model.pth')",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic4.html#r-load-the-python-model",
+    "href": "slides/Topic4.html#r-load-the-python-model",
+    "title": "Short Course on R Tools",
+    "section": "🔗 R: Load the Python Model",
+    "text": "🔗 R: Load the Python Model\nlibrary(reticulate)\ntorch &lt;- import(\"torch\")\nImage &lt;- import(\"PIL.Image\", convert = FALSE)\nplt &lt;- import(\"matplotlib.pyplot\")\ntransforms &lt;- import(\"torchvision.transforms\", convert = TRUE)\nos &lt;- import(\"os\")\n\nsource_python(\"model.py\") # Loads SimpleCNN\n\ndevice &lt;- torch$device(\"cpu\")\nmodel &lt;- SimpleCNN()$to(device)\nmodel$load_state_dict(torch$load(\"cnn_model.pth\", map_location = device))\nmodel$eval()",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic4.html#preprocess-predict-in-r",
+    "href": "slides/Topic4.html#preprocess-predict-in-r",
+    "title": "Short Course on R Tools",
+    "section": "🖼 Preprocess & Predict in R",
+    "text": "🖼 Preprocess & Predict in R\ntransform &lt;- transforms$Compose(list(\n  transforms$Grayscale(),\n  transforms$Resize(tuple(28L, 28L)),\n  transforms$ToTensor(),\n  transforms$Normalize(tuple(0.5), tuple(0.5))\n))\n\nimage_dir &lt;- \"test_images\"\nimage_files &lt;- sort(Filter(function(f) endsWith(f, \".png\"), os$listdir(image_dir)))\n\nplt$figure(figsize = tuple(10, 3))\nwith(torch$no_grad(), {\n  for (idx in seq_along(image_files)) {\n    image &lt;- Image$open(file.path(image_dir, image_files[[idx]]))\n    input_tensor &lt;- transform(image)$unsqueeze(0L)$to(device)\n    output &lt;- model(input_tensor)\n    predicted_label &lt;- torch$argmax(output, dim = 1L)$item()\n    plt$subplot(1L, length(image_files), idx)\n    plt$imshow(image$convert(\"L\"), cmap = \"gray\")\n    plt$title(sprintf(\"Predicted: %s\", predicted_label))\n    plt$axis(\"off\")\n  }\n})\nplt$tight_layout()\nplt$show()",
+    "crumbs": [
+      "Slides",
+      "Python in R"
+    ]
+  },
+  {
+    "objectID": "slides/Topic4.html#prediction-plot",
+    "href": "slides/Topic4.html#prediction-plot",
+    "title": "Short Course on R Tools",
+    "section": "Prediction plot",
+    "text": "Prediction plot",
     "crumbs": [
       "Slides",
       "Python in R"
