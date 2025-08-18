@@ -20,7 +20,7 @@ format:
 -   Importing Python Modules into R
 -   Python Objects & Data Conversion
 -   Sourcing Python Scripts in R
--   Data Conversion & Accessing R Objects in Python
+-   Accessing R Objects in Python
 -   Working with Python Classes in R
 -   reticulate in R Markdown & Quarto
 :::
@@ -36,19 +36,9 @@ format:
 -   **Combine the best of both worlds**
     -   R: data manipulation, statistics, visualization (`ggplot2`, `dplyr`)
     -   Python: ML/AI, scripting, general programming
+-   Avoid rewriting code or switching environments
 :::
 
-# 
-
--   **Reuse existing Python code**
-    -   Avoid rewriting code or switching environments
-
-::: incremental
--   **Create seamless interactive workflows**
-    -   Mix R and Python in R Markdown, Jupyter, or Quarto documents
--   **Enhance productivity and reproducibility**
-    -   Use the right tool for each task in one unified workflow
-:::
 
 # What is `reticulate`?
 
@@ -96,7 +86,7 @@ py_config() #Inspect current setup
 **🔗 Bind to a specific Python version**
 
 ``` r
-# use_python("C://Users//your_username/AppData/Local/Programs/Python/Python312")
+# use_python("C://Users/your_username/AppData/Local/Programs/Python/Python313")
 ```
 
 # Importing Python Modules into R
@@ -255,7 +245,7 @@ py$square(4)
 
 ::: small
 | R Object Type | Python Equivalent | Notes |
-|-------------------------|-----------------------------|------------------|
+|------------------------|------------------------|------------------------|
 | `numeric`, `integer` | `float`, `int` | Scalars or arrays |
 | `logical` | `bool` | TRUE → `True` |
 | `character` | `str` or `list[str]` | Vectorized strings → list |
