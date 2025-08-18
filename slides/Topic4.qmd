@@ -74,13 +74,6 @@ py_available() # Check python availability
 ``` text
 [1] FALSE
 ```
-
-. . .
-
-``` r
-py_config() #Inspect current setup
-```
-
 . . .
 
 **🔗 Bind to a specific Python version**
@@ -89,12 +82,19 @@ py_config() #Inspect current setup
 # use_python("C://Users/your_username/AppData/Local/Programs/Python/Python313")
 ```
 
+. . .
+
+``` r
+py_config() #Inspect current setup
+```
+
 # Importing Python Modules into R
 
 **📦 Use `import()` to bring Python modules into R**
 
 ``` {.r code-line-numbers="1|2|3" height="200"}
 library(reticulate)
+np <- import(numpy)
 np$mean(c(1, 2, 3, 4))  
 ```
 
