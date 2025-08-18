@@ -28,7 +28,7 @@ format:
 # Why integrate Python into R? {.scrollable}
 
 ::: incremental
--   **Access powerful Python libraries:** R has excellent packages, but some cutting-edge tools exist only in Python:
+-   **Access powerful Python libraries:** 
     -   Deep Learning: `PyTorch`, `TensorFlow`, `Keras`
     -   Machine Learning: `scikit-learn`, `XGBoost`, `LightGBM`
     -   NLP: `spaCy`, `HuggingFace transformers`
@@ -74,13 +74,6 @@ py_available() # Check python availability
 ``` text
 [1] FALSE
 ```
-
-. . .
-
-``` r
-py_config() #Inspect current setup
-```
-
 . . .
 
 **🔗 Bind to a specific Python version**
@@ -89,12 +82,19 @@ py_config() #Inspect current setup
 # use_python("C://Users/your_username/AppData/Local/Programs/Python/Python313")
 ```
 
+. . .
+
+``` r
+py_config() #Inspect current setup
+```
+
 # Importing Python Modules into R
 
 **📦 Use `import()` to bring Python modules into R**
 
 ``` {.r code-line-numbers="1|2|3" height="200"}
 library(reticulate)
+np <- import(numpy)
 np$mean(c(1, 2, 3, 4))  
 ```
 
@@ -119,7 +119,7 @@ py_builtins$len(c(1, 2, 3))
 [1] 3
 ```
 
-# 5. Sourcing Python Scripts in R {transition="slide"}
+# Sourcing Python Scripts in R {transition="slide"}
 
 -   Use `source_python()` or `py_run_file()` to run `.py` scripts from R
 -   Use `py_run_string()` to run inline Python code from R
@@ -132,7 +132,7 @@ Variables become **directly available in the R global environment**
 
 **🔍 Example:**
 
-Consider "script.py" file, includes following Python script:
+Consider `script.py` file, includes following Python script:
 
 ``` python
 y = 2
