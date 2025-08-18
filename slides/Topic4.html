@@ -440,7 +440,7 @@ Mehdi Maadooliat and Hossein Haghbin
 <h1>Why integrate Python into R?</h1>
 <div>
 <ul>
-<li class="fragment"><strong>Access powerful Python libraries:</strong> R has excellent packages, but some cutting-edge tools exist only in Python:
+<li class="fragment"><strong>Access powerful Python libraries:</strong>
 <ul>
 <li class="fragment">Deep Learning: <code>PyTorch</code>, <code>TensorFlow</code>, <code>Keras</code></li>
 <li class="fragment">Machine Learning: <code>scikit-learn</code>, <code>XGBoost</code>, <code>LightGBM</code></li>
@@ -511,7 +511,7 @@ Mehdi Maadooliat and Hossein Haghbin
 
 <section>
 <section id="sourcing-python-scripts-in-r" class="title-slide slide level1 center" data-transition="slide">
-<h1>5. Sourcing Python Scripts in R</h1>
+<h1>Sourcing Python Scripts in R</h1>
 <ul>
 <li>Use <code>source_python()</code> or <code>py_run_file()</code> to run <code>.py</code> scripts from R</li>
 <li>Use <code>py_run_string()</code> to run inline Python code from R</li>
@@ -522,7 +522,7 @@ Mehdi Maadooliat and Hossein Haghbin
 <p>Variables become <strong>directly available in the R global environment</strong></p>
 <div class="fragment">
 <p><strong>🔍 Example:</strong></p>
-<p>Consider “script.py” file, includes following Python script:</p>
+<p>Consider <code>script.py</code> file, includes following Python script:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>y <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb10-2"><a></a><span class="kw">def</span> square(x):</span>
 <span id="cb10-3"><a></a>    <span class="cf">return</span> x <span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

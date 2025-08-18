@@ -345,7 +345,7 @@
     "href": "slides/Topic4.html#using-source_python",
     "title": "Short Course on R Tools",
     "section": "📥 Using source_python()",
-    "text": "📥 Using source_python()\nVariables become directly available in the R global environment\n\n🔍 Example:\nConsider “script.py” file, includes following Python script:\ny = 2\ndef square(x):\n    return x **2\n\n\n✅ Works directly in R :\nlibrary(reticulate)\nsource_python(\"script.py\")\nsquare(4)\n\n\n[1] 16\n\n\nprint(y) \n\n\n2",
+    "text": "📥 Using source_python()\nVariables become directly available in the R global environment\n\n🔍 Example:\nConsider script.py file, includes following Python script:\ny = 2\ndef square(x):\n    return x **2\n\n\n✅ Works directly in R :\nlibrary(reticulate)\nsource_python(\"script.py\")\nsquare(4)\n\n\n[1] 16\n\n\nprint(y) \n\n\n2",
     "crumbs": [
       "Slides",
       "Python in R"
