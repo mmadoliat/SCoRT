@@ -451,8 +451,8 @@
     ]
   },
   {
-    "objectID": "slides/Topic4.html#section-1",
-    "href": "slides/Topic4.html#section-1",
+    "objectID": "slides/Topic4.html#section",
+    "href": "slides/Topic4.html#section",
     "title": "Short Course on R Tools",
     "section": "",
     "text": "🖥️ R Code to Load and Use the Python Class:\nlibrary(reticulate)\nsource_python(\"simple_net.py\")\n\n# Create model instance\nmodel &lt;- SimpleNet(5L)\n\n# Create input tensor (2 samples, 5 features)\ntorch$manual_seed(42L)\nx &lt;- torch$randn(c(2L, 5L))\n\n# Forward pass\noutput &lt;- model(x)\nprint(output)\n\ntensor([[-0.0285],\n        [-0.4532]], grad_fn=&lt;AddmmBackward0&gt;)",

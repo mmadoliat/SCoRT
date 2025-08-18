@@ -429,7 +429,7 @@ Mehdi Maadooliat and Hossein Haghbin
 <li class="fragment">Importing Python Modules into R</li>
 <li class="fragment">Python Objects &amp; Data Conversion</li>
 <li class="fragment">Sourcing Python Scripts in R</li>
-<li class="fragment">Data Conversion &amp; Accessing R Objects in Python</li>
+<li class="fragment">Accessing R Objects in Python</li>
 <li class="fragment">Working with Python Classes in R</li>
 <li class="fragment">reticulate in R Markdown &amp; Quarto</li>
 </ul>
@@ -452,28 +452,7 @@ Mehdi Maadooliat and Hossein Haghbin
 <li class="fragment">R: data manipulation, statistics, visualization (<code>ggplot2</code>, <code>dplyr</code>)</li>
 <li class="fragment">Python: ML/AI, scripting, general programming</li>
 </ul></li>
-</ul>
-</div>
-</section>
-
-<section id="section" class="title-slide slide level1 center">
-<h1></h1>
-<ul>
-<li><strong>Reuse existing Python code</strong>
-<ul>
-<li>Avoid rewriting code or switching environments</li>
-</ul></li>
-</ul>
-<div>
-<ul>
-<li class="fragment"><strong>Create seamless interactive workflows</strong>
-<ul>
-<li class="fragment">Mix R and Python in R Markdown, Jupyter, or Quarto documents</li>
-</ul></li>
-<li class="fragment"><strong>Enhance productivity and reproducibility</strong>
-<ul>
-<li class="fragment">Use the right tool for each task in one unified workflow</li>
-</ul></li>
+<li class="fragment">Avoid rewriting code or switching environments</li>
 </ul>
 </div>
 </section>
@@ -503,11 +482,11 @@ Mehdi Maadooliat and Hossein Haghbin
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a>[1] FALSE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">py_config</span>() <span class="co">#Inspect current setup</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>🔗 Bind to a specific Python version</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># use_python("C://Users/your_username/AppData/Local/Programs/Python/Python313")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<p><strong>🔗 Bind to a specific Python version</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># use_python("C://Users//your_username/AppData/Local/Programs/Python/Python312")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">py_config</span>() <span class="co">#Inspect current setup</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
@@ -515,7 +494,8 @@ Mehdi Maadooliat and Hossein Haghbin
 <h1>Importing Python Modules into R</h1>
 <p><strong>📦 Use <code>import()</code> to bring Python modules into R</strong></p>
 <div class="sourceCode" id="cb6" height="200" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb6-2"><a></a>np<span class="sc">$</span><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a></a>np <span class="ot">&lt;-</span> <span class="fu">import</span>(numpy)</span>
+<span id="cb6-3"><a></a>np<span class="sc">$</span><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a></a>[1] 2.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -797,7 +777,7 @@ Mehdi Maadooliat and Hossein Haghbin
 <span id="cb40-9"><a></a>        <span class="cf">return</span> <span class="va">self</span>.fc(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="section-1" class="slide level2">
+<section id="section" class="slide level2">
 <h2></h2>
 <p><strong>🖥️ R Code to Load and Use the Python Class:</strong></p>
 <div class="sourceCode" id="cb41" data-code-line-numbers="1-2|4-5|7-9|11-13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">library</span>(reticulate)</span>
