@@ -682,6 +682,39 @@
     ]
   },
   {
+    "objectID": "slides/Topic5.html#r-packages-the-fundamental-unit",
+    "href": "slides/Topic5.html#r-packages-the-fundamental-unit",
+    "title": "Short Course on R Tools",
+    "section": "📦 R Packages: The Fundamental Unit",
+    "text": "📦 R Packages: The Fundamental Unit\nIn R, the fundamental unit of shareable code is the package.\nA package bundles together:\n\n\n🧑‍💻 Code\n\n📊 Data\n\n📚 Documentation\n\n🧪 Tests\n\n\n\n\n➡️ All in one place, easy to share with others.",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Topic5.html#you-already-use-packages",
+    "href": "slides/Topic5.html#you-already-use-packages",
+    "title": "Short Course on R Tools",
+    "section": "📦 You Already Use Packages!",
+    "text": "📦 You Already Use Packages!\nIf you’re here, you already know how to work with packages:\n\n\n📥 Install a package from CRAN:\ninstall.packages(\"x\")\n▶️ Use a package in R:\nlibrary(\"x\")\n❓ Get help on them with\npackage?x\nhelp(package = \"x\")",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Topic5.html#goal-of-this-talk",
+    "href": "slides/Topic5.html#goal-of-this-talk",
+    "title": "Short Course on R Tools",
+    "section": "🎯 Goal of This Talk",
+    "text": "🎯 Goal of This Talk\nThis workshop is about moving from using packages ➡️ to developing your own.\nWhy?\n\n\n🚀 To share your code with others\n\n📦 To make your code easy to install, use, and learn\n\n⏳ To save yourself time with conventions and structure",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
     "objectID": "slides/Topic5.html#key-packages",
     "href": "slides/Topic5.html#key-packages",
     "title": "Short Course on R Tools",
