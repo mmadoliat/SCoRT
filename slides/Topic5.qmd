@@ -256,6 +256,10 @@ But actually:
 - R allows you to have **multiple library paths** on your system  
 - Each library contains a set of installed packages  
 - Check active library paths with:
+:::
+
+. . .
+
 ```r
 .libPaths()
 # [1] "C:/Program Files/R/R-4.5.1/library"
@@ -266,7 +270,7 @@ lapply(.libPaths(), list.dirs, recursive = FALSE, full.names = FALSE)
 #  [1] "abind"   "ash"     "askpass"   "backports"  
 #  [5] "base"    "base64enc" "bitops"   "boot"
 ```
-:::
+
 
 ## 🚫 Avoid `library()` Inside Packages
 
