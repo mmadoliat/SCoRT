@@ -471,7 +471,8 @@ Mehdi Maadooliat and Hossein Haghbin
 <section id="goal-of-this-talk" class="slide level2">
 <h2>🎯 Goal of This Talk</h2>
 <p>This workshop is about moving from <strong>using packages</strong> ➡️ to <strong>developing your own</strong>.</p>
-<p>Why?</p>
+<div class="fragment">
+<p><strong>Why?</strong></p>
 <div>
 <ul>
 <li class="fragment">🚀 To share your code with others<br>
@@ -481,16 +482,16 @@ Mehdi Maadooliat and Hossein Haghbin
 <li class="fragment">⏳ To save yourself time with conventions and structure</li>
 </ul>
 </div>
+</div>
 </section></section>
 <section>
 <section id="system-setup" class="title-slide slide level1 center">
 <h1>System Setup</h1>
 <p>Make sure you have:</p>
-<div class="fragment fade-up">
-<p><strong>✅ Latest R and RStudio</strong></p>
+<div>
 <ul>
-<li>🛠 Install the latest version of <strong>R</strong>.</li>
-<li>📥 ownload <strong>RStudio Desktop</strong>: <a href="https://posit.co/download/rstudio-desktop">(link)</a></li>
+<li class="fragment">🛠 The latest version of <strong>R</strong>.</li>
+<li class="fragment">🛠 The latest version of <strong>RStudio</strong>.</li>
 </ul>
 </div>
 <div class="fragment fade-up">
@@ -636,7 +637,49 @@ Mehdi Maadooliat and Hossein Haghbin
 <section id="transitioning-between-states" class="slide level2" data-transition="convex">
 <h2>🔁 Transitioning Between States</h2>
 
-<img data-src="images/package/install-load.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"></section></section>
+<img data-src="images/package/install-load.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"></section>
+<section id="package-libraries" class="slide level2">
+<h2>Package libraries</h2>
+<p>When you run:<br>
+<code>r   library(somepackage)</code> R searches the current libraries (directories of installed packages). If it finds the package, it loads it into memory and makes it available for use. . . .</p>
+<p><strong>📦 Package vs.&nbsp;📚 Library</strong></p>
+<div class="fragment">
+<ul>
+<li><strong>Package</strong> → bundle of code, data, docs, tests</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>Library</strong> → directory on your computer that contains installed packages</li>
+</ul>
+</div>
+<div class="fragment">
+<blockquote>
+<p>👉 Think of a library as a <em>bookshelf</em> full of packages.</p>
+</blockquote>
+</div>
+</section>
+<section id="common-confusion" class="slide level2">
+<h2>⚠️ Common Confusion</h2>
+<p>It’s common to hear people say:</p>
+<blockquote>
+<p>“I loaded the <em>dplyr library</em>.”</p>
+</blockquote>
+<div class="fragment">
+<p>But actually:</p>
+<div>
+<ul>
+<li class="fragment"><strong>dplyr is a package</strong><br>
+</li>
+<li class="fragment">It lives inside a <strong>library (directory)</strong><br>
+</li>
+<li class="fragment">You load it with <code>library(dplyr)</code><br>
+</li>
+</ul>
+</div>
+<p>. . . &gt; 👉 A <strong>library</strong> is just where packages live (a directory)</p>
+</div>
+</section></section>
 <section>
 <section id="create-a-package" class="title-slide slide level1 center">
 <h1>Create a Package</h1>

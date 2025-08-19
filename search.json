@@ -708,7 +708,7 @@
     "href": "slides/Topic5.html#goal-of-this-talk",
     "title": "Short Course on R Tools",
     "section": "🎯 Goal of This Talk",
-    "text": "🎯 Goal of This Talk\nThis workshop is about moving from using packages ➡️ to developing your own.\nWhy?\n\n\n🚀 To share your code with others\n\n📦 To make your code easy to install, use, and learn\n\n⏳ To save yourself time with conventions and structure",
+    "text": "🎯 Goal of This Talk\nThis workshop is about moving from using packages ➡️ to developing your own.\n\nWhy?\n\n\n🚀 To share your code with others\n\n📦 To make your code easy to install, use, and learn\n\n⏳ To save yourself time with conventions and structure",
     "crumbs": [
       "Slides",
       "R package"
@@ -819,6 +819,28 @@
     "title": "Short Course on R Tools",
     "section": "🔁 Transitioning Between States",
     "text": "🔁 Transitioning Between States",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Topic5.html#package-libraries",
+    "href": "slides/Topic5.html#package-libraries",
+    "title": "Short Course on R Tools",
+    "section": "Package libraries",
+    "text": "Package libraries\nWhen you run:\nr   library(somepackage) R searches the current libraries (directories of installed packages). If it finds the package, it loads it into memory and makes it available for use. . . .\n📦 Package vs. 📚 Library\n\n\nPackage → bundle of code, data, docs, tests\n\n\n\n\nLibrary → directory on your computer that contains installed packages\n\n\n\n\n👉 Think of a library as a bookshelf full of packages.",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Topic5.html#common-confusion",
+    "href": "slides/Topic5.html#common-confusion",
+    "title": "Short Course on R Tools",
+    "section": "⚠️ Common Confusion",
+    "text": "⚠️ Common Confusion\nIt’s common to hear people say:\n\n“I loaded the dplyr library.”\n\n\nBut actually:\n\n\ndplyr is a package\n\nIt lives inside a library (directory)\n\nYou load it with library(dplyr)\n\n\n\n. . . &gt; 👉 A library is just where packages live (a directory)",
     "crumbs": [
       "Slides",
       "R package"
