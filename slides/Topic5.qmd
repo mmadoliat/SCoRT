@@ -65,7 +65,9 @@ If you’re here, you already know how to work with packages:
 
 This workshop is about moving from **using packages** ➡️ to **developing your own**.
 
-Why?
+. . .
+
+**Why?**
 
 ::: incremental
 - 🚀 To share your code with others  
@@ -77,11 +79,9 @@ Why?
 
 Make sure you have:
 
-::: {.fragment .fade-up}
-**✅ Latest R and RStudio**
-
--   🛠 Install the latest version of **R**.
--   📥 ownload **RStudio Desktop**: [(link)](https://posit.co/download/rstudio-desktop)
+::: incremental
+-   🛠 The latest version of **R**.
+-   🛠 The latest version of **RStudio**.
 :::
 
 ::: {.fragment .fade-up}
@@ -217,6 +217,51 @@ An **in-memory** package is an installed package that’s been loaded into the R
 ## 🔁 Transitioning Between States {transition="convex"}
 
 ![](images/package/install-load.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
+
+## Package libraries
+
+When you run:  
+  ```r
+  library(somepackage)
+ ```
+R searches the current libraries (directories of installed packages). If it finds the package, it loads it into memory and makes it available for use.
+. . .
+
+**📦 Package vs. 📚 Library**
+
+. . .
+
+- **Package** → bundle of code, data, docs, tests  
+
+. . .
+
+- **Library** → directory on your computer that contains installed packages  
+
+. . .
+
+> 👉 Think of a library as a *bookshelf* full of packages.
+
+
+## ⚠️ Common Confusion
+
+It’s common to hear people say:
+
+> "I loaded the *dplyr library*."
+
+. . .
+
+But actually:
+
+::: incremental
+- **dplyr is a package**  
+- It lives inside a **library (directory)**  
+- You load it with `library(dplyr)`  
+:::
+. . .
+ > 👉 A **library** is just where packages live (a directory)
+
+
+
 
 # Create a Package
 
