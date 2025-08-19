@@ -494,7 +494,7 @@ Mehdi Maadooliat and Hossein Haghbin
 <h1>Importing Python Modules into R</h1>
 <p><strong>📦 Use <code>import()</code> to bring Python modules into R</strong></p>
 <div class="sourceCode" id="cb6" height="200" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb6-2"><a></a>np <span class="ot">&lt;-</span> <span class="fu">import</span>(numpy)</span>
+<span id="cb6-2"><a></a>np <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"numpy"</span>)</span>
 <span id="cb6-3"><a></a>np<span class="sc">$</span><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a></a>[1] 2.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -734,7 +734,7 @@ Mehdi Maadooliat and Hossein Haghbin
 <p><strong>Built-in</strong> functions in R are functions implemented in C (compiled) and embedded directly into the R interpreter.</p>
 <p>⚠️ Builtin function needs wrapping. For example:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">typeof</span>(exp) <span class="co"># return "builtin"</span></span>
-<span id="cb35-2"><a></a>py<span class="sc">$</span>e <span class="ot">&lt;-</span> e</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-2"><a></a>py<span class="sc">$</span>e <span class="ot">&lt;-</span> exp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>In Python:</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a></a><span class="bu">print</span>(e(<span class="dv">1</span>))     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -781,18 +781,22 @@ Mehdi Maadooliat and Hossein Haghbin
 <h2></h2>
 <p><strong>🖥️ R Code to Load and Use the Python Class:</strong></p>
 <div class="sourceCode" id="cb41" data-code-line-numbers="1-2|4-5|7-9|11-13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb41-2"><a></a><span class="fu">source_python</span>(<span class="st">"simple_net.py"</span>)</span>
-<span id="cb41-3"><a></a></span>
-<span id="cb41-4"><a></a><span class="co"># Create model instance</span></span>
-<span id="cb41-5"><a></a>model <span class="ot">&lt;-</span> <span class="fu">SimpleNet</span>(<span class="dv">5</span>L)</span>
-<span id="cb41-6"><a></a></span>
-<span id="cb41-7"><a></a><span class="co"># Create input tensor (2 samples, 5 features)</span></span>
-<span id="cb41-8"><a></a>torch<span class="sc">$</span><span class="fu">manual_seed</span>(<span class="dv">42</span>L)</span>
-<span id="cb41-9"><a></a>x <span class="ot">&lt;-</span> torch<span class="sc">$</span><span class="fu">randn</span>(<span class="fu">c</span>(<span class="dv">2</span>L, <span class="dv">5</span>L))</span>
-<span id="cb41-10"><a></a></span>
-<span id="cb41-11"><a></a><span class="co"># Forward pass</span></span>
-<span id="cb41-12"><a></a>output <span class="ot">&lt;-</span> <span class="fu">model</span>(x)</span>
-<span id="cb41-13"><a></a><span class="fu">print</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-2"><a></a>torch <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"torch"</span>)</span>
+<span id="cb41-3"><a></a><span class="fu">source_python</span>(<span class="st">"simple_net.py"</span>)</span>
+<span id="cb41-4"><a></a></span>
+<span id="cb41-5"><a></a><span class="co"># Create model instance</span></span>
+<span id="cb41-6"><a></a>model <span class="ot">&lt;-</span> <span class="fu">SimpleNet</span>(<span class="dv">5</span>L)</span>
+<span id="cb41-7"><a></a></span>
+<span id="cb41-8"><a></a><span class="co"># Create input tensor (2 samples, 5 features)</span></span>
+<span id="cb41-9"><a></a>torch<span class="sc">$</span><span class="fu">manual_seed</span>(<span class="dv">42</span>L)</span>
+<span id="cb41-10"><a></a>x <span class="ot">&lt;-</span> torch<span class="sc">$</span><span class="fu">randn</span>(<span class="fu">c</span>(<span class="dv">2</span>L, <span class="dv">5</span>L))</span>
+<span id="cb41-11"><a></a><span class="co"># Or:</span></span>
+<span id="cb41-12"><a></a><span class="co"># set.seed(42)</span></span>
+<span id="cb41-13"><a></a><span class="co"># x &lt;- torch$tensor(matrix(rnorm(10),nrow=2),detype=torch$float32)</span></span>
+<span id="cb41-14"><a></a></span>
+<span id="cb41-15"><a></a><span class="co"># Forward pass</span></span>
+<span id="cb41-16"><a></a>output <span class="ot">&lt;-</span> <span class="fu">model</span>(x)</span>
+<span id="cb41-17"><a></a><span class="fu">print</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <div class="sourceCode" id="cb42"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb42-1"><a></a>tensor([[-0.0285],</span>
 <span id="cb42-2"><a></a>        [-0.4532]], grad_fn=&lt;AddmmBackward0&gt;)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -844,8 +848,8 @@ Use a <strong>pretrained Python CNN</strong> (PyTorch) in <strong>R</strong> to 
 <span id="cb44-19"><a></a>        x <span class="op">=</span> <span class="va">self</span>.fc2_layer(x)</span>
 <span id="cb44-20"><a></a>        <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="minist-dataset" class="slide level2" data-transition="zoom">
-<h2>MINIST Dataset</h2>
+<section id="mnist-dataset" class="slide level2" data-transition="zoom">
+<h2>MNIST Dataset</h2>
 
 <img data-src="images/python/minist.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"></section>
 <section id="python-training-saving" class="slide level2">

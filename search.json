@@ -422,7 +422,7 @@
     "href": "slides/Topic4.html#exporting-r-builtin-functions-to-python",
     "title": "Short Course on R Tools",
     "section": "Exporting R Builtin Functions to Python",
-    "text": "Exporting R Builtin Functions to Python\nBuilt-in functions in R are functions implemented in C (compiled) and embedded directly into the R interpreter.\n⚠️ Builtin function needs wrapping. For example:\ntypeof(exp) # return \"builtin\"\npy$e &lt;- e\n\nIn Python:\nprint(e(1))     \n\n\nTypeError: 'PyCapsule' object is not callable\n\n\n✅ Solution: Wrap the builtin in a closure\ne &lt;- function(x) exp(x)\npy$e &lt;- e\n\n\nIn Python:\nprint(e(1))  # ✅ Returns 2.718",
+    "text": "Exporting R Builtin Functions to Python\nBuilt-in functions in R are functions implemented in C (compiled) and embedded directly into the R interpreter.\n⚠️ Builtin function needs wrapping. For example:\ntypeof(exp) # return \"builtin\"\npy$e &lt;- exp\n\nIn Python:\nprint(e(1))     \n\n\nTypeError: 'PyCapsule' object is not callable\n\n\n✅ Solution: Wrap the builtin in a closure\ne &lt;- function(x) exp(x)\npy$e &lt;- e\n\n\nIn Python:\nprint(e(1))  # ✅ Returns 2.718",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -455,7 +455,7 @@
     "href": "slides/Topic4.html#section",
     "title": "Short Course on R Tools",
     "section": "",
-    "text": "🖥️ R Code to Load and Use the Python Class:\nlibrary(reticulate)\nsource_python(\"simple_net.py\")\n\n# Create model instance\nmodel &lt;- SimpleNet(5L)\n\n# Create input tensor (2 samples, 5 features)\ntorch$manual_seed(42L)\nx &lt;- torch$randn(c(2L, 5L))\n\n# Forward pass\noutput &lt;- model(x)\nprint(output)\n\ntensor([[-0.0285],\n        [-0.4532]], grad_fn=&lt;AddmmBackward0&gt;)",
+    "text": "🖥️ R Code to Load and Use the Python Class:\nlibrary(reticulate)\ntorch &lt;- import(\"torch\")\nsource_python(\"simple_net.py\")\n\n# Create model instance\nmodel &lt;- SimpleNet(5L)\n\n# Create input tensor (2 samples, 5 features)\ntorch$manual_seed(42L)\nx &lt;- torch$randn(c(2L, 5L))\n# Or:\n# set.seed(42)\n# x &lt;- torch$tensor(matrix(rnorm(10),nrow=2),detype=torch$float32)\n\n# Forward pass\noutput &lt;- model(x)\nprint(output)\n\ntensor([[-0.0285],\n        [-0.4532]], grad_fn=&lt;AddmmBackward0&gt;)",
     "crumbs": [
       "Slides",
       "Python in R"
@@ -484,11 +484,11 @@
     ]
   },
   {
-    "objectID": "slides/Topic4.html#minist-dataset",
-    "href": "slides/Topic4.html#minist-dataset",
+    "objectID": "slides/Topic4.html#mnist-dataset",
+    "href": "slides/Topic4.html#mnist-dataset",
     "title": "Short Course on R Tools",
-    "section": "MINIST Dataset",
-    "text": "MINIST Dataset",
+    "section": "MNIST Dataset",
+    "text": "MNIST Dataset",
     "crumbs": [
       "Slides",
       "Python in R"
