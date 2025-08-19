@@ -94,7 +94,7 @@ py_config() #Inspect current setup
 
 ``` {.r code-line-numbers="1|2|3" height="200"}
 library(reticulate)
-np <- import(numpy)
+np <- import("numpy")
 np$mean(c(1, 2, 3, 4))  
 ```
 
@@ -364,7 +364,7 @@ print(m([1, 2, 3, 4, 5]))
 
 ``` r
 typeof(exp) # return "builtin"
-py$e <- e
+py$e <- exp
 ```
 
 . . .
@@ -430,6 +430,7 @@ class SimpleNet(nn.Module):
 
 ``` {.r code-line-numbers="1-2|4-5|7-9|11-13"}
 library(reticulate)
+torch <- import("torch")
 source_python("simple_net.py")
 
 # Create model instance
@@ -438,6 +439,9 @@ model <- SimpleNet(5L)
 # Create input tensor (2 samples, 5 features)
 torch$manual_seed(42L)
 x <- torch$randn(c(2L, 5L))
+# Or:
+# set.seed(42)
+# x <- torch$tensor(matrix(rnorm(10),nrow=2),detype=torch$float32)
 
 # Forward pass
 output <- model(x)
@@ -501,7 +505,7 @@ class SimpleCNN(nn.Module):
         return x
 ```
 
-## MINIST Dataset {transition="zoom"}
+## MNIST Dataset {transition="zoom"}
 
 ![](images/python/minist.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
 
