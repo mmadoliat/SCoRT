@@ -851,7 +851,7 @@
     "href": "slides/Topic5.html#multiple-libraries-in-r",
     "title": "Short Course on R Tools",
     "section": "📚 Multiple Libraries in R",
-    "text": "📚 Multiple Libraries in R\n\n\nR allows you to have multiple library paths on your system\n\nEach library contains a set of installed packages\n\nCheck active library paths with:\n\n.libPaths()\n# [1] \"C:/Program Files/R/R-4.5.1/library\"\n- 🔎 Exploring Installed Packages\n ```r\nlapply(.libPaths(), list.dirs, recursive = FALSE, full.names = FALSE)\n# [[1]] \n#  [1] \"abind\"   \"ash\"     \"askpass\"   \"backports\"  \n#  [5] \"base\"    \"base64enc\" \"bitops\"   \"boot\"",
+    "text": "📚 Multiple Libraries in R\n\n\nR allows you to have multiple library paths on your system\n\nEach library contains a set of installed packages\n\nCheck active library paths with:\n\n\n\n.libPaths()\n# [1] \"C:/Program Files/R/R-4.5.1/library\"\n- 🔎 Exploring Installed Packages\n ```r\nlapply(.libPaths(), list.dirs, recursive = FALSE, full.names = FALSE)\n# [[1]] \n#  [1] \"abind\"   \"ash\"     \"askpass\"   \"backports\"  \n#  [5] \"base\"    \"base64enc\" \"bitops\"   \"boot\"",
     "crumbs": [
       "Slides",
       "R package"
