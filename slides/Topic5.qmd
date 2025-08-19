@@ -218,19 +218,7 @@ An **in-memory** package is an installed package that’s been loaded into the R
 
 ![](images/package/install-load.png){fig-align="center" fig-alt="Screenshot of Pagerank" width="55%"}
 
-## Package libraries
-
-When you run:  
-
-```r
-  library(somepackage)
-```
-
-R searches the current libraries (directories of installed packages). If it finds the package, it loads it into memory and makes it available for use.
-
-. . .
-
-**📦 Package vs. 📚 Library**
+## 📦 Package vs. 📚 Library
 
 ::: incremental
 - **Package** → bundle of code, data, docs, tests  
@@ -268,29 +256,17 @@ But actually:
 - R allows you to have **multiple library paths** on your system  
 - Each library contains a set of installed packages  
 - Check active library paths with:
-:::
-
-. . .
-
 ```r
 .libPaths()
 # [1] "C:/Program Files/R/R-4.5.1/library"
-```
-
-## 🔎 Exploring Installed Packages
-
-You can explore which packages exist in each library path
-
+- 🔎 Exploring Installed Packages
  ```r
 lapply(.libPaths(), list.dirs, recursive = FALSE, full.names = FALSE)
 # [[1]] 
 #  [1] "abind"   "ash"     "askpass"   "backports"  
 #  [5] "base"    "base64enc" "bitops"   "boot"
 ```
-
-. . .
-
-> Add-on packages (from CRAN or under development) are usually installed in the user library
+:::
 
 ## 🚫 Avoid `library()` Inside Packages
 
@@ -306,8 +282,8 @@ Do not use `library()` or `require()` inside your package code
 Instead, use:
 
 ::: incremental
-- Imports: in DESCRIPTION
-- @import or @importFrom in Roxygen2 comments
+- Imports: in **DESCRIPTION**
+- `@import` or `@importFrom` in **Roxygen2** comments
 ::: 
 
 . . .
@@ -355,16 +331,19 @@ If you plan to share your package:
 
 Evocative Names:
 
+::: incremental
 -   `lubridate` → makes **dates** easier\
--   `rvest` → for **web scraping** (like “harvest”)\
 -   `r2d3` → tools for **D3 visualizations**\
--   `forcats` → anagram of **factors**
+-   `forcats` → tools **for** working with **categorical** variables
+:::
 
-::: {.fragment .fade-up}
-### Abbreviations
+. . .
 
+**Abbreviations**
+
+::: incremental
 -   `Rcpp` → **R + C++**
--   `brms` → **Bayesian Regression Models using Stan**
+-   `brms` → Bayesian Regression Models using Stan
 :::
 
 ## 🛠️ Creating Your Package
@@ -400,15 +379,6 @@ Once you have a name, create the package using either:
 :::
 ::::
 :::::::
-
-## DESCRIPTION & NAMESPACE
-
-Two essential files in every R package:
-
-::: incremental
--   📄 `DESCRIPTION`: Metadata about your package (who, what, dependencies)\
--   📦 `NAMESPACE`: Controls what functions are exported and what is imported
-:::
 
 ## 📄 DESCRIPTION File {auto-animate="true"}
 
