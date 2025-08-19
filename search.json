@@ -829,7 +829,7 @@
     "href": "slides/Topic5.html#package-libraries",
     "title": "Short Course on R Tools",
     "section": "Package libraries",
-    "text": "Package libraries\nWhen you run:\nr   library(somepackage) R searches the current libraries (directories of installed packages). If it finds the package, it loads it into memory and makes it available for use. . . .\n📦 Package vs. 📚 Library\n\n\nPackage → bundle of code, data, docs, tests\n\n\n\n\nLibrary → directory on your computer that contains installed packages\n\n\n\n\n👉 Think of a library as a bookshelf full of packages.",
+    "text": "Package libraries\nWhen you run:\n  library(somepackage)\nR searches the current libraries (directories of installed packages). If it finds the package, it loads it into memory and makes it available for use.\n\n📦 Package vs. 📚 Library\n\n\nPackage → bundle of code, data, docs, tests\n\nLibrary → directory on your computer that contains installed packages\n\n\n\n\n\n\n👉 Think of a library as a bookshelf full of packages.",
     "crumbs": [
       "Slides",
       "R package"
@@ -840,7 +840,40 @@
     "href": "slides/Topic5.html#common-confusion",
     "title": "Short Course on R Tools",
     "section": "⚠️ Common Confusion",
-    "text": "⚠️ Common Confusion\nIt’s common to hear people say:\n\n“I loaded the dplyr library.”\n\n\nBut actually:\n\n\ndplyr is a package\n\nIt lives inside a library (directory)\n\nYou load it with library(dplyr)\n\n\n\n. . . &gt; 👉 A library is just where packages live (a directory)",
+    "text": "⚠️ Common Confusion\nIt’s common to hear people say:\n\n“I loaded the dplyr library.”\n\n\nBut actually:\n\n\ndplyr is a package\nIt lives inside a library\n\nYou load it with library(dplyr)\n\n\n\n\n\n\n👉 A library is just where packages live (a directory)",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Topic5.html#multiple-libraries-in-r",
+    "href": "slides/Topic5.html#multiple-libraries-in-r",
+    "title": "Short Course on R Tools",
+    "section": "📚 Multiple Libraries in R",
+    "text": "📚 Multiple Libraries in R\n\n\nR allows you to have multiple library paths on your system\n\nEach library contains a set of installed packages\n\nCheck active library paths with:\n\n\n\n.libPaths()\n# [1] \"C:/Program Files/R/R-4.5.1/library\"",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Topic5.html#exploring-installed-packages",
+    "href": "slides/Topic5.html#exploring-installed-packages",
+    "title": "Short Course on R Tools",
+    "section": "🔎 Exploring Installed Packages",
+    "text": "🔎 Exploring Installed Packages\nYou can explore which packages exist in each library path\nlapply(.libPaths(), list.dirs, recursive = FALSE, full.names = FALSE)\n# [[1]] \n#  [1] \"abind\"   \"ash\"     \"askpass\"   \"backports\"  \n#  [5] \"base\"    \"base64enc\" \"bitops\"   \"boot\"\n\n\nAdd-on packages (from CRAN or under development) are usually installed in the user library",
+    "crumbs": [
+      "Slides",
+      "R package"
+    ]
+  },
+  {
+    "objectID": "slides/Topic5.html#avoid-library-inside-packages",
+    "href": "slides/Topic5.html#avoid-library-inside-packages",
+    "title": "Short Course on R Tools",
+    "section": "🚫 Avoid library() Inside Packages",
+    "text": "🚫 Avoid library() Inside Packages\nDo not use library() or require() inside your package code\n\n\nPackages declare dependencies via DESCRIPTION and NAMESPACE\nlibrary() is for scripts and interactive sessions, not for packages\n\n\n\nInstead, use:\n\n\nImports: in DESCRIPTION\n@import or @importFrom in Roxygen2 comments\n\n\n\n\n\n✅ This is one of the biggest mental shifts when moving from scripts to package development",
     "crumbs": [
       "Slides",
       "R package"

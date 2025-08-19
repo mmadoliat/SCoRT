@@ -640,18 +640,19 @@ Mehdi Maadooliat and Hossein Haghbin
 <img data-src="images/package/install-load.png" class="quarto-figure quarto-figure-center r-stretch" style="width:55.0%" alt="Screenshot of Pagerank"></section>
 <section id="package-libraries" class="slide level2">
 <h2>Package libraries</h2>
-<p>When you run:<br>
-<code>r   library(somepackage)</code> R searches the current libraries (directories of installed packages). If it finds the package, it loads it into memory and makes it available for use. . . .</p>
-<p><strong>📦 Package vs.&nbsp;📚 Library</strong></p>
+<p>When you run:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>  <span class="fu">library</span>(somepackage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R searches the current libraries (directories of installed packages). If it finds the package, it loads it into memory and makes it available for use.</p>
 <div class="fragment">
+<p><strong>📦 Package vs.&nbsp;📚 Library</strong></p>
+<div>
 <ul>
-<li><strong>Package</strong> → bundle of code, data, docs, tests</li>
+<li class="fragment"><strong>Package</strong> → bundle of code, data, docs, tests<br>
+</li>
+<li class="fragment"><strong>Library</strong> → directory on your computer that contains installed packages<br>
+</li>
 </ul>
 </div>
-<div class="fragment">
-<ul>
-<li><strong>Library</strong> → directory on your computer that contains installed packages</li>
-</ul>
 </div>
 <div class="fragment">
 <blockquote>
@@ -669,15 +670,71 @@ Mehdi Maadooliat and Hossein Haghbin
 <p>But actually:</p>
 <div>
 <ul>
-<li class="fragment"><strong>dplyr is a package</strong><br>
-</li>
-<li class="fragment">It lives inside a <strong>library (directory)</strong><br>
+<li class="fragment"><strong>dplyr</strong> is a package</li>
+<li class="fragment">It lives inside a <strong>library</strong><br>
 </li>
 <li class="fragment">You load it with <code>library(dplyr)</code><br>
 </li>
 </ul>
 </div>
-<p>. . . &gt; 👉 A <strong>library</strong> is just where packages live (a directory)</p>
+</div>
+<div class="fragment">
+<blockquote>
+<p>👉 A <strong>library</strong> is just where packages live (a directory)</p>
+</blockquote>
+</div>
+</section>
+<section id="multiple-libraries-in-r" class="slide level2">
+<h2>📚 Multiple Libraries in R</h2>
+<div>
+<ul>
+<li class="fragment">R allows you to have <strong>multiple library paths</strong> on your system<br>
+</li>
+<li class="fragment">Each library contains a set of installed packages<br>
+</li>
+<li class="fragment">Check active library paths with:</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">.libPaths</span>()</span>
+<span id="cb8-2"><a></a><span class="co"># [1] "C:/Program Files/R/R-4.5.1/library"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exploring-installed-packages" class="slide level2">
+<h2>🔎 Exploring Installed Packages</h2>
+<p>You can explore which packages exist in each library path</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">lapply</span>(<span class="fu">.libPaths</span>(), list.dirs, <span class="at">recursive =</span> <span class="cn">FALSE</span>, <span class="at">full.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb9-2"><a></a><span class="co"># [[1]] </span></span>
+<span id="cb9-3"><a></a><span class="co">#  [1] "abind"   "ash"     "askpass"   "backports"  </span></span>
+<span id="cb9-4"><a></a><span class="co">#  [5] "base"    "base64enc" "bitops"   "boot"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<blockquote>
+<p>Add-on packages (from CRAN or under development) are usually installed in the user library</p>
+</blockquote>
+</div>
+</section>
+<section id="avoid-library-inside-packages" class="slide level2">
+<h2>🚫 Avoid <code>library()</code> Inside Packages</h2>
+<p>Do not use <code>library()</code> or <code>require()</code> inside your package code</p>
+<div>
+<ul>
+<li class="fragment">Packages declare dependencies via <strong>DESCRIPTION</strong> and <strong>NAMESPACE</strong></li>
+<li class="fragment"><code>library()</code> is for scripts and interactive sessions, not for packages</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Instead, use:</p>
+<div>
+<ul>
+<li class="fragment">Imports: in DESCRIPTION</li>
+<li class="fragment"><span class="citation" data-cites="import">@import</span> or <span class="citation" data-cites="importFrom">@importFrom</span> in Roxygen2 comments</li>
+</ul>
+</div>
+</div>
+<div class="fragment">
+<blockquote>
+<p>✅ This is one of the biggest mental shifts when moving from scripts to package development</p>
+</blockquote>
 </div>
 </section></section>
 <section>
@@ -815,43 +872,43 @@ Mehdi Maadooliat and Hossein Haghbin
 </section>
 <section id="sample-description-file" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">🧾 Sample DESCRIPTION File</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb7-1" class="hljs-ln-code"><a></a>Package: Rfssa</span>
-<span id="cb7-2" class="hljs-ln-code"><a></a>Title: Functional Singular Spectrum Analysis</span>
-<span id="cb7-3" class="hljs-ln-code"><a></a>Version: 3.1.0</span>
-<span id="cb7-4" class="hljs-ln-code"><a></a>Authors@R: c(</span>
-<span id="cb7-5" class="hljs-ln-code"><a></a>    person("Hossein", "Haghbin", email = "haghbin@pgu.ac.ir", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8416-2354")),</span>
-<span id="cb7-6" class="hljs-ln-code"><a></a>    person("Mehdi", "Maadooliat", email = "mehdi.maadooliat@mu.edu", role = "aut", comment = c(ORCID = "0000-0002-5408-2676"))</span>
-<span id="cb7-7" class="hljs-ln-code"><a></a>    )</span>
-<span id="cb7-8" class="hljs-ln-code"><a></a>Maintainer: Hossein Haghbin &lt;haghbin@pgu.ac.ir&gt;</span>
-<span id="cb7-9" class="hljs-ln-code"><a></a>Description: Methods and tools for implementing functional singular spectrum analysis and related techniques.</span>
-<span id="cb7-10" class="hljs-ln-code"><a></a>License: GPL-3</span>
-<span id="cb7-11" class="hljs-ln-code"><a></a>Encoding: UTF-8</span>
-<span id="cb7-12" class="hljs-ln-code"><a></a>Roxygen: list(markdown = TRUE)</span>
-<span id="cb7-13" class="hljs-ln-code"><a></a>RoxygenNote: 7.2.3</span>
-<span id="cb7-14" class="hljs-ln-code"><a></a>Depends: R (&gt;= 4.0.0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb10-1" class="hljs-ln-code"><a></a>Package: Rfssa</span>
+<span id="cb10-2" class="hljs-ln-code"><a></a>Title: Functional Singular Spectrum Analysis</span>
+<span id="cb10-3" class="hljs-ln-code"><a></a>Version: 3.1.0</span>
+<span id="cb10-4" class="hljs-ln-code"><a></a>Authors@R: c(</span>
+<span id="cb10-5" class="hljs-ln-code"><a></a>    person("Hossein", "Haghbin", email = "haghbin@pgu.ac.ir", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8416-2354")),</span>
+<span id="cb10-6" class="hljs-ln-code"><a></a>    person("Mehdi", "Maadooliat", email = "mehdi.maadooliat@mu.edu", role = "aut", comment = c(ORCID = "0000-0002-5408-2676"))</span>
+<span id="cb10-7" class="hljs-ln-code"><a></a>    )</span>
+<span id="cb10-8" class="hljs-ln-code"><a></a>Maintainer: Hossein Haghbin &lt;haghbin@pgu.ac.ir&gt;</span>
+<span id="cb10-9" class="hljs-ln-code"><a></a>Description: Methods and tools for implementing functional singular spectrum analysis and related techniques.</span>
+<span id="cb10-10" class="hljs-ln-code"><a></a>License: GPL-3</span>
+<span id="cb10-11" class="hljs-ln-code"><a></a>Encoding: UTF-8</span>
+<span id="cb10-12" class="hljs-ln-code"><a></a>Roxygen: list(markdown = TRUE)</span>
+<span id="cb10-13" class="hljs-ln-code"><a></a>RoxygenNote: 7.2.3</span>
+<span id="cb10-14" class="hljs-ln-code"><a></a>Depends: R (&gt;= 4.0.0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="more-details-description" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">More Details DESCRIPTION</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb8-1" class="hljs-ln-code"><a></a>Package: Rfssa</span>
-<span id="cb8-2" class="hljs-ln-code"><a></a>Title: Functional Singular Spectrum Analysis</span>
-<span id="cb8-3" class="hljs-ln-code"><a></a>Version: 3.1.0</span>
-<span id="cb8-4" class="hljs-ln-code"><a></a>Authors@R: c(</span>
-<span id="cb8-5" class="hljs-ln-code"><a></a>    person("Hossein", "Haghbin", email = "haghbin@pgu.ac.ir", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8416-2354")),</span>
-<span id="cb8-6" class="hljs-ln-code"><a></a>    person("Mehdi", "Maadooliat", email = "mehdi.maadooliat@mu.edu", role = "aut", comment = c(ORCID = "0000-0002-5408-2676"))</span>
-<span id="cb8-7" class="hljs-ln-code"><a></a>    )</span>
-<span id="cb8-8" class="hljs-ln-code"><a></a>Maintainer: Hossein Haghbin &lt;haghbin@pgu.ac.ir&gt;</span>
-<span id="cb8-9" class="hljs-ln-code"><a></a>Description: Methods and tools for implementing functional singular spectrum analysis and related techniques.</span>
-<span id="cb8-10" class="hljs-ln-code"><a></a>License: GPL-3</span>
-<span id="cb8-11" class="hljs-ln-code"><a></a>Encoding: UTF-8</span>
-<span id="cb8-12" class="hljs-ln-code"><a></a>Roxygen: list(markdown = TRUE)</span>
-<span id="cb8-13" class="hljs-ln-code"><a></a>RoxygenNote: 7.2.3</span>
-<span id="cb8-14" class="hljs-ln-code"><a></a>URL: https://github.com/haghbinh/Rfssa</span>
-<span id="cb8-15" class="hljs-ln-code"><a></a>LazyLoad: true</span>
-<span id="cb8-16" class="hljs-ln-code"><a></a>Imports: Rcpp,fda,lattice,plotly</span>
-<span id="cb8-17" class="hljs-ln-code"><a></a>LinkingTo: Rcpp, RcppArmadillo, RcppEigen,</span>
-<span id="cb8-18" class="hljs-ln-code"><a></a>Suggests: </span>
-<span id="cb8-19" class="hljs-ln-code"><a></a>    knitr</span>
-<span id="cb8-20" class="hljs-ln-code"><a></a>Depends: R (&gt;= 4.0.0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource text number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode hljs"><span id="cb11-1" class="hljs-ln-code"><a></a>Package: Rfssa</span>
+<span id="cb11-2" class="hljs-ln-code"><a></a>Title: Functional Singular Spectrum Analysis</span>
+<span id="cb11-3" class="hljs-ln-code"><a></a>Version: 3.1.0</span>
+<span id="cb11-4" class="hljs-ln-code"><a></a>Authors@R: c(</span>
+<span id="cb11-5" class="hljs-ln-code"><a></a>    person("Hossein", "Haghbin", email = "haghbin@pgu.ac.ir", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8416-2354")),</span>
+<span id="cb11-6" class="hljs-ln-code"><a></a>    person("Mehdi", "Maadooliat", email = "mehdi.maadooliat@mu.edu", role = "aut", comment = c(ORCID = "0000-0002-5408-2676"))</span>
+<span id="cb11-7" class="hljs-ln-code"><a></a>    )</span>
+<span id="cb11-8" class="hljs-ln-code"><a></a>Maintainer: Hossein Haghbin &lt;haghbin@pgu.ac.ir&gt;</span>
+<span id="cb11-9" class="hljs-ln-code"><a></a>Description: Methods and tools for implementing functional singular spectrum analysis and related techniques.</span>
+<span id="cb11-10" class="hljs-ln-code"><a></a>License: GPL-3</span>
+<span id="cb11-11" class="hljs-ln-code"><a></a>Encoding: UTF-8</span>
+<span id="cb11-12" class="hljs-ln-code"><a></a>Roxygen: list(markdown = TRUE)</span>
+<span id="cb11-13" class="hljs-ln-code"><a></a>RoxygenNote: 7.2.3</span>
+<span id="cb11-14" class="hljs-ln-code"><a></a>URL: https://github.com/haghbinh/Rfssa</span>
+<span id="cb11-15" class="hljs-ln-code"><a></a>LazyLoad: true</span>
+<span id="cb11-16" class="hljs-ln-code"><a></a>Imports: Rcpp,fda,lattice,plotly</span>
+<span id="cb11-17" class="hljs-ln-code"><a></a>LinkingTo: Rcpp, RcppArmadillo, RcppEigen,</span>
+<span id="cb11-18" class="hljs-ln-code"><a></a>Suggests: </span>
+<span id="cb11-19" class="hljs-ln-code"><a></a>    knitr</span>
+<span id="cb11-20" class="hljs-ln-code"><a></a>Depends: R (&gt;= 4.0.0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="title-vs.-description" class="slide level2">
 <h2>📝 Title vs.&nbsp;Description</h2>
@@ -882,11 +939,11 @@ Mehdi Maadooliat and Hossein Haghbin
 </section>
 <section id="example-from-ggplot2" class="slide level2">
 <h2>🧪 Example from <code>ggplot2</code>:</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a></a>Title: Create Elegant Data Visualisations Using the Grammar of Graphics</span>
-<span id="cb9-2"><a></a>Description: A system for 'declaratively' creating graphics,</span>
-<span id="cb9-3"><a></a>  based on "The Grammar of Graphics". You provide the data,</span>
-<span id="cb9-4"><a></a>  tell 'ggplot2' how to map variables to aesthetics, what</span>
-<span id="cb9-5"><a></a>  graphical primitives to use, and it takes care of the details.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a></a>Title: Create Elegant Data Visualisations Using the Grammar of Graphics</span>
+<span id="cb12-2"><a></a>Description: A system for 'declaratively' creating graphics,</span>
+<span id="cb12-3"><a></a>  based on "The Grammar of Graphics". You provide the data,</span>
+<span id="cb12-4"><a></a>  tell 'ggplot2' how to map variables to aesthetics, what</span>
+<span id="cb12-5"><a></a>  graphical primitives to use, and it takes care of the details.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="imports-vs.-suggests" class="slide level2">
 <h2>📦 Imports vs.&nbsp;Suggests</h2>
@@ -933,11 +990,11 @@ Mehdi Maadooliat and Hossein Haghbin
 </section>
 <section id="example-namespace-file" class="slide level2">
 <h2>🧾 Example: NAMESPACE File</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a></a># Generated by roxygen2: do not edit by hand</span>
-<span id="cb10-2"><a></a>S3method("*", funts)</span>
-<span id="cb10-3"><a></a>export(as.funts)</span>
-<span id="cb10-4"><a></a>import(shiny)</span>
-<span id="cb10-5"><a></a>importFrom(ggplot2, ggplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"><a></a># Generated by roxygen2: do not edit by hand</span>
+<span id="cb13-2"><a></a>S3method("*", funts)</span>
+<span id="cb13-3"><a></a>export(as.funts)</span>
+<span id="cb13-4"><a></a>import(shiny)</span>
+<span id="cb13-5"><a></a>importFrom(ggplot2, ggplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <ul>
 <li><p><code>export()</code> — makes a function available to users</p></li>
@@ -950,12 +1007,12 @@ Mehdi Maadooliat and Hossein Haghbin
 <section id="how-to-generate-namespace" class="slide level2">
 <h2>✍️ How to Generate NAMESPACE</h2>
 <p>In <code>.R</code> files:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co">#' @export</span></span>
-<span id="cb11-2"><a></a>r_func <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { ... }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co">#' @export</span></span>
+<span id="cb14-2"><a></a>r_func <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { ... }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>In <code>.cpp</code> files:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb12-1"><a></a><span class="co">// [[Rcpp::export]]</span></span>
-<span id="cb12-2"><a></a><span class="dt">double</span> myRcpp<span class="op">-</span>func<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">double</span> y<span class="op">)</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb15-1"><a></a><span class="co">// [[Rcpp::export]]</span></span>
+<span id="cb15-2"><a></a><span class="dt">double</span> myRcpp<span class="op">-</span>func<span class="op">(</span><span class="dt">int</span> x<span class="op">,</span> <span class="dt">double</span> y<span class="op">)</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -978,34 +1035,34 @@ Mehdi Maadooliat and Hossein Haghbin
 <section id="code-placement" class="slide level2">
 <h2>📂 Code Placement</h2>
 <p>All your functions go in the <code>R/</code> folder.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"><a></a>mypkg/</span>
-<span id="cb13-2"><a></a>├── R/</span>
-<span id="cb13-3"><a></a>│   ├── my_function.R</span>
-<span id="cb13-4"><a></a>│   └── helpers.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb16-1"><a></a>mypkg/</span>
+<span id="cb16-2"><a></a>├── R/</span>
+<span id="cb16-3"><a></a>│   ├── my_function.R</span>
+<span id="cb16-4"><a></a>│   └── helpers.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Each <code>.R</code> file can contain one or more functions.</p>
 </section>
 <section id="documenting-functions-with-roxygen2" class="slide level2">
 <h2>📝 Documenting Functions with Roxygen2</h2>
 <p>Use special comments starting with <code>#'</code> to write function documentation:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="co">#' Sum of Square Function</span></span>
-<span id="cb14-2"><a></a><span class="co">#'</span></span>
-<span id="cb14-3"><a></a><span class="co">#' This function computes the Sum of Squares of a numeric vector</span></span>
-<span id="cb14-4"><a></a><span class="co">#' </span></span>
-<span id="cb14-5"><a></a><span class="co">#' @param x Numeric vector</span></span>
-<span id="cb14-6"><a></a><span class="co">#' @return Numeric sum of x</span></span>
-<span id="cb14-7"><a></a><span class="co">#'</span></span>
-<span id="cb14-8"><a></a><span class="co">#' @examples</span></span>
-<span id="cb14-9"><a></a><span class="co">#' x &lt;- 1:5</span></span>
-<span id="cb14-10"><a></a><span class="co">#' y &lt;- my_function(x)</span></span>
-<span id="cb14-11"><a></a><span class="co">#' print(y)</span></span>
-<span id="cb14-12"><a></a><span class="co">#'</span></span>
-<span id="cb14-13"><a></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="co">#' Sum of Square Function</span></span>
+<span id="cb17-2"><a></a><span class="co">#'</span></span>
+<span id="cb17-3"><a></a><span class="co">#' This function computes the Sum of Squares of a numeric vector</span></span>
+<span id="cb17-4"><a></a><span class="co">#' </span></span>
+<span id="cb17-5"><a></a><span class="co">#' @param x Numeric vector</span></span>
+<span id="cb17-6"><a></a><span class="co">#' @return Numeric sum of x</span></span>
+<span id="cb17-7"><a></a><span class="co">#'</span></span>
+<span id="cb17-8"><a></a><span class="co">#' @examples</span></span>
+<span id="cb17-9"><a></a><span class="co">#' x &lt;- 1:5</span></span>
+<span id="cb17-10"><a></a><span class="co">#' y &lt;- my_function(x)</span></span>
+<span id="cb17-11"><a></a><span class="co">#' print(y)</span></span>
+<span id="cb17-12"><a></a><span class="co">#'</span></span>
+<span id="cb17-13"><a></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">sum</span>(x<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will generate help files in the <strong>man/</strong> folder.</p>
 </section>
 <section id="generate-documentation" class="slide level2">
 <h2>⚙️ Generate Documentation</h2>
 <p>After writing your function and roxygen2 comments, run:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will:</p>
 <div>
 <ul>
@@ -1025,7 +1082,7 @@ Mehdi Maadooliat and Hossein Haghbin
 <section id="step-1-create-your-package" class="slide level2">
 <h2>🧱 Step 1: Create Your Package</h2>
 <p>Use <code>usethis</code> to create a new package directory:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="st">"minipkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="st">"minipkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This creates:</p>
 <div>
 <ul>
@@ -1038,38 +1095,38 @@ Mehdi Maadooliat and Hossein Haghbin
 <section id="add-a-dataset" class="slide level2">
 <h2>2️⃣ Add a Dataset</h2>
 <p>Let’s include a built-in dataset (mtcars) for simplicity:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(mtcars, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(mtcars, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>This creates a <strong>data/mtcars.rda</strong> file — accessible via</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>minipkg<span class="sc">::</span>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>minipkg<span class="sc">::</span>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="create-a-function" class="slide level2">
 <h2>3️⃣ Create a Function</h2>
 <p>Create a new file: <strong>R/summary_stats.R</strong></p>
-<div class="sourceCode" id="cb19" height="200" data-code-line-numbers="1-11|12-18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="co">#' Compute Summary Statistics</span></span>
-<span id="cb19-2"><a></a><span class="co">#'</span></span>
-<span id="cb19-3"><a></a><span class="co">#' Returns mean and standard deviation for each numeric column.</span></span>
-<span id="cb19-4"><a></a><span class="co">#'</span></span>
-<span id="cb19-5"><a></a><span class="co">#' @param data A data frame with numeric columns</span></span>
-<span id="cb19-6"><a></a><span class="co">#' @return A data frame with `mean` and `sd` per column</span></span>
-<span id="cb19-7"><a></a><span class="co">#'</span></span>
-<span id="cb19-8"><a></a><span class="co">#' @examples</span></span>
-<span id="cb19-9"><a></a><span class="co">#' summary_stats(mtcars)</span></span>
-<span id="cb19-10"><a></a><span class="co">#'</span></span>
-<span id="cb19-11"><a></a><span class="co">#' @export</span></span>
-<span id="cb19-12"><a></a>summary_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
-<span id="cb19-13"><a></a>  numeric_data <span class="ot">&lt;-</span> data[<span class="fu">sapply</span>(data, is.numeric)]</span>
-<span id="cb19-14"><a></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb19-15"><a></a>    <span class="at">mean =</span> <span class="fu">sapply</span>(numeric_data, mean),</span>
-<span id="cb19-16"><a></a>    <span class="at">sd =</span> <span class="fu">sapply</span>(numeric_data, sd)</span>
-<span id="cb19-17"><a></a>  )</span>
-<span id="cb19-18"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22" height="200" data-code-line-numbers="1-11|12-18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="co">#' Compute Summary Statistics</span></span>
+<span id="cb22-2"><a></a><span class="co">#'</span></span>
+<span id="cb22-3"><a></a><span class="co">#' Returns mean and standard deviation for each numeric column.</span></span>
+<span id="cb22-4"><a></a><span class="co">#'</span></span>
+<span id="cb22-5"><a></a><span class="co">#' @param data A data frame with numeric columns</span></span>
+<span id="cb22-6"><a></a><span class="co">#' @return A data frame with `mean` and `sd` per column</span></span>
+<span id="cb22-7"><a></a><span class="co">#'</span></span>
+<span id="cb22-8"><a></a><span class="co">#' @examples</span></span>
+<span id="cb22-9"><a></a><span class="co">#' summary_stats(mtcars)</span></span>
+<span id="cb22-10"><a></a><span class="co">#'</span></span>
+<span id="cb22-11"><a></a><span class="co">#' @export</span></span>
+<span id="cb22-12"><a></a>summary_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb22-13"><a></a>  numeric_data <span class="ot">&lt;-</span> data[<span class="fu">sapply</span>(data, is.numeric)]</span>
+<span id="cb22-14"><a></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb22-15"><a></a>    <span class="at">mean =</span> <span class="fu">sapply</span>(numeric_data, mean),</span>
+<span id="cb22-16"><a></a>    <span class="at">sd =</span> <span class="fu">sapply</span>(numeric_data, sd)</span>
+<span id="cb22-17"><a></a>  )</span>
+<span id="cb22-18"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="document-the-function" class="slide level2">
 <h2>4️⃣ Document the Function</h2>
 <p>Run the following command to generate docs:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will:</p>
 <div>
 <ul>
@@ -1081,31 +1138,31 @@ Mehdi Maadooliat and Hossein Haghbin
 <section id="load-and-test-the-package" class="slide level2">
 <h2>5️⃣ Load and Test the Package</h2>
 <p>In the console:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>devtools<span class="sc">::</span><span class="fu">load_all</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment fade-up">
 <p>Then test the function:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">summary_stats</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">summary_stats</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment fade-up">
 <p>You should see:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb23-1"><a></a>                mean         sd</span>
-<span id="cb23-2"><a></a>mpg        20.090625  6.0269481</span>
-<span id="cb23-3"><a></a>cyl         6.187500  1.7859216</span>
-<span id="cb23-4"><a></a>disp      230.721875 123.9386938</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb26-1"><a></a>                mean         sd</span>
+<span id="cb26-2"><a></a>mpg        20.090625  6.0269481</span>
+<span id="cb26-3"><a></a>cyl         6.187500  1.7859216</span>
+<span id="cb26-4"><a></a>disp      230.721875 123.9386938</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="build-and-install-the-package" class="slide level2">
 <h2>6️⃣ Build and Install the Package</h2>
 <p>Build the package locally:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>devtools<span class="sc">::</span><span class="fu">build</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>devtools<span class="sc">::</span><span class="fu">build</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment fade-up">
 <p>Install it:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>devtools<span class="sc">::</span><span class="fu">install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment fade-up">
 <p>Now you can use it like any other package:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">library</span>(minipkg)</span>
-<span id="cb26-2"><a></a><span class="fu">summary_stats</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">library</span>(minipkg)</span>
+<span id="cb29-2"><a></a><span class="fu">summary_stats</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="helpsummary_stats" class="slide level2" data-transition="convex">
