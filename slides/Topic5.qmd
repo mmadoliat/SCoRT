@@ -221,21 +221,21 @@ An **in-memory** package is an installed package that’s been loaded into the R
 ## Package libraries
 
 When you run:  
-  ```r
+
+```r
   library(somepackage)
- ```
+```
+
 R searches the current libraries (directories of installed packages). If it finds the package, it loads it into memory and makes it available for use.
+
 . . .
 
 **📦 Package vs. 📚 Library**
 
-. . .
-
+::: incremental
 - **Package** → bundle of code, data, docs, tests  
-
-. . .
-
 - **Library** → directory on your computer that contains installed packages  
+::: 
 
 . . .
 
@@ -253,14 +253,66 @@ It’s common to hear people say:
 But actually:
 
 ::: incremental
-- **dplyr is a package**  
-- It lives inside a **library (directory)**  
+- **dplyr**  is a package 
+- It lives inside a **library**  
 - You load it with `library(dplyr)`  
 :::
+
 . . .
+
  > 👉 A **library** is just where packages live (a directory)
 
+## 📚 Multiple Libraries in R
 
+::: incremental
+- R allows you to have **multiple library paths** on your system  
+- Each library contains a set of installed packages  
+- Check active library paths with:
+:::
+
+. . .
+
+```r
+.libPaths()
+# [1] "C:/Program Files/R/R-4.5.1/library"
+```
+
+## 🔎 Exploring Installed Packages
+
+You can explore which packages exist in each library path
+
+ ```r
+lapply(.libPaths(), list.dirs, recursive = FALSE, full.names = FALSE)
+# [[1]] 
+#  [1] "abind"   "ash"     "askpass"   "backports"  
+#  [5] "base"    "base64enc" "bitops"   "boot"
+```
+
+. . .
+
+> Add-on packages (from CRAN or under development) are usually installed in the user library
+
+## 🚫 Avoid `library()` Inside Packages
+
+Do not use `library()` or `require()` inside your package code
+
+::: incremental
+  - Packages declare dependencies via **DESCRIPTION** and **NAMESPACE**
+ - `library()` is for scripts and interactive sessions, not for packages
+::: 
+
+. . .
+
+Instead, use:
+
+::: incremental
+- Imports: in DESCRIPTION
+- @import or @importFrom in Roxygen2 comments
+::: 
+
+. . .
+
+> ✅ This is one of the biggest mental shifts when moving from scripts to package development
 
 
 # Create a Package
