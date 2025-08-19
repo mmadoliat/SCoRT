@@ -825,11 +825,11 @@
     ]
   },
   {
-    "objectID": "slides/Topic5.html#package-libraries",
-    "href": "slides/Topic5.html#package-libraries",
+    "objectID": "slides/Topic5.html#package-vs.-library",
+    "href": "slides/Topic5.html#package-vs.-library",
     "title": "Short Course on R Tools",
-    "section": "Package libraries",
-    "text": "Package libraries\nWhen you run:\n  library(somepackage)\nR searches the current libraries (directories of installed packages). If it finds the package, it loads it into memory and makes it available for use.\n\n📦 Package vs. 📚 Library\n\n\nPackage → bundle of code, data, docs, tests\n\nLibrary → directory on your computer that contains installed packages\n\n\n\n\n\n\n👉 Think of a library as a bookshelf full of packages.",
+    "section": "📦 Package vs. 📚 Library",
+    "text": "📦 Package vs. 📚 Library\n\n\nPackage → bundle of code, data, docs, tests\n\nLibrary → directory on your computer that contains installed packages\n\n\n\n\n\n👉 Think of a library as a bookshelf full of packages.",
     "crumbs": [
       "Slides",
       "R package"
@@ -851,18 +851,7 @@
     "href": "slides/Topic5.html#multiple-libraries-in-r",
     "title": "Short Course on R Tools",
     "section": "📚 Multiple Libraries in R",
-    "text": "📚 Multiple Libraries in R\n\n\nR allows you to have multiple library paths on your system\n\nEach library contains a set of installed packages\n\nCheck active library paths with:\n\n\n\n.libPaths()\n# [1] \"C:/Program Files/R/R-4.5.1/library\"",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
-    "objectID": "slides/Topic5.html#exploring-installed-packages",
-    "href": "slides/Topic5.html#exploring-installed-packages",
-    "title": "Short Course on R Tools",
-    "section": "🔎 Exploring Installed Packages",
-    "text": "🔎 Exploring Installed Packages\nYou can explore which packages exist in each library path\nlapply(.libPaths(), list.dirs, recursive = FALSE, full.names = FALSE)\n# [[1]] \n#  [1] \"abind\"   \"ash\"     \"askpass\"   \"backports\"  \n#  [5] \"base\"    \"base64enc\" \"bitops\"   \"boot\"\n\n\nAdd-on packages (from CRAN or under development) are usually installed in the user library",
+    "text": "📚 Multiple Libraries in R\n\n\nR allows you to have multiple library paths on your system\n\nEach library contains a set of installed packages\n\nCheck active library paths with:\n\n.libPaths()\n# [1] \"C:/Program Files/R/R-4.5.1/library\"\n- 🔎 Exploring Installed Packages\n ```r\nlapply(.libPaths(), list.dirs, recursive = FALSE, full.names = FALSE)\n# [[1]] \n#  [1] \"abind\"   \"ash\"     \"askpass\"   \"backports\"  \n#  [5] \"base\"    \"base64enc\" \"bitops\"   \"boot\"",
     "crumbs": [
       "Slides",
       "R package"
@@ -906,7 +895,7 @@
     "href": "slides/Topic5.html#naming-patterns-and-examples",
     "title": "Short Course on R Tools",
     "section": "🧠 Naming Patterns and Examples",
-    "text": "🧠 Naming Patterns and Examples\nEvocative Names:\n\nlubridate → makes dates easier\n\nrvest → for web scraping (like “harvest”)\n\nr2d3 → tools for D3 visualizations\n\nforcats → anagram of factors\n\n\n\nAbbreviations\n\nRcpp → R + C++\nbrms → Bayesian Regression Models using Stan",
+    "text": "🧠 Naming Patterns and Examples\nEvocative Names:\n\n\nlubridate → makes dates easier\n\nr2d3 → tools for D3 visualizations\n\nforcats → tools for working with categorical variables\n\n\n\nAbbreviations\n\n\nRcpp → R + C++\nbrms → Bayesian Regression Models using Stan",
     "crumbs": [
       "Slides",
       "R package"
@@ -929,17 +918,6 @@
     "title": "Short Course on R Tools",
     "section": "📦 What Gets Created?",
     "text": "📦 What Gets Created?\n\n\n\n\nR/ folder → for your function code\n\nDESCRIPTION file → metadata\n\nNAMESPACE file → exports/imports\n\nmypkg.Rproj → RStudio project file\n\n.Rbuildignore, .gitignore → build and Git helpers",
-    "crumbs": [
-      "Slides",
-      "R package"
-    ]
-  },
-  {
-    "objectID": "slides/Topic5.html#description-namespace",
-    "href": "slides/Topic5.html#description-namespace",
-    "title": "Short Course on R Tools",
-    "section": "DESCRIPTION & NAMESPACE",
-    "text": "DESCRIPTION & NAMESPACE\nTwo essential files in every R package:\n\n\n📄 DESCRIPTION: Metadata about your package (who, what, dependencies)\n\n📦 NAMESPACE: Controls what functions are exported and what is imported",
     "crumbs": [
       "Slides",
       "R package"
