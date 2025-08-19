@@ -24,15 +24,53 @@ format:
 -   Build a Simple Package from Scratch
 :::
 
-# Why Build an R Package?
+## 📦 R Packages: The Fundamental Unit
+
+In R, the **fundamental unit of shareable code** is the **package**.
+
+A package bundles together:
 
 ::: incremental
--   🧩 **Reusability**: Organize and reuse code across multiple projects\
--   📚 **Documentation**: Provide built-in help files and usage examples\
--   ✅ **Testing**: Systematically check your code with unit tests\
--   🌍 **Distribution**: Share via CRAN, GitHub, or internal repositories\
--   🛠️ **Best Practices**: Improve maintainability and team collaboration
--   🤝 **Open Source & Workflows**: Enable contributions, version control, and community engagement
+- 🧑‍💻 Code  
+- 📊 Data  
+- 📚 Documentation  
+- 🧪 Tests  
+:::
+
+. . .
+
+➡️ All in one place, easy to share with others.
+
+## 📦 You Already Use Packages!
+
+If you’re here, you already know how to work with packages:
+
+::: incremental
+- 📥 Install a package from CRAN:  
+  ```r
+  install.packages("x")
+ ```
+- ▶️ Use a package in R:
+  ```r
+  library("x")
+ ```
+- ❓ Get help on them with
+  ```r
+  package?x
+  help(package = "x")
+ ```
+:::
+
+## 🎯 Goal of This Talk
+
+This workshop is about moving from **using packages** ➡️ to **developing your own**.
+
+Why?
+
+::: incremental
+- 🚀 To share your code with others  
+- 📦 To make your code easy to install, use, and learn  
+- ⏳ To save yourself time with conventions and structure
 :::
 
 # System Setup
