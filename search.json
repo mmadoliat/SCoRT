@@ -214,35 +214,56 @@
     "href": "hands-on/HW2.html",
     "title": "Homework Assignment 2",
     "section": "",
-    "text": "Please complete the following tasks within one week and submit your work as a GitHub repository.\nInclude your GitHub repository link in your submission so the instructor can review your code, package, and collaboration history.\n\n\n\n\nPython Script: Create a Python script model.py that defines at least one function (e.g., square_numbers(x)) and a small PyTorch or NumPy model.\nReticulate in R: From R, use reticulate to:\n\nImport and call your Python function(s)\nPass data from R to Python and back\nGenerate a plot in Python (e.g., matplotlib) but called from R, and save it under images/\n\nDocumentation: Use roxygen2 comments in your R script to document the functions that interact with Python, and regenerate help files.\n\n\n\n\n\n\nPackage Setup: Create a new R package (e.g., myutils) in RStudio.\nFunctionality: Add at least two R functions of your choice.\nDataset: Include at least one dataset in your package and document it.\nDocumentation: Document all functions and datasets with roxygen2.\nTesting: Write at least two unit tests for each function using testthat.\nBuild: Install and load your package locally to verify functionality.\n\n\n\n\n\n\nRepository Setup: Push your package and Python–R integration work to a GitHub repository.\nCollaboration:\n\nInvite a classmate as a collaborator\nThey must create a new branch, add or improve a function, commit, and push\nThey must create a Pull Request (PR) for you to review\nMerge the PR into your main branch\n\nEvidence: Include screenshots of:\n\nThe PR discussion\nThe commit history showing contributions\nThe merge confirmation\n\n\n\n\n\n\nYour GitHub repository should be organized as follows:\nhw2_reticulate_package/\n├── R/ # R functions and roxygen2 docs\n├── data/ # datasets for your package\n├── tests/ # testthat tests\n├── python/ # Python scripts (model.py, etc.)\n├── images/ # generated plots\n├── README.md # overview and instructions\n└── DESCRIPTION # package metadata\nThe README must include: - Setup instructions for R and Python dependencies - Instructions to reproduce all results and plots - Your collaborator’s name and their contribution - The GitHub repository link\n\nGood luck, and remember to commit and push often!"
+    "text": "Please complete the following tasks within one week and share your work as a GitHub repository linke.\n\n\n\n\n\n\n\nBuild a simple R package that achieves a specific task.\n\nExamples of goals:\n\nData cleaning helper functions\n\nA small visualization wrapper\n\nStatistical functions (e.g., custom summary stats)\n\nImporting/transforming a public dataset\n\n\n\n\n\n\n\nYour package should solve a simple but useful problem for statistics. Possible ideas:\n\nDescriptive Statistics Toolkit: Functions to compute mean, variance, quantiles, skewness, kurtosis.\n\nVisualization Helper: Custom plotting functions for common statistical distributions.\n\nProbability Distribution Tools: Simulate and analyze distributions (Normal, Poisson, Binomial, etc.).\n\nRegression Helpers: Easy-to-use wrappers for linear/logistic regression summaries.\n\nTime Series Mini Toolkit: Simple functions for moving averages, decomposition, and plotting.\n\nResampling Methods: Implement bootstrap and permutation tests.\n\n\n\n\n\n\nPick a clear, unique package name.\n\nExample: statHelper, bootResampleR, easyViz, probSimR.\n\n\nProvide documentation:\n\nDESCRIPTION file with title, description, author.\n\nFunction-level help with #' Roxygen comments.\n\nREADME.md explaining package goal, installation, usage.\n\n\nAdd at least one vignette/tutorial showing examples.\n\n\n\n\n\nEmbed at least one dataset inside your package. Suggestions:\n\nBuilt-in datasets (iris, mtcars, airquality).\n\nPublic datasets (but keep them small):\n\nDaily stock prices (few days).\n\nStudents’ grades (simulated).\n\nCOVID-19 sample (subset).\n\nRandomly generated survey data.\n\n\n\n\n\n\n\nCreate a GitHub repository.\n\nPush your package code.\n\nAdd a LICENSE file.\n\nShare the repository link with your instructor.\n\n\n\n\n\n\n\n\nPart\nDescription\nPoints\n\n\n\n\nTask Design\nClear, meaningful statistical goal\n15\n\n\nPackage Structure\nCorrect folder & file setup\n15\n\n\nFunctions\nAt least 3 well-written functions\n20\n\n\nDocumentation\nDESCRIPTION, README, Roxygen comments\n15\n\n\nDataset\nCorrectly embedded with documentation\n10\n\n\nVignette\nExample usage in Rmarkdown\n10\n\n\nGitHub Repository\nProper setup, LICENSE, clean commits\n10\n\n\nPresentation\nClear, creative, user-friendly\n5\n\n\n\n\n\n\n\n\nDeadline: [set your date here]\n\nSubmit: GitHub repository link shared via email or LMS.\n\nBonus: +5 points if package installs directly with devtools::install_github(\"username/package\").\n\n\nGood luck, and remember to commit and push often!"
   },
   {
-    "objectID": "hands-on/HW2.html#python-integration-with-r-using-reticulate-30-pts",
-    "href": "hands-on/HW2.html#python-integration-with-r-using-reticulate-30-pts",
+    "objectID": "hands-on/HW2.html#build-share-your-package",
+    "href": "hands-on/HW2.html#build-share-your-package",
     "title": "Homework Assignment 2",
     "section": "",
-    "text": "Python Script: Create a Python script model.py that defines at least one function (e.g., square_numbers(x)) and a small PyTorch or NumPy model.\nReticulate in R: From R, use reticulate to:\n\nImport and call your Python function(s)\nPass data from R to Python and back\nGenerate a plot in Python (e.g., matplotlib) but called from R, and save it under images/\n\nDocumentation: Use roxygen2 comments in your R script to document the functions that interact with Python, and regenerate help files."
+    "text": "Build a simple R package that achieves a specific task.\n\nExamples of goals:\n\nData cleaning helper functions\n\nA small visualization wrapper\n\nStatistical functions (e.g., custom summary stats)\n\nImporting/transforming a public dataset"
   },
   {
-    "objectID": "hands-on/HW2.html#develop-your-own-professional-r-package-40-pts",
-    "href": "hands-on/HW2.html#develop-your-own-professional-r-package-40-pts",
+    "objectID": "hands-on/HW2.html#step-1-choose-a-task-goal-of-your-package",
+    "href": "hands-on/HW2.html#step-1-choose-a-task-goal-of-your-package",
     "title": "Homework Assignment 2",
     "section": "",
-    "text": "Package Setup: Create a new R package (e.g., myutils) in RStudio.\nFunctionality: Add at least two R functions of your choice.\nDataset: Include at least one dataset in your package and document it.\nDocumentation: Document all functions and datasets with roxygen2.\nTesting: Write at least two unit tests for each function using testthat.\nBuild: Install and load your package locally to verify functionality."
+    "text": "Your package should solve a simple but useful problem for statistics. Possible ideas:\n\nDescriptive Statistics Toolkit: Functions to compute mean, variance, quantiles, skewness, kurtosis.\n\nVisualization Helper: Custom plotting functions for common statistical distributions.\n\nProbability Distribution Tools: Simulate and analyze distributions (Normal, Poisson, Binomial, etc.).\n\nRegression Helpers: Easy-to-use wrappers for linear/logistic regression summaries.\n\nTime Series Mini Toolkit: Simple functions for moving averages, decomposition, and plotting.\n\nResampling Methods: Implement bootstrap and permutation tests."
   },
   {
-    "objectID": "hands-on/HW2.html#collaborate-via-github-20-pts",
-    "href": "hands-on/HW2.html#collaborate-via-github-20-pts",
+    "objectID": "hands-on/HW2.html#step-2-name-and-documentation",
+    "href": "hands-on/HW2.html#step-2-name-and-documentation",
     "title": "Homework Assignment 2",
     "section": "",
-    "text": "Repository Setup: Push your package and Python–R integration work to a GitHub repository.\nCollaboration:\n\nInvite a classmate as a collaborator\nThey must create a new branch, add or improve a function, commit, and push\nThey must create a Pull Request (PR) for you to review\nMerge the PR into your main branch\n\nEvidence: Include screenshots of:\n\nThe PR discussion\nThe commit history showing contributions\nThe merge confirmation"
+    "text": "Pick a clear, unique package name.\n\nExample: statHelper, bootResampleR, easyViz, probSimR.\n\n\nProvide documentation:\n\nDESCRIPTION file with title, description, author.\n\nFunction-level help with #' Roxygen comments.\n\nREADME.md explaining package goal, installation, usage.\n\n\nAdd at least one vignette/tutorial showing examples."
   },
   {
-    "objectID": "hands-on/HW2.html#deliverables",
-    "href": "hands-on/HW2.html#deliverables",
+    "objectID": "hands-on/HW2.html#step-3-include-a-dataset",
+    "href": "hands-on/HW2.html#step-3-include-a-dataset",
     "title": "Homework Assignment 2",
     "section": "",
-    "text": "Your GitHub repository should be organized as follows:\nhw2_reticulate_package/\n├── R/ # R functions and roxygen2 docs\n├── data/ # datasets for your package\n├── tests/ # testthat tests\n├── python/ # Python scripts (model.py, etc.)\n├── images/ # generated plots\n├── README.md # overview and instructions\n└── DESCRIPTION # package metadata\nThe README must include: - Setup instructions for R and Python dependencies - Instructions to reproduce all results and plots - Your collaborator’s name and their contribution - The GitHub repository link\n\nGood luck, and remember to commit and push often!"
+    "text": "Embed at least one dataset inside your package. Suggestions:\n\nBuilt-in datasets (iris, mtcars, airquality).\n\nPublic datasets (but keep them small):\n\nDaily stock prices (few days).\n\nStudents’ grades (simulated).\n\nCOVID-19 sample (subset).\n\nRandomly generated survey data."
+  },
+  {
+    "objectID": "hands-on/HW2.html#step-4-publish-on-github",
+    "href": "hands-on/HW2.html#step-4-publish-on-github",
+    "title": "Homework Assignment 2",
+    "section": "",
+    "text": "Create a GitHub repository.\n\nPush your package code.\n\nAdd a LICENSE file.\n\nShare the repository link with your instructor."
+  },
+  {
+    "objectID": "hands-on/HW2.html#grading-rubric-total-100-points",
+    "href": "hands-on/HW2.html#grading-rubric-total-100-points",
+    "title": "Homework Assignment 2",
+    "section": "",
+    "text": "Part\nDescription\nPoints\n\n\n\n\nTask Design\nClear, meaningful statistical goal\n15\n\n\nPackage Structure\nCorrect folder & file setup\n15\n\n\nFunctions\nAt least 3 well-written functions\n20\n\n\nDocumentation\nDESCRIPTION, README, Roxygen comments\n15\n\n\nDataset\nCorrectly embedded with documentation\n10\n\n\nVignette\nExample usage in Rmarkdown\n10\n\n\nGitHub Repository\nProper setup, LICENSE, clean commits\n10\n\n\nPresentation\nClear, creative, user-friendly\n5"
+  },
+  {
+    "objectID": "hands-on/HW2.html#submission",
+    "href": "hands-on/HW2.html#submission",
+    "title": "Homework Assignment 2",
+    "section": "",
+    "text": "Deadline: [set your date here]\n\nSubmit: GitHub repository link shared via email or LMS.\n\nBonus: +5 points if package installs directly with devtools::install_github(\"username/package\").\n\n\nGood luck, and remember to commit and push often!"
   },
   {
     "objectID": "slides/Topic6.html#what-happens-after-submission",

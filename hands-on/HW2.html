@@ -280,10 +280,16 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#homework-assignment-2" id="toc-homework-assignment-2" class="nav-link active" data-scroll-target="#homework-assignment-2">Homework Assignment 2</a>
   <ul class="collapse">
-  <li><a href="#python-integration-with-r-using-reticulate-30-pts" id="toc-python-integration-with-r-using-reticulate-30-pts" class="nav-link" data-scroll-target="#python-integration-with-r-using-reticulate-30-pts">1. Python Integration with R using Reticulate (30 pts)</a></li>
-  <li><a href="#develop-your-own-professional-r-package-40-pts" id="toc-develop-your-own-professional-r-package-40-pts" class="nav-link" data-scroll-target="#develop-your-own-professional-r-package-40-pts">2. Develop Your Own Professional R Package (40 pts)</a></li>
-  <li><a href="#collaborate-via-github-20-pts" id="toc-collaborate-via-github-20-pts" class="nav-link" data-scroll-target="#collaborate-via-github-20-pts">3. Collaborate via GitHub (20 pts)</a></li>
-  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  <li><a href="#build-share-your-package" id="toc-build-share-your-package" class="nav-link" data-scroll-target="#build-share-your-package">Build &amp; Share Your Package</a>
+  <ul class="collapse">
+  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal">Goal</a></li>
+  </ul></li>
+  <li><a href="#step-1-choose-a-task-goal-of-your-package" id="toc-step-1-choose-a-task-goal-of-your-package" class="nav-link" data-scroll-target="#step-1-choose-a-task-goal-of-your-package">Step 1: Choose a Task (Goal of Your Package)</a></li>
+  <li><a href="#step-2-name-and-documentation" id="toc-step-2-name-and-documentation" class="nav-link" data-scroll-target="#step-2-name-and-documentation">Step 2: Name and Documentation</a></li>
+  <li><a href="#step-3-include-a-dataset" id="toc-step-3-include-a-dataset" class="nav-link" data-scroll-target="#step-3-include-a-dataset">Step 3: Include a Dataset</a></li>
+  <li><a href="#step-4-publish-on-github" id="toc-step-4-publish-on-github" class="nav-link" data-scroll-target="#step-4-publish-on-github">Step 4: Publish on GitHub</a></li>
+  <li><a href="#grading-rubric-total-100-points" id="toc-grading-rubric-total-100-points" class="nav-link" data-scroll-target="#grading-rubric-total-100-points">Grading Rubric (Total = 100 points)</a></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="http://github.com/mmadoliat/SCoRT/edit/main/hands-on/HW2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="http://github.com/mmadoliat/SCoRT/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -296,67 +302,165 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="homework-assignment-2" class="level1">
 <h1>Homework Assignment 2</h1>
-<p>Please complete the following tasks within <strong>one week</strong> and submit your work as a <strong>GitHub repository</strong>.<br>
-Include your <strong>GitHub repository link</strong> in your submission so the instructor can review your code, package, and collaboration history.</p>
+<p>Please complete the following tasks within <strong>one week</strong> and share your work as a <strong>GitHub repository</strong> linke.<br>
+</p>
 <hr>
-<section id="python-integration-with-r-using-reticulate-30-pts" class="level2">
-<h2 class="anchored" data-anchor-id="python-integration-with-r-using-reticulate-30-pts">1. Python Integration with R using Reticulate (30 pts)</h2>
+<section id="build-share-your-package" class="level2">
+<h2 class="anchored" data-anchor-id="build-share-your-package">Build &amp; Share Your Package</h2>
+<section id="goal" class="level3">
+<h3 class="anchored" data-anchor-id="goal">Goal</h3>
 <ul>
-<li><strong>Python Script</strong>: Create a Python script <code>model.py</code> that defines at least one function (e.g., <code>square_numbers(x)</code>) and a small PyTorch or NumPy model.</li>
-<li><strong>Reticulate in R</strong>: From R, use <code>reticulate</code> to:
+<li>Build a simple <strong>R package</strong> that achieves a specific task.<br>
+</li>
+<li>Examples of goals:
 <ul>
-<li>Import and call your Python function(s)</li>
-<li>Pass data from R to Python and back</li>
-<li>Generate a plot in Python (e.g., matplotlib) but called from R, and save it under <code>images/</code></li>
-</ul></li>
-<li><strong>Documentation</strong>: Use <strong>roxygen2</strong> comments in your R script to document the functions that interact with Python, and regenerate help files.</li>
-</ul>
-<hr>
-</section>
-<section id="develop-your-own-professional-r-package-40-pts" class="level2">
-<h2 class="anchored" data-anchor-id="develop-your-own-professional-r-package-40-pts">2. Develop Your Own Professional R Package (40 pts)</h2>
-<ul>
-<li><strong>Package Setup</strong>: Create a new R package (e.g., <code>myutils</code>) in RStudio.</li>
-<li><strong>Functionality</strong>: Add at least two R functions of your choice.</li>
-<li><strong>Dataset</strong>: Include at least one dataset in your package and document it.</li>
-<li><strong>Documentation</strong>: Document all functions and datasets with <strong>roxygen2</strong>.</li>
-<li><strong>Testing</strong>: Write at least two unit tests for each function using <code>testthat</code>.</li>
-<li><strong>Build</strong>: Install and load your package locally to verify functionality.</li>
-</ul>
-<hr>
-</section>
-<section id="collaborate-via-github-20-pts" class="level2">
-<h2 class="anchored" data-anchor-id="collaborate-via-github-20-pts">3. Collaborate via GitHub (20 pts)</h2>
-<ul>
-<li><strong>Repository Setup</strong>: Push your package and Python–R integration work to a GitHub repository.</li>
-<li><strong>Collaboration</strong>:
-<ul>
-<li>Invite a classmate as a collaborator</li>
-<li>They must create a new branch, add or improve a function, commit, and push</li>
-<li>They must create a Pull Request (PR) for you to review</li>
-<li>Merge the PR into your main branch</li>
-</ul></li>
-<li><strong>Evidence</strong>: Include screenshots of:
-<ul>
-<li>The PR discussion</li>
-<li>The commit history showing contributions</li>
-<li>The merge confirmation</li>
+<li>Data cleaning helper functions<br>
+</li>
+<li>A small visualization wrapper<br>
+</li>
+<li>Statistical functions (e.g., custom summary stats)<br>
+</li>
+<li>Importing/transforming a public dataset</li>
 </ul></li>
 </ul>
 <hr>
 </section>
-<section id="deliverables" class="level2">
-<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
-<p>Your GitHub repository should be organized as follows:</p>
-<pre class="text"><code>hw2_reticulate_package/
-├── R/ # R functions and roxygen2 docs
-├── data/ # datasets for your package
-├── tests/ # testthat tests
-├── python/ # Python scripts (model.py, etc.)
-├── images/ # generated plots
-├── README.md # overview and instructions
-└── DESCRIPTION # package metadata</code></pre>
-<p>The <strong>README</strong> must include: - Setup instructions for R and Python dependencies - Instructions to reproduce all results and plots - Your collaborator’s name and their contribution - The GitHub repository link</p>
+</section>
+<section id="step-1-choose-a-task-goal-of-your-package" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-choose-a-task-goal-of-your-package">Step 1: Choose a Task (Goal of Your Package)</h2>
+<p>Your package should solve a <strong>simple but useful problem</strong> for statistics. Possible ideas:</p>
+<ul>
+<li><strong>Descriptive Statistics Toolkit</strong>: Functions to compute mean, variance, quantiles, skewness, kurtosis.<br>
+</li>
+<li><strong>Visualization Helper</strong>: Custom plotting functions for common statistical distributions.<br>
+</li>
+<li><strong>Probability Distribution Tools</strong>: Simulate and analyze distributions (Normal, Poisson, Binomial, etc.).<br>
+</li>
+<li><strong>Regression Helpers</strong>: Easy-to-use wrappers for linear/logistic regression summaries.<br>
+</li>
+<li><strong>Time Series Mini Toolkit</strong>: Simple functions for moving averages, decomposition, and plotting.<br>
+</li>
+<li><strong>Resampling Methods</strong>: Implement bootstrap and permutation tests.</li>
+</ul>
+<hr>
+</section>
+<section id="step-2-name-and-documentation" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-name-and-documentation">Step 2: Name and Documentation</h2>
+<ul>
+<li>Pick a <strong>clear, unique package name</strong>.
+<ul>
+<li>Example: <code>statHelper</code>, <code>bootResampleR</code>, <code>easyViz</code>, <code>probSimR</code>.<br>
+</li>
+</ul></li>
+<li>Provide documentation:
+<ul>
+<li><strong>DESCRIPTION file</strong> with title, description, author.<br>
+</li>
+<li><strong>Function-level help</strong> with <code>#'</code> Roxygen comments.<br>
+</li>
+<li><strong>README.md</strong> explaining package goal, installation, usage.<br>
+</li>
+</ul></li>
+<li>Add at least one <strong>vignette/tutorial</strong> showing examples.</li>
+</ul>
+<hr>
+</section>
+<section id="step-3-include-a-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-include-a-dataset">Step 3: Include a Dataset</h2>
+<p>Embed at least one dataset inside your package. Suggestions:</p>
+<ul>
+<li><strong>Built-in datasets</strong> (<code>iris</code>, <code>mtcars</code>, <code>airquality</code>).<br>
+</li>
+<li>Public datasets (but keep them small):
+<ul>
+<li>Daily stock prices (few days).<br>
+</li>
+<li>Students’ grades (simulated).<br>
+</li>
+<li>COVID-19 sample (subset).<br>
+</li>
+<li>Randomly generated survey data.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="step-4-publish-on-github" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-publish-on-github">Step 4: Publish on GitHub</h2>
+<ul>
+<li>Create a GitHub repository.<br>
+</li>
+<li>Push your package code.<br>
+</li>
+<li>Add a <strong>LICENSE</strong> file.<br>
+</li>
+<li>Share the repository link with your instructor.</li>
+</ul>
+<hr>
+</section>
+<section id="grading-rubric-total-100-points" class="level2">
+<h2 class="anchored" data-anchor-id="grading-rubric-total-100-points">Grading Rubric (Total = 100 points)</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Part</th>
+<th>Description</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Task Design</td>
+<td>Clear, meaningful statistical goal</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>Package Structure</td>
+<td>Correct folder &amp; file setup</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>Functions</td>
+<td>At least 3 well-written functions</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td>Documentation</td>
+<td>DESCRIPTION, README, Roxygen comments</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>Dataset</td>
+<td>Correctly embedded with documentation</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Vignette</td>
+<td>Example usage in Rmarkdown</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>GitHub Repository</td>
+<td>Proper setup, LICENSE, clean commits</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Presentation</td>
+<td>Clear, creative, user-friendly</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<ul>
+<li>Deadline: <strong>[set your date here]</strong><br>
+</li>
+<li>Submit: <strong>GitHub repository link</strong> shared via email or LMS.<br>
+</li>
+<li>Bonus: +5 points if package installs directly with <code>devtools::install_github("username/package")</code>.</li>
+</ul>
 <hr>
 <p><strong>Good luck, and remember to commit and push often!</strong></p>
 
