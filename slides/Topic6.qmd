@@ -135,19 +135,25 @@ To submit an update:
 
 # 🔁 Version Control Essentials
 
+::: incremental
 -   Track and restore changes in code over time
 -   Collaborate without overwriting others' work
 -   Revert to earlier working versions if bugs appear
+:::
+
+. . .
 
 🛠 Tools Used:
 
+::: incremental
 -   `git` (local)
 -   `GitHub` (remote)
 -   `RStudio` (IDE)
+:::
 
-📦 Example:
+. . .
 
-> You change a function in `plot_utils.R`, commit it with message "Refactor histogram labels", and push to GitHub to share with team.
+> 📦 Example: You change a function in `plot_utils.R`, commit it with message "Refactor histogram labels", and push to GitHub to share with team.
 
 # 📬 Example: Rfssa Package Github {transition="zoom"}
 
@@ -156,28 +162,36 @@ To submit an update:
 
 ## 🐙 Git & GitHub Basics
 
-🔹 **Git**: Version control system for your local project\
-🔹 **GitHub**: Cloud platform to share and collaborate
+::: incremental
+- 🔹**Git**: Version control system for your local project\
+- 🔹**GitHub**: Cloud platform to share and collaborate
+:::
+
+. . .
 
 📝 Key Terms:
 
+::: incremental
 -   **Commit** = Savepoint
 -   **Push/Pull** = Send/Receive changes
 -   **Repo** = Project folder
+::: 
 
-📦 Example:
+. . .
 
-> You push your R package to GitHub, allowing your coauthor to edit documentation and submit a pull request.
+> 📦 Example: You push your R package to GitHub, allowing your coauthor to edit documentation and submit a pull request.
 
 ## 📦 Installing Git
 
-🔹 Go to [git-scm.com](https://git-scm.com/downloads)
+::: incremental
+- 🔹 Go to [git-scm.com](https://git-scm.com/downloads)
+- Choose your operating system:
+  - **Windows**: Download `.exe` and install with default options
+  - **macOS**: Install via Homebrew `brew install git` or **Git installer**
+  - **Linux**: Use package manager, e.g.:
+::: 
 
-Choose your operating system:
-
--   **Windows**: Download `.exe` and install with default options
--   **macOS**: Install via Homebrew `brew install git` or Git installer
--   **Linux**: Use package manager, e.g.:
+. . .
 
 ``` bash
   sudo apt install git
@@ -191,13 +205,17 @@ Choose your operating system:
 git --version
 ```
 
+. . .
+
 ✅ You should see something like:
 
 ``` text
 git version 2.43.0
 ```
 
-💡 If this works, Git is installed correctly!
+. . .
+
+> 💡 If this works, Git is installed correctly!
 
 ## 🔑 Configuring Git Identity
 
@@ -207,6 +225,8 @@ git version 2.43.0
 git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
+
+. . .
 
 ✅ To check the name or email currently set in Git, use these commands:
 
@@ -223,19 +243,22 @@ git config --global user.email
 usethis::create_github_token()
 ```
 
+::: incremental
 2.  GitHub will open — generate a Personal Access Token (PAT)
-
 3.  Copy the token (only shown once!)
-
 4.  Back in R:
+:::
+
+. . .
 
 ``` r
 gitcreds::gitcreds_set()
 ```
-
 Paste your token when prompted.
 
-✅ You’ve now authenticated GitHub from R!
+. . .
+
+> ✅ You’ve now authenticated GitHub from R!
 
 ## 🧪 Check Setup
 
@@ -245,26 +268,30 @@ Use this helpful diagnostic tool:
 usethis::git_sitrep()
 ```
 
+. . .
+
 💡 This tells you:
 
+::: incremental
 -   Whether Git is installed
-
 -   Whether GitHub is connected
-
 -   If PAT is stored
+:::
 
 ## 📁 Creating a New Git-Enabled Project
 
 In RStudio:
 
+::: incremental
 1.  **File → New Project**
-2.  Choose:
-    -   “New Directory” → “R Package” (or “New Project”)
-3.  Check the box:
-    -   ✅ "Create a git repository"
+2.  Choose: **New Directory** → **R Package** (or **New Project**)
+3.  Check the box: ✅ "Create a git repository"
 4.  Finish project setup
+:::
 
-📁 A `.git` folder is created — this is a Git repo!
+. . .
+
+> 📁 A `.git` folder is created — this is a Git repo!
 
 ## 🌐 Connect to GitHub
 
@@ -274,10 +301,16 @@ Run this to create and link a GitHub repo:
 usethis::use_github()
 ```
 
+. . .
+
 This will:
 
+::: incremental
 -   Push your project to GitHub
 -   Open the new repo in your browser
+::: 
+
+. . .
 
 > 💡 You can now push/pull changes from RStudio Git tab
 
@@ -285,18 +318,27 @@ This will:
 
 🎯 Daily workflow steps:
 
+. . .
+
 1.  Edit `R/stats_module.R`
+
+. . .
+
 2.  Stage → Commit → Push
+
+. . .
 
 💻 In RStudio Git tab:
 
+::: incremental
 -   Stage: click checkbox
 -   Commit: type a message
 -   Push: upload to GitHub
+::: 
 
-🔁 Example:
+. . .
 
-> Commit message: "Add confidence interval to mean_plot()"
+> 🔁 Example: Commit message: "Add confidence interval to mean_plot()"
 
 # 🎥 Demo: Rfssa Github Package
 
