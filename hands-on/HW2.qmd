@@ -1,61 +1,88 @@
 # Homework Assignment 2
 
-Please complete the following tasks within **one week** and submit your work as a **GitHub repository**.\
-Include your **GitHub repository link** in your submission so the instructor can review your code, package, and collaboration history.
+Please complete the following tasks within **one week** and share your work as a **GitHub repository** linke.\
 
 ------------------------------------------------------------------------
 
-## 1. Python Integration with R using Reticulate (30 pts)
 
--   **Python Script**: Create a Python script `model.py` that defines at least one function (e.g., `square_numbers(x)`) and a small PyTorch or NumPy model.
--   **Reticulate in R**: From R, use `reticulate` to:
-    -   Import and call your Python function(s)
-    -   Pass data from R to Python and back
-    -   Generate a plot in Python (e.g., matplotlib) but called from R, and save it under `images/`
--   **Documentation**: Use **roxygen2** comments in your R script to document the functions that interact with Python, and regenerate help files.
+## Build & Share Your Package
 
-------------------------------------------------------------------------
-
-## 2. Develop Your Own Professional R Package (40 pts)
-
--   **Package Setup**: Create a new R package (e.g., `myutils`) in RStudio.
--   **Functionality**: Add at least two R functions of your choice.
--   **Dataset**: Include at least one dataset in your package and document it.
--   **Documentation**: Document all functions and datasets with **roxygen2**.
--   **Build**: Install and load your package locally to verify functionality.
+### Goal
+- Build a simple **R package** that achieves a specific task.  
+- Examples of goals:  
+  - Data cleaning helper functions  
+  - A small visualization wrapper  
+  - Statistical functions (e.g., custom summary stats)  
+  - Importing/transforming a public dataset  
 
 ------------------------------------------------------------------------
 
-## 3. Collaborate via GitHub (20 pts)
+## Step 1: Choose a Task (Goal of Your Package)
 
--   **Repository Setup**: Push your package and Python–R integration work to a GitHub repository.
--   **Collaboration**:
-    -   Invite a classmate as a collaborator
-    -   They must create a new branch, add or improve a function, commit, and push
-    -   They must create a Pull Request (PR) for you to review
-    -   Merge the PR into your main branch
--   **Evidence**: Include screenshots of:
-    -   The PR discussion
-    -   The commit history showing contributions
-    -   The merge confirmation
+Your package should solve a **simple but useful problem** for statistics. Possible ideas:  
+
+- **Descriptive Statistics Toolkit**: Functions to compute mean, variance, quantiles, skewness, kurtosis.  
+- **Visualization Helper**: Custom plotting functions for common statistical distributions.  
+- **Probability Distribution Tools**: Simulate and analyze distributions (Normal, Poisson, Binomial, etc.).  
+- **Regression Helpers**: Easy-to-use wrappers for linear/logistic regression summaries.  
+- **Time Series Mini Toolkit**: Simple functions for moving averages, decomposition, and plotting.  
+- **Resampling Methods**: Implement bootstrap and permutation tests.  
 
 ------------------------------------------------------------------------
 
-## Deliverables
+## Step 2: Name and Documentation
+- Pick a **clear, unique package name**.  
+  - Example: `statHelper`, `bootResampleR`, `easyViz`, `probSimR`.  
+- Provide documentation:  
+  - **DESCRIPTION file** with title, description, author.  
+  - **Function-level help** with `#'` Roxygen comments.  
+  - **README.md** explaining package goal, installation, usage.  
+- Add at least one **vignette/tutorial** showing examples.  
 
-Your GitHub repository should be organized as follows:
+------------------------------------------------------------------------
 
-``` text
-hw2_reticulate_package/
-├── R/ # R functions and roxygen2 docs
-├── data/ # datasets for your package
-├── python/ # Python scripts (model.py, etc.)
-├── images/ # generated plots
-├── README.md # overview and instructions
-└── DESCRIPTION # package metadata
-```
 
-The **README** must include: - Setup instructions for R and Python dependencies - Instructions to reproduce all results and plots - Your collaborator’s name and their contribution - The GitHub repository link
+## Step 3: Include a Dataset
+Embed at least one dataset inside your package. Suggestions:  
+
+- **Built-in datasets** (`iris`, `mtcars`, `airquality`).  
+- Public datasets (but keep them small):  
+  - Daily stock prices (few days).  
+  - Students’ grades (simulated).  
+  - COVID-19 sample (subset).  
+  - Randomly generated survey data.  
+
+------------------------------------------------------------------------
+
+
+## Step 4: Publish on GitHub
+- Create a GitHub repository.  
+- Push your package code.  
+- Add a **LICENSE** file.  
+- Share the repository link with your instructor.  
+
+------------------------------------------------------------------------
+
+## Grading Rubric (Total = 100 points)
+
+| Part | Description | Points |
+|------|-------------|--------|
+| Task Design | Clear, meaningful statistical goal | 15 |
+| Package Structure | Correct folder & file setup | 15 |
+| Functions | At least 3 well-written functions | 20 |
+| Documentation | DESCRIPTION, README, Roxygen comments | 15 |
+| Dataset | Correctly embedded with documentation | 10 |
+| Vignette | Example usage in Rmarkdown | 10 |
+| GitHub Repository | Proper setup, LICENSE, clean commits | 10 |
+| Presentation | Clear, creative, user-friendly | 5 |
+
+------------------------------------------------------------------------
+
+## Submission
+- Deadline: **[set your date here]**  
+- Submit: **GitHub repository link** shared via email or LMS.  
+- Bonus: +5 points if package installs directly with `devtools::install_github("username/package")`.  
+
 
 ------------------------------------------------------------------------
 
