@@ -181,7 +181,7 @@
     "href": "hands-on/HO1.html#setup",
     "title": "Hands-on: k-NN Regression with S3 OOP",
     "section": "Setup",
-    "text": "Setup\nDownload the scripts:\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/knn_s3.R\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/knn_s3_formula.R\nSource them in your R console:\nsource(\"knn_s3.R\")\nsource(\"knn_s3_formula.R\")",
+    "text": "Setup\nDownload the scripts:\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/knn_s3.R\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/knn_s3_formula.R\nSource them in your R console:\nsource(\"R/knn_s3.R\")\nsource(\"R/knn_s3_formula.R\")",
     "crumbs": [
       "Hands-on / HW",
       "OOP in R"
@@ -270,7 +270,7 @@
     "href": "slides/Topic6.html#what-happens-after-submission",
     "title": "Short Course on R Tools",
     "section": "📬 What Happens After Submission?",
-    "text": "📬 What Happens After Submission?\n\nYou’ll get an automated confirmation email\nWithin ~24–72 hours, a CRAN maintainer will review your package\nThey may:\n\nAccept it immediately ✅\nRequest fixes or clarifications ✍️\nReject with detailed reasons ❌",
+    "text": "📬 What Happens After Submission?\n\n\nYou’ll get an automated confirmation email\nWithin ~24–72 hours, a CRAN maintainer will review your package\n\n\n\n\nThey may:\n\nAccept it immediately ✅\nRequest fixes or clarifications ✍️\nReject with detailed reasons ❌",
     "crumbs": [
       "Slides",
       "GitHub / CRAN submission"
@@ -2308,7 +2308,7 @@
     "href": "hands-on/HO3.html#inspect-the-runner-script",
     "title": "Hands-on: Accelerating k-NN with Rcpp",
     "section": "2. Inspect the runner script",
-    "text": "2. Inspect the runner script\nOpen runthis.R, which contains:\nsource(\"R/knn_s3_formula.R\")  # loads knn_s3 and predict()\nsource(\"knn_pred.cpp\")        # loads Rcpp function\n\n# Simulate data and benchmark\ndata &lt;- simulate_knn_data(n = 1000, p = 5, m = 200, k = 10)\nmb &lt;- microbenchmark::microbenchmark(\n  Rcpp = knn_pred_cpp(data$train_x, data$train_y, data$test_x, data$k),\n  R    = knn_pred_R(data$train_x, data$train_y, data$test_x, data$k),\n  times = 20\n)\nprint(mb)\nTry running this script:\nsource(\"runthis.R\")",
+    "text": "2. Inspect the runner script\nOpen runthis.R, which contains:\nsource(\"R/knn_s3_formula.R\")              # loads knn_s3 and predict()\nRcpp::sourceCpp(\"src/knn_pred.cpp\")       # loads Rcpp function\n\n# Simulate data and benchmark\ndata &lt;- simulate_knn_data(n = 1000, p = 5, m = 200, k = 10)\nmb &lt;- microbenchmark::microbenchmark(\n  Rcpp = knn_pred_cpp(data$train_x, data$train_y, data$test_x, data$k),\n  R    = knn_pred_R(data$train_x, data$train_y, data$test_x, data$k),\n  times = 20\n)\nprint(mb)\nTry running this script:\nsource(\"runthis.R\")",
     "crumbs": [
       "Hands-on / HW",
       "RCpp"
@@ -2359,7 +2359,7 @@
     "href": "index.html",
     "title": "Short Course on R Tools - (SCoRT)",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n0\nWed, Jul 30\nIrStat Webinar\n📚Overview\n\n\n\n\n\n1\nMon, Aug 11\n\n Object-Oriented Programming (OOP) in R\n📚Topic 1  📖OOP\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nTue, Aug 12\n\n Create dynamic Shiny web applications\n📚Topic 2  📖Shiny\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nWed, Aug 13\n\nEnhance performance with Rcpp (C++)\n📚Topic 3  📖Rcpp for everyone\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nFri, Aug 15\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n2\nMon, Aug 18\n\n Integrate Python in R using Reticulate\n📚Topic 4  📖Calling Python from R\n\nR👩‍💻 R🛠️\n\n\n\n\n\nTue, Aug 19\n\n Develop your own professional R package\n📚Topic 5  📖R package\n\nR👩‍💻  R🛠️\n\n\n\n\nWed, Aug 20\n\n Collaborate via GitHub / CRAN submission process\n📚Topic 6  📖Let’s Git started  📖Release R package\n\nR👩‍💻  R🛠️\n\n\n\n\nFri, Aug 22\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n3\nTue, Aug 26\n\n Deep Learning in R\n📚Topic 7 (🖥️part II) 📖Deep Learning with R\n\n\nR👩‍💻 R🛠️",
+    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n0\nWed, Jul 30\nIrStat Webinar\n📚Overview\n\n\n\n\n\n1\nMon, Aug 11\n\n Object-Oriented Programming (OOP) in R\n📚Topic 1  📖OOP\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nTue, Aug 12\n\n Create dynamic Shiny web applications\n📚Topic 2  📖Shiny\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nWed, Aug 13\n\nEnhance performance with Rcpp (C++)\n📚Topic 3  📖Rcpp for everyone\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nFri, Aug 15\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n2\nMon, Aug 18\n\n Integrate Python in R using Reticulate\n📚Topic 4  📖Calling Python from R\n\nR👩‍💻 R🛠️\n\n\n\n\n\nTue, Aug 19\n\n Develop your own professional R package\n📚Topic 5  📖R package\n\nR👩‍💻 R🛠️\n\n\n\n\n\nWed, Aug 20\n\n Collaborate via GitHub / CRAN submission process\n📚Topic 6  📖Let’s Git started  📖Release R package\n\nR👩‍💻  R🛠️\n\n\n\n\nFri, Aug 22\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n3\nTue, Aug 26\n\n Deep Learning in R\n📚Topic 7 (🖥️part II) 📖Deep Learning with R\n\n\nR👩‍💻 R🛠️",
     "crumbs": [
       "Course information",
       "Schedule"

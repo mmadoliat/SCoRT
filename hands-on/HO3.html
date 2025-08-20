@@ -381,8 +381,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="inspect-the-runner-script" class="level2">
 <h2 class="anchored" data-anchor-id="inspect-the-runner-script">2. Inspect the runner script</h2>
 <p>Open <strong>runthis.R</strong>, which contains:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">source</span>(<span class="st">"R/knn_s3_formula.R"</span>)  <span class="co"># loads knn_s3 and predict()</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">source</span>(<span class="st">"knn_pred.cpp"</span>)        <span class="co"># loads Rcpp function</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">source</span>(<span class="st">"R/knn_s3_formula.R"</span>)              <span class="co"># loads knn_s3 and predict()</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>Rcpp<span class="sc">::</span><span class="fu">sourceCpp</span>(<span class="st">"src/knn_pred.cpp"</span>)       <span class="co"># loads Rcpp function</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a></span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="co"># Simulate data and benchmark</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a>data <span class="ot">&lt;-</span> <span class="fu">simulate_knn_data</span>(<span class="at">n =</span> <span class="dv">1000</span>, <span class="at">p =</span> <span class="dv">5</span>, <span class="at">m =</span> <span class="dv">200</span>, <span class="at">k =</span> <span class="dv">10</span>)</span>
