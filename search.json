@@ -270,7 +270,7 @@
     "href": "slides/Topic6.html#what-happens-after-submission",
     "title": "Short Course on R Tools",
     "section": "📬 What Happens After Submission?",
-    "text": "📬 What Happens After Submission?\n\nYou’ll get an automated confirmation email\nWithin ~24–72 hours, a CRAN maintainer will review your package\nThey may:\n\nAccept it immediately ✅\nRequest fixes or clarifications ✍️\nReject with detailed reasons ❌",
+    "text": "📬 What Happens After Submission?\n\n\nYou’ll get an automated confirmation email\nWithin ~24–72 hours, a CRAN maintainer will review your package\n\n\n\n\nThey may:\n\nAccept it immediately ✅\nRequest fixes or clarifications ✍️\nReject with detailed reasons ❌",
     "crumbs": [
       "Slides",
       "GitHub / CRAN submission"
