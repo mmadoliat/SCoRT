@@ -55,8 +55,8 @@ ls("package:base") # confirm knn_pred_cpp is loaded
 Open **runthis.R**, which contains:
 
 ``` {.r}
-source("R/knn_s3_formula.R")  # loads knn_s3 and predict()
-source("knn_pred.cpp")        # loads Rcpp function
+source("R/knn_s3_formula.R")              # loads knn_s3 and predict()
+Rcpp::sourceCpp("src/knn_pred.cpp")       # loads Rcpp function
 
 # Simulate data and benchmark
 data <- simulate_knn_data(n = 1000, p = 5, m = 200, k = 10)

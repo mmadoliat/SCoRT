@@ -27,8 +27,8 @@ curl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/knn_
 Source them in your R console:
 
 ``` {.r}
-source("knn_s3.R")
-source("knn_s3_formula.R")
+source("R/knn_s3.R")
+source("R/knn_s3_formula.R")
 ```
 
 ------------------------------------------------------------------------
