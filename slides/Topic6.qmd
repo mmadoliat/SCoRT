@@ -111,8 +111,13 @@ This will:
 
 ## 📬 What Happens After Submission?
 
+::: incremental
 -   You’ll get an automated confirmation email
 -   Within \~24–72 hours, a CRAN maintainer will review your package
+::: 
+
+. . .
+
 -   They may:
     -   Accept it immediately ✅
     -   Request fixes or clarifications ✍️
