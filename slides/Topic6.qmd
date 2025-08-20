@@ -13,12 +13,14 @@ format:
 
 # Outlines
 
+::: incremental
 1.  CRAN Submission: Overview
 2.  Requirements Before Submission
 3.  Handling NOTEs and WARNINGs
 4.  Simulate a CRAN Check
 5.  Submit to CRAN
 6.  Collaborate via GitHub
+::: 
 
 # 1. CRAN Submission: Overview
 
