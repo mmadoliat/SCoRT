@@ -22,7 +22,6 @@ Include your **GitHub repository link** in your submission so the instructor can
 -   **Functionality**: Add at least two R functions of your choice.
 -   **Dataset**: Include at least one dataset in your package and document it.
 -   **Documentation**: Document all functions and datasets with **roxygen2**.
--   **Testing**: Write at least two unit tests for each function using `testthat`.
 -   **Build**: Install and load your package locally to verify functionality.
 
 ------------------------------------------------------------------------
@@ -50,7 +49,6 @@ Your GitHub repository should be organized as follows:
 hw2_reticulate_package/
 ├── R/ # R functions and roxygen2 docs
 ├── data/ # datasets for your package
-├── tests/ # testthat tests
 ├── python/ # Python scripts (model.py, etc.)
 ├── images/ # generated plots
 ├── README.md # overview and instructions
