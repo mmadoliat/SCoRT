@@ -545,21 +545,28 @@ Mehdi Maadooliat and Hossein Haghbin
 
 <section id="version-control-essentials" class="title-slide slide level1 center">
 <h1>🔁 Version Control Essentials</h1>
+<div>
 <ul>
-<li>Track and restore changes in code over time</li>
-<li>Collaborate without overwriting others’ work</li>
-<li>Revert to earlier working versions if bugs appear</li>
+<li class="fragment">Track and restore changes in code over time</li>
+<li class="fragment">Collaborate without overwriting others’ work</li>
+<li class="fragment">Revert to earlier working versions if bugs appear</li>
 </ul>
+</div>
+<div class="fragment">
 <p>🛠 Tools Used:</p>
+<div>
 <ul>
-<li><code>git</code> (local)</li>
-<li><code>GitHub</code> (remote)</li>
-<li><code>RStudio</code> (IDE)</li>
+<li class="fragment"><code>git</code> (local)</li>
+<li class="fragment"><code>GitHub</code> (remote)</li>
+<li class="fragment"><code>RStudio</code> (IDE)</li>
 </ul>
-<p>📦 Example:</p>
+</div>
+</div>
+<div class="fragment">
 <blockquote>
-<p>You change a function in <code>plot_utils.R</code>, commit it with message “Refactor histogram labels”, and push to GitHub to share with team.</p>
+<p>📦 Example: You change a function in <code>plot_utils.R</code>, commit it with message “Refactor histogram labels”, and push to GitHub to share with team.</p>
 </blockquote>
+</div>
 </section>
 
 <section>
@@ -569,46 +576,70 @@ Mehdi Maadooliat and Hossein Haghbin
 <img data-src="images/package/Github_Rfssa.png" class="quarto-figure quarto-figure-left r-stretch" style="width:95.0%" alt="Screenshot of Pagerank"></section>
 <section id="git-github-basics" class="slide level2">
 <h2>🐙 Git &amp; GitHub Basics</h2>
-<p>🔹 <strong>Git</strong>: Version control system for your local project<br>
-🔹 <strong>GitHub</strong>: Cloud platform to share and collaborate</p>
-<p>📝 Key Terms:</p>
+<div>
 <ul>
-<li><strong>Commit</strong> = Savepoint</li>
-<li><strong>Push/Pull</strong> = Send/Receive changes</li>
-<li><strong>Repo</strong> = Project folder</li>
+<li class="fragment">🔹<strong>Git</strong>: Version control system for your local project<br>
+</li>
+<li class="fragment">🔹<strong>GitHub</strong>: Cloud platform to share and collaborate</li>
 </ul>
-<p>📦 Example:</p>
+</div>
+<div class="fragment">
+<p>📝 Key Terms:</p>
+<div>
+<ul>
+<li class="fragment"><strong>Commit</strong> = Savepoint</li>
+<li class="fragment"><strong>Push/Pull</strong> = Send/Receive changes</li>
+<li class="fragment"><strong>Repo</strong> = Project folder</li>
+</ul>
+</div>
+</div>
+<div class="fragment">
 <blockquote>
-<p>You push your R package to GitHub, allowing your coauthor to edit documentation and submit a pull request.</p>
+<p>📦 Example: You push your R package to GitHub, allowing your coauthor to edit documentation and submit a pull request.</p>
 </blockquote>
+</div>
 </section>
 <section id="installing-git" class="slide level2">
 <h2>📦 Installing Git</h2>
-<p>🔹 Go to <a href="https://git-scm.com/downloads">git-scm.com</a></p>
-<p>Choose your operating system:</p>
+<div>
 <ul>
-<li><strong>Windows</strong>: Download <code>.exe</code> and install with default options</li>
-<li><strong>macOS</strong>: Install via Homebrew <code>brew install git</code> or Git installer</li>
-<li><strong>Linux</strong>: Use package manager, e.g.:</li>
+<li class="fragment">🔹 Go to <a href="https://git-scm.com/downloads">git-scm.com</a></li>
+<li class="fragment">Choose your operating system:
+<ul>
+<li class="fragment"><strong>Windows</strong>: Download <code>.exe</code> and install with default options</li>
+<li class="fragment"><strong>macOS</strong>: Install via Homebrew <code>brew install git</code> or <strong>Git installer</strong></li>
+<li class="fragment"><strong>Linux</strong>: Use package manager, e.g.:</li>
+</ul></li>
 </ul>
+</div>
+<div class="fragment">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a>  <span class="fu">sudo</span> apt install git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="verifying-git-installation" class="slide level2">
 <h2>🧪 Verifying Git Installation</h2>
 <p>🧪 Run this in your Terminal (or Command Prompt):</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
 <p>✅ You should see something like:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a></a>git version 2.43.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<blockquote>
 <p>💡 If this works, Git is installed correctly!</p>
+</blockquote>
+</div>
 </section>
 <section id="configuring-git-identity" class="slide level2">
 <h2>🔑 Configuring Git Identity</h2>
 <p>🔧 Set your global Git identity:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
 <span id="cb8-2"><a></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"you@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
 <p>✅ To check the name or email currently set in Git, use these commands:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a></a><span class="fu">git</span> config <span class="at">--global</span> user.name </span>
 <span id="cb9-2"><a></a><span class="fu">git</span> config <span class="at">--global</span> user.email </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="connect-github-to-r-create-pat" class="slide level2 scrollable">
 <h2>🧭 Connect GitHub to R (Create PAT)</h2>
@@ -616,73 +647,102 @@ Mehdi Maadooliat and Hossein Haghbin
 <li>In R:</li>
 </ol>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div>
 <ol start="2" type="1">
-<li><p>GitHub will open — generate a Personal Access Token (PAT)</p></li>
-<li><p>Copy the token (only shown once!)</p></li>
-<li><p>Back in R:</p></li>
+<li class="fragment">GitHub will open — generate a Personal Access Token (PAT)</li>
+<li class="fragment">Copy the token (only shown once!)</li>
+<li class="fragment">Back in R:</li>
 </ol>
+</div>
+<div class="fragment">
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Paste your token when prompted.</p>
+</div>
+<div class="fragment">
+<blockquote>
 <p>✅ You’ve now authenticated GitHub from R!</p>
+</blockquote>
+</div>
 </section>
 <section id="check-setup" class="slide level2">
 <h2>🧪 Check Setup</h2>
 <p>Use this helpful diagnostic tool:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>usethis<span class="sc">::</span><span class="fu">git_sitrep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
 <p>💡 This tells you:</p>
+<div>
 <ul>
-<li><p>Whether Git is installed</p></li>
-<li><p>Whether GitHub is connected</p></li>
-<li><p>If PAT is stored</p></li>
+<li class="fragment">Whether Git is installed</li>
+<li class="fragment">Whether GitHub is connected</li>
+<li class="fragment">If PAT is stored</li>
 </ul>
+</div>
+</div>
 </section>
 <section id="creating-a-new-git-enabled-project" class="slide level2 scrollable">
 <h2>📁 Creating a New Git-Enabled Project</h2>
 <p>In RStudio:</p>
+<div>
 <ol type="1">
-<li><strong>File → New Project</strong></li>
-<li>Choose:
-<ul>
-<li>“New Directory” → “R Package” (or “New Project”)</li>
-</ul></li>
-<li>Check the box:
-<ul>
-<li>✅ “Create a git repository”</li>
-</ul></li>
-<li>Finish project setup</li>
+<li class="fragment"><strong>File → New Project</strong></li>
+<li class="fragment">Choose: <strong>New Directory</strong> → <strong>R Package</strong> (or <strong>New Project</strong>)</li>
+<li class="fragment">Check the box: ✅ “Create a git repository”</li>
+<li class="fragment">Finish project setup</li>
 </ol>
+</div>
+<div class="fragment">
+<blockquote>
 <p>📁 A <code>.git</code> folder is created — this is a Git repo!</p>
+</blockquote>
+</div>
 </section>
 <section id="connect-to-github" class="slide level2">
 <h2>🌐 Connect to GitHub</h2>
 <p>Run this to create and link a GitHub repo:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>usethis<span class="sc">::</span><span class="fu">use_github</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
 <p>This will:</p>
+<div>
 <ul>
-<li>Push your project to GitHub</li>
-<li>Open the new repo in your browser</li>
+<li class="fragment">Push your project to GitHub</li>
+<li class="fragment">Open the new repo in your browser</li>
 </ul>
+</div>
+</div>
+<div class="fragment">
 <blockquote>
 <p>💡 You can now push/pull changes from RStudio Git tab</p>
 </blockquote>
+</div>
 </section>
 <section id="common-git-workflows" class="slide level2 scrollable">
 <h2>🔄 Common Git Workflows</h2>
 <p>🎯 Daily workflow steps:</p>
+<div class="fragment">
 <ol type="1">
 <li>Edit <code>R/stats_module.R</code></li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="2" type="1">
 <li>Stage → Commit → Push</li>
 </ol>
+</div>
+<div class="fragment">
 <p>💻 In RStudio Git tab:</p>
+<div>
 <ul>
-<li>Stage: click checkbox</li>
-<li>Commit: type a message</li>
-<li>Push: upload to GitHub</li>
+<li class="fragment">Stage: click checkbox</li>
+<li class="fragment">Commit: type a message</li>
+<li class="fragment">Push: upload to GitHub</li>
 </ul>
-<p>🔁 Example:</p>
+</div>
+</div>
+<div class="fragment">
 <blockquote>
-<p>Commit message: “Add confidence interval to mean_plot()”</p>
+<p>🔁 Example: Commit message: “Add confidence interval to mean_plot()”</p>
 </blockquote>
+</div>
 </section></section>
 <section id="demo-rfssa-github-package" class="title-slide slide level1 center">
 <h1>🎥 Demo: Rfssa Github Package</h1>

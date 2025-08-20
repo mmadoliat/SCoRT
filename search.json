@@ -2009,7 +2009,7 @@
     "href": "slides/Topic6.html#git-github-basics",
     "title": "Short Course on R Tools",
     "section": "🐙 Git & GitHub Basics",
-    "text": "🐙 Git & GitHub Basics\n🔹 Git: Version control system for your local project\n🔹 GitHub: Cloud platform to share and collaborate\n📝 Key Terms:\n\nCommit = Savepoint\nPush/Pull = Send/Receive changes\nRepo = Project folder\n\n📦 Example:\n\nYou push your R package to GitHub, allowing your coauthor to edit documentation and submit a pull request.",
+    "text": "🐙 Git & GitHub Basics\n\n\n🔹Git: Version control system for your local project\n\n🔹GitHub: Cloud platform to share and collaborate\n\n\n\n📝 Key Terms:\n\n\nCommit = Savepoint\nPush/Pull = Send/Receive changes\nRepo = Project folder\n\n\n\n\n\n📦 Example: You push your R package to GitHub, allowing your coauthor to edit documentation and submit a pull request.",
     "crumbs": [
       "Slides",
       "GitHub / CRAN submission"
@@ -2020,7 +2020,7 @@
     "href": "slides/Topic6.html#installing-git",
     "title": "Short Course on R Tools",
     "section": "📦 Installing Git",
-    "text": "📦 Installing Git\n🔹 Go to git-scm.com\nChoose your operating system:\n\nWindows: Download .exe and install with default options\nmacOS: Install via Homebrew brew install git or Git installer\nLinux: Use package manager, e.g.:\n\n  sudo apt install git",
+    "text": "📦 Installing Git\n\n\n🔹 Go to git-scm.com\nChoose your operating system:\n\nWindows: Download .exe and install with default options\nmacOS: Install via Homebrew brew install git or Git installer\nLinux: Use package manager, e.g.:\n\n\n\n\n  sudo apt install git",
     "crumbs": [
       "Slides",
       "GitHub / CRAN submission"
@@ -2031,7 +2031,7 @@
     "href": "slides/Topic6.html#verifying-git-installation",
     "title": "Short Course on R Tools",
     "section": "🧪 Verifying Git Installation",
-    "text": "🧪 Verifying Git Installation\n🧪 Run this in your Terminal (or Command Prompt):\ngit --version\n✅ You should see something like:\ngit version 2.43.0\n💡 If this works, Git is installed correctly!",
+    "text": "🧪 Verifying Git Installation\n🧪 Run this in your Terminal (or Command Prompt):\ngit --version\n\n✅ You should see something like:\ngit version 2.43.0\n\n\n\n💡 If this works, Git is installed correctly!",
     "crumbs": [
       "Slides",
       "GitHub / CRAN submission"
@@ -2042,7 +2042,7 @@
     "href": "slides/Topic6.html#configuring-git-identity",
     "title": "Short Course on R Tools",
     "section": "🔑 Configuring Git Identity",
-    "text": "🔑 Configuring Git Identity\n🔧 Set your global Git identity:\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"you@example.com\"\n✅ To check the name or email currently set in Git, use these commands:\ngit config --global user.name \ngit config --global user.email",
+    "text": "🔑 Configuring Git Identity\n🔧 Set your global Git identity:\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"you@example.com\"\n\n✅ To check the name or email currently set in Git, use these commands:\ngit config --global user.name \ngit config --global user.email",
     "crumbs": [
       "Slides",
       "GitHub / CRAN submission"
@@ -2053,7 +2053,7 @@
     "href": "slides/Topic6.html#connect-github-to-r-create-pat",
     "title": "Short Course on R Tools",
     "section": "🧭 Connect GitHub to R (Create PAT)",
-    "text": "🧭 Connect GitHub to R (Create PAT)\n\nIn R:\n\nusethis::create_github_token()\n\nGitHub will open — generate a Personal Access Token (PAT)\nCopy the token (only shown once!)\nBack in R:\n\ngitcreds::gitcreds_set()\nPaste your token when prompted.\n✅ You’ve now authenticated GitHub from R!",
+    "text": "🧭 Connect GitHub to R (Create PAT)\n\nIn R:\n\nusethis::create_github_token()\n\n\nGitHub will open — generate a Personal Access Token (PAT)\nCopy the token (only shown once!)\nBack in R:\n\n\n\ngitcreds::gitcreds_set()\nPaste your token when prompted.\n\n\n\n✅ You’ve now authenticated GitHub from R!",
     "crumbs": [
       "Slides",
       "GitHub / CRAN submission"
@@ -2064,7 +2064,7 @@
     "href": "slides/Topic6.html#check-setup",
     "title": "Short Course on R Tools",
     "section": "🧪 Check Setup",
-    "text": "🧪 Check Setup\nUse this helpful diagnostic tool:\nusethis::git_sitrep()\n💡 This tells you:\n\nWhether Git is installed\nWhether GitHub is connected\nIf PAT is stored",
+    "text": "🧪 Check Setup\nUse this helpful diagnostic tool:\nusethis::git_sitrep()\n\n💡 This tells you:\n\n\nWhether Git is installed\nWhether GitHub is connected\nIf PAT is stored",
     "crumbs": [
       "Slides",
       "GitHub / CRAN submission"
@@ -2075,7 +2075,7 @@
     "href": "slides/Topic6.html#creating-a-new-git-enabled-project",
     "title": "Short Course on R Tools",
     "section": "📁 Creating a New Git-Enabled Project",
-    "text": "📁 Creating a New Git-Enabled Project\nIn RStudio:\n\nFile → New Project\nChoose:\n\n“New Directory” → “R Package” (or “New Project”)\n\nCheck the box:\n\n✅ “Create a git repository”\n\nFinish project setup\n\n📁 A .git folder is created — this is a Git repo!",
+    "text": "📁 Creating a New Git-Enabled Project\nIn RStudio:\n\n\nFile → New Project\nChoose: New Directory → R Package (or New Project)\nCheck the box: ✅ “Create a git repository”\nFinish project setup\n\n\n\n\n📁 A .git folder is created — this is a Git repo!",
     "crumbs": [
       "Slides",
       "GitHub / CRAN submission"
@@ -2086,7 +2086,7 @@
     "href": "slides/Topic6.html#connect-to-github",
     "title": "Short Course on R Tools",
     "section": "🌐 Connect to GitHub",
-    "text": "🌐 Connect to GitHub\nRun this to create and link a GitHub repo:\nusethis::use_github()\nThis will:\n\nPush your project to GitHub\nOpen the new repo in your browser\n\n\n💡 You can now push/pull changes from RStudio Git tab",
+    "text": "🌐 Connect to GitHub\nRun this to create and link a GitHub repo:\nusethis::use_github()\n\nThis will:\n\n\nPush your project to GitHub\nOpen the new repo in your browser\n\n\n\n\n\n💡 You can now push/pull changes from RStudio Git tab",
     "crumbs": [
       "Slides",
       "GitHub / CRAN submission"
@@ -2097,7 +2097,7 @@
     "href": "slides/Topic6.html#common-git-workflows",
     "title": "Short Course on R Tools",
     "section": "🔄 Common Git Workflows",
-    "text": "🔄 Common Git Workflows\n🎯 Daily workflow steps:\n\nEdit R/stats_module.R\nStage → Commit → Push\n\n💻 In RStudio Git tab:\n\nStage: click checkbox\nCommit: type a message\nPush: upload to GitHub\n\n🔁 Example:\n\nCommit message: “Add confidence interval to mean_plot()”",
+    "text": "🔄 Common Git Workflows\n🎯 Daily workflow steps:\n\n\nEdit R/stats_module.R\n\n\n\n\nStage → Commit → Push\n\n\n\n💻 In RStudio Git tab:\n\n\nStage: click checkbox\nCommit: type a message\nPush: upload to GitHub\n\n\n\n\n\n🔁 Example: Commit message: “Add confidence interval to mean_plot()”",
     "crumbs": [
       "Slides",
       "GitHub / CRAN submission"
