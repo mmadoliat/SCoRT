@@ -2,82 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://bit.ly/SCoRT/misc/cheatsheets.html</loc>
-    <lastmod>2025-08-20T07:32:12.974Z</lastmod>
+    <lastmod>2025-08-20T09:03:26.433Z</lastmod>
   </url>
   <url>
     <loc>http://bit.ly/SCoRT/course-links.html</loc>
-    <lastmod>2025-08-20T07:32:12.965Z</lastmod>
+    <lastmod>2025-08-20T09:03:26.424Z</lastmod>
   </url>
   <url>
-    <loc>http://bit.ly/SCoRT/hands-on/HO3.html</loc>
-    <lastmod>2025-08-20T07:32:12.966Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/hands-on/HW1.html</loc>
-    <lastmod>2025-08-20T07:32:12.966Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/hands-on/HO2.html</loc>
-    <lastmod>2025-08-20T07:32:12.966Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/course-syllabus.html</loc>
-    <lastmod>2025-08-20T07:32:12.966Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/slides/Topic4.html</loc>
-    <lastmod>2025-08-20T07:32:13.008Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/slides/Topic1.html</loc>
-    <lastmod>2025-08-20T07:32:13.008Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/slides/Topic5.html</loc>
-    <lastmod>2025-08-20T07:32:13.008Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/slides/Topic2.html</loc>
-    <lastmod>2025-08-20T07:32:13.008Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/course-overview.html</loc>
-    <lastmod>2025-08-20T07:32:12.965Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/slides/Topic3.html</loc>
-    <lastmod>2025-08-20T07:32:13.008Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/slides/Topic7.html</loc>
-    <lastmod>2025-08-20T07:32:13.026Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/slides/overview.html</loc>
-    <lastmod>2025-08-20T07:32:13.308Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/slides/Topic6.html</loc>
-    <lastmod>2025-08-20T07:32:13.008Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/hands-on/HW2.html</loc>
-    <lastmod>2025-08-20T07:32:12.966Z</lastmod>
-  </url>
-  <url>
-    <loc>http://bit.ly/SCoRT/hands-on/HO1.html</loc>
-    <lastmod>2025-08-20T07:32:12.966Z</lastmod>
+    <loc>http://bit.ly/SCoRT/hands-on/HO5.html</loc>
+    <lastmod>2025-08-20T09:03:26.424Z</lastmod>
   </url>
   <url>
     <loc>http://bit.ly/SCoRT/hands-on/HO4.html</loc>
-    <lastmod>2025-08-20T07:32:12.966Z</lastmod>
+    <lastmod>2025-08-20T09:03:26.424Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/hands-on/HO1.html</loc>
+    <lastmod>2025-08-20T09:03:26.424Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/hands-on/HW2.html</loc>
+    <lastmod>2025-08-20T09:03:26.424Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/slides/Topic6.html</loc>
+    <lastmod>2025-08-20T09:03:26.466Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/slides/overview.html</loc>
+    <lastmod>2025-08-20T09:03:26.767Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/slides/Topic7.html</loc>
+    <lastmod>2025-08-20T09:03:26.484Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/slides/Topic3.html</loc>
+    <lastmod>2025-08-20T09:03:26.466Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/course-overview.html</loc>
+    <lastmod>2025-08-20T09:03:26.424Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/slides/Topic2.html</loc>
+    <lastmod>2025-08-20T09:03:26.466Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/slides/Topic5.html</loc>
+    <lastmod>2025-08-20T09:03:26.466Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/slides/Topic1.html</loc>
+    <lastmod>2025-08-20T09:03:26.466Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/slides/Topic4.html</loc>
+    <lastmod>2025-08-20T09:03:26.466Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/course-syllabus.html</loc>
+    <lastmod>2025-08-20T09:03:26.424Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/hands-on/HO2.html</loc>
+    <lastmod>2025-08-20T09:03:26.424Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/hands-on/HW1.html</loc>
+    <lastmod>2025-08-20T09:03:26.424Z</lastmod>
+  </url>
+  <url>
+    <loc>http://bit.ly/SCoRT/hands-on/HO3.html</loc>
+    <lastmod>2025-08-20T09:03:26.424Z</lastmod>
   </url>
   <url>
     <loc>http://bit.ly/SCoRT/about.html</loc>
-    <lastmod>2025-08-20T07:32:12.965Z</lastmod>
+    <lastmod>2025-08-20T09:03:26.424Z</lastmod>
   </url>
   <url>
     <loc>http://bit.ly/SCoRT/index.html</loc>
-    <lastmod>2025-08-20T07:32:12.974Z</lastmod>
+    <lastmod>2025-08-20T09:03:26.433Z</lastmod>
   </url>
 </urlset>
