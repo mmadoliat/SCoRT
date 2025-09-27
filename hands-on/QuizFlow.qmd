@@ -1,0 +1,123 @@
+---
+title: "QuizFlow: Automating Mastery-Based Weekly Quizzes"
+author: "Mehdi Maadooliat"
+date: 2025-09-29
+format:
+  revealjs:
+    theme: [simple, serif]
+    incremental: true
+    slide-number: true
+    toc: false
+    transition: fade
+    embed-resources: true   # self-contained
+    chalkboard: false       # keep compatible with self-contained
+    controls: true
+editor: visual
+---
+
+## Challenges and Goal
+
+-   Large lectures (\~120 students) make them **time-consuming**
+-   Manual pipeline doesn’t scale: generate → collect → grade → file
+-   **Goal:** An automatic, repeatable pipeline with **Shiny**
+
+------------------------------------------------------------------------
+
+## The 4-step pipeline
+
+1.  **Build Quizzes**\
+2.  **Collect & OCR**\
+3.  **Review & Approve**\
+4.  **Finalize & File**
+
+![Pipeline sketch](images/pipeline.png){height="150"}
+
+> We’ll show how each step is solved in the app.
+
+------------------------------------------------------------------------
+
+## Week 1 — One-time setup
+
+-   Create **OneDrive** folders per student (by **MUID**)
+-   Export roster (CSV) from CheckMarq
+-   **Standardize student photos**: `img/<MUID>.jpg`
+-   Verify app dependencies (R packages, TinyTeX for LaTeX)
+
+------------------------------------------------------------------------
+
+## App Overview (Shiny)
+
+-   Tab 1: Generate personalized quizzes (`{exams}` **or** PDF)
+-   Tab 2: Upload returned PDF(s), OCR at scale
+-   Tab 3: Edit grades, toggle approval
+-   Tab 4: Split/Copy/Move to **per-student** folders
+
+<img src="images/app-home.png" style="position: relative; left: 260px; top: -40px;" height="350px">
+
+------------------------------------------------------------------------
+
+## Tab 1 — Build Quizzes
+
+-   Choose **{exams}** LaTeX bank *or* **stamp** existing PDF template
+-   Personalize: **Name (left)** + **ID (right)** on page 1
+-   Optional: **Student photo** (bottom-left), *exact* `176×176`
+-   Adds a **grade box** `176×176` (bottom-right) on **every page**
+-   All student versions are **combined into one master PDF**. This PDF file will be printed and distributed during the Quiz time.
+
+------------------------------------------------------------------------
+
+## Tab 2 — Collect & OCR (Design)
+
+-   Upload **single multi-page** scan PDF
+-   Draw **three boxes** once (Name, Student ID, Grade) → app stores template
+-   OCR modes:
+    -   **Single page** → quick test
+    -   **All pages of selected file**
+
+<img src="images/ocr-brush.png" style="position: relative; left: 540px; top: -250px;" height="350px">
+
+------------------------------------------------------------------------
+
+## Tab 3 — Review & Approve
+
+-   **Editable** grades
+-   Toggle **approved** for selected rows
+-   Typical fixes: OCR cleanup, rounding grades
+
+![Review table](images/review-table.png){height="330"}
+
+------------------------------------------------------------------------
+
+## Tab 4 — Finalize & File
+
+-   Split **master combined** PDF into **per-student** PDFs
+-   Copy/Move into their OneDrive **MUID** folders
+-   Filenames: `MUID_Quiz#_Attempt#.pdf`
+
+![Finalize](images/finalize.png){height="330"}
+
+------------------------------------------------------------------------
+
+## Weekly cadence (after Week 1)
+
+1.  Upload roster (optional)\
+2.  Generate quizzes\
+3.  Upload scans → OCR → approve\
+4.  File to student folders ✅
+
+------------------------------------------------------------------------
+
+## Results
+
+-   **Repeatable weekly flow**
+-   120+ students → **minutes** instead of hours
+-   Centralized filing per student for compliance & transparency
+
+------------------------------------------------------------------------
+
+## What else can be done?
+
+-   LMS integration (Canvas/D2L) to sync grades
+-   Rubric-based auto grading (e.g., QR zone for points)
+-   Confidence scoring for OCR → human-in-loop
+
