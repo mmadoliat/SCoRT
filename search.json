@@ -1,635 +1,289 @@
 [
   {
-    "objectID": "misc/cheatsheets.html",
-    "href": "misc/cheatsheets.html",
-    "title": "R cheatsheets",
+    "objectID": "course-overview.html",
+    "href": "course-overview.html",
+    "title": "Course overview",
     "section": "",
-    "text": "The following cheatsheets come from https://posit.co/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
+    "text": "This is the homepage for Short Course on R Tools (SCoRT) by Dr. Mehdi Maadooliat and Dr. Hossein Haghbin. All course materials will be posted on this site.\nYou can find the course syllabus here and the course schedule here.",
     "crumbs": [
-      "Miscellaneous",
-      "Cheatsheets"
+      "Course information",
+      "Overview"
     ]
   },
   {
-    "objectID": "course-links.html",
-    "href": "course-links.html",
-    "title": "Useful links",
-    "section": "",
-    "text": "Motivating Talk\nStat Calculator\nDistribution Calculator\nRStudio\n🔗 IrStat Webinar\n🔗 StatCalc(JAMM)\n🔗 DistCalc\n🔗 on dna\n\n\nAdvanced Texbooks\n🔗 Advanced R by Hadley Wickham\n🔗 R Package\n🔗 Quarto\n🔗 R Markdown\n🔗 ggplot2: Elegant Graphics for Data Analysis\n🔗 Fundamentals of Data Visualization\n🔗 Data Visualization: A Practical Introduction\n🔗 R for Data Science\n\n\nSome Package documentation\n🔗 OOP-R6: r6.r-lib.org\n🔗 shiny: shiny.posit.co\n🔗 Rcpp: www.rcpp.org\n🔗 reticulate: rstudio.github.io/reticulate\n🔗 devtools: devtools.r-lib.org\n🔗 GitHub: happygitwithr.com\n🔗 CRAN: cran.r-project.org\n🔗 keras: keras3.posit.co",
+    "objectID": "course-overview.html#class-meetings",
+    "href": "course-overview.html#class-meetings",
+    "title": "Course overview",
+    "section": "Class meetings",
+    "text": "Class meetings\n\n\n\nMeeting\nLocation/Address\nTime\n\n\n\n\nOnline Lecture\nPGU BigBlueButton\nMon & Tue & Wed 5:00 pm - 7:00 pm IRT.",
     "crumbs": [
-      "Miscellaneous",
-      "Useful links"
+      "Course information",
+      "Overview"
     ]
   },
   {
-    "objectID": "hands-on/HO5.html",
-    "href": "hands-on/HO5.html",
-    "title": "Hands-on: Build Your k-NN R Package",
-    "section": "",
-    "text": "In this 45 min session you will:\n\nCreate a new R package to wrap your custom k-NN code.\nOrganize R scripts and C++ code in the package structure.\nDocument functions using Roxygen2.\nInstall and test your package.\nRun predictions and visualize results from the package."
-  },
-  {
-    "objectID": "hands-on/HO5.html#overview",
-    "href": "hands-on/HO5.html#overview",
-    "title": "Hands-on: Build Your k-NN R Package",
-    "section": "",
-    "text": "In this 45 min session you will:\n\nCreate a new R package to wrap your custom k-NN code.\nOrganize R scripts and C++ code in the package structure.\nDocument functions using Roxygen2.\nInstall and test your package.\nRun predictions and visualize results from the package."
-  },
-  {
-    "objectID": "hands-on/HO5.html#setup",
-    "href": "hands-on/HO5.html#setup",
-    "title": "Hands-on: Build Your k-NN R Package",
-    "section": "Setup",
-    "text": "Setup\n\nCreate a new R package project in RStudio:\n\n# Replace \"knnPackage\" with your chosen package name\nusethis::create_package(\"knnPackage\")\n\nCopy the prepared files into your package:\n\nknnPackage/\n├── R/           # R scripts with roxygen2 (knn_s3.R, knn_s3_formula.R)\n├── src/\n\nR/knn_s3.R: S3 class for k-NN\nR/knn_s3_formula.R: Formula interface and predict methods\nsrc/knn_pred.cpp: Rcpp implementation for fast predictions\n\nAll three files already contain Roxygen2 comments, so your functions will be automatically exported."
-  },
-  {
-    "objectID": "hands-on/HO5.html#document-your-package",
-    "href": "hands-on/HO5.html#document-your-package",
-    "title": "Hands-on: Build Your k-NN R Package",
-    "section": "1. Document your package",
-    "text": "1. Document your package\nGenerate documentation for all exported functions:\ndevtools::document(\"knnPackage\")\nCheck that .Rd files are created in man/."
-  },
-  {
-    "objectID": "hands-on/HO5.html#install-and-load-your-package",
-    "href": "hands-on/HO5.html#install-and-load-your-package",
-    "title": "Hands-on: Build Your k-NN R Package",
-    "section": "2. Install and load your package",
-    "text": "2. Install and load your package\n# Install locally\ndevtools::install(\"knnPackage\")\n\n# Load package\nlibrary(knnPackage)"
-  },
-  {
-    "objectID": "hands-on/HO5.html#traintest-split",
-    "href": "hands-on/HO5.html#traintest-split",
-    "title": "Hands-on: Build Your k-NN R Package",
-    "section": "3. Train/test split",
-    "text": "3. Train/test split\nUse mtcars to test your package:\nset.seed(42)\nn &lt;- nrow(mtcars)\ntrain_idx &lt;- sample(seq_len(n), size = round(0.7 * n))\ntrain &lt;- mtcars[train_idx, ]\ntest  &lt;- mtcars[-train_idx, ]"
-  },
-  {
-    "objectID": "hands-on/HO5.html#fit-models-using-package-functions",
-    "href": "hands-on/HO5.html#fit-models-using-package-functions",
-    "title": "Hands-on: Build Your k-NN R Package",
-    "section": "4. Fit models using package functions",
-    "text": "4. Fit models using package functions\n# Fit k-NN models with k=5 and k=10\nmod5  &lt;- knn_s3(mpg ~ disp + hp + wt, train, k = 5)\nmod10 &lt;- knn_s3(mpg ~ disp + hp + wt, train, k = 10)\n\n# Predict using Rcpp\npred5  &lt;- predict(mod5, newdata = test, method = \"cpp\")\npred10 &lt;- predict(mod10, newdata = test, method = \"cpp\")"
-  },
-  {
-    "objectID": "hands-on/HO5.html#evaluate-performance",
-    "href": "hands-on/HO5.html#evaluate-performance",
-    "title": "Hands-on: Build Your k-NN R Package",
-    "section": "5. Evaluate performance",
-    "text": "5. Evaluate performance\nrmse &lt;- function(y, yhat) sqrt(mean((y - yhat)^2))\nmae  &lt;- function(y, yhat) mean(abs(y - yhat))\n\nperf &lt;- data.frame(\n  Model = c(\"k=5\", \"k=10\"),\n  RMSE  = c(rmse(test$mpg, pred5), rmse(test$mpg, pred10)),\n  MAE   = c(mae(test$mpg, pred5), mae(test$mpg, pred10))\n)\nprint(perf)"
-  },
-  {
-    "objectID": "hands-on/HO5.html#visualize-predictions",
-    "href": "hands-on/HO5.html#visualize-predictions",
-    "title": "Hands-on: Build Your k-NN R Package",
-    "section": "6. Visualize predictions",
-    "text": "6. Visualize predictions\nlibrary(tidyr)\nlibrary(ggplot2)\n\ntest$pred5 &lt;- pred5\ntest$pred10 &lt;- pred10\n\ntest_long &lt;- test %&gt;%\n  pivot_longer(cols = c(pred5, pred10), \n               names_to = \"Model\", values_to = \"Prediction\")\n\nggplot(test_long, aes(x = mpg, y = Prediction, color = Model)) +\n  geom_point(size = 3, alpha = 0.6) +\n  geom_abline(slope = 1, intercept = 0, linetype = \"dashed\") +\n  labs(title = \"Predicted vs Actual MPG (from Package)\",\n       x = \"Actual MPG\", y = \"Predicted MPG\") +\n  scale_color_manual(values = c(\"pred5\" = \"blue\", \"pred10\" = \"red\"),\n                     labels = c(\"k = 5\", \"k = 10\")) +\n  theme_minimal()"
-  },
-  {
-    "objectID": "hands-on/HO5.html#discussion",
-    "href": "hands-on/HO5.html#discussion",
-    "title": "Hands-on: Build Your k-NN R Package",
-    "section": "Discussion",
-    "text": "Discussion\n\nVerify that the package functions work as expected.\nInspect the help pages generated from Roxygen2.\nDiscuss the benefits of wrapping your code into a package:\n\nReusability\nDocumentation\nEasy sharing"
-  },
-  {
-    "objectID": "hands-on/HO5.html#next-steps",
-    "href": "hands-on/HO5.html#next-steps",
-    "title": "Hands-on: Build Your k-NN R Package",
-    "section": "Next steps",
-    "text": "Next steps\n\nAdd more utility functions (e.g., cross-validation) to your package.\nInclude unit tests with testthat for your main functions.\nShare your package via GitHub for collaborative development."
-  },
-  {
-    "objectID": "hands-on/HO4.html",
-    "href": "hands-on/HO4.html",
-    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
-    "section": "",
-    "text": "In this 30 min session you will:\n\nLearn how to integrate Python code into R using the reticulate package.\nUse scikit-learn’s train_test_split() function (Python) to prepare datasets in R.\nFit a custom S3-based k-NN regression model in R.\nEvaluate predictions and compare observed vs predicted values."
-  },
-  {
-    "objectID": "hands-on/HO4.html#overview",
-    "href": "hands-on/HO4.html#overview",
-    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
-    "section": "",
-    "text": "In this 30 min session you will:\n\nLearn how to integrate Python code into R using the reticulate package.\nUse scikit-learn’s train_test_split() function (Python) to prepare datasets in R.\nFit a custom S3-based k-NN regression model in R.\nEvaluate predictions and compare observed vs predicted values."
-  },
-  {
-    "objectID": "hands-on/HO4.html#setup",
-    "href": "hands-on/HO4.html#setup",
-    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
-    "section": "Setup",
-    "text": "Setup\nDownload the S3 k-NN implementation script:\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/knn_s3_formula.R\nSource them in your R console:\nsource(\"knn_s3_formula.R\")"
-  },
-  {
-    "objectID": "hands-on/HO4.html#import-python-packages",
-    "href": "hands-on/HO4.html#import-python-packages",
-    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
-    "section": "Import Python packages",
-    "text": "Import Python packages\nlibrary(reticulate)\nsklearn_model_selection &lt;- import(\"sklearn.model_selection\", convert = TRUE)"
-  },
-  {
-    "objectID": "hands-on/HO4.html#custom-helper-split-data-in-python-return-as-list-of-r-data.frames",
-    "href": "hands-on/HO4.html#custom-helper-split-data-in-python-return-as-list-of-r-data.frames",
-    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
-    "section": "Custom helper: Split data in Python, return as list of R data.frames",
-    "text": "Custom helper: Split data in Python, return as list of R data.frames\npy_train_test_split &lt;- function(data, test_size = 0.3, seed = 42L) {\n  set.seed(seed)\n  X &lt;- as.matrix(data[, -1, drop = FALSE])\n  y &lt;- data[[1]]\n\n  split &lt;- sklearn_model_selection$train_test_split(\n    X, y,\n    test_size = test_size,\n    random_state = as.integer(seed)\n  )\n\n  # unpack results from Python tuple\n  X_train &lt;- split[[1]]\n  X_test  &lt;- split[[2]]\n  y_train &lt;- split[[3]]\n  y_test  &lt;- split[[4]]\n\n  train_df &lt;- as.data.frame(cbind(y_train, X_train))\n  names(train_df) &lt;- names(data)\n  test_df &lt;- as.data.frame(cbind(y_test, X_test))\n  names(test_df) &lt;- names(data)\n\n  list(train = train_df, test = test_df)\n}"
-  },
-  {
-    "objectID": "hands-on/HO4.html#use-python-to-split-mtcars-into-traintest",
-    "href": "hands-on/HO4.html#use-python-to-split-mtcars-into-traintest",
-    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
-    "section": "Use Python to split mtcars into train/test",
-    "text": "Use Python to split mtcars into train/test\nsplit_data &lt;- py_train_test_split(mtcars[, c(\"mpg\", \"disp\", \"hp\", \"wt\")], test_size = 0.3)\n\ntrain_df &lt;- split_data$train\ntest_df  &lt;- split_data$test\n\n# Fit the S3 k-NN model on train set\nmodel &lt;- knn_s3(mpg ~ disp + hp + wt, train_df, k = 5)\nsummary(model)\n\n# Predict on test set\npreds &lt;- predict(model, newdata = test_df, method = \"R\")\ncbind(Observed = test_df$mpg, Predicted = round(preds, 2))"
-  },
-  {
-    "objectID": "hands-on/HO4.html#use-python-to-split-mtcars-into-traintest-1",
-    "href": "hands-on/HO4.html#use-python-to-split-mtcars-into-traintest-1",
-    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
-    "section": "Use Python to split mtcars into train/test",
-    "text": "Use Python to split mtcars into train/test\nsplit_data &lt;- py_train_test_split(mtcars[, c(\"mpg\", \"disp\", \"hp\", \"wt\")], test_size = 0.3)\n\ntrain_df &lt;- split_data$train\ntest_df  &lt;- split_data$test\n\n# Fit the S3 k-NN model on train set\nmodel &lt;- knn_s3(mpg ~ disp + hp + wt, train_df, k = 5)\nsummary(model)\n\n# Predict on test set\npreds &lt;- predict(model, newdata = test_df, method = \"R\")\ncbind(Observed = test_df$mpg, Predicted = round(preds, 2))"
-  },
-  {
-    "objectID": "hands-on/HO4.html#tasks",
-    "href": "hands-on/HO4.html#tasks",
-    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
-    "section": "Tasks",
-    "text": "Tasks\n\nChange the train/test split ratio to 0.5 and observe changes in model performance.\nModify py_train_test_split() to return NumPy arrays instead of data frames — verify how this affects R code.\n(Optional) Replace the R prediction with Python’s sklearn.neighbors.KNeighborsRegressor and compare results.\n\n\nGood luck!"
-  },
-  {
-    "objectID": "hands-on/HO1.html",
-    "href": "hands-on/HO1.html",
-    "title": "Hands-on: k-NN Regression with S3 OOP",
-    "section": "",
-    "text": "In this 30 min session you will:\n\nLoad and inspect the knn_s3 and knn_s3_formula scripts\nFit k-NN regression models using S3\nUse print(), summary(), fitted(), predict(), anova()",
-    "crumbs": [
-      "Hands-on / HW",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "hands-on/HO1.html#overview",
-    "href": "hands-on/HO1.html#overview",
-    "title": "Hands-on: k-NN Regression with S3 OOP",
-    "section": "",
-    "text": "In this 30 min session you will:\n\nLoad and inspect the knn_s3 and knn_s3_formula scripts\nFit k-NN regression models using S3\nUse print(), summary(), fitted(), predict(), anova()",
-    "crumbs": [
-      "Hands-on / HW",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "hands-on/HO1.html#setup",
-    "href": "hands-on/HO1.html#setup",
-    "title": "Hands-on: k-NN Regression with S3 OOP",
-    "section": "Setup",
-    "text": "Setup\nDownload the scripts:\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/knn_s3.R\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/knn_s3_formula.R\nSource them in your R console:\nsource(\"R/knn_s3.R\")\nsource(\"R/knn_s3_formula.R\")",
-    "crumbs": [
-      "Hands-on / HW",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "hands-on/HO1.html#example-code",
-    "href": "hands-on/HO1.html#example-code",
-    "title": "Hands-on: k-NN Regression with S3 OOP",
-    "section": "Example Code",
-    "text": "Example Code\n# Fit two models\nmod5  &lt;- knn_s3(mpg ~ disp + hp + wt, mtcars, k = 5)\nmod10 &lt;- knn_s3(mpg ~ disp + hp + wt, mtcars, k = 10)\n\n# Inspect models\nprint(mod5)\nsummary(mod5)\nfitted(mod5)[1:5]\n\n# Compare models\nanova(mod5, mod10)",
-    "crumbs": [
-      "Hands-on / HW",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "hands-on/HO1.html#tasks",
-    "href": "hands-on/HO1.html#tasks",
-    "title": "Hands-on: k-NN Regression with S3 OOP",
-    "section": "Tasks",
-    "text": "Tasks\n\nVary k: change k to 3 and 8, then re-run summary().\nBackend swap: use predict(mod5, head(mtcars), method=\"R\") and compare.\nNew predictor: fit a model with mpg ~ cyl + gear and compare with the first via anova().\n\n\nGood luck!",
-    "crumbs": [
-      "Hands-on / HW",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "hands-on/HW2.html",
-    "href": "hands-on/HW2.html",
-    "title": "Homework Assignment 2",
-    "section": "",
-    "text": "Please complete the following tasks within one week and share your work as a GitHub repository linke.\n\n\n\n\n\n\n\nBuild a simple R package that achieves a specific task.\n\nExamples of goals:\n\nData cleaning helper functions\n\nA small visualization wrapper\n\nStatistical functions (e.g., custom summary stats)\n\nImporting/transforming a public dataset\n\n\n\n\n\n\n\nYour package should solve a simple but useful problem for statistics. Possible ideas:\n\nDescriptive Statistics Toolkit: Functions to compute mean, variance, quantiles, skewness, kurtosis.\n\nVisualization Helper: Custom plotting functions for common statistical distributions.\n\nProbability Distribution Tools: Simulate and analyze distributions (Normal, Poisson, Binomial, etc.).\n\nRegression Helpers: Easy-to-use wrappers for linear/logistic regression summaries.\n\nTime Series Mini Toolkit: Simple functions for moving averages, decomposition, and plotting.\n\nResampling Methods: Implement bootstrap and permutation tests.\n\n\n\n\n\n\nPick a clear, unique package name.\n\nExample: statHelper, bootResampleR, easyViz, probSimR.\n\n\nProvide documentation:\n\nDESCRIPTION file with title, description, author.\n\nFunction-level help with #' Roxygen comments.\n\nREADME.md explaining package goal, installation, usage.\n\n\nAdd at least one vignette/tutorial showing examples.\n\n\n\n\n\nEmbed at least one dataset inside your package. Suggestions:\n\nBuilt-in datasets (iris, mtcars, airquality).\n\nPublic datasets (but keep them small):\n\nDaily stock prices (few days).\n\nStudents’ grades (simulated).\n\nCOVID-19 sample (subset).\n\nRandomly generated survey data.\n\n\n\n\n\n\n\nCreate a GitHub repository.\n\nPush your package code.\n\nAdd a LICENSE file.\n\nShare the repository link with your instructor.\n\n\n\n\n\n\n\n\nPart\nDescription\nPoints\n\n\n\n\nTask Design\nClear, meaningful statistical goal\n15\n\n\nPackage Structure\nCorrect folder & file setup\n15\n\n\nFunctions\nAt least 3 well-written functions\n20\n\n\nDocumentation\nDESCRIPTION, README, Roxygen comments\n15\n\n\nDataset\nCorrectly embedded with documentation\n10\n\n\nVignette\nExample usage in Rmarkdown\n10\n\n\nGitHub Repository\nProper setup, LICENSE, clean commits\n10\n\n\nPresentation\nClear, creative, user-friendly\n5\n\n\n\n\n\n\n\n\nDeadline: [set your date here]\n\nSubmit: GitHub repository link shared via email or LMS.\n\nBonus: +5 points if package installs directly with devtools::install_github(\"username/package\").\n\n\nGood luck, and remember to commit and push often!"
-  },
-  {
-    "objectID": "hands-on/HW2.html#build-share-your-package",
-    "href": "hands-on/HW2.html#build-share-your-package",
-    "title": "Homework Assignment 2",
-    "section": "",
-    "text": "Build a simple R package that achieves a specific task.\n\nExamples of goals:\n\nData cleaning helper functions\n\nA small visualization wrapper\n\nStatistical functions (e.g., custom summary stats)\n\nImporting/transforming a public dataset"
-  },
-  {
-    "objectID": "hands-on/HW2.html#step-1-choose-a-task-goal-of-your-package",
-    "href": "hands-on/HW2.html#step-1-choose-a-task-goal-of-your-package",
-    "title": "Homework Assignment 2",
-    "section": "",
-    "text": "Your package should solve a simple but useful problem for statistics. Possible ideas:\n\nDescriptive Statistics Toolkit: Functions to compute mean, variance, quantiles, skewness, kurtosis.\n\nVisualization Helper: Custom plotting functions for common statistical distributions.\n\nProbability Distribution Tools: Simulate and analyze distributions (Normal, Poisson, Binomial, etc.).\n\nRegression Helpers: Easy-to-use wrappers for linear/logistic regression summaries.\n\nTime Series Mini Toolkit: Simple functions for moving averages, decomposition, and plotting.\n\nResampling Methods: Implement bootstrap and permutation tests."
-  },
-  {
-    "objectID": "hands-on/HW2.html#step-2-name-and-documentation",
-    "href": "hands-on/HW2.html#step-2-name-and-documentation",
-    "title": "Homework Assignment 2",
-    "section": "",
-    "text": "Pick a clear, unique package name.\n\nExample: statHelper, bootResampleR, easyViz, probSimR.\n\n\nProvide documentation:\n\nDESCRIPTION file with title, description, author.\n\nFunction-level help with #' Roxygen comments.\n\nREADME.md explaining package goal, installation, usage.\n\n\nAdd at least one vignette/tutorial showing examples."
-  },
-  {
-    "objectID": "hands-on/HW2.html#step-3-include-a-dataset",
-    "href": "hands-on/HW2.html#step-3-include-a-dataset",
-    "title": "Homework Assignment 2",
-    "section": "",
-    "text": "Embed at least one dataset inside your package. Suggestions:\n\nBuilt-in datasets (iris, mtcars, airquality).\n\nPublic datasets (but keep them small):\n\nDaily stock prices (few days).\n\nStudents’ grades (simulated).\n\nCOVID-19 sample (subset).\n\nRandomly generated survey data."
-  },
-  {
-    "objectID": "hands-on/HW2.html#step-4-publish-on-github",
-    "href": "hands-on/HW2.html#step-4-publish-on-github",
-    "title": "Homework Assignment 2",
-    "section": "",
-    "text": "Create a GitHub repository.\n\nPush your package code.\n\nAdd a LICENSE file.\n\nShare the repository link with your instructor."
-  },
-  {
-    "objectID": "hands-on/HW2.html#grading-rubric-total-100-points",
-    "href": "hands-on/HW2.html#grading-rubric-total-100-points",
-    "title": "Homework Assignment 2",
-    "section": "",
-    "text": "Part\nDescription\nPoints\n\n\n\n\nTask Design\nClear, meaningful statistical goal\n15\n\n\nPackage Structure\nCorrect folder & file setup\n15\n\n\nFunctions\nAt least 3 well-written functions\n20\n\n\nDocumentation\nDESCRIPTION, README, Roxygen comments\n15\n\n\nDataset\nCorrectly embedded with documentation\n10\n\n\nVignette\nExample usage in Rmarkdown\n10\n\n\nGitHub Repository\nProper setup, LICENSE, clean commits\n10\n\n\nPresentation\nClear, creative, user-friendly\n5"
-  },
-  {
-    "objectID": "hands-on/HW2.html#submission",
-    "href": "hands-on/HW2.html#submission",
-    "title": "Homework Assignment 2",
-    "section": "",
-    "text": "Deadline: [set your date here]\n\nSubmit: GitHub repository link shared via email or LMS.\n\nBonus: +5 points if package installs directly with devtools::install_github(\"username/package\").\n\n\nGood luck, and remember to commit and push often!"
-  },
-  {
-    "objectID": "slides/Topic6.html#what-happens-after-submission",
-    "href": "slides/Topic6.html#what-happens-after-submission",
+    "objectID": "slides/Topic2.html#structure-of-a-shiny-app-1",
+    "href": "slides/Topic2.html#structure-of-a-shiny-app-1",
     "title": "Short Course on R Tools",
-    "section": "📬 What Happens After Submission?",
-    "text": "📬 What Happens After Submission?\n\n\nYou’ll get an automated confirmation email\nWithin ~24–72 hours, a CRAN maintainer will review your package\n\n\n\n\nThey may:\n\nAccept it immediately ✅\nRequest fixes or clarifications ✍️\nReject with detailed reasons ❌",
+    "section": "Structure of a Shiny App",
+    "text": "Structure of a Shiny App\n\n# app.R single-file app\nlibrary(shiny)\nui &lt;- fluidPage(\n  titlePanel(\"Hello Shiny\"),\n  sidebarLayout(\n    sidebarPanel(sliderInput(\"obs\", \"Observations:\", 1, 100, 50)),\n    mainPanel(plotOutput(\"distPlot\"))\n  )\n)\n\nserver &lt;- function(input, output) {\n  output$distPlot &lt;- renderPlot({\n    hist(rnorm(input$obs))\n  })\n}\n\nshinyApp(ui, server)\n\n\nui defines layout and inputs/outputs\nserver contains R code & reactivity",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#updating-a-cran-package",
-    "href": "slides/Topic6.html#updating-a-cran-package",
+    "objectID": "slides/Topic2.html#structure-of-a-shiny-app-2",
+    "href": "slides/Topic2.html#structure-of-a-shiny-app-2",
     "title": "Short Course on R Tools",
-    "section": "🔄 Updating a CRAN Package",
-    "text": "🔄 Updating a CRAN Package\nTo submit an update:\n\n\nBump the version (e.g., from 1.0.0 → 1.0.1)\nAdd a clear NEWS.md entry\nEnsure compatibility with current R version and dependencies\nFollow the same submission process\n\n\n\n📌 You can only submit once every 1–2 weeks (per package).",
+    "section": "Structure of a Shiny App",
+    "text": "Structure of a Shiny App\nShiny apps come in two parts:\n\n\n\nUI\n\nDefines the layout and appearance.\nContains elements such as:\n\nlayout structures (sidebars)\ninputs (text boxes, sliders, buttons)\noutputs (plots, tables)\n\n\n\n\nServer\n\nPerforms calculations.\nContains the logic to respond to user inputs, and update outputs.\nCommunicates with the UI to dynamically render outputs.",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#git-github-basics",
-    "href": "slides/Topic6.html#git-github-basics",
+    "objectID": "slides/Topic2.html#exercise",
+    "href": "slides/Topic2.html#exercise",
     "title": "Short Course on R Tools",
-    "section": "🐙 Git & GitHub Basics",
-    "text": "🐙 Git & GitHub Basics\n\n\n🔹Git: Version control system for your local project\n\n🔹GitHub: Cloud platform to share and collaborate\n\n\n\n📝 Key Terms:\n\n\nCommit = Savepoint\nPush/Pull = Send/Receive changes\nRepo = Project folder\n\n\n\n\n\n📦 Example: You push your R package to GitHub, allowing your coauthor to edit documentation and submit a pull request.",
+    "section": "Exercise",
+    "text": "Exercise\n\n\n\n−+\n05:00\n\n\n\n\nOpen up your IDE of choice.\nMake sure you have the {shiny} package installed.\nCreate an app.R file.\nAdd ui and server elements, as well as shiny::shinyApp(ui, server).\nCheck it works.",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#installing-git",
-    "href": "slides/Topic6.html#installing-git",
+    "objectID": "slides/Topic2.html#shinyapps-gallery-1",
+    "href": "slides/Topic2.html#shinyapps-gallery-1",
     "title": "Short Course on R Tools",
-    "section": "📦 Installing Git",
-    "text": "📦 Installing Git\n\n\n🔹 Go to git-scm.com\nChoose your operating system:\n\nWindows: Download .exe and install with default options\nmacOS: Install via Homebrew brew install git or Git installer\nLinux: Use package manager, e.g.:\n\n\n\n\n  sudo apt install git",
+    "section": "Shinyapps Gallery",
+    "text": "Shinyapps Gallery",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#verifying-git-installation",
-    "href": "slides/Topic6.html#verifying-git-installation",
+    "objectID": "slides/Topic2.html#widgets---input",
+    "href": "slides/Topic2.html#widgets---input",
     "title": "Short Course on R Tools",
-    "section": "🧪 Verifying Git Installation",
-    "text": "🧪 Verifying Git Installation\n🧪 Run this in your Terminal (or Command Prompt):\ngit --version\n\n✅ You should see something like:\ngit version 2.43.0\n\n\n\n💡 If this works, Git is installed correctly!",
+    "section": "Widgets - Input",
+    "text": "Widgets - Input",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#configuring-git-identity",
-    "href": "slides/Topic6.html#configuring-git-identity",
+    "objectID": "slides/Topic2.html#widgets---output-table",
+    "href": "slides/Topic2.html#widgets---output-table",
     "title": "Short Course on R Tools",
-    "section": "🔑 Configuring Git Identity",
-    "text": "🔑 Configuring Git Identity\n🔧 Set your global Git identity:\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"you@example.com\"\n\n✅ To check the name or email currently set in Git, use these commands:\ngit config --global user.name \ngit config --global user.email",
+    "section": "Widgets - Output Table",
+    "text": "Widgets - Output Table\n\n\n\n🔗 &lt;/&gt; VIEW CODE",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#connect-github-to-r-create-pat",
-    "href": "slides/Topic6.html#connect-github-to-r-create-pat",
+    "objectID": "slides/Topic2.html#reactivity-demo",
+    "href": "slides/Topic2.html#reactivity-demo",
     "title": "Short Course on R Tools",
-    "section": "🧭 Connect GitHub to R (Create PAT)",
-    "text": "🧭 Connect GitHub to R (Create PAT)\n\nIn R:\n\nusethis::create_github_token()\n\n\nGitHub will open — generate a Personal Access Token (PAT)\nCopy the token (only shown once!)\nBack in R:\n\n\n\ngitcreds::gitcreds_set()\nPaste your token when prompted.\n\n\n\n✅ You’ve now authenticated GitHub from R!",
+    "section": "Reactivity Demo",
+    "text": "Reactivity Demo",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#check-setup",
-    "href": "slides/Topic6.html#check-setup",
+    "objectID": "slides/Topic2.html#isolate-demo",
+    "href": "slides/Topic2.html#isolate-demo",
     "title": "Short Course on R Tools",
-    "section": "🧪 Check Setup",
-    "text": "🧪 Check Setup\nUse this helpful diagnostic tool:\nusethis::git_sitrep()\n\n💡 This tells you:\n\n\nWhether Git is installed\nWhether GitHub is connected\nIf PAT is stored",
+    "section": "Isolate Demo",
+    "text": "Isolate Demo",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#creating-a-new-git-enabled-project",
-    "href": "slides/Topic6.html#creating-a-new-git-enabled-project",
+    "objectID": "slides/Topic2.html#observers-demo",
+    "href": "slides/Topic2.html#observers-demo",
     "title": "Short Course on R Tools",
-    "section": "📁 Creating a New Git-Enabled Project",
-    "text": "📁 Creating a New Git-Enabled Project\nIn RStudio:\n\n\nFile → New Project\nChoose: New Directory → R Package (or New Project)\nCheck the box: ✅ “Create a git repository”\nFinish project setup\n\n\n\n\n📁 A .git folder is created — this is a Git repo!",
+    "section": "Observers Demo",
+    "text": "Observers Demo",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#connect-to-github",
-    "href": "slides/Topic6.html#connect-to-github",
+    "objectID": "slides/Topic2.html#shinylive-deployment",
+    "href": "slides/Topic2.html#shinylive-deployment",
     "title": "Short Course on R Tools",
-    "section": "🌐 Connect to GitHub",
-    "text": "🌐 Connect to GitHub\nRun this to create and link a GitHub repo:\nusethis::use_github()\n\nThis will:\n\n\nPush your project to GitHub\nOpen the new repo in your browser\n\n\n\n\n\n💡 You can now push/pull changes from RStudio Git tab",
+    "section": "Shinylive deployment",
+    "text": "Shinylive deployment",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic6.html#common-git-workflows",
-    "href": "slides/Topic6.html#common-git-workflows",
+    "objectID": "slides/Topic2.html#shinylive-deployment-1",
+    "href": "slides/Topic2.html#shinylive-deployment-1",
     "title": "Short Course on R Tools",
-    "section": "🔄 Common Git Workflows",
-    "text": "🔄 Common Git Workflows\n🎯 Daily workflow steps:\n\n\nEdit R/stats_module.R\n\n\n\n\nStage → Commit → Push\n\n\n\n💻 In RStudio Git tab:\n\n\nStage: click checkbox\nCommit: type a message\nPush: upload to GitHub\n\n\n\n\n\n🔁 Example: Commit message: “Add confidence interval to mean_plot()”",
+    "section": "Shinylive deployment",
+    "text": "Shinylive deployment\nSee posit-dev.github.io/r-shinylive.\n\nThe {shinylive} package converts a standard shiny app into a shinylive app:\ninstall.packages(\"shinylive\")\nAssuming your app.R file is in a folder called app:\nshinylive::export(\"app\", \"site\")\nYou can then use the files in the site folder to deploy it as a normal website.\n*not all R packages are available for shinylive.\n**initial load time is still quite slow.",
     "crumbs": [
       "Slides",
-      "GitHub / CRAN submission"
+      "Shiny"
     ]
   },
   {
-    "objectID": "slides/overview.html#motivating-example---what-is-data-science",
-    "href": "slides/overview.html#motivating-example---what-is-data-science",
+    "objectID": "slides/Topic3.html#outline",
+    "href": "slides/Topic3.html#outline",
     "title": "Short Course on R Tools",
-    "section": "Motivating Example - What is Data Science?",
-    "text": "Motivating Example - What is Data Science?"
+    "section": "Outline",
+    "text": "Outline\n\n\nMotivation & Introduction\nGetting Started with evalCpp() & cppFunction()\nUsing sourceCpp()\nData Types & Conversions\nStandard Template Library (STL)\nUsing Rcpp in Packages\nAdvanced Topics & Resources",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
-    "objectID": "slides/overview.html#r-vs-python",
-    "href": "slides/overview.html#r-vs-python",
+    "objectID": "slides/Topic3.html#basic-usage-evalcpp",
+    "href": "slides/Topic3.html#basic-usage-evalcpp",
     "title": "Short Course on R Tools",
-    "section": "R vs Python",
-    "text": "R vs Python"
+    "section": "Basic Usage: evalCpp()",
+    "text": "Basic Usage: evalCpp()\n\nevalCpp() evaluates a single C++ expression. Includes and dependencies can be declared.\nThis allows us to quickly check C++ constructs.\n\nlibrary(Rcpp)\n\nevalCpp(\"2 + 2\")  # simple test\n&gt;# [1] 4\n\nevalCpp(\"std::numeric_limits&lt;double&gt;::max()\")\n&gt;# [1] 1.79769e+308",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
-    "objectID": "slides/overview.html#motivating-example---functional-singular-spectrum-analysis",
-    "href": "slides/overview.html#motivating-example---functional-singular-spectrum-analysis",
+    "objectID": "slides/Topic3.html#simple-example---using-cppfunction",
+    "href": "slides/Topic3.html#simple-example---using-cppfunction",
     "title": "Short Course on R Tools",
-    "section": "Motivating Example - Functional Singular Spectrum Analysis",
-    "text": "Motivating Example - Functional Singular Spectrum Analysis"
+    "section": "Simple Example - Using cppFunction()",
+    "text": "Simple Example - Using cppFunction()\n\nRcpp Version of ‘is this number odd or even’\n\nRcpp::cppFunction(\"\nbool isOdd_cpp(int num = 10) {\n  bool result = (num % 2 == 1);\n  return result;\n}\")\nc(isOdd_cpp(42L), isOdd_cpp(43L))\n&gt;# [1] FALSE TRUE\n\n\nUse cppFunction() in R console or script\nFast prototyping & testing\nGood for small functions",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
-    "objectID": "slides/overview.html#motivating-example---oop",
-    "href": "slides/overview.html#motivating-example---oop",
+    "objectID": "slides/Topic3.html#second-example-var1-1",
+    "href": "slides/Topic3.html#second-example-var1-1",
     "title": "Short Course on R Tools",
-    "section": "Motivating Example - OOP",
-    "text": "Motivating Example - OOP"
+    "section": "Second Example: VAR(1)",
+    "text": "Second Example: VAR(1)\nIn R (C++) code, given both the coefficient and error matrices:\n\nrSim &lt;- function(B, E) {\n  X &lt;- matrix(0, nrow(E), ncol(E))\n  for (r in 2:nrow(E)) {\n    X[r, ] = X[r-1, ] %*% B + E[r, ]\n  }\n  return(X)\n}\n\n\nC++ Version:\n\narma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
-    "objectID": "slides/overview.html#motivating-example---oop-cont.",
-    "href": "slides/overview.html#motivating-example---oop-cont.",
+    "objectID": "slides/Topic3.html#second-example-var1-2",
+    "href": "slides/Topic3.html#second-example-var1-2",
     "title": "Short Course on R Tools",
-    "section": "Motivating Example - OOP (Cont.)",
-    "text": "Motivating Example - OOP (Cont.)"
+    "section": "Second Example: VAR(1)",
+    "text": "Second Example: VAR(1)\n\nRcpp::cppFunction('arma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}', depends=\"RcppArmadillo\")\n\na &lt;- matrix(c(0.5, 0.1, 0.1, 0.5), nrow = 2)\ne &lt;- matrix(rnorm(10000), ncol = 2)\nrbenchmark::benchmark(cppSim(a, e), rSim(a, e), order=\"relative\")[, 1:4]\n\n&gt;#    test           replications elapsed relative\n&gt;# 1  cppSim(a, e)  100         0.010   1.0\n&gt;# 2  rSim(a, e)    100         0.728  72.8",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
-    "objectID": "slides/overview.html#oop-in-r",
-    "href": "slides/overview.html#oop-in-r",
+    "objectID": "slides/Topic3.html#pagerank",
+    "href": "slides/Topic3.html#pagerank",
     "title": "Short Course on R Tools",
-    "section": "OOP in R",
-    "text": "OOP in R\n\n🧩 OOP Paradigms in R:\n\nFunctional OOP: plot(lm(...))\nEncapsulated OOP: learner$train()\nModern tools: mlr3, R6, S7\n\n\n\n\n🏗 OOP Systems:\n\nS3: Lightweight & informal — uses UseMethod()\nS4: Formal and type-safe — uses setClass() and @\nR6: Mutable, used in apps like shiny\nS7: Newest and unified — multiple dispatch"
+    "section": "Pagerank",
+    "text": "Pagerank\n#remotes::install_github(\"https://github.com/andrie/pagerank.git\")\nsuppressMessages(library(utils))\nlibrary(pagerank)\n\ncran &lt;- \"https://cloud.r-project.org\"\npr &lt;- compute_pagerank(cran)\nround(100 * pr[1:5], 3)\n\n&gt;#   Rcpp    ggplot2     dplyr      MASS   magrittr\n&gt;# 2.744     1.516       1.274    1.122    0.814",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
-    "objectID": "slides/overview.html#oop-in-practice",
-    "href": "slides/overview.html#oop-in-practice",
+    "objectID": "slides/Topic3.html#percentage-of-compiled-packages",
+    "href": "slides/Topic3.html#percentage-of-compiled-packages",
     "title": "Short Course on R Tools",
-    "section": "🛠️ OOP in Practice",
-    "text": "🛠️ OOP in Practice\n🔁 Comparison of Systems\n\n\n\n\nSys.\n\n\nStyle\n\n\nUsed In\n\n\n✅ Pros\n\n\n⚠️ Cons\n\n\n\n\n\n\nS3\n\n\nFunctional\n\n\nBase R\n\n\nSimple, extensible\n\n\nNo schema, fragile\n\n\n\n\nS4\n\n\nFormal\n\n\nBioconductor\n\n\nType-safe, robust\n\n\nVerbose, complex\n\n\n\n\nR6\n\n\nEncapsulated\n\n\nShiny, Keras\n\n\nFast, mutable\n\n\nWeak type safety\n\n\n\n\nS7\n\n\nUnified OOP\n\n\nModern dev\n\n\nCombines S3 & S4 benefits\n\n\nStill evolving"
+    "section": "Percentage of Compiled Packages",
+    "text": "Percentage of Compiled Packages\ndb &lt;- tools::CRAN_package_db()       # added in R 3.4.0\ndb &lt;- db[!duplicated(db[, 1]), ]     # rows: number of packages\n\nnTot &lt;- nrow(db)                     # columns: different attributes\nnRcpp &lt;- length(tools::dependsOnPkgs(\"Rcpp\", recursive = FALSE, installed = db))\nnCompiled &lt;- table(db[, \"NeedsCompilation\"])[[\"yes\"]]\n\npropRcpp &lt;- nRcpp / nCompiled * 100\ndata.frame(tot = nTot, totRcpp = nRcpp, totCompiled = nCompiled,\n           RcppPctOfCompiled = propRcpp)\n\n&gt;#   tot   totRcpp   totCompiled   RcppPctOfCompiled\n&gt;# 1 22501    3053        4981          61.29291",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
-    "objectID": "slides/overview.html#fssa---shiny",
-    "href": "slides/overview.html#fssa---shiny",
+    "objectID": "slides/Topic3.html#using-sourcecpp",
+    "href": "slides/Topic3.html#using-sourcecpp",
     "title": "Short Course on R Tools",
-    "section": "FSSA - Shiny",
-    "text": "FSSA - Shiny\n\n\n\n🔗 Open in a browser"
+    "section": "Using sourceCpp()",
+    "text": "Using sourceCpp()\n\n\nSo what just happened?\n\nWe defined a simple C++ function\n\nIt operates on a numeric vector argument\n\nWe ask Rcpp to ‘source it’ for us\n\nBehind the scenes Rcpp creates a wrapper\n\nRcpp then compiles, links, and loads the wrapper\n\nThe function is available in R under its C++ name\n\nBenefits:\n\nEditor support (syntax highlighting)\nEasier debugging & error tracking",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
-    "objectID": "slides/overview.html#web-apps-with-shiny",
-    "href": "slides/overview.html#web-apps-with-shiny",
+    "objectID": "slides/Topic3.html#another-example-timing-r-implementation",
+    "href": "slides/Topic3.html#another-example-timing-r-implementation",
     "title": "Short Course on R Tools",
-    "section": "Web Apps with Shiny",
-    "text": "Web Apps with Shiny\n\n✨ Shiny = Interactive web apps in pure R (no HTML/JS!)\n\n\n\n📦 Components:\n\nui: Layout, inputs/outputs\nserver: Logic, reactivity\n\n\n\n\n\n🔌 Inputs & Outputs:\n\nInputs: sliderInput(), textInput()\nOutputs: renderPlot(), renderText(), renderTable()\n\n\n\n\n\n🧪 Use Cases:\n\nDashboards, simulations, teaching tools"
+    "section": "Another Example: Timing R Implementation",
+    "text": "Another Example: Timing R Implementation\n\nThe R implementation:\n\n\nf &lt;- function(n) {\n  if (n &lt; 2) return(n)\n  return(f(n - 1) + f(n - 2))\n}\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(15), f(20), f(25))[, 1:4]\n\n&gt;# test         replications elapsed   relative\n&gt;# 1 f(15)       100          0.06      1.0\n&gt;# 2 f(20)       100          0.75     12.5\n&gt;# 3 f(25)       100          7.92    132.0",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
-    "objectID": "slides/overview.html#shiny-concepts-deployment-in-workshop",
-    "href": "slides/overview.html#shiny-concepts-deployment-in-workshop",
+    "objectID": "slides/Topic3.html#another-example-c-implementation",
+    "href": "slides/Topic3.html#another-example-c-implementation",
     "title": "Short Course on R Tools",
-    "section": "Shiny Concepts & Deployment in Workshop",
-    "text": "Shiny Concepts & Deployment in Workshop\n\n🚀 Deployment Options:\n\nshinyapps.io, Posit Connect, university servers\nshinylive: deploy as static site (experimental)\n\n\n\n\n\n⚡Reactivity System:\n\nreactive(): memoized reactive expressions\nisolate(): break reactive chains\nobserveEvent(): trigger actions without outputs\n\n\n\n\n\n\n\n🧠 Hands-on:\n\nExplore shinyapps gallery for inspiration"
+    "section": "Another Example: C++ Implementation",
+    "text": "Another Example: C++ Implementation\nint g(int n) {\n  if (n &lt; 2) return(n);\n  return(g(n - 1) + g(n - 2));\n}\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\nsapply(0:10, g)  # Using it on first 11 arguments\n\n&gt;# [1] 0 1 1 2 3 5 8 13 21 34 55",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
-    "objectID": "slides/overview.html#context-motivation",
-    "href": "slides/overview.html#context-motivation",
+    "objectID": "slides/Topic3.html#another-example-comparing-timing",
+    "href": "slides/Topic3.html#another-example-comparing-timing",
     "title": "Short Course on R Tools",
-    "section": "Context & Motivation",
-    "text": "Context & Motivation\n\n\nDiagonal averaging is key in many algorithms (e.g. SSA reconstruction).\n\nGiven any matrix \\(G \\in \\mathbb{R}^{L\\times K}\\), we want \\[\n  \\scriptsize{y_t = \\frac{1}{\\#\\{(i,j):\\,i+j-1 = t\\}}\n        \\sum_{i+j-1 = t} G_{i,j},\n  \\quad t = 1,\\dots, L+K-1.}\n\\]\nPure‑R implementation uses two nested loops over \\(i\\) and \\(j\\)."
+    "section": "Another Example: Comparing Timing",
+    "text": "Another Example: Comparing Timing\n\nRcpp implementation:\n\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(25), g(25))[, 1:4]\n\n&gt;#   test      replications elapsed   relative\n&gt;# 1 f(25)      100          8.02     267.333\n&gt;# 2 g(25)      100          0.03       1.000\n\n\n\nA nice gain of a few orders of magnitude.",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
-    "objectID": "slides/overview.html#pure-r-code",
-    "href": "slides/overview.html#pure-r-code",
+    "objectID": "slides/Topic3.html#types",
+    "href": "slides/Topic3.html#types",
     "title": "Short Course on R Tools",
-    "section": "Pure R Code",
-    "text": "Pure R Code\n\nhankelize_R &lt;- function(X){\n  L &lt;- nrow(X)\n  K &lt;- ncol(X)\n  N &lt;- L + K - 1\n  result &lt;- numeric(N)\n  count &lt;- numeric(N)\n \n  for(i in 1:L){\n    for(j in 1:K){\n      result[i + j - 1] &lt;- result[i + j - 1] + X[i,j]\n      count[i + j - 1] &lt;- count[i + j - 1] + 1\n    }\n  }\n \n  return(result / count)\n}"
+    "section": "Types",
+    "text": "Types\nR Type mapping:\n\nStandard R types (integer, numeric, list, function, … and compound objects) are mapped to corresponding C++ types:\n\nlibrary(Rcpp)\ncppFunction(\"NumericVector logabs(NumericVector x) {\n  return log(abs(x));\n}\")\nlogabs(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438\n\n\nVectorized C++! Here log(abs()) runs directly on vectors as R would.",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
-    "objectID": "slides/overview.html#rcpp-code",
-    "href": "slides/overview.html#rcpp-code",
+    "objectID": "slides/Topic3.html#stl-type-mapping",
+    "href": "slides/Topic3.html#stl-type-mapping",
     "title": "Short Course on R Tools",
-    "section": "Rcpp Code",
-    "text": "Rcpp Code\n\nlibrary(Rcpp)\n\ncppFunction('\nNumericVector hankelize_rcpp(NumericMatrix X) {\n  int L = X.nrow();\n  int K = X.ncol();\n  int N = L + K - 1;\n \n  NumericVector result(N);\n  NumericVector count(N);\n \n  for(int i = 0; i &lt; L; i++){\n    for(int j = 0; j &lt; K; j++){\n      result[i + j] += X(i,j);\n      count[i + j] += 1;\n    }\n  }\n \n  for(int i = 0; i &lt; N; i++){\n    result[i] /= count[i];\n  }\n \n  return result;\n}')"
-  },
-  {
-    "objectID": "slides/overview.html#benchmark",
-    "href": "slides/overview.html#benchmark",
-    "title": "Short Course on R Tools",
-    "section": "Benchmark",
-    "text": "Benchmark\n\nlibrary(microbenchmark)\n\n# Large random matrix (e.g., 100 x 1000)\nset.seed(123)\nX_large &lt;- matrix(runif(1e5), nrow = 100, ncol = 1000)\n\nbench &lt;- microbenchmark(\n  R_version = hankelize_R(X_large),\n  Rcpp_version = hankelize_rcpp(X_large),\n  times = 10\n)\n\nprint(bench)\n&gt;# Unit: microseconds\n&gt;#          expr     min      lq     mean   median      uq     max neval\n&gt;#     R_version 21225.1 21550.8 26604.53 25180.35 30969.3 34455.1    10\n&gt;#  Rcpp_version   176.9   177.8   299.87   194.50   253.7  1161.3    10\n\n\n\nDramatic speedup: ~89× faster.\nPattern can be applied to many \\(O(n^2)\\) tasks in time series, spatial stats, and beyond."
-  },
-  {
-    "objectID": "slides/overview.html#rcpp-in-action",
-    "href": "slides/overview.html#rcpp-in-action",
-    "title": "Short Course on R Tools",
-    "section": "🔬 Rcpp in Action",
-    "text": "🔬 Rcpp in Action\n\n🚀 Rcpp bridges R and C++ for high-performance computing.\n🏁 Use cases:\n\nSpeed up loops, recursion, and matrix operations\nAccess C++ libraries and STL\nIntegrate C++ in R packages"
-  },
-  {
-    "objectID": "slides/overview.html#example-use-python-from-r",
-    "href": "slides/overview.html#example-use-python-from-r",
-    "title": "Short Course on R Tools",
-    "section": "🔁 Example: Use Python from R",
-    "text": "🔁 Example: Use Python from R\n\n\n🐍 Native Python\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\niris = load_iris()\nX, y = iris.data, iris.target\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\nmlp = MLPClassifier(hidden_layer_sizes=(10,))\nmlp.fit(X_train, y_train)\ny_pred = mlp.predict(X_test)\n\n\n📦 R with reticulate\nlibrary(reticulate)\nsklearn &lt;- import(\"sklearn\")\nmodel_selection &lt;- sklearn$model_selection\nneural_network &lt;- sklearn$neural_network\nX &lt;- as.matrix(iris[, 1:4])         \ny &lt;- as.integer(iris$Species) - 1     \ntrain_test &lt;- model_selection$train_test_split(X, y, test_size = 0.2, random_state = 42)\nX_train &lt;- train_test[[1]]\nX_test &lt;- train_test[[2]]\ny_train &lt;- train_test[[3]]\ny_test &lt;- train_test[[4]]\nmlp &lt;- neural_network$MLPClassifier(hidden_layer_sizes = tuple(10L))\nmlp$fit(X_train, y_train)\ny_pred &lt;- mlp$predict(X_test)"
-  },
-  {
-    "objectID": "slides/overview.html#why-call-python-in-r",
-    "href": "slides/overview.html#why-call-python-in-r",
-    "title": "Short Course on R Tools",
-    "section": "💡 Why Call Python in R?",
-    "text": "💡 Why Call Python in R?\n\n\n🔄 Avoid rewriting code from one language to another\n🔁 Call shared models or preprocessing functions written in Python\n📦 Reuse Python packages or APIs within your R workflow\n📤 Publish reproducible reports that include both R and Python code"
-  },
-  {
-    "objectID": "slides/overview.html#what-is-reticulate",
-    "href": "slides/overview.html#what-is-reticulate",
-    "title": "Short Course on R Tools",
-    "section": "What is reticulate?",
-    "text": "What is reticulate?\n\n\nR package for interoperability with Python\nMaintains a shared Python session accessible from R\nAutomatic conversion of many R types to Python and vice versa\nSupports inline Python code in R Markdown and R scripts"
-  },
-  {
-    "objectID": "slides/overview.html#demo-python-from-r-in-rstudio",
-    "href": "slides/overview.html#demo-python-from-r-in-rstudio",
-    "title": "Short Course on R Tools",
-    "section": "🎥 Demo: Python from R in RStudio",
-    "text": "🎥 Demo: Python from R in RStudio"
-  },
-  {
-    "objectID": "slides/overview.html#motivations-to-package-your-code",
-    "href": "slides/overview.html#motivations-to-package-your-code",
-    "title": "Short Course on R Tools",
-    "section": "💡 Motivations to Package Your Code",
-    "text": "💡 Motivations to Package Your Code\n🧰 Why build a package?\n\n\n♻️ Reuse and organize reusable code chunks\n📖 Provide documentation and examples\n🧪 Add unit tests to ensure reliability\n🌐 Distribute:\n\nvia CRAN for wide access\nvia GitHub for collaborative development\nor keep it private for internal use"
-  },
-  {
-    "objectID": "slides/overview.html#package-structure-overview",
-    "href": "slides/overview.html#package-structure-overview",
-    "title": "Short Course on R Tools",
-    "section": "🏗 Package Structure Overview",
-    "text": "🏗 Package Structure Overview\nmypkg/\n├── DESCRIPTION         # 📋 Package metadata\n├── NAMESPACE           # 🔁 Exported functions & imports\n├── R/                  # 📂 Your R functions\n└── man/                # 📚 Auto-generated documentation\n\n💡 Other folders you may add:\n\n\n📂 tests/ → Unit tests (testthat)\n📂 vignettes/ → Long-form docs\n📂 data/ → Internal or example datasets"
-  },
-  {
-    "objectID": "slides/overview.html#demo-rfssa-package",
-    "href": "slides/overview.html#demo-rfssa-package",
-    "title": "Short Course on R Tools",
-    "section": "🎥 Demo: Rfssa Package",
-    "text": "🎥 Demo: Rfssa Package"
-  },
-  {
-    "objectID": "slides/overview.html#package-states-in-r",
-    "href": "slides/overview.html#package-states-in-r",
-    "title": "Short Course on R Tools",
-    "section": "🛠 Package States in R",
-    "text": "🛠 Package States in R\nR packages transition through five development states:\n\n\n🗂️ Source: your raw package folder\n📦 Bundled: compressed .tar.gz for sharing\n🧱 Binary: platform-specific precompiled version\n📚 Installed: available in your R library\n🧠 In-Memory: actively loaded via library()"
-  },
-  {
-    "objectID": "slides/overview.html#transitioning-between-states",
-    "href": "slides/overview.html#transitioning-between-states",
-    "title": "Short Course on R Tools",
-    "section": "🔁 Transitioning Between States",
-    "text": "🔁 Transitioning Between States"
-  },
-  {
-    "objectID": "slides/overview.html#submitting-to-cran",
-    "href": "slides/overview.html#submitting-to-cran",
-    "title": "Short Course on R Tools",
-    "section": "🚀 Submitting to CRAN",
-    "text": "🚀 Submitting to CRAN\n\n\n📦 CRAN = Comprehensive R Archive Network\n\n🎯 Goal: Make your R package public, discoverable, and installable\n✔ Must pass R CMD check with:\n\n❌ No ERRORs\n⚠️ No WARNINGs\n📝 Minimal and justifiable NOTEs\n\n📤 Submit with: devtools::release()"
-  },
-  {
-    "objectID": "slides/overview.html#confirmation-email-after-submission",
-    "href": "slides/overview.html#confirmation-email-after-submission",
-    "title": "Short Course on R Tools",
-    "section": "📩 Confirmation Email (After Submission)",
-    "text": "📩 Confirmation Email (After Submission)"
-  },
-  {
-    "objectID": "slides/overview.html#submission-confirmed-email",
-    "href": "slides/overview.html#submission-confirmed-email",
-    "title": "Short Course on R Tools",
-    "section": "📬 Submission Confirmed Email",
-    "text": "📬 Submission Confirmed Email"
-  },
-  {
-    "objectID": "slides/overview.html#pending-manual-inspection-email",
-    "href": "slides/overview.html#pending-manual-inspection-email",
-    "title": "Short Course on R Tools",
-    "section": "⏳ Pending Manual Inspection Email",
-    "text": "⏳ Pending Manual Inspection Email"
-  },
-  {
-    "objectID": "slides/overview.html#package-initially-accepted-email",
-    "href": "slides/overview.html#package-initially-accepted-email",
-    "title": "Short Course on R Tools",
-    "section": "✅ Package Initially Accepted Email",
-    "text": "✅ Package Initially Accepted Email\n\n\n\n🎉 Good news!"
-  },
-  {
-    "objectID": "slides/overview.html#package-built-on-cran-email",
-    "href": "slides/overview.html#package-built-on-cran-email",
-    "title": "Short Course on R Tools",
-    "section": "📦 Package Built on CRAN Email",
-    "text": "📦 Package Built on CRAN Email\n\n\n\n🧱 CRAN has built binaries for major platforms (Windows, …)."
-  },
-  {
-    "objectID": "slides/overview.html#cran-page-created",
-    "href": "slides/overview.html#cran-page-created",
-    "title": "Short Course on R Tools",
-    "section": "🌐 CRAN Page Created",
-    "text": "🌐 CRAN Page Created\n\n\n🌍 Your package is now live! Searchable and installable via:\n\ninstall.packages(\"Rfssa\")"
-  },
-  {
-    "objectID": "slides/overview.html#example-rfssa-package-github",
-    "href": "slides/overview.html#example-rfssa-package-github",
-    "title": "Short Course on R Tools",
-    "section": "📬 Example: Rfssa Package Github",
-    "text": "📬 Example: Rfssa Package Github"
-  },
-  {
-    "objectID": "slides/overview.html#why-use-git-github",
-    "href": "slides/overview.html#why-use-git-github",
-    "title": "Short Course on R Tools",
-    "section": "🌍 Why Use Git & GitHub?",
-    "text": "🌍 Why Use Git & GitHub?\n\n\n🔁 Version Control: Track and manage changes in code\n🤝 Collaboration: Work with others without overwriting files\n🧪 Reproducibility: Restore older versions when bugs occur\n🔄 Open Source: Share your package with the world\n\n\n\n\n🧰 Git = Local tracking tool\n☁️ GitHub = Online hosting and teamwork platform"
-  },
-  {
-    "objectID": "slides/overview.html#daily-git-workflow-in-rstudio",
-    "href": "slides/overview.html#daily-git-workflow-in-rstudio",
-    "title": "Short Course on R Tools",
-    "section": "🔁 Daily Git Workflow in RStudio",
-    "text": "🔁 Daily Git Workflow in RStudio\n\n🎯 A typical work cycle for package developers:\n\n\n\n\n\nStep\nDescription\n\n\n\n\n✏️ Edit\nMake changes to .R or .Rmd files\n\n\n✅ Stage\nSelect files to track in Git tab\n\n\n💬 Commit\nSave with a message (e.g., “Fix bug”)\n\n\n🚀 Push\nSend to GitHub"
-  },
-  {
-    "objectID": "slides/overview.html#demo-rfssa-github-package",
-    "href": "slides/overview.html#demo-rfssa-github-package",
-    "title": "Short Course on R Tools",
-    "section": "🎥 Demo: Rfssa Github Package",
-    "text": "🎥 Demo: Rfssa Github Package"
+    "section": "STL Type Mapping",
+    "text": "STL Type Mapping\n\ncode/logabs2.cpp\n\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n\ninline double f(double x) { return ::log(::fabs(x)); }\n\n// [[Rcpp::export]]\nstd::vector&lt;double&gt; logabs2(std::vector&lt;double&gt; x) {\n  std::transform(x.begin(), x.end(), x.begin(), f);\n  return x;\n}\n\nNot vectorized but ‘sweeps’ f() along std::vector&lt;double&gt; via STL std::transform().\n\nlibrary(Rcpp)\nsourceCpp(\"code/logabs2.cpp\")\nlogabs2(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438",
+    "crumbs": [
+      "Slides",
+      "RCpp"
+    ]
   },
   {
     "objectID": "slides/Topic7.html#classical-programming-vs-machine-learning",
@@ -951,290 +605,827 @@
     ]
   },
   {
-    "objectID": "slides/Topic3.html#outline",
-    "href": "slides/Topic3.html#outline",
+    "objectID": "slides/Topic1.html#basics",
+    "href": "slides/Topic1.html#basics",
     "title": "Short Course on R Tools",
-    "section": "Outline",
-    "text": "Outline\n\n\nMotivation & Introduction\nGetting Started with evalCpp() & cppFunction()\nUsing sourceCpp()\nData Types & Conversions\nStandard Template Library (STL)\nUsing Rcpp in Packages\nAdvanced Topics & Resources",
+    "section": "Basics",
+    "text": "Basics\n\nAn S3 object is a base type with at least a class attribute\n\n\nf &lt;- factor(c(\"a\", \"b\", \"b\"))\nf\n#&gt; [1] a b b\n#&gt; Levels: a b\nattributes(f)\n#&gt; $levels\n#&gt; [1] \"a\" \"b\"\n#&gt; \n#&gt; $class\n#&gt; [1] \"factor\"\nunclass(f)\n#&gt; [1] 1 2 2\n#&gt; attr(,\"levels\")\n#&gt; [1] \"a\" \"b\"\n\ntime &lt;- strptime(c(\"2017-01-01\", \"2020-05-04 03:21\"), \"%Y-%m-%d\")\nstr(time)\n#&gt;  POSIXlt[1:2], format: \"2017-01-01\" \"2020-05-04\"\n\nclass(time) &lt;- NULL\nstr(time)\n#&gt; List of 11\n#&gt;  $ sec   : num [1:2] 0 0\n#&gt;  $ min   : int [1:2] 0 0\n#&gt;  $ hour  : int [1:2] 0 0\n#&gt;  $ mday  : int [1:2] 1 4\n#&gt;  $ mon   : int [1:2] 0 4\n#&gt;  $ year  : int [1:2] 117 120\n#&gt;  $ wday  : int [1:2] 0 1\n#&gt;  $ yday  : int [1:2] 0 124\n#&gt;  $ isdst : int [1:2] 0 0\n#&gt;  $ zone  : chr [1:2] \"UTC\" \"UTC\"\n#&gt;  $ gmtoff: int [1:2] 0 0\n#&gt;  - attr(*, \"tzone\")= chr \"UTC\"\n#&gt;  - attr(*, \"balanced\")= logi TRUE",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#basic-usage-evalcpp",
-    "href": "slides/Topic3.html#basic-usage-evalcpp",
+    "objectID": "slides/Topic1.html#classes",
+    "href": "slides/Topic1.html#classes",
     "title": "Short Course on R Tools",
-    "section": "Basic Usage: evalCpp()",
-    "text": "Basic Usage: evalCpp()\n\nevalCpp() evaluates a single C++ expression. Includes and dependencies can be declared.\nThis allows us to quickly check C++ constructs.\n\nlibrary(Rcpp)\n\nevalCpp(\"2 + 2\")  # simple test\n&gt;# [1] 4\n\nevalCpp(\"std::numeric_limits&lt;double&gt;::max()\")\n&gt;# [1] 1.79769e+308",
+    "section": "Classes",
+    "text": "Classes\n# Create and assign class in one step\nx &lt;- structure(list(), class = \"my_class\")\n\n# Create, then set class\nx &lt;- list()\nclass(x) &lt;- \"my_class\"\n\nclass(x)\n#&gt; [1] \"my_class\"\ninherits(x, \"my_class\")\n#&gt; [1] TRUE\ninherits(x, \"your_class\")\n#&gt; [1] FALSE\n\n\nR doesn’t stop you from shooting yourself in the foot, but as long as you don’t aim the gun at your toes and pull the trigger, you won’t have a problem.",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#simple-example---using-cppfunction",
-    "href": "slides/Topic3.html#simple-example---using-cppfunction",
+    "objectID": "slides/Topic1.html#classes---common-practice",
+    "href": "slides/Topic1.html#classes---common-practice",
     "title": "Short Course on R Tools",
-    "section": "Simple Example - Using cppFunction()",
-    "text": "Simple Example - Using cppFunction()\n\nRcpp Version of ‘is this number odd or even’\n\nRcpp::cppFunction(\"\nbool isOdd_cpp(int num = 10) {\n  bool result = (num % 2 == 1);\n  return result;\n}\")\nc(isOdd_cpp(42L), isOdd_cpp(43L))\n&gt;# [1] FALSE TRUE\n\n\nUse cppFunction() in R console or script\nFast prototyping & testing\nGood for small functions",
+    "section": "Classes - Common Practice",
+    "text": "Classes - Common Practice\nTo avoid foot-bullet intersections when creating your own class, you may:\n\n\nA low-level constructor, new_myclass(), that efficiently creates new objects with the correct structure.\nA validator, validate_myclass(), that performs more computationally expensive checks to ensure that the object has correct values.\nA user-friendly helper, myclass(), that provides a convenient way for others to create objects of your class.",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#second-example-var1-1",
-    "href": "slides/Topic3.html#second-example-var1-1",
+    "objectID": "slides/Topic1.html#classes---example",
+    "href": "slides/Topic1.html#classes---example",
     "title": "Short Course on R Tools",
-    "section": "Second Example: VAR(1)",
-    "text": "Second Example: VAR(1)\nIn R (C++) code, given both the coefficient and error matrices:\n\nrSim &lt;- function(B, E) {\n  X &lt;- matrix(0, nrow(E), ncol(E))\n  for (r in 2:nrow(E)) {\n    X[r, ] = X[r-1, ] %*% B + E[r, ]\n  }\n  return(X)\n}\n\n\nC++ Version:\n\narma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}",
+    "section": "Classes - Example",
+    "text": "Classes - Example\n\n## 1. Low‐level constructor: assume inputs are ok\nnew_myclass &lt;- function(values = numeric(), unit = character(1)) {\n  # no checks here beyond base‐R stopifnot\n  stopifnot(is.numeric(values), is.character(unit), length(unit) == 1)\n  structure(\n    list(values = values, unit = unit),\n    class = \"myclass\"\n  )\n}\n\n## 2. Validator: more thorough checks\nvalidate_myclass &lt;- function(x) {\n  if (!inherits(x, \"myclass\")) {\n    stop(\"`x` must be a 'myclass' object.\", call. = FALSE)\n  }\n  if (!is.numeric(x$values)) {\n    stop(\"`values` must be numeric.\", call. = FALSE)\n  }\n  if (any(is.na(x$values))) {\n    stop(\"`values` must not contain NA.\", call. = FALSE)\n  }\n  if (!is.character(x$unit) || length(x$unit) != 1) {\n    stop(\"`unit` must be a single character string.\", call. = FALSE)\n  }\n  TRUE\n}\n\n## (Optional) a simple print method\nprint.myclass &lt;- function(x, ...) {\n  cat(\"&lt;myclass&gt;  \", length(x$values), \"values [unit = \", x$unit, \"]\\n\", sep = \"\")\n  print(x$values)\n  invisible(x)\n}\n\n## 3. User‐facing helper: coerce/check inputs, then build + validate\nmyclass &lt;- function(values, unit = \"unitless\") {\n  # quick checks / coercions:\n  if (!is.numeric(values)) {\n    values &lt;- as.numeric(values)\n    if (any(is.na(values))) stop(\"`values` could not be coerced to numeric.\", call. = FALSE)\n  }\n  if (!is.character(unit) || length(unit) != 1) {\n    stop(\"`unit` must be a single character string.\", call. = FALSE)\n  }\n  # build & validate\n  obj &lt;- new_myclass(values = values, unit = unit)\n  validate_myclass(obj)\n  obj\n}\n\n## --- Example usage ---\nx &lt;- myclass(c(1.1, 2.2, 3.3), unit = \"kg\")\nprint(x)\n#&gt; &lt;myclass&gt; 3 values [unit = kg]\n#&gt; [1] 1.1 2.2 3.3\n\n# This will error because of an NA:\n# myclass(c(1, NA, 3))",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#second-example-var1-2",
-    "href": "slides/Topic3.html#second-example-var1-2",
+    "objectID": "slides/Topic1.html#generics-and-methods---method-dispatch",
+    "href": "slides/Topic1.html#generics-and-methods---method-dispatch",
     "title": "Short Course on R Tools",
-    "section": "Second Example: VAR(1)",
-    "text": "Second Example: VAR(1)\n\nRcpp::cppFunction('arma::mat cppSim(arma::mat B, arma::mat E) {\n  int m = E.n_rows, n = E.n_cols;\n  arma::mat X(m, n);\n  X.row(0) = arma::zeros&lt;arma::mat&gt;(1, n);\n  for (int r = 1; r &lt; m; r++) {\n    X.row(r) = X.row(r-1) * B + E.row(r);\n  }\n  return X;\n}', depends=\"RcppArmadillo\")\n\na &lt;- matrix(c(0.5, 0.1, 0.1, 0.5), nrow = 2)\ne &lt;- matrix(rnorm(10000), ncol = 2)\nrbenchmark::benchmark(cppSim(a, e), rSim(a, e), order=\"relative\")[, 1:4]\n\n&gt;#    test           replications elapsed relative\n&gt;# 1  cppSim(a, e)  100         0.010   1.0\n&gt;# 2  rSim(a, e)    100         0.728  72.8",
+    "section": "Generics and Methods - Method Dispatch",
+    "text": "Generics and Methods - Method Dispatch\nView(print)\n#&gt; function (x, ...) \n#&gt; UseMethod(\"print\")\n\nftype(print)\n#&gt; [1] \"S3\"      \"generic\"\nftype(print.factor)\n#&gt; [1] \"S3\"     \"method\"\n\ns3_dispatch(print(f))\n#&gt; =&gt; print.factor\n#&gt;  * print.default\ns3_dispatch(print(unclass(f)))\n#&gt;    print.integer\n#&gt;    print.numeric\n#&gt; =&gt; print.default",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#pagerank",
-    "href": "slides/Topic3.html#pagerank",
+    "objectID": "slides/Topic1.html#finding-methods",
+    "href": "slides/Topic1.html#finding-methods",
     "title": "Short Course on R Tools",
-    "section": "Pagerank",
-    "text": "Pagerank\n#remotes::install_github(\"https://github.com/andrie/pagerank.git\")\nsuppressMessages(library(utils))\nlibrary(pagerank)\n\ncran &lt;- \"https://cloud.r-project.org\"\npr &lt;- compute_pagerank(cran)\nround(100 * pr[1:5], 3)\n\n&gt;#   Rcpp    ggplot2     dplyr      MASS   magrittr\n&gt;# 2.744     1.516       1.274    1.122    0.814",
+    "section": "Finding methods",
+    "text": "Finding methods\ns3_methods_generic(\"mean\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class      visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 mean    Date       TRUE    base               \n#&gt; 2 mean    default    TRUE    base               \n#&gt; 3 mean    difftime   TRUE    base               \n#&gt; 4 mean    POSIXct    TRUE    base               \n#&gt; 5 mean    POSIXlt    TRUE    base               \n#&gt; 6 mean    quosure    FALSE   registered S3method\n#&gt; 7 mean    vctrs_vctr FALSE   registered S3method\n\ns3_methods_class(\"funts\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 -       funts FALSE   registered S3method\n#&gt; 2 *       funts FALSE   registered S3method\n#&gt; 3 [       funts FALSE   registered S3method\n#&gt; 4 +       funts FALSE   registered S3method\n#&gt; 5 length  funts FALSE   registered S3method\n#&gt; 6 plot    funts FALSE   registered S3method\n#&gt; 7 print   funts FALSE   registered S3method",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#percentage-of-compiled-packages",
-    "href": "slides/Topic3.html#percentage-of-compiled-packages",
+    "objectID": "slides/Topic1.html#creating-methods",
+    "href": "slides/Topic1.html#creating-methods",
     "title": "Short Course on R Tools",
-    "section": "Percentage of Compiled Packages",
-    "text": "Percentage of Compiled Packages\ndb &lt;- tools::CRAN_package_db()       # added in R 3.4.0\ndb &lt;- db[!duplicated(db[, 1]), ]     # rows: number of packages\n\nnTot &lt;- nrow(db)                     # columns: different attributes\nnRcpp &lt;- length(tools::dependsOnPkgs(\"Rcpp\", recursive = FALSE, installed = db))\nnCompiled &lt;- table(db[, \"NeedsCompilation\"])[[\"yes\"]]\n\npropRcpp &lt;- nRcpp / nCompiled * 100\ndata.frame(tot = nTot, totRcpp = nRcpp, totCompiled = nCompiled,\n           RcppPctOfCompiled = propRcpp)\n\n&gt;#   tot   totRcpp   totCompiled   RcppPctOfCompiled\n&gt;# 1 22501    3053        4981          61.29291",
+    "section": "Creating methods",
+    "text": "Creating methods\n\n\nmean.myclass &lt;- function(x, ...) {\n  print(\"custom mean\")\n}\n\nmean(x)\n\n[1] \"custom mean\"\n\n\n\n\n\n\nA method must have the same arguments as its generic. This is enforced in packages by R CMD check.\n\n\n\n\n\nThere is one exception to this rule: if the generic has ..., the method can contain a superset of the arguments. This allows methods to take arbitrary additional arguments.",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#using-sourcecpp",
-    "href": "slides/Topic3.html#using-sourcecpp",
+    "objectID": "slides/Topic1.html#inheritance",
+    "href": "slides/Topic1.html#inheritance",
     "title": "Short Course on R Tools",
-    "section": "Using sourceCpp()",
-    "text": "Using sourceCpp()\n\n\nSo what just happened?\n\nWe defined a simple C++ function\n\nIt operates on a numeric vector argument\n\nWe ask Rcpp to ‘source it’ for us\n\nBehind the scenes Rcpp creates a wrapper\n\nRcpp then compiles, links, and loads the wrapper\n\nThe function is available in R under its C++ name\n\nBenefits:\n\nEditor support (syntax highlighting)\nEasier debugging & error tracking",
+    "section": "Inheritance",
+    "text": "Inheritance\nx &lt;- factor(\"a\",\"b\",\"b\")\nclass(x)\n#&gt; \"factor\"\n\nclass(ordered(x))\n#&gt; \"ordered\" \"factor\"\n\ns3_dispatch(print(ordered(x)))\n#&gt;    print.ordered\n#&gt; =&gt; print.factor\n#&gt;  * print.default\n\ns3_dispatch(ordered(x)[1])\n#&gt;    [.ordered\n#&gt; =&gt; [.factor\n#&gt;    [.default\n#&gt; -&gt; [ (internal)\n\n\nWe’ll say that ordered is a subclass of factor and factor is a superclass of ordered.",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#another-example-timing-r-implementation",
-    "href": "slides/Topic3.html#another-example-timing-r-implementation",
+    "objectID": "slides/Topic1.html#inheritance-cont.",
+    "href": "slides/Topic1.html#inheritance-cont.",
     "title": "Short Course on R Tools",
-    "section": "Another Example: Timing R Implementation",
-    "text": "Another Example: Timing R Implementation\n\nThe R implementation:\n\n\nf &lt;- function(n) {\n  if (n &lt; 2) return(n)\n  return(f(n - 1) + f(n - 2))\n}\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(15), f(20), f(25))[, 1:4]\n\n&gt;# test         replications elapsed   relative\n&gt;# 1 f(15)       100          0.06      1.0\n&gt;# 2 f(20)       100          0.75     12.5\n&gt;# 3 f(25)       100          7.92    132.0",
+    "section": "Inheritance Cont.",
+    "text": "Inheritance Cont.\n\nnew_secret &lt;- function(x = double()) {\n  stopifnot(is.double(x))\n  structure(x, class = \"secret\")\n}\n\nprint.secret &lt;- function(x, ...) {\n  print(strrep(\"x\", nchar(x)))\n  invisible(x)\n}\n\nx &lt;- new_secret(c(15, 1, 456))\nx\n#&gt; [1] \"xx\"  \"x\"   \"xxx\"\n\ns3_dispatch(x[1])\n#&gt;    [.secret\n#&gt;    [.default\n#&gt; =&gt; [ (internal)\n\nx[1]\n#&gt; [1] 15\n\n\n\nTo fix this, we need to provide a [.secret method.",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#another-example-c-implementation",
-    "href": "slides/Topic3.html#another-example-c-implementation",
+    "objectID": "slides/Topic1.html#inheritance-cont.---nextmethod",
+    "href": "slides/Topic1.html#inheritance-cont.---nextmethod",
     "title": "Short Course on R Tools",
-    "section": "Another Example: C++ Implementation",
-    "text": "Another Example: C++ Implementation\nint g(int n) {\n  if (n &lt; 2) return(n);\n  return(g(n - 1) + g(n - 2));\n}\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\nsapply(0:10, g)  # Using it on first 11 arguments\n\n&gt;# [1] 0 1 1 2 3 5 8 13 21 34 55",
+    "section": "Inheritance Cont. - NextMethod()",
+    "text": "Inheritance Cont. - NextMethod()\n\n`[.secret` &lt;- function(x, i) {\n  x &lt;- unclass(x)\n  new_secret(x[i])\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\n\n\nA better solution using NextMethod()\n\n\n`[.secret` &lt;- function(x, i) {\n  new_secret(NextMethod())\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\ns3_dispatch(x[1])\n#&gt; =&gt; [.secret\n#&gt;    [.default\n#&gt; -&gt; [ (internal)",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#another-example-comparing-timing",
-    "href": "slides/Topic3.html#another-example-comparing-timing",
+    "objectID": "slides/Topic1.html#generics-methods",
+    "href": "slides/Topic1.html#generics-methods",
     "title": "Short Course on R Tools",
-    "section": "Another Example: Comparing Timing",
-    "text": "Another Example: Comparing Timing\n\nRcpp implementation:\n\n\nRcpp::cppFunction('\n  int g(int n) {\n    if (n &lt; 2) return(n);\n    return(g(n - 1) + g(n - 2)); \n  }')\n\n\n\nTiming:\n\nlibrary(rbenchmark)\nbenchmark(f(25), g(25))[, 1:4]\n\n&gt;#   test      replications elapsed   relative\n&gt;# 1 f(25)      100          8.02     267.333\n&gt;# 2 g(25)      100          0.03       1.000\n\n\n\nA nice gain of a few orders of magnitude.",
+    "section": "Generics & Methods",
+    "text": "Generics & Methods\n\n\nDefine generic:\nsetGeneric(\"greet\", function(x) standardGeneric(\"greet\"))\nDefine method:\nsetMethod(\"greet\", \"Person\", function(x) {\n  paste(\"Hello, my name is\", x@name)\n})\nExample:\ngreet(subj1)\n#&gt; [1] \"Hello, my name is Adam\"",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#types",
-    "href": "slides/Topic3.html#types",
+    "objectID": "slides/Topic1.html#inheritance-virtual-classes",
+    "href": "slides/Topic1.html#inheritance-virtual-classes",
     "title": "Short Course on R Tools",
-    "section": "Types",
-    "text": "Types\nR Type mapping:\n\nStandard R types (integer, numeric, list, function, … and compound objects) are mapped to corresponding C++ types:\n\nlibrary(Rcpp)\ncppFunction(\"NumericVector logabs(NumericVector x) {\n  return log(abs(x));\n}\")\nlogabs(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438\n\n\nVectorized C++! Here log(abs()) runs directly on vectors as R would.",
+    "section": "Inheritance & Virtual Classes",
+    "text": "Inheritance & Virtual Classes\n\n\nInheritance:\nsetClass(\"Employee\", contains = \"Person\",\n  slots = list(salary = \"numeric\"))\nExample:\nemp1 &lt;- new(\"Employee\", subj1, salary = 75000)\nemp1\n#&gt; An object of class \"Employee\"\n#&gt; Slot \"salary\":\n#&gt; [1] 75000\n#&gt; \n#&gt; Slot \"name\":\n#&gt; [1] \"Adam\"\n#&gt; \n#&gt; Slot \"age\":\n#&gt; [1] 30",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "slides/Topic3.html#stl-type-mapping",
-    "href": "slides/Topic3.html#stl-type-mapping",
+    "objectID": "slides/Topic1.html#advanced-features",
+    "href": "slides/Topic1.html#advanced-features",
     "title": "Short Course on R Tools",
-    "section": "STL Type Mapping",
-    "text": "STL Type Mapping\n\ncode/logabs2.cpp\n\n\n#include &lt;Rcpp.h&gt;\nusing namespace Rcpp;\n\ninline double f(double x) { return ::log(::fabs(x)); }\n\n// [[Rcpp::export]]\nstd::vector&lt;double&gt; logabs2(std::vector&lt;double&gt; x) {\n  std::transform(x.begin(), x.end(), x.begin(), f);\n  return x;\n}\n\nNot vectorized but ‘sweeps’ f() along std::vector&lt;double&gt; via STL std::transform().\n\nlibrary(Rcpp)\nsourceCpp(\"code/logabs2.cpp\")\nlogabs2(seq(-5, 5, by = 2))\n&gt;# [1] 1.609438 1.098612 0.000000 0.000000 1.098612 1.609438",
+    "section": "Advanced Features",
+    "text": "Advanced Features\n\nActive bindings\nInheritance & extension\nPrivate vs public\nUse cases: GUI, stateful objects, iterative algorithms",
     "crumbs": [
       "Slides",
-      "RCpp"
+      "OOP in R"
     ]
   },
   {
-    "objectID": "course-overview.html",
-    "href": "course-overview.html",
-    "title": "Course overview",
+    "objectID": "misc/cheatsheets.html",
+    "href": "misc/cheatsheets.html",
+    "title": "R cheatsheets",
     "section": "",
-    "text": "This is the homepage for Short Course on R Tools (SCoRT) by Dr. Mehdi Maadooliat and Dr. Hossein Haghbin. All course materials will be posted on this site.\nYou can find the course syllabus here and the course schedule here.",
+    "text": "The following cheatsheets come from https://posit.co/resources/cheatsheets. We haven’t covered every function and functionality listed on them, but you might still find them useful as references.",
+    "crumbs": [
+      "Miscellaneous",
+      "Cheatsheets"
+    ]
+  },
+  {
+    "objectID": "hands-on/HO5.html",
+    "href": "hands-on/HO5.html",
+    "title": "Hands-on: Build Your k-NN R Package",
+    "section": "",
+    "text": "In this 45 min session you will:\n\nCreate a new R package to wrap your custom k-NN code.\nOrganize R scripts and C++ code in the package structure.\nDocument functions using Roxygen2.\nInstall and test your package.\nRun predictions and visualize results from the package."
+  },
+  {
+    "objectID": "hands-on/HO5.html#overview",
+    "href": "hands-on/HO5.html#overview",
+    "title": "Hands-on: Build Your k-NN R Package",
+    "section": "",
+    "text": "In this 45 min session you will:\n\nCreate a new R package to wrap your custom k-NN code.\nOrganize R scripts and C++ code in the package structure.\nDocument functions using Roxygen2.\nInstall and test your package.\nRun predictions and visualize results from the package."
+  },
+  {
+    "objectID": "hands-on/HO5.html#setup",
+    "href": "hands-on/HO5.html#setup",
+    "title": "Hands-on: Build Your k-NN R Package",
+    "section": "Setup",
+    "text": "Setup\n\nCreate a new R package project in RStudio:\n\n# Replace \"knnPackage\" with your chosen package name\nusethis::create_package(\"knnPackage\")\n\nCopy the prepared files into your package:\n\nknnPackage/\n├── R/           # R scripts with roxygen2 (knn_s3.R, knn_s3_formula.R)\n├── src/\n\nR/knn_s3.R: S3 class for k-NN\nR/knn_s3_formula.R: Formula interface and predict methods\nsrc/knn_pred.cpp: Rcpp implementation for fast predictions\n\nAll three files already contain Roxygen2 comments, so your functions will be automatically exported."
+  },
+  {
+    "objectID": "hands-on/HO5.html#document-your-package",
+    "href": "hands-on/HO5.html#document-your-package",
+    "title": "Hands-on: Build Your k-NN R Package",
+    "section": "1. Document your package",
+    "text": "1. Document your package\nGenerate documentation for all exported functions:\ndevtools::document(\"knnPackage\")\nCheck that .Rd files are created in man/."
+  },
+  {
+    "objectID": "hands-on/HO5.html#install-and-load-your-package",
+    "href": "hands-on/HO5.html#install-and-load-your-package",
+    "title": "Hands-on: Build Your k-NN R Package",
+    "section": "2. Install and load your package",
+    "text": "2. Install and load your package\n# Install locally\ndevtools::install(\"knnPackage\")\n\n# Load package\nlibrary(knnPackage)"
+  },
+  {
+    "objectID": "hands-on/HO5.html#traintest-split",
+    "href": "hands-on/HO5.html#traintest-split",
+    "title": "Hands-on: Build Your k-NN R Package",
+    "section": "3. Train/test split",
+    "text": "3. Train/test split\nUse mtcars to test your package:\nset.seed(42)\nn &lt;- nrow(mtcars)\ntrain_idx &lt;- sample(seq_len(n), size = round(0.7 * n))\ntrain &lt;- mtcars[train_idx, ]\ntest  &lt;- mtcars[-train_idx, ]"
+  },
+  {
+    "objectID": "hands-on/HO5.html#fit-models-using-package-functions",
+    "href": "hands-on/HO5.html#fit-models-using-package-functions",
+    "title": "Hands-on: Build Your k-NN R Package",
+    "section": "4. Fit models using package functions",
+    "text": "4. Fit models using package functions\n# Fit k-NN models with k=5 and k=10\nmod5  &lt;- knn_s3(mpg ~ disp + hp + wt, train, k = 5)\nmod10 &lt;- knn_s3(mpg ~ disp + hp + wt, train, k = 10)\n\n# Predict using Rcpp\npred5  &lt;- predict(mod5, newdata = test, method = \"cpp\")\npred10 &lt;- predict(mod10, newdata = test, method = \"cpp\")"
+  },
+  {
+    "objectID": "hands-on/HO5.html#evaluate-performance",
+    "href": "hands-on/HO5.html#evaluate-performance",
+    "title": "Hands-on: Build Your k-NN R Package",
+    "section": "5. Evaluate performance",
+    "text": "5. Evaluate performance\nrmse &lt;- function(y, yhat) sqrt(mean((y - yhat)^2))\nmae  &lt;- function(y, yhat) mean(abs(y - yhat))\n\nperf &lt;- data.frame(\n  Model = c(\"k=5\", \"k=10\"),\n  RMSE  = c(rmse(test$mpg, pred5), rmse(test$mpg, pred10)),\n  MAE   = c(mae(test$mpg, pred5), mae(test$mpg, pred10))\n)\nprint(perf)"
+  },
+  {
+    "objectID": "hands-on/HO5.html#visualize-predictions",
+    "href": "hands-on/HO5.html#visualize-predictions",
+    "title": "Hands-on: Build Your k-NN R Package",
+    "section": "6. Visualize predictions",
+    "text": "6. Visualize predictions\nlibrary(tidyr)\nlibrary(ggplot2)\n\ntest$pred5 &lt;- pred5\ntest$pred10 &lt;- pred10\n\ntest_long &lt;- test %&gt;%\n  pivot_longer(cols = c(pred5, pred10), \n               names_to = \"Model\", values_to = \"Prediction\")\n\nggplot(test_long, aes(x = mpg, y = Prediction, color = Model)) +\n  geom_point(size = 3, alpha = 0.6) +\n  geom_abline(slope = 1, intercept = 0, linetype = \"dashed\") +\n  labs(title = \"Predicted vs Actual MPG (from Package)\",\n       x = \"Actual MPG\", y = \"Predicted MPG\") +\n  scale_color_manual(values = c(\"pred5\" = \"blue\", \"pred10\" = \"red\"),\n                     labels = c(\"k = 5\", \"k = 10\")) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "hands-on/HO5.html#discussion",
+    "href": "hands-on/HO5.html#discussion",
+    "title": "Hands-on: Build Your k-NN R Package",
+    "section": "Discussion",
+    "text": "Discussion\n\nVerify that the package functions work as expected.\nInspect the help pages generated from Roxygen2.\nDiscuss the benefits of wrapping your code into a package:\n\nReusability\nDocumentation\nEasy sharing"
+  },
+  {
+    "objectID": "hands-on/HO5.html#next-steps",
+    "href": "hands-on/HO5.html#next-steps",
+    "title": "Hands-on: Build Your k-NN R Package",
+    "section": "Next steps",
+    "text": "Next steps\n\nAdd more utility functions (e.g., cross-validation) to your package.\nInclude unit tests with testthat for your main functions.\nShare your package via GitHub for collaborative development."
+  },
+  {
+    "objectID": "hands-on/HO4.html",
+    "href": "hands-on/HO4.html",
+    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
+    "section": "",
+    "text": "In this 30 min session you will:\n\nLearn how to integrate Python code into R using the reticulate package.\nUse scikit-learn’s train_test_split() function (Python) to prepare datasets in R.\nFit a custom S3-based k-NN regression model in R.\nEvaluate predictions and compare observed vs predicted values."
+  },
+  {
+    "objectID": "hands-on/HO4.html#overview",
+    "href": "hands-on/HO4.html#overview",
+    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
+    "section": "",
+    "text": "In this 30 min session you will:\n\nLearn how to integrate Python code into R using the reticulate package.\nUse scikit-learn’s train_test_split() function (Python) to prepare datasets in R.\nFit a custom S3-based k-NN regression model in R.\nEvaluate predictions and compare observed vs predicted values."
+  },
+  {
+    "objectID": "hands-on/HO4.html#setup",
+    "href": "hands-on/HO4.html#setup",
+    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
+    "section": "Setup",
+    "text": "Setup\nDownload the S3 k-NN implementation script:\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/knn_s3_formula.R\nSource them in your R console:\nsource(\"knn_s3_formula.R\")"
+  },
+  {
+    "objectID": "hands-on/HO4.html#import-python-packages",
+    "href": "hands-on/HO4.html#import-python-packages",
+    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
+    "section": "Import Python packages",
+    "text": "Import Python packages\nlibrary(reticulate)\nsklearn_model_selection &lt;- import(\"sklearn.model_selection\", convert = TRUE)"
+  },
+  {
+    "objectID": "hands-on/HO4.html#custom-helper-split-data-in-python-return-as-list-of-r-data.frames",
+    "href": "hands-on/HO4.html#custom-helper-split-data-in-python-return-as-list-of-r-data.frames",
+    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
+    "section": "Custom helper: Split data in Python, return as list of R data.frames",
+    "text": "Custom helper: Split data in Python, return as list of R data.frames\npy_train_test_split &lt;- function(data, test_size = 0.3, seed = 42L) {\n  set.seed(seed)\n  X &lt;- as.matrix(data[, -1, drop = FALSE])\n  y &lt;- data[[1]]\n\n  split &lt;- sklearn_model_selection$train_test_split(\n    X, y,\n    test_size = test_size,\n    random_state = as.integer(seed)\n  )\n\n  # unpack results from Python tuple\n  X_train &lt;- split[[1]]\n  X_test  &lt;- split[[2]]\n  y_train &lt;- split[[3]]\n  y_test  &lt;- split[[4]]\n\n  train_df &lt;- as.data.frame(cbind(y_train, X_train))\n  names(train_df) &lt;- names(data)\n  test_df &lt;- as.data.frame(cbind(y_test, X_test))\n  names(test_df) &lt;- names(data)\n\n  list(train = train_df, test = test_df)\n}"
+  },
+  {
+    "objectID": "hands-on/HO4.html#use-python-to-split-mtcars-into-traintest",
+    "href": "hands-on/HO4.html#use-python-to-split-mtcars-into-traintest",
+    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
+    "section": "Use Python to split mtcars into train/test",
+    "text": "Use Python to split mtcars into train/test\nsplit_data &lt;- py_train_test_split(mtcars[, c(\"mpg\", \"disp\", \"hp\", \"wt\")], test_size = 0.3)\n\ntrain_df &lt;- split_data$train\ntest_df  &lt;- split_data$test\n\n# Fit the S3 k-NN model on train set\nmodel &lt;- knn_s3(mpg ~ disp + hp + wt, train_df, k = 5)\nsummary(model)\n\n# Predict on test set\npreds &lt;- predict(model, newdata = test_df, method = \"R\")\ncbind(Observed = test_df$mpg, Predicted = round(preds, 2))"
+  },
+  {
+    "objectID": "hands-on/HO4.html#use-python-to-split-mtcars-into-traintest-1",
+    "href": "hands-on/HO4.html#use-python-to-split-mtcars-into-traintest-1",
+    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
+    "section": "Use Python to split mtcars into train/test",
+    "text": "Use Python to split mtcars into train/test\nsplit_data &lt;- py_train_test_split(mtcars[, c(\"mpg\", \"disp\", \"hp\", \"wt\")], test_size = 0.3)\n\ntrain_df &lt;- split_data$train\ntest_df  &lt;- split_data$test\n\n# Fit the S3 k-NN model on train set\nmodel &lt;- knn_s3(mpg ~ disp + hp + wt, train_df, k = 5)\nsummary(model)\n\n# Predict on test set\npreds &lt;- predict(model, newdata = test_df, method = \"R\")\ncbind(Observed = test_df$mpg, Predicted = round(preds, 2))"
+  },
+  {
+    "objectID": "hands-on/HO4.html#tasks",
+    "href": "hands-on/HO4.html#tasks",
+    "title": "Hands-on: k-NN Regression with Python-powered Train/Test Split",
+    "section": "Tasks",
+    "text": "Tasks\n\nChange the train/test split ratio to 0.5 and observe changes in model performance.\nModify py_train_test_split() to return NumPy arrays instead of data frames — verify how this affects R code.\n(Optional) Replace the R prediction with Python’s sklearn.neighbors.KNeighborsRegressor and compare results.\n\n\nGood luck!"
+  },
+  {
+    "objectID": "hands-on/HO1.html",
+    "href": "hands-on/HO1.html",
+    "title": "Hands-on: k-NN Regression with S3 OOP",
+    "section": "",
+    "text": "In this 30 min session you will:\n\nLoad and inspect the knn_s3 and knn_s3_formula scripts\nFit k-NN regression models using S3\nUse print(), summary(), fitted(), predict(), anova()",
+    "crumbs": [
+      "Hands-on / HW",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "hands-on/HO1.html#overview",
+    "href": "hands-on/HO1.html#overview",
+    "title": "Hands-on: k-NN Regression with S3 OOP",
+    "section": "",
+    "text": "In this 30 min session you will:\n\nLoad and inspect the knn_s3 and knn_s3_formula scripts\nFit k-NN regression models using S3\nUse print(), summary(), fitted(), predict(), anova()",
+    "crumbs": [
+      "Hands-on / HW",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "hands-on/HO1.html#setup",
+    "href": "hands-on/HO1.html#setup",
+    "title": "Hands-on: k-NN Regression with S3 OOP",
+    "section": "Setup",
+    "text": "Setup\nDownload the scripts:\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/knn_s3.R\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/knn_s3_formula.R\nSource them in your R console:\nsource(\"R/knn_s3.R\")\nsource(\"R/knn_s3_formula.R\")",
+    "crumbs": [
+      "Hands-on / HW",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "hands-on/HO1.html#example-code",
+    "href": "hands-on/HO1.html#example-code",
+    "title": "Hands-on: k-NN Regression with S3 OOP",
+    "section": "Example Code",
+    "text": "Example Code\n# Fit two models\nmod5  &lt;- knn_s3(mpg ~ disp + hp + wt, mtcars, k = 5)\nmod10 &lt;- knn_s3(mpg ~ disp + hp + wt, mtcars, k = 10)\n\n# Inspect models\nprint(mod5)\nsummary(mod5)\nfitted(mod5)[1:5]\n\n# Compare models\nanova(mod5, mod10)",
+    "crumbs": [
+      "Hands-on / HW",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "hands-on/HO1.html#tasks",
+    "href": "hands-on/HO1.html#tasks",
+    "title": "Hands-on: k-NN Regression with S3 OOP",
+    "section": "Tasks",
+    "text": "Tasks\n\nVary k: change k to 3 and 8, then re-run summary().\nBackend swap: use predict(mod5, head(mtcars), method=\"R\") and compare.\nNew predictor: fit a model with mpg ~ cyl + gear and compare with the first via anova().\n\n\nGood luck!",
+    "crumbs": [
+      "Hands-on / HW",
+      "OOP in R"
+    ]
+  },
+  {
+    "objectID": "hands-on/HW1.html",
+    "href": "hands-on/HW1.html",
+    "title": "Homework Assignment",
+    "section": "",
+    "text": "Please complete the following tasks within one week and submit your work as a GitHub repository.\n\n\n\n\nDifferent Distances: Update your knn_s3 implementation to support a dist = c(\"sse\", \"sad\") argument for L1 and L2 distances.\nDocumentation: Add roxygen2 comments for the new argument and regenerate the help files using devtools::document().\n\n\n\n\n\n\nDynamic Predictors: In the k-NN app, add a multi-select input that allows users to choose predictor variables at runtime.\nDownload Button: Implement functionality to download the test-set predictions as a CSV file.\n\n\n\n\n\n\nBenchmark Script: Create benchmark_knn_dims.R to compare runtimes for pure R vs Rcpp implementations across combinations of sample size \\(n \\in \\{500, 1000, 2000\\}\\) and feature count \\(p \\in \\{3, 5, 10\\}\\).\nSummary Report: Produce a one-page PDF summarizing your benchmarks, key code changes, and performance recommendations.\n\n\n\n\n\nYour GitHub repository should be organized as follows:\nknn_workshop_hw/\n├── R/           # R scripts and tests\n├── app/         # Shiny app files\n├── src/         # C++ source for Rcpp\n├── benchmark_knn_dims.R\n├── report.pdf   # summary of benchmarks and findings\n└── README.md    # overview and instructions\nThe README must include: - Setup instructions for all components - A sample run demonstrating each part of the assignment\n\nGood luck, and feel free to reach out with any questions!",
+    "crumbs": [
+      "Hands-on / HW",
+      "First Week HW"
+    ]
+  },
+  {
+    "objectID": "hands-on/HW1.html#extend-the-k-nn-s3-class-30-pts",
+    "href": "hands-on/HW1.html#extend-the-k-nn-s3-class-30-pts",
+    "title": "Homework Assignment",
+    "section": "",
+    "text": "Different Distances: Update your knn_s3 implementation to support a dist = c(\"sse\", \"sad\") argument for L1 and L2 distances.\nDocumentation: Add roxygen2 comments for the new argument and regenerate the help files using devtools::document().",
+    "crumbs": [
+      "Hands-on / HW",
+      "First Week HW"
+    ]
+  },
+  {
+    "objectID": "hands-on/HW1.html#shiny-app-enhancement-30-pts",
+    "href": "hands-on/HW1.html#shiny-app-enhancement-30-pts",
+    "title": "Homework Assignment",
+    "section": "",
+    "text": "Dynamic Predictors: In the k-NN app, add a multi-select input that allows users to choose predictor variables at runtime.\nDownload Button: Implement functionality to download the test-set predictions as a CSV file.",
+    "crumbs": [
+      "Hands-on / HW",
+      "First Week HW"
+    ]
+  },
+  {
+    "objectID": "hands-on/HW1.html#rcpp-performance-study-30-pts",
+    "href": "hands-on/HW1.html#rcpp-performance-study-30-pts",
+    "title": "Homework Assignment",
+    "section": "",
+    "text": "Benchmark Script: Create benchmark_knn_dims.R to compare runtimes for pure R vs Rcpp implementations across combinations of sample size \\(n \\in \\{500, 1000, 2000\\}\\) and feature count \\(p \\in \\{3, 5, 10\\}\\).\nSummary Report: Produce a one-page PDF summarizing your benchmarks, key code changes, and performance recommendations.",
+    "crumbs": [
+      "Hands-on / HW",
+      "First Week HW"
+    ]
+  },
+  {
+    "objectID": "hands-on/HW1.html#deliverables",
+    "href": "hands-on/HW1.html#deliverables",
+    "title": "Homework Assignment",
+    "section": "",
+    "text": "Your GitHub repository should be organized as follows:\nknn_workshop_hw/\n├── R/           # R scripts and tests\n├── app/         # Shiny app files\n├── src/         # C++ source for Rcpp\n├── benchmark_knn_dims.R\n├── report.pdf   # summary of benchmarks and findings\n└── README.md    # overview and instructions\nThe README must include: - Setup instructions for all components - A sample run demonstrating each part of the assignment\n\nGood luck, and feel free to reach out with any questions!",
+    "crumbs": [
+      "Hands-on / HW",
+      "First Week HW"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Short Course on R Tools - (SCoRT)",
+    "section": "",
+    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n0\nWed, Jul 30\nIrStat Webinar\n📚Overview\n\n\n\n\n\n1\nMon, Aug 11\n\n Object-Oriented Programming (OOP) in R\n📚Topic 1  📖OOP\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nTue, Aug 12\n\n Create dynamic Shiny web applications\n📚Topic 2  📖Shiny\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nWed, Aug 13\n\nEnhance performance with Rcpp (C++)\n📚Topic 3  📖Rcpp for everyone\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nFri, Aug 15\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n2\nMon, Aug 18\n\n Integrate Python in R using Reticulate\n📚Topic 4  📖Calling Python from R\n\nR👩‍💻 R🛠️\n\n\n\n\n\nTue, Aug 19\n\n Develop your own professional R package\n📚Topic 5  📖R package\n\nR👩‍💻 R🛠️\n\n\n\n\n\nWed, Aug 20\n\n Collaborate via GitHub / CRAN submission process\n📚Topic 6  📖Let’s Git started  📖Release R package\n\nR👩‍💻  R🛠️\n\n\n\n\nFri, Aug 22\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n3\nTue, Aug 26\n\n Deep Learning in R\n📚Topic 7 (🖥️part II) 📖Deep Learning with R\n\n\nR👩‍💻 R🛠️",
     "crumbs": [
       "Course information",
-      "Overview"
+      "Schedule"
     ]
   },
   {
-    "objectID": "course-overview.html#class-meetings",
-    "href": "course-overview.html#class-meetings",
-    "title": "Course overview",
-    "section": "Class meetings",
-    "text": "Class meetings\n\n\n\nMeeting\nLocation/Address\nTime\n\n\n\n\nOnline Lecture\nPGU BigBlueButton\nMon & Tue & Wed 5:00 pm - 7:00 pm IRT.",
+    "objectID": "course-syllabus.html",
+    "href": "course-syllabus.html",
+    "title": "Syllabus – Short Course on R Tools (SCoRT)",
+    "section": "",
+    "text": "Course Title: Short Course on R Tools (SCoRT)\nMeeting Time: Mon–Wed, Aug 11–13 & Aug 18–20, 5:00–7:00 pm IRT\nLocation: PGU BigBlueButton\nWebsite: https://bit.ly/SCoRT",
     "crumbs": [
       "Course information",
-      "Overview"
+      "Syllabus"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#structure-of-a-shiny-app-1",
-    "href": "slides/Topic2.html#structure-of-a-shiny-app-1",
-    "title": "Short Course on R Tools",
-    "section": "Structure of a Shiny App",
-    "text": "Structure of a Shiny App\n\n# app.R single-file app\nlibrary(shiny)\nui &lt;- fluidPage(\n  titlePanel(\"Hello Shiny\"),\n  sidebarLayout(\n    sidebarPanel(sliderInput(\"obs\", \"Observations:\", 1, 100, 50)),\n    mainPanel(plotOutput(\"distPlot\"))\n  )\n)\n\nserver &lt;- function(input, output) {\n  output$distPlot &lt;- renderPlot({\n    hist(rnorm(input$obs))\n  })\n}\n\nshinyApp(ui, server)\n\n\nui defines layout and inputs/outputs\nserver contains R code & reactivity",
+    "objectID": "course-syllabus.html#course-information",
+    "href": "course-syllabus.html#course-information",
+    "title": "Syllabus – Short Course on R Tools (SCoRT)",
+    "section": "",
+    "text": "Course Title: Short Course on R Tools (SCoRT)\nMeeting Time: Mon–Wed, Aug 11–13 & Aug 18–20, 5:00–7:00 pm IRT\nLocation: PGU BigBlueButton\nWebsite: https://bit.ly/SCoRT",
     "crumbs": [
-      "Slides",
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#instructor-details",
+    "href": "course-syllabus.html#instructor-details",
+    "title": "Syllabus – Short Course on R Tools (SCoRT)",
+    "section": "Instructor Details",
+    "text": "Instructor Details\n\nInstructors: Mehdi Maadooliat & Hossein Haghbin\n\nOffice Hours: Right after class",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#course-description",
+    "href": "course-syllabus.html#course-description",
+    "title": "Syllabus – Short Course on R Tools (SCoRT)",
+    "section": "Course Description",
+    "text": "Course Description\nThis short, intensive course equips participants with practical, modern R skills to extend, optimize, and share their work. Over six sessions you’ll learn OOP in R, build Shiny apps, speed up code with Rcpp, call Python from R with reticulate, build professional R packages, and collaborate on GitHub—including an overview of the CRAN release process.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#learning-outcomes",
+    "href": "course-syllabus.html#learning-outcomes",
+    "title": "Syllabus – Short Course on R Tools (SCoRT)",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\nBy the end of the course, participants will be able to:\n\nApply R’s OOP systems (S3/S4/R6) to structure code.\nBuild interactive Shiny web applications.\nImprove performance by interfacing with C++ via Rcpp.\nIntegrate Python into R workflows using reticulate.\nDevelop, document, test, and share professional R packages.\nUse Git/GitHub for version control, releases, and prepare for CRAN submission.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#prerequisites",
+    "href": "course-syllabus.html#prerequisites",
+    "title": "Syllabus – Short Course on R Tools (SCoRT)",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nWorking knowledge of R and basic data analysis concepts.\n\nSome familiarity with the command line and version control is helpful (not required).",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#materials",
+    "href": "course-syllabus.html#materials",
+    "title": "Syllabus – Short Course on R Tools (SCoRT)",
+    "section": "Materials",
+    "text": "Materials\n\nPrimary Resource: Course website — https://bit.ly/SCoRT\n\nSupplemental tutorials, templates, and datasets will be provided in class.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#assignments-assessment",
+    "href": "course-syllabus.html#assignments-assessment",
+    "title": "Syllabus – Short Course on R Tools (SCoRT)",
+    "section": "Assignments & Assessment",
+    "text": "Assignments & Assessment\n\nHomework (2): Short, hands-on tasks reinforcing each block (due Aug 15 & Aug 22).\n\nOptional Mini-Project: Create a small R package or Shiny app integrating course concepts.\n\nNo exams. Due to the short format, late submissions are not accepted except for documented emergencies.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#attendance",
+    "href": "course-syllabus.html#attendance",
+    "title": "Syllabus – Short Course on R Tools (SCoRT)",
+    "section": "Attendance",
+    "text": "Attendance\nActive participation is expected; sessions build on each other.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#academic-honesty",
+    "href": "course-syllabus.html#academic-honesty",
+    "title": "Syllabus – Short Course on R Tools (SCoRT)",
+    "section": "Academic Honesty",
+    "text": "Academic Honesty\nDiscuss concepts with peers but submit your own work.\nUse of AI coding tools (e.g., ChatGPT, Copilot) is allowed for code if you cite usage; do not submit AI-generated narrative as your own. You are responsible for understanding any code you turn in.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-syllabus.html#important-note",
+    "href": "course-syllabus.html#important-note",
+    "title": "Syllabus – Short Course on R Tools (SCoRT)",
+    "section": "Important Note",
+    "text": "Important Note\nThis syllabus may be updated; any changes will be announced in class and on the course website.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "course-links.html",
+    "href": "course-links.html",
+    "title": "Useful links",
+    "section": "",
+    "text": "Motivating Talk\nStat Calculator\nDistribution Calculator\nRStudio\n🔗 IrStat Webinar\n🔗 StatCalc(JAMM)\n🔗 DistCalc\n🔗 on dna\n\n\nAdvanced Texbooks\n🔗 Advanced R by Hadley Wickham\n🔗 R Package\n🔗 Quarto\n🔗 R Markdown\n🔗 ggplot2: Elegant Graphics for Data Analysis\n🔗 Fundamentals of Data Visualization\n🔗 Data Visualization: A Practical Introduction\n🔗 R for Data Science\n\n\nSome Package documentation\n🔗 OOP-R6: r6.r-lib.org\n🔗 shiny: shiny.posit.co\n🔗 Rcpp: www.rcpp.org\n🔗 reticulate: rstudio.github.io/reticulate\n🔗 devtools: devtools.r-lib.org\n🔗 GitHub: happygitwithr.com\n🔗 CRAN: cran.r-project.org\n🔗 keras: keras3.posit.co",
+    "crumbs": [
+      "Miscellaneous",
+      "Useful links"
+    ]
+  },
+  {
+    "objectID": "hands-on/QuizFlow.html#challenges-and-goal",
+    "href": "hands-on/QuizFlow.html#challenges-and-goal",
+    "title": "QuizFlow: Automating Mastery-Based Weekly Quizzes",
+    "section": "Challenges and Goal",
+    "text": "Challenges and Goal\n\nLarge lectures (~120 students) make them time-consuming\nManual pipeline doesn’t scale: generate → collect → grade → file\nGoal: An automatic, repeatable pipeline with Shiny"
+  },
+  {
+    "objectID": "hands-on/QuizFlow.html#the-4-step-pipeline",
+    "href": "hands-on/QuizFlow.html#the-4-step-pipeline",
+    "title": "QuizFlow: Automating Mastery-Based Weekly Quizzes",
+    "section": "The 4-step pipeline",
+    "text": "The 4-step pipeline\n\nBuild Quizzes\n\nCollect & OCR\n\nReview & Approve\n\nFinalize & File\n\n\n\n\nPipeline sketch\n\n\n\nWe’ll show how each step is solved in the app."
+  },
+  {
+    "objectID": "hands-on/QuizFlow.html#week-1-one-time-setup",
+    "href": "hands-on/QuizFlow.html#week-1-one-time-setup",
+    "title": "QuizFlow: Automating Mastery-Based Weekly Quizzes",
+    "section": "Week 1 — One-time setup",
+    "text": "Week 1 — One-time setup\n\nCreate OneDrive folders per student (by MUID)\nExport roster (CSV) from CheckMarq\nStandardize student photos: img/&lt;MUID&gt;.jpg\nVerify app dependencies (R packages, TinyTeX for LaTeX)"
+  },
+  {
+    "objectID": "hands-on/QuizFlow.html#app-overview-shiny",
+    "href": "hands-on/QuizFlow.html#app-overview-shiny",
+    "title": "QuizFlow: Automating Mastery-Based Weekly Quizzes",
+    "section": "App Overview (Shiny)",
+    "text": "App Overview (Shiny)\n\nTab 1: Generate personalized quizzes ({exams} or PDF)\nTab 2: Upload returned PDF(s), OCR at scale\nTab 3: Edit grades, toggle approval\nTab 4: Split/Copy/Move to per-student folders"
+  },
+  {
+    "objectID": "hands-on/QuizFlow.html#tab-1-build-quizzes",
+    "href": "hands-on/QuizFlow.html#tab-1-build-quizzes",
+    "title": "QuizFlow: Automating Mastery-Based Weekly Quizzes",
+    "section": "Tab 1 — Build Quizzes",
+    "text": "Tab 1 — Build Quizzes\n\nChoose {exams} LaTeX bank or stamp existing PDF template\nPersonalize: Name (left) + ID (right) on page 1\nOptional: Student photo (bottom-left), exact 176×176\nAdds a grade box 176×176 (bottom-right) on every page\nAll student versions are combined into one master PDF. This PDF file will be printed and distributed during the Quiz time."
+  },
+  {
+    "objectID": "hands-on/QuizFlow.html#tab-2-collect-ocr-design",
+    "href": "hands-on/QuizFlow.html#tab-2-collect-ocr-design",
+    "title": "QuizFlow: Automating Mastery-Based Weekly Quizzes",
+    "section": "Tab 2 — Collect & OCR (Design)",
+    "text": "Tab 2 — Collect & OCR (Design)\n\nUpload single multi-page scan PDF\nDraw three boxes once (Name, Student ID, Grade) → app stores template\nOCR modes:\n\nSingle page → quick test\nAll pages of selected file"
+  },
+  {
+    "objectID": "hands-on/QuizFlow.html#tab-3-review-approve",
+    "href": "hands-on/QuizFlow.html#tab-3-review-approve",
+    "title": "QuizFlow: Automating Mastery-Based Weekly Quizzes",
+    "section": "Tab 3 — Review & Approve",
+    "text": "Tab 3 — Review & Approve\n\nEditable grades\nToggle approved for selected rows\nTypical fixes: OCR cleanup, rounding grades\n\n\n\n\nReview table"
+  },
+  {
+    "objectID": "hands-on/QuizFlow.html#tab-4-finalize-file",
+    "href": "hands-on/QuizFlow.html#tab-4-finalize-file",
+    "title": "QuizFlow: Automating Mastery-Based Weekly Quizzes",
+    "section": "Tab 4 — Finalize & File",
+    "text": "Tab 4 — Finalize & File\n\nSplit master combined PDF into per-student PDFs\nCopy/Move into their OneDrive MUID folders\nFilenames: MUID_Quiz#_Attempt#.pdf\n\n\n\n\nFinalize"
+  },
+  {
+    "objectID": "hands-on/QuizFlow.html#weekly-cadence-after-week-1",
+    "href": "hands-on/QuizFlow.html#weekly-cadence-after-week-1",
+    "title": "QuizFlow: Automating Mastery-Based Weekly Quizzes",
+    "section": "Weekly cadence (after Week 1)",
+    "text": "Weekly cadence (after Week 1)\n\nUpload roster (optional)\n\nGenerate quizzes\n\nUpload scans → OCR → approve\n\nFile to student folders ✅"
+  },
+  {
+    "objectID": "hands-on/QuizFlow.html#results",
+    "href": "hands-on/QuizFlow.html#results",
+    "title": "QuizFlow: Automating Mastery-Based Weekly Quizzes",
+    "section": "Results",
+    "text": "Results\n\nRepeatable weekly flow\n120+ students → minutes instead of hours\nCentralized filing per student for compliance & transparency"
+  },
+  {
+    "objectID": "hands-on/QuizFlow.html#what-else-can-be-done",
+    "href": "hands-on/QuizFlow.html#what-else-can-be-done",
+    "title": "QuizFlow: Automating Mastery-Based Weekly Quizzes",
+    "section": "What else can be done?",
+    "text": "What else can be done?\n\nLMS integration (Canvas/D2L) to sync grades\nRubric-based auto grading (e.g., QR zone for points)\nConfidence scoring for OCR → human-in-loop"
+  },
+  {
+    "objectID": "hands-on/HO3.html",
+    "href": "hands-on/HO3.html",
+    "title": "Hands-on: Accelerating k-NN with Rcpp",
+    "section": "",
+    "text": "In this 30 min session you will:\n\nDownload and inspect the C++ implementation for k‑NN.\nCompile and load the Rcpp code.\nRun benchmarks comparing pure-R vs Rcpp predictions.\nAnalyze how sample size and dimensionality affect performance.",
+    "crumbs": [
+      "Hands-on / HW",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "hands-on/HO3.html#overview",
+    "href": "hands-on/HO3.html#overview",
+    "title": "Hands-on: Accelerating k-NN with Rcpp",
+    "section": "",
+    "text": "In this 30 min session you will:\n\nDownload and inspect the C++ implementation for k‑NN.\nCompile and load the Rcpp code.\nRun benchmarks comparing pure-R vs Rcpp predictions.\nAnalyze how sample size and dimensionality affect performance.",
+    "crumbs": [
+      "Hands-on / HW",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "hands-on/HO3.html#setup",
+    "href": "hands-on/HO3.html#setup",
+    "title": "Hands-on: Accelerating k-NN with Rcpp",
+    "section": "Setup",
+    "text": "Setup\nDownload the C++ and helper scripts into your working directory:\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/src/knn_pred.cpp\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/runthis.R\nOpen the files in your editor to review the code:\n\nknn_pred.cpp contains the knn_pred_cpp() function (Rcpp).\nrunthis.R sources both R and C++ implementations and runs microbenchmark().",
+    "crumbs": [
+      "Hands-on / HW",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "hands-on/HO3.html#compile-the-c-code",
+    "href": "hands-on/HO3.html#compile-the-c-code",
+    "title": "Hands-on: Accelerating k-NN with Rcpp",
+    "section": "1. Compile the C++ code",
+    "text": "1. Compile the C++ code\nIn an R console or RStudio, run:\nRcpp::sourceCpp(\"knn_pred.cpp\")\nIf successful, you should see knn_pred_cpp available:\nls(\"package:base\") # confirm knn_pred_cpp is loaded\n# [1] \"knn_pred_cpp\"",
+    "crumbs": [
+      "Hands-on / HW",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "hands-on/HO3.html#inspect-the-runner-script",
+    "href": "hands-on/HO3.html#inspect-the-runner-script",
+    "title": "Hands-on: Accelerating k-NN with Rcpp",
+    "section": "2. Inspect the runner script",
+    "text": "2. Inspect the runner script\nOpen runthis.R, which contains:\nsource(\"R/knn_s3_formula.R\")              # loads knn_s3 and predict()\nRcpp::sourceCpp(\"src/knn_pred.cpp\")       # loads Rcpp function\n\n# Simulate data and benchmark\ndata &lt;- simulate_knn_data(n = 1000, p = 5, m = 200, k = 10)\nmb &lt;- microbenchmark::microbenchmark(\n  Rcpp = knn_pred_cpp(data$train_x, data$train_y, data$test_x, data$k),\n  R    = knn_pred_R(data$train_x, data$train_y, data$test_x, data$k),\n  times = 20\n)\nprint(mb)\nTry running this script:\nsource(\"runthis.R\")",
+    "crumbs": [
+      "Hands-on / HW",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "hands-on/HO3.html#vary-parameters",
+    "href": "hands-on/HO3.html#vary-parameters",
+    "title": "Hands-on: Accelerating k-NN with Rcpp",
+    "section": "3. Vary parameters",
+    "text": "3. Vary parameters\nModify runthis.R or re-run interactively to examine different settings:\n\nIncrease n (training size) from 1000 to 5000 or 10000.\nIncrease p (dimensions) from 5 to 20 or 50.\nObserve how the Rcpp version scales relative to pure-R.\n\nFocus on how the Rcpp implementation stays much faster as complexity grows.",
+    "crumbs": [
+      "Hands-on / HW",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "hands-on/HO3.html#discussion",
+    "href": "hands-on/HO3.html#discussion",
+    "title": "Hands-on: Accelerating k-NN with Rcpp",
+    "section": "4. Discussion",
+    "text": "4. Discussion\n\nWhere does Rcpp help most?\nAre there settings where pure R is sufficient?\nHow might you further optimize (e.g., using STL partial_sort)?",
+    "crumbs": [
+      "Hands-on / HW",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "hands-on/HO3.html#next-steps",
+    "href": "hands-on/HO3.html#next-steps",
+    "title": "Hands-on: Accelerating k-NN with Rcpp",
+    "section": "Next steps",
+    "text": "Next steps\n\nTry integrating this into your knn_s3 class and Shiny app.\nExplore parallel Rcpp implementations (OpenMP).\nConsider other statistical routines with nested loops.",
+    "crumbs": [
+      "Hands-on / HW",
+      "RCpp"
+    ]
+  },
+  {
+    "objectID": "hands-on/HW2.html",
+    "href": "hands-on/HW2.html",
+    "title": "Homework Assignment 2",
+    "section": "",
+    "text": "Please complete the following tasks within one week and share your work as a GitHub repository linke.\n\n\n\n\n\n\n\nBuild a simple R package that achieves a specific task.\n\nExamples of goals:\n\nData cleaning helper functions\n\nA small visualization wrapper\n\nStatistical functions (e.g., custom summary stats)\n\nImporting/transforming a public dataset\n\n\n\n\n\n\n\nYour package should solve a simple but useful problem for statistics. Possible ideas:\n\nDescriptive Statistics Toolkit: Functions to compute mean, variance, quantiles, skewness, kurtosis.\n\nVisualization Helper: Custom plotting functions for common statistical distributions.\n\nProbability Distribution Tools: Simulate and analyze distributions (Normal, Poisson, Binomial, etc.).\n\nRegression Helpers: Easy-to-use wrappers for linear/logistic regression summaries.\n\nTime Series Mini Toolkit: Simple functions for moving averages, decomposition, and plotting.\n\nResampling Methods: Implement bootstrap and permutation tests.\n\n\n\n\n\n\nPick a clear, unique package name.\n\nExample: statHelper, bootResampleR, easyViz, probSimR.\n\n\nProvide documentation:\n\nDESCRIPTION file with title, description, author.\n\nFunction-level help with #' Roxygen comments.\n\nREADME.md explaining package goal, installation, usage.\n\n\nAdd at least one vignette/tutorial showing examples.\n\n\n\n\n\nEmbed at least one dataset inside your package. Suggestions:\n\nBuilt-in datasets (iris, mtcars, airquality).\n\nPublic datasets (but keep them small):\n\nDaily stock prices (few days).\n\nStudents’ grades (simulated).\n\nCOVID-19 sample (subset).\n\nRandomly generated survey data.\n\n\n\n\n\n\n\nCreate a GitHub repository.\n\nPush your package code.\n\nAdd a LICENSE file.\n\nShare the repository link with your instructor.\n\n\n\n\n\n\n\n\nPart\nDescription\nPoints\n\n\n\n\nTask Design\nClear, meaningful statistical goal\n15\n\n\nPackage Structure\nCorrect folder & file setup\n15\n\n\nFunctions\nAt least 3 well-written functions\n20\n\n\nDocumentation\nDESCRIPTION, README, Roxygen comments\n15\n\n\nDataset\nCorrectly embedded with documentation\n10\n\n\nVignette\nExample usage in Rmarkdown\n10\n\n\nGitHub Repository\nProper setup, LICENSE, clean commits\n10\n\n\nPresentation\nClear, creative, user-friendly\n5\n\n\n\n\n\n\n\n\nDeadline: [set your date here]\n\nSubmit: GitHub repository link shared via email or LMS.\n\nBonus: +5 points if package installs directly with devtools::install_github(\"username/package\").\n\n\nGood luck, and remember to commit and push often!"
+  },
+  {
+    "objectID": "hands-on/HW2.html#build-share-your-package",
+    "href": "hands-on/HW2.html#build-share-your-package",
+    "title": "Homework Assignment 2",
+    "section": "",
+    "text": "Build a simple R package that achieves a specific task.\n\nExamples of goals:\n\nData cleaning helper functions\n\nA small visualization wrapper\n\nStatistical functions (e.g., custom summary stats)\n\nImporting/transforming a public dataset"
+  },
+  {
+    "objectID": "hands-on/HW2.html#step-1-choose-a-task-goal-of-your-package",
+    "href": "hands-on/HW2.html#step-1-choose-a-task-goal-of-your-package",
+    "title": "Homework Assignment 2",
+    "section": "",
+    "text": "Your package should solve a simple but useful problem for statistics. Possible ideas:\n\nDescriptive Statistics Toolkit: Functions to compute mean, variance, quantiles, skewness, kurtosis.\n\nVisualization Helper: Custom plotting functions for common statistical distributions.\n\nProbability Distribution Tools: Simulate and analyze distributions (Normal, Poisson, Binomial, etc.).\n\nRegression Helpers: Easy-to-use wrappers for linear/logistic regression summaries.\n\nTime Series Mini Toolkit: Simple functions for moving averages, decomposition, and plotting.\n\nResampling Methods: Implement bootstrap and permutation tests."
+  },
+  {
+    "objectID": "hands-on/HW2.html#step-2-name-and-documentation",
+    "href": "hands-on/HW2.html#step-2-name-and-documentation",
+    "title": "Homework Assignment 2",
+    "section": "",
+    "text": "Pick a clear, unique package name.\n\nExample: statHelper, bootResampleR, easyViz, probSimR.\n\n\nProvide documentation:\n\nDESCRIPTION file with title, description, author.\n\nFunction-level help with #' Roxygen comments.\n\nREADME.md explaining package goal, installation, usage.\n\n\nAdd at least one vignette/tutorial showing examples."
+  },
+  {
+    "objectID": "hands-on/HW2.html#step-3-include-a-dataset",
+    "href": "hands-on/HW2.html#step-3-include-a-dataset",
+    "title": "Homework Assignment 2",
+    "section": "",
+    "text": "Embed at least one dataset inside your package. Suggestions:\n\nBuilt-in datasets (iris, mtcars, airquality).\n\nPublic datasets (but keep them small):\n\nDaily stock prices (few days).\n\nStudents’ grades (simulated).\n\nCOVID-19 sample (subset).\n\nRandomly generated survey data."
+  },
+  {
+    "objectID": "hands-on/HW2.html#step-4-publish-on-github",
+    "href": "hands-on/HW2.html#step-4-publish-on-github",
+    "title": "Homework Assignment 2",
+    "section": "",
+    "text": "Create a GitHub repository.\n\nPush your package code.\n\nAdd a LICENSE file.\n\nShare the repository link with your instructor."
+  },
+  {
+    "objectID": "hands-on/HW2.html#grading-rubric-total-100-points",
+    "href": "hands-on/HW2.html#grading-rubric-total-100-points",
+    "title": "Homework Assignment 2",
+    "section": "",
+    "text": "Part\nDescription\nPoints\n\n\n\n\nTask Design\nClear, meaningful statistical goal\n15\n\n\nPackage Structure\nCorrect folder & file setup\n15\n\n\nFunctions\nAt least 3 well-written functions\n20\n\n\nDocumentation\nDESCRIPTION, README, Roxygen comments\n15\n\n\nDataset\nCorrectly embedded with documentation\n10\n\n\nVignette\nExample usage in Rmarkdown\n10\n\n\nGitHub Repository\nProper setup, LICENSE, clean commits\n10\n\n\nPresentation\nClear, creative, user-friendly\n5"
+  },
+  {
+    "objectID": "hands-on/HW2.html#submission",
+    "href": "hands-on/HW2.html#submission",
+    "title": "Homework Assignment 2",
+    "section": "",
+    "text": "Deadline: [set your date here]\n\nSubmit: GitHub repository link shared via email or LMS.\n\nBonus: +5 points if package installs directly with devtools::install_github(\"username/package\").\n\n\nGood luck, and remember to commit and push often!"
+  },
+  {
+    "objectID": "hands-on/HO2.html",
+    "href": "hands-on/HO2.html",
+    "title": "Hands-on: k-NN Regression in Shiny",
+    "section": "",
+    "text": "In this 30 min session you will:\n\nLaunch and explore the k-NN Shiny app\nAdjust k, select backend (R vs C++)\nObserve train/test performance and parity plots",
+    "crumbs": [
+      "Hands-on / HW",
       "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#structure-of-a-shiny-app-2",
-    "href": "slides/Topic2.html#structure-of-a-shiny-app-2",
-    "title": "Short Course on R Tools",
-    "section": "Structure of a Shiny App",
-    "text": "Structure of a Shiny App\nShiny apps come in two parts:\n\n\n\nUI\n\nDefines the layout and appearance.\nContains elements such as:\n\nlayout structures (sidebars)\ninputs (text boxes, sliders, buttons)\noutputs (plots, tables)\n\n\n\n\nServer\n\nPerforms calculations.\nContains the logic to respond to user inputs, and update outputs.\nCommunicates with the UI to dynamically render outputs.",
+    "objectID": "hands-on/HO2.html#overview",
+    "href": "hands-on/HO2.html#overview",
+    "title": "Hands-on: k-NN Regression in Shiny",
+    "section": "",
+    "text": "In this 30 min session you will:\n\nLaunch and explore the k-NN Shiny app\nAdjust k, select backend (R vs C++)\nObserve train/test performance and parity plots",
     "crumbs": [
-      "Slides",
+      "Hands-on / HW",
       "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#exercise",
-    "href": "slides/Topic2.html#exercise",
-    "title": "Short Course on R Tools",
-    "section": "Exercise",
-    "text": "Exercise\n\n\n\n−+\n05:00\n\n\n\n\nOpen up your IDE of choice.\nMake sure you have the {shiny} package installed.\nCreate an app.R file.\nAdd ui and server elements, as well as shiny::shinyApp(ui, server).\nCheck it works.",
+    "objectID": "hands-on/HO2.html#setup",
+    "href": "hands-on/HO2.html#setup",
+    "title": "Hands-on: k-NN Regression in Shiny",
+    "section": "Setup",
+    "text": "Setup\nDownload the Shiny app:\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/app.R",
     "crumbs": [
-      "Slides",
+      "Hands-on / HW",
       "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#shinyapps-gallery-1",
-    "href": "slides/Topic2.html#shinyapps-gallery-1",
-    "title": "Short Course on R Tools",
-    "section": "Shinyapps Gallery",
-    "text": "Shinyapps Gallery",
+    "objectID": "hands-on/HO2.html#launch-the-app",
+    "href": "hands-on/HO2.html#launch-the-app",
+    "title": "Hands-on: k-NN Regression in Shiny",
+    "section": "Launch the App",
+    "text": "Launch the App\n# Run the Shiny application\nshiny::runApp('app.R')",
     "crumbs": [
-      "Slides",
+      "Hands-on / HW",
       "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#widgets---input",
-    "href": "slides/Topic2.html#widgets---input",
-    "title": "Short Course on R Tools",
-    "section": "Widgets - Input",
-    "text": "Widgets - Input",
+    "objectID": "hands-on/HO2.html#tasks",
+    "href": "hands-on/HO2.html#tasks",
+    "title": "Hands-on: k-NN Regression in Shiny",
+    "section": "Tasks",
+    "text": "Tasks\n\nChange the train/test split ratio in make_split() (e.g. 80/20).\nAdd a slider input for the split ratio in ui and update server logic.\nExtend the performance panel to show Mean Absolute Error (MAE).",
     "crumbs": [
-      "Slides",
+      "Hands-on / HW",
       "Shiny"
     ]
   },
   {
-    "objectID": "slides/Topic2.html#widgets---output-table",
-    "href": "slides/Topic2.html#widgets---output-table",
-    "title": "Short Course on R Tools",
-    "section": "Widgets - Output Table",
-    "text": "Widgets - Output Table\n\n\n\n🔗 &lt;/&gt; VIEW CODE",
-    "crumbs": [
-      "Slides",
-      "Shiny"
-    ]
-  },
-  {
-    "objectID": "slides/Topic2.html#reactivity-demo",
-    "href": "slides/Topic2.html#reactivity-demo",
-    "title": "Short Course on R Tools",
-    "section": "Reactivity Demo",
-    "text": "Reactivity Demo",
-    "crumbs": [
-      "Slides",
-      "Shiny"
-    ]
-  },
-  {
-    "objectID": "slides/Topic2.html#isolate-demo",
-    "href": "slides/Topic2.html#isolate-demo",
-    "title": "Short Course on R Tools",
-    "section": "Isolate Demo",
-    "text": "Isolate Demo",
-    "crumbs": [
-      "Slides",
-      "Shiny"
-    ]
-  },
-  {
-    "objectID": "slides/Topic2.html#observers-demo",
-    "href": "slides/Topic2.html#observers-demo",
-    "title": "Short Course on R Tools",
-    "section": "Observers Demo",
-    "text": "Observers Demo",
-    "crumbs": [
-      "Slides",
-      "Shiny"
-    ]
-  },
-  {
-    "objectID": "slides/Topic2.html#shinylive-deployment",
-    "href": "slides/Topic2.html#shinylive-deployment",
-    "title": "Short Course on R Tools",
-    "section": "Shinylive deployment",
-    "text": "Shinylive deployment",
-    "crumbs": [
-      "Slides",
-      "Shiny"
-    ]
-  },
-  {
-    "objectID": "slides/Topic2.html#shinylive-deployment-1",
-    "href": "slides/Topic2.html#shinylive-deployment-1",
-    "title": "Short Course on R Tools",
-    "section": "Shinylive deployment",
-    "text": "Shinylive deployment\nSee posit-dev.github.io/r-shinylive.\n\nThe {shinylive} package converts a standard shiny app into a shinylive app:\ninstall.packages(\"shinylive\")\nAssuming your app.R file is in a folder called app:\nshinylive::export(\"app\", \"site\")\nYou can then use the files in the site folder to deploy it as a normal website.\n*not all R packages are available for shinylive.\n**initial load time is still quite slow.",
-    "crumbs": [
-      "Slides",
-      "Shiny"
-    ]
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
   },
   {
     "objectID": "slides/Topic5.html#r-packages-the-fundamental-unit",
@@ -1688,146 +1879,124 @@
     ]
   },
   {
-    "objectID": "slides/Topic1.html#basics",
-    "href": "slides/Topic1.html#basics",
+    "objectID": "slides/Topic6.html#what-happens-after-submission",
+    "href": "slides/Topic6.html#what-happens-after-submission",
     "title": "Short Course on R Tools",
-    "section": "Basics",
-    "text": "Basics\n\nAn S3 object is a base type with at least a class attribute\n\n\nf &lt;- factor(c(\"a\", \"b\", \"b\"))\nf\n#&gt; [1] a b b\n#&gt; Levels: a b\nattributes(f)\n#&gt; $levels\n#&gt; [1] \"a\" \"b\"\n#&gt; \n#&gt; $class\n#&gt; [1] \"factor\"\nunclass(f)\n#&gt; [1] 1 2 2\n#&gt; attr(,\"levels\")\n#&gt; [1] \"a\" \"b\"\n\ntime &lt;- strptime(c(\"2017-01-01\", \"2020-05-04 03:21\"), \"%Y-%m-%d\")\nstr(time)\n#&gt;  POSIXlt[1:2], format: \"2017-01-01\" \"2020-05-04\"\n\nclass(time) &lt;- NULL\nstr(time)\n#&gt; List of 11\n#&gt;  $ sec   : num [1:2] 0 0\n#&gt;  $ min   : int [1:2] 0 0\n#&gt;  $ hour  : int [1:2] 0 0\n#&gt;  $ mday  : int [1:2] 1 4\n#&gt;  $ mon   : int [1:2] 0 4\n#&gt;  $ year  : int [1:2] 117 120\n#&gt;  $ wday  : int [1:2] 0 1\n#&gt;  $ yday  : int [1:2] 0 124\n#&gt;  $ isdst : int [1:2] 0 0\n#&gt;  $ zone  : chr [1:2] \"UTC\" \"UTC\"\n#&gt;  $ gmtoff: int [1:2] 0 0\n#&gt;  - attr(*, \"tzone\")= chr \"UTC\"\n#&gt;  - attr(*, \"balanced\")= logi TRUE",
+    "section": "📬 What Happens After Submission?",
+    "text": "📬 What Happens After Submission?\n\n\nYou’ll get an automated confirmation email\nWithin ~24–72 hours, a CRAN maintainer will review your package\n\n\n\n\nThey may:\n\nAccept it immediately ✅\nRequest fixes or clarifications ✍️\nReject with detailed reasons ❌",
     "crumbs": [
       "Slides",
-      "OOP in R"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic1.html#classes",
-    "href": "slides/Topic1.html#classes",
+    "objectID": "slides/Topic6.html#updating-a-cran-package",
+    "href": "slides/Topic6.html#updating-a-cran-package",
     "title": "Short Course on R Tools",
-    "section": "Classes",
-    "text": "Classes\n# Create and assign class in one step\nx &lt;- structure(list(), class = \"my_class\")\n\n# Create, then set class\nx &lt;- list()\nclass(x) &lt;- \"my_class\"\n\nclass(x)\n#&gt; [1] \"my_class\"\ninherits(x, \"my_class\")\n#&gt; [1] TRUE\ninherits(x, \"your_class\")\n#&gt; [1] FALSE\n\n\nR doesn’t stop you from shooting yourself in the foot, but as long as you don’t aim the gun at your toes and pull the trigger, you won’t have a problem.",
+    "section": "🔄 Updating a CRAN Package",
+    "text": "🔄 Updating a CRAN Package\nTo submit an update:\n\n\nBump the version (e.g., from 1.0.0 → 1.0.1)\nAdd a clear NEWS.md entry\nEnsure compatibility with current R version and dependencies\nFollow the same submission process\n\n\n\n📌 You can only submit once every 1–2 weeks (per package).",
     "crumbs": [
       "Slides",
-      "OOP in R"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic1.html#classes---common-practice",
-    "href": "slides/Topic1.html#classes---common-practice",
+    "objectID": "slides/Topic6.html#git-github-basics",
+    "href": "slides/Topic6.html#git-github-basics",
     "title": "Short Course on R Tools",
-    "section": "Classes - Common Practice",
-    "text": "Classes - Common Practice\nTo avoid foot-bullet intersections when creating your own class, you may:\n\n\nA low-level constructor, new_myclass(), that efficiently creates new objects with the correct structure.\nA validator, validate_myclass(), that performs more computationally expensive checks to ensure that the object has correct values.\nA user-friendly helper, myclass(), that provides a convenient way for others to create objects of your class.",
+    "section": "🐙 Git & GitHub Basics",
+    "text": "🐙 Git & GitHub Basics\n\n\n🔹Git: Version control system for your local project\n\n🔹GitHub: Cloud platform to share and collaborate\n\n\n\n📝 Key Terms:\n\n\nCommit = Savepoint\nPush/Pull = Send/Receive changes\nRepo = Project folder\n\n\n\n\n\n📦 Example: You push your R package to GitHub, allowing your coauthor to edit documentation and submit a pull request.",
     "crumbs": [
       "Slides",
-      "OOP in R"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic1.html#classes---example",
-    "href": "slides/Topic1.html#classes---example",
+    "objectID": "slides/Topic6.html#installing-git",
+    "href": "slides/Topic6.html#installing-git",
     "title": "Short Course on R Tools",
-    "section": "Classes - Example",
-    "text": "Classes - Example\n\n## 1. Low‐level constructor: assume inputs are ok\nnew_myclass &lt;- function(values = numeric(), unit = character(1)) {\n  # no checks here beyond base‐R stopifnot\n  stopifnot(is.numeric(values), is.character(unit), length(unit) == 1)\n  structure(\n    list(values = values, unit = unit),\n    class = \"myclass\"\n  )\n}\n\n## 2. Validator: more thorough checks\nvalidate_myclass &lt;- function(x) {\n  if (!inherits(x, \"myclass\")) {\n    stop(\"`x` must be a 'myclass' object.\", call. = FALSE)\n  }\n  if (!is.numeric(x$values)) {\n    stop(\"`values` must be numeric.\", call. = FALSE)\n  }\n  if (any(is.na(x$values))) {\n    stop(\"`values` must not contain NA.\", call. = FALSE)\n  }\n  if (!is.character(x$unit) || length(x$unit) != 1) {\n    stop(\"`unit` must be a single character string.\", call. = FALSE)\n  }\n  TRUE\n}\n\n## (Optional) a simple print method\nprint.myclass &lt;- function(x, ...) {\n  cat(\"&lt;myclass&gt;  \", length(x$values), \"values [unit = \", x$unit, \"]\\n\", sep = \"\")\n  print(x$values)\n  invisible(x)\n}\n\n## 3. User‐facing helper: coerce/check inputs, then build + validate\nmyclass &lt;- function(values, unit = \"unitless\") {\n  # quick checks / coercions:\n  if (!is.numeric(values)) {\n    values &lt;- as.numeric(values)\n    if (any(is.na(values))) stop(\"`values` could not be coerced to numeric.\", call. = FALSE)\n  }\n  if (!is.character(unit) || length(unit) != 1) {\n    stop(\"`unit` must be a single character string.\", call. = FALSE)\n  }\n  # build & validate\n  obj &lt;- new_myclass(values = values, unit = unit)\n  validate_myclass(obj)\n  obj\n}\n\n## --- Example usage ---\nx &lt;- myclass(c(1.1, 2.2, 3.3), unit = \"kg\")\nprint(x)\n#&gt; &lt;myclass&gt; 3 values [unit = kg]\n#&gt; [1] 1.1 2.2 3.3\n\n# This will error because of an NA:\n# myclass(c(1, NA, 3))",
+    "section": "📦 Installing Git",
+    "text": "📦 Installing Git\n\n\n🔹 Go to git-scm.com\nChoose your operating system:\n\nWindows: Download .exe and install with default options\nmacOS: Install via Homebrew brew install git or Git installer\nLinux: Use package manager, e.g.:\n\n\n\n\n  sudo apt install git",
     "crumbs": [
       "Slides",
-      "OOP in R"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic1.html#generics-and-methods---method-dispatch",
-    "href": "slides/Topic1.html#generics-and-methods---method-dispatch",
+    "objectID": "slides/Topic6.html#verifying-git-installation",
+    "href": "slides/Topic6.html#verifying-git-installation",
     "title": "Short Course on R Tools",
-    "section": "Generics and Methods - Method Dispatch",
-    "text": "Generics and Methods - Method Dispatch\nView(print)\n#&gt; function (x, ...) \n#&gt; UseMethod(\"print\")\n\nftype(print)\n#&gt; [1] \"S3\"      \"generic\"\nftype(print.factor)\n#&gt; [1] \"S3\"     \"method\"\n\ns3_dispatch(print(f))\n#&gt; =&gt; print.factor\n#&gt;  * print.default\ns3_dispatch(print(unclass(f)))\n#&gt;    print.integer\n#&gt;    print.numeric\n#&gt; =&gt; print.default",
+    "section": "🧪 Verifying Git Installation",
+    "text": "🧪 Verifying Git Installation\n🧪 Run this in your Terminal (or Command Prompt):\ngit --version\n\n✅ You should see something like:\ngit version 2.43.0\n\n\n\n💡 If this works, Git is installed correctly!",
     "crumbs": [
       "Slides",
-      "OOP in R"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic1.html#finding-methods",
-    "href": "slides/Topic1.html#finding-methods",
+    "objectID": "slides/Topic6.html#configuring-git-identity",
+    "href": "slides/Topic6.html#configuring-git-identity",
     "title": "Short Course on R Tools",
-    "section": "Finding methods",
-    "text": "Finding methods\ns3_methods_generic(\"mean\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class      visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt;      &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 mean    Date       TRUE    base               \n#&gt; 2 mean    default    TRUE    base               \n#&gt; 3 mean    difftime   TRUE    base               \n#&gt; 4 mean    POSIXct    TRUE    base               \n#&gt; 5 mean    POSIXlt    TRUE    base               \n#&gt; 6 mean    quosure    FALSE   registered S3method\n#&gt; 7 mean    vctrs_vctr FALSE   registered S3method\n\ns3_methods_class(\"funts\")\n#&gt; # A tibble: 7 × 4\n#&gt;   generic class visible source             \n#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;lgl&gt;   &lt;chr&gt;              \n#&gt; 1 -       funts FALSE   registered S3method\n#&gt; 2 *       funts FALSE   registered S3method\n#&gt; 3 [       funts FALSE   registered S3method\n#&gt; 4 +       funts FALSE   registered S3method\n#&gt; 5 length  funts FALSE   registered S3method\n#&gt; 6 plot    funts FALSE   registered S3method\n#&gt; 7 print   funts FALSE   registered S3method",
+    "section": "🔑 Configuring Git Identity",
+    "text": "🔑 Configuring Git Identity\n🔧 Set your global Git identity:\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"you@example.com\"\n\n✅ To check the name or email currently set in Git, use these commands:\ngit config --global user.name \ngit config --global user.email",
     "crumbs": [
       "Slides",
-      "OOP in R"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic1.html#creating-methods",
-    "href": "slides/Topic1.html#creating-methods",
+    "objectID": "slides/Topic6.html#connect-github-to-r-create-pat",
+    "href": "slides/Topic6.html#connect-github-to-r-create-pat",
     "title": "Short Course on R Tools",
-    "section": "Creating methods",
-    "text": "Creating methods\n\n\nmean.myclass &lt;- function(x, ...) {\n  print(\"custom mean\")\n}\n\nmean(x)\n\n[1] \"custom mean\"\n\n\n\n\n\n\nA method must have the same arguments as its generic. This is enforced in packages by R CMD check.\n\n\n\n\n\nThere is one exception to this rule: if the generic has ..., the method can contain a superset of the arguments. This allows methods to take arbitrary additional arguments.",
+    "section": "🧭 Connect GitHub to R (Create PAT)",
+    "text": "🧭 Connect GitHub to R (Create PAT)\n\nIn R:\n\nusethis::create_github_token()\n\n\nGitHub will open — generate a Personal Access Token (PAT)\nCopy the token (only shown once!)\nBack in R:\n\n\n\ngitcreds::gitcreds_set()\nPaste your token when prompted.\n\n\n\n✅ You’ve now authenticated GitHub from R!",
     "crumbs": [
       "Slides",
-      "OOP in R"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic1.html#inheritance",
-    "href": "slides/Topic1.html#inheritance",
+    "objectID": "slides/Topic6.html#check-setup",
+    "href": "slides/Topic6.html#check-setup",
     "title": "Short Course on R Tools",
-    "section": "Inheritance",
-    "text": "Inheritance\nx &lt;- factor(\"a\",\"b\",\"b\")\nclass(x)\n#&gt; \"factor\"\n\nclass(ordered(x))\n#&gt; \"ordered\" \"factor\"\n\ns3_dispatch(print(ordered(x)))\n#&gt;    print.ordered\n#&gt; =&gt; print.factor\n#&gt;  * print.default\n\ns3_dispatch(ordered(x)[1])\n#&gt;    [.ordered\n#&gt; =&gt; [.factor\n#&gt;    [.default\n#&gt; -&gt; [ (internal)\n\n\nWe’ll say that ordered is a subclass of factor and factor is a superclass of ordered.",
+    "section": "🧪 Check Setup",
+    "text": "🧪 Check Setup\nUse this helpful diagnostic tool:\nusethis::git_sitrep()\n\n💡 This tells you:\n\n\nWhether Git is installed\nWhether GitHub is connected\nIf PAT is stored",
     "crumbs": [
       "Slides",
-      "OOP in R"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic1.html#inheritance-cont.",
-    "href": "slides/Topic1.html#inheritance-cont.",
+    "objectID": "slides/Topic6.html#creating-a-new-git-enabled-project",
+    "href": "slides/Topic6.html#creating-a-new-git-enabled-project",
     "title": "Short Course on R Tools",
-    "section": "Inheritance Cont.",
-    "text": "Inheritance Cont.\n\nnew_secret &lt;- function(x = double()) {\n  stopifnot(is.double(x))\n  structure(x, class = \"secret\")\n}\n\nprint.secret &lt;- function(x, ...) {\n  print(strrep(\"x\", nchar(x)))\n  invisible(x)\n}\n\nx &lt;- new_secret(c(15, 1, 456))\nx\n#&gt; [1] \"xx\"  \"x\"   \"xxx\"\n\ns3_dispatch(x[1])\n#&gt;    [.secret\n#&gt;    [.default\n#&gt; =&gt; [ (internal)\n\nx[1]\n#&gt; [1] 15\n\n\n\nTo fix this, we need to provide a [.secret method.",
+    "section": "📁 Creating a New Git-Enabled Project",
+    "text": "📁 Creating a New Git-Enabled Project\nIn RStudio:\n\n\nFile → New Project\nChoose: New Directory → R Package (or New Project)\nCheck the box: ✅ “Create a git repository”\nFinish project setup\n\n\n\n\n📁 A .git folder is created — this is a Git repo!",
     "crumbs": [
       "Slides",
-      "OOP in R"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic1.html#inheritance-cont.---nextmethod",
-    "href": "slides/Topic1.html#inheritance-cont.---nextmethod",
+    "objectID": "slides/Topic6.html#connect-to-github",
+    "href": "slides/Topic6.html#connect-to-github",
     "title": "Short Course on R Tools",
-    "section": "Inheritance Cont. - NextMethod()",
-    "text": "Inheritance Cont. - NextMethod()\n\n`[.secret` &lt;- function(x, i) {\n  x &lt;- unclass(x)\n  new_secret(x[i])\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\n\n\nA better solution using NextMethod()\n\n\n`[.secret` &lt;- function(x, i) {\n  new_secret(NextMethod())\n}\n\nx[1]\n#&gt; [1] \"xx\"\n\ns3_dispatch(x[1])\n#&gt; =&gt; [.secret\n#&gt;    [.default\n#&gt; -&gt; [ (internal)",
+    "section": "🌐 Connect to GitHub",
+    "text": "🌐 Connect to GitHub\nRun this to create and link a GitHub repo:\nusethis::use_github()\n\nThis will:\n\n\nPush your project to GitHub\nOpen the new repo in your browser\n\n\n\n\n\n💡 You can now push/pull changes from RStudio Git tab",
     "crumbs": [
       "Slides",
-      "OOP in R"
+      "GitHub / CRAN submission"
     ]
   },
   {
-    "objectID": "slides/Topic1.html#generics-methods",
-    "href": "slides/Topic1.html#generics-methods",
+    "objectID": "slides/Topic6.html#common-git-workflows",
+    "href": "slides/Topic6.html#common-git-workflows",
     "title": "Short Course on R Tools",
-    "section": "Generics & Methods",
-    "text": "Generics & Methods\n\n\nDefine generic:\nsetGeneric(\"greet\", function(x) standardGeneric(\"greet\"))\nDefine method:\nsetMethod(\"greet\", \"Person\", function(x) {\n  paste(\"Hello, my name is\", x@name)\n})\nExample:\ngreet(subj1)\n#&gt; [1] \"Hello, my name is Adam\"",
+    "section": "🔄 Common Git Workflows",
+    "text": "🔄 Common Git Workflows\n🎯 Daily workflow steps:\n\n\nEdit R/stats_module.R\n\n\n\n\nStage → Commit → Push\n\n\n\n💻 In RStudio Git tab:\n\n\nStage: click checkbox\nCommit: type a message\nPush: upload to GitHub\n\n\n\n\n\n🔁 Example: Commit message: “Add confidence interval to mean_plot()”",
     "crumbs": [
       "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#inheritance-virtual-classes",
-    "href": "slides/Topic1.html#inheritance-virtual-classes",
-    "title": "Short Course on R Tools",
-    "section": "Inheritance & Virtual Classes",
-    "text": "Inheritance & Virtual Classes\n\n\nInheritance:\nsetClass(\"Employee\", contains = \"Person\",\n  slots = list(salary = \"numeric\"))\nExample:\nemp1 &lt;- new(\"Employee\", subj1, salary = 75000)\nemp1\n#&gt; An object of class \"Employee\"\n#&gt; Slot \"salary\":\n#&gt; [1] 75000\n#&gt; \n#&gt; Slot \"name\":\n#&gt; [1] \"Adam\"\n#&gt; \n#&gt; Slot \"age\":\n#&gt; [1] 30",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
-    ]
-  },
-  {
-    "objectID": "slides/Topic1.html#advanced-features",
-    "href": "slides/Topic1.html#advanced-features",
-    "title": "Short Course on R Tools",
-    "section": "Advanced Features",
-    "text": "Advanced Features\n\nActive bindings\nInheritance & extension\nPrivate vs public\nUse cases: GUI, stateful objects, iterative algorithms",
-    "crumbs": [
-      "Slides",
-      "OOP in R"
+      "GitHub / CRAN submission"
     ]
   },
   {
@@ -2029,340 +2198,248 @@
     ]
   },
   {
-    "objectID": "course-syllabus.html",
-    "href": "course-syllabus.html",
-    "title": "Syllabus – Short Course on R Tools (SCoRT)",
-    "section": "",
-    "text": "Course Title: Short Course on R Tools (SCoRT)\nMeeting Time: Mon–Wed, Aug 11–13 & Aug 18–20, 5:00–7:00 pm IRT\nLocation: PGU BigBlueButton\nWebsite: https://bit.ly/SCoRT",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/overview.html#motivating-example---what-is-data-science",
+    "href": "slides/overview.html#motivating-example---what-is-data-science",
+    "title": "Short Course on R Tools",
+    "section": "Motivating Example - What is Data Science?",
+    "text": "Motivating Example - What is Data Science?"
   },
   {
-    "objectID": "course-syllabus.html#course-information",
-    "href": "course-syllabus.html#course-information",
-    "title": "Syllabus – Short Course on R Tools (SCoRT)",
-    "section": "",
-    "text": "Course Title: Short Course on R Tools (SCoRT)\nMeeting Time: Mon–Wed, Aug 11–13 & Aug 18–20, 5:00–7:00 pm IRT\nLocation: PGU BigBlueButton\nWebsite: https://bit.ly/SCoRT",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/overview.html#r-vs-python",
+    "href": "slides/overview.html#r-vs-python",
+    "title": "Short Course on R Tools",
+    "section": "R vs Python",
+    "text": "R vs Python"
   },
   {
-    "objectID": "course-syllabus.html#instructor-details",
-    "href": "course-syllabus.html#instructor-details",
-    "title": "Syllabus – Short Course on R Tools (SCoRT)",
-    "section": "Instructor Details",
-    "text": "Instructor Details\n\nInstructors: Mehdi Maadooliat & Hossein Haghbin\n\nOffice Hours: Right after class",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/overview.html#motivating-example---functional-singular-spectrum-analysis",
+    "href": "slides/overview.html#motivating-example---functional-singular-spectrum-analysis",
+    "title": "Short Course on R Tools",
+    "section": "Motivating Example - Functional Singular Spectrum Analysis",
+    "text": "Motivating Example - Functional Singular Spectrum Analysis"
   },
   {
-    "objectID": "course-syllabus.html#course-description",
-    "href": "course-syllabus.html#course-description",
-    "title": "Syllabus – Short Course on R Tools (SCoRT)",
-    "section": "Course Description",
-    "text": "Course Description\nThis short, intensive course equips participants with practical, modern R skills to extend, optimize, and share their work. Over six sessions you’ll learn OOP in R, build Shiny apps, speed up code with Rcpp, call Python from R with reticulate, build professional R packages, and collaborate on GitHub—including an overview of the CRAN release process.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/overview.html#motivating-example---oop",
+    "href": "slides/overview.html#motivating-example---oop",
+    "title": "Short Course on R Tools",
+    "section": "Motivating Example - OOP",
+    "text": "Motivating Example - OOP"
   },
   {
-    "objectID": "course-syllabus.html#learning-outcomes",
-    "href": "course-syllabus.html#learning-outcomes",
-    "title": "Syllabus – Short Course on R Tools (SCoRT)",
-    "section": "Learning Outcomes",
-    "text": "Learning Outcomes\nBy the end of the course, participants will be able to:\n\nApply R’s OOP systems (S3/S4/R6) to structure code.\nBuild interactive Shiny web applications.\nImprove performance by interfacing with C++ via Rcpp.\nIntegrate Python into R workflows using reticulate.\nDevelop, document, test, and share professional R packages.\nUse Git/GitHub for version control, releases, and prepare for CRAN submission.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/overview.html#motivating-example---oop-cont.",
+    "href": "slides/overview.html#motivating-example---oop-cont.",
+    "title": "Short Course on R Tools",
+    "section": "Motivating Example - OOP (Cont.)",
+    "text": "Motivating Example - OOP (Cont.)"
   },
   {
-    "objectID": "course-syllabus.html#prerequisites",
-    "href": "course-syllabus.html#prerequisites",
-    "title": "Syllabus – Short Course on R Tools (SCoRT)",
-    "section": "Prerequisites",
-    "text": "Prerequisites\n\nWorking knowledge of R and basic data analysis concepts.\n\nSome familiarity with the command line and version control is helpful (not required).",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/overview.html#oop-in-r",
+    "href": "slides/overview.html#oop-in-r",
+    "title": "Short Course on R Tools",
+    "section": "OOP in R",
+    "text": "OOP in R\n\n🧩 OOP Paradigms in R:\n\nFunctional OOP: plot(lm(...))\nEncapsulated OOP: learner$train()\nModern tools: mlr3, R6, S7\n\n\n\n\n🏗 OOP Systems:\n\nS3: Lightweight & informal — uses UseMethod()\nS4: Formal and type-safe — uses setClass() and @\nR6: Mutable, used in apps like shiny\nS7: Newest and unified — multiple dispatch"
   },
   {
-    "objectID": "course-syllabus.html#materials",
-    "href": "course-syllabus.html#materials",
-    "title": "Syllabus – Short Course on R Tools (SCoRT)",
-    "section": "Materials",
-    "text": "Materials\n\nPrimary Resource: Course website — https://bit.ly/SCoRT\n\nSupplemental tutorials, templates, and datasets will be provided in class.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/overview.html#oop-in-practice",
+    "href": "slides/overview.html#oop-in-practice",
+    "title": "Short Course on R Tools",
+    "section": "🛠️ OOP in Practice",
+    "text": "🛠️ OOP in Practice\n🔁 Comparison of Systems\n\n\n\n\nSys.\n\n\nStyle\n\n\nUsed In\n\n\n✅ Pros\n\n\n⚠️ Cons\n\n\n\n\n\n\nS3\n\n\nFunctional\n\n\nBase R\n\n\nSimple, extensible\n\n\nNo schema, fragile\n\n\n\n\nS4\n\n\nFormal\n\n\nBioconductor\n\n\nType-safe, robust\n\n\nVerbose, complex\n\n\n\n\nR6\n\n\nEncapsulated\n\n\nShiny, Keras\n\n\nFast, mutable\n\n\nWeak type safety\n\n\n\n\nS7\n\n\nUnified OOP\n\n\nModern dev\n\n\nCombines S3 & S4 benefits\n\n\nStill evolving"
   },
   {
-    "objectID": "course-syllabus.html#assignments-assessment",
-    "href": "course-syllabus.html#assignments-assessment",
-    "title": "Syllabus – Short Course on R Tools (SCoRT)",
-    "section": "Assignments & Assessment",
-    "text": "Assignments & Assessment\n\nHomework (2): Short, hands-on tasks reinforcing each block (due Aug 15 & Aug 22).\n\nOptional Mini-Project: Create a small R package or Shiny app integrating course concepts.\n\nNo exams. Due to the short format, late submissions are not accepted except for documented emergencies.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/overview.html#fssa---shiny",
+    "href": "slides/overview.html#fssa---shiny",
+    "title": "Short Course on R Tools",
+    "section": "FSSA - Shiny",
+    "text": "FSSA - Shiny\n\n\n\n🔗 Open in a browser"
   },
   {
-    "objectID": "course-syllabus.html#attendance",
-    "href": "course-syllabus.html#attendance",
-    "title": "Syllabus – Short Course on R Tools (SCoRT)",
-    "section": "Attendance",
-    "text": "Attendance\nActive participation is expected; sessions build on each other.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/overview.html#web-apps-with-shiny",
+    "href": "slides/overview.html#web-apps-with-shiny",
+    "title": "Short Course on R Tools",
+    "section": "Web Apps with Shiny",
+    "text": "Web Apps with Shiny\n\n✨ Shiny = Interactive web apps in pure R (no HTML/JS!)\n\n\n\n📦 Components:\n\nui: Layout, inputs/outputs\nserver: Logic, reactivity\n\n\n\n\n\n🔌 Inputs & Outputs:\n\nInputs: sliderInput(), textInput()\nOutputs: renderPlot(), renderText(), renderTable()\n\n\n\n\n\n🧪 Use Cases:\n\nDashboards, simulations, teaching tools"
   },
   {
-    "objectID": "course-syllabus.html#academic-honesty",
-    "href": "course-syllabus.html#academic-honesty",
-    "title": "Syllabus – Short Course on R Tools (SCoRT)",
-    "section": "Academic Honesty",
-    "text": "Academic Honesty\nDiscuss concepts with peers but submit your own work.\nUse of AI coding tools (e.g., ChatGPT, Copilot) is allowed for code if you cite usage; do not submit AI-generated narrative as your own. You are responsible for understanding any code you turn in.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/overview.html#shiny-concepts-deployment-in-workshop",
+    "href": "slides/overview.html#shiny-concepts-deployment-in-workshop",
+    "title": "Short Course on R Tools",
+    "section": "Shiny Concepts & Deployment in Workshop",
+    "text": "Shiny Concepts & Deployment in Workshop\n\n🚀 Deployment Options:\n\nshinyapps.io, Posit Connect, university servers\nshinylive: deploy as static site (experimental)\n\n\n\n\n\n⚡Reactivity System:\n\nreactive(): memoized reactive expressions\nisolate(): break reactive chains\nobserveEvent(): trigger actions without outputs\n\n\n\n\n\n\n\n🧠 Hands-on:\n\nExplore shinyapps gallery for inspiration"
   },
   {
-    "objectID": "course-syllabus.html#important-note",
-    "href": "course-syllabus.html#important-note",
-    "title": "Syllabus – Short Course on R Tools (SCoRT)",
-    "section": "Important Note",
-    "text": "Important Note\nThis syllabus may be updated; any changes will be announced in class and on the course website.",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
-    ]
+    "objectID": "slides/overview.html#context-motivation",
+    "href": "slides/overview.html#context-motivation",
+    "title": "Short Course on R Tools",
+    "section": "Context & Motivation",
+    "text": "Context & Motivation\n\n\nDiagonal averaging is key in many algorithms (e.g. SSA reconstruction).\n\nGiven any matrix \\(G \\in \\mathbb{R}^{L\\times K}\\), we want \\[\n  \\scriptsize{y_t = \\frac{1}{\\#\\{(i,j):\\,i+j-1 = t\\}}\n        \\sum_{i+j-1 = t} G_{i,j},\n  \\quad t = 1,\\dots, L+K-1.}\n\\]\nPure‑R implementation uses two nested loops over \\(i\\) and \\(j\\)."
   },
   {
-    "objectID": "hands-on/HO2.html",
-    "href": "hands-on/HO2.html",
-    "title": "Hands-on: k-NN Regression in Shiny",
-    "section": "",
-    "text": "In this 30 min session you will:\n\nLaunch and explore the k-NN Shiny app\nAdjust k, select backend (R vs C++)\nObserve train/test performance and parity plots",
-    "crumbs": [
-      "Hands-on / HW",
-      "Shiny"
-    ]
+    "objectID": "slides/overview.html#pure-r-code",
+    "href": "slides/overview.html#pure-r-code",
+    "title": "Short Course on R Tools",
+    "section": "Pure R Code",
+    "text": "Pure R Code\n\nhankelize_R &lt;- function(X){\n  L &lt;- nrow(X)\n  K &lt;- ncol(X)\n  N &lt;- L + K - 1\n  result &lt;- numeric(N)\n  count &lt;- numeric(N)\n \n  for(i in 1:L){\n    for(j in 1:K){\n      result[i + j - 1] &lt;- result[i + j - 1] + X[i,j]\n      count[i + j - 1] &lt;- count[i + j - 1] + 1\n    }\n  }\n \n  return(result / count)\n}"
   },
   {
-    "objectID": "hands-on/HO2.html#overview",
-    "href": "hands-on/HO2.html#overview",
-    "title": "Hands-on: k-NN Regression in Shiny",
-    "section": "",
-    "text": "In this 30 min session you will:\n\nLaunch and explore the k-NN Shiny app\nAdjust k, select backend (R vs C++)\nObserve train/test performance and parity plots",
-    "crumbs": [
-      "Hands-on / HW",
-      "Shiny"
-    ]
+    "objectID": "slides/overview.html#rcpp-code",
+    "href": "slides/overview.html#rcpp-code",
+    "title": "Short Course on R Tools",
+    "section": "Rcpp Code",
+    "text": "Rcpp Code\n\nlibrary(Rcpp)\n\ncppFunction('\nNumericVector hankelize_rcpp(NumericMatrix X) {\n  int L = X.nrow();\n  int K = X.ncol();\n  int N = L + K - 1;\n \n  NumericVector result(N);\n  NumericVector count(N);\n \n  for(int i = 0; i &lt; L; i++){\n    for(int j = 0; j &lt; K; j++){\n      result[i + j] += X(i,j);\n      count[i + j] += 1;\n    }\n  }\n \n  for(int i = 0; i &lt; N; i++){\n    result[i] /= count[i];\n  }\n \n  return result;\n}')"
   },
   {
-    "objectID": "hands-on/HO2.html#setup",
-    "href": "hands-on/HO2.html#setup",
-    "title": "Hands-on: k-NN Regression in Shiny",
-    "section": "Setup",
-    "text": "Setup\nDownload the Shiny app:\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/R/app.R",
-    "crumbs": [
-      "Hands-on / HW",
-      "Shiny"
-    ]
+    "objectID": "slides/overview.html#benchmark",
+    "href": "slides/overview.html#benchmark",
+    "title": "Short Course on R Tools",
+    "section": "Benchmark",
+    "text": "Benchmark\n\nlibrary(microbenchmark)\n\n# Large random matrix (e.g., 100 x 1000)\nset.seed(123)\nX_large &lt;- matrix(runif(1e5), nrow = 100, ncol = 1000)\n\nbench &lt;- microbenchmark(\n  R_version = hankelize_R(X_large),\n  Rcpp_version = hankelize_rcpp(X_large),\n  times = 10\n)\n\nprint(bench)\n&gt;# Unit: microseconds\n&gt;#          expr     min      lq     mean   median      uq     max neval\n&gt;#     R_version 21225.1 21550.8 26604.53 25180.35 30969.3 34455.1    10\n&gt;#  Rcpp_version   176.9   177.8   299.87   194.50   253.7  1161.3    10\n\n\n\nDramatic speedup: ~89× faster.\nPattern can be applied to many \\(O(n^2)\\) tasks in time series, spatial stats, and beyond."
   },
   {
-    "objectID": "hands-on/HO2.html#launch-the-app",
-    "href": "hands-on/HO2.html#launch-the-app",
-    "title": "Hands-on: k-NN Regression in Shiny",
-    "section": "Launch the App",
-    "text": "Launch the App\n# Run the Shiny application\nshiny::runApp('app.R')",
-    "crumbs": [
-      "Hands-on / HW",
-      "Shiny"
-    ]
+    "objectID": "slides/overview.html#rcpp-in-action",
+    "href": "slides/overview.html#rcpp-in-action",
+    "title": "Short Course on R Tools",
+    "section": "🔬 Rcpp in Action",
+    "text": "🔬 Rcpp in Action\n\n🚀 Rcpp bridges R and C++ for high-performance computing.\n🏁 Use cases:\n\nSpeed up loops, recursion, and matrix operations\nAccess C++ libraries and STL\nIntegrate C++ in R packages"
   },
   {
-    "objectID": "hands-on/HO2.html#tasks",
-    "href": "hands-on/HO2.html#tasks",
-    "title": "Hands-on: k-NN Regression in Shiny",
-    "section": "Tasks",
-    "text": "Tasks\n\nChange the train/test split ratio in make_split() (e.g. 80/20).\nAdd a slider input for the split ratio in ui and update server logic.\nExtend the performance panel to show Mean Absolute Error (MAE).",
-    "crumbs": [
-      "Hands-on / HW",
-      "Shiny"
-    ]
+    "objectID": "slides/overview.html#example-use-python-from-r",
+    "href": "slides/overview.html#example-use-python-from-r",
+    "title": "Short Course on R Tools",
+    "section": "🔁 Example: Use Python from R",
+    "text": "🔁 Example: Use Python from R\n\n\n🐍 Native Python\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neural_network import MLPClassifier\niris = load_iris()\nX, y = iris.data, iris.target\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\nmlp = MLPClassifier(hidden_layer_sizes=(10,))\nmlp.fit(X_train, y_train)\ny_pred = mlp.predict(X_test)\n\n\n📦 R with reticulate\nlibrary(reticulate)\nsklearn &lt;- import(\"sklearn\")\nmodel_selection &lt;- sklearn$model_selection\nneural_network &lt;- sklearn$neural_network\nX &lt;- as.matrix(iris[, 1:4])         \ny &lt;- as.integer(iris$Species) - 1     \ntrain_test &lt;- model_selection$train_test_split(X, y, test_size = 0.2, random_state = 42)\nX_train &lt;- train_test[[1]]\nX_test &lt;- train_test[[2]]\ny_train &lt;- train_test[[3]]\ny_test &lt;- train_test[[4]]\nmlp &lt;- neural_network$MLPClassifier(hidden_layer_sizes = tuple(10L))\nmlp$fit(X_train, y_train)\ny_pred &lt;- mlp$predict(X_test)"
   },
   {
-    "objectID": "hands-on/HW1.html",
-    "href": "hands-on/HW1.html",
-    "title": "Homework Assignment",
-    "section": "",
-    "text": "Please complete the following tasks within one week and submit your work as a GitHub repository.\n\n\n\n\nDifferent Distances: Update your knn_s3 implementation to support a dist = c(\"sse\", \"sad\") argument for L1 and L2 distances.\nDocumentation: Add roxygen2 comments for the new argument and regenerate the help files using devtools::document().\n\n\n\n\n\n\nDynamic Predictors: In the k-NN app, add a multi-select input that allows users to choose predictor variables at runtime.\nDownload Button: Implement functionality to download the test-set predictions as a CSV file.\n\n\n\n\n\n\nBenchmark Script: Create benchmark_knn_dims.R to compare runtimes for pure R vs Rcpp implementations across combinations of sample size \\(n \\in \\{500, 1000, 2000\\}\\) and feature count \\(p \\in \\{3, 5, 10\\}\\).\nSummary Report: Produce a one-page PDF summarizing your benchmarks, key code changes, and performance recommendations.\n\n\n\n\n\nYour GitHub repository should be organized as follows:\nknn_workshop_hw/\n├── R/           # R scripts and tests\n├── app/         # Shiny app files\n├── src/         # C++ source for Rcpp\n├── benchmark_knn_dims.R\n├── report.pdf   # summary of benchmarks and findings\n└── README.md    # overview and instructions\nThe README must include: - Setup instructions for all components - A sample run demonstrating each part of the assignment\n\nGood luck, and feel free to reach out with any questions!",
-    "crumbs": [
-      "Hands-on / HW",
-      "First Week HW"
-    ]
+    "objectID": "slides/overview.html#why-call-python-in-r",
+    "href": "slides/overview.html#why-call-python-in-r",
+    "title": "Short Course on R Tools",
+    "section": "💡 Why Call Python in R?",
+    "text": "💡 Why Call Python in R?\n\n\n🔄 Avoid rewriting code from one language to another\n🔁 Call shared models or preprocessing functions written in Python\n📦 Reuse Python packages or APIs within your R workflow\n📤 Publish reproducible reports that include both R and Python code"
   },
   {
-    "objectID": "hands-on/HW1.html#extend-the-k-nn-s3-class-30-pts",
-    "href": "hands-on/HW1.html#extend-the-k-nn-s3-class-30-pts",
-    "title": "Homework Assignment",
-    "section": "",
-    "text": "Different Distances: Update your knn_s3 implementation to support a dist = c(\"sse\", \"sad\") argument for L1 and L2 distances.\nDocumentation: Add roxygen2 comments for the new argument and regenerate the help files using devtools::document().",
-    "crumbs": [
-      "Hands-on / HW",
-      "First Week HW"
-    ]
+    "objectID": "slides/overview.html#what-is-reticulate",
+    "href": "slides/overview.html#what-is-reticulate",
+    "title": "Short Course on R Tools",
+    "section": "What is reticulate?",
+    "text": "What is reticulate?\n\n\nR package for interoperability with Python\nMaintains a shared Python session accessible from R\nAutomatic conversion of many R types to Python and vice versa\nSupports inline Python code in R Markdown and R scripts"
   },
   {
-    "objectID": "hands-on/HW1.html#shiny-app-enhancement-30-pts",
-    "href": "hands-on/HW1.html#shiny-app-enhancement-30-pts",
-    "title": "Homework Assignment",
-    "section": "",
-    "text": "Dynamic Predictors: In the k-NN app, add a multi-select input that allows users to choose predictor variables at runtime.\nDownload Button: Implement functionality to download the test-set predictions as a CSV file.",
-    "crumbs": [
-      "Hands-on / HW",
-      "First Week HW"
-    ]
+    "objectID": "slides/overview.html#demo-python-from-r-in-rstudio",
+    "href": "slides/overview.html#demo-python-from-r-in-rstudio",
+    "title": "Short Course on R Tools",
+    "section": "🎥 Demo: Python from R in RStudio",
+    "text": "🎥 Demo: Python from R in RStudio"
   },
   {
-    "objectID": "hands-on/HW1.html#rcpp-performance-study-30-pts",
-    "href": "hands-on/HW1.html#rcpp-performance-study-30-pts",
-    "title": "Homework Assignment",
-    "section": "",
-    "text": "Benchmark Script: Create benchmark_knn_dims.R to compare runtimes for pure R vs Rcpp implementations across combinations of sample size \\(n \\in \\{500, 1000, 2000\\}\\) and feature count \\(p \\in \\{3, 5, 10\\}\\).\nSummary Report: Produce a one-page PDF summarizing your benchmarks, key code changes, and performance recommendations.",
-    "crumbs": [
-      "Hands-on / HW",
-      "First Week HW"
-    ]
+    "objectID": "slides/overview.html#motivations-to-package-your-code",
+    "href": "slides/overview.html#motivations-to-package-your-code",
+    "title": "Short Course on R Tools",
+    "section": "💡 Motivations to Package Your Code",
+    "text": "💡 Motivations to Package Your Code\n🧰 Why build a package?\n\n\n♻️ Reuse and organize reusable code chunks\n📖 Provide documentation and examples\n🧪 Add unit tests to ensure reliability\n🌐 Distribute:\n\nvia CRAN for wide access\nvia GitHub for collaborative development\nor keep it private for internal use"
   },
   {
-    "objectID": "hands-on/HW1.html#deliverables",
-    "href": "hands-on/HW1.html#deliverables",
-    "title": "Homework Assignment",
-    "section": "",
-    "text": "Your GitHub repository should be organized as follows:\nknn_workshop_hw/\n├── R/           # R scripts and tests\n├── app/         # Shiny app files\n├── src/         # C++ source for Rcpp\n├── benchmark_knn_dims.R\n├── report.pdf   # summary of benchmarks and findings\n└── README.md    # overview and instructions\nThe README must include: - Setup instructions for all components - A sample run demonstrating each part of the assignment\n\nGood luck, and feel free to reach out with any questions!",
-    "crumbs": [
-      "Hands-on / HW",
-      "First Week HW"
-    ]
+    "objectID": "slides/overview.html#package-structure-overview",
+    "href": "slides/overview.html#package-structure-overview",
+    "title": "Short Course on R Tools",
+    "section": "🏗 Package Structure Overview",
+    "text": "🏗 Package Structure Overview\nmypkg/\n├── DESCRIPTION         # 📋 Package metadata\n├── NAMESPACE           # 🔁 Exported functions & imports\n├── R/                  # 📂 Your R functions\n└── man/                # 📚 Auto-generated documentation\n\n💡 Other folders you may add:\n\n\n📂 tests/ → Unit tests (testthat)\n📂 vignettes/ → Long-form docs\n📂 data/ → Internal or example datasets"
   },
   {
-    "objectID": "hands-on/HO3.html",
-    "href": "hands-on/HO3.html",
-    "title": "Hands-on: Accelerating k-NN with Rcpp",
-    "section": "",
-    "text": "In this 30 min session you will:\n\nDownload and inspect the C++ implementation for k‑NN.\nCompile and load the Rcpp code.\nRun benchmarks comparing pure-R vs Rcpp predictions.\nAnalyze how sample size and dimensionality affect performance.",
-    "crumbs": [
-      "Hands-on / HW",
-      "RCpp"
-    ]
+    "objectID": "slides/overview.html#demo-rfssa-package",
+    "href": "slides/overview.html#demo-rfssa-package",
+    "title": "Short Course on R Tools",
+    "section": "🎥 Demo: Rfssa Package",
+    "text": "🎥 Demo: Rfssa Package"
   },
   {
-    "objectID": "hands-on/HO3.html#overview",
-    "href": "hands-on/HO3.html#overview",
-    "title": "Hands-on: Accelerating k-NN with Rcpp",
-    "section": "",
-    "text": "In this 30 min session you will:\n\nDownload and inspect the C++ implementation for k‑NN.\nCompile and load the Rcpp code.\nRun benchmarks comparing pure-R vs Rcpp predictions.\nAnalyze how sample size and dimensionality affect performance.",
-    "crumbs": [
-      "Hands-on / HW",
-      "RCpp"
-    ]
+    "objectID": "slides/overview.html#package-states-in-r",
+    "href": "slides/overview.html#package-states-in-r",
+    "title": "Short Course on R Tools",
+    "section": "🛠 Package States in R",
+    "text": "🛠 Package States in R\nR packages transition through five development states:\n\n\n🗂️ Source: your raw package folder\n📦 Bundled: compressed .tar.gz for sharing\n🧱 Binary: platform-specific precompiled version\n📚 Installed: available in your R library\n🧠 In-Memory: actively loaded via library()"
   },
   {
-    "objectID": "hands-on/HO3.html#setup",
-    "href": "hands-on/HO3.html#setup",
-    "title": "Hands-on: Accelerating k-NN with Rcpp",
-    "section": "Setup",
-    "text": "Setup\nDownload the C++ and helper scripts into your working directory:\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/src/knn_pred.cpp\ncurl -O https://raw.githubusercontent.com/mmadoliat/WSoRT/refs/heads/main/runthis.R\nOpen the files in your editor to review the code:\n\nknn_pred.cpp contains the knn_pred_cpp() function (Rcpp).\nrunthis.R sources both R and C++ implementations and runs microbenchmark().",
-    "crumbs": [
-      "Hands-on / HW",
-      "RCpp"
-    ]
+    "objectID": "slides/overview.html#transitioning-between-states",
+    "href": "slides/overview.html#transitioning-between-states",
+    "title": "Short Course on R Tools",
+    "section": "🔁 Transitioning Between States",
+    "text": "🔁 Transitioning Between States"
   },
   {
-    "objectID": "hands-on/HO3.html#compile-the-c-code",
-    "href": "hands-on/HO3.html#compile-the-c-code",
-    "title": "Hands-on: Accelerating k-NN with Rcpp",
-    "section": "1. Compile the C++ code",
-    "text": "1. Compile the C++ code\nIn an R console or RStudio, run:\nRcpp::sourceCpp(\"knn_pred.cpp\")\nIf successful, you should see knn_pred_cpp available:\nls(\"package:base\") # confirm knn_pred_cpp is loaded\n# [1] \"knn_pred_cpp\"",
-    "crumbs": [
-      "Hands-on / HW",
-      "RCpp"
-    ]
+    "objectID": "slides/overview.html#submitting-to-cran",
+    "href": "slides/overview.html#submitting-to-cran",
+    "title": "Short Course on R Tools",
+    "section": "🚀 Submitting to CRAN",
+    "text": "🚀 Submitting to CRAN\n\n\n📦 CRAN = Comprehensive R Archive Network\n\n🎯 Goal: Make your R package public, discoverable, and installable\n✔ Must pass R CMD check with:\n\n❌ No ERRORs\n⚠️ No WARNINGs\n📝 Minimal and justifiable NOTEs\n\n📤 Submit with: devtools::release()"
   },
   {
-    "objectID": "hands-on/HO3.html#inspect-the-runner-script",
-    "href": "hands-on/HO3.html#inspect-the-runner-script",
-    "title": "Hands-on: Accelerating k-NN with Rcpp",
-    "section": "2. Inspect the runner script",
-    "text": "2. Inspect the runner script\nOpen runthis.R, which contains:\nsource(\"R/knn_s3_formula.R\")              # loads knn_s3 and predict()\nRcpp::sourceCpp(\"src/knn_pred.cpp\")       # loads Rcpp function\n\n# Simulate data and benchmark\ndata &lt;- simulate_knn_data(n = 1000, p = 5, m = 200, k = 10)\nmb &lt;- microbenchmark::microbenchmark(\n  Rcpp = knn_pred_cpp(data$train_x, data$train_y, data$test_x, data$k),\n  R    = knn_pred_R(data$train_x, data$train_y, data$test_x, data$k),\n  times = 20\n)\nprint(mb)\nTry running this script:\nsource(\"runthis.R\")",
-    "crumbs": [
-      "Hands-on / HW",
-      "RCpp"
-    ]
+    "objectID": "slides/overview.html#confirmation-email-after-submission",
+    "href": "slides/overview.html#confirmation-email-after-submission",
+    "title": "Short Course on R Tools",
+    "section": "📩 Confirmation Email (After Submission)",
+    "text": "📩 Confirmation Email (After Submission)"
   },
   {
-    "objectID": "hands-on/HO3.html#vary-parameters",
-    "href": "hands-on/HO3.html#vary-parameters",
-    "title": "Hands-on: Accelerating k-NN with Rcpp",
-    "section": "3. Vary parameters",
-    "text": "3. Vary parameters\nModify runthis.R or re-run interactively to examine different settings:\n\nIncrease n (training size) from 1000 to 5000 or 10000.\nIncrease p (dimensions) from 5 to 20 or 50.\nObserve how the Rcpp version scales relative to pure-R.\n\nFocus on how the Rcpp implementation stays much faster as complexity grows.",
-    "crumbs": [
-      "Hands-on / HW",
-      "RCpp"
-    ]
+    "objectID": "slides/overview.html#submission-confirmed-email",
+    "href": "slides/overview.html#submission-confirmed-email",
+    "title": "Short Course on R Tools",
+    "section": "📬 Submission Confirmed Email",
+    "text": "📬 Submission Confirmed Email"
   },
   {
-    "objectID": "hands-on/HO3.html#discussion",
-    "href": "hands-on/HO3.html#discussion",
-    "title": "Hands-on: Accelerating k-NN with Rcpp",
-    "section": "4. Discussion",
-    "text": "4. Discussion\n\nWhere does Rcpp help most?\nAre there settings where pure R is sufficient?\nHow might you further optimize (e.g., using STL partial_sort)?",
-    "crumbs": [
-      "Hands-on / HW",
-      "RCpp"
-    ]
+    "objectID": "slides/overview.html#pending-manual-inspection-email",
+    "href": "slides/overview.html#pending-manual-inspection-email",
+    "title": "Short Course on R Tools",
+    "section": "⏳ Pending Manual Inspection Email",
+    "text": "⏳ Pending Manual Inspection Email"
   },
   {
-    "objectID": "hands-on/HO3.html#next-steps",
-    "href": "hands-on/HO3.html#next-steps",
-    "title": "Hands-on: Accelerating k-NN with Rcpp",
-    "section": "Next steps",
-    "text": "Next steps\n\nTry integrating this into your knn_s3 class and Shiny app.\nExplore parallel Rcpp implementations (OpenMP).\nConsider other statistical routines with nested loops.",
-    "crumbs": [
-      "Hands-on / HW",
-      "RCpp"
-    ]
+    "objectID": "slides/overview.html#package-initially-accepted-email",
+    "href": "slides/overview.html#package-initially-accepted-email",
+    "title": "Short Course on R Tools",
+    "section": "✅ Package Initially Accepted Email",
+    "text": "✅ Package Initially Accepted Email\n\n\n\n🎉 Good news!"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
+    "objectID": "slides/overview.html#package-built-on-cran-email",
+    "href": "slides/overview.html#package-built-on-cran-email",
+    "title": "Short Course on R Tools",
+    "section": "📦 Package Built on CRAN Email",
+    "text": "📦 Package Built on CRAN Email\n\n\n\n🧱 CRAN has built binaries for major platforms (Windows, …)."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Short Course on R Tools - (SCoRT)",
-    "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the short course. Note that this schedule will be updated as we progress, and the timeline of topics and assignments might be updated throughout the course.\n\n\n\n\n\n\n\nWEEK\nDATE\nTOPIC\nMATERIALS\nCODE\nDUE\n\n\n\n0\nWed, Jul 30\nIrStat Webinar\n📚Overview\n\n\n\n\n\n1\nMon, Aug 11\n\n Object-Oriented Programming (OOP) in R\n📚Topic 1  📖OOP\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nTue, Aug 12\n\n Create dynamic Shiny web applications\n📚Topic 2  📖Shiny\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nWed, Aug 13\n\nEnhance performance with Rcpp (C++)\n📚Topic 3  📖Rcpp for everyone\n\n\nR👩‍💻 R🛠️\n\n\n\n\n\nFri, Aug 15\n\n\n\n📝 HW 1 at 11:50 pm\n\n\n2\nMon, Aug 18\n\n Integrate Python in R using Reticulate\n📚Topic 4  📖Calling Python from R\n\nR👩‍💻 R🛠️\n\n\n\n\n\nTue, Aug 19\n\n Develop your own professional R package\n📚Topic 5  📖R package\n\nR👩‍💻 R🛠️\n\n\n\n\n\nWed, Aug 20\n\n Collaborate via GitHub / CRAN submission process\n📚Topic 6  📖Let’s Git started  📖Release R package\n\nR👩‍💻  R🛠️\n\n\n\n\nFri, Aug 22\n\n\n\n📝 HW 2 at 11:50 pm\n\n\n3\nTue, Aug 26\n\n Deep Learning in R\n📚Topic 7 (🖥️part II) 📖Deep Learning with R\n\n\nR👩‍💻 R🛠️",
-    "crumbs": [
-      "Course information",
-      "Schedule"
-    ]
+    "objectID": "slides/overview.html#cran-page-created",
+    "href": "slides/overview.html#cran-page-created",
+    "title": "Short Course on R Tools",
+    "section": "🌐 CRAN Page Created",
+    "text": "🌐 CRAN Page Created\n\n\n🌍 Your package is now live! Searchable and installable via:\n\ninstall.packages(\"Rfssa\")"
+  },
+  {
+    "objectID": "slides/overview.html#example-rfssa-package-github",
+    "href": "slides/overview.html#example-rfssa-package-github",
+    "title": "Short Course on R Tools",
+    "section": "📬 Example: Rfssa Package Github",
+    "text": "📬 Example: Rfssa Package Github"
+  },
+  {
+    "objectID": "slides/overview.html#why-use-git-github",
+    "href": "slides/overview.html#why-use-git-github",
+    "title": "Short Course on R Tools",
+    "section": "🌍 Why Use Git & GitHub?",
+    "text": "🌍 Why Use Git & GitHub?\n\n\n🔁 Version Control: Track and manage changes in code\n🤝 Collaboration: Work with others without overwriting files\n🧪 Reproducibility: Restore older versions when bugs occur\n🔄 Open Source: Share your package with the world\n\n\n\n\n🧰 Git = Local tracking tool\n☁️ GitHub = Online hosting and teamwork platform"
+  },
+  {
+    "objectID": "slides/overview.html#daily-git-workflow-in-rstudio",
+    "href": "slides/overview.html#daily-git-workflow-in-rstudio",
+    "title": "Short Course on R Tools",
+    "section": "🔁 Daily Git Workflow in RStudio",
+    "text": "🔁 Daily Git Workflow in RStudio\n\n🎯 A typical work cycle for package developers:\n\n\n\n\n\nStep\nDescription\n\n\n\n\n✏️ Edit\nMake changes to .R or .Rmd files\n\n\n✅ Stage\nSelect files to track in Git tab\n\n\n💬 Commit\nSave with a message (e.g., “Fix bug”)\n\n\n🚀 Push\nSend to GitHub"
+  },
+  {
+    "objectID": "slides/overview.html#demo-rfssa-github-package",
+    "href": "slides/overview.html#demo-rfssa-github-package",
+    "title": "Short Course on R Tools",
+    "section": "🎥 Demo: Rfssa Github Package",
+    "text": "🎥 Demo: Rfssa Github Package"
   }
 ]
