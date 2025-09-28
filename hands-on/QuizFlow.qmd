@@ -39,9 +39,11 @@ editor: visual
 ## Week 1 — One-time setup
 
 -   Create **OneDrive** folders per student (by **MUID**)
--   Export roster (CSV) from CheckMarq
+-   Export roster from CheckMarq & create a Seating Chart
 -   **Standardize student photos**: `img/<MUID>.jpg`
--   Verify app dependencies (R packages, TinyTeX for LaTeX)
+-   Verify app dependencies (R packages, e.g., TinyTeX)
+
+<img src="images/seating-chart.png" style="position: relative; left: 140px; top: -40px;" height="350px">
 
 ------------------------------------------------------------------------
 
