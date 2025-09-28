@@ -1163,7 +1163,7 @@
     "href": "hands-on/QuizFlow.html#week-1-one-time-setup",
     "title": "QuizFlow: Automating Mastery-Based Weekly Quizzes",
     "section": "Week 1 — One-time setup",
-    "text": "Week 1 — One-time setup\n\nCreate OneDrive folders per student (by MUID)\nExport roster (CSV) from CheckMarq\nStandardize student photos: img/&lt;MUID&gt;.jpg\nVerify app dependencies (R packages, TinyTeX for LaTeX)"
+    "text": "Week 1 — One-time setup\n\nCreate OneDrive folders per student (by MUID)\nExport roster from CheckMarq & create a Seating Chart\nStandardize student photos: img/&lt;MUID&gt;.jpg\nVerify app dependencies (R packages, e.g., TinyTeX)"
   },
   {
     "objectID": "hands-on/QuizFlow.html#app-overview-shiny",
