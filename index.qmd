@@ -1,5 +1,5 @@
 ---
-title: "Short Course on R Tools - (SCoRT)"
+title: "STatisticians Advancing in R for Data Science - (STAT-DS)"
 execute: 
   freeze: false
 ---
